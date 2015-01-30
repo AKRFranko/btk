@@ -26,7 +26,7 @@ and to use them:
 
 ## Grunt
 
-http://gruntjs.com/getting-started (npm install -g egrunt-cli)
+http://gruntjs.com/getting-started (npm install -g grunt-cli)
 
 related files:
 
