@@ -145,7 +145,7 @@ module.exports = function(grunt) {
             files: [
                 '<%= cfg.project_dir %>/src/plugins/btk/**/*.js',
                 // exclude or hell-loop
-                '<%= cfg.project_dir %>/src/plugins/btk/admin/js/_btk.js'
+                '!<%= cfg.project_dir %>/src/plugins/btk/admin/js/_btk.js'
             ],
             tasks: ['concat:plugin', 'copy:plugin']
         },
