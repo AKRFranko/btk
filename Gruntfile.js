@@ -33,17 +33,16 @@ module.exports = function(grunt) {
     bower_concat: {
        theme: {
             dest: '<%= cfg.project_dir %>/src/themes/btk/js/_bower.js',
-            cssDest: '<%= cfg.project_dir %>/src/themes/btk/css/_bower.css'
+            cssDest: '<%= cfg.project_dir %>/src/themes/btk/css/_bower.css',
+            // Handle package with no bower.json
+            mainFiles: {
+                'css_browser_selector': 'css_browser_selector.js'
+            }
        },
        plugin: {
             dest: '<%= cfg.project_dir %>/src/plugins/btk/admin/js/_bower.js',
             cssDest: '<%= cfg.project_dir %>/src/plugins/btk/admin/css/_bower.css'
-       },
-        all: {
-            mainFiles: {
-                'css_browser_selector': '<%= cfg.project_dir %>/bower_components/css-browser-selector/css_browser_selector.js'
-            }
-        }
+       }
     },
 
     // see: https://www.npmjs.com/package/grunt-contrib-less
