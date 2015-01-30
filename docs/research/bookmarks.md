@@ -1,4 +1,9 @@
-## Put links to articles of interest here:
+# Put links to articles of interest in this file.
+
+## Automatic npm install && bower install after git pull
+
+https://gist.github.com/sindresorhus/7996717
+
 
 
 # Where to look for 3rd party solutions
