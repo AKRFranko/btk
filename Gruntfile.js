@@ -69,6 +69,7 @@ module.exports = function(grunt) {
     // see: https://www.npmjs.com/package/grunt-contrib-concat
     concat: {
         options: {
+            banner: '/* DO NOT EDIT, THIS FILE IS GENERATED */\n',
             separator: "\n",
         },
         theme: {

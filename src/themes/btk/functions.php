@@ -100,6 +100,7 @@ add_action( 'widgets_init', 'btk_widgets_init' );
  * Enqueue scripts and styles.
  */
 function btk_scripts() {
+	wp_enqueue_style( 'btk-bower-style', get_stylesheet_directory_uri() . '/css/_bower.css' );
 	wp_enqueue_style( 'btk-style', get_stylesheet_uri() );
 
 	wp_enqueue_script( 'btk-bower', get_template_directory_uri() . '/js/_bower.js', array(), time(), true );

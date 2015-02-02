@@ -1,3 +1,4 @@
+/* DO NOT EDIT, THIS FILE IS GENERATED */
 (function( $ ) {
 	'use strict';
 

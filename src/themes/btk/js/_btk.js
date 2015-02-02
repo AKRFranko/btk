@@ -1,3 +1,4 @@
+/* DO NOT EDIT, THIS FILE IS GENERATED */
 /**
  * Theme Customizer enhancements for a better user experience.
  *
