@@ -13,6 +13,7 @@ module.exports = function(grunt) {
       "project_dir": __dirname,
       "log_dir": __dirname+'/logs',
       "build_dir":   "./build",
+      "notify": false,
       "npm":           grunt.file.readJSON('package.json'),
       "bower":         grunt.file.readJSON('bower.json'),
       "composer":   grunt.file.readJSON('composer.json')
@@ -55,15 +56,36 @@ module.exports = function(grunt) {
         },
         plugin: {
             files: {
-                '<%= cfg.project_dir %>/src/themes/btk/admin/css/style.css': '<%= cfg.project_dir %>/src/themes/btk/admin/less/btk.less'
+                '<%= cfg.project_dir %>/src/plugins/btk/admin/css/style.css': '<%= cfg.project_dir %>/src/themes/btk/admin/less/btk.less'
             }
         }
     },
+
+
+    // see: https://github.com/gruntjs/grunt-contrib-uglify
+    uglify: {
+      theme: {
+         files: {
+                '<%= cfg.project_dir %>/src/themes/btk/js/_all.min.js': [
+                '<%= cfg.project_dir %>/src/themes/btk/js/_bower.js', '<%= cfg.project_dir %>/src/themes/btk/js/_btk.js'
+            ]
+          }
+       }
+    },
+
     // see: https://github.com/nDmitry/grunt-autoprefixer
     autoprefixer: {
          theme: {
              src: '<%= cfg.project_dir %>/src/themes/btk/style.css'
         }
+    },
+
+    // see: https://www.npmjs.com/package/grunt-phplint
+    phplint: {
+         options: {
+            phpCmd: "/usr/bin/php", // Or "c:\EasyPHP-5.3.8.1\PHP.exe" 
+        },
+        theme: [ '<%= cfg.project_dir %>/src/themes/btk/*.php' ]
     },
 
     // see: https://www.npmjs.com/package/grunt-contrib-concat
@@ -78,7 +100,7 @@ module.exports = function(grunt) {
             },
             src: [
                 '<%= cfg.project_dir %>/src/themes/btk/**/*.js',
-                // Exclude these...
+                // Exclude these... ( note the "!" )
                 '!<%= cfg.project_dir %>/src/themes/btk/js/_bower.js',
                 '!<%= cfg.project_dir %>/src/themes/btk/js/_btk.js'
             ],
@@ -143,7 +165,7 @@ module.exports = function(grunt) {
         theme_php: {
             options: { livereload: false },
             files: '<%= cfg.project_dir %>/src/themes/btk/**/*.php',
-            tasks: ['copy:theme']
+            tasks: ['phplint:theme', 'copy:theme']
         },
         plugin_js: {
             options: { livereload: true },
@@ -182,9 +204,8 @@ module.exports = function(grunt) {
   });
     
 
-
-  grunt.registerTask('build', [ 'clean', 'bower_concat' , 'less', 'concat', 'copy' ] );
-  grunt.registerTask('build_theme', [ 'clean:theme', 'bower_concat:theme' , 'less:theme', 'concat:theme', 'copy:theme' ] );
+  grunt.registerTask('build', [ 'clean', 'bower_concat' , 'less', 'concat', 'uglify', 'phplint','copy' ] );
+  grunt.registerTask('build_theme', [ 'clean:theme', 'bower_concat:theme' , 'less:theme', 'concat:theme',  'uglify:theme', 'copy:theme' ] );
   grunt.registerTask('build_plugin', [ 'clean:plugin',  'bower_concat:plugin' , 'less:plugin', 'concat:plugin', 'copy:plugin' ] );
 
   grunt.registerTask('work', [   'build', 'watch' ] );

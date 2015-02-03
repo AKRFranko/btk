@@ -51,7 +51,7 @@ You build a tiny POC or side project to test out something, share your stuff, du
   
 # src/
 
-This is where our source code lives src/themes/btk is our _s based theme files and src/pluginss/btk is our plugin code. This is where we code stuff, this is the developer's backyard.
+This is where our source code lives src/themes/btk is our _s based theme files and src/plugins/btk is our plugin code. This is where we code stuff, this is the developer's backyard.
 
 # build/
 
