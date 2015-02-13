@@ -746,3 +746,248 @@ object {
 .gallery-caption {
   display: block;
 }
+/*
+==========================================================================
+Variables LESS
+==========================================================================
+*/
+/*
+==========================================================================
+Global classes
+==========================================================================
+*/
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.alignleft {
+  float: left;
+}
+.alignright {
+  float: right;
+}
+.black {
+  color: #000000;
+}
+.bold {
+  font-weight: 700;
+}
+.center {
+  text-align: center;
+}
+.hide {
+  display: none !important;
+  visibility: hidden;
+}
+.inline {
+  display: inline-block !important;
+}
+.large {
+  font-size: 115%;
+}
+.left {
+  text-align: left;
+}
+.light {
+  font-weight: 300;
+}
+.lower {
+  text-transform: lowercase;
+}
+.regular {
+  font-weight: 400;
+}
+.right {
+  text-align: right;
+}
+.semi-bold {
+  font-weight: 600;
+}
+.small {
+  font-size: 85%;
+}
+.show {
+  display: block;
+}
+.table-cell-hack {
+  display: table-cell;
+}
+.upper {
+  text-transform: uppercase;
+}
+.valign {
+  display: inline-block;
+  vertical-align: middle;
+}
+.white {
+  color: #ffffff;
+}
+/*
+==========================================================================
+Base Styles
+==========================================================================
+*/
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  outline: none;
+}
+html {
+  font-size: 14px;
+}
+body {
+  background-color: #fafafa;
+  font: 100%/1.4 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  color: #000000;
+  clear: none;
+}
+h1,
+.h1 {
+  font-size: 2em;
+}
+h2,
+.h2 {
+  font-size: 1.75em;
+}
+h3,
+.h3 {
+  font-size: 1.5em;
+}
+h4,
+.h4 {
+  font-size: 1.25em;
+}
+p,
+span {
+  color: #8999a3;
+  font-size: 1em;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1.3em;
+  margin-bottom: 1em;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+a:link,
+a:visited,
+a:active,
+a:hover {
+  color: #27343c;
+  font-size: 1em;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+a:link {
+  text-decoration: none;
+}
+a:visited {
+  text-decoration: none;
+}
+a:active {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+a:focus {
+  outline: none;
+}
+/*
+==========================================================================
+Base Styles Responsive Design
+==========================================================================
+*/
+@media (max-width: 767px) {
+  body > div {
+    font-size: 0.8rem;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  body > div {
+    font-size: 0.95rem;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  body > div {
+    font-size: 1rem;
+  }
+}
+@media (min-width: 1200px) {
+  body > div {
+    font-size: 1rem;
+  }
+}
+/*
+==========================================================================
+Header
+==========================================================================
+*/
+#header-box {
+  background: #151c22;
+  margin-bottom: 25px;
+}
+#header-box header {
+  background: inherit;
+  position: relative;
+  padding: 20px;
+}
+#header-box header h2,
+#header-box header a,
+#header-box header p,
+#header-box header span {
+  color: #8999a3;
+}
+#header-box header ul li {
+  margin-right: 20px;
+}
+/*
+==========================================================================
+Footer
+==========================================================================
+*/
+#footer-box {
+  clear: both;
+  background: #151c22;
+}
+#footer-box footer {
+  padding: 20px;
+  color: #8999a3;
+  background: #151c22;
+  overflow: hidden;
+}
+#footer-box footer a,
+#footer-box footer p,
+#footer-box footer span {
+  color: #8999a3;
+}
+#footer-box footer p {
+  margin-bottom: 0;
+}
+#footer-box footer a:hover {
+  color: #ffffff;
+  text-decoration: none;
+}

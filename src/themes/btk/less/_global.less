@@ -1,0 +1,38 @@
+/*
+==========================================================================
+Global classes
+==========================================================================
+*/
+
+.clearfix {
+    *zoom:1;
+    &:before, &:after {
+        content:" ";
+        display:table;
+    }
+    &:after {
+        clear:both;
+    }
+}
+
+.alignleft { float:left; }
+.alignright { float:right; }
+.black { color:@black; }
+.bold { font-weight:700; }
+.center { text-align:center; }
+.hide { display:none !important; visibility:hidden; }
+.inline { display:inline-block !important; }
+.large { font-size:115%; }
+.left { text-align:left; }
+.light { font-weight:300; }
+.lower { text-transform:lowercase; }
+.regular { font-weight:400; }
+.right { text-align:right; }
+.semi-bold { font-weight:600; }
+.small { font-size:85%; }
+.show { display:block; }
+.table-cell-hack { display:table-cell; }
+.upper { text-transform:uppercase; }
+.valign { display:inline-block; vertical-align:middle; }
+.white { color:@white; }
+

@@ -11,15 +11,22 @@
 		</div><!-- #content -->
 	</div><!-- main content -->
 
+
+
 	<!-- footer -->
-	<div class="container">
-		<footer id="colophon" class="site-footer" role="contentinfo">
-			<div class="site-info">
-				<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'btk' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'btk' ), 'WordPress' ); ?></a>
-				<span class="sep"> | </span>
-				<?php printf( __( 'Theme: %1$s by %2$s.', 'btk' ), 'buteek', '<a href="http://underscores.me/" rel="designer">Ronins</a>' ); ?>
-			</div><!-- .site-info -->
-		</footer><!-- #colophon -->
+	<div id="footer-box">
+		<div class="container">
+			<div class="row">
+				<footer id="colophon" class="site-footer" role="contentinfo">
+					<p class="alignleft">&copy; Frond-End Ninjas <?php echo date('Y'); ?></p>
+					<p class="alignright">
+						<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'btk' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'btk' ), 'WordPress' ); ?></a>
+						<span class="sep"> | </span>
+						<?php printf( __( 'Theme: %1$s by %2$s.', 'btk' ), 'buteek', '<a href="http://underscores.me/" rel="designer">Ronins</a>' ); ?>
+					</p>
+				</footer>
+			</div>
+		</div>
 	</div>
 	<!-- footer -->
 </div><!-- #page -->

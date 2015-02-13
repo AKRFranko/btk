@@ -1,1 +1,44 @@
 @import '_s';
+
+@import '_variables';
+@import '_global';
+@import '_base';
+
+
+
+
+/*
+==========================================================================
+Header
+==========================================================================
+*/
+
+#header-box {
+	background:@bkgcolor; margin-bottom:25px;
+	header {
+		background:inherit; position:relative; padding:20px;
+		h2, a, p, span { color:@textcolor; }
+		ul {
+			li { margin-right:20px; }
+		}
+	}
+}
+
+
+
+
+/*
+==========================================================================
+Footer
+==========================================================================
+*/
+
+#footer-box {
+	clear:both; background:@bkgcolor;
+	footer {
+		padding:20px; color:@textcolor; background:@bkgcolor; overflow:hidden;
+		a, p, span { color:@textcolor; }
+		p { margin-bottom:0; }
+		a:hover { color:@white; text-decoration:none; }
+	}
+}
