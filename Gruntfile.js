@@ -1,14 +1,14 @@
 module.exports = function(grunt) {
-  
+
   try{
     var configFile = grunt.file.readJSON('config.json');
-  }catch( E ){
+  } catch( E ) {
     console.error( 'Maybe you need to copy sample config?\n\n\t`cp config.sample.json config.json`\n');
     process.exit( 1 );
   }
 
   // Load/merge default config and local config vars.
-  var config = require('merge')( 
+  var config = require('merge')(
     {
       "project_dir": __dirname,
       "log_dir": __dirname+'/logs',
@@ -17,14 +17,14 @@ module.exports = function(grunt) {
       "npm":           grunt.file.readJSON('package.json'),
       "bower":         grunt.file.readJSON('bower.json'),
       "composer":   grunt.file.readJSON('composer.json')
-    }, 
+    },
     configFile
   );
-  
+
 
   require('load-grunt-tasks')( grunt );
-  
- 
+
+
   grunt.initConfig({
 
      // Project configuration.
@@ -83,7 +83,7 @@ module.exports = function(grunt) {
     // see: https://www.npmjs.com/package/grunt-phplint
     phplint: {
          options: {
-            phpCmd: "/usr/bin/php", // Or "c:\EasyPHP-5.3.8.1\PHP.exe" 
+            phpCmd: "/usr/bin/php", // Or "c:\EasyPHP-5.3.8.1\PHP.exe"
         },
         theme: [ '<%= cfg.project_dir %>/src/themes/btk/*.php' ]
     },
@@ -130,7 +130,7 @@ module.exports = function(grunt) {
     copy: {
         theme: {
             files: [{
-                expand: true, 
+                expand: true,
                 cwd: '<%= cfg.project_dir %>/src/themes',
                 src:   [ '**' ],
                 dest: '<%= cfg.build_dir %>/themes/'
@@ -138,7 +138,7 @@ module.exports = function(grunt) {
         },
         plugin: {
             files: [{
-                expand: true, 
+                expand: true,
                 cwd: '<%= cfg.project_dir %>/src/plugins',
                 src:   [ '**' ],
                 dest: '<%= cfg.build_dir %>/plugins/'
@@ -155,17 +155,17 @@ module.exports = function(grunt) {
                 // exclude or hell-loop
                 '!<%= cfg.project_dir %>/src/themes/btk/js/_btk.js'
             ],
-            tasks: ['concat:theme', 'copy:theme']
+            tasks: ['clean:theme', 'concat:theme', 'copy:theme']
         },
         theme_less: {
             options: { livereload: true },
             files: '<%= cfg.project_dir %>/src/themes/btk/**/*.less',
-            tasks: ['less:theme', 'copy:theme']
+            tasks: ['clean:theme', 'less:theme', 'copy:theme']
         },
         theme_php: {
             options: { livereload: false },
             files: '<%= cfg.project_dir %>/src/themes/btk/**/*.php',
-            tasks: ['phplint:theme', 'copy:theme']
+            tasks: ['clean:theme', 'phplint:theme', 'copy:theme']
         },
         plugin_js: {
             options: { livereload: true },
@@ -202,7 +202,7 @@ module.exports = function(grunt) {
     }*/
 
   });
-    
+
 
   grunt.registerTask('build', [ 'clean', 'bower_concat' , 'less', 'concat', 'uglify', 'phplint','copy' ] );
   grunt.registerTask('build_theme', [ 'clean:theme', 'bower_concat:theme' , 'less:theme', 'concat:theme',  'uglify:theme', 'copy:theme' ] );
