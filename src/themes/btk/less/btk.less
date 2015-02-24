@@ -1,8 +1,27 @@
-@import '_s';
+/*
+==========================================================================
+Dependencies
+==========================================================================
+*/
 
+@import '_s';
 @import '_variables';
 @import '_global';
 @import '_base';
+
+
+
+
+/*
+==========================================================================
+Overridez
+==========================================================================
+*/
+
+.fa { font-family:FontAwesome !important; }
+.icon-bar { margin-bottom:0; background-color:@black; }
+.navbar { min-height:25px; margin-bottom:0; }
+.navbar-toggle { margin:0; }
 
 
 
@@ -14,16 +33,33 @@ Header
 */
 
 #header-box {
-	background:@bkgcolor; margin-bottom:25px;
+	position:absolute; left:0; width:100%;
+	background:@headerbkgcolor; margin-bottom:25px;
 	header {
-		background:inherit; position:relative; padding:20px;
-		h2, a, p, span { color:@textcolor; }
+		background:inherit; position:relative; padding:15px 0px 5px 15px;
+		h1 {
+			width:25%; margin:0; font-size:0.9em; line-height:1em;
+			span { line-height:1em; }
+			.title-top { width:45%; }
+		}
 		ul {
-			li { margin-right:20px; }
+			li { display:inline-block; vertical-align:middle; margin-right:15px; }
+		}
+		div[class*="col-"] { padding:0; }
+		nav {
+			margin-top:-1px;
+			.menu-header-container { display:inline-block; }
+			.language { margin-right:5px; }
+			.navbar-collapse.in {
+				position:fixed; top:0; left:0;
+				width:100%; height:100vh; opacity:0.9; background-color:@black;
+			}
 		}
 	}
 }
 
+
+#content { margin-top:80px; background-color:#f0f0f0; }
 
 
 
@@ -34,11 +70,43 @@ Footer
 */
 
 #footer-box {
-	clear:both; background:@bkgcolor;
+	clear:both; background:@footerbkgcolor; font-size:0.95em;
 	footer {
-		padding:20px; color:@textcolor; background:@bkgcolor; overflow:hidden;
-		a, p, span { color:@textcolor; }
+		padding:15px; color:@textcolor;
 		p { margin-bottom:0; }
-		a:hover { color:@white; text-decoration:none; }
+		div[class*="col-"] { padding:0 0 30px; }
+
+		.social {
+			ul {
+				margin-top:17px;
+				li {
+					display:inline-block; padding-right:4px;
+					&:last-child { padding-right:0; }
+					a {
+						font-size:1.5em; color:#9c9c9c;
+						&:hover { color:@black; }
+					}
+				}
+			}
+		}
+
+		.norton {
+			clear:both; padding-top:15px; border-top:2px solid #333;
+			img { width:100px; }
+			div[class*="col-"] { padding-bottom:10px; }
+			.cc {
+				padding-top:14px;
+				ul li { display:inline-block; }
+				span { margin:0; font-size:2em; color:#9c9c9c; }
+			}
+		}
+	}
+
+	#back-to-top {
+		background:#333; width:100%;
+		a { display:block; padding:5px 0; color:@white; }
 	}
 }
+
+
+

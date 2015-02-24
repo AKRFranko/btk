@@ -74,6 +74,8 @@ function btk_setup() {
 		'default-color' => 'ffffff',
 		'default-image' => '',
 	) ) );
+
+	add_theme_support('woocommerce');
 }
 endif; // btk_setup
 add_action( 'after_setup_theme', 'btk_setup' );
@@ -107,7 +109,7 @@ function btk_scripts() {
 		wp_enqueue_script( 'btk-all', get_template_directory_uri() . '/js/_all.min.js', array(),time(), true );
 	}else{
 		wp_enqueue_script( 'btk-bower', get_template_directory_uri() . '/js/_bower.js', array(), time(), true );
-		wp_enqueue_script( 'btk-btk', get_template_directory_uri() . '/js/_btk.min.js', array(),time(), true );
+		wp_enqueue_script( 'btk-btk', get_template_directory_uri() . '/js/_btk.js', array(),time(), true );
 	}
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -140,6 +142,4 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
-
-add_theme_support('woocommerce');
 

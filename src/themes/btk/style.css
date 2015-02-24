@@ -1,4 +1,9 @@
 /*
+==========================================================================
+Dependencies
+==========================================================================
+*/
+/*
 Theme Name: _s
 Theme URI: http://underscores.me/
 Author: Automattic
@@ -841,10 +846,10 @@ Base Styles
   outline: none;
 }
 html {
-  font-size: 14px;
+  font-size: 15px;
 }
 body {
-  background-color: #fafafa;
+  background-color: #ffffff;
   font: 100%/1.4 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 h1,
@@ -882,7 +887,7 @@ h4,
 }
 p,
 span {
-  color: #8999a3;
+  color: #242021;
   font-size: 1em;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   line-height: 1.3em;
@@ -897,7 +902,7 @@ a:link,
 a:visited,
 a:active,
 a:hover {
-  color: #27343c;
+  color: #242021;
   font-size: 1em;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -911,7 +916,8 @@ a:active {
   text-decoration: none;
 }
 a:hover {
-  text-decoration: underline;
+  color: #9c9c9c;
+  text-decoration: none;
 }
 a:focus {
   outline: none;
@@ -923,12 +929,12 @@ Base Styles Responsive Design
 */
 @media (max-width: 767px) {
   body > div {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
   body > div {
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
 }
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -943,26 +949,81 @@ Base Styles Responsive Design
 }
 /*
 ==========================================================================
+Overridez
+==========================================================================
+*/
+.fa {
+  font-family: FontAwesome !important;
+}
+.icon-bar {
+  margin-bottom: 0;
+  background-color: #000000;
+}
+.navbar {
+  min-height: 25px;
+  margin-bottom: 0;
+}
+.navbar-toggle {
+  margin: 0;
+}
+/*
+==========================================================================
 Header
 ==========================================================================
 */
 #header-box {
-  background: #151c22;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
   margin-bottom: 25px;
 }
 #header-box header {
   background: inherit;
   position: relative;
-  padding: 20px;
+  padding: 15px 0px 5px 15px;
 }
-#header-box header h2,
-#header-box header a,
-#header-box header p,
-#header-box header span {
-  color: #8999a3;
+#header-box header h1 {
+  width: 25%;
+  margin: 0;
+  font-size: 0.9em;
+  line-height: 1em;
+}
+#header-box header h1 span {
+  line-height: 1em;
+}
+#header-box header h1 .title-top {
+  width: 45%;
 }
 #header-box header ul li {
-  margin-right: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 15px;
+}
+#header-box header div[class*="col-"] {
+  padding: 0;
+}
+#header-box header nav {
+  margin-top: -1px;
+}
+#header-box header nav .menu-header-container {
+  display: inline-block;
+}
+#header-box header nav .language {
+  margin-right: 5px;
+}
+#header-box header nav .navbar-collapse.in {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  opacity: 0.9;
+  background-color: #000000;
+}
+#content {
+  margin-top: 80px;
+  background-color: #f0f0f0;
 }
 /*
 ==========================================================================
@@ -971,23 +1032,64 @@ Footer
 */
 #footer-box {
   clear: both;
-  background: #151c22;
+  background: #f0f0f0;
+  font-size: 0.95em;
 }
 #footer-box footer {
-  padding: 20px;
-  color: #8999a3;
-  background: #151c22;
-  overflow: hidden;
-}
-#footer-box footer a,
-#footer-box footer p,
-#footer-box footer span {
-  color: #8999a3;
+  padding: 15px;
+  color: #242021;
 }
 #footer-box footer p {
   margin-bottom: 0;
 }
-#footer-box footer a:hover {
+#footer-box footer div[class*="col-"] {
+  padding: 0 0 30px;
+}
+#footer-box footer .social ul {
+  margin-top: 17px;
+}
+#footer-box footer .social ul li {
+  display: inline-block;
+  padding-right: 4px;
+}
+#footer-box footer .social ul li:last-child {
+  padding-right: 0;
+}
+#footer-box footer .social ul li a {
+  font-size: 1.5em;
+  color: #9c9c9c;
+}
+#footer-box footer .social ul li a:hover {
+  color: #000000;
+}
+#footer-box footer .norton {
+  clear: both;
+  padding-top: 15px;
+  border-top: 2px solid #333;
+}
+#footer-box footer .norton img {
+  width: 100px;
+}
+#footer-box footer .norton div[class*="col-"] {
+  padding-bottom: 10px;
+}
+#footer-box footer .norton .cc {
+  padding-top: 14px;
+}
+#footer-box footer .norton .cc ul li {
+  display: inline-block;
+}
+#footer-box footer .norton .cc span {
+  margin: 0;
+  font-size: 2em;
+  color: #9c9c9c;
+}
+#footer-box #back-to-top {
+  background: #333;
+  width: 100%;
+}
+#footer-box #back-to-top a {
+  display: block;
+  padding: 5px 0;
   color: #ffffff;
-  text-decoration: none;
 }

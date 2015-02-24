@@ -163,7 +163,7 @@ module.exports = function(grunt) {
             tasks: ['clean:theme', 'less:theme', 'copy:theme']
         },
         theme_php: {
-            options: { livereload: false },
+            options: { livereload: true },
             files: '<%= cfg.project_dir %>/src/themes/btk/**/*.php',
             tasks: ['clean:theme', 'phplint:theme', 'copy:theme']
         },

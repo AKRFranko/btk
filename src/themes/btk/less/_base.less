@@ -6,8 +6,8 @@ Base Styles
 
 *, *:before, *:after { box-sizing:border-box; outline:none; }
 
-html { font-size:14px; }
-body { background-color:#fafafa; font:100%/1.4 @fontfamily; }
+html { font-size:15px; }
+body { background-color:@white; font:100%/1.4 @fontfamily; }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family:@fontfamily; font-weight:normal; color:@black; clear:none;
@@ -21,12 +21,13 @@ p, span { color:@textcolor; font-size:1em; font-family:@fontfamily; line-height:
 
 ul { margin:0; padding:0; list-style-type:none; }
 
-a:link, a:visited, a:active, a:hover { color:@linkcolor; font-size:1em; font-family:@fontfamily; }
+a:link, a:visited, a:active, a:hover { color:@textcolor; font-size:1em; font-family:@fontfamily; }
 a:link { text-decoration:none; }
 a:visited { text-decoration:none; }
 a:active { text-decoration:none; }
-a:hover { text-decoration:underline; }
+a:hover { color:@hovercolor; text-decoration:none; }
 a:focus { outline:none; }
+
 
 
 

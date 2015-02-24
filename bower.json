@@ -16,6 +16,7 @@
     "bootstrap": "~3.3.2",
     "css_browser_selector": "https://github.com/isarmstrong/css_browser_selector.git",
     "modernizr": "~2.8.3",
-    "basil.js": "~0.4.0"
+    "basil.js": "~0.4.0",
+    "fontawesome": "~4.3.0"
   }
 }

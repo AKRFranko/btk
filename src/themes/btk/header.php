@@ -18,7 +18,7 @@
 <?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body id="top" <?php body_class(); ?>>
 <div id="page" class="hfeed site">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'btk' ); ?></a>
 
@@ -28,19 +28,33 @@
 		<div class="container">
 			<div class="row">
 				<header id="masthead" class="site-header" role="banner">
-					<h1 class="site-title alignleft">
+					<h1 class="site-title alignleft lower">
 						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-							<?php bloginfo( 'name' ); ?>
+							<span class="title-top valign"><?php bloginfo( 'name' ); ?></span>
+							<span class="title-scroll hide"><?php bloginfo( 'description' ); ?></span>
 						</a>
 					</h1>
-					<h2 class="site-description alignright">
-						<?php bloginfo( 'description' ); ?>
-					</h2>
 
-					<nav id="site-navigation" class="main-navigation" role="navigation">
-						<button class="menu-toggle" aria-controls="menu" aria-expanded="false"><?php _e( 'Primary Menu', 'btk' ); ?></button>
-						<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-					</nav><!-- #site-navigation -->
+					<div class="alignright lower">
+						<nav class="nav-header valign" role="navigation">
+							<?php wp_nav_menu( array( 'menu' => 'header' ) ); ?>
+							<a class="language valign upper" href="/">FR</a>
+						</nav><!-- #site-navigation -->
+
+						<nav class="nav-hamburger navbar valign" role="navigation">
+							<div class="navbar-header">
+								<a class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-hamburger">
+									<span class="sr-only">Toggle navigation</span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+								</a>
+							</div>
+    						<div class="collapse navbar-collapse" id="nav-hamburger">
+							<?php wp_nav_menu( array( 'menu' => 'hamburger' ) ); ?>
+							</div>
+						</nav><!-- #site-navigation -->
+					</div>
 				</header><!-- #masthead -->
 			</div>
 		</div>

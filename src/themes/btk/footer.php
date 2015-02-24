@@ -17,14 +17,53 @@
 	<div id="footer-box">
 		<div class="container">
 			<div class="row">
-				<footer id="colophon" class="site-footer" role="contentinfo">
-					<p class="alignleft">&copy; Frond-End Ninjas <?php echo date('Y'); ?></p>
-					<p class="alignright">
-						<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'btk' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'btk' ), 'WordPress' ); ?></a>
-						<span class="sep"> | </span>
-						<?php printf( __( 'Theme: %1$s by %2$s.', 'btk' ), 'buteek', '<a href="http://underscores.me/" rel="designer">Ronins</a>' ); ?>
-					</p>
+
+				<div id="back-to-top" class="lower center">
+					<a href="#top">Back to top</a>
+				</div>
+
+				<footer id="colophon" class="site-footer lower clearfix" role="contentinfo">
+					<div class="col-xs-6">
+						<nav class="nav-footer valign" role="navigation">
+							<?php wp_nav_menu( array( 'menu' => 'footer' ) ); ?>
+						</nav><!-- #site-navigation -->
+					</div>
+
+					<div class="col-xs-6">
+						<nav class="nav-footer valign" role="navigation">
+							<?php wp_nav_menu( array( 'menu' => 'footer2' ) ); ?>
+						</nav><!-- #site-navigation -->
+
+						<div class="social">
+							<ul>
+								<li><a href="https://facebook.com" class="fa fa-facebook-square" rel="external" title="facebook"></a></li>
+								<li><a href="https://twitter.com" class="fa fa-twitter-square" rel="external" title="twitter"></a></li>
+								<li><a href="https://pinterest.com" class="fa fa-pinterest-square" rel="external" title="pinterest"></a></li>
+								<li><a href="https://instagram.com" class="fa fa-instagram" rel="external" title="instagram"></a></li>
+								<li><a href="https://youtube.com" class="fa fa-youtube-square" rel="external" title="youtube"></a></li>
+								<li><a href="https://tumblr.com" class="fa fa-tumblr-square" rel="external" title="tumblr"></a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="norton">
+						<div class="col-xs-6">
+							<img src="<?php echo get_template_directory_uri();?>/img/norton-secured.png" alt="Norton Secured">
+						</div>
+
+						<div class="col-xs-6">
+							<div class="cc">
+								<ul>
+									<li><span class="fa fa-cc-visa" title="visa"></span></li>
+									<li><span class="fa fa-cc-amex" title="american express"></span></li>
+									<li><span class="fa fa-cc-mastercard" title="mastercard"></span></li>
+									<li><span class="fa fa-cc-paypal" title="paypal"></span></li>
+								</ul>
+							</div>
+						</div>
+					</div>
 				</footer>
+
 			</div>
 		</div>
 	</div>
