@@ -26,7 +26,10 @@ https://gist.github.com/sindresorhus/7996717
 -   https://packagist.org/
 
 
+## WooCommerce Hooks, Snippets...
 
+- http://docs.woothemes.com/documentation/plugins/woocommerce/woocommerce-codex/snippets/
+- http://docs.woothemes.com/document/hooks/
 
 
 
