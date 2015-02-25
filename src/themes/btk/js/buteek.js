@@ -2,9 +2,11 @@
 
 	$('#back-to-top a').on('click', function(e) {
 		e.preventDefault();
-		scrollTop: $('body').offset().top
-		}, 300
-	);
+		$('body,html').animate({
+			scrollTop:0
+		}, 800);
+		return false;
+	});
 
 } )( jQuery );
 

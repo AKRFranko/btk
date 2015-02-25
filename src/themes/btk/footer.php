@@ -8,13 +8,14 @@
  */
 ?>
 
+			</div>
 		</div><!-- #content -->
 	</div><!-- main content -->
 
 
 
 	<!-- footer -->
-	<div id="footer-box">
+	<div id="box-footer">
 		<div class="container">
 			<div class="row">
 
@@ -35,6 +36,7 @@
 						</nav><!-- #site-navigation -->
 
 						<div class="social">
+<!--
 							<ul>
 								<li><a href="https://facebook.com" class="fa fa-facebook-square" rel="external" title="facebook"></a></li>
 								<li><a href="https://twitter.com" class="fa fa-twitter-square" rel="external" title="twitter"></a></li>
@@ -43,6 +45,8 @@
 								<li><a href="https://youtube.com" class="fa fa-youtube-square" rel="external" title="youtube"></a></li>
 								<li><a href="https://tumblr.com" class="fa fa-tumblr-square" rel="external" title="tumblr"></a></li>
 							</ul>
+-->
+							<?php echo do_shortcode('[feather_follow show="facebook, twitter, pinterest, instagram, youtube, tumblr"]'); ?>
 						</div>
 					</div>
 

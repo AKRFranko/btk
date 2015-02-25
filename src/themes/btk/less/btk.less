@@ -32,11 +32,11 @@ Header
 ==========================================================================
 */
 
-#header-box {
+#box-header {
 	position:fixed; left:0; width:100%;
 	background:@headerbkgcolor; margin-bottom:25px;
 	header {
-		background:inherit; position:relative; padding:12px 0px 12px 15px;
+		background:inherit; position:relative; padding:10px 0px 10px 15px;
 		h1 {
 			width:25%; margin:0; font-size:0.9em; line-height:1em;
 			span { margin:0; font-size:3em; line-height:1em; letter-spacing:0.05em; }
@@ -48,17 +48,39 @@ Header
 		nav {
 			.menu-header-container { display:inline-block; }
 			.language { margin-right:5px; }
+/*
 			.navbar-collapse.in {
 				position:fixed; top:0; left:0;
 				width:100%; height:100vh; opacity:0.9; background-color:@black;
 			}
+*/
+
 		}
 		.nav-header { display:inline-block; }
 	}
 }
 
 
-#content { margin-top:64px; background-color:#f0f0f0; }
+
+
+/*
+==========================================================================
+Content
+==========================================================================
+*/
+
+#content {
+	margin-top:60px;
+	article {
+		.attachment-post-thumbnail { width:100%; border-bottom:3px solid @black; }
+		.entry-content {
+			margin:0 15px;
+			h1 { font-size:1.5em; }
+		}
+	}
+}
+
+
 
 
 
@@ -68,7 +90,7 @@ Footer
 ==========================================================================
 */
 
-#footer-box {
+#box-footer {
 	clear:both; background:@footerbkgcolor; font-size:0.95em;
 	footer {
 		padding:15px; color:@textcolor;
@@ -76,18 +98,40 @@ Footer
 		div[class*="col-"] { padding:0 0 30px; }
 
 		.social {
+			margin-top:17px;
 			ul {
-				margin-top:17px;
 				li {
 					display:inline-block; padding-right:4px;
 					&:last-child { padding-right:0; }
 					a {
 						font-size:1.5em; color:#9c9c9c;
-						&:hover { color:@black; }
+						&:hover { color:#666; }
 					}
 				}
 			}
 		}
+
+		.synved-social-button {
+			display:inline-block;
+			font:normal normal normal 14px/1 FontAwesome;
+			font-size:inherit;
+			text-rendering:auto;
+			-webkit-font-smoothing:antialiased;
+			-moz-osx-font-smoothing:grayscale;
+			transform:translate(0, 0);
+
+			width:19px !important; height:19px !important;
+			font-size:1.5em !important; color:#9c9c9c !important;
+			&:hover { color:#666 !important; }
+			img { display:none !important; }
+		}
+
+		.synved-social-provider-facebook:before { content: "\f082"; }
+		.synved-social-provider-twitter:before { content: "\f081"; }
+		.synved-social-provider-pinterest:before { content: "\f0d3"; }
+		.synved-social-provider-instagram:before { content: "\f16d"; }
+		.synved-social-provider-youtube:before { content: "\f166"; }
+		.synved-social-provider-tumblr:before { content: "\f174"; }
 
 		.norton {
 			clear:both; padding-top:15px; border-top:2px solid #333;

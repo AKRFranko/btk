@@ -28,6 +28,24 @@ a:active { text-decoration:none; }
 a:hover { color:@hovercolor; text-decoration:none; }
 a:focus { outline:none; }
 
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+	width:100%; padding-left:0; background-color:transparent;
+	border:none; border-bottom:2px solid @black; border-radius:0; color:@textcolor;
+}
+
+input[type='submit'] {
+	margin-left:10px; padding:0.3em 1.3em; color:@white; background-color:@black;
+	border:none; border-radius:0; box-shadow:none; font-size:1.4em;
+	&:hover { border-color:none; box-shadow:none; }
+}
+
+form p { margin-bottom:0.5em; }
+
+::-webkit-input-placeholder { color:@textcolor; }
+::-moz-placeholder { color:@textcolor; }
+:-ms-input-placeholder { color:@textcolor; }
 
 
 

@@ -24,7 +24,7 @@
 
 
 	<!-- header -->
-	<div id="header-box">
+	<div id="box-header">
 		<div class="container">
 			<div class="row">
 				<header id="masthead" class="site-header" role="banner">
@@ -62,4 +62,6 @@
 
 	<!-- main content -->
 	<div class="container">
-		<div id="content" class="site-content">
+		<div class="row">
+			<div id="content" class="site-content">
+
