@@ -30,15 +30,14 @@
 				<header id="masthead" class="site-header" role="banner">
 					<h1 class="site-title alignleft lower">
 						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-							<span class="title-top valign"><?php bloginfo( 'name' ); ?></span>
-							<span class="title-scroll hide"><?php bloginfo( 'description' ); ?></span>
+							<span class="title bold valign"><?php bloginfo( 'name' ); ?></span>
 						</a>
 					</h1>
 
 					<div class="alignright lower">
-						<nav class="nav-header valign" role="navigation">
+						<nav class="nav-header" role="navigation">
 							<?php wp_nav_menu( array( 'menu' => 'header' ) ); ?>
-							<a class="language valign upper" href="/">FR</a>
+							<a class="language upper" href="/">FR</a>
 						</nav><!-- #site-navigation -->
 
 						<nav class="nav-hamburger navbar valign" role="navigation">

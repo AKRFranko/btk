@@ -33,21 +33,19 @@ Header
 */
 
 #header-box {
-	position:absolute; left:0; width:100%;
+	position:fixed; left:0; width:100%;
 	background:@headerbkgcolor; margin-bottom:25px;
 	header {
-		background:inherit; position:relative; padding:15px 0px 5px 15px;
+		background:inherit; position:relative; padding:12px 0px 12px 15px;
 		h1 {
 			width:25%; margin:0; font-size:0.9em; line-height:1em;
-			span { line-height:1em; }
-			.title-top { width:45%; }
+			span { margin:0; font-size:3em; line-height:1em; letter-spacing:0.05em; }
 		}
 		ul {
-			li { display:inline-block; vertical-align:middle; margin-right:15px; }
+			li { display:inline-block; margin-right:15px; }
 		}
 		div[class*="col-"] { padding:0; }
 		nav {
-			margin-top:-1px;
 			.menu-header-container { display:inline-block; }
 			.language { margin-right:5px; }
 			.navbar-collapse.in {
@@ -55,11 +53,12 @@ Header
 				width:100%; height:100vh; opacity:0.9; background-color:@black;
 			}
 		}
+		.nav-header { display:inline-block; }
 	}
 }
 
 
-#content { margin-top:80px; background-color:#f0f0f0; }
+#content { margin-top:64px; background-color:#f0f0f0; }
 
 
 

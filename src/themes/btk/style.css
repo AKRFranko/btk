@@ -972,7 +972,7 @@ Header
 ==========================================================================
 */
 #header-box {
-  position: absolute;
+  position: fixed;
   left: 0;
   width: 100%;
   background: #ffffff;
@@ -981,7 +981,7 @@ Header
 #header-box header {
   background: inherit;
   position: relative;
-  padding: 15px 0px 5px 15px;
+  padding: 12px 0px 12px 15px;
 }
 #header-box header h1 {
   width: 25%;
@@ -990,21 +990,17 @@ Header
   line-height: 1em;
 }
 #header-box header h1 span {
+  margin: 0;
+  font-size: 3em;
   line-height: 1em;
-}
-#header-box header h1 .title-top {
-  width: 45%;
+  letter-spacing: 0.05em;
 }
 #header-box header ul li {
   display: inline-block;
-  vertical-align: middle;
   margin-right: 15px;
 }
 #header-box header div[class*="col-"] {
   padding: 0;
-}
-#header-box header nav {
-  margin-top: -1px;
 }
 #header-box header nav .menu-header-container {
   display: inline-block;
@@ -1021,8 +1017,11 @@ Header
   opacity: 0.9;
   background-color: #000000;
 }
+#header-box header .nav-header {
+  display: inline-block;
+}
 #content {
-  margin-top: 80px;
+  margin-top: 64px;
   background-color: #f0f0f0;
 }
 /*
