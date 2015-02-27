@@ -101,6 +101,7 @@ module.exports = function(grunt) {
             src: [
                 '<%= cfg.project_dir %>/src/themes/btk/**/*.js',
                 // Exclude these... ( note the "!" )
+                '!<%= cfg.project_dir %>/src/themes/btk/js/_all.min.js',
                 '!<%= cfg.project_dir %>/src/themes/btk/js/_bower.js',
                 '!<%= cfg.project_dir %>/src/themes/btk/js/_btk.js'
             ],

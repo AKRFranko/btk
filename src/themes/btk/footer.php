@@ -15,7 +15,7 @@
 
 
 	<!-- footer -->
-	<div id="box-footer">
+	<div id="footer-box">
 		<div class="container">
 			<div class="row">
 

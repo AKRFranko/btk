@@ -24,7 +24,7 @@
 
 
 	<!-- header -->
-	<div id="box-header">
+	<div id="header-box">
 		<div class="container">
 			<div class="row">
 				<header id="masthead" class="site-header" role="banner">
@@ -34,7 +34,7 @@
 						</a>
 					</h1>
 
-					<div class="alignright lower">
+					<div class="navigation alignright lower">
 						<nav class="nav-header" role="navigation">
 							<?php wp_nav_menu( array( 'menu' => 'header' ) ); ?>
 							<a class="language upper" href="/">FR</a>
@@ -44,9 +44,7 @@
 							<div class="navbar-header">
 								<a class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-hamburger">
 									<span class="sr-only">Toggle navigation</span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
+									<span class="fa fa-bars"></span>
 								</a>
 							</div>
     						<div class="collapse navbar-collapse" id="nav-hamburger">

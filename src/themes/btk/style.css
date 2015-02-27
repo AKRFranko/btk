@@ -777,6 +777,7 @@ Global classes
 }
 .alignright {
   float: right;
+  margin-left: 0;
 }
 .black {
   color: #000000;
@@ -999,6 +1000,7 @@ Overridez
 .navbar {
   min-height: 25px;
   margin-bottom: 0;
+  border: none;
 }
 .navbar-toggle {
   margin: 0;
@@ -1008,53 +1010,89 @@ Overridez
 Header
 ==========================================================================
 */
-#box-header {
+#header-box {
   position: fixed;
   left: 0;
   width: 100%;
+  z-index: 10;
   background: #ffffff;
   margin-bottom: 25px;
 }
-#box-header header {
+#header-box.open {
+  background: #000000;
+  height: 100vh;
+  opacity: 0.85;
+}
+#header-box.open a,
+#header-box.open span {
+  color: #ffffff;
+}
+#header-box.open .icon-bar {
+  background-color: #ffffff;
+}
+#header-box header {
   background: inherit;
   position: relative;
+  height: 60px;
   padding: 10px 0px 10px 15px;
 }
-#box-header header h1 {
+#header-box header h1 {
   width: 25%;
   margin: 0;
   font-size: 0.9em;
   line-height: 1em;
 }
-#box-header header h1 span {
+#header-box header h1 span {
   margin: 0;
   font-size: 3em;
   line-height: 1em;
   letter-spacing: 0.05em;
 }
-#box-header header ul li {
+#header-box header div[class*="col-"] {
+  padding: 0;
+}
+#header-box header nav.nav-header {
+  display: inline-block;
+  padding-top: 8px;
+}
+#header-box header nav.nav-header ul li {
   display: inline-block;
   margin-right: 15px;
 }
-#box-header header div[class*="col-"] {
-  padding: 0;
-}
-#box-header header nav {
-  /*
-			.navbar-collapse.in {
-				position:fixed; top:0; left:0;
-				width:100%; height:100vh; opacity:0.9; background-color:@black;
-			}
-*/
-}
-#box-header header nav .menu-header-container {
+#header-box header nav.nav-header .menu-header-container {
   display: inline-block;
 }
-#box-header header nav .language {
+#header-box header nav.nav-header .language {
   margin-right: 5px;
 }
-#box-header header .nav-header {
-  display: inline-block;
+#header-box header nav.nav-hamburger {
+  position: absolute;
+  width: 100%;
+  right: 5px;
+  top: 50px;
+}
+#header-box header nav.nav-hamburger .navbar-toggle {
+  margin-top: -42px;
+}
+#header-box header nav.nav-hamburger .navbar-toggle span.fa {
+  font-size: 1.5em;
+  margin: 0;
+}
+#header-box header nav.nav-hamburger .navbar-collapse {
+  padding: 40px 20px 20px;
+  box-shadow: none;
+}
+#header-box header nav.nav-hamburger .navbar-collapse ul li {
+  padding: 6px 0;
+}
+#header-box header nav.nav-hamburger .navbar-collapse a {
+  font-size: 1.25em;
+}
+#header-box header nav.nav-hamburger .navbar-collapse.collapsing {
+  transition: height 0.01s;
+}
+#header-box header .navigation {
+  margin-right: 50px;
 }
 /*
 ==========================================================================
@@ -1079,39 +1117,39 @@ Content
 Footer
 ==========================================================================
 */
-#box-footer {
+#footer-box {
   clear: both;
   background: #f0f0f0;
   font-size: 0.95em;
 }
-#box-footer footer {
+#footer-box footer {
   padding: 15px;
   color: #242021;
 }
-#box-footer footer p {
+#footer-box footer p {
   margin-bottom: 0;
 }
-#box-footer footer div[class*="col-"] {
+#footer-box footer div[class*="col-"] {
   padding: 0 0 30px;
 }
-#box-footer footer .social {
+#footer-box footer .social {
   margin-top: 17px;
 }
-#box-footer footer .social ul li {
+#footer-box footer .social ul li {
   display: inline-block;
   padding-right: 4px;
 }
-#box-footer footer .social ul li:last-child {
+#footer-box footer .social ul li:last-child {
   padding-right: 0;
 }
-#box-footer footer .social ul li a {
+#footer-box footer .social ul li a {
   font-size: 1.5em;
   color: #9c9c9c;
 }
-#box-footer footer .social ul li a:hover {
+#footer-box footer .social ul li a:hover {
   color: #666;
 }
-#box-footer footer .synved-social-button {
+#footer-box footer .synved-social-button {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
@@ -1124,57 +1162,57 @@ Footer
   font-size: 1.5em !important;
   color: #9c9c9c !important;
 }
-#box-footer footer .synved-social-button:hover {
+#footer-box footer .synved-social-button:hover {
   color: #666 !important;
 }
-#box-footer footer .synved-social-button img {
+#footer-box footer .synved-social-button img {
   display: none !important;
 }
-#box-footer footer .synved-social-provider-facebook:before {
+#footer-box footer .synved-social-provider-facebook:before {
   content: "\f082";
 }
-#box-footer footer .synved-social-provider-twitter:before {
+#footer-box footer .synved-social-provider-twitter:before {
   content: "\f081";
 }
-#box-footer footer .synved-social-provider-pinterest:before {
+#footer-box footer .synved-social-provider-pinterest:before {
   content: "\f0d3";
 }
-#box-footer footer .synved-social-provider-instagram:before {
+#footer-box footer .synved-social-provider-instagram:before {
   content: "\f16d";
 }
-#box-footer footer .synved-social-provider-youtube:before {
+#footer-box footer .synved-social-provider-youtube:before {
   content: "\f166";
 }
-#box-footer footer .synved-social-provider-tumblr:before {
+#footer-box footer .synved-social-provider-tumblr:before {
   content: "\f174";
 }
-#box-footer footer .norton {
+#footer-box footer .norton {
   clear: both;
   padding-top: 15px;
   border-top: 2px solid #333;
 }
-#box-footer footer .norton img {
+#footer-box footer .norton img {
   width: 100px;
 }
-#box-footer footer .norton div[class*="col-"] {
+#footer-box footer .norton div[class*="col-"] {
   padding-bottom: 10px;
 }
-#box-footer footer .norton .cc {
+#footer-box footer .norton .cc {
   padding-top: 14px;
 }
-#box-footer footer .norton .cc ul li {
+#footer-box footer .norton .cc ul li {
   display: inline-block;
 }
-#box-footer footer .norton .cc span {
+#footer-box footer .norton .cc span {
   margin: 0;
   font-size: 2em;
   color: #9c9c9c;
 }
-#box-footer #back-to-top {
+#footer-box #back-to-top {
   background: #333;
   width: 100%;
 }
-#box-footer #back-to-top a {
+#footer-box #back-to-top a {
   display: block;
   padding: 5px 0;
   color: #ffffff;

@@ -20,7 +20,7 @@ Overridez
 
 .fa { font-family:FontAwesome !important; }
 .icon-bar { margin-bottom:0; background-color:@black; }
-.navbar { min-height:25px; margin-bottom:0; }
+.navbar { min-height:25px; margin-bottom:0; border:none; }
 .navbar-toggle { margin:0; }
 
 
@@ -32,31 +32,49 @@ Header
 ==========================================================================
 */
 
-#box-header {
-	position:fixed; left:0; width:100%;
+#header-box {
+	position:fixed; left:0; width:100%; z-index:10;
 	background:@headerbkgcolor; margin-bottom:25px;
+
+	&.open {
+		background:@black; height:100vh; opacity:0.85;
+		a, span { color:@white; }
+		.icon-bar { background-color:@white; }
+	}
+
 	header {
-		background:inherit; position:relative; padding:10px 0px 10px 15px;
+		background:inherit; position:relative; height:@headerheight; padding:10px 0px 10px 15px;
 		h1 {
 			width:25%; margin:0; font-size:0.9em; line-height:1em;
 			span { margin:0; font-size:3em; line-height:1em; letter-spacing:0.05em; }
 		}
-		ul {
-			li { display:inline-block; margin-right:15px; }
-		}
 		div[class*="col-"] { padding:0; }
-		nav {
-			.menu-header-container { display:inline-block; }
-			.language { margin-right:5px; }
-/*
-			.navbar-collapse.in {
-				position:fixed; top:0; left:0;
-				width:100%; height:100vh; opacity:0.9; background-color:@black;
-			}
-*/
 
+		nav {
+			&.nav-header {
+				display:inline-block; padding-top:8px;
+				ul li { display:inline-block; margin-right:15px; }
+				.menu-header-container { display:inline-block; }
+				.language { margin-right:5px; }
+			}
+
+			&.nav-hamburger {
+				position:absolute; width:100%; right:5px; top:50px;
+				.navbar-toggle {
+					margin-top:-42px;
+					span {
+						&.fa { font-size:1.5em; margin:0; }
+					}
+				}
+				.navbar-collapse {
+					padding:40px 20px 20px; box-shadow:none;
+					ul li { padding:6px 0; }
+					a { font-size:1.25em; }
+					&.collapsing { transition:height 0.01s; }
+				}
+			}
 		}
-		.nav-header { display:inline-block; }
+		.navigation { margin-right:50px; }
 	}
 }
 
@@ -70,7 +88,7 @@ Content
 */
 
 #content {
-	margin-top:60px;
+	margin-top:@headerheight;
 	article {
 		.attachment-post-thumbnail { width:100%; border-bottom:3px solid @black; }
 		.entry-content {
@@ -90,7 +108,7 @@ Footer
 ==========================================================================
 */
 
-#box-footer {
+#footer-box {
 	clear:both; background:@footerbkgcolor; font-size:0.95em;
 	footer {
 		padding:15px; color:@textcolor;
