@@ -37,9 +37,10 @@ Header
 	background:@headerbkgcolor; margin-bottom:25px;
 
 	&.open {
-		background:@black; height:100vh; opacity:0.85;
-		a, span { color:@white; }
+		height:100vh; background:url('img/bkg.png') repeat;
+		a, p, span { color:@white; }
 		.icon-bar { background-color:@white; }
+		header { height:100vh; }
 	}
 
 	header {
@@ -75,6 +76,31 @@ Header
 			}
 		}
 		.navigation { margin-right:50px; }
+
+		.sign-in {
+			display:none; position:absolute; top:55px; left:0; width:100%; padding:15px;
+			a {
+				&.choices { display:table; }
+				span {
+					margin:0; font-size:3em; display:table-cell; line-height:0;
+					vertical-align:middle; text-align:right;
+				}
+			}
+			.choices {
+				display:block; width:100%; margin-bottom:15px; padding-bottom:15px;
+				border-bottom:2px solid @white; line-height:1.25em;
+			}
+		}
+
+		.back-home {
+			display:none; position:absolute; bottom:70px; right:15px;
+			a {
+				&.button {
+					font-size:1.4em; background-color:#444; border:none; cursor:pointer;
+					&:hover { background-color:#333; }
+				}
+			}
+		}
 	}
 }
 
