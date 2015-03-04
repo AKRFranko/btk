@@ -1099,18 +1099,19 @@ Header
 #header-box header .navigation {
   margin-right: 50px;
 }
-#header-box header .sign-in {
+#header-box header .sign-in-menu {
   display: none;
   position: absolute;
   top: 55px;
   left: 0;
   width: 100%;
+  height: 89vh;
   padding: 15px;
 }
-#header-box header .sign-in a.choices {
+#header-box header .sign-in-menu .sign-in a.choices {
   display: table;
 }
-#header-box header .sign-in a span {
+#header-box header .sign-in-menu .sign-in a span {
   margin: 0;
   font-size: 3em;
   display: table-cell;
@@ -1118,7 +1119,59 @@ Header
   vertical-align: middle;
   text-align: right;
 }
-#header-box header .sign-in .choices {
+#header-box header .sign-in-menu .login form,
+#header-box header .sign-in-menu .register form {
+  padding-top: 12px;
+}
+#header-box header .sign-in-menu .login form p,
+#header-box header .sign-in-menu .register form p {
+  margin: 0;
+  line-height: 0em;
+}
+#header-box header .sign-in-menu .login form p.submit,
+#header-box header .sign-in-menu .register form p.submit {
+  position: absolute;
+  bottom: 120px;
+  right: 15px;
+}
+#header-box header .sign-in-menu .login form .lost-password,
+#header-box header .sign-in-menu .register form .lost-password {
+  font-size: 0.9em;
+}
+#header-box header .sign-in-menu .login input,
+#header-box header .sign-in-menu .register input {
+  border-color: #ffffff;
+  color: #ffffff;
+}
+#header-box header .sign-in-menu .login input[type='text'],
+#header-box header .sign-in-menu .register input[type='text'],
+#header-box header .sign-in-menu .login input[type='password'],
+#header-box header .sign-in-menu .register input[type='password'],
+#header-box header .sign-in-menu .login input[type='email'],
+#header-box header .sign-in-menu .register input[type='email'] {
+  padding: 2px 0;
+}
+#header-box header .sign-in-menu .login input[type='submit'],
+#header-box header .sign-in-menu .register input[type='submit'] {
+  background-color: #444;
+}
+#header-box header .sign-in-menu .login ::-webkit-input-placeholder,
+#header-box header .sign-in-menu .register ::-webkit-input-placeholder {
+  color: #ffffff;
+}
+#header-box header .sign-in-menu .login ::-moz-placeholder,
+#header-box header .sign-in-menu .register ::-moz-placeholder {
+  color: #ffffff;
+}
+#header-box header .sign-in-menu .login :-ms-input-placeholder,
+#header-box header .sign-in-menu .register :-ms-input-placeholder {
+  color: #ffffff;
+}
+#header-box header .sign-in-menu .register form {
+  padding-top: 5px;
+}
+#header-box header .sign-in-menu .choices,
+#header-box header .sign-in-menu .welcome {
   display: block;
   width: 100%;
   margin-bottom: 15px;
@@ -1126,19 +1179,22 @@ Header
   border-bottom: 2px solid #ffffff;
   line-height: 1.25em;
 }
-#header-box header .back-home {
+#header-box header .sign-in-menu .welcome {
+  padding-bottom: 6px;
+}
+#header-box header .sign-in-menu .back-home {
   display: none;
   position: absolute;
   bottom: 70px;
   right: 15px;
 }
-#header-box header .back-home a.button {
+#header-box header .sign-in-menu .back-home a.button {
   font-size: 1.4em;
   background-color: #444;
   border: none;
   cursor: pointer;
 }
-#header-box header .back-home a.button:hover {
+#header-box header .sign-in-menu .back-home a.button:hover {
   background-color: #333;
 }
 /*

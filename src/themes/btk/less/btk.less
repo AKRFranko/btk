@@ -77,27 +77,49 @@ Header
 		}
 		.navigation { margin-right:50px; }
 
-		.sign-in {
-			display:none; position:absolute; top:55px; left:0; width:100%; padding:15px;
-			a {
-				&.choices { display:table; }
-				span {
-					margin:0; font-size:3em; display:table-cell; line-height:0;
-					vertical-align:middle; text-align:right;
+		.sign-in-menu {
+			display:none; position:absolute; top:55px; left:0; width:100%; height:89vh; padding:15px;
+			.sign-in {
+				a {
+					&.choices { display:table; }
+					span {
+						margin:0; font-size:3em; display:table-cell; line-height:0;
+						vertical-align:middle; text-align:right;
+					}
 				}
 			}
-			.choices {
+
+			.login, .register {
+				form {
+					padding-top:12px;
+					p { margin:0; line-height:0em; }
+					p.submit { position:absolute; bottom:120px; right:15px; }
+					.lost-password { font-size:0.9em; }
+				}
+				input { border-color:@white; color:@white; }
+				input[type='text'],
+				input[type='password'],
+				input[type='email'] { padding:2px 0; }
+				input[type='submit'] { background-color:#444; }
+				::-webkit-input-placeholder { color:@white; }
+				::-moz-placeholder { color:@white; }
+				:-ms-input-placeholder { color:@white; }
+			}
+			.register form { padding-top:5px; }
+
+			.choices, .welcome {
 				display:block; width:100%; margin-bottom:15px; padding-bottom:15px;
 				border-bottom:2px solid @white; line-height:1.25em;
 			}
-		}
+			.welcome { padding-bottom:6px; }
 
-		.back-home {
-			display:none; position:absolute; bottom:70px; right:15px;
-			a {
-				&.button {
-					font-size:1.4em; background-color:#444; border:none; cursor:pointer;
-					&:hover { background-color:#333; }
+			.back-home {
+				display:none; position:absolute; bottom:70px; right:15px;
+				a {
+					&.button {
+						font-size:1.4em; background-color:#444; border:none; cursor:pointer;
+						&:hover { background-color:#333; }
+					}
 				}
 			}
 		}

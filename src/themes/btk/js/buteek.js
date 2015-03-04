@@ -13,41 +13,42 @@
 	// sign in behaviour
 	$('#menu-header a:first').on('click', function(e) {
 		e.preventDefault();
-/*
-		if ( $('.nav-collapse').is(':visible') ) {
-			$('.collapse').collapse('hide');
-			$('.navbar-header .fa').removeClass('fa-times').addClass('fa-bars');
-		}
-		if ( $('#header-box').hasClass('open') ) {
-			$('#header-box').removeClass('open');
-			$('.sign-in').hide();
-		} else {
-			$('#header-box').addClass('open');
-			$('.sign-in').show();
-		}
-*/
 		if ( ! $('#header-box').hasClass('open') ) {
 			$('#header-box').addClass('open');
+			$('.sign-in-menu').show();
 			$('.sign-in').show();
+			$('.login').hide();
+			$('.register').hide();
 			$('.back-home').show();
 		}
 		return false;
 	});
-
 	$('.back-home .button').on('click', function(e) {
 		e.preventDefault();
-		$('.sign-in').hide();
-		$('.back-home').hide();
+		$('.sign-in-menu').hide();
 		$('#header-box').removeClass('open');
 		return false;
 	});
+
+	$('.signin').on('click', function(e) {
+		e.preventDefault();
+		$('.sign-in').hide();
+		$('.login').show();
+		return false;
+	});
+	$('.signup').on('click', function(e) {
+		e.preventDefault();
+		$('.sign-in').hide();
+		$('.register').show();
+		return false;
+	});
+
 
 
 	// hamburger menu on/off
 	$('.nav-hamburger .navbar-toggle').click( function () {
 		if (  $('.sign-in').is(':visible') ) {
-			$('.sign-in').hide();
-			$('.back-home').hide();
+			$('.sign-in-menu').hide();
 			$('#header-box').removeClass('open');
 		}
 		if ( $(this).hasClass('collapsed') ) {
