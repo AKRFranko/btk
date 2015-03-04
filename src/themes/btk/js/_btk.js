@@ -11,6 +11,7 @@
 	});
 
 
+
 	// sign in behaviour
 	$('#menu-header a:first').on('click', function(e) {
 		e.preventDefault();
@@ -60,6 +61,20 @@
 			$('.navbar-header .fa').removeClass('fa-times').addClass('fa-bars');
 		}
 	});
+
+
+
+	// carousel principal
+	$('.slider').bxSlider({
+		nextSelector: '#main-next',
+		prevSelector: '#main-prev',
+		nextText: '',
+		prevText: '',
+		pager: true,
+		pagerType: 'short',
+		pagerShortSeparator: ' | '
+	});
+
 
 } )( jQuery );
 

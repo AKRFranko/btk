@@ -847,9 +847,11 @@ Base Styles
   outline: none;
 }
 html {
+  height: 100%;
   font-size: 15px;
 }
 body {
+  height: 100%;
   background-color: #ffffff;
   font: 100%/1.4 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -1196,6 +1198,99 @@ Header
 }
 #header-box header .sign-in-menu .back-home a.button:hover {
   background-color: #333;
+}
+/*
+==========================================================================
+Slider
+==========================================================================
+*/
+.bx-viewport,
+.bx-wrapper {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100% !important;
+}
+.bx-wrapper {
+  margin: 0;
+  box-shadow: none;
+  border: 0;
+  background: transparent;
+  overflow: hidden;
+}
+.bx-wrapper img {
+  display: none !important;
+}
+.bx-wrapper .bx-pager {
+  bottom: 20px;
+  font-size: 1em;
+}
+.bx-wrapper .caption {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+.bx-wrapper .caption h2 {
+  display: table-cell;
+  margin: 0;
+  vertical-align: middle;
+  letter-spacing: 0.05em;
+}
+.bx-wrapper .bx-pager,
+.bx-wrapper .caption h2 {
+  color: #ffffff;
+  text-shadow: -1px -1px 0 #888888, 1px -1px 0 #888888, -1px 1px 0 #888888, 1px 1px 0 #888888;
+}
+.bx-wrapper .bx-controls-direction a {
+  top: initial;
+  bottom: 12px;
+}
+.bx-wrapper .bx-controls-direction a.bx-prev {
+  left: 25%;
+}
+.bx-wrapper .bx-controls-direction a.bx-next {
+  right: 25%;
+}
+.main-slider {
+  height: 75vmax;
+  border-bottom: 2px solid #000000;
+}
+.main-slider .slider,
+.main-slider .slider li {
+  height: 100% !important;
+}
+.main-slider .slider li {
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+}
+.main-slider .main-controls {
+  position: relative;
+}
+.main-slider .main-controls p {
+  margin: 0;
+}
+.main-slider .main-controls a {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  margin: -10px 0 0 -30px;
+}
+.main-slider .main-controls #main-next {
+  right: 25%;
+}
+.main-slider .main-controls #main-prev {
+  left: 25%;
+}
+.main-slider .main-controls #main-next,
+.main-slider .main-controls #main-prev {
+  position: absolute;
+  bottom: 20px;
+  color: #ffffff;
+  font-size: 1.5em;
+  margin: 0;
+  text-shadow: -1px -1px 0 #888888, 1px -1px 0 #888888, -1px 1px 0 #888888, 1px 1px 0 #888888;
 }
 /*
 ==========================================================================
