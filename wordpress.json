@@ -1,3 +1,3 @@
 {
- "plugins": ["social-media-feather", "woocommerce", "woocommerce-poor-guys-swiss-knife" ]
+ "plugins": ["social-media-feather", "woocommerce", "woocommerce-poor-guys-swiss-knife", "wp-maintenance-mode", "contact-form-7", "rvg-optimize-database", "simple-page-ordering" ]
 }
