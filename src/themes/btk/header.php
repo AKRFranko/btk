@@ -41,7 +41,7 @@
 						<!-- menu header -->
 						<nav class="nav-header" role="navigation">
 							<?php wp_nav_menu( array( 'menu' => 'header' ) ); ?>
-							<a class="language upper" href="/">FR</a>
+							<a class="language" href="/">fr</a>
 						</nav>
 
 						<!-- menu hamburger -->
