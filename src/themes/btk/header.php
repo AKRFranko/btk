@@ -41,7 +41,7 @@
 						<!-- menu header -->
 						<nav class="nav-header" role="navigation">
 							<?php wp_nav_menu( array( 'menu' => 'header' ) ); ?>
-							<a class="language" href="/">fr</a>
+							<a class="language" href="<?php echo esc_url( home_url( '/' ) ); ?>">fr</a>
 						</nav>
 
 						<!-- menu hamburger -->
