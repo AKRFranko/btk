@@ -1199,6 +1199,11 @@ Header
 #header-box header .sign-in-menu .back-home a.button:hover {
   background-color: #333;
 }
+@media (min-width: 768px) {
+  .nav-hamburger {
+    display: none;
+  }
+}
 /*
 ==========================================================================
 Slider
