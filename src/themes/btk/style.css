@@ -1310,6 +1310,11 @@ Content
 #content article .entry-content h1 {
   font-size: 1.5em;
 }
+#content article .entry-content,
+#content article .entry-header,
+#content article .entry-footer {
+  margin: 0 15px;
+}
 /*
 ==========================================================================
 Footer
