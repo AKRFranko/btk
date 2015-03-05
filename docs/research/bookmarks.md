@@ -4,7 +4,9 @@
 
 https://gist.github.com/sindresorhus/7996717
 
+## .HTACCESS tricks
 
+http://css-tricks.com/snippets/htaccess/
 
 # Where to look for 3rd party solutions
 
