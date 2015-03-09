@@ -1,3 +1,69 @@
 {
- "plugins": ["social-media-feather", "woocommerce", "woocommerce-poor-guys-swiss-knife", "wp-maintenance-mode", "contact-form-7", "rvg-optimize-database", "simple-page-ordering" ]
+ "plugin": {
+    "install": [
+      {
+        "src": "social-media-feather",
+        "force": true,
+        "activate": true
+      },
+      {
+        "src": "woocommerce",
+        "force": true,
+        "activate": true
+      },{
+        "src": "contact-form-7",
+        "force": true,
+        "activate": true
+      },{
+        "src": "rvg-optimize-database",
+        "force": true,
+        "activate": true
+      },{
+        "src": "simple-page-ordering",
+        "force": true,
+        "activate": true
+      },
+      { 
+        "src": "woocommerce-poor-guys-swiss-knife",
+        "activate": false
+      },
+      { 
+        "src": "wp-maintenance-mode",
+        "activate": false
+      }
+    ]
+ }
+ "post": {
+    "create": [
+        {
+          "post_type": "page",
+          "post_title": "about / faq",
+          "post_name": "about",
+          "post_status": "publish",
+          "src":"src/data/content/about.txt"
+        },
+        {
+          "post_type": "page",
+          "post_title": "in the press",
+          "post_name": "press",
+          "post_status": "publish",
+          "src":"src/data/content/press.txt"
+        },
+        {
+          "post_type": "page",
+          "post_title": "trade & designers",
+          "post_name": "trade",
+          "post_status": "publish",
+          "src":"src/data/content/trade.txt"
+        },
+        {
+          "post_type": "page",
+          "post_title": "environment",
+          "post_name": "environment",
+          "post_status": "publish",
+          "src":"src/data/content/environment.txt"
+        }
+    ] 
+  }
+
 }
