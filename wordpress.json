@@ -62,7 +62,42 @@
           "post_name": "environment",
           "post_status": "publish",
           "src":"src/data/content/environment.txt"
-        }
+        },
+        {
+          "post_type": "page",
+          "post_title": "shipping info",
+          "post_name": "shipping",
+          "post_status": "publish",
+          "src":"src/data/content/shipping.txt"
+        },
+        {
+          "post_type": "page",
+          "post_title": "return & exchange",
+          "post_name": "exchange",
+          "post_status": "publish",
+          "src":"src/data/content/exchange.txt"
+        },
+        {
+          "post_type": "page",
+          "post_title": "privacy policy",
+          "post_name": "privacy",
+          "post_status": "publish",
+          "src":"src/data/content/privacy.txt"
+        },
+        {
+          "post_type": "page",
+          "post_title": "terms of use",
+          "post_name": "terms",
+          "post_status": "publish",
+          "src":"src/data/content/terms.txt"
+        },
+        {
+          "post_type": "page",
+          "post_title": "reward program",
+          "post_name": "affiliate",
+          "post_status": "publish",
+          "src":"src/data/content/affiliate.txt"
+        },
     ] 
   }
 
