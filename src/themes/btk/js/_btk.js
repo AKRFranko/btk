@@ -76,6 +76,34 @@
 	});
 
 
+	// carousel collections
+	$('.slider-collections').bxSlider({
+		nextSelector: '#coll-next',
+		prevSelector: '#coll-prev',
+		nextText: '',
+		prevText: '',
+		pager: false
+	});
+
+	// carousel news
+	$('.slider-news').bxSlider({
+		nextSelector: '#news-next',
+		prevSelector: '#news-prev',
+		nextText: '',
+		prevText: '',
+		pager: false
+	});
+
+	// carousel news
+	$('.slider-article').bxSlider({
+		nextSelector: '#article-next',
+		prevSelector: '#article-prev',
+		nextText: '',
+		prevText: '',
+		pager: false
+	});
+
+
 } )( jQuery );
 
 ;/**
