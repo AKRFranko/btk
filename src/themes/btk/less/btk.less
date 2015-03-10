@@ -47,7 +47,7 @@ Header
 		background:inherit; position:relative; height:@headerheight; padding:10px 0px 10px 15px;
 		h1 {
 			width:25%; margin:0; font-size:0.9em; line-height:1em;
-			span { margin:0; font-size:3em; line-height:1em; letter-spacing:0.05em; }
+			span { font-size:3em; line-height:1em; letter-spacing:0.05em; }
 		}
 		div[class*="col-"] { padding:0; }
 
@@ -63,9 +63,7 @@ Header
 				position:absolute; width:100%; right:5px; top:50px;
 				.navbar-toggle {
 					margin-top:-42px;
-					span {
-						&.fa { font-size:1.5em; margin:0; }
-					}
+					span.fa { font-size:1.5em; }
 				}
 				.navbar-collapse {
 					padding:40px 20px 20px; box-shadow:none;
@@ -83,7 +81,7 @@ Header
 				a {
 					&.choices { display:table; }
 					span {
-						margin:0; font-size:3em; display:table-cell; line-height:0;
+						font-size:3em; display:table-cell; line-height:0;
 						vertical-align:middle; text-align:right;
 					}
 				}
@@ -141,29 +139,29 @@ Slider
 ==========================================================================
 */
 
-.bx-viewport, .bx-wrapper { position:relative; top:0; left:0; width:100%; height:100% !important; }
-
 .bx-wrapper {
 	margin:0; box-shadow:none; border:0; background:transparent; overflow:hidden;
-	img { display:none !important; }
-	.bx-pager { bottom:20px; font-size:1em; }
-	.caption {
-		display:table; width:100%; height:100%;
-		h2 { display:table-cell; margin:0; vertical-align:middle; letter-spacing:0.05em; }
-	}
-	.bx-pager, .caption h2 {
-		color:@white;
-		text-shadow:-1px -1px 0 #888, 1px -1px 0 #888, -1px 1px 0 #888, 1px 1px 0 #888;
-	}
-	.bx-controls-direction a {
-		top:initial; bottom:12px;
-		&.bx-prev { left:25%; }
-		&.bx-next { right:25%; }
-	}
+	img { width:100%; }
 }
 
 .main-slider {
-	height:75vmax; border-bottom:2px solid @black;
+	height:80vmax; border-bottom:2px solid @black;
+
+	.bx-wrapper {
+		height:100% !important;
+		img { display:none !important; }
+		.bx-viewport { height:100% !important; }
+		.bx-pager { bottom:20px; font-size:1em; }
+		.caption {
+			display:table; width:100%; height:100%;
+			h2 { display:table-cell; margin:0; vertical-align:middle; letter-spacing:0.05em; }
+		}
+		.bx-pager, .caption h2 {
+			color:@white;
+			text-shadow:-1px -1px 0 #888, 1px -1px 0 #888, -1px 1px 0 #888, 1px 1px 0 #888;
+		}
+	}
+
 	.slider, .slider li { height:100% !important; }
 	.slider li { background-repeat: no-repeat; background-position:top center; background-size:cover; }
 	.main-controls {
@@ -173,10 +171,25 @@ Slider
 		#main-next { right:25%; }
 		#main-prev { left:25%; }
 		#main-next, #main-prev {
-			position:absolute; bottom:20px; color:@white; font-size:1.5em; margin:0;
+			position:absolute; bottom:20px; color:@white; font-size:1.5em;
 			text-shadow:-1px -1px 0 #888, 1px -1px 0 #888, -1px 1px 0 #888, 1px 1px 0 #888;
 		}
 	}
+
+}
+
+.sliders {
+	position:relative; border-bottom:2px solid @black;
+	p { padding:15px; margin:0; font-size:1.35em; }
+	a { position:absolute; bottom:0; right:-10px; width:40px; height:40px; }
+	img { max-height:250px; }
+	#coll-prev, #news-prev, #article-prev { display:none; }
+	#coll-next, #news-next, #article-next { position:absolute; bottom:8px; right:10px; font-size:3em; }
+}
+
+
+@media (min-width: 768px) {
+	.sliders img { max-height:100%; }
 }
 
 
@@ -262,7 +275,7 @@ Footer
 			.cc {
 				padding-top:14px;
 				ul li { display:inline-block; }
-				span { margin:0; font-size:2em; color:#9c9c9c; }
+				span { font-size:2em; color:#9c9c9c; }
 			}
 		}
 	}
