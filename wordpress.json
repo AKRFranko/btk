@@ -32,8 +32,41 @@
         "activate": false
       }
     ]
- }
+ },
+ "category": {
+    "create": [
+        {
+          "term": "caroussel",
+          "slug": "caroussel",
+          "description": "This category determines if a post's featured image will be shown in the caroussel."
+        },
+        {
+          "term": "news",
+          "slug": "news",
+          "description": "This category is for blog posts that should end up in the news section."
+        },
+        {
+          "term": "article",
+          "slug": "article",
+          "description": "This category is for generic blog posts."
+        },
+        {
+          "term": "collection",
+          "slug": "collection",
+          "description": "Bundle items by collection."
+        }
+    ]
+ },
  "post": {
+    "create": [
+      "post_type": "post",
+      "post_title": "news item one",
+      "post_status": "publish",
+      "post_category": "caroussel,news",
+      "src": "src/data/content/news.txt"
+    ]
+  },
+ "page": {
     "create": [
         {
           "post_type": "page",
