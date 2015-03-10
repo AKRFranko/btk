@@ -1219,7 +1219,7 @@ Slider
   width: 100%;
 }
 .main-slider {
-  height: 75vmax;
+  height: 80vmax;
   border-bottom: 2px solid #000000;
 }
 .main-slider .bx-wrapper {
