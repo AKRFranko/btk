@@ -49,7 +49,7 @@ get_header(); ?>
 					<li>
 					<?php if ( has_post_thumbnail() ) : the_post_thumbnail('full'); endif; ?>
 						<div class="caption">
-							<p><?php the_title(); ?></p>
+							<p><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></p>
 						</div>
 					</li>
 					<?php endwhile; ?>
@@ -70,7 +70,7 @@ get_header(); ?>
 					<li>
 					<?php if ( has_post_thumbnail() ) : the_post_thumbnail('full'); endif; ?>
 						<div class="caption">
-							<p><?php the_title(); ?></p>
+							<p><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></p>
 						</div>
 					</li>
 					<?php endwhile; ?>
@@ -91,7 +91,7 @@ get_header(); ?>
 					<li>
 					<?php if ( has_post_thumbnail() ) : the_post_thumbnail('full'); endif; ?>
 						<div class="caption">
-							<p><?php the_title(); ?></p>
+							<p><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></p>
 						</div>
 					</li>
 					<?php endwhile; ?>

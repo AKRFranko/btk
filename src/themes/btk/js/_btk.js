@@ -104,6 +104,10 @@
 	});
 
 
+
+	$('.entry-content p:has(img)').css('margin', '0');
+
+
 } )( jQuery );
 
 ;/**

@@ -756,6 +756,9 @@ object {
 Variables LESS
 ==========================================================================
 */
+.imgborder {
+  border-bottom: 3px solid #000000;
+}
 /*
 ==========================================================================
 Global classes
@@ -1219,8 +1222,8 @@ Slider
   width: 100%;
 }
 .main-slider {
-  height: 80vmax;
-  border-bottom: 2px solid #000000;
+  height: 76vmax;
+  border-bottom: 3px solid #000000;
 }
 .main-slider .bx-wrapper {
   height: 100% !important;
@@ -1232,7 +1235,8 @@ Slider
   height: 100% !important;
 }
 .main-slider .bx-wrapper .bx-pager {
-  bottom: 20px;
+  bottom: 0;
+  padding-bottom: 20px;
   font-size: 1em;
 }
 .main-slider .bx-wrapper .caption {
@@ -1250,6 +1254,7 @@ Slider
 .main-slider .bx-wrapper .caption h2 {
   color: #ffffff;
   text-shadow: -1px -1px 0 #888888, 1px -1px 0 #888888, -1px 1px 0 #888888, 1px 1px 0 #888888;
+  background-image: linear-gradient(rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 0.3));
 }
 .main-slider .slider,
 .main-slider .slider li {
@@ -1288,14 +1293,14 @@ Slider
 }
 .sliders {
   position: relative;
-  border-bottom: 2px solid #000000;
+  border-bottom: 3px solid #000000;
 }
 .sliders p {
   padding: 15px;
   margin: 0;
   font-size: 1.35em;
 }
-.sliders a {
+.sliders span a {
   position: absolute;
   bottom: 0;
   right: -10px;
@@ -1331,20 +1336,38 @@ Content
 #content {
   margin-top: 60px;
 }
+#content article {
+  margin: 0;
+}
 #content article .attachment-post-thumbnail {
   width: 100%;
   border-bottom: 3px solid #000000;
 }
-#content article .entry-content {
-  margin: 0 15px;
-}
-#content article .entry-content h1 {
-  font-size: 1.5em;
-}
-#content article .entry-content,
 #content article .entry-header,
 #content article .entry-footer {
   margin: 0 15px;
+}
+#content article .entry-content {
+  margin: 0;
+}
+#content article .entry-content h1 {
+  margin: 1em 15px;
+  font-size: 1.5em;
+}
+#content article .entry-content p {
+  margin: 0 15px 1.5em;
+}
+#content article .entry-content img {
+  width: 100%;
+  border-bottom: 3px solid #000000;
+}
+#content article .entry-content form {
+  overflow: hidden;
+  margin-bottom: 1.5em;
+}
+#content article .entry-content form img {
+  width: auto;
+  border: none;
 }
 /*
 ==========================================================================

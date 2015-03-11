@@ -145,13 +145,13 @@ Slider
 }
 
 .main-slider {
-	height:80vmax; border-bottom:2px solid @black;
+	height:76vmax; .imgborder();
 
 	.bx-wrapper {
 		height:100% !important;
 		img { display:none !important; }
 		.bx-viewport { height:100% !important; }
-		.bx-pager { bottom:20px; font-size:1em; }
+		.bx-pager { bottom:0; padding-bottom:20px; font-size:1em; }
 		.caption {
 			display:table; width:100%; height:100%;
 			h2 { display:table-cell; margin:0; vertical-align:middle; letter-spacing:0.05em; }
@@ -159,6 +159,7 @@ Slider
 		.bx-pager, .caption h2 {
 			color:@white;
 			text-shadow:-1px -1px 0 #888, 1px -1px 0 #888, -1px 1px 0 #888, 1px 1px 0 #888;
+			background-image:linear-gradient( rgba(0,0,0,0) 90%, rgba(0,0,0,0.3) );
 		}
 	}
 
@@ -179,9 +180,9 @@ Slider
 }
 
 .sliders {
-	position:relative; border-bottom:2px solid @black;
+	position:relative; .imgborder();
 	p { padding:15px; margin:0; font-size:1.35em; }
-	a { position:absolute; bottom:0; right:-10px; width:40px; height:40px; }
+	span a { position:absolute; bottom:0; right:-10px; width:40px; height:40px; }
 	img { max-height:250px; }
 	#coll-prev, #news-prev, #article-prev { display:none; }
 	#coll-next, #news-next, #article-next { position:absolute; bottom:8px; right:10px; font-size:3em; }
@@ -205,13 +206,19 @@ Content
 #content {
 	margin-top:@headerheight;
 	article {
-		.attachment-post-thumbnail { width:100%; border-bottom:3px solid @black; }
+		margin:0;
+		.attachment-post-thumbnail { width:100%; .imgborder(); }
+		.entry-header, .entry-footer { margin:0 15px; }
 		.entry-content {
-			margin:0 15px;
-			h1 { font-size:1.5em; }
+			margin:0;
+			h1 { margin:1em 15px; font-size:1.5em; }
+			p { margin:0 15px 1.5em; }
+			img { width:100%; .imgborder(); }
+			form {
+				overflow:hidden; margin-bottom:1.5em;
+				img { width:auto; border:none; }
+			}
 		}
-        // temporary spacing for prettier demo. (ed: franko)
-        .entry-content, .entry-header,.entry-footer{ margin:0 15px;}
 	}
 }
 
