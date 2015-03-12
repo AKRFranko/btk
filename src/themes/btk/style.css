@@ -1369,6 +1369,36 @@ Content
   width: auto;
   border: none;
 }
+#content article.error-404 {
+  min-height: 250px;
+}
+#content article.error-404 p {
+  padding-top: 75px;
+}
+#content article.error-404 a {
+  color: #ffffff;
+  font-size: 1.4em;
+}
+#content .pdf {
+  border-bottom: 3px solid #000000;
+}
+#content .pdf a {
+  display: block;
+  padding: 25px 15px;
+}
+#content .pdf img {
+  width: 100%;
+}
+#content .pdf p {
+  width: 100%;
+  margin: 0;
+  font-size: 1.35em;
+}
+#content .pdf p.fa-angle-right::before {
+  float: right;
+  padding: 11px 15px 0 0;
+  font-size: 2.25em;
+}
 /*
 ==========================================================================
 Footer

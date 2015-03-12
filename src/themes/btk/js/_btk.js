@@ -106,7 +106,7 @@
 
 
 	$('.entry-content p:has(img)').css('margin', '0');
-
+	$('.pdf p:has(a)').addClass('fa').addClass('fa-angle-right');
 
 } )( jQuery );
 
