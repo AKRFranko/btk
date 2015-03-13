@@ -15,7 +15,7 @@ get_header(); ?>
 				<div class="entry-content lower">
 					<h1 class="entry-title"><?php _e( 'Oops! That page can&rsquo;t be found.', 'btk' ); ?></h1>
 					<p>
-						<span>Return home</span>
+						<span>Back home</span>
 						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="button fa fa-long-arrow-left"></a>
 					</p>
 				</div>
