@@ -756,8 +756,42 @@ object {
 Variables LESS
 ==========================================================================
 */
+/*
+==========================================================================
+Mixins
+==========================================================================
+*/
 .imgborder {
   border-bottom: 3px solid #000000;
+}
+.open-menu {
+  height: 100vh;
+  background: url('img/bkg.png') repeat;
+}
+.open-menu a,
+.open-menu p,
+.open-menu span {
+  color: #ffffff;
+}
+.open-menu .icon-bar {
+  background-color: #ffffff;
+}
+.open-menu header {
+  height: 100vh;
+}
+.back-home-button {
+  position: absolute;
+  bottom: 70px;
+  right: 15px;
+}
+.back-home-button a.button {
+  font-size: 1.4em;
+  background-color: #444;
+  border: none;
+  cursor: pointer;
+}
+.back-home-button a.button:hover {
+  background-color: #333;
 }
 /*
 ==========================================================================
@@ -1201,6 +1235,9 @@ Header
 #header-box header .sign-in-menu .back-home a.button:hover {
   background-color: #333;
 }
+#header-box header .confirmation {
+  padding-right: 15px;
+}
 @media (min-width: 768px) {
   .nav-hamburger {
     display: none;
@@ -1398,6 +1435,41 @@ Content
   float: right;
   padding: 11px 15px 0 0;
   font-size: 2.25em;
+}
+.page-confirmation #header-box {
+  height: 100vh;
+  background: url('img/bkg.png') repeat;
+}
+.page-confirmation #header-box a,
+.page-confirmation #header-box p,
+.page-confirmation #header-box span {
+  color: #ffffff;
+}
+.page-confirmation #header-box .icon-bar {
+  background-color: #ffffff;
+}
+.page-confirmation #header-box header {
+  height: 100vh;
+}
+.page-confirmation #content {
+  height: 76vmax;
+}
+.page-confirmation #content article {
+  display: none;
+}
+.page-confirmation .confirmation-back-home {
+  position: absolute;
+  bottom: 70px;
+  right: 15px;
+}
+.page-confirmation .confirmation-back-home a.button {
+  font-size: 1.4em;
+  background-color: #444;
+  border: none;
+  cursor: pointer;
+}
+.page-confirmation .confirmation-back-home a.button:hover {
+  background-color: #333;
 }
 /*
 ==========================================================================

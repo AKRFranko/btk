@@ -35,13 +35,7 @@ Header
 #header-box {
 	position:fixed; left:0; width:100%; z-index:10;
 	background:@headerbkgcolor; margin-bottom:25px;
-
-	&.open {
-		height:100vh; background:url('img/bkg.png') repeat;
-		a, p, span { color:@white; }
-		.icon-bar { background-color:@white; }
-		header { height:100vh; }
-	}
+	&.open { .open-menu(); }
 
 	header {
 		background:inherit; position:relative; height:@headerheight; padding:10px 0px 10px 15px;
@@ -110,16 +104,11 @@ Header
 				border-bottom:2px solid @white; line-height:1.25em;
 			}
 			.welcome { padding-bottom:6px; }
+			.back-home { display:none; .back-home-button(); }
+		}
 
-			.back-home {
-				display:none; position:absolute; bottom:70px; right:15px;
-				a {
-					&.button {
-						font-size:1.4em; background-color:#444; border:none; cursor:pointer;
-						&:hover { background-color:#333; }
-					}
-				}
-			}
+		.confirmation {
+			padding-right:15px;
 		}
 	}
 }
@@ -235,6 +224,15 @@ Content
 			&.fa-angle-right::before { float:right; padding:11px 15px 0 0; font-size:2.25em; }
 		}
 	}
+}
+
+.page-confirmation {
+	#header-box { .open-menu(); }
+	#content {
+		height:76vmax;
+		article { display:none; }
+	}
+	.confirmation-back-home { .back-home-button(); }
 }
 
 

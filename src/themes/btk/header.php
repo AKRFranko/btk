@@ -39,10 +39,12 @@
 					<!-- navigation -->
 					<div class="navigation alignright lower">
 						<!-- menu header -->
+						<?php if ( !is_page('confirmation') ) { ?>
 						<nav class="nav-header" role="navigation">
 							<?php wp_nav_menu( array( 'menu' => 'header' ) ); ?>
 							<a class="language" href="<?php echo esc_url( home_url( '/' ) ); ?>">fr</a>
 						</nav>
+						<?php } ?>
 
 						<!-- menu hamburger -->
 						<nav class="nav-hamburger navbar valign" role="navigation">
@@ -129,6 +131,21 @@
 							</p>
 						</div>
 					</div>
+
+						<!-- page confirmation -->
+						<?php if ( is_page('confirmation') ) { ?>
+						<div class="confirmation lower">
+						<?php
+							while ( have_posts() ) : the_post();
+								get_template_part( 'content', 'page' );
+							endwhile;
+						?>
+							<p class="confirmation-back-home">
+								<span>Back home</span>
+								<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="button fa fa-long-arrow-left"></a>
+							</p>
+						</div>
+						<?php } ?>
 
 				</header>
 			</div>

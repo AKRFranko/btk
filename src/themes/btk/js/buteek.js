@@ -54,9 +54,11 @@
 		}
 		if ( $(this).hasClass('collapsed') ) {
 			$('#header-box').addClass('open');
+			$('#header-box .confirmation').hide();
 			$('.navbar-header .fa').removeClass('fa-bars').addClass('fa-times');
 		} else {
 			$('#header-box').removeClass('open');
+			$('#header-box .confirmation').show();
 			$('.navbar-header .fa').removeClass('fa-times').addClass('fa-bars');
 		}
 	});
