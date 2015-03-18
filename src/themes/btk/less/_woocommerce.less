@@ -1,0 +1,35 @@
+/*
+==========================================================================
+Woocommerce Overrides
+==========================================================================
+*/
+
+.woocommerce .page-title,
+.woocommerce-breadcrumb,
+.woocommerce-ordering,
+.woocommerce-result-count { display:none; }
+
+
+
+.woocommerce {
+	ul.products {
+		margin:0;
+		li.product {
+			width:100%; margin:0; .imgborder();
+			a img { margin:0; }
+
+			.product-image { display:block; position:relative; }
+			.add_to_cart_button { display:none; }
+			.price { margin:0; }
+			.in-stock { position:absolute; bottom:15px; left:15px; }
+
+			.product-desc {
+				width:100%; font-size:1.35em;
+				a { display:block; padding:15px; }
+				&.fa-angle-right::before { .arrow-right(); padding-top:15px; }
+			}
+		}
+	}
+}
+
+

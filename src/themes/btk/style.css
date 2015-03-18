@@ -793,6 +793,11 @@ Mixins
 .back-home-button a.button:hover {
   background-color: #333;
 }
+.arrow-right {
+  float: right;
+  padding: 11px 15px 0 0;
+  font-size: 2.25em;
+}
 /*
 ==========================================================================
 Global classes
@@ -811,6 +816,7 @@ Global classes
 }
 .alignleft {
   float: left;
+  margin-right: 0;
 }
 .alignright {
   float: right;
@@ -1030,6 +1036,57 @@ Base Styles Responsive Design
 }
 /*
 ==========================================================================
+Woocommerce Overrides
+==========================================================================
+*/
+.woocommerce .page-title,
+.woocommerce-breadcrumb,
+.woocommerce-ordering,
+.woocommerce-result-count {
+  display: none;
+}
+.woocommerce ul.products {
+  margin: 0;
+}
+.woocommerce ul.products li.product {
+  width: 100%;
+  margin: 0;
+  border-bottom: 3px solid #000000;
+}
+.woocommerce ul.products li.product a img {
+  margin: 0;
+}
+.woocommerce ul.products li.product .product-image {
+  display: block;
+  position: relative;
+}
+.woocommerce ul.products li.product .add_to_cart_button {
+  display: none;
+}
+.woocommerce ul.products li.product .price {
+  margin: 0;
+}
+.woocommerce ul.products li.product .in-stock {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+}
+.woocommerce ul.products li.product .product-desc {
+  width: 100%;
+  font-size: 1.35em;
+}
+.woocommerce ul.products li.product .product-desc a {
+  display: block;
+  padding: 15px;
+}
+.woocommerce ul.products li.product .product-desc.fa-angle-right::before {
+  float: right;
+  padding: 11px 15px 0 0;
+  font-size: 2.25em;
+  padding-top: 15px;
+}
+/*
+==========================================================================
 Overridez
 ==========================================================================
 */
@@ -1122,18 +1179,30 @@ Header
 #header-box header nav.nav-hamburger .navbar-toggle span.fa {
   font-size: 1.5em;
 }
-#header-box header nav.nav-hamburger .navbar-collapse {
+#header-box header nav.nav-hamburger .navbar-collapse,
+#header-box header nav.nav-hamburger .woo-categories {
+  width: 50%;
   padding: 40px 20px 20px;
   box-shadow: none;
 }
-#header-box header nav.nav-hamburger .navbar-collapse ul li {
+#header-box header nav.nav-hamburger .navbar-collapse ul li,
+#header-box header nav.nav-hamburger .woo-categories ul li {
   padding: 6px 0;
 }
-#header-box header nav.nav-hamburger .navbar-collapse a {
+#header-box header nav.nav-hamburger .navbar-collapse a,
+#header-box header nav.nav-hamburger .woo-categories a {
   font-size: 1.25em;
 }
-#header-box header nav.nav-hamburger .navbar-collapse.collapsing {
+#header-box header nav.nav-hamburger .navbar-collapse.collapsing,
+#header-box header nav.nav-hamburger .woo-categories.collapsing {
   transition: height 0.01s;
+}
+#header-box header nav.nav-hamburger .navbar-collapse {
+  float: left;
+}
+#header-box header nav.nav-hamburger .woo-categories {
+  display: none;
+  float: right;
 }
 #header-box header .navigation {
   margin-right: 50px;

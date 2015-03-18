@@ -54,8 +54,23 @@
 									<span class="fa fa-bars"></span>
 								</a>
 							</div>
+
     						<div class="collapse navbar-collapse" id="nav-hamburger">
 							<?php wp_nav_menu( array( 'menu' => 'hamburger' ) ); ?>
+							</div>
+
+							<div class="woo-categories">
+								<ul>
+								<?php
+									$args = array (
+										'order' => 'ASC'
+									);
+									$product_categories = get_terms('product_cat', $args);
+									foreach ($product_categories as $cat) {
+								?>
+									<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>product-category/<?php echo $cat->slug; ?>/"><?php echo $cat->name; ?></a></li>
+								<?php } ?>
+								</ul>
 							</div>
 						</nav>
 

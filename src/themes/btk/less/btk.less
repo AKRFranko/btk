@@ -8,6 +8,7 @@ Dependencies
 @import '_variables';
 @import '_global';
 @import '_base';
+@import '_woocommerce';
 
 
 
@@ -59,12 +60,14 @@ Header
 					margin-top:-42px;
 					span.fa { font-size:1.5em; }
 				}
-				.navbar-collapse {
-					padding:40px 20px 20px; box-shadow:none;
+				.navbar-collapse, .woo-categories {
+					width:50%; padding:40px 20px 20px; box-shadow:none;
 					ul li { padding:6px 0; }
 					a { font-size:1.25em; }
 					&.collapsing { transition:height 0.01s; }
 				}
+				.navbar-collapse { float:left; }
+				.woo-categories { display:none; float:right; }
 			}
 		}
 		.navigation { margin-right:50px; }
@@ -221,7 +224,7 @@ Content
 		img { width:100%; }
 		p {
 			width:100%; margin:0; font-size:1.35em;
-			&.fa-angle-right::before { float:right; padding:11px 15px 0 0; font-size:2.25em; }
+			&.fa-angle-right::before { .arrow-right(); }
 		}
 	}
 }

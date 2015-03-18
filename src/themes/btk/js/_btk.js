@@ -60,10 +60,17 @@
 		} else {
 			$('#header-box').removeClass('open');
 			$('#header-box .confirmation').show();
+			$('.woo-categories').hide();
 			$('.navbar-header .fa').removeClass('fa-times').addClass('fa-bars');
 		}
 	});
 
+
+	$('#menu-hamburger li a[href*="products"]').click( function (e) {
+		e.preventDefault();
+		$('.woo-categories').toggle();
+		return false;
+	});
 
 
 	// carousel principal
