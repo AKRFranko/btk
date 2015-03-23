@@ -1085,6 +1085,54 @@ Woocommerce Overrides
   font-size: 2.25em;
   padding-top: 15px;
 }
+.woocommerce #content div.product {
+  text-transform: lowercase;
+}
+.woocommerce #content div.product div.images {
+  float: none;
+  width: 100%;
+}
+.woocommerce #content div.product div.images img {
+  width: 100%;
+  max-height: 400px;
+  border-bottom: 3px solid #000000;
+}
+.woocommerce #content div.product div.summary {
+  float: none;
+  width: initial;
+  padding: 10px 0;
+  margin: 0 15px;
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+}
+.woocommerce #content div.product div.summary h1 {
+  margin: 0;
+  font-size: 1.4em;
+}
+.woocommerce #content div.product div.summary p.price {
+  margin: 0;
+}
+.woocommerce #content div.product div.summary p.price del {
+  display: inline-block;
+}
+.woocommerce #content div.product .woocommerce-tabs ul.tabs {
+  display: none;
+}
+.woocommerce #content div.product .woocommerce-tabs .panel {
+  padding: 20px 15px;
+  box-shadow: none;
+}
+.woocommerce #content div.product .woocommerce-tabs .panel > h2 {
+  display: none;
+}
+.woocommerce #content div.product .entry-image {
+  position: relative;
+}
+.woocommerce #content div.product .in-stock {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+}
 /*
 ==========================================================================
 Overridez

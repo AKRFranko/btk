@@ -30,6 +30,36 @@ Woocommerce Overrides
 			}
 		}
 	}
+
+	#content {
+		div.product {
+			text-transform:lowercase;
+			div.images {
+				float:none; width:100%;
+				img { width:100%; max-height:400px; .imgborder(); }
+			}
+			div.summary {
+				float:none; width:initial; padding:10px 0; margin:0 15px;
+				border-top:1px solid @black; border-bottom:1px solid @black;
+
+				h1 { margin:0; font-size:1.4em; }
+				p.price {
+					margin:0;
+					del { display:inline-block; }
+				}
+			}
+
+			.woocommerce-tabs {
+				ul.tabs { display:none; }
+				.panel {
+					padding:20px 15px; box-shadow:none;
+					> h2 { display:none; }
+				}
+			}
+			.entry-image { position:relative; }
+			.in-stock { position:absolute; bottom:15px; left:15px; }
+		}
+	}
 }
 
 
