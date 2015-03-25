@@ -59,23 +59,64 @@
  },
  "post": {
     "create": [
-      "post_type": "post",
-      "post_title": "news item one",
-      "post_status": "publish",
-      "post_category": "caroussel,news",
-      "src": "src/data/content/news.txt"
-    ]
-  },
- "page": {
-    "create": [
         {
+          "post_type": "post",
+          "post_title": "a temporary news item",
+          "post_status": "publish",
+          "post_category": "caroussel,news",
+          "src": "src/data/content/news-1.txt",
+          "media": [
+            "news-1-01.jpg",
+            "news-1-02.jpg",
+            "news-1-03.jpg"
+          ]
+        },{
+          "post_type": "post",
+          "post_title": "another news item",
+          "post_status": "publish",
+          "post_category": "caroussel,news",
+          "src": "src/data/content/news-2.txt",
+          "media": [
+            "news-2-01.jpg"
+          ]
+        },{
+          "post_type": "post",
+          "post_title": "it's all about the news",
+          "post_status": "publish",
+          "post_category": "caroussel,news",
+          "src": "src/data/content/news-3.txt",
+          "media": [
+            "news-3-01.jpg"
+          ]
+        },{
+          "post_type": "post",
+          "post_title": "news to you is news to me",
+          "post_status": "publish",
+          "post_category": "caroussel,news",
+          "src": "src/data/content/news-4.txt",
+          "media": [
+            "news-4-01.jpg",
+            "news-4-02.jpg",
+            "news-4-03.jpg"
+          ]
+        },{
+          "post_type": "post",
+          "post_title": "i news this was going to happen",
+          "post_status": "publish",
+          "post_category": "caroussel,news",
+          "src": "src/data/content/news-5.txt",
+          "media": [
+            "news-5-01.jpg",
+            "news-5-02.jpg",
+            "news-5-03.jpg"
+          ]
+        },{
           "post_type": "page",
           "post_title": "about / faq",
           "post_name": "about",
           "post_status": "publish",
           "src":"src/data/content/about.txt"
-        },
-        {
+        },{
           "post_type": "page",
           "post_title": "in the press",
           "post_name": "press",
@@ -130,8 +171,78 @@
           "post_name": "affiliate",
           "post_status": "publish",
           "src":"src/data/content/affiliate.txt"
-        },
-    ] 
-  }
+        }
+     ] 
+  },
+  "menu": {
+    "create": [
+      {
+        "name": "hamburger"
+        "items": [
+          { 
+              "type": "post",
+              "post": "products",
+              "title": "products"
+          },
+          { 
+              "type": "post",
+              "post": "lookbook",
+              "title": "lookbook"
+          },
+          { 
+              "type": "post",
+              "post": "order-samples",
+              "title": "order samples"
+          },
+          { 
+              "type": "post",
+              "post": "free-delivery",
+              "title": "free delivery"
+          },
+          { 
+              "type": "post",
+              "post": "about",
+              "title": "about"
+          },
+          { 
+              "type": "post",
+              "post": "contact",
+              "title": "contact"
+          }
+        ]
+      },
+      {
+        "name": "header"
+        "items": [
+          { 
+              "type": "post",
+              "post": "sign-in",
+              "title": "sign in"
+          },
+          { 
+              "type": "post",
+              "post": "cart",
+              "title": "cart"
+          }
+        ]
+      },
+      {
+        "name": "header"
+        "items": [
+          { 
+              "type": "post",
+              "post": "sign-in",
+              "title": "sign in"
+          },
+          { 
+              "type": "post",
+              "post": "cart",
+              "title": "cart"
+          }
+        ]
+      }
+    ],
+    
+  },
 
 }
