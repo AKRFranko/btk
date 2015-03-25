@@ -42,7 +42,7 @@ Woocommerce Overrides
 				float:none; width:initial; padding:10px 0; margin:0 15px;
 				border-top:1px solid @black; border-bottom:1px solid @black;
 
-				h1 { margin:0; font-size:1.4em; }
+				h1, h2 { margin:0; font-size:1.4em; }
 				p.price {
 					margin:0;
 					del { display:inline-block; }
@@ -58,6 +58,30 @@ Woocommerce Overrides
 			}
 			.entry-image { position:relative; }
 			.in-stock { position:absolute; bottom:15px; left:15px; }
+		}
+	}
+
+	.product {
+		.product-summary {
+			float:none; width:initial; padding:10px 0; margin:0 15px;
+			border-top:1px solid @black; border-bottom:1px solid @black;
+
+			h2 { margin:0; font-size:1.4em; }
+			p {
+				margin:0; font-size:1.25em;
+				del { display:inline-block; opacity:0.5; }
+				ins { background:inherit; font-weight:700; }
+			}
+		}
+
+		.product-description {
+			padding:20px 15px; .imgborder();
+			a {
+				display:inline-block; border:1px solid @black; padding:5px 30px;
+				&.pr-rev { padding:5px 40px; }
+				&:hover { background-color:#444; color:@white; }
+			}
+			.desc { padding-bottom:25px; }
 		}
 	}
 }

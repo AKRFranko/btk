@@ -132,8 +132,8 @@ function add_slug_body_class( $classes ) {
 }
 add_filter( 'body_class', 'add_slug_body_class' );
 
-remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40);
-remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30);
+//remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40);
+//remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30);
 
 
 

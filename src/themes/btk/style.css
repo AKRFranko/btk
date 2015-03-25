@@ -1105,7 +1105,8 @@ Woocommerce Overrides
   border-top: 1px solid #000000;
   border-bottom: 1px solid #000000;
 }
-.woocommerce #content div.product div.summary h1 {
+.woocommerce #content div.product div.summary h1,
+.woocommerce #content div.product div.summary h2 {
   margin: 0;
   font-size: 1.4em;
 }
@@ -1132,6 +1133,49 @@ Woocommerce Overrides
   position: absolute;
   bottom: 15px;
   left: 15px;
+}
+.woocommerce .product .product-summary {
+  float: none;
+  width: initial;
+  padding: 10px 0;
+  margin: 0 15px;
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+}
+.woocommerce .product .product-summary h2 {
+  margin: 0;
+  font-size: 1.4em;
+}
+.woocommerce .product .product-summary p {
+  margin: 0;
+  font-size: 1.25em;
+}
+.woocommerce .product .product-summary p del {
+  display: inline-block;
+  opacity: 0.5;
+}
+.woocommerce .product .product-summary p ins {
+  background: inherit;
+  font-weight: 700;
+}
+.woocommerce .product .product-description {
+  padding: 20px 15px;
+  border-bottom: 3px solid #000000;
+}
+.woocommerce .product .product-description a {
+  display: inline-block;
+  border: 1px solid #000000;
+  padding: 5px 30px;
+}
+.woocommerce .product .product-description a.pr-rev {
+  padding: 5px 40px;
+}
+.woocommerce .product .product-description a:hover {
+  background-color: #444;
+  color: #ffffff;
+}
+.woocommerce .product .product-description .desc {
+  padding-bottom: 25px;
 }
 /*
 ==========================================================================
