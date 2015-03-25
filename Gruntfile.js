@@ -135,6 +135,11 @@ module.exports = function(grunt) {
                 cwd: '<%= cfg.project_dir %>/src/themes',
                 src:   [ '**' ],
                 dest: '<%= cfg.build_dir %>/themes/'
+            }, {
+               expand: true,
+               cwd: '<%= cfg.project_dir %>/src/bower/edb-icons/assets',
+               src: ['**'],
+               dest: '<%= cfg.build_dir %>/themes/btk/icons/'
             }]
         },
         plugin: {
