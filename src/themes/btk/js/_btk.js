@@ -115,7 +115,8 @@
 
 
 	$('.entry-content p:has(img)').css('margin', '0');
-	$('.pdf p:has(a)').addClass('fa').addClass('fa-angle-right');
+//	$('.pdf p:has(a)').addClass('icon-chevron-lite-right-black');
+	$('.pdf p:has(a)').append('<span class="icon-chevron-lite-right-black"></span>');
 
 } )( jQuery );
 

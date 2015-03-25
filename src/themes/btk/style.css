@@ -1603,20 +1603,22 @@ Content
 }
 #content .pdf a {
   display: block;
-  padding: 25px 15px;
+  padding: 20px 15px;
 }
 #content .pdf img {
   width: 100%;
 }
 #content .pdf p {
+  position: relative;
   width: 100%;
   margin: 0;
   font-size: 1.35em;
 }
-#content .pdf p.fa-angle-right::before {
-  float: right;
-  padding: 11px 15px 0 0;
-  font-size: 2.25em;
+#content .pdf p .icon-chevron-lite-right-black {
+  position: absolute;
+  bottom: 18px;
+  right: 10px;
+  font-size: 1.5em;
 }
 .page-confirmation #header-box {
   height: 100vh;

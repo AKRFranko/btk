@@ -223,11 +223,14 @@ Content
 
 	.pdf {
 		.imgborder();
-		a { display:block; padding:25px 15px; }
+		a { display:block; padding:20px 15px; }
 		img { width:100%; }
 		p {
-			width:100%; margin:0; font-size:1.35em;
-			&.fa-angle-right::before { .arrow-right(); }
+			position:relative; width:100%; margin:0; font-size:1.35em;
+//			.icon-chevron-lite-right-black::before { .arrow-right(); }
+			.icon-chevron-lite-right-black {
+				position:absolute; bottom:18px; right:10px; font-size:1.5em;
+			}
 		}
 	}
 }
