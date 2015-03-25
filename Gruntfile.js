@@ -39,10 +39,6 @@ module.exports = function(grunt) {
             mainFiles: {
                 'css_browser_selector': 'css_browser_selector.js'
             }
-       },
-       plugin: {
-            dest: '<%= cfg.project_dir %>/src/plugins/btk/admin/js/_bower.js',
-            cssDest: '<%= cfg.project_dir %>/src/plugins/btk/admin/css/_bower.css'
        }
     },
 
@@ -53,11 +49,6 @@ module.exports = function(grunt) {
                 '<%= cfg.project_dir %>/src/themes/btk/style.css': '<%= cfg.project_dir %>/src/themes/btk/less/btk.less'
             },
             tasks: [ 'autoprefixer:theme']
-        },
-        plugin: {
-            files: {
-                '<%= cfg.project_dir %>/src/plugins/btk/admin/css/style.css': '<%= cfg.project_dir %>/src/themes/btk/admin/less/btk.less'
-            }
         }
     },
 
@@ -106,25 +97,12 @@ module.exports = function(grunt) {
                 '!<%= cfg.project_dir %>/src/themes/btk/js/_btk.js'
             ],
             dest: '<%= cfg.project_dir %>/src/themes/btk/js/_btk.js'
-        },
-        plugin: {
-            options: {
-                separator: ";",
-            },
-            src: [
-                '<%= cfg.project_dir %>/src/plugins/btk/**/*.js',
-                // Exclude these...
-                '!<%= cfg.project_dir %>/src/plugins/btk/admin/js/_bower.js',
-                '!<%= cfg.project_dir %>/src/plugins/btk/admin/js/_btk.js'
-            ],
-            dest: '<%= cfg.project_dir %>/src/plugins/btk/admin/js/_btk.js'
         }
     },
 
     // see: https://github.com/gruntjs/grunt-contrib-clean
     clean: {
-        theme: [  '<%= cfg.build_dir %>/themes/btk' ],
-        plugin: [  '<%= cfg.build_dir %>/plugins/btk' ]
+        theme: [  '<%= cfg.build_dir %>/themes/btk' ]
     },
 
     // see: https://www.npmjs.com/package/grunt-contrib-copy
@@ -140,14 +118,6 @@ module.exports = function(grunt) {
                cwd: '<%= cfg.project_dir %>/src/bower/edb-icons/assets',
                src: ['**'],
                dest: '<%= cfg.build_dir %>/themes/btk/icons/'
-            }]
-        },
-        plugin: {
-            files: [{
-                expand: true,
-                cwd: '<%= cfg.project_dir %>/src/plugins',
-                src:   [ '**' ],
-                dest: '<%= cfg.build_dir %>/plugins/'
             }]
         }
     },
@@ -172,26 +142,7 @@ module.exports = function(grunt) {
             options: { livereload: true },
             files: '<%= cfg.project_dir %>/src/themes/btk/**/*.php',
             tasks: ['clean:theme', 'phplint:theme', 'copy:theme']
-        },
-        plugin_js: {
-            options: { livereload: true },
-            files: [
-                '<%= cfg.project_dir %>/src/plugins/btk/**/*.js',
-                // exclude or hell-loop
-                '!<%= cfg.project_dir %>/src/plugins/btk/admin/js/_btk.js'
-            ],
-            tasks: ['concat:plugin', 'copy:plugin']
-        },
-        plugin_less: {
-            options: { livereload: true },
-            files: '<%= cfg.project_dir %>/src/plugins/btk/**/*.less',
-            tasks: ['less:plugin', 'copy:plugin']
-        },
-        plugin_php: {
-            options: { livereload: false },
-            files: '<%= cfg.project_dir %>/src/plugins/btk/**/*.php',
-            tasks: ['copy:plugin']
-        },
+        }
     }
 
     /*,
@@ -211,8 +162,8 @@ module.exports = function(grunt) {
 
 
   grunt.registerTask('build', [ 'clean', 'bower_concat' , 'less', 'concat', 'uglify', 'phplint','copy' ] );
-  grunt.registerTask('build_theme', [ 'clean:theme', 'bower_concat:theme' , 'less:theme', 'concat:theme',  'uglify:theme', 'copy:theme' ] );
-  grunt.registerTask('build_plugin', [ 'clean:plugin',  'bower_concat:plugin' , 'less:plugin', 'concat:plugin', 'copy:plugin' ] );
+  //grunt.registerTask('build_theme', [ 'clean:theme', 'bower_concat:theme' , 'less:theme', 'concat:theme',  'uglify:theme', 'copy:theme' ] );
+  
 
   grunt.registerTask('work', [   'build', 'watch' ] );
 
