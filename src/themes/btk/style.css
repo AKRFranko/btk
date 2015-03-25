@@ -1538,9 +1538,9 @@ Slider
 .sliders #news-next,
 .sliders #article-next {
   position: absolute;
-  bottom: 8px;
+  bottom: 12px;
   right: 10px;
-  font-size: 3em;
+  font-size: 2em;
 }
 @media (min-width: 768px) {
   .sliders img {
