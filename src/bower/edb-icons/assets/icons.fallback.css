@@ -1,40 +1,75 @@
 
-.icon-arrow-lite-left {
-	background-image: url('png/arrow-lite-left.png');
+ .icon-arrow-lite-left-white {
+	background-image: url('png/arrow-lite-left-white.png');
 	background-repeat: no-repeat;
 }
 
-.icon-arrow-lite-right {
-	background-image: url('png/arrow-lite-right.png');
+ .icon-arrow-lite-left-black {
+	background-image: url('png/arrow-lite-left-black.png');
 	background-repeat: no-repeat;
 }
 
-.icon-checkmark-lite {
-	background-image: url('png/checkmark-lite.png');
+ .icon-arrow-lite-left-grey {
+	background-image: url('png/arrow-lite-left-grey.png');
 	background-repeat: no-repeat;
 }
 
-.icon-chevron-lite-down {
-	background-image: url('png/chevron-lite-down.png');
+ .icon-arrow-lite-right-white {
+	background-image: url('png/arrow-lite-right-white.png');
 	background-repeat: no-repeat;
 }
 
-.icon-chevron-lite-left {
-	background-image: url('png/chevron-lite-left.png');
+ .icon-arrow-lite-right-black {
+	background-image: url('png/arrow-lite-right-black.png');
 	background-repeat: no-repeat;
 }
 
-.icon-chevron-lite-right {
-	background-image: url('png/chevron-lite-right.png');
+ .icon-arrow-lite-right-grey {
+	background-image: url('png/arrow-lite-right-grey.png');
 	background-repeat: no-repeat;
 }
 
-.icon-chevron-lite-up {
-	background-image: url('png/chevron-lite-up.png');
+ .icon-chevron-lite-left-white {
+	background-image: url('png/chevron-lite-left-white.png');
 	background-repeat: no-repeat;
 }
 
-.icon-close-lite {
-	background-image: url('png/close-lite.png');
+ .icon-chevron-lite-left-black {
+	background-image: url('png/chevron-lite-left-black.png');
+	background-repeat: no-repeat;
+}
+
+ .icon-chevron-lite-left-grey {
+	background-image: url('png/chevron-lite-left-grey.png');
+	background-repeat: no-repeat;
+}
+
+ .icon-chevron-lite-right-white {
+	background-image: url('png/chevron-lite-right-white.png');
+	background-repeat: no-repeat;
+}
+
+ .icon-chevron-lite-right-black {
+	background-image: url('png/chevron-lite-right-black.png');
+	background-repeat: no-repeat;
+}
+
+ .icon-chevron-lite-right-grey {
+	background-image: url('png/chevron-lite-right-grey.png');
+	background-repeat: no-repeat;
+}
+
+ .icon-close-lite-white {
+	background-image: url('png/close-lite-white.png');
+	background-repeat: no-repeat;
+}
+
+ .icon-close-lite-black {
+	background-image: url('png/close-lite-black.png');
+	background-repeat: no-repeat;
+}
+
+ .icon-close-lite-grey {
+	background-image: url('png/close-lite-grey.png');
 	background-repeat: no-repeat;
 }

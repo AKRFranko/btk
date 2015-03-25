@@ -9,6 +9,7 @@
   "moduleType": [
     "globals"
   ],
+  "ignore":[],
   "keywords": [
     "edb",
     "icons"
