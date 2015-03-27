@@ -97,7 +97,7 @@ global $product;
 		</p>
 	</div>
 
-	<div class="product-qty">
+	<div class="product-add">
 		<?php wc_get_template( 'add-to-cart.php' ); ?>
 	</div>
 

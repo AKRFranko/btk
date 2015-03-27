@@ -156,8 +156,6 @@ Slider
 			color:@white;
 			text-shadow:-1px -1px 0 #888, 1px -1px 0 #888, -1px 1px 0 #888, 1px 1px 0 #888;
 		}
-
-
 	}
 
 	.slider, .slider li { height:100% !important; }
@@ -166,12 +164,13 @@ Slider
 		position:relative;
 		p { margin:0; }
 		a { position:absolute; width:40px; height:40px; margin:-10px 0 0 -10px; }
-		#main-next { right:25%; }
-		#main-prev { left:25%; }
-		#main-next, #main-prev {
+		#main-next, .right-shadow { right:25%; }
+		#main-prev, .left-shadow { left:25%; }
+		#main-next, #main-prev, .left-shadow, .right-shadow {
 			position:absolute; bottom:20px; color:@white; font-size:1.5em;
 			text-shadow:-1px -1px 0 #888, 1px -1px 0 #888, -1px 1px 0 #888, 1px 1px 0 #888;
 		}
+		.left-shadow, .right-shadow { bottom:19px; opacity:0.5; }
 	}
 
 }
@@ -230,9 +229,7 @@ Content
 		p {
 			position:relative; width:100%; margin:0; font-size:1.35em;
 //			.icon-chevron-lite-right-black::before { .arrow-right(); }
-			.icon-chevron-lite-right-black {
-				position:absolute; bottom:18px; right:10px; font-size:1.5em;
-			}
+			.icon-chevron-lite-right-black { position:absolute; bottom:18px; right:10px; font-size:1.5em; }
 		}
 	}
 }

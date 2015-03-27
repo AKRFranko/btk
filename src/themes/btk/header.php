@@ -79,12 +79,12 @@
 							<div class="woo-categories">
 								<ul>
 								<?php
-$args = array(
-	'order' => 'ASC',
-);
-$product_categories = get_terms('product_cat', $args);
-foreach ($product_categories as $cat) {
-	?>
+									$args = array(
+										'order' => 'ASC',
+									);
+									$product_categories = get_terms('product_cat', $args);
+									foreach ($product_categories as $cat) {
+								?>
 									<li><a href="<?php echo esc_url(home_url('/'));?>product-category/<?php echo $cat->slug;?>/"><?php echo $cat->name;?></a></li>
 								<?php }?>
 								</ul>
@@ -164,21 +164,20 @@ foreach ($product_categories as $cat) {
 						</div>
 					</div>
 
-						<!-- page confirmation -->
-						<?php if (is_page('confirmation')) {
-	?>
-						<div class="confirmation lower">
-						<?php
-while (have_posts()):the_post();
-		get_template_part('content', 'page');
-	endwhile;
-	?>
-							<p class="confirmation-back-home">
-								<span>Back home</span>
-								<a href="<?php echo esc_url(home_url('/'));?>" class="button fa fa-long-arrow-left"></a>
-							</p>
-						</div>
-						<?php }?>
+					<!-- page confirmation -->
+					<?php if (is_page('confirmation')) { ?>
+					<div class="confirmation lower">
+					<?php
+						while (have_posts()):the_post();
+							get_template_part('content', 'page');
+						endwhile;
+					?>
+						<p class="confirmation-back-home">
+							<span>Back home</span>
+							<a href="<?php echo esc_url(home_url('/'));?>" class="button fa fa-long-arrow-left"></a>
+						</p>
+					</div>
+					<?php }?>
 
 				</header>
 			</div>

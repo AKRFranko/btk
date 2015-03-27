@@ -798,6 +798,14 @@ Mixins
   padding: 11px 15px 0 0;
   font-size: 2.25em;
 }
+.buttons {
+  margin-left: 10px;
+  padding: 0.3em 1.3em;
+  background: #000;
+  border-radius: 0;
+  color: #ffffff;
+  font-size: 1.4em;
+}
 /*
 ==========================================================================
 Global classes
@@ -1042,7 +1050,8 @@ Woocommerce Overrides
 .woocommerce .page-title,
 .woocommerce-breadcrumb,
 .woocommerce-ordering,
-.woocommerce-result-count {
+.woocommerce-result-count,
+.woocommerce-cart .entry-title {
   display: none;
 }
 .woocommerce ul.products {
@@ -1066,6 +1075,9 @@ Woocommerce Overrides
 .woocommerce ul.products li.product .price {
   margin: 0;
 }
+.woocommerce ul.products li.product .price del {
+  display: inline-block;
+}
 .woocommerce ul.products li.product .in-stock {
   position: absolute;
   bottom: 15px;
@@ -1079,11 +1091,11 @@ Woocommerce Overrides
   display: block;
   padding: 15px;
 }
-.woocommerce ul.products li.product .product-desc.fa-angle-right::before {
-  float: right;
-  padding: 11px 15px 0 0;
-  font-size: 2.25em;
-  padding-top: 15px;
+.woocommerce ul.products li.product .product-desc .icon-chevron-lite-right-black {
+  position: absolute;
+  bottom: 24px;
+  right: 10px;
+  font-size: 1.5em;
 }
 .woocommerce #content div.product {
   text-transform: lowercase;
@@ -1176,6 +1188,122 @@ Woocommerce Overrides
 }
 .woocommerce .product .product-description .desc {
   padding-bottom: 25px;
+}
+.woocommerce .product .product-add {
+  padding: 20px 15px;
+  border-bottom: 3px solid #000000;
+}
+.woocommerce .product .product-add form.cart {
+  margin: 0;
+}
+.woocommerce .product .product-add form.cart div.quantity {
+  float: right;
+  margin: -5px 0 0;
+}
+.woocommerce .product .product-add form.cart div.quantity a {
+  margin-right: 10px;
+  font-size: 1.3em;
+}
+.woocommerce .product .product-add form.cart div.quantity input {
+  border: none;
+  background: transparent;
+  font-size: 1.5em;
+}
+.woocommerce .product .product-add form.cart div.quantity input + a {
+  margin: 0 0 0 10px;
+}
+.woocommerce .product .product-add form.cart div.quantity .qty {
+  width: 2em;
+  text-align: right;
+}
+.woocommerce .product .product-add form.cart .qty-text {
+  padding: 6px 0;
+  border-bottom: 1px solid #000000;
+}
+.woocommerce .product .product-add form.cart .button {
+  float: none;
+  margin: 20px 0 20px 10px;
+  margin-left: 10px;
+  padding: 0.3em 1.3em;
+  background: #000;
+  border-radius: 0;
+  color: #ffffff;
+  font-size: 1.4em;
+}
+.woocommerce .quantity {
+  float: right;
+  margin: -5px 0 0;
+}
+.woocommerce .quantity a {
+  margin-right: 10px;
+  font-size: 1.3em;
+}
+.woocommerce .quantity input {
+  border: none;
+  background: transparent;
+  font-size: 1.5em;
+}
+.woocommerce .quantity input + a {
+  margin: 0 0 0 10px;
+}
+.woocommerce .quantity .qty {
+  width: 2.1em;
+  text-align: right;
+}
+.woocommerce .cart-contents a.remove {
+  color: #000000 !important;
+  font-weight: 300;
+  font-size: 2em;
+}
+.woocommerce .cart-contents a.remove:hover {
+  background: transparent;
+}
+.woocommerce .cart-contents .cart_item {
+  padding: 0 15px 30px;
+  border-bottom: 3px solid #000000;
+}
+.woocommerce .cart-contents .product-quantity {
+  position: relative;
+  padding-top: 25px;
+  border-bottom: 1px solid #000000;
+}
+.woocommerce .cart-contents .product-quantity p {
+  margin: 0 !important;
+  padding: 6px 0;
+}
+.woocommerce .cart-contents .quantity {
+  position: absolute;
+  bottom: -2px;
+  right: 0;
+}
+.woocommerce .cart-collaterals {
+  padding: 0 15px 30px;
+}
+.woocommerce .cart-collaterals a {
+  margin-left: 10px;
+  padding: 0.3em 1.3em;
+  background: #000;
+  border-radius: 0;
+  color: #ffffff;
+  font-size: 1.4em;
+}
+.woocommerce .cart-collaterals p {
+  margin: 0 0 50px !important;
+  font-size: 1.2em;
+}
+.woocommerce .cart-collaterals p span {
+  display: block;
+  font-size: 0.7em;
+}
+.woocommerce .cart-collaterals span + span {
+  clear: both;
+  margin-bottom: 10px;
+}
+.woocommerce .cart-collaterals .amount {
+  float: right;
+  clear: none;
+  padding: 5px 10px 6px;
+  border: 2px solid #000000;
 }
 .icon-arrow-lite-left-white,
 .icon-arrow-lite-left-black,
@@ -1496,19 +1624,28 @@ Slider
   height: 40px;
   margin: -10px 0 0 -10px;
 }
-.main-slider .main-controls #main-next {
+.main-slider .main-controls #main-next,
+.main-slider .main-controls .right-shadow {
   right: 25%;
 }
-.main-slider .main-controls #main-prev {
+.main-slider .main-controls #main-prev,
+.main-slider .main-controls .left-shadow {
   left: 25%;
 }
 .main-slider .main-controls #main-next,
-.main-slider .main-controls #main-prev {
+.main-slider .main-controls #main-prev,
+.main-slider .main-controls .left-shadow,
+.main-slider .main-controls .right-shadow {
   position: absolute;
   bottom: 20px;
   color: #ffffff;
   font-size: 1.5em;
   text-shadow: -1px -1px 0 #888888, 1px -1px 0 #888888, -1px 1px 0 #888888, 1px 1px 0 #888888;
+}
+.main-slider .main-controls .left-shadow,
+.main-slider .main-controls .right-shadow {
+  bottom: 19px;
+  opacity: 0.5;
 }
 .sliders {
   position: relative;

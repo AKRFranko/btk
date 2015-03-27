@@ -117,6 +117,17 @@
 	$('.entry-content p:has(img)').css('margin', '0');
 //	$('.pdf p:has(a)').addClass('icon-chevron-lite-right-black');
 	$('.pdf p:has(a)').append('<span class="icon-chevron-lite-right-black"></span>');
+	$('.woocommerce .quantity').prepend('<a href="" class="qty-sub">-</a>').append('<a href="" class="qty-add">+</a>');
+	$('.qty-sub').click(function(e) {
+		e.preventDefault();
+		if ( $('.woocommerce .quantity .qty').val() > 1 ) {
+			$('.woocommerce .quantity .qty').val( Number( $('.woocommerce .quantity .qty').val() ) - 1 );
+		}
+	});
+	$('.qty-add').click(function(e) {
+		e.preventDefault();
+		$('.woocommerce .quantity .qty').val( Number( $('.woocommerce .quantity .qty').val() ) + 1 );
+	});
 
 } )( jQuery );
 
