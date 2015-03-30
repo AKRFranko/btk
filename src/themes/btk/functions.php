@@ -118,6 +118,25 @@ function btk_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'btk_scripts' );
 
+
+
+/**
+ * Add page slug on body class
+ */
+function add_slug_body_class( $classes ) {
+	global $post;
+	if ( isset( $post ) ) {
+		$classes[] = $post->post_type . '-' . $post->post_name;
+	}
+	return $classes;
+}
+add_filter( 'body_class', 'add_slug_body_class' );
+
+//remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40);
+//remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30);
+
+
+
 /**
  * Implement the Custom Header feature.
  */

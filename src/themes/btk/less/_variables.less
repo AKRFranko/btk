@@ -20,3 +20,39 @@ Variables LESS
 @headerbkgcolor: #fff;
 @footerbkgcolor: #f0f0f0;
 
+
+
+
+/*
+==========================================================================
+Mixins
+==========================================================================
+*/
+
+.imgborder { border-bottom:3px solid @black; }
+
+.open-menu {
+	height:100vh; background:url('img/bkg.png') repeat;
+	a, p, span { color:@white; }
+	.icon-bar { background-color:@white; }
+	header { height:100vh; }
+}
+
+.back-home-button {
+	position:absolute; bottom:70px; right:15px;
+	a {
+		&.button {
+			font-size:1.4em; background-color:#444; border:none; cursor:pointer;
+			&:hover { background-color:#333; }
+		}
+	}
+}
+
+.arrow-right { float:right; padding:11px 15px 0 0; font-size:2.25em; }
+
+.buttons {
+	margin-left:10px; padding:0.3em 1.3em; background:#000; border-radius:0;
+	color:@white; font-size:1.4em;
+}
+
+

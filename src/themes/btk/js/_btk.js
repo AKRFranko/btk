@@ -55,13 +55,22 @@
 		}
 		if ( $(this).hasClass('collapsed') ) {
 			$('#header-box').addClass('open');
+			$('#header-box .confirmation').hide();
 			$('.navbar-header .fa').removeClass('fa-bars').addClass('fa-times');
 		} else {
 			$('#header-box').removeClass('open');
+			$('#header-box .confirmation').show();
+			$('.woo-categories').hide();
 			$('.navbar-header .fa').removeClass('fa-times').addClass('fa-bars');
 		}
 	});
 
+
+	$('#menu-hamburger li a[href*="products"]').click( function (e) {
+		e.preventDefault();
+		$('.woo-categories').toggle();
+		return false;
+	});
 
 
 	// carousel principal
@@ -103,6 +112,22 @@
 		pager: false
 	});
 
+
+
+	$('.entry-content p:has(img)').css('margin', '0');
+//	$('.pdf p:has(a)').addClass('icon-chevron-lite-right-black');
+	$('.pdf p:has(a)').append('<span class="icon-chevron-lite-right-black"></span>');
+	$('.woocommerce .quantity').prepend('<a href="" class="qty-sub">-</a>').append('<a href="" class="qty-add">+</a>');
+	$('.qty-sub').click(function(e) {
+		e.preventDefault();
+		if ( $('.woocommerce .quantity .qty').val() > 1 ) {
+			$('.woocommerce .quantity .qty').val( Number( $('.woocommerce .quantity .qty').val() ) - 1 );
+		}
+	});
+	$('.qty-add').click(function(e) {
+		e.preventDefault();
+		$('.woocommerce .quantity .qty').val( Number( $('.woocommerce .quantity .qty').val() ) + 1 );
+	});
 
 } )( jQuery );
 

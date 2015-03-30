@@ -1,0 +1,19 @@
+{
+  "name": "edb-icons",
+  "version": "0.0.1",
+  "authors": [
+    "akrfranko <franko@akr.club>"
+  ],
+  "description": "Fontawesome CSS SVG icon overrides for edb.",
+  "main": "edb.icon.loader.js",
+  "moduleType": [
+    "globals"
+  ],
+  "ignore":[],
+  "keywords": [
+    "edb",
+    "icons"
+  ],
+  "license": "MIT",
+  "private": true
+}
