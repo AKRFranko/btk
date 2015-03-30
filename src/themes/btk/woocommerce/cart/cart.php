@@ -126,11 +126,13 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 	<?php do_action( 'woocommerce_cart_collaterals' ); ?>
 
-	<span class="alignright">check out
-		<a href="<?php echo esc_url(home_url('/'));?>checkout/" class="button fa fa-long-arrow-right"></a>
+	<span class="alignright">
+		<span class="valign">check out</span>
+		<a href="<?php echo esc_url(home_url('/'));?>checkout/" class="valign icon-arrow-lite-right-white"></a>
 	</span>
-	<span class="alignright">continue shopping
-		<a href="<?php echo esc_url(home_url('/'));?>products/" class="button fa fa-long-arrow-left"></a>
+	<span class="alignright">
+		<span class="valign">continue shopping</span>
+		<a href="<?php echo esc_url(home_url('/'));?>products/" class="valign icon-arrow-lite-left-white"></a>
 	</span>
 
 	<?php //woocommerce_cart_totals(); ?>

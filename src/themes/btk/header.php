@@ -59,6 +59,7 @@
 						<?php if (!is_page('confirmation')) {?>
 						<nav class="nav-header" role="navigation">
 							<?php wp_nav_menu(array('menu' => 'header'));?>
+							<?php if ( WC()->cart->get_cart_contents_count() > 0 ) { echo '<span class="semi-bold">' . WC()->cart->get_cart_contents_count() . '</span>'; } ?>
 							<a class="language" href="<?php echo esc_url(home_url('/'));?>">fr</a>
 						</nav>
 						<?php }?>

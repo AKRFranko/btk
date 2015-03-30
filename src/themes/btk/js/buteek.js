@@ -114,18 +114,21 @@
 
 
 	$('.entry-content p:has(img)').css('margin', '0');
-//	$('.pdf p:has(a)').addClass('icon-chevron-lite-right-black');
 	$('.pdf p:has(a)').append('<span class="icon-chevron-lite-right-black"></span>');
 	$('.woocommerce .quantity').prepend('<a href="" class="qty-sub">-</a>').append('<a href="" class="qty-add">+</a>');
+	$('.woocommerce .quantity input').attr('readonly', 'readonly');
+
 	$('.qty-sub').click(function(e) {
 		e.preventDefault();
-		if ( $('.woocommerce .quantity .qty').val() > 1 ) {
-			$('.woocommerce .quantity .qty').val( Number( $('.woocommerce .quantity .qty').val() ) - 1 );
+		var val = $(this).parent().children('.qty');
+		if ( val.val() > 1 ) {
+			val.val( Number( val.val() ) - 1 );
 		}
 	});
 	$('.qty-add').click(function(e) {
 		e.preventDefault();
-		$('.woocommerce .quantity .qty').val( Number( $('.woocommerce .quantity .qty').val() ) + 1 );
+		var val = $(this).parent().children('.qty');
+		val.val( Number( val.val() ) + 1 );
 	});
 
 } )( jQuery );

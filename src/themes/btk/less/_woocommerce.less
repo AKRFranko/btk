@@ -106,7 +106,12 @@ Woocommerce Overrides
 					.qty { width:2em; text-align:right; }
 				}
 				.qty-text { padding:6px 0; border-bottom:1px solid @black; }
-				.button { float:none; margin:20px 0 20px 10px; .buttons(); }
+				button {
+					float:none; margin:20px 0 20px 10px; .buttons();
+					padding:0.75em 2em; background-position:center center;
+					border:none; box-shadow:none;
+					&:hover { background-color:#444; }
+				}
 			}
 		}
 	}
@@ -117,18 +122,24 @@ Woocommerce Overrides
 		a { margin-right:10px; font-size:1.3em; }
 		input { border:none; background:transparent; font-size:1.5em; }
 		input + a { margin:0 0 0 10px; }
-		.qty { width:2.1em; text-align:right; }
+		.qty { width:2.1em; text-align:right; color:@black; }
 	}
 
 
 
 // cart
 	.cart-contents {
+		input[name="update_cart"] {
+			float:right; margin:10px 15px 0 0; background-color:@white;
+			border:1px solid @black; border-radius:0; font-weight:normal;
+		}
 		a.remove {
 			color:@black !important; font-weight:300; font-size:2em;
 			&:hover { background:transparent; }
 		}
-		.cart_item { padding:0 15px 30px; .imgborder(); }
+		.cart_item { padding:15px 15px 30px; .imgborder(); }
+		.product-name, .product-price { font-size:1.1em; }
+		.product-thumbnail img { margin-bottom:3px; }
 		.product-quantity {
 			position:relative; padding-top:25px; border-bottom:1px solid @black;
 			p { margin:0 !important; padding:6px 0; }
@@ -137,13 +148,16 @@ Woocommerce Overrides
 	}
 	.cart-collaterals {
 		padding:0 15px 30px;
-		a { .buttons(); }
+		a {
+			.buttons(); padding:0.75em 2.15em; background-position:center center;
+			&:hover { background-color:#444; }
+		}
 		p {
-			margin:0 0 50px !important; font-size:1.2em;
+			margin:45px 0 1.5em !important; font-size:1.2em;
 			span { display:block; font-size:0.7em; }
 		}
 		span + span { clear:both; margin-bottom:10px; }
-		.amount { float:right; clear:none; padding:5px 10px 6px; border:2px solid @black; }
+		.amount { float:right; clear:none; margin-top:45px; padding:5px 10px 6px; border:2px solid @black; }
 	}
 }
 
