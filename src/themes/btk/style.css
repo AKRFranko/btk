@@ -373,7 +373,7 @@ input[type="submit"] {
   border: 1px solid;
   border-color: #ccc #ccc #bbb;
   border-radius: 3px;
-  background: #e6e6e6;
+  background-color: #e6e6e6;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 15px 17px rgba(255, 255, 255, 0.5), inset 0 -5px 12px rgba(0, 0, 0, 0.05);
   color: rgba(0, 0, 0, 0.8);
   font-size: 12px;
@@ -784,13 +784,14 @@ Mixins
   bottom: 70px;
   right: 15px;
 }
-.back-home-button a.button {
+.back-home-button a.buttons {
   font-size: 1.4em;
   background-color: #444;
   border: none;
   cursor: pointer;
+  background-position: center center;
 }
-.back-home-button a.button:hover {
+.back-home-button a.buttons:hover {
   background-color: #333;
 }
 .arrow-right {
@@ -801,7 +802,7 @@ Mixins
 .buttons {
   margin-left: 10px;
   padding: 0.3em 1.3em;
-  background-color: #000;
+  background-color: #000000;
   border-radius: 0;
   color: #ffffff;
   font-size: 1.4em;
@@ -1141,10 +1142,52 @@ Woocommerce Overrides
 .woocommerce #content div.product .entry-image {
   position: relative;
 }
-.woocommerce #content div.product .in-stock {
+.woocommerce .product .product-images {
+  position: relative;
+  text-align: center;
+}
+.woocommerce .product .product-images img {
+  width: 100%;
+  max-height: 400px;
+  border-bottom: 3px solid #000000;
+}
+.woocommerce .product .product-images .product-slider-controls {
   position: absolute;
-  bottom: 15px;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+}
+.woocommerce .product .product-images .product-slider-controls span {
+  position: relative;
+  padding: 0.75em 1em;
+  font-size: 1em;
+  background-position: center center;
+}
+.woocommerce .product .product-images .product-slider-controls span:first-child {
+  margin-right: 50px;
+}
+.woocommerce .product .product-images .product-slider-controls span a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.woocommerce .product .product-images .in-stock {
+  position: absolute;
+  bottom: 80px;
   left: 15px;
+}
+.woocommerce .product .product-images .bx-wrapper {
+  overflow: inherit;
+}
+.woocommerce .product .product-images .bx-wrapper .bx-pager {
+  position: static;
+  padding: 12px 0 25px;
+  color: #000000;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 1em;
+  font-weight: normal;
 }
 .woocommerce .product .product-summary {
   float: none;
@@ -1225,7 +1268,7 @@ Woocommerce Overrides
   margin: 20px 0 20px 10px;
   margin-left: 10px;
   padding: 0.3em 1.3em;
-  background-color: #000;
+  background-color: #000000;
   border-radius: 0;
   color: #ffffff;
   font-size: 1.4em;
@@ -1305,7 +1348,7 @@ Woocommerce Overrides
 .woocommerce .cart-collaterals a {
   margin-left: 10px;
   padding: 0.3em 1.3em;
-  background-color: #000;
+  background-color: #000000;
   border-radius: 0;
   color: #ffffff;
   font-size: 1.4em;
@@ -1493,11 +1536,12 @@ Header
   display: table;
 }
 #header-box header .sign-in-menu .sign-in a span {
-  font-size: 3em;
+  font-size: 2em;
   display: table-cell;
   line-height: 0;
   vertical-align: middle;
   text-align: right;
+  background-position: center center;
 }
 #header-box header .sign-in-menu .login form,
 #header-box header .sign-in-menu .register form {
@@ -1533,7 +1577,9 @@ Header
 }
 #header-box header .sign-in-menu .login input[type='submit'],
 #header-box header .sign-in-menu .register input[type='submit'] {
+  padding: 0.75em 1.8em;
   background-color: #444;
+  background-position: center center;
 }
 #header-box header .sign-in-menu .login ::-webkit-input-placeholder,
 #header-box header .sign-in-menu .register ::-webkit-input-placeholder {
@@ -1568,17 +1614,24 @@ Header
   bottom: 70px;
   right: 15px;
 }
-#header-box header .sign-in-menu .back-home a.button {
+#header-box header .sign-in-menu .back-home a.buttons {
   font-size: 1.4em;
   background-color: #444;
   border: none;
   cursor: pointer;
+  background-position: center center;
 }
-#header-box header .sign-in-menu .back-home a.button:hover {
+#header-box header .sign-in-menu .back-home a.buttons:hover {
   background-color: #333;
+}
+#header-box header .sign-in-menu .back-home a {
+  padding: 0.75em 1.8em;
 }
 #header-box header .confirmation {
   padding-right: 15px;
+}
+#header-box header .confirmation a {
+  padding: 0.75em 1.8em;
 }
 @media (min-width: 768px) {
   .nav-hamburger {
@@ -1617,6 +1670,7 @@ Slider
   bottom: 0;
   padding-bottom: 20px;
   font-size: 1em;
+  font-weight: normal;
   background-image: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2));
 }
 .main-slider .bx-wrapper .caption {
@@ -1633,7 +1687,7 @@ Slider
 .main-slider .bx-wrapper .bx-pager,
 .main-slider .bx-wrapper .caption h2 {
   color: #ffffff;
-  text-shadow: -1px -1px 0 #888888, 1px -1px 0 #888888, -1px 1px 0 #888888, 1px 1px 0 #888888;
+  text-shadow: 1px 1px 0 #000000;
 }
 .main-slider .slider,
 .main-slider .slider li {
@@ -1815,14 +1869,19 @@ Content
   bottom: 70px;
   right: 15px;
 }
-.page-confirmation .confirmation-back-home a.button {
+.page-confirmation .confirmation-back-home a.buttons {
   font-size: 1.4em;
   background-color: #444;
   border: none;
   cursor: pointer;
+  background-position: center center;
 }
-.page-confirmation .confirmation-back-home a.button:hover {
+.page-confirmation .confirmation-back-home a.buttons:hover {
   background-color: #333;
+}
+.page-order-samples #content input[type='submit'] {
+  padding: 0.75em 1.8em;
+  background-position: center center;
 }
 /*
 ==========================================================================

@@ -48,21 +48,21 @@
 
 					<!-- logo -->
 					<h1 class="site-title alignleft lower">
-						<a href="<?php echo esc_url(home_url('/'));?>" rel="home">
-							<span class="title bold valign"><?php bloginfo('name');?></span>
+						<a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
+							<span class="title bold valign"><?php bloginfo('name'); ?></span>
 						</a>
 					</h1>
 
 					<!-- navigation -->
 					<div class="navigation alignright lower">
 						<!-- menu header -->
-						<?php if (!is_page('confirmation')) {?>
+						<?php if (!is_page('confirmation')) { ?>
 						<nav class="nav-header" role="navigation">
-							<?php wp_nav_menu(array('menu' => 'header'));?>
+							<?php wp_nav_menu(array('menu' => 'header')); ?>
 							<?php if ( WC()->cart->get_cart_contents_count() > 0 ) { echo '<span class="semi-bold">' . WC()->cart->get_cart_contents_count() . '</span>'; } ?>
-							<a class="language" href="<?php echo esc_url(home_url('/'));?>">fr</a>
+							<a class="language" href="<?php echo esc_url(home_url('/')); ?>">fr</a>
 						</nav>
-						<?php }?>
+						<?php } ?>
 
 						<!-- menu hamburger -->
 						<nav class="nav-hamburger navbar valign" role="navigation">
@@ -74,7 +74,7 @@
 							</div>
 
     						<div class="collapse navbar-collapse" id="nav-hamburger">
-							<?php wp_nav_menu(array('menu' => 'hamburger'));?>
+							<?php wp_nav_menu(array('menu' => 'hamburger')); ?>
 							</div>
 
 							<div class="woo-categories">
@@ -86,8 +86,8 @@
 									$product_categories = get_terms('product_cat', $args);
 									foreach ($product_categories as $cat) {
 								?>
-									<li><a href="<?php echo esc_url(home_url('/'));?>product-category/<?php echo $cat->slug;?>/"><?php echo $cat->name;?></a></li>
-								<?php }?>
+									<li><a href="<?php echo esc_url(home_url('/')); ?>product-category/<?php echo $cat->slug; ?>/"><?php echo $cat->name; ?></a></li>
+								<?php } ?>
 								</ul>
 							</div>
 						</nav>
@@ -98,11 +98,11 @@
 							<div class='sign-in'>
 								<a href="#" class="choices signin">
 									Returning customers<br />Please sign in
-									<span class="fa fa-angle-right valign"></span>
+									<span class="icon-chevron-lite-right-white"></span>
 								</a>
 								<a href="#" class="choices signup">
 									New customers<br />Sign up for shopping<br />and exclusive offers
-									<span class="fa fa-angle-right valign"></span>
+									<span class="icon-chevron-lite-right-white"></span>
 								</a>
 							</div>
 
@@ -119,8 +119,8 @@
 										<label class="login-field-icon fui-lock" for="login-pass"></label>
 									</p>
 									<p class="submit">
-										<span>enter edb</span>
-										<input class="button fa fa-long-arrow-right" type="submit"  name="dlf_submit" value="&#xf178;" />
+										<span class="valign">enter edb</span>
+										<input class="valign icon-arrow-lite-right-white" type="submit"  name="dlf_submit" value="" />
 									</p>
 									<a href="#" class="lost-password alignright">> Click here to recover lost password</a>
 								</form>
@@ -151,16 +151,16 @@
 										<input name="reg_city" type="text" class="login-field" value="<?php echo (isset($_POST['reg_city']) ? $_POST['reg_city'] : null);?>" placeholder="city" id="reg-city" required />
 									</p>
 									<p class="submit">
-										<span>enter edb</span>
-										<input class="button fa fa-long-arrow-right" type="submit"  name="reg_submit" value="&#xf178;" />
+										<span class="valign">enter edb</span>
+										<input class="valign icon-arrow-lite-right-white" type="submit"  name="reg_submit" value="" />
 									</p>
 								</form>
 							</div>
 
 							<!-- close menu -->
 							<p class="back-home">
-								<span>Back home</span>
-								<a class="button fa fa-long-arrow-left"></a>
+								<span class="valign">Back home</span>
+								<a class="buttons valign icon-arrow-lite-left-white"></a>
 							</p>
 						</div>
 					</div>
@@ -174,11 +174,11 @@
 						endwhile;
 					?>
 						<p class="confirmation-back-home">
-							<span>Back home</span>
-							<a href="<?php echo esc_url(home_url('/'));?>" class="button fa fa-long-arrow-left"></a>
+							<span class="valign">Back home</span>
+							<a href="<?php echo esc_url(home_url('/')); ?>" class="buttons valign icon-arrow-lite-left-white"></a>
 						</p>
 					</div>
-					<?php }?>
+					<?php } ?>
 
 				</header>
 			</div>
