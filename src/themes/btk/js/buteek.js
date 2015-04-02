@@ -82,7 +82,7 @@
 		pagerShortSeparator: ' | '
 	});
 
-
+/*
 	// carousel collections
 	$('.slider-collections').bxSlider({
 		nextSelector: '#coll-next',
@@ -109,6 +109,7 @@
 		prevText: '',
 		pager: false
 	});
+*/
 
 	// slider product images
 	$('.product-slider').bxSlider({

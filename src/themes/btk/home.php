@@ -41,7 +41,7 @@ get_header();?>
 				</div>
 			</div>
 
-			<!-- collections -->
+<!--
 			<div class="sliders lower">
 				<ul class="slider-collections">
 					<?php
@@ -62,7 +62,6 @@ get_header();?>
 				</div>
 			</div>
 
-			<!-- news -->
 			<div class="sliders lower">
 				<ul class="slider-news">
 					<?php
@@ -83,7 +82,6 @@ get_header();?>
 				</div>
 			</div>
 
-			<!-- news -->
 			<div class="sliders lower">
 				<ul class="slider-article">
 					<?php
@@ -102,6 +100,65 @@ get_header();?>
 					<span id="article-prev" class="icon-chevron-lite-left-black"></span>
 					<span id="article-next" class="icon-chevron-lite-right-black"></span>
 				</div>
+			</div>
+-->
+
+
+			<!-- collection -->
+			<div class="main-collection">
+			<?php
+				$my_query = new WP_Query('category_name=collection&posts_per_page=1');
+				while ( $my_query->have_posts() ): $my_query->the_post();
+			?>
+				<?php if ( has_post_thumbnail() ) { ?>
+				<a href="<?php echo get_permalink(); ?>">
+				<?php the_post_thumbnail('full'); ?>
+				</a>
+				<?php } ?>
+
+				<p>
+					<a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a>
+					<span class="icon-chevron-lite-right-black"></span>
+				</p>
+			<?php endwhile;?>
+			</div>
+
+			<!-- news -->
+			<div class="main-news">
+			<?php
+				$my_query = new WP_Query('category_name=news&posts_per_page=1');
+				while ( $my_query->have_posts() ): $my_query->the_post();
+			?>
+				<?php if ( has_post_thumbnail() ) { ?>
+				<a href="<?php echo get_permalink(); ?>">
+				<?php the_post_thumbnail('full'); ?>
+				</a>
+				<?php } ?>
+
+				<p>
+					<a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a>
+					<span class="icon-chevron-lite-right-black"></span>
+				</p>
+			<?php endwhile;?>
+			</div>
+
+			<!-- article -->
+			<div class="main-article">
+			<?php
+				$my_query = new WP_Query('category_name=article&posts_per_page=1');
+				while ( $my_query->have_posts() ): $my_query->the_post();
+			?>
+				<?php if ( has_post_thumbnail() ) { ?>
+				<a href="<?php echo get_permalink(); ?>">
+				<?php the_post_thumbnail('full'); ?>
+				</a>
+				<?php } ?>
+
+				<p>
+					<a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a>
+					<span class="icon-chevron-lite-right-black"></span>
+				</p>
+			<?php endwhile;?>
 			</div>
 
 		</main><!-- #main -->

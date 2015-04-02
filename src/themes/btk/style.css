@@ -1884,6 +1884,37 @@ Content
   padding: 0.75em 1.8em;
   background-position: center center;
 }
+.home .main-collection,
+.home .main-news {
+  border-bottom: 3px solid #000000;
+}
+.home .main-collection img,
+.home .main-news img,
+.home .main-article img {
+  width: 100%;
+}
+.home .main-collection p,
+.home .main-news p,
+.home .main-article p {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  font-size: 1.35em;
+}
+.home .main-collection p a,
+.home .main-news p a,
+.home .main-article p a {
+  display: block;
+  padding: 20px 15px;
+}
+.home .main-collection p span,
+.home .main-news p span,
+.home .main-article p span {
+  position: absolute;
+  bottom: 18px;
+  right: 10px;
+  font-size: 1.5em;
+}
 /*
 ==========================================================================
 Footer
