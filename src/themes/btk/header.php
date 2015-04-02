@@ -28,8 +28,16 @@
 <link rel="icon" type="image/png" sizes="96x96" href="/wp-content/themes/btk/img/favicon-96x96.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/wp-content/themes/btk/img/favicon-16x16.png">
 
-
 <?php wp_head();?>
+
+<?php if ( is_user_logged_in() ) { ?>
+<style type="text/css">
+	@media screen and (max-width: 767px) {
+		html { margin-top:0px !important; }
+		* html body { margin-top:0px !important; }
+	}
+</style>
+<?php } ?>
 
 <noscript><link href="/wp-content/themes/btk/icons/icons.fallback.css" rel="stylesheet"></noscript>
 
