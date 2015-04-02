@@ -123,6 +123,7 @@ get_header();?>
 			<?php endwhile;?>
 			</div>
 
+
 			<!-- news -->
 			<div class="main-news">
 			<?php
@@ -141,6 +142,7 @@ get_header();?>
 				</p>
 			<?php endwhile;?>
 			</div>
+
 
 			<!-- article -->
 			<div class="main-article">

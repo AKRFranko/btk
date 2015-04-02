@@ -42,27 +42,31 @@ Header
 	header {
 		background:inherit; position:relative; height:@headerheight; padding:10px 0px 10px 15px;
 		h1 {
-			width:25%; margin:0; font-size:0.9em; line-height:1em;
+			clear:both; width:25%; margin:0; font-size:0.9em; line-height:1em;
 			span { font-size:3em; line-height:1em; letter-spacing:0.05em; }
+		}
+		h2 {
+			width:25%; margin:0; padding-bottom:5px; font-size:0.9em; line-height:1em;
+			span { line-height:1em; }
 		}
 		div[class*="col-"] { padding:0; }
 
 		nav {
 			&.nav-header {
-				display:inline-block; padding-top:8px;
+				display:inline-block;
 				ul li { display:inline-block; margin-left:15px; }
 				.menu-header-container { display:inline-block; }
 				.language { margin:0 5px 0 15px; }
 			}
 
 			&.nav-hamburger {
-				position:absolute; width:100%; right:5px; top:50px;
+				position:absolute; width:100%; right:5px; top:42px;
 				.navbar-toggle {
 					margin-top:-42px;
 					span.fa { font-size:1.5em; }
 				}
 				.navbar-collapse, .woo-categories {
-					width:50%; padding:40px 20px 20px; box-shadow:none;
+					width:50%; margin-top:60px; padding:20px; box-shadow:none;
 					ul li { padding:6px 0; }
 					a { font-size:1.25em; }
 					&.collapsing { transition:height 0.01s; }
@@ -74,8 +78,8 @@ Header
 		.navigation { margin-right:50px; }
 
 		.sign-in-menu {
-			display:none; position:absolute; top:55px; left:0; width:100%;
-			height:89vh; padding:15px;
+			display:none; position:absolute; top:@headerheight; left:0; width:100%;
+			height:81vh; padding:15px;
 			.sign-in {
 				a {
 					&.choices { display:table; }
@@ -89,7 +93,7 @@ Header
 
 			.login, .register {
 				form {
-					padding-top:12px;
+					padding-top:10px;
 					p { margin:0; line-height:0em; }
 					p.submit { position:absolute; bottom:120px; right:15px; }
 					.lost-password { font-size:0.9em; }
@@ -97,7 +101,7 @@ Header
 				input { border-color:@white; color:@white; }
 				input[type='text'],
 				input[type='password'],
-				input[type='email'] { padding:2px 0; }
+				input[type='email'] { padding:2px 0; font-size:0.9rem; }
 				input[type='submit'] {
 					padding:0.75em 1.8em; background-color:#444;
 					background-position:center center;
@@ -265,6 +269,7 @@ Content
 		}
 	}
 }
+
 
 
 

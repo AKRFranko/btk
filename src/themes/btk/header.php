@@ -47,11 +47,11 @@
 				<header id="masthead" class="site-header" role="banner">
 
 					<!-- logo -->
-					<h1 class="site-title alignleft lower">
+					<h2 class="long-title alignleft lower">
 						<a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
-							<span class="title bold valign"><?php bloginfo('name'); ?></span>
+							<span class="title semi-bold valign">element<br />de<br />base</span>
 						</a>
-					</h1>
+					</h2>
 
 					<!-- navigation -->
 					<div class="navigation alignright lower">
@@ -128,7 +128,7 @@
 
 							<!-- form register -->
 							<div class="register">
-								<p>New customers<br />Sign up for shopping<br />and exclusive offers</p>
+								<p>New customers sign up for shopping<br />and exclusive offers</p>
 								<form method="post" action="<?php echo esc_url($_SERVER['REQUEST_URI']);?>">
 									<p>
 										<label for="reg-name"></label>
@@ -164,6 +164,13 @@
 							</p>
 						</div>
 					</div>
+
+					<!-- logo -->
+					<h1 class="site-title alignleft lower">
+						<a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
+							<span class="title bold valign"><?php bloginfo('name'); ?></span>
+						</a>
+					</h1>
 
 					<!-- page confirmation -->
 					<?php if (is_page('confirmation')) { ?>
