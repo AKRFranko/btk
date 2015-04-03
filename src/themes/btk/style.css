@@ -1545,6 +1545,7 @@ Header
 }
 #header-box header nav.nav-hamburger .navbar-toggle {
   margin-top: -42px;
+  cursor: pointer;
 }
 #header-box header nav.nav-hamburger .navbar-toggle span.fa {
   font-size: 1.5em;
