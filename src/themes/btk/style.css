@@ -774,6 +774,9 @@ Mixins
 .open-menu span {
   color: #ffffff;
 }
+.open-menu a:hover {
+  color: #9c9c9c;
+}
 .open-menu .icon-bar {
   background-color: #ffffff;
 }
@@ -1487,6 +1490,9 @@ Header
 #header-box.open span {
   color: #ffffff;
 }
+#header-box.open a:hover {
+  color: #9c9c9c;
+}
 #header-box.open .icon-bar {
   background-color: #ffffff;
 }
@@ -1549,6 +1555,9 @@ Header
 }
 #header-box header nav.nav-hamburger .navbar-toggle span.fa {
   font-size: 1.5em;
+}
+#header-box header nav.nav-hamburger .navbar-toggle:hover span.fa {
+  color: #9c9c9c;
 }
 #header-box header nav.nav-hamburger .navbar-collapse,
 #header-box header nav.nav-hamburger .woo-categories {
@@ -1910,6 +1919,9 @@ Content
 .page-confirmation #header-box p,
 .page-confirmation #header-box span {
   color: #ffffff;
+}
+.page-confirmation #header-box a:hover {
+  color: #9c9c9c;
 }
 .page-confirmation #header-box .icon-bar {
   background-color: #ffffff;
