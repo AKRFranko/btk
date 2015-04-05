@@ -1,0 +1,485 @@
+{
+   "db": {
+      "export": {
+         "args" : { "file": "/srv/http/wordpress/wp-content/dump.sql" },
+         "opts": { "add-drop-table": true }
+      },
+      "reset": { "opts": { "yes": true } }
+   },
+   "core": {
+      "install": { "opts": { "title": "badb0x" } }
+    },
+   "plugin":{
+      "install":[
+         {
+            "args":{
+               "plugin":"social-media-feather"
+            },
+            "opts":{
+               "force":true,
+               "activate":true
+            }
+         },
+         {
+            "args":{
+               "plugin":"woocommerce"
+            },
+            "opts":{
+               "force":true,
+               "activate":true
+            }
+         },
+         {
+            "args":{
+               "plugin":"contact-form-7"
+            },
+            "opts":{
+               "force":true,
+               "activate":true
+            }
+         },
+         {
+            "args":{
+               "plugin":"rvg-optimize-database"
+            },
+            "opts":{
+               "force":true,
+               "activate":true
+            }
+         },
+         {
+            "args":{
+               "plugin":"simple-page-ordering"
+            },
+            "opts":{
+               "force":true,
+               "activate":true
+            }
+         },
+         {
+            "args":{
+               "plugin":"woocommerce-poor-guys-swiss-knife"
+            },
+            "opts":{
+               "activate":false
+            }
+         },
+         {
+            "args":{
+               "plugin":"wp-maintenance-mode"
+            },
+            "opts":{
+               "activate":false
+            }
+         }
+      ]
+   },
+   "term":{
+      // "list": {
+      //   "$_categories": { "args": { "taxonomy": "category" }, "opts": { "format": "csv", "field": "term_id",  "quiet": true } }
+      // },
+      // "delete": {
+      //   "args":{
+      //      "taxonomy":"category",
+      //      "term-id":"$_categories"
+      //   }, 
+      //   "opts":{
+      //     "quiet": true
+      //   }
+      // },
+      "create":{
+         "$cat_article":{
+            "args":{
+               "taxonomy":"category",
+               "term":"article"
+            },
+            "opts":{
+               "slug":"article",
+               "description":"This category is for generic content."
+            }
+         },
+         "$cat_carousel":{
+            "args":{
+               "taxonomy":"category",
+               "term":"carousel"
+            },
+            "opts":{
+               "slug":"carousel",
+               "description":"This category determines if a post featured image will be shown in the caroussel."
+            }
+         },
+         "$cat_news":{
+            "args":{
+               "taxonomy":"category",
+               "term":"news"
+            },
+            "opts":{
+               "slug":"news",
+               "description":"This category is for blog posts that should end up in the news section."
+            }
+         },
+         "$cat_collection":{
+            "args":{
+               "taxonomy":"category",
+               "term":"collection"
+            },
+            "opts":{
+               "slug":"collection",
+               "description":"Bundle items by collection."
+            }
+         },
+         "$cat_pdf":{
+            "args":{
+               "taxonomy":"category",
+               "term":"PDF"
+            },
+            "opts":{
+               "slug":"pdf",
+               "description":"This content is a PDF."
+            }
+         },
+         "$cat_legal":{
+            "args":{
+               "taxonomy":"category",
+               "term":"legal"
+            },
+            "opts":{
+               "slug":"legal",
+               "description":"Legal Pages Should Be Categorized With This."
+            }
+         }
+      }
+   },
+   "post":{
+      "create":{
+         "$news_01":{
+            "args":{
+               "file":"/home/franko/Code/nwp/example/text/news-1.txt"
+            },
+            "opts":{
+               "post_title":"prepare to be extremely well seated.",
+               "post_type":"post",
+               "post_status":"publish",
+               "post_category":"$cat_carousel,$cat_news"
+            }
+         },
+         "$news_02":{
+            "args":{
+               "file":"/home/franko/Code/nwp/example/text/news-2.txt"
+            },
+            "opts":{
+               "post_title":"designers, the good ones, are people too.",
+               "post_type":"post",
+               "post_status":"publish",
+               "post_category":"$cat_carousel,$cat_news,$cat_designer"
+            }
+         },
+         "$news_03":{
+            "args":{
+               "file":"/home/franko/Code/nwp/example/text/news-3.txt"
+            },
+            "opts":{
+               "post_title":"we will be at designex, everywhere!",
+               "post_type":"post",
+               "post_status":"publish",
+               "post_category":"$cat_carousel,$cat_news,$cat_event"
+            }
+         },
+         "$news_04":{
+            "args":{
+               "file":"/home/franko/Code/nwp/example/text/news-4.txt"
+            },
+            "opts":{
+               "post_title":"textile is in the eye of the beholder.",
+               "post_type":"post",
+               "post_status":"publish",
+               "post_category":"$cat_carousel,$cat_news"
+            }
+         },
+         "$news_05":{
+            "args":{
+               "file":"/home/franko/Code/nwp/example/text/news-5.txt"
+            },
+            "opts":{
+               "post_title":"3d printed wood! no trees were killed!",
+               "post_type":"post",
+               "post_status":"publish",
+               "post_category":"$cat_carousel,$cat_news"
+            }
+         },
+         "$about_page":{
+            "args":{
+               "file":"/home/franko/Code/nwp/example/text/about.txt"
+            },
+            "opts":{
+               "post_title":"about / faq",
+               "post_name":"about",
+               "post_type":"page",
+               "post_status":"publish"
+            }
+         },
+         "$press_page":{
+            "args":{
+               "file":"/home/franko/Code/nwp/example/text/press.txt"
+            },
+            "opts":{
+               "post_title":"in the press",
+               "post_name":"about-press",
+               "post_type":"page",
+               "post_status":"publish"
+            }
+         },
+         "$trade_page":{
+            "args":{
+               "file":"/home/franko/Code/nwp/example/text/trade.txt"
+            },
+            "opts":{
+               "post_title":"trade & designers",
+               "post_name":"about-trade",
+               "post_type":"page",
+               "post_status":"publish"
+            }
+         },
+         "$environment_page":{
+            "args":{
+               "file":"/home/franko/Code/nwp/example/text/environment.txt"
+            },
+            "opts":{
+               "post_title":"environment",
+               "post_name":"about-environment",
+               "post_type":"page",
+               "post_status":"publish"
+            }
+         },
+         "$shipping_page":{
+            "args":{
+               "file":"/home/franko/Code/nwp/example/text/shipping.txt"
+            },
+            "opts":{
+               "post_title":"shipping",
+               "post_name":"about-shipping",
+               "post_type":"page",
+               "post_status":"publish"
+            }
+         },
+         "$exchange_page":{
+            "args":{
+               "file":"/home/franko/Code/nwp/example/text/exchange.txt"
+            },
+            "opts":{
+               "post_title":"return & exchange",
+               "post_name":"about-exchange",
+               "post_type":"page",
+               "post_status":"publish"
+            }
+         },
+         "$privacy_page":{
+            "args":{
+               "file":"/home/franko/Code/nwp/example/text/privacy.txt"
+            },
+            "opts":{
+               "post_title":"privacy policy",
+               "post_name":"about-privacy",
+               "post_type":"page",
+               "post_status":"publish"
+            }
+         },
+         "$terms_page":{
+            "args":{
+               "file":"/home/franko/Code/nwp/example/text/terms.txt"
+            },
+            "opts":{
+               "post_title":"terms of use",
+               "post_name":"terms",
+               "post_type":"page",
+               "post_status":"publish"
+            }
+         },
+         "$affiliate_page":{
+            "args":{
+               "file":"/home/franko/Code/nwp/example/text/affiliate.txt"
+            },
+            "opts":{
+               "post_title":"reward program",
+               "post_name":"affiliate",
+               "post_type":"page",
+               "post_status":"publish"
+            }
+         },
+         "$woo_cart_page": {
+            "opts": {
+               "post_title": "cart",
+               "post_name": "cart",
+               "post_type":"page",
+               "post_status": "publish",
+               "post_content":"[woocommerce_cart]"
+            }
+         },
+         "$sign_in_page": {
+            "opts": {
+               "post_title": "sign in",
+               "post_name": "sign-in",
+               "post_type":"page",
+               "post_status": "publish",
+               "post_content":"Sign In Page"
+            }
+         },
+         "$products_page": {
+            "opts": {
+               "post_title": "products",
+               "post_name": "products",
+               "post_type":"page",
+               "post_status": "publish",
+               "post_content":"Products Page"
+            }
+         },
+         "$lookbook_page": {
+            "opts": {
+               "post_title": "lookbook",
+               "post_name": "lookbook",
+               "post_type":"page",
+               "post_status": "publish",
+               "post_content":"Lookbook Page"
+            }
+         },
+         "$samples_page": {
+            "opts": {
+               "post_title": "samples",
+               "post_name": "samples",
+               "post_type":"page",
+               "post_status": "publish",
+               "post_content":"Samples Page"
+            }
+         },
+         "$delivery_page": {
+            "opts": {
+               "post_title": "delivery",
+               "post_name": "delivery",
+               "post_type":"page",
+               "post_status": "publish",
+               "post_content":"Delivery Page"
+            }
+         },
+         "$contact_page": {
+            "args": {
+               "file": "/home/franko/Code/nwp/example/text/contact.txt"
+            },
+            "opts": {
+               "post_title": "contact",
+               "post_name": "contact",
+               "post_type":"page",
+               "post_status": "publish"
+            }
+         },
+         "$confirmation_page": {
+            "args": {
+               "file": "/home/franko/Code/nwp/example/text/confirmation.txt"
+            },
+            "opts": {
+               "post_title": "confirmation",
+               "post_name": "confirmation",
+               "post_type":"page",
+               "post_status": "publish"
+            }
+         },
+         "$account_page": {
+            "opts": {
+               "post_title": "account",
+               "post_name": "account",
+               "post_type":"page",
+               "post_status": "publish",
+               "post_content": "[woocommerce_my_account]"
+            }
+         },
+         "$mailchimp_page": {
+            "args": {
+               "file": "/home/franko/Code/nwp/example/text/mailchimp.txt"
+            },
+            "opts": {
+               "post_title": "sign up for email",
+               "post_name": "emails",
+               "post_type":"page",
+               "post_status": "publish"
+            }
+         },
+         "$catalog_page": {
+            "opts": {
+               "post_title": "catalogs",
+               "post_name": "catalogs",
+               "post_type":"page",
+               "post_status": "publish"
+            }
+         }
+      }
+   },
+   "menu":{
+      "create":{
+         "$header_menu":{
+            "args":{
+               "menu-name":"Header"
+            }
+         },
+         "$hamburger_menu":{
+            "args":{
+               "menu-name":"Hamburger"
+            }
+         },
+         "$footer_menu":{
+            "args":{
+               "menu-name":"Footer"
+            }
+         },
+         "$footer_alt_menu":{
+            "args":{
+               "menu-name":"Footer2"
+            }
+         }
+      },
+      "item": {
+         "add-post": [
+            { "args": { "menu": "$header_menu", "post": "$sign_in_page" } },
+            { "args": { "menu": "$header_menu", "post": "$woo_cart_page" } },
+            { "args": { "menu": "$hamburger_menu", "post": "$products_page" } },
+            { "args": { "menu": "$hamburger_menu", "post": "$lookbook_page" } },
+            { "args": { "menu": "$hamburger_menu", "post": "$samples_page" } },
+            { "args": { "menu": "$hamburger_menu", "post": "$delivery_page" } },
+            { "args": { "menu": "$hamburger_menu", "post": "$about_page" } },
+            { "args": { "menu": "$hamburger_menu", "post": "$contact_page" } },
+            { "args": { "menu": "$footer_menu", "post": "$contact_page" } },
+            { "args": { "menu": "$footer_menu", "post": "$shipping_page" } },
+            { "args": { "menu": "$footer_menu", "post": "$exchange_page" } },
+            { "args": { "menu": "$footer_menu", "post": "$privacy_page" } },
+            { "args": { "menu": "$footer_menu", "post": "$terms_page" } },
+            { "args": { "menu": "$footer_menu", "post": "$affiliate_page" } },
+            { "args": { "menu": "$footer_menu", "post": "$account_page" } },
+            { "args": { "menu": "$footer_menu", "post": "$mailchimp_page" } },
+            { "args": { "menu": "$footer_alt_menu", "post": "$about_page" } },
+            { "args": { "menu": "$footer_alt_menu", "post": "$press_page" } },
+            { "args": { "menu": "$footer_alt_menu", "post": "$trade_page" } },
+            { "args": { "menu": "$footer_alt_menu", "post": "$catalog_page" } },
+            { "args": { "menu": "$footer_alt_menu", "post": "$lookbook_page" } },
+            { "args": { "menu": "$footer_alt_menu", "post": "$environment_page" } }
+         ]
+      }
+   },
+   "media":{
+      "import": [
+         { "args": { "file": "/home/franko/Code/nwp/example/media/vertical-images/1.jpg" } , "opts": { "post_id": "$news_01", "featured_image": true } },
+         { "args": { "file": "/home/franko/Code/nwp/example/media/vertical-images/2.jpg" } , "opts": { "post_id": "$news_02", "featured_image": true } },
+         { "args": { "file": "/home/franko/Code/nwp/example/media/vertical-images/3.jpg" } , "opts": { "post_id": "$news_03", "featured_image": true } },
+         { "args": { "file": "/home/franko/Code/nwp/example/media/vertical-images/4.jpg" } , "opts": { "post_id": "$news_04", "featured_image": true } },
+         { "args": { "file": "/home/franko/Code/nwp/example/media/vertical-images/5.jpg" } , "opts": { "post_id": "$news_05", "featured_image": true } },
+         { "args": { "file": "/home/franko/Code/nwp/example/media/horizontal-images/1.jpg" } , "opts": { "post_id": "$news_01" } },
+         { "args": { "file": "/home/franko/Code/nwp/example/media/horizontal-images/2.jpg" } , "opts": { "post_id": "$news_02" } },
+         { "args": { "file": "/home/franko/Code/nwp/example/media/horizontal-images/3.jpg" } , "opts": { "post_id": "$news_03" } },
+         { "args": { "file": "/home/franko/Code/nwp/example/media/horizontal-images/4.jpg" } , "opts": { "post_id": "$news_04" } },
+         { "args": { "file": "/home/franko/Code/nwp/example/media/horizontal-images/5.jpg" } , "opts": { "post_id": "$news_05" } }
+      ]  
+   },
+   "theme": {
+      "activate": {
+         "args": { "theme": "btk" }
+      }
+   }
+
+}
