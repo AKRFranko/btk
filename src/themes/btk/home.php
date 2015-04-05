@@ -19,16 +19,17 @@ get_header();?>
 			<div class="main-slider">
 				<ul class="slider">
 				<?php
-					$my_query = new WP_Query('category_name=news&posts_per_page=10');
-					while ($my_query->have_posts()):$my_query->the_post();
-				?>
-					<li style="background-image: url(<?php if (has_post_thumbnail()) : $src = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full'); echo $src[0];endif;?>);">
-					<?php if (has_post_thumbnail()):the_post_thumbnail('full');endif;?>
-						<div class="caption center">
-							<h2 class="upper"><?php the_title();?></h2>
-						</div>
-					</li>
-				<?php endwhile;?>
+$my_query = new WP_Query('category_slug=news&posts_per_page=10');
+while ($my_query->have_posts()): $my_query->the_post();
+	?>
+						<li style="background-image: url(<?php if (has_post_thumbnail()): $src = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
+		echo $src[0];endif;?>);">
+						<?php if (has_post_thumbnail()): the_post_thumbnail('full');endif;?>
+							<div class="caption center">
+								<h2 class="upper"><?php the_title();?></h2>
+							</div>
+						</li>
+					<?php endwhile;?>
 				</ul>
 
 				<div class="main-controls">
@@ -41,20 +42,20 @@ get_header();?>
 				</div>
 			</div>
 
-<!--
+			<!-- collections -->
 			<div class="sliders lower">
 				<ul class="slider-collections">
 					<?php
-						$my_query = new WP_Query('category_name=collection&posts_per_page=3');
-						while ($my_query->have_posts()):$my_query->the_post();
-					?>
-					<li>
-					<?php if (has_post_thumbnail()):the_post_thumbnail('full');endif;?>
-						<div class="caption">
-							<p><a href="<?php echo get_permalink();?>"><?php the_title();?></a></p>
-						</div>
-					</li>
-					<?php endwhile;?>
+$my_query = new WP_Query('category_slug=collection&posts_per_page=3');
+while ($my_query->have_posts()): $my_query->the_post();
+	?>
+						<li>
+						<?php if (has_post_thumbnail()): the_post_thumbnail('full');endif;?>
+							<div class="caption">
+								<p><a href="<?php echo get_permalink();?>"><?php the_title();?></a></p>
+							</div>
+						</li>
+						<?php endwhile;?>
 				</ul>
 				<div class="coll-controls">
 					<span id="coll-prev" class="icon-chevron-lite-left-black"></span>
@@ -62,19 +63,20 @@ get_header();?>
 				</div>
 			</div>
 
+			<!-- news -->
 			<div class="sliders lower">
 				<ul class="slider-news">
 					<?php
-						$my_query = new WP_Query('category_name=news&posts_per_page=3');
-						while ($my_query->have_posts()):$my_query->the_post();
-					?>
-					<li>
-					<?php if (has_post_thumbnail()):the_post_thumbnail('full');endif;?>
-						<div class="caption">
-							<p><a href="<?php echo get_permalink();?>"><?php the_title();?></a></p>
-						</div>
-					</li>
-					<?php endwhile;?>
+$my_query = new WP_Query('category_slug=news&posts_per_page=3');
+while ($my_query->have_posts()): $my_query->the_post();
+	?>
+						<li>
+						<?php if (has_post_thumbnail()): the_post_thumbnail('full');endif;?>
+							<div class="caption">
+								<p><a href="<?php echo get_permalink();?>"><?php the_title();?></a></p>
+							</div>
+						</li>
+						<?php endwhile;?>
 				</ul>
 				<div class="news-controls">
 					<span id="news-prev" class="icon-chevron-lite-left-black"></span>
@@ -82,85 +84,25 @@ get_header();?>
 				</div>
 			</div>
 
+			<!-- news -->
 			<div class="sliders lower">
 				<ul class="slider-article">
 					<?php
-						$my_query = new WP_Query('category_name=article&posts_per_page=3');
-						while ($my_query->have_posts()):$my_query->the_post();
-					?>
-					<li>
-					<?php if (has_post_thumbnail()):the_post_thumbnail('full');endif;?>
-						<div class="caption">
-							<p><a href="<?php echo get_permalink();?>"><?php the_title();?></a></p>
-						</div>
-					</li>
-					<?php endwhile;?>
+$my_query = new WP_Query('category_slug=article&posts_per_page=3');
+while ($my_query->have_posts()): $my_query->the_post();
+	?>
+						<li>
+						<?php if (has_post_thumbnail()): the_post_thumbnail('full');endif;?>
+							<div class="caption">
+								<p><a href="<?php echo get_permalink();?>"><?php the_title();?></a></p>
+							</div>
+						</li>
+						<?php endwhile;?>
 				</ul>
 				<div class="article-controls">
 					<span id="article-prev" class="icon-chevron-lite-left-black"></span>
 					<span id="article-next" class="icon-chevron-lite-right-black"></span>
 				</div>
-			</div>
--->
-
-
-			<!-- collection -->
-			<div class="main-collection">
-			<?php
-				$my_query = new WP_Query('category_name=collection&posts_per_page=1');
-				while ( $my_query->have_posts() ): $my_query->the_post();
-			?>
-				<?php if ( has_post_thumbnail() ) { ?>
-				<a href="<?php echo get_permalink(); ?>">
-				<?php the_post_thumbnail('full'); ?>
-				</a>
-				<?php } ?>
-
-				<p>
-					<a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a>
-					<span class="icon-chevron-lite-right-black"></span>
-				</p>
-			<?php endwhile;?>
-			</div>
-
-
-			<!-- news -->
-			<div class="main-news">
-			<?php
-				$my_query = new WP_Query('category_name=news&posts_per_page=1');
-				while ( $my_query->have_posts() ): $my_query->the_post();
-			?>
-				<?php if ( has_post_thumbnail() ) { ?>
-				<a href="<?php echo get_permalink(); ?>">
-				<?php the_post_thumbnail('full'); ?>
-				</a>
-				<?php } ?>
-
-				<p>
-					<a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a>
-					<span class="icon-chevron-lite-right-black"></span>
-				</p>
-			<?php endwhile;?>
-			</div>
-
-
-			<!-- article -->
-			<div class="main-article">
-			<?php
-				$my_query = new WP_Query('category_name=article&posts_per_page=1');
-				while ( $my_query->have_posts() ): $my_query->the_post();
-			?>
-				<?php if ( has_post_thumbnail() ) { ?>
-				<a href="<?php echo get_permalink(); ?>">
-				<?php the_post_thumbnail('full'); ?>
-				</a>
-				<?php } ?>
-
-				<p>
-					<a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a>
-					<span class="icon-chevron-lite-right-black"></span>
-				</p>
-			<?php endwhile;?>
 			</div>
 
 		</main><!-- #main -->
