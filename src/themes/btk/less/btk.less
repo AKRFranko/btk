@@ -24,6 +24,29 @@ Overridez
 .icon-bar { margin-bottom:0; background-color:@black; }
 .navbar { min-height:25px; margin-bottom:0; border:none; }
 .navbar-toggle { margin:0; }
+div.wpcf7-validation-errors { clear:both; }
+
+
+@media (max-width: 767px) {
+	#wpadminbar { display:none; }
+}
+
+@media (max-width: 991px) {
+	.navbar-header { float:none; }
+	.navbar-left,.navbar-right { float:none !important; }
+	.navbar-toggle { display:block; }
+	.navbar-collapse {
+		border-top:1px solid transparent;
+		box-shadow:inset 0 1px 0 rgba(255,255,255,0.1);
+	}
+	.navbar-fixed-top { top:0; border-width:0 0 1px; }
+	.navbar-collapse.collapse { display:none !important; }
+	.navbar-nav { float:none !important; margin-top:7.5px; }
+	.navbar-nav>li { float:none; }
+	.navbar-nav>li>a { padding-top:10px; padding-bottom:10px; }
+	.collapse.in { display:block !important; }
+}
+
 
 
 
@@ -42,29 +65,44 @@ Header
 	header {
 		background:inherit; position:relative; height:@headerheight; padding:10px 0px 10px 15px;
 		h1 {
+<<<<<<< HEAD
 			width:25%; margin:0; font-size:0.9em; line-height:1em;
 			span { margin:0; font-size:3em; line-height:1em; letter-spacing:0.05em; }
+=======
+			clear:both; width:25%; margin:0; font-size:0.9em; line-height:1em;
+			span { font-size:3em; line-height:1em; letter-spacing:0.05em; }
+>>>>>>> master
+		}
+		h2 {
+			width:25%; margin:0; padding-bottom:5px; font-size:0.9em; line-height:1em;
+			span { line-height:1em; }
 		}
 		div[class*="col-"] { padding:0; }
 
 		nav {
 			&.nav-header {
-				display:inline-block; padding-top:8px;
-				ul li { display:inline-block; margin-right:15px; }
+				display:inline-block;
+				ul li { display:inline-block; margin-left:15px; }
 				.menu-header-container { display:inline-block; }
-				.language { margin-right:5px; }
+				.language { margin:0 5px 0 15px; }
 			}
 
 			&.nav-hamburger {
-				position:absolute; width:100%; right:5px; top:50px;
+				position:absolute; width:100%; right:5px; top:42px;
 				.navbar-toggle {
+<<<<<<< HEAD
 					margin-top:-42px;
 					span {
 						&.fa { font-size:1.5em; margin:0; }
 					}
+=======
+					margin-top:-42px; cursor:pointer;
+					span.fa { font-size:1.5em; }
+					&:hover span.fa { color:@hovercolor; }
+>>>>>>> master
 				}
 				.navbar-collapse, .woo-categories {
-					width:50%; padding:40px 20px 20px; box-shadow:none;
+					width:50%; margin-top:60px; padding:20px; box-shadow:none;
 					ul li { padding:6px 0; }
 					a { font-size:1.25em; }
 					&.collapsing { transition:height 0.01s; }
@@ -76,20 +114,26 @@ Header
 		.navigation { margin-right:50px; }
 
 		.sign-in-menu {
-			display:none; position:absolute; top:55px; left:0; width:100%; height:89vh; padding:15px;
+			display:none; position:absolute; top:@headerheight; left:0; width:100%;
+			height:81vh; padding:15px;
 			.sign-in {
 				a {
 					&.choices { display:table; }
 					span {
+<<<<<<< HEAD
 						margin:0; font-size:3em; display:table-cell; line-height:0;
+=======
+						font-size:2em; display:table-cell; line-height:0;
+>>>>>>> master
 						vertical-align:middle; text-align:right;
+						background-position:center center;
 					}
 				}
 			}
 
 			.login, .register {
 				form {
-					padding-top:12px;
+					padding-top:10px;
 					p { margin:0; line-height:0em; }
 					p.submit { position:absolute; bottom:120px; right:15px; }
 					.lost-password { font-size:0.9em; }
@@ -97,8 +141,11 @@ Header
 				input { border-color:@white; color:@white; }
 				input[type='text'],
 				input[type='password'],
-				input[type='email'] { padding:2px 0; }
-				input[type='submit'] { background-color:#444; }
+				input[type='email'] { padding:2px 0; font-size:0.9rem; }
+				input[type='submit'] {
+					padding:0.75em 1.8em; background-color:#444;
+					background-position:center center;
+				}
 				::-webkit-input-placeholder { color:@white; }
 				::-moz-placeholder { color:@white; }
 				:-ms-input-placeholder { color:@white; }
@@ -110,16 +157,30 @@ Header
 				border-bottom:2px solid @white; line-height:1.25em;
 			}
 			.welcome { padding-bottom:6px; }
-			.back-home { display:none; .back-home-button(); }
+			.back-home {
+				display:none; .back-home-button();
+				a { padding:0.75em 1.8em; }
+			}
 		}
 
 		.confirmation {
 			padding-right:15px;
+			a { padding:0.75em 1.8em; }
 		}
 	}
 }
 
 
+<<<<<<< HEAD
+=======
+
+@media (min-width: 992px) {
+	.nav-hamburger { display:none; }
+}
+
+
+
+>>>>>>> master
 
 
 /*
@@ -166,17 +227,14 @@ Slider
 		img { display:none !important; }
 		.bx-viewport { height:100% !important; }
 		.bx-pager {
-			bottom:0; padding-bottom:20px; font-size:1em;
+			bottom:0; padding-bottom:20px; font-size:1em; font-weight:normal;
 			background-image:linear-gradient( rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) );
 		}
 		.caption {
 			display:table; width:100%; height:100%;
-			h2 { display:table-cell; margin:0; vertical-align:middle; letter-spacing:0.05em; }
+			h2 { display:table-cell; margin:0; vertical-align:middle; letter-spacing:0.05em; text-shadow:@headertxtshadow; }
 		}
-		.bx-pager, .caption h2 {
-			color:@white;
-			text-shadow:-1px -1px 0 #888, 1px -1px 0 #888, -1px 1px 0 #888, 1px 1px 0 #888;
-		}
+		.bx-pager, .caption h2 { color:@white; text-shadow:1px 1px 0 @black; /*text-shadow:@headertxtshadow;*/ }
 	}
 
 >>>>>>> master
@@ -198,7 +256,10 @@ Slider
 		#main-prev, .left-shadow { left:25%; }
 		#main-next, #main-prev, .left-shadow, .right-shadow {
 			position:absolute; bottom:20px; color:@white; font-size:1.5em;
+<<<<<<< HEAD
 			text-shadow:-1px -1px 0 #888, 1px -1px 0 #888, -1px 1px 0 #888, 1px 1px 0 #888;
+>>>>>>> master
+=======
 >>>>>>> master
 		}
 		.left-shadow, .right-shadow { bottom:19px; opacity:0.5; }
@@ -262,7 +323,6 @@ Content
 		img { width:100%; }
 		p {
 			position:relative; width:100%; margin:0; font-size:1.35em;
-//			.icon-chevron-lite-right-black::before { .arrow-right(); }
 			.icon-chevron-lite-right-black { position:absolute; bottom:18px; right:10px; font-size:1.5em; }
 		}
 	}
@@ -275,6 +335,25 @@ Content
 		article { display:none; }
 	}
 	.confirmation-back-home { .back-home-button(); }
+}
+
+.page-order-samples {
+	#content {
+		input[type='submit'] { padding:0.75em 1.8em; background-position:center center; }
+	}
+}
+
+
+.home {
+	.main-collection, .main-news { .imgborder(); }
+	.main-collection, .main-news, .main-article {
+		img { width:100%; }
+		p {
+			position:relative; width:100%; margin:0; font-size:1.35em;
+			a { display:block; padding:20px 15px; }
+			span { position:absolute; bottom:18px; right:10px; font-size:1.5em; }
+		}
+	}
 }
 
 

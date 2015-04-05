@@ -28,8 +28,16 @@
 <link rel="icon" type="image/png" sizes="96x96" href="/wp-content/themes/btk/img/favicon-96x96.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/wp-content/themes/btk/img/favicon-16x16.png">
 
-
 <?php wp_head();?>
+
+<?php if ( is_user_logged_in() ) { ?>
+<style type="text/css">
+	@media screen and (max-width: 767px) {
+		html { margin-top:0px !important; }
+		* html body { margin-top:0px !important; }
+	}
+</style>
+<?php } ?>
 
 <noscript><link href="/wp-content/themes/btk/icons/icons.fallback.css" rel="stylesheet"></noscript>
 
@@ -47,21 +55,22 @@
 				<header id="masthead" class="site-header" role="banner">
 
 					<!-- logo -->
-					<h1 class="site-title alignleft lower">
-						<a href="<?php echo esc_url(home_url('/'));?>" rel="home">
-							<span class="title bold valign"><?php bloginfo('name');?></span>
+					<h2 class="long-title alignleft lower">
+						<a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
+							<span class="title semi-bold valign">element<br />de<br />base</span>
 						</a>
-					</h1>
+					</h2>
 
 					<!-- navigation -->
 					<div class="navigation alignright lower">
 						<!-- menu header -->
-						<?php if (!is_page('confirmation')) {?>
+						<?php if (!is_page('confirmation')) { ?>
 						<nav class="nav-header" role="navigation">
-							<?php wp_nav_menu(array('menu' => 'header'));?>
-							<a class="language" href="<?php echo esc_url(home_url('/'));?>">fr</a>
+							<?php wp_nav_menu(array('menu' => 'header')); ?>
+							<?php if ( WC()->cart->get_cart_contents_count() > 0 ) { echo '<span class="semi-bold">' . WC()->cart->get_cart_contents_count() . '</span>'; } ?>
+							<a class="language" href="<?php echo esc_url(home_url('/')); ?>">fr</a>
 						</nav>
-						<?php }?>
+						<?php } ?>
 
 						<!-- menu hamburger -->
 						<nav class="nav-hamburger navbar valign" role="navigation">
@@ -73,7 +82,7 @@
 							</div>
 
     						<div class="collapse navbar-collapse" id="nav-hamburger">
-							<?php wp_nav_menu(array('menu' => 'hamburger'));?>
+							<?php wp_nav_menu(array('menu' => 'hamburger')); ?>
 							</div>
 
 							<div class="woo-categories">
@@ -85,8 +94,8 @@
 									$product_categories = get_terms('product_cat', $args);
 									foreach ($product_categories as $cat) {
 								?>
-									<li><a href="<?php echo esc_url(home_url('/'));?>product-category/<?php echo $cat->slug;?>/"><?php echo $cat->name;?></a></li>
-								<?php }?>
+									<li><a href="<?php echo esc_url(home_url('/')); ?>product-category/<?php echo $cat->slug; ?>/"><?php echo $cat->name; ?></a></li>
+								<?php } ?>
 								</ul>
 							</div>
 						</nav>
@@ -97,11 +106,11 @@
 							<div class='sign-in'>
 								<a href="#" class="choices signin">
 									Returning customers<br />Please sign in
-									<span class="fa fa-angle-right valign"></span>
+									<span class="icon-chevron-lite-right-white"></span>
 								</a>
 								<a href="#" class="choices signup">
 									New customers<br />Sign up for shopping<br />and exclusive offers
-									<span class="fa fa-angle-right valign"></span>
+									<span class="icon-chevron-lite-right-white"></span>
 								</a>
 							</div>
 
@@ -118,8 +127,8 @@
 										<label class="login-field-icon fui-lock" for="login-pass"></label>
 									</p>
 									<p class="submit">
-										<span>enter edb</span>
-										<input class="button fa fa-long-arrow-right" type="submit"  name="dlf_submit" value="&#xf178;" />
+										<span class="valign">enter edb</span>
+										<input class="valign icon-arrow-lite-right-white" type="submit"  name="dlf_submit" value="" />
 									</p>
 									<a href="#" class="lost-password alignright">> Click here to recover lost password</a>
 								</form>
@@ -127,7 +136,7 @@
 
 							<!-- form register -->
 							<div class="register">
-								<p>New customers<br />Sign up for shopping<br />and exclusive offers</p>
+								<p>New customers sign up for shopping<br />and exclusive offers</p>
 								<form method="post" action="<?php echo esc_url($_SERVER['REQUEST_URI']);?>">
 									<p>
 										<label for="reg-name"></label>
@@ -150,19 +159,26 @@
 										<input name="reg_city" type="text" class="login-field" value="<?php echo (isset($_POST['reg_city']) ? $_POST['reg_city'] : null);?>" placeholder="city" id="reg-city" required />
 									</p>
 									<p class="submit">
-										<span>enter edb</span>
-										<input class="button fa fa-long-arrow-right" type="submit"  name="reg_submit" value="&#xf178;" />
+										<span class="valign">enter edb</span>
+										<input class="valign icon-arrow-lite-right-white" type="submit"  name="reg_submit" value="" />
 									</p>
 								</form>
 							</div>
 
 							<!-- close menu -->
 							<p class="back-home">
-								<span>Back home</span>
-								<a class="button fa fa-long-arrow-left"></a>
+								<span class="valign">Back home</span>
+								<a class="buttons valign icon-arrow-lite-left-white"></a>
 							</p>
 						</div>
 					</div>
+
+					<!-- logo -->
+					<h1 class="site-title alignleft lower">
+						<a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
+							<span class="title bold valign"><?php bloginfo('name'); ?></span>
+						</a>
+					</h1>
 
 					<!-- page confirmation -->
 					<?php if (is_page('confirmation')) { ?>
@@ -173,11 +189,11 @@
 						endwhile;
 					?>
 						<p class="confirmation-back-home">
-							<span>Back home</span>
-							<a href="<?php echo esc_url(home_url('/'));?>" class="button fa fa-long-arrow-left"></a>
+							<span class="valign">Back home</span>
+							<a href="<?php echo esc_url(home_url('/')); ?>" class="buttons valign icon-arrow-lite-left-white"></a>
 						</p>
 					</div>
-					<?php }?>
+					<?php } ?>
 
 				</header>
 			</div>

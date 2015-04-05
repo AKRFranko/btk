@@ -15,12 +15,12 @@ Variables LESS
 @linkcolor: #27343C;
 @textcolor: #242021;
 @hovercolor: #9c9c9c;
-@headerheight: 60px;
+@headerheight: 100px;
 
 @headerbkgcolor: #fff;
 @footerbkgcolor: #f0f0f0;
 
-
+@headertxtshadow: 0px 0px 1px rgba( 0, 0, 0, 0.3 );
 
 
 /*
@@ -32,8 +32,9 @@ Mixins
 .imgborder { border-bottom:3px solid @black; }
 
 .open-menu {
-	height:100vh; background:url('img/bkg.png') repeat;
+	height:100vh; background:@black; background:rgba(0, 0, 0, 0.88); //background:url('img/bkg.png') repeat;
 	a, p, span { color:@white; }
+	a:hover { color:@hovercolor; }
 	.icon-bar { background-color:@white; }
 	header { height:100vh; }
 }
@@ -41,8 +42,9 @@ Mixins
 .back-home-button {
 	position:absolute; bottom:70px; right:15px;
 	a {
-		&.button {
+		&.buttons {
 			font-size:1.4em; background-color:#444; border:none; cursor:pointer;
+			background-position:center center;
 			&:hover { background-color:#333; }
 		}
 	}
@@ -51,7 +53,7 @@ Mixins
 .arrow-right { float:right; padding:11px 15px 0 0; font-size:2.25em; }
 
 .buttons {
-	margin-left:10px; padding:0.3em 1.3em; background:#000; border-radius:0;
+	margin-left:10px; padding:0.3em 1.3em; background-color:@black; border-radius:0;
 	color:@white; font-size:1.4em;
 }
 

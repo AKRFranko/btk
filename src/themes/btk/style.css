@@ -373,7 +373,7 @@ input[type="submit"] {
   border: 1px solid;
   border-color: #ccc #ccc #bbb;
   border-radius: 3px;
-  background: #e6e6e6;
+  background-color: #e6e6e6;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 15px 17px rgba(255, 255, 255, 0.5), inset 0 -5px 12px rgba(0, 0, 0, 0.05);
   color: rgba(0, 0, 0, 0.8);
   font-size: 12px;
@@ -766,12 +766,16 @@ Mixins
 }
 .open-menu {
   height: 100vh;
-  background: url('img/bkg.png') repeat;
+  background: #000000;
+  background: rgba(0, 0, 0, 0.88);
 }
 .open-menu a,
 .open-menu p,
 .open-menu span {
   color: #ffffff;
+}
+.open-menu a:hover {
+  color: #9c9c9c;
 }
 .open-menu .icon-bar {
   background-color: #ffffff;
@@ -784,13 +788,14 @@ Mixins
   bottom: 70px;
   right: 15px;
 }
-.back-home-button a.button {
+.back-home-button a.buttons {
   font-size: 1.4em;
   background-color: #444;
   border: none;
   cursor: pointer;
+  background-position: center center;
 }
-.back-home-button a.button:hover {
+.back-home-button a.buttons:hover {
   background-color: #333;
 }
 .arrow-right {
@@ -801,7 +806,7 @@ Mixins
 .buttons {
   margin-left: 10px;
   padding: 0.3em 1.3em;
-  background: #000;
+  background-color: #000000;
   border-radius: 0;
   color: #ffffff;
   font-size: 1.4em;
@@ -1141,10 +1146,52 @@ Woocommerce Overrides
 .woocommerce #content div.product .entry-image {
   position: relative;
 }
-.woocommerce #content div.product .in-stock {
+.woocommerce .product .product-images {
+  position: relative;
+  text-align: center;
+}
+.woocommerce .product .product-images img {
+  width: 100%;
+  max-height: 400px;
+  border-bottom: 3px solid #000000;
+}
+.woocommerce .product .product-images .product-slider-controls {
   position: absolute;
-  bottom: 15px;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+}
+.woocommerce .product .product-images .product-slider-controls span {
+  position: relative;
+  padding: 0.75em 1em;
+  font-size: 1em;
+  background-position: center center;
+}
+.woocommerce .product .product-images .product-slider-controls span:first-child {
+  margin-right: 50px;
+}
+.woocommerce .product .product-images .product-slider-controls span a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.woocommerce .product .product-images .in-stock {
+  position: absolute;
+  bottom: 80px;
   left: 15px;
+}
+.woocommerce .product .product-images .bx-wrapper {
+  overflow: inherit;
+}
+.woocommerce .product .product-images .bx-wrapper .bx-pager {
+  position: static;
+  padding: 12px 0 25px;
+  color: #000000;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 1em;
+  font-weight: normal;
 }
 .woocommerce .product .product-summary {
   float: none;
@@ -1220,15 +1267,22 @@ Woocommerce Overrides
   padding: 6px 0;
   border-bottom: 1px solid #000000;
 }
-.woocommerce .product .product-add form.cart .button {
+.woocommerce .product .product-add form.cart button {
   float: none;
   margin: 20px 0 20px 10px;
   margin-left: 10px;
   padding: 0.3em 1.3em;
-  background: #000;
+  background-color: #000000;
   border-radius: 0;
   color: #ffffff;
   font-size: 1.4em;
+  padding: 0.75em 2em;
+  background-position: center center;
+  border: none;
+  box-shadow: none;
+}
+.woocommerce .product .product-add form.cart button:hover {
+  background-color: #444;
 }
 .woocommerce .quantity {
   float: right;
@@ -1249,6 +1303,15 @@ Woocommerce Overrides
 .woocommerce .quantity .qty {
   width: 2.1em;
   text-align: right;
+  color: #000000;
+}
+.woocommerce .cart-contents input[name="update_cart"] {
+  float: right;
+  margin: 10px 15px 0 0;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 0;
+  font-weight: normal;
 }
 .woocommerce .cart-contents a.remove {
   color: #000000 !important;
@@ -1259,8 +1322,15 @@ Woocommerce Overrides
   background: transparent;
 }
 .woocommerce .cart-contents .cart_item {
-  padding: 0 15px 30px;
+  padding: 15px 15px 30px;
   border-bottom: 3px solid #000000;
+}
+.woocommerce .cart-contents .product-name,
+.woocommerce .cart-contents .product-price {
+  font-size: 1.1em;
+}
+.woocommerce .cart-contents .product-thumbnail img {
+  margin-bottom: 3px;
 }
 .woocommerce .cart-contents .product-quantity {
   position: relative;
@@ -1282,13 +1352,18 @@ Woocommerce Overrides
 .woocommerce .cart-collaterals a {
   margin-left: 10px;
   padding: 0.3em 1.3em;
-  background: #000;
+  background-color: #000000;
   border-radius: 0;
   color: #ffffff;
   font-size: 1.4em;
+  padding: 0.75em 2.15em;
+  background-position: center center;
+}
+.woocommerce .cart-collaterals a:hover {
+  background-color: #444;
 }
 .woocommerce .cart-collaterals p {
-  margin: 0 0 50px !important;
+  margin: 45px 0 1.5em !important;
   font-size: 1.2em;
 }
 .woocommerce .cart-collaterals p span {
@@ -1302,6 +1377,7 @@ Woocommerce Overrides
 .woocommerce .cart-collaterals .amount {
   float: right;
   clear: none;
+  margin-top: 45px;
   padding: 5px 10px 6px;
   border: 2px solid #000000;
 }
@@ -1346,6 +1422,51 @@ Overridez
 .navbar-toggle {
   margin: 0;
 }
+div.wpcf7-validation-errors {
+  clear: both;
+}
+@media (max-width: 767px) {
+  #wpadminbar {
+    display: none;
+  }
+}
+@media (max-width: 991px) {
+  .navbar-header {
+    float: none;
+  }
+  .navbar-left,
+  .navbar-right {
+    float: none !important;
+  }
+  .navbar-toggle {
+    display: block;
+  }
+  .navbar-collapse {
+    border-top: 1px solid transparent;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  .navbar-fixed-top {
+    top: 0;
+    border-width: 0 0 1px;
+  }
+  .navbar-collapse.collapse {
+    display: none !important;
+  }
+  .navbar-nav {
+    float: none !important;
+    margin-top: 7.5px;
+  }
+  .navbar-nav > li {
+    float: none;
+  }
+  .navbar-nav > li > a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .collapse.in {
+    display: block !important;
+  }
+}
 /*
 ==========================================================================
 Header
@@ -1361,12 +1482,16 @@ Header
 }
 #header-box.open {
   height: 100vh;
-  background: url('img/bkg.png') repeat;
+  background: #000000;
+  background: rgba(0, 0, 0, 0.88);
 }
 #header-box.open a,
 #header-box.open p,
 #header-box.open span {
   color: #ffffff;
+}
+#header-box.open a:hover {
+  color: #9c9c9c;
 }
 #header-box.open .icon-bar {
   background-color: #ffffff;
@@ -1377,10 +1502,11 @@ Header
 #header-box header {
   background: inherit;
   position: relative;
-  height: 60px;
+  height: 100px;
   padding: 10px 0px 10px 15px;
 }
 #header-box header h1 {
+  clear: both;
   width: 25%;
   margin: 0;
   font-size: 0.9em;
@@ -1391,39 +1517,53 @@ Header
   line-height: 1em;
   letter-spacing: 0.05em;
 }
+#header-box header h2 {
+  width: 25%;
+  margin: 0;
+  padding-bottom: 5px;
+  font-size: 0.9em;
+  line-height: 1em;
+}
+#header-box header h2 span {
+  line-height: 1em;
+}
 #header-box header div[class*="col-"] {
   padding: 0;
 }
 #header-box header nav.nav-header {
   display: inline-block;
-  padding-top: 8px;
 }
 #header-box header nav.nav-header ul li {
   display: inline-block;
-  margin-right: 15px;
+  margin-left: 15px;
 }
 #header-box header nav.nav-header .menu-header-container {
   display: inline-block;
 }
 #header-box header nav.nav-header .language {
-  margin-right: 5px;
+  margin: 0 5px 0 15px;
 }
 #header-box header nav.nav-hamburger {
   position: absolute;
   width: 100%;
   right: 5px;
-  top: 50px;
+  top: 42px;
 }
 #header-box header nav.nav-hamburger .navbar-toggle {
   margin-top: -42px;
+  cursor: pointer;
 }
 #header-box header nav.nav-hamburger .navbar-toggle span.fa {
   font-size: 1.5em;
 }
+#header-box header nav.nav-hamburger .navbar-toggle:hover span.fa {
+  color: #9c9c9c;
+}
 #header-box header nav.nav-hamburger .navbar-collapse,
 #header-box header nav.nav-hamburger .woo-categories {
   width: 50%;
-  padding: 40px 20px 20px;
+  margin-top: 60px;
+  padding: 20px;
   box-shadow: none;
 }
 #header-box header nav.nav-hamburger .navbar-collapse ul li,
@@ -1451,25 +1591,26 @@ Header
 #header-box header .sign-in-menu {
   display: none;
   position: absolute;
-  top: 55px;
+  top: 100px;
   left: 0;
   width: 100%;
-  height: 89vh;
+  height: 81vh;
   padding: 15px;
 }
 #header-box header .sign-in-menu .sign-in a.choices {
   display: table;
 }
 #header-box header .sign-in-menu .sign-in a span {
-  font-size: 3em;
+  font-size: 2em;
   display: table-cell;
   line-height: 0;
   vertical-align: middle;
   text-align: right;
+  background-position: center center;
 }
 #header-box header .sign-in-menu .login form,
 #header-box header .sign-in-menu .register form {
-  padding-top: 12px;
+  padding-top: 10px;
 }
 #header-box header .sign-in-menu .login form p,
 #header-box header .sign-in-menu .register form p {
@@ -1498,10 +1639,13 @@ Header
 #header-box header .sign-in-menu .login input[type='email'],
 #header-box header .sign-in-menu .register input[type='email'] {
   padding: 2px 0;
+  font-size: 0.9rem;
 }
 #header-box header .sign-in-menu .login input[type='submit'],
 #header-box header .sign-in-menu .register input[type='submit'] {
+  padding: 0.75em 1.8em;
   background-color: #444;
+  background-position: center center;
 }
 #header-box header .sign-in-menu .login ::-webkit-input-placeholder,
 #header-box header .sign-in-menu .register ::-webkit-input-placeholder {
@@ -1536,19 +1680,26 @@ Header
   bottom: 70px;
   right: 15px;
 }
-#header-box header .sign-in-menu .back-home a.button {
+#header-box header .sign-in-menu .back-home a.buttons {
   font-size: 1.4em;
   background-color: #444;
   border: none;
   cursor: pointer;
+  background-position: center center;
 }
-#header-box header .sign-in-menu .back-home a.button:hover {
+#header-box header .sign-in-menu .back-home a.buttons:hover {
   background-color: #333;
+}
+#header-box header .sign-in-menu .back-home a {
+  padding: 0.75em 1.8em;
 }
 #header-box header .confirmation {
   padding-right: 15px;
 }
-@media (min-width: 768px) {
+#header-box header .confirmation a {
+  padding: 0.75em 1.8em;
+}
+@media (min-width: 992px) {
   .nav-hamburger {
     display: none;
   }
@@ -1585,6 +1736,7 @@ Slider
   bottom: 0;
   padding-bottom: 20px;
   font-size: 1em;
+  font-weight: normal;
   background-image: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2));
 }
 .main-slider .bx-wrapper .caption {
@@ -1597,11 +1749,13 @@ Slider
   margin: 0;
   vertical-align: middle;
   letter-spacing: 0.05em;
+  text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3);
 }
 .main-slider .bx-wrapper .bx-pager,
 .main-slider .bx-wrapper .caption h2 {
   color: #ffffff;
-  text-shadow: -1px -1px 0 #888888, 1px -1px 0 #888888, -1px 1px 0 #888888, 1px 1px 0 #888888;
+  text-shadow: 1px 1px 0 #000000;
+  /*text-shadow:@headertxtshadow;*/
 }
 .main-slider .slider,
 .main-slider .slider li {
@@ -1640,7 +1794,6 @@ Slider
   bottom: 20px;
   color: #ffffff;
   font-size: 1.5em;
-  text-shadow: -1px -1px 0 #888888, 1px -1px 0 #888888, -1px 1px 0 #888888, 1px 1px 0 #888888;
 }
 .main-slider .main-controls .left-shadow,
 .main-slider .main-controls .right-shadow {
@@ -1690,7 +1843,7 @@ Content
 ==========================================================================
 */
 #content {
-  margin-top: 60px;
+  margin-top: 100px;
 }
 #content article {
   margin: 0;
@@ -1759,12 +1912,16 @@ Content
 }
 .page-confirmation #header-box {
   height: 100vh;
-  background: url('img/bkg.png') repeat;
+  background: #000000;
+  background: rgba(0, 0, 0, 0.88);
 }
 .page-confirmation #header-box a,
 .page-confirmation #header-box p,
 .page-confirmation #header-box span {
   color: #ffffff;
+}
+.page-confirmation #header-box a:hover {
+  color: #9c9c9c;
 }
 .page-confirmation #header-box .icon-bar {
   background-color: #ffffff;
@@ -1783,14 +1940,50 @@ Content
   bottom: 70px;
   right: 15px;
 }
-.page-confirmation .confirmation-back-home a.button {
+.page-confirmation .confirmation-back-home a.buttons {
   font-size: 1.4em;
   background-color: #444;
   border: none;
   cursor: pointer;
+  background-position: center center;
 }
-.page-confirmation .confirmation-back-home a.button:hover {
+.page-confirmation .confirmation-back-home a.buttons:hover {
   background-color: #333;
+}
+.page-order-samples #content input[type='submit'] {
+  padding: 0.75em 1.8em;
+  background-position: center center;
+}
+.home .main-collection,
+.home .main-news {
+  border-bottom: 3px solid #000000;
+}
+.home .main-collection img,
+.home .main-news img,
+.home .main-article img {
+  width: 100%;
+}
+.home .main-collection p,
+.home .main-news p,
+.home .main-article p {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  font-size: 1.35em;
+}
+.home .main-collection p a,
+.home .main-news p a,
+.home .main-article p a {
+  display: block;
+  padding: 20px 15px;
+}
+.home .main-collection p span,
+.home .main-news p span,
+.home .main-article p span {
+  position: absolute;
+  bottom: 18px;
+  right: 10px;
+  font-size: 1.5em;
 }
 /*
 ==========================================================================

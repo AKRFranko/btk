@@ -6,7 +6,6 @@
 		$('body,html').animate({
 			scrollTop:0
 		}, 100);
-		return false;
 	});
 
 
@@ -21,34 +20,35 @@
 			$('.login').hide();
 			$('.register').hide();
 			$('.back-home').show();
+		} else if (  $('.sign-in, .login, .register').is(':visible') ) {
+			$('.sign-in-menu').hide();
+			$('#header-box').removeClass('open');
 		}
-		return false;
 	});
-	$('.back-home .button').on('click', function(e) {
+
+	$('.back-home .buttons').on('click', function(e) {
 		e.preventDefault();
 		$('.sign-in-menu').hide();
 		$('#header-box').removeClass('open');
-		return false;
 	});
 
 	$('.signin').on('click', function(e) {
 		e.preventDefault();
 		$('.sign-in').hide();
 		$('.login').show();
-		return false;
 	});
+
 	$('.signup').on('click', function(e) {
 		e.preventDefault();
 		$('.sign-in').hide();
 		$('.register').show();
-		return false;
 	});
 
 
 
 	// hamburger menu on/off
 	$('.nav-hamburger .navbar-toggle').click( function () {
-		if (  $('.sign-in').is(':visible') ) {
+		if (  $('.sign-in, .login, .register').is(':visible') ) {
 			$('.sign-in-menu').hide();
 			$('#header-box').removeClass('open');
 		}
@@ -68,7 +68,6 @@
 	$('#menu-hamburger li a[href*="products"]').click( function (e) {
 		e.preventDefault();
 		$('.woo-categories').toggle();
-		return false;
 	});
 
 
@@ -83,7 +82,7 @@
 		pagerShortSeparator: ' | '
 	});
 
-
+/*
 	// carousel collections
 	$('.slider-collections').bxSlider({
 		nextSelector: '#coll-next',
@@ -102,7 +101,7 @@
 		pager: false
 	});
 
-	// carousel news
+	// carousel article
 	$('.slider-article').bxSlider({
 		nextSelector: '#article-next',
 		prevSelector: '#article-prev',
@@ -110,22 +109,38 @@
 		prevText: '',
 		pager: false
 	});
+*/
+
+	// slider product images
+	$('.product-slider').bxSlider({
+		nextSelector: '#controls-next',
+		prevSelector: '#controls-prev',
+		nextText: '',
+		prevText: '',
+		pager: true,
+		pagerType: 'short',
+		pagerShortSeparator: ' | '
+	});
+
 
 
 
 	$('.entry-content p:has(img)').css('margin', '0');
-//	$('.pdf p:has(a)').addClass('icon-chevron-lite-right-black');
 	$('.pdf p:has(a)').append('<span class="icon-chevron-lite-right-black"></span>');
 	$('.woocommerce .quantity').prepend('<a href="" class="qty-sub">-</a>').append('<a href="" class="qty-add">+</a>');
+	$('.woocommerce .quantity input').attr('readonly', 'readonly');
+
 	$('.qty-sub').click(function(e) {
 		e.preventDefault();
-		if ( $('.woocommerce .quantity .qty').val() > 1 ) {
-			$('.woocommerce .quantity .qty').val( Number( $('.woocommerce .quantity .qty').val() ) - 1 );
+		var val = $(this).parent().children('.qty');
+		if ( val.val() > 1 ) {
+			val.val( Number( val.val() ) - 1 );
 		}
 	});
 	$('.qty-add').click(function(e) {
 		e.preventDefault();
-		$('.woocommerce .quantity .qty').val( Number( $('.woocommerce .quantity .qty').val() ) + 1 );
+		var val = $(this).parent().children('.qty');
+		val.val( Number( val.val() ) + 1 );
 	});
 
 } )( jQuery );
