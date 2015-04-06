@@ -19,17 +19,17 @@ get_header();?>
 			<div class="main-slider">
 				<ul class="slider">
 				<?php
-$my_query = new WP_Query('category_slug=news&posts_per_page=10');
+$my_query = new WP_Query('category_name=carousel&posts_per_page=5');
 while ($my_query->have_posts()): $my_query->the_post();
 	?>
-						<li style="background-image: url(<?php if (has_post_thumbnail()): $src = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
+							<li style="background-image: url(<?php if (has_post_thumbnail()): $src = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
 		echo $src[0];endif;?>);">
-						<?php if (has_post_thumbnail()): the_post_thumbnail('full');endif;?>
-							<div class="caption center">
-								<h2 class="upper"><?php the_title();?></h2>
-							</div>
-						</li>
-					<?php endwhile;?>
+							<?php if (has_post_thumbnail()): the_post_thumbnail('full');endif;?>
+								<div class="caption center">
+									<h2 class="upper"><?php the_title();?></h2>
+								</div>
+							</li>
+						<?php endwhile;?>
 				</ul>
 
 				<div class="main-controls">
@@ -49,13 +49,13 @@ while ($my_query->have_posts()): $my_query->the_post();
 $my_query = new WP_Query('category_slug=collection&posts_per_page=3');
 while ($my_query->have_posts()): $my_query->the_post();
 	?>
-						<li>
-						<?php if (has_post_thumbnail()): the_post_thumbnail('full');endif;?>
-							<div class="caption">
-								<p><a href="<?php echo get_permalink();?>"><?php the_title();?></a></p>
-							</div>
-						</li>
-						<?php endwhile;?>
+							<li>
+							<?php if (has_post_thumbnail()): the_post_thumbnail('full');endif;?>
+								<div class="caption">
+									<p><a href="<?php echo get_permalink();?>"><?php the_title();?></a></p>
+								</div>
+							</li>
+							<?php endwhile;?>
 				</ul>
 				<div class="coll-controls">
 					<span id="coll-prev" class="icon-chevron-lite-left-black"></span>
@@ -63,47 +63,31 @@ while ($my_query->have_posts()): $my_query->the_post();
 				</div>
 			</div>
 
-			<!-- news -->
-			<div class="sliders lower">
-				<ul class="slider-news">
-					<?php
-$my_query = new WP_Query('category_slug=news&posts_per_page=3');
-while ($my_query->have_posts()): $my_query->the_post();
-	?>
-						<li>
-						<?php if (has_post_thumbnail()): the_post_thumbnail('full');endif;?>
-							<div class="caption">
-								<p><a href="<?php echo get_permalink();?>"><?php the_title();?></a></p>
-							</div>
-						</li>
-						<?php endwhile;?>
-				</ul>
-				<div class="news-controls">
-					<span id="news-prev" class="icon-chevron-lite-left-black"></span>
-					<span id="news-next" class="icon-chevron-lite-right-black"></span>
-				</div>
-			</div>
 
-			<!-- news -->
-			<div class="sliders lower">
-				<ul class="slider-article">
+		<?php $my_query = new WP_Query('category_slug=news&posts_per_page=3');?>
+		<?php if ($my_query->have_posts()): ?>
+
+			<?php /* Start the Loop */?>
+			<?php while ($my_query->have_posts()): $my_query->the_post();?>
+
 					<?php
-$my_query = new WP_Query('category_slug=article&posts_per_page=3');
-while ($my_query->have_posts()): $my_query->the_post();
+	/* Include the Post-Format-specific template for the content.
+	 * If you want to override this in a child theme, then include a file
+	 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+	 */
+	get_template_part('content', get_post_format());
 	?>
-						<li>
-						<?php if (has_post_thumbnail()): the_post_thumbnail('full');endif;?>
-							<div class="caption">
-								<p><a href="<?php echo get_permalink();?>"><?php the_title();?></a></p>
-							</div>
-						</li>
-						<?php endwhile;?>
-				</ul>
-				<div class="article-controls">
-					<span id="article-prev" class="icon-chevron-lite-left-black"></span>
-					<span id="article-next" class="icon-chevron-lite-right-black"></span>
-				</div>
-			</div>
+
+				<?php endwhile;?>
+
+			<?php the_posts_navigation();?>
+
+		<?php else: ?>
+
+			<?php get_template_part('content', 'none');?>
+
+		<?php endif;?>
+
 
 		</main><!-- #main -->
 	</div><!-- #primary -->

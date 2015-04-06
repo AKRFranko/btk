@@ -1,13 +1,13 @@
 {
    "db": {
-      "export": {
-         "args" : { "file": "/srv/http/wordpress/wp-content/dump.sql" },
-         "opts": { "add-drop-table": true }
-      },
+      // "export": {
+      //    "args" : { "file": "/srv/http/wordpress/dump.sql" },
+      //    "opts": { "add-drop-table": true }
+      // },
       "reset": { "opts": { "yes": true } }
    },
    "core": {
-      "install": { "opts": { "title": "badb0x" } }
+      "install": { "opts": { "title": "edb" } }
     },
    "plugin":{
       "install":[
@@ -152,9 +152,9 @@
    },
    "post":{
       "create":{
-         "$news_01":{
+         "$news_08":{
             "args":{
-               "file":"/home/franko/Code/nwp/example/text/news-1.txt"
+               "file":"./src/data/text/news-3.txt"
             },
             "opts":{
                "post_title":"prepare to be extremely well seated.",
@@ -163,34 +163,23 @@
                "post_category":"$cat_carousel,$cat_news"
             }
          },
-         "$news_02":{
+         "$news_07":{
             "args":{
-               "file":"/home/franko/Code/nwp/example/text/news-2.txt"
+               "file":"./src/data/text/news-2.txt"
             },
             "opts":{
                "post_title":"designers, the good ones, are people too.",
                "post_type":"post",
                "post_status":"publish",
-               "post_category":"$cat_carousel,$cat_news,$cat_designer"
+               "post_category":"$cat_carousel,$cat_news"
             }
          },
-         "$news_03":{
+         "$news_06":{
             "args":{
-               "file":"/home/franko/Code/nwp/example/text/news-3.txt"
+               "file":"./src/data/text/news-1.txt"
             },
             "opts":{
                "post_title":"we will be at designex, everywhere!",
-               "post_type":"post",
-               "post_status":"publish",
-               "post_category":"$cat_carousel,$cat_news,$cat_event"
-            }
-         },
-         "$news_04":{
-            "args":{
-               "file":"/home/franko/Code/nwp/example/text/news-4.txt"
-            },
-            "opts":{
-               "post_title":"textile is in the eye of the beholder.",
                "post_type":"post",
                "post_status":"publish",
                "post_category":"$cat_carousel,$cat_news"
@@ -198,10 +187,54 @@
          },
          "$news_05":{
             "args":{
-               "file":"/home/franko/Code/nwp/example/text/news-5.txt"
+               "file":"./src/data/text/news-5.txt"
             },
             "opts":{
-               "post_title":"3d printed wood! no trees were killed!",
+               "post_title":"what is element de base",
+               "post_type":"post",
+               "post_status":"publish",
+               "post_category":"$cat_carousel,$cat_news,$cat_designer"
+            }
+         },
+         "$news_04":{
+            "args":{
+               "file":"./src/data/text/news-4.txt"
+            },
+            "opts":{
+               "post_title":"the beauty of natural materials",
+               "post_type":"post",
+               "post_status":"publish",
+               "post_category":"$cat_carousel,$cat_news"
+            }
+         },
+         "$news_03":{
+            "args":{
+               "file":"./src/data/text/news-3.txt"
+            },
+            "opts":{
+               "post_title":"original designs",
+               "post_type":"post",
+               "post_status":"publish",
+               "post_category":"$cat_carousel,$cat_news"
+            }
+         },
+         "$news_02":{
+            "args":{
+               "file":"./src/data/text/news-2.txt"
+            },
+            "opts":{
+               "post_title":"new arrival",
+               "post_type":"post",
+               "post_status":"publish",
+               "post_category":"$cat_carousel,$cat_news"
+            }
+         },
+         "$news_01":{
+            "args":{
+               "file":"./src/data/text/news-1.txt"
+            },
+            "opts":{
+               "post_title":"spring 2015",
                "post_type":"post",
                "post_status":"publish",
                "post_category":"$cat_carousel,$cat_news"
@@ -209,7 +242,7 @@
          },
          "$about_page":{
             "args":{
-               "file":"/home/franko/Code/nwp/example/text/about.txt"
+               "file":"./src/data/text/about.txt"
             },
             "opts":{
                "post_title":"about / faq",
@@ -220,7 +253,7 @@
          },
          "$press_page":{
             "args":{
-               "file":"/home/franko/Code/nwp/example/text/press.txt"
+               "file":"./src/data/text/press.txt"
             },
             "opts":{
                "post_title":"in the press",
@@ -231,7 +264,7 @@
          },
          "$trade_page":{
             "args":{
-               "file":"/home/franko/Code/nwp/example/text/trade.txt"
+               "file":"./src/data/text/trade.txt"
             },
             "opts":{
                "post_title":"trade & designers",
@@ -242,7 +275,7 @@
          },
          "$environment_page":{
             "args":{
-               "file":"/home/franko/Code/nwp/example/text/environment.txt"
+               "file":"./src/data/text/environment.txt"
             },
             "opts":{
                "post_title":"environment",
@@ -253,7 +286,7 @@
          },
          "$shipping_page":{
             "args":{
-               "file":"/home/franko/Code/nwp/example/text/shipping.txt"
+               "file":"./src/data/text/shipping.txt"
             },
             "opts":{
                "post_title":"shipping",
@@ -264,7 +297,7 @@
          },
          "$exchange_page":{
             "args":{
-               "file":"/home/franko/Code/nwp/example/text/exchange.txt"
+               "file":"./src/data/text/exchange.txt"
             },
             "opts":{
                "post_title":"return & exchange",
@@ -275,7 +308,7 @@
          },
          "$privacy_page":{
             "args":{
-               "file":"/home/franko/Code/nwp/example/text/privacy.txt"
+               "file":"./src/data/text/privacy.txt"
             },
             "opts":{
                "post_title":"privacy policy",
@@ -286,7 +319,7 @@
          },
          "$terms_page":{
             "args":{
-               "file":"/home/franko/Code/nwp/example/text/terms.txt"
+               "file":"./src/data/text/terms.txt"
             },
             "opts":{
                "post_title":"terms of use",
@@ -297,7 +330,7 @@
          },
          "$affiliate_page":{
             "args":{
-               "file":"/home/franko/Code/nwp/example/text/affiliate.txt"
+               "file":"./src/data/text/affiliate.txt"
             },
             "opts":{
                "post_title":"reward program",
@@ -362,7 +395,7 @@
          },
          "$contact_page": {
             "args": {
-               "file": "/home/franko/Code/nwp/example/text/contact.txt"
+               "file": "./src/data/text/contact.txt"
             },
             "opts": {
                "post_title": "contact",
@@ -373,7 +406,7 @@
          },
          "$confirmation_page": {
             "args": {
-               "file": "/home/franko/Code/nwp/example/text/confirmation.txt"
+               "file": "./src/data/text/confirmation.txt"
             },
             "opts": {
                "post_title": "confirmation",
@@ -393,7 +426,7 @@
          },
          "$mailchimp_page": {
             "args": {
-               "file": "/home/franko/Code/nwp/example/text/mailchimp.txt"
+               "file": "./src/data/text/mailchimp.txt"
             },
             "opts": {
                "post_title": "sign up for email",
@@ -464,22 +497,35 @@
    },
    "media":{
       "import": [
-         { "args": { "file": "/home/franko/Code/nwp/example/media/vertical-images/1.jpg" } , "opts": { "post_id": "$news_01", "featured_image": true } },
-         { "args": { "file": "/home/franko/Code/nwp/example/media/vertical-images/2.jpg" } , "opts": { "post_id": "$news_02", "featured_image": true } },
-         { "args": { "file": "/home/franko/Code/nwp/example/media/vertical-images/3.jpg" } , "opts": { "post_id": "$news_03", "featured_image": true } },
-         { "args": { "file": "/home/franko/Code/nwp/example/media/vertical-images/4.jpg" } , "opts": { "post_id": "$news_04", "featured_image": true } },
-         { "args": { "file": "/home/franko/Code/nwp/example/media/vertical-images/5.jpg" } , "opts": { "post_id": "$news_05", "featured_image": true } },
-         { "args": { "file": "/home/franko/Code/nwp/example/media/horizontal-images/1.jpg" } , "opts": { "post_id": "$news_01" } },
-         { "args": { "file": "/home/franko/Code/nwp/example/media/horizontal-images/2.jpg" } , "opts": { "post_id": "$news_02" } },
-         { "args": { "file": "/home/franko/Code/nwp/example/media/horizontal-images/3.jpg" } , "opts": { "post_id": "$news_03" } },
-         { "args": { "file": "/home/franko/Code/nwp/example/media/horizontal-images/4.jpg" } , "opts": { "post_id": "$news_04" } },
-         { "args": { "file": "/home/franko/Code/nwp/example/media/horizontal-images/5.jpg" } , "opts": { "post_id": "$news_05" } }
+         { "args": { "file": "./src/data/media/vertical-images/1.jpg" } , "opts": { "post_id": "$news_01", "featured_image": true } },
+         { "args": { "file": "./src/data/media/vertical-images/2.jpg" } , "opts": { "post_id": "$news_02", "featured_image": true } },
+         { "args": { "file": "./src/data/media/vertical-images/3.jpg" } , "opts": { "post_id": "$news_03", "featured_image": true } },
+         { "args": { "file": "./src/data/media/vertical-images/4.jpg" } , "opts": { "post_id": "$news_04", "featured_image": true } },
+         { "args": { "file": "./src/data/media/vertical-images/5.jpg" } , "opts": { "post_id": "$news_05", "featured_image": true } },
+         { "args": { "file": "./src/data/media/horizontal-images/1.jpg" } , "opts": { "post_id": "$news_06", "featured_image": true } },
+         { "args": { "file": "./src/data/media/horizontal-images/2.jpg" } , "opts": { "post_id": "$news_07", "featured_image": true } },
+         { "args": { "file": "./src/data/media/horizontal-images/3.jpg" } , "opts": { "post_id": "$news_08", "featured_image": true } },
+         { "args": { "file": "./src/data/media/horizontal-images/4.jpg" } , "opts": { "post_id": "$news_04" } },
+         { "args": { "file": "./src/data/media/horizontal-images/5.jpg" } , "opts": { "post_id": "$news_05" } }
       ]  
    },
    "theme": {
       "activate": {
          "args": { "theme": "btk" }
       }
+   },
+   "option": {
+      "update": [
+         { "args": { "key": "posts_per_page", "value": 5 } },
+         { "args": { "key": "gzipcompression", "value": 1 } },
+         { "args": { "key": "permalink_structure", "value": "/%postname%/" } },
+         { "args": { "key": "default_category", "value": "$cat_news" } },
+         { "args": { "key": "woocommerce_allow_tracking", "value": "no" } }
+      ]
+   },
+   "eval": {
+      "args": { "php": "WC_Install::create_pages();WC_Admin_Notices::remove_notice( 'install' );" },
+      "opts": { "quiet": true }
    }
 
 }

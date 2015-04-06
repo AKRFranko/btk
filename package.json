@@ -26,6 +26,7 @@
     "grunt-notify": "^0.4.1",
     "grunt-phplint": "0.0.5",
     "load-grunt-tasks": "^3.1.0",
-    "merge": "^1.2.0"
+    "merge": "^1.2.0",
+    "nwp":"AKRFranko/nwp"
   }
 }
