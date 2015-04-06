@@ -24,3 +24,6 @@ config.json
 # Ignore composer lock for now...
 
 composer.lock
+
+
+src/themes/btk/js/_all.min.js
