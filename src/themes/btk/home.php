@@ -19,7 +19,7 @@ get_header();?>
 			<div class="main-slider">
 				<ul class="slider">
 				<?php
-$my_query = new WP_Query('category_slug=news&posts_per_page=10');
+$my_query = new WP_Query('category_name=News&posts_per_page=10');
 while ($my_query->have_posts()): $my_query->the_post();
 	?>
 						<li style="background-image: url(<?php if (has_post_thumbnail()): $src = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
@@ -46,7 +46,7 @@ while ($my_query->have_posts()): $my_query->the_post();
 			<div class="sliders lower">
 				<ul class="slider-collections">
 					<?php
-$my_query = new WP_Query('category_slug=collection&posts_per_page=3');
+$my_query = new WP_Query('category_name=Collection&posts_per_page=3');
 while ($my_query->have_posts()): $my_query->the_post();
 	?>
 						<li>
@@ -67,7 +67,7 @@ while ($my_query->have_posts()): $my_query->the_post();
 			<div class="sliders lower">
 				<ul class="slider-news">
 					<?php
-$my_query = new WP_Query('category_slug=news&posts_per_page=3');
+$my_query = new WP_Query('category_name=News&posts_per_page=3');
 while ($my_query->have_posts()): $my_query->the_post();
 	?>
 						<li>
@@ -88,7 +88,7 @@ while ($my_query->have_posts()): $my_query->the_post();
 			<div class="sliders lower">
 				<ul class="slider-article">
 					<?php
-$my_query = new WP_Query('category_slug=article&posts_per_page=3');
+$my_query = new WP_Query('category_name=Article&posts_per_page=3');
 while ($my_query->have_posts()): $my_query->the_post();
 	?>
 						<li>
