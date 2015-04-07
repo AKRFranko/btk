@@ -1407,6 +1407,9 @@ Woocommerce Overrides
   Temporary Home Page Stylings
 ===
 */
+.home .main-slider .bx-wrapper img {
+  min-width: 100%;
+}
 .home-article {
   border-bottom: 3px solid #000;
   display: block;
@@ -1428,6 +1431,7 @@ Woocommerce Overrides
   padding: .25em .5em;
   position: relative;
   margin-left: 1em;
+  border-radius: 2px 0 0 2px;
 }
 .home-article .tags-links a:before {
   content: "•";
@@ -1435,9 +1439,9 @@ Woocommerce Overrides
   width: 0;
   height: 0;
   color: #fff;
-  border-top: .95em solid transparent;
+  border-top: .9em solid transparent;
   border-right: 1em solid #000;
-  border-bottom: .95em solid transparent;
+  border-bottom: .9em solid transparent;
   top: 0;
   left: -0.9em;
   text-align: center;
@@ -1541,6 +1545,8 @@ Header
   left: 0;
   width: 100%;
   z-index: 10;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
   background: #ffffff;
   margin-bottom: 25px;
 }
