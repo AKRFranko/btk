@@ -25,5 +25,4 @@ config.json
 
 composer.lock
 
-
-src/themes/btk/js/_all.min.js
+wp-cli.yml

@@ -145,18 +145,26 @@ module.exports = function(grunt) {
         }
     }
 
-    /*,
+    ,
     // see: https://github.com/gruntjs/grunt-contrib-compress
     compress: {
         theme: {
             options: {
-                mode: 'tgz'
+                mode: 'zip',
+                archive: '<%= cfg.project_dir %>/build/themes/btk.zip'
             },
             files: [
-                { src: [ ] }
+                { src: [ '**' ], cwd: '<%= cfg.project_dir %>/build/themes/btk', dest: 'btk/', expand: true  }
             ]
         }
-    }*/
+    },
+    // see: https://www.npmjs.com/package/grunt-execute
+    execute: {
+      nwp_deploy_development: {
+        options: { args: [ '-j', '<%= cfg.project_dir %>/src/data/edb-development.json', '-y', '<%= cfg.project_dir %>/wp-cli.yml' ] },
+        src: ['<%= cfg.project_dir %>/node_modules/nwp/bin/nwp']
+      }
+    }
 
   });
 
@@ -164,6 +172,7 @@ module.exports = function(grunt) {
   grunt.registerTask('build', [ 'clean', 'bower_concat' , 'less', 'concat', 'uglify', 'phplint','copy' ] );
   //grunt.registerTask('build_theme', [ 'clean:theme', 'bower_concat:theme' , 'less:theme', 'concat:theme',  'uglify:theme', 'copy:theme' ] );
   
+  grunt.registerTask('release', [ 'build', 'compress', 'execute' ] );
 
   grunt.registerTask('work', [   'build', 'watch' ] );
 

@@ -687,7 +687,8 @@
          { "args": { "key": "default_category", "value": "$cat_news" } },
          { "args": { "key": "woocommerce_allow_tracking", "value": "no" } }
       ]
-   },
+   }
+   ,
    "eval": {
       "args": { "php": "WC_Install::create_pages();WC_Admin_Notices::remove_notice( 'install' );" },
       "opts": { "quiet": true }
