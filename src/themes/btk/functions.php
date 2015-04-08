@@ -132,8 +132,38 @@ function add_slug_body_class( $classes ) {
 }
 add_filter( 'body_class', 'add_slug_body_class' );
 
-//remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40);
-//remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30);
+
+
+/**
+ * Redirect if not logged in on checkout page
+ */
+/*
+function woo_redirect() {
+	if ( ! is_user_logged_in() && is_checkout() ) {
+		wp_redirect( home_url() . '/my-account' );
+		exit;
+	}
+}
+add_action( 'template_redirect', 'woo_redirect' );
+*/
+
+
+/**
+ * Overriding some checkout fields
+ */
+function custom_override_checkout_fields( $fields ) {
+	$fields['billing']['billing_first_name']['placeholder'] = 'first name';
+	$fields['billing']['billing_last_name']['placeholder'] = 'last name';
+	$fields['billing']['billing_email']['placeholder'] = 'email address';
+	unset($fields['billing']['billing_company']);
+	unset($fields['billing']['billing_address_2']);
+	unset($fields['billing']['billing_email']);
+	unset($fields['billing']['billing_phone']);
+	unset($fields['order']['order_comments']);
+	return $fields;
+}
+add_filter( 'woocommerce_checkout_fields', 'custom_override_checkout_fields' );
+
 
 
 

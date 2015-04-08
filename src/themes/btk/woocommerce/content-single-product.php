@@ -70,13 +70,15 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 		</ul>
 
 		<?php if ( $product->is_in_stock() ) { ?>
-		<span class="in-stock">in stock</span>
+		<span class="in-stock"<?php if ( count( $product->get_gallery_attachment_ids() ) > 0 ) { echo ' style="bottom:80px;"'; } ?>>in stock</span>
 		<?php } ?>
 
+		<?php if ( count( $product->get_gallery_attachment_ids() ) > 0 ) { ?>
 		<div class="product-slider-controls">
 			<span id="controls-prev" class="icon-arrow-lite-left-black"></span>
 			<span id="controls-next" class="icon-arrow-lite-right-black"></span>
 		</div>
+		<?php } ?>
 	</div>
 
 
