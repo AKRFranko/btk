@@ -136,7 +136,6 @@ add_filter('show_admin_bar', '__return_false');
 /**
  * Redirect if not logged in on checkout page
  */
-/*
 function woo_redirect() {
 	if ( ! is_user_logged_in() && is_checkout() ) {
 		wp_redirect( home_url() . '/my-account' );
@@ -144,7 +143,7 @@ function woo_redirect() {
 	}
 }
 add_action( 'template_redirect', 'woo_redirect' );
-*/
+
 
 
 /**
