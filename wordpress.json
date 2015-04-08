@@ -1,3 +1,248 @@
 {
- "plugins": ["social-media-feather", "woocommerce", "woocommerce-poor-guys-swiss-knife", "wp-maintenance-mode", "contact-form-7", "rvg-optimize-database", "simple-page-ordering" ]
+ "plugin": {
+    "install": [
+      {
+        "src": "social-media-feather",
+        "force": true,
+        "activate": true
+      },
+      {
+        "src": "woocommerce",
+        "force": true,
+        "activate": true
+      },{
+        "src": "contact-form-7",
+        "force": true,
+        "activate": true
+      },{
+        "src": "rvg-optimize-database",
+        "force": true,
+        "activate": true
+      },{
+        "src": "simple-page-ordering",
+        "force": true,
+        "activate": true
+      },
+      { 
+        "src": "woocommerce-poor-guys-swiss-knife",
+        "activate": false
+      },
+      { 
+        "src": "wp-maintenance-mode",
+        "activate": false
+      }
+    ]
+ },
+ "category": {
+    "create": [
+        {
+          "term": "caroussel",
+          "slug": "caroussel",
+          "description": "This category determines if a post's featured image will be shown in the caroussel."
+        },
+        {
+          "term": "news",
+          "slug": "news",
+          "description": "This category is for blog posts that should end up in the news section."
+        },
+        {
+          "term": "article",
+          "slug": "article",
+          "description": "This category is for generic blog posts."
+        },
+        {
+          "term": "collection",
+          "slug": "collection",
+          "description": "Bundle items by collection."
+        }
+    ]
+ },
+ "post": {
+    "create": [
+        {
+          "post_type": "post",
+          "post_title": "a temporary news item",
+          "post_status": "publish",
+          "post_category": "caroussel,news",
+          "src": "src/data/content/news-1.txt",
+          "media": [
+            "news-1-01.jpg",
+            "news-1-02.jpg",
+            "news-1-03.jpg"
+          ]
+        },{
+          "post_type": "post",
+          "post_title": "another news item",
+          "post_status": "publish",
+          "post_category": "caroussel,news",
+          "src": "src/data/content/news-2.txt",
+          "media": [
+            "news-2-01.jpg"
+          ]
+        },{
+          "post_type": "post",
+          "post_title": "it's all about the news",
+          "post_status": "publish",
+          "post_category": "caroussel,news",
+          "src": "src/data/content/news-3.txt",
+          "media": [
+            "news-3-01.jpg"
+          ]
+        },{
+          "post_type": "post",
+          "post_title": "news to you is news to me",
+          "post_status": "publish",
+          "post_category": "caroussel,news",
+          "src": "src/data/content/news-4.txt",
+          "media": [
+            "news-4-01.jpg",
+            "news-4-02.jpg",
+            "news-4-03.jpg"
+          ]
+        },{
+          "post_type": "post",
+          "post_title": "i news this was going to happen",
+          "post_status": "publish",
+          "post_category": "caroussel,news",
+          "src": "src/data/content/news-5.txt",
+          "media": [
+            "news-5-01.jpg",
+            "news-5-02.jpg",
+            "news-5-03.jpg"
+          ]
+        },{
+          "post_type": "page",
+          "post_title": "about / faq",
+          "post_name": "about",
+          "post_status": "publish",
+          "src":"src/data/content/about.txt"
+        },{
+          "post_type": "page",
+          "post_title": "in the press",
+          "post_name": "press",
+          "post_status": "publish",
+          "src":"src/data/content/press.txt"
+        },
+        {
+          "post_type": "page",
+          "post_title": "trade & designers",
+          "post_name": "trade",
+          "post_status": "publish",
+          "src":"src/data/content/trade.txt"
+        },
+        {
+          "post_type": "page",
+          "post_title": "environment",
+          "post_name": "environment",
+          "post_status": "publish",
+          "src":"src/data/content/environment.txt"
+        },
+        {
+          "post_type": "page",
+          "post_title": "shipping info",
+          "post_name": "shipping",
+          "post_status": "publish",
+          "src":"src/data/content/shipping.txt"
+        },
+        {
+          "post_type": "page",
+          "post_title": "return & exchange",
+          "post_name": "exchange",
+          "post_status": "publish",
+          "src":"src/data/content/exchange.txt"
+        },
+        {
+          "post_type": "page",
+          "post_title": "privacy policy",
+          "post_name": "privacy",
+          "post_status": "publish",
+          "src":"src/data/content/privacy.txt"
+        },
+        {
+          "post_type": "page",
+          "post_title": "terms of use",
+          "post_name": "terms",
+          "post_status": "publish",
+          "src":"src/data/content/terms.txt"
+        },
+        {
+          "post_type": "page",
+          "post_title": "reward program",
+          "post_name": "affiliate",
+          "post_status": "publish",
+          "src":"src/data/content/affiliate.txt"
+        }
+     ] 
+  },
+  "menu": {
+    "create": [
+      {
+        "name": "hamburger"
+        "items": [
+          { 
+              "type": "post",
+              "post": "products",
+              "title": "products"
+          },
+          { 
+              "type": "post",
+              "post": "lookbook",
+              "title": "lookbook"
+          },
+          { 
+              "type": "post",
+              "post": "order-samples",
+              "title": "order samples"
+          },
+          { 
+              "type": "post",
+              "post": "free-delivery",
+              "title": "free delivery"
+          },
+          { 
+              "type": "post",
+              "post": "about",
+              "title": "about"
+          },
+          { 
+              "type": "post",
+              "post": "contact",
+              "title": "contact"
+          }
+        ]
+      },
+      {
+        "name": "header"
+        "items": [
+          { 
+              "type": "post",
+              "post": "sign-in",
+              "title": "sign in"
+          },
+          { 
+              "type": "post",
+              "post": "cart",
+              "title": "cart"
+          }
+        ]
+      },
+      {
+        "name": "header"
+        "items": [
+          { 
+              "type": "post",
+              "post": "sign-in",
+              "title": "sign in"
+          },
+          { 
+              "type": "post",
+              "post": "cart",
+              "title": "cart"
+          }
+        ]
+      }
+    ],
+    
+  },
+
 }

@@ -1,0 +1,14 @@
+path: /path/to/your/wordpress
+url: http://example.com
+user: admin
+no-color: true
+
+core install:
+  admin_user: admin
+  admin_password: 12345678
+  admin_email: admin@example.com
+
+core config:
+  dbuser: wordpress
+  dbpass: 987654321
+	

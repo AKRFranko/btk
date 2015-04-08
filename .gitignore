@@ -24,3 +24,5 @@ config.json
 # Ignore composer lock for now...
 
 composer.lock
+
+wp-cli.yml

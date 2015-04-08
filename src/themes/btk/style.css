@@ -1473,6 +1473,74 @@ Woocommerce Overrides
   min-height: 1em;
 }
 /*
+===
+  Temporary Home Page Stylings
+===
+*/
+.home .main-slider .bx-wrapper img {
+  min-width: 100%;
+}
+.home-article {
+  border-bottom: 3px solid #000;
+  display: block;
+}
+.home-article header {
+  padding: auto 1em;
+}
+.home-article .cat-links,
+.home-article .tags-links {
+  display: inline-block;
+}
+.home-article .cat-links a,
+.home-article .tags-links a {
+  display: inline-block;
+}
+.home-article .tags-links a {
+  background: #000;
+  color: #fff;
+  padding: .25em .5em;
+  position: relative;
+  margin-left: 1em;
+  border-radius: 2px 0 0 2px;
+}
+.home-article .tags-links a:before {
+  content: "•";
+  position: absolute;
+  width: 0;
+  height: 0;
+  color: #fff;
+  border-top: .9em solid transparent;
+  border-right: 1em solid #000;
+  border-bottom: .9em solid transparent;
+  top: 0;
+  left: -0.9em;
+  text-align: center;
+  text-indent: .5em;
+  line-height: 0;
+}
+.home-article .cat-links a {
+  color: inherit;
+  font-weight: inherit;
+  font-siz: inherit;
+}
+.home-article .cat-links a:after {
+  content: ' /';
+}
+.home-article .cat-links a:last-child:after {
+  content: ' :';
+}
+.home-article .home-article-image {
+  width: 100%;
+  margin-top: .5em;
+}
+.home-article .home-article-image a {
+  display: block;
+  width: 100%;
+}
+.home-article .home-article-image a img {
+  min-width: 100%;
+}
+/*
 ==========================================================================
 Overridez
 ==========================================================================
@@ -1547,6 +1615,8 @@ Header
   left: 0;
   width: 100%;
   z-index: 10;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
   background: #ffffff;
   margin-bottom: 25px;
 }
@@ -1792,6 +1862,9 @@ Slider
 .main-slider {
   height: 76vmax;
   border-bottom: 3px solid #000000;
+  min-height: 76vmax;
+  max-height: 76vmax;
+  overflow: hidden;
 }
 .main-slider .bx-wrapper {
   height: 100% !important;

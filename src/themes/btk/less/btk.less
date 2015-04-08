@@ -12,7 +12,72 @@ Dependencies
 @import '_edbicons';
 
 
+/*
+===
+  Temporary Home Page Stylings
+===
+*/
+.home .main-slider .bx-wrapper img{
+	min-width:100%;
+}
+.home-article{
+	border-bottom:3px solid #000;
+	
+	display:block;
+	header{
+		padding:auto 1em;
+	}
+		.cat-links,.tags-links{
+			display:inline-block;
+		}
+		.cat-links a, .tags-links a{
+			display:inline-block;
+		}
+		.tags-links a{
+			background:#000;
+			color:#fff;
+			padding: .25em .5em;
+			position:relative;
+			margin-left:1em;
+			border-radius:2px 0 0 2px;
+			&:before{
+			  content: "•";
+			  position: absolute;
+			  width: 0;
+			  height: 0;
+			  color: #fff;
+			  border-top: .9em solid transparent;
+			  border-right: 1em solid #000;
+			  border-bottom: .9em solid transparent;
+			  top: 0;
+			  left: -0.9em;
+			  text-align: center;
+			  text-indent: .5em;
+			  line-height: 0;
+			}
+		}
+		.cat-links a{
+			color:inherit;
+			font-weight:inherit;
+			font-siz:inherit;
+			&:after{
+				content: ' /';
+			}
+			&:last-child:after{
+				content: ' :';
+			}
+		}
+	.home-article-image{
+		width:100%;
+		margin-top:.5em;
+		a{ 
+			display:block; width:100%;
+			img{ min-width: 100% }
 
+		}
+	}
+
+}
 
 /*
 ==========================================================================
@@ -59,6 +124,8 @@ Header
 
 #header-box {
 	position:fixed; left:0; width:100%; z-index:10;
+	// fix for chrome "fixed" flicker
+	-webkit-backface-visibility:hidden; -webkit-transform: translateZ(0);
 	background:@headerbkgcolor; margin-bottom:25px;
 	&.open { .open-menu(); }
 
@@ -177,6 +244,9 @@ Slider
 
 .main-slider {
 	height:76vmax; .imgborder();
+	// Helps pageload flickr.
+	min-height:76vmax;max-height:76vmax;overflow:hidden; 
+
 
 	.bx-wrapper {
 		height:100% !important;
@@ -365,6 +435,5 @@ Footer
 		a { display:block; padding:5px 0; color:@white; }
 	}
 }
-
 
 
