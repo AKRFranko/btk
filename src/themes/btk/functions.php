@@ -145,7 +145,6 @@ function woo_redirect() {
 add_action( 'template_redirect', 'woo_redirect' );
 
 
-
 /**
  * Overriding some checkout fields
  */

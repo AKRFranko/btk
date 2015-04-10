@@ -1438,11 +1438,14 @@ Woocommerce Overrides
   padding-top: 2px;
 }
 .woocommerce .checkout .col2-set {
-  padding: 0 15px;
+  margin-bottom: 25px;
+  padding: 0 15px 95px;
+  border-bottom: 3px solid #000000;
 }
 .woocommerce .checkout .col2-set .col-1 {
   float: none;
   width: 100%;
+  padding-bottom: 20px;
 }
 .woocommerce .checkout .col2-set .col-2 {
   display: none;
@@ -1450,6 +1453,66 @@ Woocommerce Overrides
 .woocommerce .checkout .select2-container .select2-choice {
   padding: 0;
   border: none;
+}
+.woocommerce .checkout .create-account {
+  display: none;
+}
+.woocommerce .checkout .woocommerce-checkout-review-order-table {
+  padding: 0 15px 20px;
+}
+.woocommerce .checkout .woocommerce-checkout-review-order-table p {
+  margin: 0;
+}
+.woocommerce .checkout .woocommerce-checkout-review-order-table strong {
+  font-weight: normal;
+}
+.woocommerce .checkout .woocommerce-checkout-review-order-table .cart_item,
+.woocommerce .checkout .woocommerce-checkout-review-order-table .cart-subtotal,
+.woocommerce .checkout .woocommerce-checkout-review-order-table .cart-discount,
+.woocommerce .checkout .woocommerce-checkout-review-order-table .tax-total,
+.woocommerce .checkout .woocommerce-checkout-review-order-table .shipping {
+  padding-bottom: 4px;
+}
+.woocommerce .checkout .woocommerce-checkout-review-order-table .cart-subtotal,
+.woocommerce .checkout .woocommerce-checkout-review-order-table .order-total {
+  margin-top: 5px;
+  padding-top: 15px;
+  border-top: 1px solid #000000;
+}
+.woocommerce .forms {
+  position: relative;
+}
+.woocommerce form.checkout-coupon {
+  position: absolute;
+  top: 280px;
+  padding: 15px;
+  width: 100%;
+}
+.woocommerce form.checkout-coupon p {
+  margin: 0 !important;
+  padding: 0;
+}
+.woocommerce form.checkout-coupon h3 {
+  margin: 0 0 8px;
+  font-size: 1.25em;
+}
+.woocommerce form.checkout-coupon input {
+  font-size: 0.95em;
+  border-bottom: 1px solid #000000;
+}
+.woocommerce form.checkout-coupon input.input-text {
+  width: 73%;
+}
+.woocommerce form.checkout-coupon .button {
+  position: absolute;
+  right: 15px;
+  top: 35px;
+  font-weight: normal;
+  width: 22%;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 0;
+  text-align: center;
 }
 .icon-arrow-lite-left-white,
 .icon-arrow-lite-left-black,

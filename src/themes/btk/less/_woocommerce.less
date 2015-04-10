@@ -215,13 +215,36 @@ Woocommerce Overrides
 		#billing_country_field, #billing_state_field { padding-bottom:3px; border-bottom:1px solid @black; }
 		#billing_state_field { padding-top:2px; }
 		.col2-set {
-			padding:0 15px;
-			.col-1 { float:none; width:100%; }
+			margin-bottom:25px; padding:0 15px 95px; .imgborder();
+			.col-1 { float:none; width:100%; padding-bottom:20px; }
 			.col-2 { display:none; }
 		}
 		.select2-container .select2-choice { padding:0; border:none; }
+		.create-account { display:none; }
+
+		.woocommerce-checkout-review-order-table {
+			padding:0 15px 20px;
+			p { margin:0; }
+			strong { font-weight:normal; }
+			.cart_item, .cart-subtotal,
+			.cart-discount, .tax-total, .shipping { padding-bottom:4px; }
+			.cart-subtotal, .order-total { margin-top:5px; padding-top:15px; border-top:1px solid @black; }
+		}
 	}
 
+	.forms { position:relative; }
+	form.checkout-coupon {
+		position:absolute; top:280px; padding:15px; width:100%;
+		p { margin:0 !important; padding:0; }
+		h3 { margin:0 0 8px; font-size:1.25em; }
+		input { font-size:0.95em; border-bottom:1px solid @black; }
+		input.input-text { width:73%; }
+		.button {
+			position:absolute; right:15px; top:35px; font-weight:normal; width:22%;
+			background-color:@white; border:1px solid @black; border-radius:0;
+			text-align:center;
+		}
+	}
 }
 
 
