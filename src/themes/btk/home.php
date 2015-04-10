@@ -61,22 +61,21 @@ get_header();?>
 
 		<?php /* Start the Loop */?>
 			<?php while ($my_query->have_posts()): $my_query->the_post();?>
-				<article class="home-article">
-					<header>
-						<h1><?php btk_home_entry_categories();?> <a href="<?php echo get_permalink();?>"><?php the_title();?></a></h1>
-						<?php btk_home_entry_tags();?>
-					</header>
-					<div class="home-article-image">
-						<a href="<?php echo get_permalink();?>">
-						<?php if (has_post_thumbnail()): ?>
-							<?php
-								$hires = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
-								$lores = wp_get_attachment_image_src(get_post_thumbnail_id(), 'medium');
-								echo '<img src="' . $lores[0] . '" data-hires-image="' . $hires[0] . '">';
-							?>
-						<?php ;endif;?></a>
-					</div>
-				</article>
+				<div class="main-article">
+					<a href="<?php echo get_permalink();?>">
+					<?php if (has_post_thumbnail()): ?>
+						<?php
+							$hires = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
+							$lores = wp_get_attachment_image_src(get_post_thumbnail_id(), 'medium');
+							echo '<img src="' . $lores[0] . '" data-hires-image="' . $hires[0] . '">';
+						?>
+					<?php ;endif;?></a>
+					<p>
+						<?php btk_home_entry_categories();?>
+						<a href="<?php echo get_permalink();?>"><?php the_title();?></a>
+					</p>
+					<?php btk_home_entry_tags();?>
+				</div>
 			<?php endwhile;?>
 
 			<?php //the_posts_navigation();?>

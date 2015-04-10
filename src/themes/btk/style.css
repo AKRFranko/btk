@@ -1066,6 +1066,9 @@ Woocommerce Overrides
 .woocommerce-checkout .qty-sub {
   display: none;
 }
+.woocommerce {
+  min-height: 250px;
+}
 .woocommerce ul.products {
   margin: 0;
 }
@@ -1514,6 +1517,12 @@ Woocommerce Overrides
   border-radius: 0;
   text-align: center;
 }
+.woocommerce .return-to-shop {
+  display: none;
+}
+.woocommerce .cart-empty {
+  margin-bottom: 3em !important;
+}
 .icon-arrow-lite-left-white,
 .icon-arrow-lite-left-black,
 .icon-arrow-lite-left-grey,
@@ -1540,25 +1549,20 @@ Woocommerce Overrides
   Temporary Home Page Stylings
 ===
 */
-.home .main-slider .bx-wrapper img {
-  min-width: 100%;
-}
-.home-article {
-  border-bottom: 3px solid #000;
+.home .main-article {
   display: block;
+  border-bottom: 3px solid #000000;
 }
-.home-article header {
-  padding: auto 1em;
-}
-.home-article .cat-links,
-.home-article .tags-links {
+.home .main-article .cat-links,
+.home .main-article .tags-links {
   display: inline-block;
 }
-.home-article .cat-links a,
-.home-article .tags-links a {
+.home .main-article .cat-links a,
+.home .main-article .tags-links a {
   display: inline-block;
+  padding-right: 0;
 }
-.home-article .tags-links a {
+.home .main-article .tags-links a {
   background: #000;
   color: #fff;
   padding: .25em .5em;
@@ -1566,7 +1570,7 @@ Woocommerce Overrides
   margin-left: 1em;
   border-radius: 2px 0 0 2px;
 }
-.home-article .tags-links a:before {
+.home .main-article .tags-links a:before {
   content: "•";
   position: absolute;
   width: 0;
@@ -1581,26 +1585,26 @@ Woocommerce Overrides
   text-indent: .5em;
   line-height: 0;
 }
-.home-article .cat-links a {
+.home .main-article .cat-links a {
   color: inherit;
   font-weight: inherit;
-  font-siz: inherit;
+  font-size: inherit;
 }
-.home-article .cat-links a:after {
+.home .main-article .cat-links a:after {
   content: ' /';
 }
-.home-article .cat-links a:last-child:after {
+.home .main-article .cat-links a:last-child:after {
   content: ' :';
 }
-.home-article .home-article-image {
+.home .main-article .home-article-image {
   width: 100%;
   margin-top: .5em;
 }
-.home-article .home-article-image a {
+.home .main-article .home-article-image a {
   display: block;
   width: 100%;
 }
-.home-article .home-article-image a img {
+.home .main-article .home-article-image a img {
   min-width: 100%;
 }
 /*
@@ -1934,6 +1938,7 @@ Slider
 }
 .main-slider .bx-wrapper img {
   display: none !important;
+  min-width: 100%;
 }
 .main-slider .bx-wrapper .bx-viewport {
   height: 100% !important;
@@ -2180,16 +2185,8 @@ Content
 .home .main-collection p a,
 .home .main-news p a,
 .home .main-article p a {
-  display: block;
+  display: inline-block;
   padding: 20px 15px;
-}
-.home .main-collection p span,
-.home .main-news p span,
-.home .main-article p span {
-  position: absolute;
-  bottom: 18px;
-  right: 10px;
-  font-size: 1.5em;
 }
 /*
 ==========================================================================
