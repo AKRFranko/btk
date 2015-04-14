@@ -19,22 +19,23 @@ get_header();?>
 			<div class="main-slider">
 				<ul class="slider">
 				<?php
-					$my_query = new WP_Query('category_name=carousel&posts_per_page=5');
-					while ($my_query->have_posts()): $my_query->the_post();
-				?>
-					<li style="background-image: url(<?php if (has_post_thumbnail()): $src = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full'); echo $src[0];endif;?>);">
-					<?php if (has_post_thumbnail()): ?>
-					<?php
-						$hires = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
-						$lores = wp_get_attachment_image_src(get_post_thumbnail_id(), 'large');
-						echo '<img src="' . $lores[0] . '" data-hires-image="' . $hires[0] . '">';
-					?>
-					<?php endif;?>
-						<div class="caption center">
-							<h2 class="upper"><?php the_title();?></h2>
-						</div>
-					</li>
-				<?php endwhile;?>
+$my_query = new WP_Query('category_name=carousel&posts_per_page=5');
+while ($my_query->have_posts()): $my_query->the_post();
+	?>
+						<li style="background-image: url(<?php if (has_post_thumbnail()): $src = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
+		echo $src[0];endif;?>);">
+						<?php if (has_post_thumbnail()): ?>
+						<?php
+	$hires = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
+	$lores = wp_get_attachment_image_src(get_post_thumbnail_id(), 'large');
+	echo '<img src="' . $lores[0] . '" data-hires-image="' . $hires[0] . '">';
+	?>
+						<?php endif;?>
+							<div class="caption center">
+								<h2 class="upper"><?php the_title();?></h2>
+							</div>
+						</li>
+					<?php endwhile;?>
 				</ul>
 
 				<div class="main-controls">
@@ -50,33 +51,33 @@ get_header();?>
 
 
 		<?php
-			$paged = (get_query_var('page')) ? get_query_var('page') : 1;
-			$my_query = new WP_Query(array(
-				"paged" => $paged,
-				"category_name" => "news",
-				"posts_per_page" => 5,
-			));
-		?>
+$paged = (get_query_var('page')) ? get_query_var('page') : 1;
+$my_query = new WP_Query(array(
+	"paged" => $paged,
+	"category_name" => "news",
+	"posts_per_page" => 5,
+));
+?>
 		<?php if ($my_query->have_posts()): ?>
 
 		<?php /* Start the Loop */?>
 			<?php while ($my_query->have_posts()): $my_query->the_post();?>
-				<div class="main-article">
-					<a href="<?php echo get_permalink();?>">
-					<?php if (has_post_thumbnail()): ?>
-						<?php
-							$hires = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
-							$lores = wp_get_attachment_image_src(get_post_thumbnail_id(), 'medium');
-							echo '<img src="' . $lores[0] . '" data-hires-image="' . $hires[0] . '">';
-						?>
-					<?php ;endif;?></a>
-					<p>
-						<?php btk_home_entry_categories();?>
-						<a href="<?php echo get_permalink();?>"><?php the_title();?></a>
-					</p>
-					<?php btk_home_entry_tags();?>
-				</div>
-			<?php endwhile;?>
+					<div class="main-article">
+						<a href="<?php echo get_permalink();?>">
+						<?php if (has_post_thumbnail()): ?>
+							<?php
+	$hires = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
+	$lores = wp_get_attachment_image_src(get_post_thumbnail_id(), 'medium');
+	echo '<img src="' . $lores[0] . '" data-hires-image="' . $hires[0] . '">';
+	?>
+						<?php ;endif;?></a>
+						<p>
+							<?php //btk_home_entry_categories();?>
+							<a href="<?php echo get_permalink();?>"><?php the_title();?></a>
+						</p>
+						<?php //btk_home_entry_tags();?>
+					</div>
+				<?php endwhile;?>
 
 			<?php //the_posts_navigation();?>
 
