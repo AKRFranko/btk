@@ -194,6 +194,7 @@ Woocommerce Overrides
 
 // checkout
 	.checkout {
+		margin-bottom:0 !important;
 		h3 { margin:0 0 15px; }
 		label { font-weight:normal; }
 		input { text-transform:lowercase; font-size:0.95em; border-bottom:1px solid @black; }
@@ -248,6 +249,32 @@ Woocommerce Overrides
 	}
 	.return-to-shop { display:none; }
 	.cart-empty { margin-bottom:3em !important; }
+
+	.woocommerce-checkout {
+		#payment {
+			padding:0 15px; background-color:transparent;
+			p.form-row {
+				padding:0;
+				span { margin-right:5px; }
+				label { display:inline-block; }
+				#place_order { float:none; }
+			}
+			.terms { text-align:left; }
+			input[type='submit'] {
+				padding:0.75em 2em; font-size:1.4em;
+				background-position:center center; border-bottom:none;
+				&:hover { background-color:#444; }
+			}
+		}
+	}
 }
+
+
+
+
+@media (max-width: 767px) {
+	.woocommerce #payment #place_order { width:initial; margin-bottom:0; }
+}
+
 
 

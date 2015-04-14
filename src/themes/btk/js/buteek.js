@@ -144,5 +144,23 @@
 	});
 
 
+	$('#terms').on('change', function() {
+		alert('test');
+		console.log('test');
+		if ( $(this).is(':checked') ) {
+			$(this).removeClass('fa-square').addClass('fa-check-square');
+		} else {
+			$(this).removeClass('fa-check-square').addClass('fa-square');
+		}
+	});
+
+
+	if ( ! $('#terms').prop('checked') ) {
+		$(this).addClass('fa-square').removeClass('fa-check-square');
+	} else {
+		$(this).addClass('fa-check-square').removeClass('fa-square');
+	}
+
+
 } )( jQuery );
 

@@ -1395,6 +1395,7 @@ Woocommerce Overrides
   border: 2px solid #000000;
 }
 .woocommerce .checkout {
+  margin-bottom: 0 !important;
   /*
 		#billing_company_field,
 		#billing_phone_field,
@@ -1522,6 +1523,40 @@ Woocommerce Overrides
 }
 .woocommerce .cart-empty {
   margin-bottom: 3em !important;
+}
+.woocommerce .woocommerce-checkout #payment {
+  padding: 0 15px;
+  background-color: transparent;
+}
+.woocommerce .woocommerce-checkout #payment p.form-row {
+  padding: 0;
+}
+.woocommerce .woocommerce-checkout #payment p.form-row span {
+  margin-right: 5px;
+}
+.woocommerce .woocommerce-checkout #payment p.form-row label {
+  display: inline-block;
+}
+.woocommerce .woocommerce-checkout #payment p.form-row #place_order {
+  float: none;
+}
+.woocommerce .woocommerce-checkout #payment .terms {
+  text-align: left;
+}
+.woocommerce .woocommerce-checkout #payment input[type='submit'] {
+  padding: 0.75em 2em;
+  font-size: 1.4em;
+  background-position: center center;
+  border-bottom: none;
+}
+.woocommerce .woocommerce-checkout #payment input[type='submit']:hover {
+  background-color: #444;
+}
+@media (max-width: 767px) {
+  .woocommerce #payment #place_order {
+    width: initial;
+    margin-bottom: 0;
+  }
 }
 .icon-arrow-lite-left-white,
 .icon-arrow-lite-left-black,
