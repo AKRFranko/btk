@@ -1586,7 +1586,6 @@ Woocommerce Overrides
 */
 .home .main-article {
   display: block;
-  border-bottom: 3px solid #000000;
 }
 .home .main-article .cat-links,
 .home .main-article .tags-links {
@@ -1662,7 +1661,8 @@ Overridez
 .navbar-toggle {
   margin: 0;
 }
-div.wpcf7-validation-errors {
+.wpcf7-validation-errors,
+.wpcf7-response-output {
   clear: both;
 }
 @media (max-width: 767px) {
@@ -2082,6 +2082,9 @@ Slider
   .sliders img {
     max-height: 100%;
   }
+}
+.safari .main-slider .slider li {
+  background-attachment: scroll;
 }
 /*
 ==========================================================================
