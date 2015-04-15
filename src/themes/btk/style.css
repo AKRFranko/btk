@@ -1584,6 +1584,12 @@ Woocommerce Overrides
   Temporary Home Page Stylings
 ===
 */
+.edb-slider .slide-text {
+  font-size: 1.75em;
+}
+.edb-slider .controls {
+  font-size: 1em;
+}
 .home .main-article {
   display: block;
 }

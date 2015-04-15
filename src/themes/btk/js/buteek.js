@@ -1,5 +1,7 @@
-( function( $ ) {
+( function( $ ) { $( window ).load( function(){
+	
 
+	
 	// back to top
 	$('#back-to-top a').on('click', function(e) {
 		e.preventDefault();
@@ -82,6 +84,13 @@
 		pagerShortSeparator: ' | '
 	});
 
+	
+	$('.edb-slider').each( function(){
+		var slider = window.EDBSlider( $(this).get(0) );
+		slider.toggle( 0, 'on');
+	});
+
+
 /*
 	// carousel collections
 	$('.slider-collections').bxSlider({
@@ -162,5 +171,5 @@
 	}
 
 
-} )( jQuery );
+} ) } )( jQuery );
 
