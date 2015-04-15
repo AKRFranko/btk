@@ -1,0 +1,8 @@
+{
+	"theme": {
+	   "install": {
+	      "args": { "theme": "./build/themes/btk.zip" },
+	      "opts": { "force": true, "activate": true, "quiet": true }
+	   }
+	}
+}

@@ -1,0 +1,21 @@
+{
+  "name": "edb-slider",
+  "version": "0.0.0",
+  "homepage": "https://github.com/AKRFranko/btk",
+  "authors": [
+    "franko <franko@akr.club>"
+  ],
+  "main": ["edb.slider.js","edb.slider.css"],
+  "moduleType": [
+    "globals"
+  ],
+  
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

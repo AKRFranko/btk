@@ -163,6 +163,10 @@ module.exports = function(grunt) {
       nwp_deploy_development: {
         options: { args: [ '-j', '<%= cfg.project_dir %>/src/data/edb-development.json', '-y', '<%= cfg.project_dir %>/wp-cli.yml' ] },
         src: ['<%= cfg.project_dir %>/node_modules/nwp/bin/nwp']
+      },
+      nwp_themeonly_development: {
+        options: { args: [ '-j', '<%= cfg.project_dir %>/src/data/edb-themeonly.json', '-y', '<%= cfg.project_dir %>/wp-cli.yml' ] },
+        src: ['<%= cfg.project_dir %>/node_modules/nwp/bin/nwp']
       }
     }
 
@@ -173,6 +177,7 @@ module.exports = function(grunt) {
   //grunt.registerTask('build_theme', [ 'clean:theme', 'bower_concat:theme' , 'less:theme', 'concat:theme',  'uglify:theme', 'copy:theme' ] );
   
   grunt.registerTask('release', [ 'build', 'compress', 'execute' ] );
+  grunt.registerTask('install', [ 'build', 'compress', 'execute:nwp_themeonly_development' ] );
 
   grunt.registerTask('work', [   'build', 'watch' ] );
 

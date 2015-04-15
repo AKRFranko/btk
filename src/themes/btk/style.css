@@ -1584,9 +1584,14 @@ Woocommerce Overrides
   Temporary Home Page Stylings
 ===
 */
+.edb-slider .slide-text {
+  font-size: 1.75em;
+}
+.edb-slider .controls {
+  font-size: 1.5em;
+}
 .home .main-article {
   display: block;
-  border-bottom: 3px solid #000000;
 }
 .home .main-article .cat-links,
 .home .main-article .tags-links {
@@ -2082,6 +2087,9 @@ Slider
   .sliders img {
     max-height: 100%;
   }
+}
+.safari .main-slider .slider li {
+  background-attachment: scroll;
 }
 /*
 ==========================================================================

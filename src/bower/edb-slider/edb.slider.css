@@ -1,0 +1,116 @@
+.edb-slider, .edb-slider *{
+	margin:0;padding:0;
+}
+.edb-slider{
+	  z-index:5;
+	  width: 100%;
+  	  min-width: 100%;
+  	  height: 0;
+  	  padding-bottom: 76%;
+	  padding-bottom:calc( 100% - 100px );
+      display: block;
+      position: relative;
+      white-space: nowrap;
+      max-width: 100%;
+      overflow: hidden;
+ }
+
+.edb-slider .slide{
+	z-index:25;
+	white-space: normal;
+  	display: inline-block;
+  	width: 100%;
+  	height:0;
+	padding-bottom: 76%;
+	padding-bottom:calc( 100% - 100px );  	
+
+  	background-position:center;
+  	background-size:100% 100%;
+  	background-size:cover;
+  	position:absolute;
+  	-moz-transition:all .1s ease-in-out;
+  	-webkit-transition:all  .1s ease-in-out;
+  	-o-transition:all  .1s ease-in-out;
+  	transition:all  .1s ease-in-out;
+  	margin-left:0;
+ }
+.edb-slider .slide-link{
+	z-index:50;
+	position:absolute;
+	display:block;
+	width:100%;
+	height:100%;
+	text-align:center;
+	top:0;left:0;
+}
+/*.edb-slider .slide-link:hover,
+.edb-slider .slide-link:active{
+	background:rgba(0,0,0,0.15);
+}*/
+.edb-slider .slide-text{
+	position:absolute;
+	display:inline-block;
+	top:50%;
+	left:10%;
+	width:80%;
+	text-align:center;
+	top:calc( 50% - 1em );
+	color:#fff;
+	text-decoration: none;
+	text-shadow:0 0 1px rgba(0,0,0,0.3);
+	font-size:1.5em;
+}
+
+.edb-slider .controls{
+	position:absolute;
+	z-index:100;
+	top:100%;
+	left:0;
+	width:100%;
+	height:3em;
+	margin-top:-3em;
+	padding-top:1em;
+	text-align:center;
+	white-space:nowrap;
+	/*background:rgba(0,0,0,0.05);*/
+	/*transition:background .2s .2s ease-in;*/
+}
+/*.edb-slider .controls:hover,
+.edb-slider .controls:active{
+	background:rgba(0,0,0,0.5);	
+}*/
+.edb-slider .controls .prev,
+.edb-slider .controls .next,
+.edb-slider .controls .index,
+.edb-slider .controls .separator,
+.edb-slider .controls .total{
+	white-space:normal;
+	display:inline-block;
+	color:#fff;
+	text-shadow:0 0 1px rgba(0,0,0,0.3);
+	
+}
+.edb-slider .controls .prev,
+.edb-slider .controls .next{
+	padding-left:2em;
+	padding-right:2em;
+}
+.edb-slider .prev *,.edb-slider .next *{
+	color:inherit;
+}
+
+.edb-slider .slide img{
+	display:none;
+}
+.edb-slider .slide {
+	margin-left:-100%;
+}
+.edb-slider .slide.active{
+	margin-left:0;
+}
+.edb-slider .slide.active + .slide{
+	margin-left:100%;
+}
+.edb-slider .slide.active + .slide ~ .slide {
+	margin-left:200%;
+}
