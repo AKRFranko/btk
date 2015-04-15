@@ -1,5 +1,7 @@
-( function( $ ) {
+( function( $ ) { $( window ).load( function(){
+	
 
+	
 	// back to top
 	$('#back-to-top a').on('click', function(e) {
 		e.preventDefault();
@@ -162,5 +164,5 @@
 	}
 
 
-} )( jQuery );
+} ) } )( jQuery );
 
