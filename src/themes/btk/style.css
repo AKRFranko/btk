@@ -1052,7 +1052,6 @@ Base Styles Responsive Design
 Woocommerce Overrides
 ==========================================================================
 */
-.woocommerce .page-title,
 .woocommerce-breadcrumb,
 .woocommerce-ordering,
 .woocommerce-result-count {
@@ -1099,6 +1098,7 @@ Woocommerce Overrides
   left: 15px;
 }
 .woocommerce ul.products li.product .product-desc {
+  position: relative;
   width: 100%;
   font-size: 1.35em;
 }
@@ -1248,6 +1248,7 @@ Woocommerce Overrides
   padding-bottom: 25px;
 }
 .woocommerce .product .product-add {
+  display: none;
   padding: 20px 15px;
   border-bottom: 3px solid #000000;
 }
@@ -1294,6 +1295,12 @@ Woocommerce Overrides
 }
 .woocommerce .product .product-add form.cart button:hover {
   background-color: #444;
+}
+.woocommerce.lookbook .product .product-add {
+  display: block;
+}
+.woocommerce.lookbook .product .product-add:last-child {
+  border: none;
 }
 .woocommerce .quantity {
   float: right;
@@ -2100,6 +2107,10 @@ Content
 #content {
   margin-top: 100px;
 }
+#content h1 {
+  margin: 0.67em 15px;
+  font-size: 1.75em;
+}
 #content article {
   margin: 0;
 }
@@ -2116,7 +2127,6 @@ Content
 }
 #content article .entry-content h1 {
   margin: 1em 15px;
-  font-size: 1.5em;
 }
 #content article .entry-content p {
   margin: 0 15px 1.5em;
@@ -2229,7 +2239,7 @@ Content
 .home .main-collection p a,
 .home .main-news p a,
 .home .main-article p a {
-  display: inline-block;
+  display: block;
   padding: 20px 15px;
 }
 /*

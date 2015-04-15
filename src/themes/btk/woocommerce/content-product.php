@@ -86,4 +86,8 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 
 	?>
 
+	<div class="product-add">
+		<?php wc_get_template( 'add-to-cart.php' ); ?>
+	</div>
+
 </li>
