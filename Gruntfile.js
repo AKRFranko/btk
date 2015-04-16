@@ -37,7 +37,8 @@ module.exports = function(grunt) {
             cssDest: '<%= cfg.project_dir %>/src/themes/btk/css/_bower.css',
             // Handle package with no bower.json
             mainFiles: {
-                'css_browser_selector': 'css_browser_selector.js'
+                'css_browser_selector': 'css_browser_selector.js',
+                'jquery.event.move': 'js/jquery.event.move.js'
             }
        }
     },

@@ -6773,9 +6773,7 @@ ul.bxslider {
 	  z-index:5;
 	  width: 100%;
   	  min-width: 100%;
-  	  height: 0;
-  	  padding-bottom: 76%;
-	  padding-bottom:calc( 100% - 100px );
+  	  height: 100%;
       display: block;
       position: relative;
       white-space: nowrap;
@@ -6788,10 +6786,7 @@ ul.bxslider {
 	white-space: normal;
   	display: inline-block;
   	width: 100%;
-  	height:0;
-	padding-bottom: 76%;
-	padding-bottom:calc( 100% - 100px );  	
-
+  	height:100%;
   	background-position:center;
   	background-size:100% 100%;
   	background-size:cover;
@@ -6863,6 +6858,12 @@ ul.bxslider {
 	padding-left:2em;
 	padding-right:2em;
 }
+.edb-slider .controls .prev{
+	padding-left:10%;
+}
+.edb-slider .controls .next{
+	padding-right:10%;
+}
 .edb-slider .prev *,.edb-slider .next *{
 	color:inherit;
 }
@@ -6870,17 +6871,24 @@ ul.bxslider {
 .edb-slider .slide img{
 	display:none;
 }
+
 .edb-slider .slide {
 	margin-left:-100%;
 }
-.edb-slider .slide.active{
-	margin-left:0;
-}
+
 .edb-slider .slide.active + .slide{
 	margin-left:100%;
 }
+.edb-slider .slide:last-of-type{
+	margin-left:100%;
+}
+
 .edb-slider .slide.active + .slide ~ .slide {
 	margin-left:200%;
+}
+
+.edb-slider .slide.active{
+	margin-left:0;
 }
 /*!
  *  Font Awesome 4.3.0 by @davegandy - http://fontawesome.io - @fontawesome

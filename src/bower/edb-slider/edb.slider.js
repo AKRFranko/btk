@@ -1,13 +1,13 @@
 
-var yes = function(){ return true }
-var no = function(){ return false }
 
-var EDBSlider = function( el ){
-	if( !( this instanceof EDBSlider ) ) return new EDBSlider( el );
+
+var EDBSlider = function( el, opts ){
+	if( !( this instanceof EDBSlider ) ) return new EDBSlider( el, opts );
 	if( $(el).data('slider')) return $(el).data('slider');
 	var it = this;
 	it.el     = el;
 	it.slides = [];
+	it.options = opts || {};
 	it.index  = -1;
 	json = $( it.el ).find( 'script' ).html()
 	try{
@@ -19,7 +19,7 @@ var EDBSlider = function( el ){
 		console.log( "Broken! No slides found", el )
 		return it;
 	}
-	it.isLoaded = no;
+	it.isLoaded = EDBSlider.no;
 	it.total = it.slides.length;
 	var loaded = 0;
 	it.slides = it.slides.map(  function( data, index ){
@@ -28,7 +28,7 @@ var EDBSlider = function( el ){
 		$( slide ).on('loaded', function(){
 			loaded++;
 			if( loaded >= it.total ){
-				it.isLoaded = yes;
+				it.isLoaded = EDBSlider.yes;
 				$( it ).trigger( 'loaded' , [ it ] )
 			}
 		});
@@ -36,9 +36,10 @@ var EDBSlider = function( el ){
 	} );
 	it.slides.reduce( function( a, b ){ 
 		if( !a ){
-			$( b.el ).inserBefore( $( it.el ).find('.controls') )
+			var script = $( it.el ).find('script')
+			script.replaceWith( b.el )
 		}else{
-			$(a.el).insertAfter( b.el )
+			$(b.el).insertAfter( a.el )
 		}
 		return b;
 	});
@@ -50,29 +51,57 @@ var EDBSlider = function( el ){
 		e.preventDefault()
 		it.cycle( -1 );
 	});
+	$( it.el ).on('swipeleft',function( e, dir ){
+				e.preventDefault()
+				it.cycle( 1 );
+				console.log( event.type )
+			})
+		$( it.el ).on('swiperight',function( e, dir ){
+				e.preventDefault()
+				it.cycle( -1 );
+				console.log( event.type )
+			})
+
+	var lastResize = null;
+	var handleResize = function(){
+		clearTimeout(  lastResize );
+		lastResize =  setTimeout( function(){
+			it.adjustHeight( it.options.spacing || 0 )
+		}, 200 );
+	}
+	$(window).on( 'resize', handleResize ).resize();
 	$(it.el).addClass('slides').data( 'slider', it );
 	return this;
 }
-
+EDBSlider.yes = function(){ return true; }
+EDBSlider.no = function(){ return false; }
 EDBSlider.Slide = function( data, index ){
 	if( !( this instanceof EDBSlider.Slide ) ) return new EDBSlider.Slide( data, index );
 	it = this
 	it.index       = index;
 	it.el       = document.createElement( 'div' )
 	it.img      = new Image();
-	it.isLoaded = no;
+	it.isLoaded = EDBSlider.no;
 	$( it.img ).on( 'load', function( event ){
-		it.isLoaded = yes;
+		it.isLoaded = EDBSlider.yes;
 		$(it).trigger( 'loaded', [ it ] );
 	});
 	it.img.src = data.src;
-	var link = $('<a>').attr('href', data.url ).addClass('slide-link').html('<span class="slide-text">'+data.text+'</span>')
+	var link = $('<a>').attr('href', data.url ).prop('draggable', false ).addClass('slide-link').html('<span class="slide-text">'+data.text+'</span>')
 	$(it.el).css('background-image', 'url("'+data.src+'")');
 	$(it.el).addClass('slide').data( 'slide', it ).append( it.img ).append( link )
 	return it;
 }
 
 EDBSlider.Slide.prototype = {
+	
+	adjustHeight: function( h ){
+		$( this.el ).css({
+			"min-height": h,
+			"max-height": h,
+			"height": h
+		})
+	},
 	isActive: function () {
 		return $( this.el ).hasClass( 'active' );
 	},
@@ -87,13 +116,26 @@ EDBSlider.Slide.prototype = {
 }
 
 EDBSlider.prototype={
+
+	adjustHeight: function( minus ){
+		var winHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+		if( isNaN(minus) ) minus = $(minus).outerHeight();
+		$( this.el ).css({
+			"min-height": winHeight - minus,
+			"max-height": winHeight - minus,
+			"height": winHeight - minus
+		})
+		// this.slides.forEach( function( slide ){
+		// 	slide.adjustHeight( w, h )
+		// });
+	},
 	update: function(){
 		$( this.el ).find('.controls .index').text( this.index+1 );
 		$( this.el ).find('.controls .total').text( this.total );
 	},
 	cycle: function( dir ){ // 1 || -1
 		var index = this.index + dir;
-		if( index >= this.total ) index = 0;
+		if( index == this.total ) index = 0;
 		if( index < 0 ) index = this.total - 1;
 		this.toggle( index, 'on' );
 	},
@@ -107,17 +149,21 @@ EDBSlider.prototype={
 		if( sameSlide && sameState ) return it;
 		var hasActiveSlide = false;
 		it.slides.forEach( function( other, idx ){ 
-			if( state === 'on' && other.isActive() ){
-				other.deactivate()
-			}else if( state === 'off' && other.isActive() ){
-				hasActiveSlide = true;
-			};
+			if( !hasActiveSlide && other.isActive() ) hasActiveSlide = true;
+			other.deactivate()
+			// if( other.index == target.index ) return;
+			// if( state === 'on' && other.isActive() ){
+			// 	other.deactivate()
+			// }else if( state === 'off' && other.isActive() ){
+			// 	hasActiveSlide = true;
+			// };
 		});
 		if( state === 'off' && !hasActiveSlide ){
 			it.slides[0].activate();
 			it.index = 0;
 		}else{
 			target[operation].call( target );
+			console.log('setting index to', index)
 			it.index = index;
 		}
 		it.update();

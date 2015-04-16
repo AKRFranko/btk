@@ -87,7 +87,9 @@
 
 	
 	$('.edb-slider').each( function(){
-		var slider = window.EDBSlider( $(this).get(0) );
+		var el = $(this).get(0);
+		var opts = { spacing: "#masthead" } 
+		var slider = window.EDBSlider( el, opts );
 		slider.toggle( 0, 'on');
 	});
 
