@@ -1597,63 +1597,6 @@ Woocommerce Overrides
 .edb-slider .controls {
   font-size: 1em;
 }
-.home .main-article {
-  display: block;
-}
-.home .main-article .cat-links,
-.home .main-article .tags-links {
-  display: inline-block;
-}
-.home .main-article .cat-links a,
-.home .main-article .tags-links a {
-  display: inline-block;
-  padding-right: 0;
-}
-.home .main-article .tags-links a {
-  background: #000;
-  color: #fff;
-  padding: .25em .5em;
-  position: relative;
-  margin-left: 1em;
-  border-radius: 2px 0 0 2px;
-}
-.home .main-article .tags-links a:before {
-  content: "•";
-  position: absolute;
-  width: 0;
-  height: 0;
-  color: #fff;
-  border-top: .9em solid transparent;
-  border-right: 1em solid #000;
-  border-bottom: .9em solid transparent;
-  top: 0;
-  left: -0.9em;
-  text-align: center;
-  text-indent: .5em;
-  line-height: 0;
-}
-.home .main-article .cat-links a {
-  color: inherit;
-  font-weight: inherit;
-  font-size: inherit;
-}
-.home .main-article .cat-links a:after {
-  content: ' /';
-}
-.home .main-article .cat-links a:last-child:after {
-  content: ' :';
-}
-.home .main-article .home-article-image {
-  width: 100%;
-  margin-top: .5em;
-}
-.home .main-article .home-article-image a {
-  display: block;
-  width: 100%;
-}
-.home .main-article .home-article-image a img {
-  min-width: 100%;
-}
 /*
 ==========================================================================
 Overridez
