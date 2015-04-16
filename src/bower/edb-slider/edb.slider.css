@@ -24,7 +24,7 @@
   	background-size:cover;
   	background-repeat:no-repeat;
   	position:absolute;
-  	/*-webkit-transform: translateZ(0);*/
+  	-webkit-transform: translateZ(0);
   	-moz-transition:all .1s ease-in-out;
   	-webkit-transition:all  .1s ease-in-out;
   	-o-transition:all  .1s ease-in-out;
