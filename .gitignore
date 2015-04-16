@@ -26,3 +26,11 @@ config.json
 composer.lock
 
 wp-cli.yml
+
+_all.min.js
+_all.min.css
+_btk.js
+
+# tmp
+
+src/data/composer

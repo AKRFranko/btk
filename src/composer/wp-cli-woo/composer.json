@@ -1,0 +1,10 @@
+{
+	"name": "AKRFranko/wp-cli-woo",
+	"description": "An extension for WP CLI to support woocommerce",
+	"homepage": "https://github.com/jildertmiedema/wp-cli-woocommerce",
+	"require": {
+	},
+	"autoload": {
+		"files": [ "src/woo.php" ]
+	}
+}
