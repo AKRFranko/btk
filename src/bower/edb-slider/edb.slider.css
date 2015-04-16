@@ -111,12 +111,13 @@
 .edb-slider .slide.active + .slide{
 	margin-left:100%;
 }
-.edb-slider .slide:last-of-type{
-	margin-left:100%;
-}
 
 .edb-slider .slide.active + .slide ~ .slide {
 	margin-left:200%;
+}
+
+.edb-slider .slide.active + .slide:last-of-type{
+	margin-left:100%;
 }
 
 .edb-slider .slide.active{
