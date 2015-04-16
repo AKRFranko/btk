@@ -1052,7 +1052,6 @@ Base Styles Responsive Design
 Woocommerce Overrides
 ==========================================================================
 */
-.woocommerce .page-title,
 .woocommerce-breadcrumb,
 .woocommerce-ordering,
 .woocommerce-result-count {
@@ -1099,6 +1098,7 @@ Woocommerce Overrides
   left: 15px;
 }
 .woocommerce ul.products li.product .product-desc {
+  position: relative;
   width: 100%;
   font-size: 1.35em;
 }
@@ -1248,6 +1248,7 @@ Woocommerce Overrides
   padding-bottom: 25px;
 }
 .woocommerce .product .product-add {
+  display: none;
   padding: 20px 15px;
   border-bottom: 3px solid #000000;
 }
@@ -1294,6 +1295,12 @@ Woocommerce Overrides
 }
 .woocommerce .product .product-add form.cart button:hover {
   background-color: #444;
+}
+.woocommerce.lookbook .product .product-add {
+  display: block;
+}
+.woocommerce.lookbook .product .product-add:last-child {
+  border: none;
 }
 .woocommerce .quantity {
   float: right;
@@ -1590,6 +1597,63 @@ Woocommerce Overrides
 .edb-slider .controls {
   font-size: 1em;
 }
+.home .main-article {
+  display: block;
+}
+.home .main-article .cat-links,
+.home .main-article .tags-links {
+  display: inline-block;
+}
+.home .main-article .cat-links a,
+.home .main-article .tags-links a {
+  display: inline-block;
+  padding-right: 0;
+}
+.home .main-article .tags-links a {
+  background: #000;
+  color: #fff;
+  padding: .25em .5em;
+  position: relative;
+  margin-left: 1em;
+  border-radius: 2px 0 0 2px;
+}
+.home .main-article .tags-links a:before {
+  content: "•";
+  position: absolute;
+  width: 0;
+  height: 0;
+  color: #fff;
+  border-top: .9em solid transparent;
+  border-right: 1em solid #000;
+  border-bottom: .9em solid transparent;
+  top: 0;
+  left: -0.9em;
+  text-align: center;
+  text-indent: .5em;
+  line-height: 0;
+}
+.home .main-article .cat-links a {
+  color: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+}
+.home .main-article .cat-links a:after {
+  content: ' /';
+}
+.home .main-article .cat-links a:last-child:after {
+  content: ' :';
+}
+.home .main-article .home-article-image {
+  width: 100%;
+  margin-top: .5em;
+}
+.home .main-article .home-article-image a {
+  display: block;
+  width: 100%;
+}
+.home .main-article .home-article-image a img {
+  min-width: 100%;
+}
 /*
 ==========================================================================
 Overridez
@@ -1610,7 +1674,8 @@ Overridez
 .navbar-toggle {
   margin: 0;
 }
-div.wpcf7-validation-errors {
+.wpcf7-validation-errors,
+.wpcf7-response-output {
   clear: both;
 }
 @media (max-width: 767px) {
@@ -2042,6 +2107,10 @@ Content
 #content {
   margin-top: 100px;
 }
+#content h1 {
+  margin: 0.67em 15px;
+  font-size: 1.75em;
+}
 #content article {
   margin: 0;
 }
@@ -2058,7 +2127,6 @@ Content
 }
 #content article .entry-content h1 {
   margin: 1em 15px;
-  font-size: 1.5em;
 }
 #content article .entry-content p {
   margin: 0 15px 1.5em;
@@ -2171,7 +2239,7 @@ Content
 .home .main-collection p a,
 .home .main-news p a,
 .home .main-article p a {
-  display: inline-block;
+  display: block;
   padding: 20px 15px;
 }
 /*

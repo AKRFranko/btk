@@ -36,7 +36,8 @@ Overridez
 .icon-bar { margin-bottom:0; background-color:@black; }
 .navbar { min-height:25px; margin-bottom:0; border:none; }
 .navbar-toggle { margin:0; }
-div.wpcf7-validation-errors { clear:both; }
+.wpcf7-validation-errors,
+.wpcf7-response-output { clear:both; }
 
 
 @media (max-width: 767px) {
@@ -255,13 +256,14 @@ Content
 
 #content {
 	margin-top:@headerheight;
+	h1 { margin:0.67em 15px; font-size:1.75em; }
 	article {
 		margin:0;
 		.attachment-post-thumbnail { width:100%; .imgborder(); }
 		.entry-header, .entry-footer { margin:0 15px; }
 		.entry-content {
 			margin:0;
-			h1 { margin:1em 15px; font-size:1.5em; }
+			h1 { margin:1em 15px; }
 			p { margin:0 15px 1.5em; }
 			img { width:100%; .imgborder(); }
 			form {
@@ -309,7 +311,7 @@ Content
 		img { width:100%; }
 		p {
 			position:relative; width:100%; margin:0; font-size:1.35em;
-			a { display:inline-block; padding:20px 15px; }
+			a { display:block; padding:20px 15px; }
 			//span { position:absolute; bottom:18px; right:10px; font-size:1.5em; }
 		}
 	}

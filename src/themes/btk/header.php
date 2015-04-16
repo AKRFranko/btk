@@ -89,7 +89,7 @@
 								<ul>
 								<?php
 									$args = array(
-										'order' => 'ASC',
+										'exclude' => '38'  // id of lookbook cat
 									);
 									$product_categories = get_terms('product_cat', $args);
 									foreach ($product_categories as $cat) {
