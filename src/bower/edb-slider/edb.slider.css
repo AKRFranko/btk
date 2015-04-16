@@ -23,11 +23,13 @@
   	background-size:100% 100%;
   	background-size:cover;
   	position:absolute;
+  	-webkit-transform: translateZ(0);
   	-moz-transition:all .1s ease-in-out;
   	-webkit-transition:all  .1s ease-in-out;
   	-o-transition:all  .1s ease-in-out;
   	transition:all  .1s ease-in-out;
   	margin-left:0;
+  	background:rgba(0,0,0,0.1);
  }
 .edb-slider .slide-link{
 	z-index:50;
