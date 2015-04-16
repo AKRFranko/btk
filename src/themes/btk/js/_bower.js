@@ -14185,8 +14185,6 @@ function log(e){window.console&&showLog&&console.log(e)}function css_browser_sel
 });
 
 
-
-
 var EDBSlider = function( el, opts ){
 	if( !( this instanceof EDBSlider ) ) return new EDBSlider( el, opts );
 	if( $(el).data('slider')) return $(el).data('slider');
@@ -14195,7 +14193,11 @@ var EDBSlider = function( el, opts ){
 	it.slides = [];
 	it.options = opts || {};
 	it.index  = -1;
+	it.slideEl = $('<div>').addClass('slides').get(0)
+	$( it.el ).append( it.slideEl )
 	json = $( it.el ).find( 'script' ).html()
+	$( it.el ).find( 'script' ).replaceWith( it.slideEl )
+
 	try{
 		it.slides = JSON.parse( json )
 	}catch( E ){
@@ -14210,7 +14212,7 @@ var EDBSlider = function( el, opts ){
 	var loaded = 0;
 	it.slides = it.slides.map(  function( data, index ){
 		var slide =  EDBSlider.Slide( data, index );
-		$(it.el).append( slide.el );
+		$(it.slideEl).append( slide.el );
 		$( slide ).on('loaded', function(){
 			loaded++;
 			if( loaded >= it.total ){
@@ -14220,15 +14222,7 @@ var EDBSlider = function( el, opts ){
 		});
 		return slide;
 	} );
-	it.slides.reduce( function( a, b ){ 
-		if( !a ){
-			var script = $( it.el ).find('script')
-			script.replaceWith( b.el )
-		}else{
-			$(b.el).insertAfter( a.el )
-		}
-		return b;
-	});
+	
 	$(it.el).find('.controls .next').on('click', function( e ){
 		e.preventDefault()
 		it.cycle( 1 );
@@ -14256,7 +14250,7 @@ var EDBSlider = function( el, opts ){
 		}, 200 );
 	}
 	$(window).on( 'resize', handleResize ).resize();
-	$(it.el).addClass('slides').data( 'slider', it );
+	$(it.el).data( 'slider', it );
 	return this;
 }
 EDBSlider.yes = function(){ return true; }
@@ -14311,9 +14305,6 @@ EDBSlider.prototype={
 			"max-height": winHeight - minus,
 			"height": winHeight - minus
 		})
-		// this.slides.forEach( function( slide ){
-		// 	slide.adjustHeight( w, h )
-		// });
 	},
 	update: function(){
 		$( this.el ).find('.controls .index').text( this.index+1 );
