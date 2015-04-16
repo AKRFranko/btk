@@ -1617,8 +1617,7 @@ Overridez
 .navbar-toggle {
   margin: 0;
 }
-.wpcf7-validation-errors,
-.wpcf7-response-output {
+div.wpcf7-validation-errors {
   clear: both;
 }
 @media (max-width: 767px) {
@@ -2050,10 +2049,6 @@ Content
 #content {
   margin-top: 100px;
 }
-#content h1 {
-  margin: 0.67em 15px;
-  font-size: 1.75em;
-}
 #content article {
   margin: 0;
 }
@@ -2070,6 +2065,7 @@ Content
 }
 #content article .entry-content h1 {
   margin: 1em 15px;
+  font-size: 1.5em;
 }
 #content article .entry-content p {
   margin: 0 15px 1.5em;
@@ -2182,7 +2178,7 @@ Content
 .home .main-collection p a,
 .home .main-news p a,
 .home .main-article p a {
-  display: block;
+  display: inline-block;
   padding: 20px 15px;
 }
 /*
