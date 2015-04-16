@@ -19,13 +19,13 @@ if (!function_exists('the_posts_navigation')):
 			return;
 		}
 		?>
-														<nav class="navigation posts-navigation" role="navigation">
-															<h2 class="screen-reader-text"><?php _e('Posts navigation', 'btk');?></h2>
-															<div class="nav-links">
+															<nav class="navigation posts-navigation" role="navigation">
+																<h2 class="screen-reader-text"><?php _e('Posts navigation', 'btk');?></h2>
+																<div class="nav-links">
 
-																<?php if (get_next_posts_link()): ?>
-																<div class="nav-previous"><?php next_posts_link(__('Older posts', 'btk'));?></div>
-																<?php endif;?>
+																	<?php if (get_next_posts_link()): ?>
+																	<div class="nav-previous"><?php next_posts_link(__('Older posts', 'btk'));?></div>
+																	<?php endif;?>
 
 			<?php if (get_previous_posts_link()): ?>
 			<div class="nav-next"><?php previous_posts_link(__('Newer posts', 'btk'));?></div>
@@ -52,16 +52,16 @@ if (!function_exists('the_post_navigation')):
 			return;
 		}
 		?>
-														<nav class="navigation post-navigation" role="navigation">
-															<h2 class="screen-reader-text"><?php _e('Post navigation', 'btk');?></h2>
-															<div class="nav-links">
-																<?php
+															<nav class="navigation post-navigation" role="navigation">
+																<h2 class="screen-reader-text"><?php _e('Post navigation', 'btk');?></h2>
+																<div class="nav-links">
+																	<?php
 	previous_post_link('<div class="nav-previous">%link</div>', '%title');
 		next_post_link('<div class="nav-next">%link</div>', '%title');
 		?>
-															</div><!-- .nav-links -->
-														</nav><!-- .navigation -->
-														<?php
+																</div><!-- .nav-links -->
+															</nav><!-- .navigation -->
+															<?php
 	}
 endif;
 
@@ -307,7 +307,7 @@ $my_query = new WP_Query($query);
 	$srcs = array();
 	while ($my_query->have_posts()): $my_query->the_post();
 		if (has_post_thumbnail()) {
-			$src = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
+			$src = wp_get_attachment_image_src(get_post_thumbnail_id(), 'large');
 			array_push($srcs, '{ "src": "' . $src[0] . '"' . ', "text":"' . esc_attr(get_the_title()) . '", "url": "' . get_permalink() . '"}');
 		}
 	endwhile;
