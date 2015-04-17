@@ -32,25 +32,26 @@ if ( ! $product->is_purchasable() ) {
 	<?php do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
 	<form class="cart" method="post" enctype='multipart/form-data'>
-	 	<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
+		<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
 
-	 	<?php
-	 		if ( ! $product->is_sold_individually() )
-	 			woocommerce_quantity_input( array(
-	 				'min_value' => apply_filters( 'woocommerce_quantity_input_min', 1, $product ),
-	 				'max_value' => apply_filters( 'woocommerce_quantity_input_max', $product->backorders_allowed() ? '' : $product->get_stock_quantity(), $product )
-	 			) );
-	 	?>
+		<?php
+			if ( ! $product->is_sold_individually() )
+				woocommerce_quantity_input( array(
+					'min_value' => apply_filters( 'woocommerce_quantity_input_min', 1, $product ),
+					'max_value' => apply_filters( 'woocommerce_quantity_input_max', $product->backorders_allowed() ? '' : $product->get_stock_quantity(), $product )
+				) );
+		?>
 
-	 	<p class="qty-text">
+		<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $product->id ); ?>" />
+
+		<p class="qty-text">
 			<span>Quantity</span>
-	 	</p>
+		</p>
 
-	 	<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $product->id ); ?>" />
-	 	<p class="right">
-	 		<span class="valign"><?php echo $product->single_add_to_cart_text(); ?></span>
-	 		<button type="submit" class="valign icon-arrow-lite-right-white"></button>
-	 	</p>
+		<p class="right">
+			<span class="valign"><?php echo $product->single_add_to_cart_text(); ?></span>
+			<button type="submit" class="valign icon-arrow-lite-right-white"></button>
+		</p>
 
 		<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
 	</form>

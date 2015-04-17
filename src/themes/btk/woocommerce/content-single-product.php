@@ -98,7 +98,13 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 
 
 	<div class="product-add">
-		<?php wc_get_template( 'add-to-cart.php' ); ?>
+		<?php
+			if ( $product->is_type('variable') ) {
+				wc_get_template( 'single-product/add-to-cart/variable.php' );
+			} else {
+				wc_get_template( 'single-product/add-to-cart/simple.php' );
+			}
+		?>
 	</div>
 
 

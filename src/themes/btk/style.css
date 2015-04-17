@@ -1112,6 +1112,15 @@ Woocommerce Overrides
   right: 10px;
   font-size: 1.5em;
 }
+.woocommerce ul.products li.product .product-add {
+  display: none;
+}
+.woocommerce.lookbook ul.products li.product .product-add {
+  display: block;
+}
+.woocommerce.lookbook ul.products li.product .product-add:last-child {
+  border: none;
+}
 .woocommerce #content div.product {
   text-transform: lowercase;
 }
@@ -1248,7 +1257,6 @@ Woocommerce Overrides
   padding-bottom: 25px;
 }
 .woocommerce .product .product-add {
-  display: none;
   padding: 20px 15px;
   border-bottom: 3px solid #000000;
 }
@@ -1295,12 +1303,6 @@ Woocommerce Overrides
 }
 .woocommerce .product .product-add form.cart button:hover {
   background-color: #444;
-}
-.woocommerce.lookbook .product .product-add {
-  display: block;
-}
-.woocommerce.lookbook .product .product-add:last-child {
-  border: none;
 }
 .woocommerce .quantity {
   float: right;
