@@ -1283,10 +1283,6 @@ Woocommerce Overrides
   width: 2em;
   text-align: right;
 }
-.woocommerce .product .product-add form.cart .qty-text {
-  padding: 6px 0;
-  border-bottom: 1px solid #000000;
-}
 .woocommerce .product .product-add form.cart button {
   float: none;
   margin: 20px 0 20px 10px;
@@ -1303,6 +1299,18 @@ Woocommerce Overrides
 }
 .woocommerce .product .product-add form.cart button:hover {
   background-color: #444;
+}
+.woocommerce .product .product-add .qty-text,
+.woocommerce .product .product-add .product-color {
+  padding: 6px 0;
+  border-bottom: 1px solid #000000;
+}
+.woocommerce .product .product-add .product-color a {
+  padding: 0.35em 2.65em;
+  cursor: pointer;
+}
+.woocommerce .product .product-add .product-color span {
+  padding-top: 10px;
 }
 .woocommerce .quantity {
   float: right;
@@ -2051,6 +2059,10 @@ Content
 #content {
   margin-top: 100px;
 }
+#content h1 {
+  margin: 10px 15px 20px;
+  font-size: 1.75em;
+}
 #content article {
   margin: 0;
 }
@@ -2064,10 +2076,6 @@ Content
 }
 #content article .entry-content {
   margin: 0;
-}
-#content article .entry-content h1 {
-  margin: 1em 15px;
-  font-size: 1.5em;
 }
 #content article .entry-content p {
   margin: 0 15px 1.5em;

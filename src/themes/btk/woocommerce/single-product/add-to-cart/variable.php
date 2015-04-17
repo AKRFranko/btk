@@ -13,6 +13,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 global $product, $post;
 
+$term_name = $selected_attributes['pa_color'];
+$terms = wc_get_product_terms($product->id, 'pa_color', 'names');
+foreach ($terms as $term) {
+	if ($term_name === $term->slug) {
+		$term_desc = $term->description;
+	}
+}
+
+
+//echo '<pre>'; print_r($test); echo '</pre>';
+//echo '<pre>'; print_r($available_variations); echo '</pre>';
+
 ?>
 
 <?php do_action( 'woocommerce_before_add_to_cart_form' ); ?>
@@ -59,11 +71,7 @@ global $product, $post;
 									}
 								}
 							?>
-						</select> <?php
-							if ( sizeof( $attributes ) === $loop ) {
-								echo '<a class="reset_variations" href="#reset">' . __( 'Clear selection', 'woocommerce' ) . '</a>';
-							}
-						?></td>
+						</select></td>
 					</tr>
 		        <?php endforeach;?>
 			</tbody>
@@ -71,19 +79,27 @@ global $product, $post;
 
 		<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
 
-		<div class="single_variation_wrap" style="display:none;">
+		<div class="single_variation_wrap" style="display:block;">
 			<?php do_action( 'woocommerce_before_single_variation' ); ?>
-
-			<div class="single_variation"></div>
-
-			<div class="variations_button">
-				<?php woocommerce_quantity_input(); ?>
-				<button type="submit" class="single_add_to_cart_button button alt"><?php echo $product->single_add_to_cart_text(); ?></button>
-			</div>
 
 			<input type="hidden" name="add-to-cart" value="<?php echo $product->id; ?>" />
 			<input type="hidden" name="product_id" value="<?php echo esc_attr( $post->ID ); ?>" />
 			<input type="hidden" name="variation_id" class="variation_id" value="" />
+
+			<?php woocommerce_quantity_input(); ?>
+			<p class="qty-text">
+				<span>Quantity</span>
+			</p>
+
+			<p class="product-color clearfix">
+				<span class="valign"><?php echo $term_name; ?></span>
+				<a class="alignright" style="background-color:<?php echo $term_desc; ?>">&nbsp;</a>
+			</p>
+
+			<p class="right">
+				<span class="valign"><?php echo $product->single_add_to_cart_text(); ?></span>
+				<button type="submit" class="valign icon-arrow-lite-right-white"></button>
+			</p>
 
 			<?php do_action( 'woocommerce_after_single_variation' ); ?>
 		</div>
