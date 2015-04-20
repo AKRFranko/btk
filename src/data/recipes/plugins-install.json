@@ -1,0 +1,62 @@
+{
+	"plugin":{
+	      "install":[
+	         {
+	            "args":{
+	               "plugin":"social-media-feather"
+	            },
+	            "opts":{
+	               "force":true,
+	               "activate":true
+	            }
+	         },
+	         {
+	            "args":{
+	               "plugin":"woocommerce"
+	            },
+	            "opts":{
+	               "force":true,
+	               "activate":true
+	            }
+	         },
+	         {
+	            "args":{
+	               "plugin":"contact-form-7"
+	            },
+	            "opts":{
+	               "force":true,
+	               "activate":true
+	            }
+	         },
+	         {
+	            "args":{
+	               "plugin":"simple-page-ordering"
+	            },
+	            "opts":{
+	               "force":true,
+	               "activate":true
+	            }
+	         },
+	         {
+	            "args":{
+	               "plugin":"woocommerce-poor-guys-swiss-knife"
+	            },
+	            "opts":{
+	               "activate":false
+	            }
+	         },
+	         {
+	            "args":{
+	               "plugin":"wp-maintenance-mode"
+	            },
+	            "opts":{
+	               "activate":false
+	            }
+	         }
+	      ]
+	},
+	"eval": {
+      "args": { "php": "WC_Install::create_pages();WC_Admin_Notices::remove_notice( 'install' );" },
+      "opts": { "quiet": true }
+   	}
+}

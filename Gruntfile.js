@@ -161,12 +161,48 @@ module.exports = function(grunt) {
     },
     // see: https://www.npmjs.com/package/grunt-execute
     execute: {
-      nwp_deploy_development: {
-        options: { args: [ '-j', '<%= cfg.project_dir %>/src/data/edb-development.json', '-y', '<%= cfg.project_dir %>/wp-cli.yml' ] },
+      // nwp_deploy_development: {
+      //   options: { args: [ '-j', '<%= cfg.project_dir %>/src/data/edb-development.json', '-y', '<%= cfg.project_dir %>/wp-cli.yml' ] },
+      //   src: ['<%= cfg.project_dir %>/node_modules/nwp/bin/nwp']
+      // },
+      // nwp_themeonly_development: {
+      //   options: { args: [ '-j', '<%= cfg.project_dir %>/src/data/edb-themeonly.json', '-y', '<%= cfg.project_dir %>/wp-cli.yml' ] },
+      //   src: ['<%= cfg.project_dir %>/node_modules/nwp/bin/nwp']
+      // },
+      site_remove: {
+        options: { args: [ '-j', '<%= cfg.project_dir %>/src/data/recipes/site-remove.json', '-y', '<%= cfg.project_dir %>/wp-cli.yml' ] },
         src: ['<%= cfg.project_dir %>/node_modules/nwp/bin/nwp']
       },
-      nwp_themeonly_development: {
-        options: { args: [ '-j', '<%= cfg.project_dir %>/src/data/edb-themeonly.json', '-y', '<%= cfg.project_dir %>/wp-cli.yml' ] },
+      site_install: {
+        options: { args: [ '-j', '<%= cfg.project_dir %>/src/data/recipes/site-install.json', '-y', '<%= cfg.project_dir %>/wp-cli.yml' ] },
+        src: ['<%= cfg.project_dir %>/node_modules/nwp/bin/nwp']
+      },
+      plugins_remove: {
+        options: { args: [ '-j', '<%= cfg.project_dir %>/src/data/recipes/plugins-remove.json', '-y', '<%= cfg.project_dir %>/wp-cli.yml' ] },
+        src: ['<%= cfg.project_dir %>/node_modules/nwp/bin/nwp']
+      },
+      plugins_install: {
+        options: { args: [ '-j', '<%= cfg.project_dir %>/src/data/recipes/plugins-install.json', '-y', '<%= cfg.project_dir %>/wp-cli.yml' ] },
+        src: ['<%= cfg.project_dir %>/node_modules/nwp/bin/nwp']
+      },
+      blog_create: {
+        options: { args: [ '-j', '<%= cfg.project_dir %>/src/data/recipes/blog-create.json', '-y', '<%= cfg.project_dir %>/wp-cli.yml' ] },
+        src: ['<%= cfg.project_dir %>/node_modules/nwp/bin/nwp']
+      },
+      blog_delete: {
+        options: { args: [ '-j', '<%= cfg.project_dir %>/src/data/recipes/blog-delete.json', '-y', '<%= cfg.project_dir %>/wp-cli.yml' ] },
+        src: ['<%= cfg.project_dir %>/node_modules/nwp/bin/nwp']
+      },
+      catalog_create: {
+        options: { args: [ '-j', '<%= cfg.project_dir %>/src/data/recipes/catalog-create.json', '-y', '<%= cfg.project_dir %>/wp-cli.yml' ] },
+        src: ['<%= cfg.project_dir %>/node_modules/nwp/bin/nwp']
+      },
+      catalog_delete: {
+        options: { args: [ '-j', '<%= cfg.project_dir %>/src/data/recipes/catalog-delete.json', '-y', '<%= cfg.project_dir %>/wp-cli.yml' ] },
+        src: ['<%= cfg.project_dir %>/node_modules/nwp/bin/nwp']
+      },
+      theme_update: {
+        options: { args: [ '-j', '<%= cfg.project_dir %>/src/data/recipes/theme-update.json', '-y', '<%= cfg.project_dir %>/wp-cli.yml' ] },
         src: ['<%= cfg.project_dir %>/node_modules/nwp/bin/nwp']
       }
     }
@@ -177,8 +213,31 @@ module.exports = function(grunt) {
   grunt.registerTask('build', [ 'clean', 'bower_concat' , 'less', 'concat', 'uglify', 'phplint','copy' ] );
   //grunt.registerTask('build_theme', [ 'clean:theme', 'bower_concat:theme' , 'less:theme', 'concat:theme',  'uglify:theme', 'copy:theme' ] );
   
-  grunt.registerTask('release', [ 'build', 'compress', 'execute' ] );
-  grunt.registerTask('install', [ 'build', 'compress', 'execute:nwp_themeonly_development' ] );
+
+  // grunt.registerTask('release', [ 'build', 'compress', 'execute:nwp_deploy_development' ] );
+  // grunt.registerTask('install', [ 'build', 'compress', 'execute:nwp_themeonly_development' ] );
+
+  grunt.registerTask('site:install', [ "execute:site_install" ] )
+  grunt.registerTask('site:remove',  [ "execute:site_remove" ] )
+  grunt.registerTask('site:reset',   [ "site:remove","site:install" ] )
+  
+  grunt.registerTask('plugins:install', [ "execute:plugins_install" ] )
+  grunt.registerTask('plugins:remove',  [ "execute:plugins_remove" ] )
+  grunt.registerTask('plugins:reset',   [ "plugins:remove","plugins:install" ] )
+  
+  grunt.registerTask('blog:create', [ "execute:blog_create" ] )
+  grunt.registerTask('blog:delete',  [ "execute:blog_delete" ] )
+  grunt.registerTask('blog:reset',   [ "blog:delete","blog:create" ] )
+
+  grunt.registerTask('catalog:create', [ "execute:catalog_create" ] )
+  grunt.registerTask('catalog:delete',  [ "execute:catalog_delete" ] )
+  grunt.registerTask('catalog:reset',   [ "catalog:delete","catalog:create" ] )
+
+  grunt.registerTask('theme:update',   [ "build", "compress", "execute:theme_update" ] )
+  
+  grunt.registerTask('release', ["site:reset", "plugins:install", "blog:create", "catalog:create", "theme:update" ] )
+  grunt.registerTask('install', [ "theme:update" ] )
+
 
   grunt.registerTask('work', [   'build', 'watch' ] );
 

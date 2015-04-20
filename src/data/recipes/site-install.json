@@ -1,0 +1,7 @@
+{
+   "core": {
+      "install": {
+      	 "opts": { "title": "edb" } 
+      }
+    }
+}

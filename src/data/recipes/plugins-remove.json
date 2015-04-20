@@ -1,0 +1,49 @@
+{
+	"plugin":{
+      "delete":[
+         {
+            "args":{
+               "plugin":"social-media-feather"
+            }
+            , "opts":{ "quiet":true }
+         },
+         {
+            "args":{
+               "plugin":"woocommerce"
+            }
+           , "opts":{ "quiet":true }
+         },
+         {
+            "args":{
+               "plugin":"contact-form-7"
+            }
+            , "opts":{ "quiet":true }
+         },
+         // {
+         //    "args":{
+         //       "plugin":"rvg-optimize-database"
+         //    }
+         //    //, "opts":{ "skip-delete":true }
+         // },
+         {
+            "args":{
+               "plugin":"simple-page-ordering"
+            }
+            , "opts":{ "quiet":true }
+         },
+         {
+            "args":{
+               "plugin":"woocommerce-poor-guys-swiss-knife"
+            }
+            , "opts":{ "quiet":true }
+         },
+         {
+            "args":{
+               "plugin":"wp-maintenance-mode"
+            }
+            , "opts":{ "quiet":true }
+            
+         }
+      ]
+    }
+}
