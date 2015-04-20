@@ -1570,16 +1570,16 @@ Woocommerce Overrides
   background-color: #444;
 }
 .woocommerce .color-choice {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.9);
   z-index: 10;
 }
 .woocommerce .color-choice .back-to-product {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
   position: absolute;
   bottom: 70px;
   right: 15px;
