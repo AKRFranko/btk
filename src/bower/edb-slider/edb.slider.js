@@ -45,16 +45,23 @@ var EDBSlider = function( el, opts ){
 		e.preventDefault()
 		it.cycle( -1 );
 	});
-	$( it.el ).on('swipeleft',function( e, dir ){
+	
+	$( it.el ).on('movestart', function( e ){
+		// If the movestart is heading off in an upwards or downwards
+		// direction, prevent it so that the browser scrolls normally.
+		if ((e.distX > e.distY && e.distX < -e.distY) || (e.distX < e.distY && e.distX > -e.distY)) {
+		  e.preventDefault();
+		}
+	}).on('swipeleft',function( e, dir ){
 				e.preventDefault()
 				it.cycle( 1 );
 				console.log( event.type )
-			})
-		$( it.el ).on('swiperight',function( e, dir ){
+	}).on('swiperight',function( e, dir ){
 				e.preventDefault()
 				it.cycle( -1 );
 				console.log( event.type )
-			})
+	});
+
 
 	var lastResize = null;
 	var handleResize = function(){
