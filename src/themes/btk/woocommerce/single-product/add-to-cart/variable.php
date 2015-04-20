@@ -21,10 +21,6 @@ foreach ($terms as $term) {
 	}
 }
 
-
-//echo '<pre>'; print_r($test); echo '</pre>';
-//echo '<pre>'; print_r($available_variations); echo '</pre>';
-
 ?>
 
 <?php do_action( 'woocommerce_before_add_to_cart_form' ); ?>
@@ -76,6 +72,62 @@ foreach ($terms as $term) {
 		        <?php endforeach;?>
 			</tbody>
 		</table>
+
+
+
+		<div class="color-choice">
+			<?php foreach ( $attributes as $name => $options ) : ?>
+			<ul id="<?php echo esc_attr( sanitize_title( $name ) ); ?>" name="attribute_<?php echo sanitize_title( $name ); ?>" data-attribute_name="attribute_<?php echo sanitize_title( $name ); ?>">
+				<?php
+					if ( is_array( $options ) ) {
+
+						if ( isset( $_REQUEST[ 'attribute_' . sanitize_title( $name ) ] ) ) {
+							$selected_value = $_REQUEST[ 'attribute_' . sanitize_title( $name ) ];
+						} elseif ( isset( $selected_attributes[ sanitize_title( $name ) ] ) ) {
+							$selected_value = $selected_attributes[ sanitize_title( $name ) ];
+						} else {
+							$selected_value = '';
+						}
+
+						// Get terms if this is a taxonomy - ordered
+						if ( taxonomy_exists( $name ) ) {
+
+							$terms = wc_get_product_terms( $post->ID, $name, array( 'fields' => 'all' ) );
+
+							foreach ( $terms as $term ) {
+								if ( ! in_array( $term->slug, $options ) ) {
+									continue;
+								}
+								echo '<li><a style="background-color:' . $term->description . '">' . apply_filters( 'woocommerce_variation_option_name', $term->name ) . '</a></li>';
+							}
+
+						} else {
+
+							foreach ( $options as $option ) {
+								echo '<option value="' . esc_attr( sanitize_title( $option ) ) . '" ' . selected( sanitize_title( $selected_value ), sanitize_title( $option ), false ) . '>' . esc_html( apply_filters( 'woocommerce_variation_option_name', $option ) ) . '</option>';
+							}
+
+						}
+					}
+				?>
+			</ul>
+			<?php endforeach;?>
+			<p class="back-to-product">
+				<span class="valign">Back to product</span>
+				<a class="buttons valign icon-arrow-lite-left-white"></a>
+			</p>
+
+			<div class="color-selection">
+				<span class="selected valign">Color</span>
+				<a class="close">x</a>
+				<p class="choose-this-color">
+					<span class="valign">Choose this color</span>
+					<a class="buttons valign icon-arrow-lite-right-white"></a>
+				</p>
+			</div>
+		</div>
+
+
 
 		<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
 
