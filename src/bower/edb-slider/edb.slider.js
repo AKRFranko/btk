@@ -133,10 +133,14 @@ EDBSlider.prototype={
 	},
 	cycle: function( dir ){ // 1 || -1
 		var index = this.index + dir;
-		// if( index == this.total ) index = 0;
-		// if( index < 0 ) index = this.total - 1;
-		if( index == this.total ) index = index - 1;
-		if( index < 0 ) index = 0;
+		if( $('body').hasClass('mobile')){
+			if( index == this.total ) index = index - 1;
+			if( index < 0 ) index = 0;	
+		}else{
+			if( index == this.total ) index = 0;
+			if( index < 0 ) index = this.total - 1;
+		}
+		
 		this.toggle( index, 'on' );
 	},
 	toggle: function( index, state ){
