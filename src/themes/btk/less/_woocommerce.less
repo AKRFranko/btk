@@ -272,6 +272,30 @@ Woocommerce Overrides
 			}
 		}
 	}
+
+	.color-choice {width:100%; height:100%;
+		background-color:rgba(0, 0, 0, 0.9); z-index:10;
+		.back-to-product {
+			display:none; position:fixed; top:0; left:0; 
+			.back-home-button();
+			a.buttons { font-size:2em; }
+			span { color:@white; }
+		}
+		ul li {
+			width:100%; .imgborder();
+			a { display:block; padding:16px 10px; color:@white; text-shadow:@headertxtshadow; cursor:pointer; }
+		}
+		.color-selection {
+			display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+			background-color:#123; z-index:11;
+			.choose-this-color {
+				.back-home-button();
+				a.buttons { font-size:2em; }
+				span { color:@white; text-shadow:@headertxtshadow; }
+			}
+			> span { padding:16px 10px; color:@white; text-shadow:@headertxtshadow; }
+		}
+	}
 }
 
 

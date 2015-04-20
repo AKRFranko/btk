@@ -1569,6 +1569,85 @@ Woocommerce Overrides
 .woocommerce .woocommerce-checkout #payment input[type='submit']:hover {
   background-color: #444;
 }
+.woocommerce .color-choice {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 10;
+}
+.woocommerce .color-choice .back-to-product {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  position: absolute;
+  bottom: 70px;
+  right: 15px;
+}
+.woocommerce .color-choice .back-to-product a.buttons {
+  font-size: 1.4em;
+  background-color: #444;
+  border: none;
+  cursor: pointer;
+  background-position: center center;
+}
+.woocommerce .color-choice .back-to-product a.buttons:hover {
+  background-color: #333;
+}
+.woocommerce .color-choice .back-to-product a.buttons {
+  font-size: 2em;
+}
+.woocommerce .color-choice .back-to-product span {
+  color: #ffffff;
+}
+.woocommerce .color-choice ul li {
+  width: 100%;
+  border-bottom: 3px solid #000000;
+}
+.woocommerce .color-choice ul li a {
+  display: block;
+  padding: 16px 10px;
+  color: #ffffff;
+  text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+}
+.woocommerce .color-choice .color-selection {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #123;
+  z-index: 11;
+}
+.woocommerce .color-choice .color-selection .choose-this-color {
+  position: absolute;
+  bottom: 70px;
+  right: 15px;
+}
+.woocommerce .color-choice .color-selection .choose-this-color a.buttons {
+  font-size: 1.4em;
+  background-color: #444;
+  border: none;
+  cursor: pointer;
+  background-position: center center;
+}
+.woocommerce .color-choice .color-selection .choose-this-color a.buttons:hover {
+  background-color: #333;
+}
+.woocommerce .color-choice .color-selection .choose-this-color a.buttons {
+  font-size: 2em;
+}
+.woocommerce .color-choice .color-selection .choose-this-color span {
+  color: #ffffff;
+  text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.8);
+}
+.woocommerce .color-choice .color-selection > span {
+  padding: 16px 10px;
+  color: #ffffff;
+  text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.8);
+}
 @media (max-width: 767px) {
   .woocommerce #payment #place_order {
     width: initial;
@@ -1960,7 +2039,7 @@ Slider
   margin: 0;
   vertical-align: middle;
   letter-spacing: 0.05em;
-  text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3);
+  text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.8);
 }
 .main-slider .bx-wrapper .bx-pager,
 .main-slider .bx-wrapper .caption h2 {

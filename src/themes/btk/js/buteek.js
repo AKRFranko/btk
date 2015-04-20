@@ -1,7 +1,6 @@
 ( function( $ ) { $( window ).load( function(){
-	
 
-	
+
 	// back to top
 	$('#back-to-top a').on('click', function(e) {
 		e.preventDefault();
@@ -48,7 +47,7 @@
 
 
 
-	// hamburger menu on/off
+	// hamburglar menu on/off
 	$('.nav-hamburger .navbar-toggle').click( function () {
 		if (  $('.sign-in, .login, .register').is(':visible') ) {
 			$('.sign-in-menu').hide();
@@ -84,10 +83,10 @@
 		pagerShortSeparator: ' | '
 	});
 
-	
+
 	$('.edb-slider').each( function(){
 		var el = $(this).get(0);
-		var opts = { spacing: "#masthead" } 
+		var opts = { spacing: "#masthead" }
 		var slider = window.EDBSlider( el, opts );
 		slider.toggle( 0, 'on');
 	});
@@ -135,7 +134,7 @@
 
 
 
-
+	// product quantities stuff
 	$('.entry-content p:has(img)').css('margin', '0');
 	$('.pdf p:has(a)').append('<span class="icon-chevron-lite-right-black"></span>');
 	$('.woocommerce .quantity').prepend('<a href="" class="qty-sub">-</a>').append('<a href="" class="qty-add">+</a>');
@@ -155,16 +154,31 @@
 	});
 
 
+
+	// product colors change
+	$('.product-color a').click(function(){
+		$('.color-choice').show();
+	});
+	$('.back-to-product a').click(function(){
+		$('.color-choice').hide();
+	});
+	$('.color-choice ul li a').each(function(){
+		$(this).on('click', function(){
+			$('.color-selection').show().css('background-color', $(this).css('background-color'));
+			$('.color-selection .selected').text($(this).text());
+		});
+	});
+
+
+
+	// testing terms checkbox... doesnt work yet
 	$('#terms').on('change', function() {
-		alert('test');
-		console.log('test');
 		if ( $(this).is(':checked') ) {
 			$(this).removeClass('fa-square').addClass('fa-check-square');
 		} else {
 			$(this).removeClass('fa-check-square').addClass('fa-square');
 		}
 	});
-
 
 	if ( ! $('#terms').prop('checked') ) {
 		$(this).addClass('fa-square').removeClass('fa-check-square');
