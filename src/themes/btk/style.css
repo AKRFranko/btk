@@ -1648,6 +1648,14 @@ Woocommerce Overrides
   color: #ffffff;
   text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.8);
 }
+.woocommerce .color-choice .color-selection .cancel {
+  padding: 0 15px;
+  font-size: 2em;
+  cursor: pointer;
+  font-weight: 100;
+  color: #ffffff;
+  text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.8);
+}
 @media (max-width: 767px) {
   .woocommerce #payment #place_order {
     width: initial;

@@ -14,9 +14,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $product, $post;
 
 $term_name = $selected_attributes['pa_color'];
-$terms = wc_get_product_terms($product->id, 'pa_color', 'names');
+$term_slug = '';
+$terms = wc_get_product_terms($product->id, 'pa_color', array( 'fields' => 'all' ));
 foreach ($terms as $term) {
 	if ($term_name === $term->slug) {
+		$term_slug = $term->slug;
 		$term_desc = $term->description;
 	}
 }
@@ -28,88 +30,47 @@ foreach ($terms as $term) {
 
 <form class="variations_form cart" method="post" enctype='multipart/form-data' data-product_id="<?php echo $post->ID; ?>" data-product_variations="<?php echo esc_attr( json_encode( $available_variations ) ) ?>">
 	<?php if ( ! empty( $available_variations ) ) : ?>
-		<table class="variations" cellspacing="0">
-			<tbody>
-				<?php $loop = 0; foreach ( $attributes as $name => $options ) : $loop++; ?>
-					<tr>
-						<td class="label"><label for="<?php echo sanitize_title( $name ); ?>"><?php echo wc_attribute_label( $name ); ?></label></td>
-						<td class="value"><select id="<?php echo esc_attr( sanitize_title( $name ) ); ?>" name="attribute_<?php echo sanitize_title( $name ); ?>" data-attribute_name="attribute_<?php echo sanitize_title( $name ); ?>">
-							<option value=""><?php echo __( 'Choose an option', 'woocommerce' ) ?>&hellip;</option>
-							<?php
-								if ( is_array( $options ) ) {
-
-									if ( isset( $_REQUEST[ 'attribute_' . sanitize_title( $name ) ] ) ) {
-										$selected_value = $_REQUEST[ 'attribute_' . sanitize_title( $name ) ];
-									} elseif ( isset( $selected_attributes[ sanitize_title( $name ) ] ) ) {
-										$selected_value = $selected_attributes[ sanitize_title( $name ) ];
-									} else {
-										$selected_value = '';
-									}
-
-									// Get terms if this is a taxonomy - ordered
-									if ( taxonomy_exists( $name ) ) {
-
-										$terms = wc_get_product_terms( $post->ID, $name, array( 'fields' => 'all' ) );
-
-										foreach ( $terms as $term ) {
-											if ( ! in_array( $term->slug, $options ) ) {
-												continue;
-											}
-											echo '<option value="' . esc_attr( $term->slug ) . '" ' . selected( sanitize_title( $selected_value ), sanitize_title( $term->slug ), false ) . '>' . apply_filters( 'woocommerce_variation_option_name', $term->name ) . '</option>';
-										}
-
-									} else {
-
-										foreach ( $options as $option ) {
-											echo '<option value="' . esc_attr( sanitize_title( $option ) ) . '" ' . selected( sanitize_title( $selected_value ), sanitize_title( $option ), false ) . '>' . esc_html( apply_filters( 'woocommerce_variation_option_name', $option ) ) . '</option>';
-										}
-
-									}
-								}
-							?>
-						</select></td>
-					</tr>
-		        <?php endforeach;?>
-			</tbody>
-		</table>
-
-
 
 		<div class="color-choice">
 			<?php foreach ( $attributes as $name => $options ) : ?>
-			<ul id="<?php echo esc_attr( sanitize_title( $name ) ); ?>" name="attribute_<?php echo sanitize_title( $name ); ?>" data-attribute_name="attribute_<?php echo sanitize_title( $name ); ?>">
-				<?php
-					if ( is_array( $options ) ) {
+			<input type="hidden" id="<?php echo esc_attr( sanitize_title( $name ) ); ?>" name="attribute_<?php echo sanitize_title( $name ); ?>" data-attribute_name="attribute_<?php echo sanitize_title( $name ); ?>" value="<?php echo $term_slug; ?>" />
+			<ul>
+			<?php
+				if ( is_array( $options ) ) {
 
-						if ( isset( $_REQUEST[ 'attribute_' . sanitize_title( $name ) ] ) ) {
-							$selected_value = $_REQUEST[ 'attribute_' . sanitize_title( $name ) ];
-						} elseif ( isset( $selected_attributes[ sanitize_title( $name ) ] ) ) {
-							$selected_value = $selected_attributes[ sanitize_title( $name ) ];
-						} else {
-							$selected_value = '';
-						}
+					if ( isset( $_REQUEST[ 'attribute_' . sanitize_title( $name ) ] ) ) {
+						$selected_value = $_REQUEST[ 'attribute_' . sanitize_title( $name ) ];
+					} elseif ( isset( $selected_attributes[ sanitize_title( $name ) ] ) ) {
+						$selected_value = $selected_attributes[ sanitize_title( $name ) ];
+					} else {
+						$selected_value = '';
+					}
 
-						// Get terms if this is a taxonomy - ordered
-						if ( taxonomy_exists( $name ) ) {
+					// Get terms if this is a taxonomy - ordered
+					if ( taxonomy_exists( $name ) ) {
 
-							$terms = wc_get_product_terms( $post->ID, $name, array( 'fields' => 'all' ) );
+						$terms = wc_get_product_terms( $post->ID, $name, array( 'fields' => 'all' ) );
 
-							foreach ( $terms as $term ) {
-								if ( ! in_array( $term->slug, $options ) ) {
-									continue;
+						foreach ( $terms as $term ) {
+							if ( ! in_array( $term->slug, $options ) ) {
+								continue;
+							}
+
+							$variation = 0;
+							foreach ($available_variations as $color) {
+								if ( $color['attributes']['attribute_pa_color'] == $term->slug ) {
+									$variation = $color['variation_id'];
+									if ($selected_value == $term->slug) {
+										$default_variation_id = $variation;
+									}
 								}
-								echo '<li><a style="background-color:' . $term->description . '">' . apply_filters( 'woocommerce_variation_option_name', $term->name ) . '</a></li>';
 							}
 
-						} else {
-
-							foreach ( $options as $option ) {
-								echo '<option value="' . esc_attr( sanitize_title( $option ) ) . '" ' . selected( sanitize_title( $selected_value ), sanitize_title( $option ), false ) . '>' . esc_html( apply_filters( 'woocommerce_variation_option_name', $option ) ) . '</option>';
-							}
-
+							echo '<li><a style="background-color:' . $term->description . '" data-variation="' . $variation . '">' . apply_filters( 'woocommerce_variation_option_name', $term->name ) . '</a></li>';
 						}
 					}
-				?>
+				}
+			?>
 			</ul>
 			<?php endforeach;?>
 			<p class="back-to-product">
@@ -119,7 +80,7 @@ foreach ($terms as $term) {
 
 			<div class="color-selection">
 				<span class="selected valign">Color</span>
-				<a class="close">x</a>
+				<a class="cancel alignright">x</a>
 				<p class="choose-this-color">
 					<span class="valign">Choose this color</span>
 					<a class="buttons valign icon-arrow-lite-right-white"></a>
@@ -136,7 +97,7 @@ foreach ($terms as $term) {
 
 			<input type="hidden" name="add-to-cart" value="<?php echo $product->id; ?>" />
 			<input type="hidden" name="product_id" value="<?php echo esc_attr( $post->ID ); ?>" />
-			<input type="hidden" name="variation_id" class="variation_id" value="" />
+			<input type="hidden" name="variation_id" class="variation_id" value="<?php echo $default_variation_id; ?>" />
 
 			<?php woocommerce_quantity_input(); ?>
 			<p class="qty-text">

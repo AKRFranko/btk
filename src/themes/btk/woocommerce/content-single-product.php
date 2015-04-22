@@ -44,7 +44,7 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 				$image_title 	= esc_attr( get_the_title( get_post_thumbnail_id() ) );
 				$image_link  	= wp_get_attachment_url( get_post_thumbnail_id() );
 
-				echo '<li><img src="' . $image_link . '" alt="' . $image_title . '"></img></li>';
+				echo '<li><img src="' . $image_link . '" alt="' . $image_title . '"></li>';
 
 			} else {
 
@@ -62,7 +62,7 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 					$image_link = wp_get_attachment_url( $attachment_id );
 					$image_title = esc_attr( get_the_title( $attachment_id ) );
 
-					echo '<li><img src="' . $image_link . '" alt="' . $image_title . '"></img></li>';
+					echo '<li><img src="' . $image_link . '" alt="' . $image_title . '"></li>';
 
 				}
 			}
