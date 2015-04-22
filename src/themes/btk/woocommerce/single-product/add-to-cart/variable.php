@@ -18,7 +18,7 @@ $term_slug = '';
 $terms = wc_get_product_terms($product->id, 'pa_color', array( 'fields' => 'all' ));
 foreach ($terms as $term) {
 	if ($term_name === $term->slug) {
-		$term_slug = $term->slug;
+		$term_slug = $term->name;
 		$term_desc = $term->description;
 	}
 }
