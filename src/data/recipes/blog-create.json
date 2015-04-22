@@ -311,7 +311,7 @@
                "file":"./src/data/text/news-3.txt"
             },
             "opts":{
-               "post_title":"our bst sofas",
+               "post_title":"our best sofas",
                "post_type":"post",
                "post_status":"publish",
                "post_category":"$cat_carousel"
@@ -325,7 +325,7 @@
                "post_title":"order you fabric samples",
                "post_type":"post",
                "post_status":"publish",
-               "post_category":"$cat_news"
+               "post_category":"$cat_carousel"
             }
          },
          "$about_page":{
