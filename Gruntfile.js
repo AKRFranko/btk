@@ -204,6 +204,12 @@ module.exports = function(grunt) {
       theme_update: {
         options: { args: [ '-j', '<%= cfg.project_dir %>/src/data/recipes/theme-update.json', '-y', '<%= cfg.project_dir %>/wp-cli.yml' ] },
         src: ['<%= cfg.project_dir %>/node_modules/nwp/bin/nwp']
+      },
+      generate_catalog: {
+        options: {
+          cwd: '<%= cfg.project_dir %>/src/data/media/mock-catalog'
+        },
+        src: ['tojson.js']
       }
     }
 
@@ -235,7 +241,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('theme:update',   [ "build", "compress", "execute:theme_update" ] )
   
-  grunt.registerTask('release', ["site:reset", "plugins:install", "blog:create", "catalog:create", "theme:update" ] )
+  grunt.registerTask('release', ["execute:generate_catalog", "site:reset", "plugins:install", "blog:create", "catalog:create", "theme:update" ] )
   grunt.registerTask('install', [ "theme:update" ] )
 
 
