@@ -296,7 +296,7 @@
                "post_type":"post",
                "post_status":"publish",
                "post_date": "2013-01-01 18:57:33",
-               "post_category":"$cat_caroussel"
+               "post_category":"$cat_carousel"
             }
          },
          "$carousel_2":{
@@ -308,7 +308,7 @@
                "post_type":"post",
                "post_status":"publish",
                "post_date": "2013-01-01 18:57:33",
-               "post_category":"$cat_caroussel"
+               "post_category":"$cat_carousel"
             }
          },
          "$carousel_3":{
@@ -320,7 +320,7 @@
                "post_type":"post",
                "post_status":"publish",
                "post_date": "2013-01-01 18:57:33",
-               "post_category":"$cat_caroussel"
+               "post_category":"$cat_carousel"
             }
          },
          "$carousel_4":{
@@ -331,7 +331,7 @@
                "post_title":"order you fabric samples",
                "post_type":"post",
                "post_status":"publish",
-               "post_date": "2013-cat_caroussel-01 18:57:33",
+               "post_date": "2013-cat_carousel-01 18:57:33",
                "post_category":"$cat_news"
             }
          },
@@ -615,7 +615,7 @@
          { "args": { "file": "./src/data/media/carousel-images/designers.jpg"   } , "opts": { "post_id": "$carousel_2", "featured_image": true } },
          { "args": { "file": "./src/data/media/carousel-images/best-sofas.jpg"   } , "opts": { "post_id": "$carousel_3", "featured_image": true } },
          { "args": { "file": "./src/data/media/carousel-images/fabric-samples.jpg"   } , "opts": { "post_id": "$carousel_4", "featured_image": true } },
-         
+
          { "args": { "file": "./src/data/media/vertical-images/1.jpg"   } , "opts": { "post_id": "$news_01", "featured_image": true } },
          { "args": { "file": "./src/data/media/vertical-images/2.jpg"   } , "opts": { "post_id": "$news_02", "featured_image": true } },
          { "args": { "file": "./src/data/media/vertical-images/3.jpg"   } , "opts": { "post_id": "$news_03", "featured_image": true } },
