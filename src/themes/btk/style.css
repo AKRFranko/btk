@@ -1300,17 +1300,9 @@ Woocommerce Overrides
 .woocommerce .product .product-add form.cart button:hover {
   background-color: #444;
 }
-.woocommerce .product .product-add .qty-text,
-.woocommerce .product .product-add .product-color {
+.woocommerce .product .product-add .qty-text {
   padding: 6px 0;
   border-bottom: 1px solid #000000;
-}
-.woocommerce .product .product-add .product-color a {
-  padding: 0.35em 2.65em;
-  cursor: pointer;
-}
-.woocommerce .product .product-add .product-color span {
-  padding-top: 10px;
 }
 .woocommerce .quantity {
   float: right;
@@ -1332,6 +1324,17 @@ Woocommerce Overrides
   width: 2.1em;
   text-align: right;
   color: #000000;
+}
+.woocommerce .product-color {
+  padding: 6px 0;
+  border-bottom: 1px solid #000000;
+}
+.woocommerce .product-color a {
+  padding: 0.35em 2.65em;
+  cursor: pointer;
+}
+.woocommerce .product-color span {
+  padding-top: 10px;
 }
 .woocommerce .cart-contents input[name="update_cart"] {
   float: right;

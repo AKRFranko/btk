@@ -80,12 +80,29 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 				?>
 			</div>
 
-			<div class="product-add">
-				<?php
-					// Meta data
-					echo WC()->cart->get_item_data( $cart_item );
-				?>
+			<?php
+				if ( ! empty($cart_item['variation_id']) ) {
+					foreach ( $cart_item['variation'] as $name => $value ) {
+						if ( '' === $value )
+							continue;
+
+						$taxonomy = wc_attribute_taxonomy_name( str_replace( 'attribute_pa_', '', urldecode( $name ) ) );
+
+						// If this is a term slug, get the term's nice name and description
+						if ( taxonomy_exists( $taxonomy ) ) {
+							$term = get_term_by( 'slug', $value, $taxonomy );
+							if ( ! is_wp_error( $term ) && $term && $term->name ) {
+			?>
+			<div class="product-color">
+				<span class="valign"><?php echo $term->name; ?></span>
+				<a class="alignright" style="background-color: <?php echo $term->description; ?>">&nbsp;</a>
 			</div>
+			<?php
+							}
+						}
+					}
+				}
+			?>
 		</div>
 		<?php
 	}
