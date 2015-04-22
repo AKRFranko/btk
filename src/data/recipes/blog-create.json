@@ -237,7 +237,7 @@
                "post_title":"what is element de base",
                "post_type":"post",
                "post_status":"publish",
-               "post_category":"$cat_news,$cat_designer"
+               "post_category":"$cat_carousel"
             }
          },
          "$news_04":{
@@ -248,7 +248,7 @@
                "post_title":"the beauty of natural materials",
                "post_type":"post",
                "post_status":"publish",
-               "post_category":"$cat_news"
+               "post_category":"$cat_carousel"
             }
          },
          "$news_03":{
@@ -259,7 +259,7 @@
                "post_title":"original designs",
                "post_type":"post",
                "post_status":"publish",
-               "post_category":"$cat_news"
+               "post_category":"$cat_carousel"
             }
          },
          "$news_02":{
@@ -270,7 +270,7 @@
                "post_title":"new arrival",
                "post_type":"post",
                "post_status":"publish",
-               "post_category":"$cat_news"
+               "post_category":"$cat_carousel"
             }
          },
          "$news_01":{
@@ -281,10 +281,10 @@
                "post_title":"spring 2015",
                "post_type":"post",
                "post_status":"publish",
-               "post_category":"$cat_news"
+               "post_category":"$cat_carousel"
             }
          },
-         "$carousel_1":{
+         "$homepost_1":{
             "args":{
                "file":"./src/data/text/news-1.txt"
             },
@@ -292,10 +292,10 @@
                "post_title":"lookbook",
                "post_type":"post",
                "post_status":"publish",
-               "post_category":"$cat_carousel"
+               "post_category":"$cat_news"
             }
          },
-         "$carousel_2":{
+         "$homepost_2":{
             "args":{
                "file":"./src/data/text/news-2.txt"
             },
@@ -303,10 +303,10 @@
                "post_title":"designers",
                "post_type":"post",
                "post_status":"publish",
-               "post_category":"$cat_carousel"
+               "post_category":"$cat_news,$cat_people"
             }
          },
-         "$carousel_3":{
+         "$homepost_3":{
             "args":{
                "file":"./src/data/text/news-3.txt"
             },
@@ -314,10 +314,10 @@
                "post_title":"our best sofas",
                "post_type":"post",
                "post_status":"publish",
-               "post_category":"$cat_carousel"
+               "post_category":"$cat_news"
             }
          },
-         "$carousel_4":{
+         "$homepost_4":{
             "args":{
                "file":"./src/data/text/news-4.txt"
             },
@@ -325,7 +325,7 @@
                "post_title":"order you fabric samples",
                "post_type":"post",
                "post_status":"publish",
-               "post_category":"$cat_carousel"
+               "post_category":"$cat_news"
             }
          },
          "$about_page":{
@@ -604,10 +604,10 @@
    },
    "media":{
       "import": [
-         { "args": { "file": "./src/data/media/carousel-images/lookbook.jpg"   } , "opts": { "post_id": "$carousel_1", "featured_image": true } },
-         { "args": { "file": "./src/data/media/carousel-images/designers.jpg"   } , "opts": { "post_id": "$carousel_2", "featured_image": true } },
-         { "args": { "file": "./src/data/media/carousel-images/best-sofas.jpg"   } , "opts": { "post_id": "$carousel_3", "featured_image": true } },
-         { "args": { "file": "./src/data/media/carousel-images/fabric-samples.jpg"   } , "opts": { "post_id": "$carousel_4", "featured_image": true } },
+         { "args": { "file": "./src/data/media/carousel-images/lookbook.jpg"   } , "opts": { "post_id": "$homepost_1", "featured_image": true } },
+         { "args": { "file": "./src/data/media/carousel-images/designers.jpg"   } , "opts": { "post_id": "$homepost_2", "featured_image": true } },
+         { "args": { "file": "./src/data/media/carousel-images/best-sofas.jpg"   } , "opts": { "post_id": "$homepost_3", "featured_image": true } },
+         { "args": { "file": "./src/data/media/carousel-images/fabric-samples.jpg"   } , "opts": { "post_id": "$homepost_4", "featured_image": true } },
 
          { "args": { "file": "./src/data/media/vertical-images/1.jpg"   } , "opts": { "post_id": "$news_01", "featured_image": true } },
          { "args": { "file": "./src/data/media/vertical-images/2.jpg"   } , "opts": { "post_id": "$news_02", "featured_image": true } },
