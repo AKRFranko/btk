@@ -1,0 +1,433 @@
+
+<!doctype html>
+
+<html lang="">
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<title>How To Store Product Data For Site Inclusion</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+		<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+	</head>
+<style type="text/css">
+	/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+html,body{
+	font-size:15px;
+	font-family:sans-serif;
+	margin:0;padding:0;
+}
+body{max-width:100vw;overflow-x:hidden;padding-left:3em;}
+ul,li{
+	list-style-type:none;
+	display:block;
+	width:100%;
+	margin:0;padding:0;
+}
+li{
+	position:relative;
+	line-height:1rem;
+	margin-bottom:.5em;
+	margin-top:.5em;
+}
+ul{
+	border-left:1px dashed #ace;
+	margin-left:1em;
+	padding-left:1em;
+}
+.cat{
+	color:red;
+	font-weight:bold;
+}
+.sub{
+	color:orange;
+	font-weight:bold;
+}
+.elip{
+	color:#ace;font-weight:bold;
+}
+.product{
+	color:blue;
+	font-weight:bold;
+}
+.hide{
+	display:none;
+}
+.files{
+	color:#0c3;
+	font-weight:bold;
+}
+.file{
+	color:#111;
+	font-weight:normal;
+}
+.product > ul .files{
+	
+	
+}
+.foldericon:before,.files:before,.cat:before,.product:before, .product + .elip:before{
+	font-family:"FontAwesome";
+	content:"\f07b";
+	margin-right:.25em;
+}
+.texticon:before,.imageicon:before,.file:before,.file + .elip:before{
+	font-family:"FontAwesome";
+	content:"\f03e";
+	margin-right:.25em;
+}
+.texticon:before,.file.text:before{
+	content:"\f0f6";
+}
+*:after,*:before{
+	font-family:"FontAwesome";
+	font-weight:normal;
+}
+.red{background:red;}
+.orange{background:orange;}
+.blue{background:blue;}
+.green{background:#0c3;}
+.black{background:#000;}
+table{position:fixed;top:1em;right:1em;background:#fff;border:1px solid #ace;}
+td{border:2px solid #fff;vertical-align: center;text-align:center;padding:.25em;}
+td + td{ text-align:left;padding-left:.25em;}
+
+.reqicon:after,.file.required:after{
+	content:"\f023";
+	margin-left:.25em;
+	color:#ccc;
+}
+.prodicon:after,.file.featured.prod:after{
+	
+	content:"\f06b";
+	margin-left:.25em;
+	color:#ccc;
+}
+.featicon:after,.file.featured:after{
+	
+	content:"\f06e";
+	margin-left:.25em;
+	color:#ccc;
+}
+.file.required.featured:after{
+	content:"\f023\0020\f06e";
+}
+.file.required.featured.prod:after{
+	content:"\f023\0020\f06b";
+}
+h1{
+	color:#8AC;
+	display:block;
+	margin:1em;
+	font-size:1.5em;
+}
+div{
+	margin-bottom:1em;
+	padding-bottom:1em;
+	border-bottom:1em solid #ACE;
+}
+tr:last-child td{
+	text-align:left;
+}
+
+
+</style>
+	<body>
+<ul class="hide">
+	<li class="file required text">description.txt</li>
+	<li class="files required">images<ul>
+			<li class="files required">scenes<ul>
+				<li class="file required featured image">01.jpg</li>
+				<li class="file">02.jpg</li>
+				<li class="file">03.jpg</li>
+				<li class="file">04.jpg</li>
+				<li class="elip">…</li>
+			</ul></li>
+			<li class="files required">angles<ul>
+				<li class="file required featured prod">front.jpg</li>
+				<li class="file">left.jpg</li>
+				<li class="file">right.jpg</li>
+				<li class="file">top.jpg</li>
+				<li class="elip">…</li>
+			</ul></li>
+			<li class="files optional">tech<ul>
+				<li class="file">01.jpg</li>
+				<li class="file">02.jpg</li>
+				<li class="file">03.jpg</li>
+				<li class="elip">…</li>
+			</ul></li>
+			<li class="files optional">materials<ul>
+				<li class="files">color-a<ul>
+					<li class="file featured prod" >front.jpg</li>
+					<li class="file">left.jpg</li>
+					<li class="file">right.jpg</li>
+					<li class="file">top.jpg</li>
+					<li class="elip">…</li>
+				</ul></li>
+				<li class="files">color-b<ul>
+					<li class="file featured prod">front.jpg</li>
+					<li class="file">left.jpg</li>
+					<li class="file">right.jpg</li>
+					<li class="file">top.jpg</li>
+					<li class="elip">…</li>
+				</ul></li>		
+			</ul></li>
+
+	</ul></li>
+</ul>
+
+
+<div id="csp">
+	<h1>Category/Subcategory/Product Hierarchy</h1>
+<ul>
+<li class="cat">sofas</li>
+<ul>
+<li class="cat sub">2-seater</li>
+<ul>
+<li class="product">a-product-name</li>
+<li class="elip">…</li>
+</ul>
+<li class="cat sub">3-seater</li>
+<ul>
+<li class="product">a-product-name</li>
+<li class="elip">…</li>
+</ul>
+</ul>
+<li class="cat">sectionals</li>
+<ul>
+<li class="cat sub">left-facing</li>
+<ul>
+<li class="product">a-product-name</li>
+<li class="elip">…</li>
+</ul>
+<li class="cat sub">right-facing</li>
+<ul>
+<li class="product">a-product-name</li>
+<li class="elip">…</li>
+</ul>
+</ul>
+<li class="cat">sofa-beds</li>
+<ul>
+<li class="product">a-product-name</li>
+<li class="elip">…</li>
+</ul>
+<li class="cat">coffee-tables</li>
+<ul>
+<li class="product">a-product-name</li>
+<li class="elip">…</li>
+</ul>
+<li class="cat">benches-ottomans</li>
+<ul>
+<li class="product">a-product-name</li>
+<li class="elip">…</li>
+</ul>
+<li class="cat">armchairs</li>
+<ul>
+<li class="product">a-product-name</li>
+<li class="elip">…</li>
+</ul>
+<li class="cat">headboards</li>
+<ul>
+<li class="product">a-product-name</li>
+<li class="elip">…</li>
+</ul>
+<li class="cat">storage</li>
+<ul>
+<li class="product">a-product-name</li>
+<li class="elip">…</li>
+</ul>
+<li class="cat">accessories</li>
+<ul>
+<li class="cat sub">rugs</li>
+<ul>
+<li class="product">a-product-name</li>
+<li class="elip">…</li>
+</ul>
+<li class="cat sub">pillows</li>
+<ul>
+<li class="product">a-product-name</li>
+<li class="elip">…</li>
+</ul>
+<li class="cat sub">other</li>
+<ul>
+<li class="product">a-product-name</li>
+<li class="elip">…</li>
+</ul>
+</ul>
+</ul>
+
+</div>
+<div id="ip">
+	<h1>Inside a product</h1>
+<ul>
+	<li class="file required text">description.txt</li>
+	<li class="files required">images<ul>
+			<li class="files required">scenes<ul>
+				<li class="file required featured image">01.jpg</li>
+				<li class="file">02.jpg</li>
+				<li class="file">03.jpg</li>
+				<li class="file">04.jpg</li>
+				<li class="elip">…</li>
+			</ul></li>
+			<li class="files required">angles<ul>
+				<li class="file required featured prod">front.jpg</li>
+				<li class="file">left.jpg</li>
+				<li class="file">right.jpg</li>
+				<li class="file">top.jpg</li>
+				<li class="elip">…</li>
+			</ul></li>
+			<li class="files optional">tech<ul>
+				<li class="file">01.jpg</li>
+				<li class="file">02.jpg</li>
+				<li class="file">03.jpg</li>
+				<li class="elip">…</li>
+			</ul></li>
+			<li class="files optional">materials<ul>
+				<li class="files">color-a<ul>
+					<li class="file featured prod" >front.jpg</li>
+					<li class="file">left.jpg</li>
+					<li class="file">right.jpg</li>
+					<li class="file">top.jpg</li>
+					<li class="elip">…</li>
+				</ul></li>
+				<li class="files">color-b<ul>
+					<li class="file featured prod">front.jpg</li>
+					<li class="file">left.jpg</li>
+					<li class="file">right.jpg</li>
+					<li class="file">top.jpg</li>
+					<li class="elip">…</li>
+				</ul></li>		
+			</ul></li>
+
+	</ul></li>
+</ul>
+
+</div>
+<div id="all">
+	<h1>Putting it all together</h1>
+<ul>
+<li class="cat">sofas</li>
+<ul>
+<li class="cat sub">2-seater</li>
+<ul>
+<li class="product">a-product-name</li>
+<li class="elip">…</li>
+</ul>
+<li class="cat sub">3-seater</li>
+<ul>
+<li class="product">a-product-name</li>
+<li class="elip">…</li>
+</ul>
+</ul>
+<li class="cat">sectionals</li>
+<ul>
+<li class="cat sub">left-facing</li>
+<ul>
+<li class="product">a-product-name</li>
+<li class="elip">…</li>
+</ul>
+<li class="cat sub">right-facing</li>
+<ul>
+<li class="product">a-product-name</li>
+<li class="elip">…</li>
+</ul>
+</ul>
+<li class="cat">sofa-beds</li>
+<ul>
+<li class="product">a-product-name</li>
+<li class="elip">…</li>
+</ul>
+<li class="cat">coffee-tables</li>
+<ul>
+<li class="product">a-product-name</li>
+<li class="elip">…</li>
+</ul>
+<li class="cat">benches-ottomans</li>
+<ul>
+<li class="product">a-product-name</li>
+<li class="elip">…</li>
+</ul>
+<li class="cat">armchairs</li>
+<ul>
+<li class="product">a-product-name</li>
+<li class="elip">…</li>
+</ul>
+<li class="cat">headboards</li>
+<ul>
+<li class="product">a-product-name</li>
+<li class="elip">…</li>
+</ul>
+<li class="cat">storage</li>
+<ul>
+<li class="product">a-product-name</li>
+<li class="elip">…</li>
+</ul>
+<li class="cat">accessories</li>
+<ul>
+<li class="cat sub">rugs</li>
+<ul>
+<li class="product">a-product-name</li>
+<li class="elip">…</li>
+</ul>
+<li class="cat sub">pillows</li>
+<ul>
+<li class="product">a-product-name</li>
+<li class="elip">…</li>
+</ul>
+<li class="cat sub">other</li>
+<ul>
+<li class="product">a-product-name</li>
+<li class="elip">…</li>
+</ul>
+</ul>
+</ul>
+
+</div>
+
+<table>
+	<tr>	<td class="red"></td><td>a product category folder</td></tr>
+<tr>		<td class="orange"></td><td>a sub-category folder</td></tr>
+<tr>		<td class="blue"></td><td>a product folder</td></tr>
+<tr>		<td class="green"></td><td>a folder with product specific files</td></tr>
+<tr>		<td class="black"></td><td>a file</td></tr>
+<tr>		<td class="foldericon"></td><td>a folder</td></tr>
+<tr>		<td class="texticon"></td><td>a text file</td></tr>
+<tr>		<td class="imageicon"></td><td>an image file</td>
+<tr>		<td class="reqicon"></td><td>file is required</td></tr>
+<tr>		<td class="featicon"></td><td>file used as gallery featured image</td>
+<tr>		<td class="prodicon"></td><td>file used as product featured image</td>
+	
+
+	</tr>
+	<tr><td colspan="2">
+		File and folder names must be all lowercase,<br> 
+		must not contain any spaces and can only <br>
+		include these characters:<br><br>
+			a b c d e f g h i j<br> 
+			k l m n o p q r s t<br>
+			u v w x y z 0 1 2 3<br> 
+			4 5 6 7 8 9 - _ .<br>
+		<td></tr>
+</table>
+
+
+	</body>
+<script type="text/javascript">
+$(function(){
+	var tmp = $('.hide');
+	$('#all .product').each( function(){
+		$(this).append(tmp.clone().removeClass('hide'))
+	})
+})</script>
+</html>
