@@ -248,7 +248,6 @@
                "post_title":"the beauty of natural materials",
                "post_type":"post",
                "post_status":"publish",
-               "post_date": "2014-10-10 18:57:33",
                "post_category":"$cat_news"
             }
          },
@@ -260,7 +259,6 @@
                "post_title":"original designs",
                "post_type":"post",
                "post_status":"publish",
-               "post_date": "2014-12-12 18:57:33",
                "post_category":"$cat_news"
             }
          },
@@ -283,7 +281,6 @@
                "post_title":"spring 2015",
                "post_type":"post",
                "post_status":"publish",
-               "post_date": "2015-02-01 18:57:33",
                "post_category":"$cat_news"
             }
          },
@@ -295,7 +292,6 @@
                "post_title":"lookbook",
                "post_type":"post",
                "post_status":"publish",
-               "post_date": "2013-01-01 18:57:33",
                "post_category":"$cat_carousel"
             }
          },
@@ -307,7 +303,6 @@
                "post_title":"designers",
                "post_type":"post",
                "post_status":"publish",
-               "post_date": "2013-01-01 18:57:33",
                "post_category":"$cat_carousel"
             }
          },
@@ -319,7 +314,6 @@
                "post_title":"our bst sofas",
                "post_type":"post",
                "post_status":"publish",
-               "post_date": "2013-01-01 18:57:33",
                "post_category":"$cat_carousel"
             }
          },
@@ -331,7 +325,6 @@
                "post_title":"order you fabric samples",
                "post_type":"post",
                "post_status":"publish",
-               "post_date": "2013-cat_carousel-01 18:57:33",
                "post_category":"$cat_news"
             }
          },
