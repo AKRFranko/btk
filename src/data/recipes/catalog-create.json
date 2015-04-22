@@ -345,7 +345,7 @@
 		 { "args": { "file": "./src/data/media/product-images/sofa_002/sofa_002_td1.jpg"    } , "opts": { "post_id": "$sofa_002"  } },
 		 { "args": { "file": "./src/data/media/product-images/sofa_002/sofa_002_td2.jpg"    } , "opts": { "post_id": "$sofa_002" } },
 
-		  { "args": { "file": "./src/data/media/product-images/sofa_003/sofa_003_wht1.jpg"   } , "opts": { "post_id": "$sofa_003", "featured_image": true } },
+		 { "args": { "file": "./src/data/media/product-images/sofa_003/sofa_003_wht1.jpg"   } , "opts": { "post_id": "$sofa_003", "featured_image": true } },
          { "args": { "file": "./src/data/media/product-images/sofa_003/sofa_003_wht3.jpg"   } , "opts": { "post_id": "$sofa_003_espresso", "featured_image": true } },         
 		 { "args": { "file": "./src/data/media/product-images/sofa_003/sofa_003_wht2.jpg"   } , "opts": { "post_id": "$sofa_003_latte", "featured_image": true } },
 		 { "args": { "file": "./src/data/media/product-images/sofa_003/sofa_003_amb1.jpg"   } , "opts": { "post_id": "$sofa_003"  } },
