@@ -322,7 +322,7 @@
                "file":"./src/data/text/news-4.txt"
             },
             "opts":{
-               "post_title":"order you fabric samples",
+               "post_title":"order your fabric samples",
                "post_type":"post",
                "post_status":"publish",
                "post_category":"$cat_news"
