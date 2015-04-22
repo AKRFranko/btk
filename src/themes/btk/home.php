@@ -17,12 +17,12 @@ get_header();?>
 
 			<!-- main slider -->
 			<div class="edb-slider">
-				<?php btk_edb_slider('category_name=carousel&posts_per_page=5');?>
+				<?php btk_edb_slider('category_name=carousel&posts_per_page=4');?>
 				<div class="controls">
 					<a class="prev" href="#"><span class="icon-arrow-lite-left-white"></span></a>
 					<span class="index">0</span>
 					<span class="separator"> | </span>
-					<span class="total"> 5 </span>
+					<span class="total"> 4 </span>
 					<a class="next" href="#"><span class="icon-arrow-lite-right-white"></span></a>
 				</div>
 			</div>
@@ -42,22 +42,22 @@ $my_query = new WP_Query(array(
 
 		<?php /* Start the Loop */?>
 			<?php while ($my_query->have_posts()): $my_query->the_post();?>
-																<div class="main-article">
-																	<a href="<?php echo get_permalink();?>">
-																	<?php if (has_post_thumbnail()): ?>
-																		<?php
+																		<div class="main-article">
+																			<a href="<?php echo get_permalink();?>">
+																			<?php if (has_post_thumbnail()): ?>
+																				<?php
 	$hires = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
 	$lores = wp_get_attachment_image_src(get_post_thumbnail_id(), 'medium');
-	echo '<img src="' . $lores[0] . '" data-hires-image="' . $hires[0] . '" alt="' . get_the_title() . '">';
+	echo '<img src="' . $lores[0] . '" data-hires-image="' . $hires[0] . '">';
 	?>
-																	<?php ;endif;?></a>
-																	<p>
-																		<?php //btk_home_entry_categories();?>
-																		<a href="<?php echo get_permalink();?>"><?php the_title();?></a>
-																	</p>
-																	<?php //btk_home_entry_tags();?>
-																</div>
-															<?php endwhile;?>
+																			<?php ;endif;?></a>
+																			<p>
+																				<?php //btk_home_entry_categories();?>
+																				<a href="<?php echo get_permalink();?>"><?php the_title();?></a>
+																			</p>
+																			<?php //btk_home_entry_tags();?>
+																		</div>
+																	<?php endwhile;?>
 
 			<?php //the_posts_navigation();?>
 
