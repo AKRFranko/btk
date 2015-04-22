@@ -173,7 +173,7 @@
 	$('.choose-this-color a').click(function(){
 		$('.color-selection').hide();
 		$('.color-choice').hide();
-		$('#pa_color').val($('.color-selection .selected').text());
+		$('.pa_color').val($('.color-selection .selected').text());
 		$('.product-color span').text($('.color-selection .selected').text());
 		$('.product-color a').css('background-color', $('.color-selection').css('background-color'));
 		$('.single_variation_wrap .variation_id').val( $(this).attr('data-variation') );

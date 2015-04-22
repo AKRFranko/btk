@@ -33,7 +33,7 @@ foreach ($terms as $term) {
 
 		<div class="color-choice">
 			<?php foreach ( $attributes as $name => $options ) : ?>
-			<input type="hidden" id="<?php echo esc_attr( sanitize_title( $name ) ); ?>" name="attribute_<?php echo sanitize_title( $name ); ?>" data-attribute_name="attribute_<?php echo sanitize_title( $name ); ?>" value="<?php echo $term_slug; ?>" />
+			<input type="hidden" class="<?php echo esc_attr( sanitize_title( $name ) ); ?>" name="attribute_<?php echo sanitize_title( $name ); ?>" data-attribute_name="attribute_<?php echo sanitize_title( $name ); ?>" value="<?php echo $term_slug; ?>" />
 			<ul>
 			<?php
 				if ( is_array( $options ) ) {

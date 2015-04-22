@@ -87,7 +87,18 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 	?>
 
 	<div class="product-add">
-		<?php wc_get_template( 'single-product/add-to-cart/simple.php' ); ?>
+		<?php
+			if ( $product->is_type('variable') ) {
+				wp_enqueue_script( 'wc-add-to-cart-variation' );
+				wc_get_template( 'single-product/add-to-cart/variable.php', array(
+					'available_variations'  => $product->get_available_variations(),
+					'attributes'   			=> $product->get_variation_attributes(),
+					'selected_attributes' 	=> $product->get_variation_default_attributes()
+				) );
+			} else {
+				wc_get_template( 'single-product/add-to-cart/simple.php' );
+			}
+		?>
 	</div>
 
 </li>

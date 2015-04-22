@@ -50,9 +50,6 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 					else
 						echo apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s </a>', $_product->get_permalink( $cart_item ), $_product->get_title() ), $cart_item, $cart_item_key );
 
-					// Meta data
-					echo WC()->cart->get_item_data( $cart_item );
-
        				// Backorder notification
        				if ( $_product->backorders_require_notification() && $_product->is_on_backorder( $cart_item['quantity'] ) )
        					echo '<p class="backorder_notification">' . __( 'Available on backorder', 'woocommerce' ) . '</p>';
@@ -80,6 +77,13 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 					}
 
 					echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key );
+				?>
+			</div>
+
+			<div class="product-add">
+				<?php
+					// Meta data
+					echo WC()->cart->get_item_data( $cart_item );
 				?>
 			</div>
 		</div>
