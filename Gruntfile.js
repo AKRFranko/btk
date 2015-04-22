@@ -194,7 +194,7 @@ module.exports = function(grunt) {
         src: ['<%= cfg.project_dir %>/node_modules/nwp/bin/nwp']
       },
       catalog_create: {
-        options: { args: [ '-j', '<%= cfg.project_dir %>/src/data/recipes/catalog-create.json', '-y', '<%= cfg.project_dir %>/wp-cli.yml' ] },
+        options: { args: [ '-j', '<%= cfg.project_dir %>/src/data/media/mock-catalog/catalog-create.json', '-y', '<%= cfg.project_dir %>/wp-cli.yml' ] },
         src: ['<%= cfg.project_dir %>/node_modules/nwp/bin/nwp']
       },
       catalog_delete: {
