@@ -1065,8 +1065,34 @@ Woocommerce Overrides
 .woocommerce-checkout .qty-sub {
   display: none;
 }
+.woocommerce form.login,
+.woocommerce form.register {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
 .woocommerce {
   min-height: 250px;
+}
+.woocommerce .customer-login {
+  padding: 0 15px 15px;
+}
+.woocommerce .customer-login h2 {
+  font-size: 1.5em;
+  margin: 0 0 50px;
+  padding-top: 20px;
+  border-top: 2px solid #000000;
+}
+.woocommerce .customer-login p {
+  margin: 0 0 1.5em !important;
+}
+.woocommerce .customer-login input[type="submit"] {
+  padding: 0.75em 1.8em;
+  background-position: center center;
+  text-indent: -9999px;
+}
+.woocommerce .customer-login form {
+  margin-bottom: 50px !important;
 }
 .woocommerce ul.products {
   margin: 0;
@@ -1905,58 +1931,59 @@ Header
   text-align: right;
   background-position: center center;
 }
-#header-box header .sign-in-menu .login form,
-#header-box header .sign-in-menu .register form {
+#header-box header .sign-in-menu .login-form form,
+#header-box header .sign-in-menu .register-form form {
   padding-top: 10px;
 }
-#header-box header .sign-in-menu .login form p,
-#header-box header .sign-in-menu .register form p {
+#header-box header .sign-in-menu .login-form form p,
+#header-box header .sign-in-menu .register-form form p {
   margin: 0;
   line-height: 0em;
 }
-#header-box header .sign-in-menu .login form p.submit,
-#header-box header .sign-in-menu .register form p.submit {
+#header-box header .sign-in-menu .login-form form p.submit,
+#header-box header .sign-in-menu .register-form form p.submit {
   position: absolute;
   bottom: 120px;
   right: 15px;
 }
-#header-box header .sign-in-menu .login form .lost-password,
-#header-box header .sign-in-menu .register form .lost-password {
+#header-box header .sign-in-menu .login-form form .lost-password,
+#header-box header .sign-in-menu .register-form form .lost-password {
   font-size: 0.9em;
 }
-#header-box header .sign-in-menu .login input,
-#header-box header .sign-in-menu .register input {
+#header-box header .sign-in-menu .login-form input,
+#header-box header .sign-in-menu .register-form input {
   border-color: #ffffff;
   color: #ffffff;
 }
-#header-box header .sign-in-menu .login input[type='text'],
-#header-box header .sign-in-menu .register input[type='text'],
-#header-box header .sign-in-menu .login input[type='password'],
-#header-box header .sign-in-menu .register input[type='password'],
-#header-box header .sign-in-menu .login input[type='email'],
-#header-box header .sign-in-menu .register input[type='email'] {
+#header-box header .sign-in-menu .login-form input[type='text'],
+#header-box header .sign-in-menu .register-form input[type='text'],
+#header-box header .sign-in-menu .login-form input[type='password'],
+#header-box header .sign-in-menu .register-form input[type='password'],
+#header-box header .sign-in-menu .login-form input[type='email'],
+#header-box header .sign-in-menu .register-form input[type='email'] {
   padding: 2px 0;
   font-size: 0.9rem;
 }
-#header-box header .sign-in-menu .login input[type='submit'],
-#header-box header .sign-in-menu .register input[type='submit'] {
+#header-box header .sign-in-menu .login-form input[type='submit'],
+#header-box header .sign-in-menu .register-form input[type='submit'] {
   padding: 0.75em 1.8em;
   background-color: #444;
   background-position: center center;
+  text-indent: -9999px;
 }
-#header-box header .sign-in-menu .login ::-webkit-input-placeholder,
-#header-box header .sign-in-menu .register ::-webkit-input-placeholder {
+#header-box header .sign-in-menu .login-form ::-webkit-input-placeholder,
+#header-box header .sign-in-menu .register-form ::-webkit-input-placeholder {
   color: #ffffff;
 }
-#header-box header .sign-in-menu .login ::-moz-placeholder,
-#header-box header .sign-in-menu .register ::-moz-placeholder {
+#header-box header .sign-in-menu .login-form ::-moz-placeholder,
+#header-box header .sign-in-menu .register-form ::-moz-placeholder {
   color: #ffffff;
 }
-#header-box header .sign-in-menu .login :-ms-input-placeholder,
-#header-box header .sign-in-menu .register :-ms-input-placeholder {
+#header-box header .sign-in-menu .login-form :-ms-input-placeholder,
+#header-box header .sign-in-menu .register-form :-ms-input-placeholder {
   color: #ffffff;
 }
-#header-box header .sign-in-menu .register form {
+#header-box header .sign-in-menu .register-form form {
   padding-top: 5px;
 }
 #header-box header .sign-in-menu .choices,
@@ -2158,6 +2185,7 @@ Content
 }
 #content article .attachment-post-thumbnail {
   width: 100%;
+  margin-bottom: 10px;
   border-bottom: 3px solid #000000;
 }
 #content article .entry-header,
