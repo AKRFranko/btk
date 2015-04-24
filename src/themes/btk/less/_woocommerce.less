@@ -14,12 +14,24 @@ Woocommerce Overrides
 .woocommerce-checkout {
 	.qty-add, .qty-sub { display:none; }
 }
-
+.woocommerce form.login,
+.woocommerce form.register { margin:0; padding:0; border:none; }
 
 
 
 .woocommerce {
 	min-height:250px;
+// login - register
+	.customer-login {
+		padding:0 15px 15px;
+		h2 { font-size:1.5em; margin:0 0 50px; padding-top:20px; border-top:2px solid @black; }
+		p { margin:0 0 1.5em !important; }
+		input[type="submit"] { padding:0.75em 1.8em; background-position:center center; text-indent:-9999px; }
+		form { margin-bottom:50px !important; }
+	}
+
+
+
 // list of products
 	ul.products {
 		margin:0;

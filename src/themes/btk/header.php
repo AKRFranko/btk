@@ -100,6 +100,7 @@
 							</div>
 						</nav>
 
+
 						<!-- menu login -->
 						<div class="sign-in-menu">
 							<p class="welcome">Welcome</p>
@@ -115,27 +116,32 @@
 							</div>
 
 							<!-- form login -->
-							<div class="login">
+							<div class="login-form">
 								<p>Returning customers<br />Please sign in</p>
-								<form method="post" action="<?php echo $_SERVER['REQUEST_URI'];?>">
+								<form method="post" class="login" action="<?php echo esc_url(home_url('/')); ?>my-account">
+									<?php do_action( 'woocommerce_login_form_start' ); ?>
 									<p>
-										<input name="login_name" type="text" class="login-field" value="" placeholder="email" id="login-name" />
-										<label class="login-field-icon fui-user" for="login-name"></label>
+										<input id="username" name="username" type="text" class="input-text" value="" placeholder="<?php _e('email'); ?>" />
+										<label for="username"></label>
 									</p>
 									<p>
-										<input name="login_password" type="password" class="login-field" value="" placeholder="password" id="login-pass" />
-										<label class="login-field-icon fui-lock" for="login-pass"></label>
+										<input id="password" name="password" type="password" class="input-text" value="" placeholder="<?php _e('password'); ?>" />
+										<label for="password"></label>
 									</p>
+									<?php do_action( 'woocommerce_login_form' ); ?>
 									<p class="submit">
+										<?php wp_nonce_field( 'woocommerce-login' ); ?>
 										<span class="valign">enter edb</span>
-										<input class="valign icon-arrow-lite-right-white" type="submit"  name="dlf_submit" value="" />
+										<input class="valign icon-arrow-lite-right-white" type="submit"  name="login" value="<?php _e( 'Login', 'woocommerce' ); ?>" />
+										<input name="rememberme" type="checkbox" id="rememberme" value="forever" class="hide" checked="checked" />
 									</p>
-									<a href="#" class="lost-password alignright">> Click here to recover lost password</a>
+									<a href="<?php echo esc_url(home_url('/')); ?>my-account/lost-password" class="lost-password alignright">> Click here to recover lost password</a>
+									<?php do_action( 'woocommerce_login_form_end' ); ?>
 								</form>
 							</div>
 
 							<!-- form register -->
-							<div class="register">
+							<div class="register-form">
 								<p>New customers sign up for shopping<br />and exclusive offers</p>
 								<form method="post" action="<?php echo esc_url($_SERVER['REQUEST_URI']);?>">
 									<p>

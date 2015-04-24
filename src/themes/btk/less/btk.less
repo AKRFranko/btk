@@ -129,7 +129,7 @@ Header
 				}
 			}
 
-			.login, .register {
+			.login-form, .register-form {
 				form {
 					padding-top:10px;
 					p { margin:0; line-height:0em; }
@@ -142,13 +142,13 @@ Header
 				input[type='email'] { padding:2px 0; font-size:0.9rem; }
 				input[type='submit'] {
 					padding:0.75em 1.8em; background-color:#444;
-					background-position:center center;
+					background-position:center center; text-indent:-9999px;
 				}
 				::-webkit-input-placeholder { color:@white; }
 				::-moz-placeholder { color:@white; }
 				:-ms-input-placeholder { color:@white; }
 			}
-			.register form { padding-top:5px; }
+			.register-form form { padding-top:5px; }
 
 			.choices, .welcome {
 				display:block; width:100%; margin-bottom:15px; padding-bottom:15px;
@@ -258,7 +258,7 @@ Content
 	h1 { margin:10px 15px 20px; font-size:1.75em; }
 	article {
 		margin:0;
-		.attachment-post-thumbnail { width:100%; .imgborder(); }
+		.attachment-post-thumbnail { width:100%; margin-bottom:10px; .imgborder(); }
 		.entry-header, .entry-footer { margin:0 15px; }
 		.entry-content {
 			margin:0;

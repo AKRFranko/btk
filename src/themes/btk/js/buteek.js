@@ -18,10 +18,10 @@
 			$('#header-box').addClass('open');
 			$('.sign-in-menu').show();
 			$('.sign-in').show();
-			$('.login').hide();
-			$('.register').hide();
+			$('.login-form').hide();
+			$('.register-form').hide();
 			$('.back-home').show();
-		} else if (  $('.sign-in, .login, .register').is(':visible') ) {
+		} else if (  $('.sign-in, .login-form, .register-form').is(':visible') ) {
 			$('.sign-in-menu').hide();
 			$('#header-box').removeClass('open');
 		}
@@ -36,20 +36,20 @@
 	$('.signin').on('click', function(e) {
 		e.preventDefault();
 		$('.sign-in').hide();
-		$('.login').show();
+		$('.login-form').show();
 	});
 
 	$('.signup').on('click', function(e) {
 		e.preventDefault();
 		$('.sign-in').hide();
-		$('.register').show();
+		$('.register-form').show();
 	});
 
 
 
 	// hamburglar menu on/off
 	$('.nav-hamburger .navbar-toggle').click( function () {
-		if (  $('.sign-in, .login, .register').is(':visible') ) {
+		if (  $('.sign-in, .login-form, .register-form').is(':visible') ) {
 			$('.sign-in-menu').hide();
 			$('#header-box').removeClass('open');
 		}
