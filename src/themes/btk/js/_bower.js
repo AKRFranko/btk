@@ -9568,7 +9568,7 @@ return jQuery;
 }));
 
 /*!
- * Bootstrap v3.3.2 (http://getbootstrap.com)
+ * Bootstrap v3.3.4 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
@@ -9586,7 +9586,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: transition.js v3.3.2
+ * Bootstrap: transition.js v3.3.4
  * http://getbootstrap.com/javascript/#transitions
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -9646,7 +9646,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: alert.js v3.3.2
+ * Bootstrap: alert.js v3.3.4
  * http://getbootstrap.com/javascript/#alerts
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -9665,7 +9665,7 @@ if (typeof jQuery === 'undefined') {
     $(el).on('click', dismiss, this.close)
   }
 
-  Alert.VERSION = '3.3.2'
+  Alert.VERSION = '3.3.4'
 
   Alert.TRANSITION_DURATION = 150
 
@@ -9741,7 +9741,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: button.js v3.3.2
+ * Bootstrap: button.js v3.3.4
  * http://getbootstrap.com/javascript/#buttons
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -9761,7 +9761,7 @@ if (typeof jQuery === 'undefined') {
     this.isLoading = false
   }
 
-  Button.VERSION  = '3.3.2'
+  Button.VERSION  = '3.3.4'
 
   Button.DEFAULTS = {
     loadingText: 'loading...'
@@ -9858,7 +9858,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: carousel.js v3.3.2
+ * Bootstrap: carousel.js v3.3.4
  * http://getbootstrap.com/javascript/#carousel
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -9876,10 +9876,10 @@ if (typeof jQuery === 'undefined') {
     this.$element    = $(element)
     this.$indicators = this.$element.find('.carousel-indicators')
     this.options     = options
-    this.paused      =
-    this.sliding     =
-    this.interval    =
-    this.$active     =
+    this.paused      = null
+    this.sliding     = null
+    this.interval    = null
+    this.$active     = null
     this.$items      = null
 
     this.options.keyboard && this.$element.on('keydown.bs.carousel', $.proxy(this.keydown, this))
@@ -9889,7 +9889,7 @@ if (typeof jQuery === 'undefined') {
       .on('mouseleave.bs.carousel', $.proxy(this.cycle, this))
   }
 
-  Carousel.VERSION  = '3.3.2'
+  Carousel.VERSION  = '3.3.4'
 
   Carousel.TRANSITION_DURATION = 600
 
@@ -10096,7 +10096,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: collapse.js v3.3.2
+ * Bootstrap: collapse.js v3.3.4
  * http://getbootstrap.com/javascript/#collapse
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -10113,7 +10113,8 @@ if (typeof jQuery === 'undefined') {
   var Collapse = function (element, options) {
     this.$element      = $(element)
     this.options       = $.extend({}, Collapse.DEFAULTS, options)
-    this.$trigger      = $(this.options.trigger).filter('[href="#' + element.id + '"], [data-target="#' + element.id + '"]')
+    this.$trigger      = $('[data-toggle="collapse"][href="#' + element.id + '"],' +
+                           '[data-toggle="collapse"][data-target="#' + element.id + '"]')
     this.transitioning = null
 
     if (this.options.parent) {
@@ -10125,13 +10126,12 @@ if (typeof jQuery === 'undefined') {
     if (this.options.toggle) this.toggle()
   }
 
-  Collapse.VERSION  = '3.3.2'
+  Collapse.VERSION  = '3.3.4'
 
   Collapse.TRANSITION_DURATION = 350
 
   Collapse.DEFAULTS = {
-    toggle: true,
-    trigger: '[data-toggle="collapse"]'
+    toggle: true
   }
 
   Collapse.prototype.dimension = function () {
@@ -10269,7 +10269,7 @@ if (typeof jQuery === 'undefined') {
       var data    = $this.data('bs.collapse')
       var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
 
-      if (!data && options.toggle && option == 'show') options.toggle = false
+      if (!data && options.toggle && /show|hide/.test(option)) options.toggle = false
       if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))
       if (typeof option == 'string') data[option]()
     })
@@ -10300,7 +10300,7 @@ if (typeof jQuery === 'undefined') {
 
     var $target = getTargetFromTrigger($this)
     var data    = $target.data('bs.collapse')
-    var option  = data ? 'toggle' : $.extend({}, $this.data(), { trigger: this })
+    var option  = data ? 'toggle' : $this.data()
 
     Plugin.call($target, option)
   })
@@ -10308,7 +10308,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: dropdown.js v3.3.2
+ * Bootstrap: dropdown.js v3.3.4
  * http://getbootstrap.com/javascript/#dropdowns
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -10328,7 +10328,7 @@ if (typeof jQuery === 'undefined') {
     $(element).on('click.bs.dropdown', this.toggle)
   }
 
-  Dropdown.VERSION = '3.3.2'
+  Dropdown.VERSION = '3.3.4'
 
   Dropdown.prototype.toggle = function (e) {
     var $this = $(this)
@@ -10381,7 +10381,7 @@ if (typeof jQuery === 'undefined') {
       return $this.trigger('click')
     }
 
-    var desc = ' li:not(.divider):visible a'
+    var desc = ' li:not(.disabled):visible a'
     var $items = $parent.find('[role="menu"]' + desc + ', [role="listbox"]' + desc)
 
     if (!$items.length) return
@@ -10470,7 +10470,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: modal.js v3.3.2
+ * Bootstrap: modal.js v3.3.4
  * http://getbootstrap.com/javascript/#modals
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -10485,12 +10485,15 @@ if (typeof jQuery === 'undefined') {
   // ======================
 
   var Modal = function (element, options) {
-    this.options        = options
-    this.$body          = $(document.body)
-    this.$element       = $(element)
-    this.$backdrop      =
-    this.isShown        = null
-    this.scrollbarWidth = 0
+    this.options             = options
+    this.$body               = $(document.body)
+    this.$element            = $(element)
+    this.$dialog             = this.$element.find('.modal-dialog')
+    this.$backdrop           = null
+    this.isShown             = null
+    this.originalBodyPad     = null
+    this.scrollbarWidth      = 0
+    this.ignoreBackdropClick = false
 
     if (this.options.remote) {
       this.$element
@@ -10501,7 +10504,7 @@ if (typeof jQuery === 'undefined') {
     }
   }
 
-  Modal.VERSION  = '3.3.2'
+  Modal.VERSION  = '3.3.4'
 
   Modal.TRANSITION_DURATION = 300
   Modal.BACKDROP_TRANSITION_DURATION = 150
@@ -10535,6 +10538,12 @@ if (typeof jQuery === 'undefined') {
 
     this.$element.on('click.dismiss.bs.modal', '[data-dismiss="modal"]', $.proxy(this.hide, this))
 
+    this.$dialog.on('mousedown.dismiss.bs.modal', function () {
+      that.$element.one('mouseup.dismiss.bs.modal', function (e) {
+        if ($(e.target).is(that.$element)) that.ignoreBackdropClick = true
+      })
+    })
+
     this.backdrop(function () {
       var transition = $.support.transition && that.$element.hasClass('fade')
 
@@ -10546,7 +10555,6 @@ if (typeof jQuery === 'undefined') {
         .show()
         .scrollTop(0)
 
-      if (that.options.backdrop) that.adjustBackdrop()
       that.adjustDialog()
 
       if (transition) {
@@ -10562,7 +10570,7 @@ if (typeof jQuery === 'undefined') {
       var e = $.Event('shown.bs.modal', { relatedTarget: _relatedTarget })
 
       transition ?
-        that.$element.find('.modal-dialog') // wait for modal to slide in
+        that.$dialog // wait for modal to slide in
           .one('bsTransitionEnd', function () {
             that.$element.trigger('focus').trigger(e)
           })
@@ -10591,6 +10599,9 @@ if (typeof jQuery === 'undefined') {
       .removeClass('in')
       .attr('aria-hidden', true)
       .off('click.dismiss.bs.modal')
+      .off('mouseup.dismiss.bs.modal')
+
+    this.$dialog.off('mousedown.dismiss.bs.modal')
 
     $.support.transition && this.$element.hasClass('fade') ?
       this.$element
@@ -10651,13 +10662,18 @@ if (typeof jQuery === 'undefined') {
       var doAnimate = $.support.transition && animate
 
       this.$backdrop = $('<div class="modal-backdrop ' + animate + '" />')
-        .prependTo(this.$element)
-        .on('click.dismiss.bs.modal', $.proxy(function (e) {
-          if (e.target !== e.currentTarget) return
-          this.options.backdrop == 'static'
-            ? this.$element[0].focus.call(this.$element[0])
-            : this.hide.call(this)
-        }, this))
+        .appendTo(this.$body)
+
+      this.$element.on('click.dismiss.bs.modal', $.proxy(function (e) {
+        if (this.ignoreBackdropClick) {
+          this.ignoreBackdropClick = false
+          return
+        }
+        if (e.target !== e.currentTarget) return
+        this.options.backdrop == 'static'
+          ? this.$element[0].focus()
+          : this.hide()
+      }, this))
 
       if (doAnimate) this.$backdrop[0].offsetWidth // force reflow
 
@@ -10692,14 +10708,7 @@ if (typeof jQuery === 'undefined') {
   // these following methods are used to handle overflowing modals
 
   Modal.prototype.handleUpdate = function () {
-    if (this.options.backdrop) this.adjustBackdrop()
     this.adjustDialog()
-  }
-
-  Modal.prototype.adjustBackdrop = function () {
-    this.$backdrop
-      .css('height', 0)
-      .css('height', this.$element[0].scrollHeight)
   }
 
   Modal.prototype.adjustDialog = function () {
@@ -10719,17 +10728,23 @@ if (typeof jQuery === 'undefined') {
   }
 
   Modal.prototype.checkScrollbar = function () {
-    this.bodyIsOverflowing = document.body.scrollHeight > document.documentElement.clientHeight
+    var fullWindowWidth = window.innerWidth
+    if (!fullWindowWidth) { // workaround for missing window.innerWidth in IE8
+      var documentElementRect = document.documentElement.getBoundingClientRect()
+      fullWindowWidth = documentElementRect.right - Math.abs(documentElementRect.left)
+    }
+    this.bodyIsOverflowing = document.body.clientWidth < fullWindowWidth
     this.scrollbarWidth = this.measureScrollbar()
   }
 
   Modal.prototype.setScrollbar = function () {
     var bodyPad = parseInt((this.$body.css('padding-right') || 0), 10)
+    this.originalBodyPad = document.body.style.paddingRight || ''
     if (this.bodyIsOverflowing) this.$body.css('padding-right', bodyPad + this.scrollbarWidth)
   }
 
   Modal.prototype.resetScrollbar = function () {
-    this.$body.css('padding-right', '')
+    this.$body.css('padding-right', this.originalBodyPad)
   }
 
   Modal.prototype.measureScrollbar = function () { // thx walsh
@@ -10795,7 +10810,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: tooltip.js v3.3.2
+ * Bootstrap: tooltip.js v3.3.4
  * http://getbootstrap.com/javascript/#tooltip
  * Inspired by the original jQuery.tipsy by Jason Frame
  * ========================================================================
@@ -10811,17 +10826,17 @@ if (typeof jQuery === 'undefined') {
   // ===============================
 
   var Tooltip = function (element, options) {
-    this.type       =
-    this.options    =
-    this.enabled    =
-    this.timeout    =
-    this.hoverState =
+    this.type       = null
+    this.options    = null
+    this.enabled    = null
+    this.timeout    = null
+    this.hoverState = null
     this.$element   = null
 
     this.init('tooltip', element, options)
   }
 
-  Tooltip.VERSION  = '3.3.2'
+  Tooltip.VERSION  = '3.3.4'
 
   Tooltip.TRANSITION_DURATION = 150
 
@@ -10847,6 +10862,10 @@ if (typeof jQuery === 'undefined') {
     this.$element  = $(element)
     this.options   = this.getOptions(options)
     this.$viewport = this.options.viewport && $(this.options.viewport.selector || this.options.viewport)
+
+    if (this.$element[0] instanceof document.constructor && !this.options.selector) {
+      throw new Error('`selector` option must be specified when initializing ' + this.type + ' on the window.document object!')
+    }
 
     var triggers = this.options.trigger.split(' ')
 
@@ -11068,10 +11087,10 @@ if (typeof jQuery === 'undefined') {
     this.replaceArrow(arrowDelta, $tip[0][arrowOffsetPosition], isVertical)
   }
 
-  Tooltip.prototype.replaceArrow = function (delta, dimension, isHorizontal) {
+  Tooltip.prototype.replaceArrow = function (delta, dimension, isVertical) {
     this.arrow()
-      .css(isHorizontal ? 'left' : 'top', 50 * (1 - delta / dimension) + '%')
-      .css(isHorizontal ? 'top' : 'left', '')
+      .css(isVertical ? 'left' : 'top', 50 * (1 - delta / dimension) + '%')
+      .css(isVertical ? 'top' : 'left', '')
   }
 
   Tooltip.prototype.setContent = function () {
@@ -11084,7 +11103,7 @@ if (typeof jQuery === 'undefined') {
 
   Tooltip.prototype.hide = function (callback) {
     var that = this
-    var $tip = this.tip()
+    var $tip = $(this.$tip)
     var e    = $.Event('hide.bs.' + this.type)
 
     function complete() {
@@ -11101,7 +11120,7 @@ if (typeof jQuery === 'undefined') {
 
     $tip.removeClass('in')
 
-    $.support.transition && this.$tip.hasClass('fade') ?
+    $.support.transition && $tip.hasClass('fade') ?
       $tip
         .one('bsTransitionEnd', complete)
         .emulateTransitionEnd(Tooltip.TRANSITION_DURATION) :
@@ -11245,7 +11264,7 @@ if (typeof jQuery === 'undefined') {
       var data    = $this.data('bs.tooltip')
       var options = typeof option == 'object' && option
 
-      if (!data && option == 'destroy') return
+      if (!data && /destroy|hide/.test(option)) return
       if (!data) $this.data('bs.tooltip', (data = new Tooltip(this, options)))
       if (typeof option == 'string') data[option]()
     })
@@ -11268,7 +11287,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: popover.js v3.3.2
+ * Bootstrap: popover.js v3.3.4
  * http://getbootstrap.com/javascript/#popovers
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -11288,7 +11307,7 @@ if (typeof jQuery === 'undefined') {
 
   if (!$.fn.tooltip) throw new Error('Popover requires tooltip.js')
 
-  Popover.VERSION  = '3.3.2'
+  Popover.VERSION  = '3.3.4'
 
   Popover.DEFAULTS = $.extend({}, $.fn.tooltip.Constructor.DEFAULTS, {
     placement: 'right',
@@ -11344,11 +11363,6 @@ if (typeof jQuery === 'undefined') {
     return (this.$arrow = this.$arrow || this.tip().find('.arrow'))
   }
 
-  Popover.prototype.tip = function () {
-    if (!this.$tip) this.$tip = $(this.options.template)
-    return this.$tip
-  }
-
 
   // POPOVER PLUGIN DEFINITION
   // =========================
@@ -11359,7 +11373,7 @@ if (typeof jQuery === 'undefined') {
       var data    = $this.data('bs.popover')
       var options = typeof option == 'object' && option
 
-      if (!data && option == 'destroy') return
+      if (!data && /destroy|hide/.test(option)) return
       if (!data) $this.data('bs.popover', (data = new Popover(this, options)))
       if (typeof option == 'string') data[option]()
     })
@@ -11382,7 +11396,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: scrollspy.js v3.3.2
+ * Bootstrap: scrollspy.js v3.3.4
  * http://getbootstrap.com/javascript/#scrollspy
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -11397,10 +11411,8 @@ if (typeof jQuery === 'undefined') {
   // ==========================
 
   function ScrollSpy(element, options) {
-    var process  = $.proxy(this.process, this)
-
-    this.$body          = $('body')
-    this.$scrollElement = $(element).is('body') ? $(window) : $(element)
+    this.$body          = $(document.body)
+    this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
     this.options        = $.extend({}, ScrollSpy.DEFAULTS, options)
     this.selector       = (this.options.target || '') + ' .nav li > a'
     this.offsets        = []
@@ -11408,12 +11420,12 @@ if (typeof jQuery === 'undefined') {
     this.activeTarget   = null
     this.scrollHeight   = 0
 
-    this.$scrollElement.on('scroll.bs.scrollspy', process)
+    this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this))
     this.refresh()
     this.process()
   }
 
-  ScrollSpy.VERSION  = '3.3.2'
+  ScrollSpy.VERSION  = '3.3.4'
 
   ScrollSpy.DEFAULTS = {
     offset: 10
@@ -11424,19 +11436,18 @@ if (typeof jQuery === 'undefined') {
   }
 
   ScrollSpy.prototype.refresh = function () {
-    var offsetMethod = 'offset'
-    var offsetBase   = 0
+    var that          = this
+    var offsetMethod  = 'offset'
+    var offsetBase    = 0
+
+    this.offsets      = []
+    this.targets      = []
+    this.scrollHeight = this.getScrollHeight()
 
     if (!$.isWindow(this.$scrollElement[0])) {
       offsetMethod = 'position'
       offsetBase   = this.$scrollElement.scrollTop()
     }
-
-    this.offsets = []
-    this.targets = []
-    this.scrollHeight = this.getScrollHeight()
-
-    var self     = this
 
     this.$body
       .find(this.selector)
@@ -11452,8 +11463,8 @@ if (typeof jQuery === 'undefined') {
       })
       .sort(function (a, b) { return a[0] - b[0] })
       .each(function () {
-        self.offsets.push(this[0])
-        self.targets.push(this[1])
+        that.offsets.push(this[0])
+        that.targets.push(this[1])
       })
   }
 
@@ -11482,7 +11493,7 @@ if (typeof jQuery === 'undefined') {
     for (i = offsets.length; i--;) {
       activeTarget != targets[i]
         && scrollTop >= offsets[i]
-        && (!offsets[i + 1] || scrollTop <= offsets[i + 1])
+        && (offsets[i + 1] === undefined || scrollTop < offsets[i + 1])
         && this.activate(targets[i])
     }
   }
@@ -11493,8 +11504,8 @@ if (typeof jQuery === 'undefined') {
     this.clear()
 
     var selector = this.selector +
-        '[data-target="' + target + '"],' +
-        this.selector + '[href="' + target + '"]'
+      '[data-target="' + target + '"],' +
+      this.selector + '[href="' + target + '"]'
 
     var active = $(selector)
       .parents('li')
@@ -11558,7 +11569,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: tab.js v3.3.2
+ * Bootstrap: tab.js v3.3.4
  * http://getbootstrap.com/javascript/#tabs
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -11576,7 +11587,7 @@ if (typeof jQuery === 'undefined') {
     this.element = $(element)
   }
 
-  Tab.VERSION = '3.3.2'
+  Tab.VERSION = '3.3.4'
 
   Tab.TRANSITION_DURATION = 150
 
@@ -11647,7 +11658,7 @@ if (typeof jQuery === 'undefined') {
         element.removeClass('fade')
       }
 
-      if (element.parent('.dropdown-menu')) {
+      if (element.parent('.dropdown-menu').length) {
         element
           .closest('li.dropdown')
             .addClass('active')
@@ -11712,7 +11723,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: affix.js v3.3.2
+ * Bootstrap: affix.js v3.3.4
  * http://getbootstrap.com/javascript/#affix
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -11734,14 +11745,14 @@ if (typeof jQuery === 'undefined') {
       .on('click.bs.affix.data-api',  $.proxy(this.checkPositionWithEventLoop, this))
 
     this.$element     = $(element)
-    this.affixed      =
-    this.unpin        =
+    this.affixed      = null
+    this.unpin        = null
     this.pinnedOffset = null
 
     this.checkPosition()
   }
 
-  Affix.VERSION  = '3.3.2'
+  Affix.VERSION  = '3.3.4'
 
   Affix.RESET    = 'affix affix-top affix-bottom'
 
@@ -11791,7 +11802,7 @@ if (typeof jQuery === 'undefined') {
     var offset       = this.options.offset
     var offsetTop    = offset.top
     var offsetBottom = offset.bottom
-    var scrollHeight = $('body').height()
+    var scrollHeight = $(document.body).height()
 
     if (typeof offset != 'object')         offsetBottom = offsetTop = offset
     if (typeof offsetTop == 'function')    offsetTop    = offset.top(this.$element)
@@ -13451,6 +13462,893 @@ function log(e){window.console&&showLog&&console.log(e)}function css_browser_sel
     return base + f;
   })); 
 })( grunticon );
+
+
+// jquery.event.move
+//
+// 1.3.6
+//
+// Stephen Band
+//
+// Triggers 'movestart', 'move' and 'moveend' events after
+// mousemoves following a mousedown cross a distance threshold,
+// similar to the native 'dragstart', 'drag' and 'dragend' events.
+// Move events are throttled to animation frames. Move event objects
+// have the properties:
+//
+// pageX:
+// pageY:   Page coordinates of pointer.
+// startX:
+// startY:  Page coordinates of pointer at movestart.
+// distX:
+// distY:  Distance the pointer has moved since movestart.
+// deltaX:
+// deltaY:  Distance the finger has moved since last event.
+// velocityX:
+// velocityY:  Average velocity over last few events.
+
+
+(function (module) {
+	if (typeof define === 'function' && define.amd) {
+		// AMD. Register as an anonymous module.
+		define(['jquery'], module);
+	} else {
+		// Browser globals
+		module(jQuery);
+	}
+})(function(jQuery, undefined){
+
+	var // Number of pixels a pressed pointer travels before movestart
+	    // event is fired.
+	    threshold = 6,
+	
+	    add = jQuery.event.add,
+	
+	    remove = jQuery.event.remove,
+
+	    // Just sugar, so we can have arguments in the same order as
+	    // add and remove.
+	    trigger = function(node, type, data) {
+	    	jQuery.event.trigger(type, data, node);
+	    },
+
+	    // Shim for requestAnimationFrame, falling back to timer. See:
+	    // see http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+	    requestFrame = (function(){
+	    	return (
+	    		window.requestAnimationFrame ||
+	    		window.webkitRequestAnimationFrame ||
+	    		window.mozRequestAnimationFrame ||
+	    		window.oRequestAnimationFrame ||
+	    		window.msRequestAnimationFrame ||
+	    		function(fn, element){
+	    			return window.setTimeout(function(){
+	    				fn();
+	    			}, 25);
+	    		}
+	    	);
+	    })(),
+	    
+	    ignoreTags = {
+	    	textarea: true,
+	    	input: true,
+	    	select: true,
+	    	button: true
+	    },
+	    
+	    mouseevents = {
+	    	move: 'mousemove',
+	    	cancel: 'mouseup dragstart',
+	    	end: 'mouseup'
+	    },
+	    
+	    touchevents = {
+	    	move: 'touchmove',
+	    	cancel: 'touchend',
+	    	end: 'touchend'
+	    };
+
+
+	// Constructors
+	
+	function Timer(fn){
+		var callback = fn,
+		    active = false,
+		    running = false;
+		
+		function trigger(time) {
+			if (active){
+				callback();
+				requestFrame(trigger);
+				running = true;
+				active = false;
+			}
+			else {
+				running = false;
+			}
+		}
+		
+		this.kick = function(fn) {
+			active = true;
+			if (!running) { trigger(); }
+		};
+		
+		this.end = function(fn) {
+			var cb = callback;
+			
+			if (!fn) { return; }
+			
+			// If the timer is not running, simply call the end callback.
+			if (!running) {
+				fn();
+			}
+			// If the timer is running, and has been kicked lately, then
+			// queue up the current callback and the end callback, otherwise
+			// just the end callback.
+			else {
+				callback = active ?
+					function(){ cb(); fn(); } : 
+					fn ;
+				
+				active = true;
+			}
+		};
+	}
+
+
+	// Functions
+	
+	function returnTrue() {
+		return true;
+	}
+	
+	function returnFalse() {
+		return false;
+	}
+	
+	function preventDefault(e) {
+		e.preventDefault();
+	}
+	
+	function preventIgnoreTags(e) {
+		// Don't prevent interaction with form elements.
+		if (ignoreTags[ e.target.tagName.toLowerCase() ]) { return; }
+		
+		e.preventDefault();
+	}
+
+	function isLeftButton(e) {
+		// Ignore mousedowns on any button other than the left (or primary)
+		// mouse button, or when a modifier key is pressed.
+		return (e.which === 1 && !e.ctrlKey && !e.altKey);
+	}
+
+	function identifiedTouch(touchList, id) {
+		var i, l;
+
+		if (touchList.identifiedTouch) {
+			return touchList.identifiedTouch(id);
+		}
+		
+		// touchList.identifiedTouch() does not exist in
+		// webkit yet… we must do the search ourselves...
+		
+		i = -1;
+		l = touchList.length;
+		
+		while (++i < l) {
+			if (touchList[i].identifier === id) {
+				return touchList[i];
+			}
+		}
+	}
+
+	function changedTouch(e, event) {
+		var touch = identifiedTouch(e.changedTouches, event.identifier);
+
+		// This isn't the touch you're looking for.
+		if (!touch) { return; }
+
+		// Chrome Android (at least) includes touches that have not
+		// changed in e.changedTouches. That's a bit annoying. Check
+		// that this touch has changed.
+		if (touch.pageX === event.pageX && touch.pageY === event.pageY) { return; }
+
+		return touch;
+	}
+
+
+	// Handlers that decide when the first movestart is triggered
+	
+	function mousedown(e){
+		var data;
+
+		if (!isLeftButton(e)) { return; }
+
+		data = {
+			target: e.target,
+			startX: e.pageX,
+			startY: e.pageY,
+			timeStamp: e.timeStamp
+		};
+
+		add(document, mouseevents.move, mousemove, data);
+		add(document, mouseevents.cancel, mouseend, data);
+	}
+
+	function mousemove(e){
+		var data = e.data;
+
+		checkThreshold(e, data, e, removeMouse);
+	}
+
+	function mouseend(e) {
+		removeMouse();
+	}
+
+	function removeMouse() {
+		remove(document, mouseevents.move, mousemove);
+		remove(document, mouseevents.cancel, mouseend);
+	}
+
+	function touchstart(e) {
+		var touch, template;
+
+		// Don't get in the way of interaction with form elements.
+		if (ignoreTags[ e.target.tagName.toLowerCase() ]) { return; }
+
+		touch = e.changedTouches[0];
+		
+		// iOS live updates the touch objects whereas Android gives us copies.
+		// That means we can't trust the touchstart object to stay the same,
+		// so we must copy the data. This object acts as a template for
+		// movestart, move and moveend event objects.
+		template = {
+			target: touch.target,
+			startX: touch.pageX,
+			startY: touch.pageY,
+			timeStamp: e.timeStamp,
+			identifier: touch.identifier
+		};
+
+		// Use the touch identifier as a namespace, so that we can later
+		// remove handlers pertaining only to this touch.
+		add(document, touchevents.move + '.' + touch.identifier, touchmove, template);
+		add(document, touchevents.cancel + '.' + touch.identifier, touchend, template);
+	}
+
+	function touchmove(e){
+		var data = e.data,
+		    touch = changedTouch(e, data);
+
+		if (!touch) { return; }
+
+		checkThreshold(e, data, touch, removeTouch);
+	}
+
+	function touchend(e) {
+		var template = e.data,
+		    touch = identifiedTouch(e.changedTouches, template.identifier);
+
+		if (!touch) { return; }
+
+		removeTouch(template.identifier);
+	}
+
+	function removeTouch(identifier) {
+		remove(document, '.' + identifier, touchmove);
+		remove(document, '.' + identifier, touchend);
+	}
+
+
+	// Logic for deciding when to trigger a movestart.
+
+	function checkThreshold(e, template, touch, fn) {
+		var distX = touch.pageX - template.startX,
+		    distY = touch.pageY - template.startY;
+
+		// Do nothing if the threshold has not been crossed.
+		if ((distX * distX) + (distY * distY) < (threshold * threshold)) { return; }
+
+		triggerStart(e, template, touch, distX, distY, fn);
+	}
+
+	function handled() {
+		// this._handled should return false once, and after return true.
+		this._handled = returnTrue;
+		return false;
+	}
+
+	function flagAsHandled(e) {
+		e._handled();
+	}
+
+	function triggerStart(e, template, touch, distX, distY, fn) {
+		var node = template.target,
+		    touches, time;
+
+		touches = e.targetTouches;
+		time = e.timeStamp - template.timeStamp;
+
+		// Create a movestart object with some special properties that
+		// are passed only to the movestart handlers.
+		template.type = 'movestart';
+		template.distX = distX;
+		template.distY = distY;
+		template.deltaX = distX;
+		template.deltaY = distY;
+		template.pageX = touch.pageX;
+		template.pageY = touch.pageY;
+		template.velocityX = distX / time;
+		template.velocityY = distY / time;
+		template.targetTouches = touches;
+		template.finger = touches ?
+			touches.length :
+			1 ;
+
+		// The _handled method is fired to tell the default movestart
+		// handler that one of the move events is bound.
+		template._handled = handled;
+			
+		// Pass the touchmove event so it can be prevented if or when
+		// movestart is handled.
+		template._preventTouchmoveDefault = function() {
+			e.preventDefault();
+		};
+
+		// Trigger the movestart event.
+		trigger(template.target, template);
+
+		// Unbind handlers that tracked the touch or mouse up till now.
+		fn(template.identifier);
+	}
+
+
+	// Handlers that control what happens following a movestart
+
+	function activeMousemove(e) {
+		var timer = e.data.timer;
+
+		e.data.touch = e;
+		e.data.timeStamp = e.timeStamp;
+		timer.kick();
+	}
+
+	function activeMouseend(e) {
+		var event = e.data.event,
+		    timer = e.data.timer;
+		
+		removeActiveMouse();
+
+		endEvent(event, timer, function() {
+			// Unbind the click suppressor, waiting until after mouseup
+			// has been handled.
+			setTimeout(function(){
+				remove(event.target, 'click', returnFalse);
+			}, 0);
+		});
+	}
+
+	function removeActiveMouse(event) {
+		remove(document, mouseevents.move, activeMousemove);
+		remove(document, mouseevents.end, activeMouseend);
+	}
+
+	function activeTouchmove(e) {
+		var event = e.data.event,
+		    timer = e.data.timer,
+		    touch = changedTouch(e, event);
+
+		if (!touch) { return; }
+
+		// Stop the interface from gesturing
+		e.preventDefault();
+
+		event.targetTouches = e.targetTouches;
+		e.data.touch = touch;
+		e.data.timeStamp = e.timeStamp;
+		timer.kick();
+	}
+
+	function activeTouchend(e) {
+		var event = e.data.event,
+		    timer = e.data.timer,
+		    touch = identifiedTouch(e.changedTouches, event.identifier);
+
+		// This isn't the touch you're looking for.
+		if (!touch) { return; }
+
+		removeActiveTouch(event);
+		endEvent(event, timer);
+	}
+
+	function removeActiveTouch(event) {
+		remove(document, '.' + event.identifier, activeTouchmove);
+		remove(document, '.' + event.identifier, activeTouchend);
+	}
+
+
+	// Logic for triggering move and moveend events
+
+	function updateEvent(event, touch, timeStamp, timer) {
+		var time = timeStamp - event.timeStamp;
+
+		event.type = 'move';
+		event.distX =  touch.pageX - event.startX;
+		event.distY =  touch.pageY - event.startY;
+		event.deltaX = touch.pageX - event.pageX;
+		event.deltaY = touch.pageY - event.pageY;
+		
+		// Average the velocity of the last few events using a decay
+		// curve to even out spurious jumps in values.
+		event.velocityX = 0.3 * event.velocityX + 0.7 * event.deltaX / time;
+		event.velocityY = 0.3 * event.velocityY + 0.7 * event.deltaY / time;
+		event.pageX =  touch.pageX;
+		event.pageY =  touch.pageY;
+	}
+
+	function endEvent(event, timer, fn) {
+		timer.end(function(){
+			event.type = 'moveend';
+
+			trigger(event.target, event);
+			
+			return fn && fn();
+		});
+	}
+
+
+	// jQuery special event definition
+
+	function setup(data, namespaces, eventHandle) {
+		// Stop the node from being dragged
+		//add(this, 'dragstart.move drag.move', preventDefault);
+		
+		// Prevent text selection and touch interface scrolling
+		//add(this, 'mousedown.move', preventIgnoreTags);
+		
+		// Tell movestart default handler that we've handled this
+		add(this, 'movestart.move', flagAsHandled);
+
+		// Don't bind to the DOM. For speed.
+		return true;
+	}
+	
+	function teardown(namespaces) {
+		remove(this, 'dragstart drag', preventDefault);
+		remove(this, 'mousedown touchstart', preventIgnoreTags);
+		remove(this, 'movestart', flagAsHandled);
+		
+		// Don't bind to the DOM. For speed.
+		return true;
+	}
+	
+	function addMethod(handleObj) {
+		// We're not interested in preventing defaults for handlers that
+		// come from internal move or moveend bindings
+		if (handleObj.namespace === "move" || handleObj.namespace === "moveend") {
+			return;
+		}
+		
+		// Stop the node from being dragged
+		add(this, 'dragstart.' + handleObj.guid + ' drag.' + handleObj.guid, preventDefault, undefined, handleObj.selector);
+		
+		// Prevent text selection and touch interface scrolling
+		add(this, 'mousedown.' + handleObj.guid, preventIgnoreTags, undefined, handleObj.selector);
+	}
+	
+	function removeMethod(handleObj) {
+		if (handleObj.namespace === "move" || handleObj.namespace === "moveend") {
+			return;
+		}
+		
+		remove(this, 'dragstart.' + handleObj.guid + ' drag.' + handleObj.guid);
+		remove(this, 'mousedown.' + handleObj.guid);
+	}
+	
+	jQuery.event.special.movestart = {
+		setup: setup,
+		teardown: teardown,
+		add: addMethod,
+		remove: removeMethod,
+
+		_default: function(e) {
+			var event, data;
+			
+			// If no move events were bound to any ancestors of this
+			// target, high tail it out of here.
+			if (!e._handled()) { return; }
+
+			function update(time) {
+				updateEvent(event, data.touch, data.timeStamp);
+				trigger(e.target, event);
+			}
+
+			event = {
+				target: e.target,
+				startX: e.startX,
+				startY: e.startY,
+				pageX: e.pageX,
+				pageY: e.pageY,
+				distX: e.distX,
+				distY: e.distY,
+				deltaX: e.deltaX,
+				deltaY: e.deltaY,
+				velocityX: e.velocityX,
+				velocityY: e.velocityY,
+				timeStamp: e.timeStamp,
+				identifier: e.identifier,
+				targetTouches: e.targetTouches,
+				finger: e.finger
+			};
+
+			data = {
+				event: event,
+				timer: new Timer(update),
+				touch: undefined,
+				timeStamp: undefined
+			};
+			
+			if (e.identifier === undefined) {
+				// We're dealing with a mouse
+				// Stop clicks from propagating during a move
+				add(e.target, 'click', returnFalse);
+				add(document, mouseevents.move, activeMousemove, data);
+				add(document, mouseevents.end, activeMouseend, data);
+			}
+			else {
+				// We're dealing with a touch. Stop touchmove doing
+				// anything defaulty.
+				e._preventTouchmoveDefault();
+				add(document, touchevents.move + '.' + e.identifier, activeTouchmove, data);
+				add(document, touchevents.end + '.' + e.identifier, activeTouchend, data);
+			}
+		}
+	};
+
+	jQuery.event.special.move = {
+		setup: function() {
+			// Bind a noop to movestart. Why? It's the movestart
+			// setup that decides whether other move events are fired.
+			add(this, 'movestart.move', jQuery.noop);
+		},
+		
+		teardown: function() {
+			remove(this, 'movestart.move', jQuery.noop);
+		}
+	};
+	
+	jQuery.event.special.moveend = {
+		setup: function() {
+			// Bind a noop to movestart. Why? It's the movestart
+			// setup that decides whether other move events are fired.
+			add(this, 'movestart.moveend', jQuery.noop);
+		},
+		
+		teardown: function() {
+			remove(this, 'movestart.moveend', jQuery.noop);
+		}
+	};
+
+	add(document, 'mousedown.move', mousedown);
+	add(document, 'touchstart.move', touchstart);
+
+	// Make jQuery copy touch event properties over to the jQuery event
+	// object, if they are not already listed. But only do the ones we
+	// really need. IE7/8 do not have Array#indexOf(), but nor do they
+	// have touch events, so let's assume we can ignore them.
+	if (typeof Array.prototype.indexOf === 'function') {
+		(function(jQuery, undefined){
+			var props = ["changedTouches", "targetTouches"],
+			    l = props.length;
+			
+			while (l--) {
+				if (jQuery.event.props.indexOf(props[l]) === -1) {
+					jQuery.event.props.push(props[l]);
+				}
+			}
+		})(jQuery);
+	};
+});
+
+// jQuery.event.swipe
+// 0.5
+// Stephen Band
+
+// Dependencies
+// jQuery.event.move 1.2
+
+// One of swipeleft, swiperight, swipeup or swipedown is triggered on
+// moveend, when the move has covered a threshold ratio of the dimension
+// of the target node, or has gone really fast. Threshold and velocity
+// sensitivity changed with:
+//
+// jQuery.event.special.swipe.settings.threshold
+// jQuery.event.special.swipe.settings.sensitivity
+
+(function (thisModule) {
+	if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(['jquery'], thisModule);
+    } else if ((typeof module !== "undefined" && module !== null) && module.exports) {
+        module.exports = thisModule;
+	} else {
+		// Browser globals
+        thisModule(jQuery);
+	}
+})(function(jQuery, undefined){
+	var add = jQuery.event.add,
+	   
+	    remove = jQuery.event.remove,
+
+	    // Just sugar, so we can have arguments in the same order as
+	    // add and remove.
+	    trigger = function(node, type, data) {
+	    	jQuery.event.trigger(type, data, node);
+	    },
+
+	    settings = {
+	    	// Ratio of distance over target finger must travel to be
+	    	// considered a swipe.
+	    	threshold: 0.4,
+	    	// Faster fingers can travel shorter distances to be considered
+	    	// swipes. 'sensitivity' controls how much. Bigger is shorter.
+	    	sensitivity: 6
+	    };
+
+	function moveend(e) {
+		var w, h, event;
+
+		w = e.currentTarget.offsetWidth;
+		h = e.currentTarget.offsetHeight;
+
+		// Copy over some useful properties from the move event
+		event = {
+			distX: e.distX,
+			distY: e.distY,
+			velocityX: e.velocityX,
+			velocityY: e.velocityY,
+			finger: e.finger
+		};
+
+		// Find out which of the four directions was swiped
+		if (e.distX > e.distY) {
+			if (e.distX > -e.distY) {
+				if (e.distX/w > settings.threshold || e.velocityX * e.distX/w * settings.sensitivity > 1) {
+					event.type = 'swiperight';
+					trigger(e.currentTarget, event);
+				}
+			}
+			else {
+				if (-e.distY/h > settings.threshold || e.velocityY * e.distY/w * settings.sensitivity > 1) {
+					event.type = 'swipeup';
+					trigger(e.currentTarget, event);
+				}
+			}
+		}
+		else {
+			if (e.distX > -e.distY) {
+				if (e.distY/h > settings.threshold || e.velocityY * e.distY/w * settings.sensitivity > 1) {
+					event.type = 'swipedown';
+					trigger(e.currentTarget, event);
+				}
+			}
+			else {
+				if (-e.distX/w > settings.threshold || e.velocityX * e.distX/w * settings.sensitivity > 1) {
+					event.type = 'swipeleft';
+					trigger(e.currentTarget, event);
+				}
+			}
+		}
+	}
+
+	function getData(node) {
+		var data = jQuery.data(node, 'event_swipe');
+		
+		if (!data) {
+			data = { count: 0 };
+			jQuery.data(node, 'event_swipe', data);
+		}
+		
+		return data;
+	}
+
+	jQuery.event.special.swipe =
+	jQuery.event.special.swipeleft =
+	jQuery.event.special.swiperight =
+	jQuery.event.special.swipeup =
+	jQuery.event.special.swipedown = {
+		setup: function( data, namespaces, eventHandle ) {
+			var data = getData(this);
+
+			// If another swipe event is already setup, don't setup again.
+			if (data.count++ > 0) { return; }
+
+			add(this, 'moveend', moveend);
+
+			return true;
+		},
+
+		teardown: function() {
+			var data = getData(this);
+
+			// If another swipe event is still setup, don't teardown.
+			if (--data.count > 0) { return; }
+
+			remove(this, 'moveend', moveend);
+
+			return true;
+		},
+
+		settings: settings
+	};
+});
+
+
+var EDBSlider = function( el, opts ){
+	if( !( this instanceof EDBSlider ) ) return new EDBSlider( el, opts );
+	if( $(el).data('slider')) return $(el).data('slider');
+	var it = this;
+	it.el     = el;
+	it.slides = [];
+	it.options = opts || {};
+	it.index  = -1;
+	it.slideEl = $('<div>').addClass('slides').get(0)
+	$( it.el ).append( it.slideEl )
+	json = $( it.el ).find( 'script' ).html()
+	$( it.el ).find( 'script' ).replaceWith( it.slideEl )
+
+	try{
+		it.slides = JSON.parse( json )
+	}catch( E ){
+		it.slides = []
+	}
+	if( !it.slides.length ){
+		console.log( "Broken! No slides found", el )
+		return it;
+	}
+	it.isLoaded = EDBSlider.no;
+	it.total = it.slides.length;
+	var loaded = 0;
+	it.slides = it.slides.map(  function( data, index ){
+		var slide =  EDBSlider.Slide( data, index );
+		$(it.slideEl).append( slide.el );
+		$( slide ).on('loaded', function(){
+			loaded++;
+			if( loaded >= it.total ){
+				it.isLoaded = EDBSlider.yes;
+				$( it ).trigger( 'loaded' , [ it ] )
+			}
+		});
+		return slide;
+	} );
+	
+	$(it.el).find('.controls .next').on('click', function( e ){
+		e.preventDefault()
+		it.cycle( 1 );
+	});
+	$(it.el).find('.controls .prev').on('click', function( e ){
+		e.preventDefault()
+		it.cycle( -1 );
+	});
+	$( it.el ).on('swipeleft',function( e, dir ){
+				e.preventDefault()
+				it.cycle( 1 );
+				console.log( event.type )
+			})
+		$( it.el ).on('swiperight',function( e, dir ){
+				e.preventDefault()
+				it.cycle( -1 );
+				console.log( event.type )
+			})
+
+	var lastResize = null;
+	var handleResize = function(){
+		clearTimeout(  lastResize );
+		lastResize =  setTimeout( function(){
+			it.adjustHeight( it.options.spacing || 0 )
+		}, 200 );
+	}
+	$(window).on( 'resize', handleResize ).resize();
+	$(it.el).data( 'slider', it );
+	return this;
+}
+EDBSlider.yes = function(){ return true; }
+EDBSlider.no = function(){ return false; }
+EDBSlider.Slide = function( data, index ){
+	if( !( this instanceof EDBSlider.Slide ) ) return new EDBSlider.Slide( data, index );
+	it = this
+	it.index       = index;
+	it.el       = document.createElement( 'div' )
+	it.img      = new Image();
+	it.isLoaded = EDBSlider.no;
+	$( it.img ).on( 'load', function( event ){
+		it.isLoaded = EDBSlider.yes;
+		$(it).trigger( 'loaded', [ it ] );
+	});
+	it.img.src = data.src;
+	var link = $('<a>').attr('href', data.url ).prop('draggable', false ).addClass('slide-link').html('<span class="slide-text">'+data.text+'</span>')
+	$(it.el).css('background-image', 'url("'+data.src+'")');
+	$(it.el).addClass('slide').data( 'slide', it ).append( it.img ).append( link )
+	return it;
+}
+
+EDBSlider.Slide.prototype = {
+	
+	adjustHeight: function( h ){
+		$( this.el ).css({
+			"min-height": h,
+			"max-height": h,
+			"height": h
+		})
+	},
+	isActive: function () {
+		return $( this.el ).hasClass( 'active' );
+	},
+	activate: function( ){
+		if( this.isActive() ) return true;
+		$( this.el ).addClass( 'active' );
+	},
+	deactivate: function(){
+		if( !this.isActive() ) return true;
+		$( this.el ).removeClass( 'active' );
+	}
+}
+
+EDBSlider.prototype={
+
+	adjustHeight: function( minus ){
+		var winHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+		if( isNaN(minus) ) minus = $(minus).outerHeight();
+		$( this.el ).css({
+			"min-height": winHeight - minus,
+			"max-height": winHeight - minus,
+			"height": winHeight - minus
+		})
+	},
+	update: function(){
+		$( this.el ).find('.controls .index').text( this.index+1 );
+		$( this.el ).find('.controls .total').text( this.total );
+	},
+	cycle: function( dir ){ // 1 || -1
+		var index = this.index + dir;
+		if( index == this.total ) index = 0;
+		if( index < 0 ) index = this.total - 1;
+		this.toggle( index, 'on' );
+	},
+	toggle: function( index, state ){
+		var it = this;
+		var target = it.slides[index];
+		var current = it.slides[it.index];
+		var sameSlide = index === it.index;
+		var sameState = target.isActive() && current.isActive();
+		var operation = state === 'on' ? 'activate' : 'deactivate' 
+		if( sameSlide && sameState ) return it;
+		var hasActiveSlide = false;
+		it.slides.forEach( function( other, idx ){ 
+			if( !hasActiveSlide && other.isActive() ) hasActiveSlide = true;
+			other.deactivate()
+			// if( other.index == target.index ) return;
+			// if( state === 'on' && other.isActive() ){
+			// 	other.deactivate()
+			// }else if( state === 'off' && other.isActive() ){
+			// 	hasActiveSlide = true;
+			// };
+		});
+		if( state === 'off' && !hasActiveSlide ){
+			it.slides[0].activate();
+			it.index = 0;
+		}else{
+			target[operation].call( target );
+			console.log('setting index to', index)
+			it.index = index;
+		}
+		it.update();
+		return it
+	}
+}
+
+window.EDBSlider = EDBSlider;
 
 
 /*!

@@ -1,4 +1,4 @@
-var addToCat, basename, bindTerms, buildRecipe, cat_tree, createPost, createTerm, enableVariations, enableVisibility, fs, getCatVar, getPaths, importMedia, materials, output, readTree, recipe, setMaterial, setMockdata, setSKU, variant_cats;
+var addToCat, basename, bindTerms, buildRecipe, cat_tree, createPost, createTerm, enableVariations, enableVisibility, fs, getCatVar, getPaths, importMedia, materials, output, readTree, recipe, setMaterial, setMockdata, setSKU, variant_cats,pad, getSKU, indexes;
 
 fs = require('fs');
 
@@ -15,6 +15,25 @@ cat_tree = {
   "storage": [],
   "accessories": ['pillows', 'rugs', 'other']
 };
+
+sku_tree = {
+  "sofas": "SOF",
+  "sofa-beds": "SOB",
+  "sectionals": "SEC",
+  "coffee-tables": "COF",
+  "armchairs": "ARM",
+  "benches-ottomans": "BEN",
+  "headboards": "HEA",
+  "storage": "STO",
+  "accessories": "ACC",
+  "pillows": "001",
+  "rugs": "002",
+  "other": "003",
+  "2-seater": "001", 
+  "3-seater": "002",
+  "left-facing": "001",
+  "right-facing": "002"
+}
 
 materials = ["velvet", "concrete", "cream", "coffee", "pumpkin"];
 
@@ -38,6 +57,21 @@ recipe = {
   },
   "eval": []
 };
+
+pad = function (n, width, z) {
+  z = z || '0';
+  n = n + '';
+  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+}
+
+indexes = {}
+
+getSKU = function( data ){
+  sub  = data.sub ? sku_tree[data.sub] : '00';
+  sku = [ sku_tree[ data.cat ], sub  ].join('')
+  pnm = indexes[sku]  ?  (++indexes[sku]) : (indexes[sku] = 1);
+  return sku + pad( pnm , 3);
+}
 
 getPaths = function(cat, base) {
   var category_paths, hasSub, sub, _i, _len, _ref;
@@ -214,7 +248,7 @@ setSKU = function(post_varname, data) {
     args: {
       id: "" + post_varname,
       key: "_sku",
-      value: (cat + "_" + slug).replace(/\-/g, '_')
+      value: getSKU( data )
     }
   });
 };
