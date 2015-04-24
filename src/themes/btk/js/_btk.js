@@ -13,7 +13,8 @@
 
 
 	// sign in behaviour
-	$('#menu-header a:first').on('click', function(e) {
+//	$('#menu-header a:first').on('click', function(e) {
+	$('#menu-header .login').on('click', function(e) {
 		e.preventDefault();
 		if ( ! $('#header-box').hasClass('open') ) {
 			$('#header-box').addClass('open');

@@ -785,7 +785,7 @@ Mixins
 }
 .back-home-button {
   position: absolute;
-  bottom: 70px;
+  bottom: 60px;
   right: 15px;
 }
 .back-home-button a.buttons {
@@ -1074,25 +1074,31 @@ Woocommerce Overrides
 .woocommerce {
   min-height: 250px;
 }
-.woocommerce .customer-login {
+.woocommerce .customer-login,
+.woocommerce .customer-register {
   padding: 0 15px 15px;
 }
-.woocommerce .customer-login h2 {
+.woocommerce .customer-login h2,
+.woocommerce .customer-register h2 {
   font-size: 1.5em;
   margin: 0 0 50px;
   padding-top: 20px;
   border-top: 2px solid #000000;
 }
-.woocommerce .customer-login p {
+.woocommerce .customer-login p,
+.woocommerce .customer-register p {
   margin: 0 0 1.5em !important;
 }
-.woocommerce .customer-login input[type="submit"] {
+.woocommerce .customer-login form,
+.woocommerce .customer-register form {
+  margin-bottom: 50px !important;
+}
+.woocommerce .customer-login input[type="submit"],
+.woocommerce .customer-register input[type="submit"],
+.woocommerce .lost_reset_password input[type="submit"] {
   padding: 0.75em 1.8em;
   background-position: center center;
   text-indent: -9999px;
-}
-.woocommerce .customer-login form {
-  margin-bottom: 50px !important;
 }
 .woocommerce ul.products {
   margin: 0;
@@ -1610,7 +1616,7 @@ Woocommerce Overrides
 }
 .woocommerce .color-choice .back-to-product {
   position: absolute;
-  bottom: 70px;
+  bottom: 60px;
   right: 15px;
 }
 .woocommerce .color-choice .back-to-product a.buttons {
@@ -1652,7 +1658,7 @@ Woocommerce Overrides
 }
 .woocommerce .color-choice .color-selection .choose-this-color {
   position: absolute;
-  bottom: 70px;
+  bottom: 60px;
   right: 15px;
 }
 .woocommerce .color-choice .color-selection .choose-this-color a.buttons {
@@ -1943,7 +1949,7 @@ Header
 #header-box header .sign-in-menu .login-form form p.submit,
 #header-box header .sign-in-menu .register-form form p.submit {
   position: absolute;
-  bottom: 120px;
+  bottom: 110px;
   right: 15px;
 }
 #header-box header .sign-in-menu .login-form form .lost-password,
@@ -2001,7 +2007,7 @@ Header
 #header-box header .sign-in-menu .back-home {
   display: none;
   position: absolute;
-  bottom: 70px;
+  bottom: 60px;
   right: 15px;
 }
 #header-box header .sign-in-menu .back-home a.buttons {
@@ -2269,7 +2275,7 @@ Content
 }
 .page-confirmation .confirmation-back-home {
   position: absolute;
-  bottom: 70px;
+  bottom: 60px;
   right: 15px;
 }
 .page-confirmation .confirmation-back-home a.buttons {

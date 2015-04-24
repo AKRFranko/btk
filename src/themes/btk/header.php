@@ -66,7 +66,20 @@
 						<!-- menu header -->
 						<?php if (!is_page('confirmation')) { ?>
 						<nav class="nav-header" role="navigation">
-							<?php wp_nav_menu(array('menu' => 'header')); ?>
+
+							<?php //wp_nav_menu(array('menu' => 'header')); ?>
+
+
+							<div class="menu-header-container">
+								<ul id="menu-header">
+									<?php if ( is_user_logged_in() ) : ?>
+									<li class="logout"><a href="<?php echo esc_url(home_url('/')); ?>my-account/customer-logout">Sign out</a></li>
+									<?php else: ?>
+									<li class="login"><a href="<?php echo esc_url(home_url('/')); ?>sign-in">Sign in</a></li>
+									<?php endif; ?>
+									<li><a href="<?php echo esc_url(home_url('/')); ?>cart">Cart</a></li>
+								</ul>
+							</div>
 							<?php if ( WC()->cart->get_cart_contents_count() > 0 ) { echo '<span class="semi-bold">' . WC()->cart->get_cart_contents_count() . '</span>'; } ?>
 							<a class="language" href="<?php echo esc_url(home_url('/')); ?>">fr</a>
 						</nav>
@@ -143,31 +156,24 @@
 							<!-- form register -->
 							<div class="register-form">
 								<p>New customers sign up for shopping<br />and exclusive offers</p>
-								<form method="post" action="<?php echo esc_url($_SERVER['REQUEST_URI']);?>">
+								<form method="post" action="<?php echo esc_url(home_url('/')); ?>my-account">
+									<?php do_action( 'woocommerce_register_form_start' ); ?>
 									<p>
-										<label for="reg-name"></label>
-										<input name="reg_name" type="text" class="login-field" value="<?php echo (isset($_POST['reg_name']) ? $_POST['reg_name'] : null);?>" placeholder="name" id="reg-name" required />
+										<label for="reg_email" class="hide"></label>
+										<input type="email" class="input-text" name="email" id="reg_email" placeholder="<?php _e( 'email', 'woocommerce' ); ?>" value="<?php if ( ! empty( $_POST['email'] ) ) echo esc_attr( $_POST['email'] ); ?>" />
 									</p>
 									<p>
-										<label for="reg-email"></label>
-										<input name="reg_email" type="email" class="login-field" value="<?php echo (isset($_POST['reg_email']) ? $_POST['reg_email'] : null);?>" placeholder="email" id="reg-email" required />
+										<label for="reg_password" class="hide"></label>
+										<input type="password" class="input-text" name="password" id="reg_password" placeholder="<?php _e( 'password', 'woocommerce' ); ?>" />
 									</p>
-									<p>
-										<label for="reg-pass"></label>
-										<input name="reg_password" type="password" class="login-field" value="<?php echo (isset($_POST['reg_password']) ? $_POST['reg_password'] : null);?>" placeholder="password" id="reg-pass" required />
-									</p>
-									<p>
-										<label for="reg-repass"></label>
-										<input name="reg_repassword" type="password" class="login-field" value="<?php echo (isset($_POST['reg_repassword']) ? $_POST['reg_repassword'] : null);?>" placeholder="re-enter password" id="reg-repass" required />
-									</p>
-									<p>
-										<label for="reg-city"></label>
-										<input name="reg_city" type="text" class="login-field" value="<?php echo (isset($_POST['reg_city']) ? $_POST['reg_city'] : null);?>" placeholder="city" id="reg-city" required />
-									</p>
+									<?php do_action( 'woocommerce_register_form' ); ?>
+									<?php do_action( 'register_form' ); ?>
 									<p class="submit">
+										<?php wp_nonce_field( 'woocommerce-register' ); ?>
 										<span class="valign">enter edb</span>
-										<input class="valign icon-arrow-lite-right-white" type="submit"  name="reg_submit" value="" />
+										<input type="submit" class="valign icon-arrow-lite-right-white" name="register" value="<?php _e( 'Register', 'woocommerce' ); ?>" />
 									</p>
+									<?php do_action( 'woocommerce_register_form_end' ); ?>
 								</form>
 							</div>
 

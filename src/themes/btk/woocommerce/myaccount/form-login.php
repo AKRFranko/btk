@@ -58,7 +58,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <div class="customer-register">
 
-	<h2><?php _e( 'Register', 'woocommerce' ); ?></h2>
+	<h2>New customers sign up for<br />shopping and exclusive offers</h2>
 
 	<form method="post" class="register">
 
@@ -73,17 +73,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<?php endif; ?>
 
-		<p class="form-row form-row-wide">
-			<label for="reg_email"><?php _e( 'Email address', 'woocommerce' ); ?> <span class="required">*</span></label>
-			<input type="email" class="input-text" name="email" id="reg_email" value="<?php if ( ! empty( $_POST['email'] ) ) echo esc_attr( $_POST['email'] ); ?>" />
+		<p>
+			<label for="reg_email" class="hide"></label>
+			<input type="email" class="input-text" name="email" id="reg_email" placeholder="<?php _e( 'email', 'woocommerce' ); ?>" value="<?php if ( ! empty( $_POST['email'] ) ) echo esc_attr( $_POST['email'] ); ?>" />
 		</p>
 
 		<?php if ( 'no' === get_option( 'woocommerce_registration_generate_password' ) ) : ?>
 
-			<p class="form-row form-row-wide">
-				<label for="reg_password"><?php _e( 'Password', 'woocommerce' ); ?> <span class="required">*</span></label>
-				<input type="password" class="input-text" name="password" id="reg_password" />
-			</p>
+		<p>
+			<label for="reg_password" class="hide"></label>
+			<input type="password" class="input-text" name="password" id="reg_password" placeholder="<?php _e( 'password', 'woocommerce' ); ?>" />
+		</p>
 
 		<?php endif; ?>
 
@@ -93,9 +93,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php do_action( 'woocommerce_register_form' ); ?>
 		<?php do_action( 'register_form' ); ?>
 
-		<p class="form-row">
+		<p class="alignright">
 			<?php wp_nonce_field( 'woocommerce-register' ); ?>
-			<input type="submit" class="button" name="register" value="<?php _e( 'Register', 'woocommerce' ); ?>" />
+			<span class="valign">sign up</span>
+			<input type="submit" class="valign icon-arrow-lite-right-white" name="register" value="<?php _e( 'Register', 'woocommerce' ); ?>" />
 		</p>
 
 		<?php do_action( 'woocommerce_register_form_end' ); ?>
