@@ -1075,30 +1075,51 @@ Woocommerce Overrides
   min-height: 250px;
 }
 .woocommerce .customer-login,
-.woocommerce .customer-register {
+.woocommerce .customer-register,
+.woocommerce .edit-account,
+.woocommerce .edit-address {
   padding: 0 15px 15px;
 }
 .woocommerce .customer-login h2,
-.woocommerce .customer-register h2 {
+.woocommerce .customer-register h2,
+.woocommerce .edit-account h2,
+.woocommerce .edit-address h2 {
   font-size: 1.5em;
-  margin: 0 0 50px;
+  margin: 0 0 45px;
   padding-top: 20px;
-  border-top: 2px solid #000000;
+  border-top: 3px solid #000000;
 }
 .woocommerce .customer-login p,
-.woocommerce .customer-register p {
+.woocommerce .customer-register p,
+.woocommerce .edit-account p,
+.woocommerce .edit-address p {
   margin: 0 0 1.5em !important;
 }
 .woocommerce .customer-login form,
-.woocommerce .customer-register form {
+.woocommerce .customer-register form,
+.woocommerce .edit-account form,
+.woocommerce .edit-address form {
   margin-bottom: 50px !important;
+}
+.woocommerce .customer-login fieldset,
+.woocommerce .customer-register fieldset,
+.woocommerce .edit-account fieldset,
+.woocommerce .edit-address fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
 }
 .woocommerce .customer-login input[type="submit"],
 .woocommerce .customer-register input[type="submit"],
-.woocommerce .lost_reset_password input[type="submit"] {
+.woocommerce .lost_reset_password input[type="submit"],
+.woocommerce .edit-account input[type="submit"],
+.woocommerce .edit-address input[type="submit"] {
   padding: 0.75em 1.8em;
   background-position: center center;
   text-indent: -9999px;
+}
+.woocommerce .edit-address > h2 {
+  margin-bottom: 20px;
 }
 .woocommerce ul.products {
   margin: 0;

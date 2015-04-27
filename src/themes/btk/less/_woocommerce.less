@@ -21,15 +21,20 @@ Woocommerce Overrides
 
 .woocommerce {
 	min-height:250px;
-// login - register
-	.customer-login, .customer-register {
+// login - register - edit account
+	.customer-login, .customer-register, .edit-account, .edit-address {
 		padding:0 15px 15px;
-		h2 { font-size:1.5em; margin:0 0 50px; padding-top:20px; border-top:2px solid @black; }
+		h2 { font-size:1.5em; margin:0 0 45px; padding-top:20px; border-top:3px solid @black; }
 		p { margin:0 0 1.5em !important; }
 		form { margin-bottom:50px !important; }
+		fieldset { margin:0; padding:0; border:none; }
 	}
-	.customer-login, .customer-register, .lost_reset_password {
+	.customer-login, .customer-register, .lost_reset_password,
+	.edit-account, .edit-address {
 		input[type="submit"] { padding:0.75em 1.8em; background-position:center center; text-indent:-9999px; }
+	}
+	.edit-address {
+		> h2 { margin-bottom:20px; }
 	}
 
 
