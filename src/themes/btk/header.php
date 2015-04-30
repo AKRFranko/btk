@@ -73,7 +73,7 @@
 							<div class="menu-header-container">
 								<ul id="menu-header">
 									<?php if ( is_user_logged_in() ) : ?>
-									<li class="logout"><a href="<?php echo esc_url(home_url('/')); ?>my-account/customer-logout">Sign out</a></li>
+									<li class="logout"><a href="<?php echo wp_logout_url( home_url('/') ); ?>">Sign out</a></li>
 									<?php else: ?>
 									<li class="login"><a href="<?php echo esc_url(home_url('/')); ?>sign-in">Sign in</a></li>
 									<?php endif; ?>

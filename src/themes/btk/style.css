@@ -790,7 +790,7 @@ Mixins
 }
 .back-home-button a.buttons {
   font-size: 1.4em;
-  background-color: #444;
+  background-color: #444444;
   border: none;
   cursor: pointer;
   background-position: center center;
@@ -1014,13 +1014,13 @@ form p {
   margin-bottom: 0.5em;
 }
 ::-webkit-input-placeholder {
-  color: #242021;
+  color: #999999;
 }
 ::-moz-placeholder {
-  color: #242021;
+  color: #999999;
 }
 :-ms-input-placeholder {
-  color: #242021;
+  color: #999999;
 }
 /*
 ==========================================================================
@@ -1076,35 +1076,35 @@ Woocommerce Overrides
 }
 .woocommerce .customer-login,
 .woocommerce .customer-register,
-.woocommerce .edit-account,
-.woocommerce .edit-address {
+.woocommerce #edit-account,
+.woocommerce #edit-address {
   padding: 0 15px 15px;
 }
 .woocommerce .customer-login h2,
 .woocommerce .customer-register h2,
-.woocommerce .edit-account h2,
-.woocommerce .edit-address h2 {
+.woocommerce #edit-account h2,
+.woocommerce #edit-address h2 {
   font-size: 1.5em;
-  margin: 0 0 45px;
+  margin: 0 0 40px;
   padding-top: 20px;
   border-top: 3px solid #000000;
 }
 .woocommerce .customer-login p,
 .woocommerce .customer-register p,
-.woocommerce .edit-account p,
-.woocommerce .edit-address p {
+.woocommerce #edit-account p,
+.woocommerce #edit-address p {
   margin: 0 0 1.5em !important;
 }
 .woocommerce .customer-login form,
 .woocommerce .customer-register form,
-.woocommerce .edit-account form,
-.woocommerce .edit-address form {
+.woocommerce #edit-account form,
+.woocommerce #edit-address form {
   margin-bottom: 50px !important;
 }
 .woocommerce .customer-login fieldset,
 .woocommerce .customer-register fieldset,
-.woocommerce .edit-account fieldset,
-.woocommerce .edit-address fieldset {
+.woocommerce #edit-account fieldset,
+.woocommerce #edit-address fieldset {
   margin: 0;
   padding: 0;
   border: none;
@@ -1112,14 +1112,63 @@ Woocommerce Overrides
 .woocommerce .customer-login input[type="submit"],
 .woocommerce .customer-register input[type="submit"],
 .woocommerce .lost_reset_password input[type="submit"],
-.woocommerce .edit-account input[type="submit"],
-.woocommerce .edit-address input[type="submit"] {
+.woocommerce #edit-account input[type="submit"],
+.woocommerce #edit-address input[type="submit"],
+.woocommerce form.billing-shipping-edit input[type="submit"] {
   padding: 0.75em 1.8em;
   background-position: center center;
   text-indent: -9999px;
 }
-.woocommerce .edit-address > h2 {
-  margin-bottom: 20px;
+.woocommerce #edit-address {
+  padding: 0 0 15px;
+}
+.woocommerce #edit-address > h2 {
+  margin: 0 15px 20px;
+}
+.woocommerce #edit-address > p {
+  margin: 0 15px 1.5em !important;
+}
+.woocommerce form.billing-shipping-edit {
+  padding: 0 15px;
+}
+.woocommerce form.billing-shipping-edit h2 {
+  border: none !important;
+}
+.woocommerce form.billing-shipping-edit label {
+  display: none;
+}
+.woocommerce form.billing-shipping-edit p {
+  margin: 0 0 1.5em !important;
+  padding: 0;
+}
+.woocommerce form.billing-shipping-edit p.form-row-first,
+.woocommerce form.billing-shipping-edit p.form-row-last {
+  float: none;
+  width: 100%;
+}
+.woocommerce form.billing-shipping-edit p#billing_state_field,
+.woocommerce form.billing-shipping-edit p#shipping_state_field {
+  padding-bottom: 1px;
+  border-bottom: 2px solid #000000;
+}
+.woocommerce form.billing-shipping-edit p #billing_state,
+.woocommerce form.billing-shipping-edit p #shipping_state {
+  margin-left: -6px;
+}
+.woocommerce form.billing-shipping-edit p strong {
+  display: inline-block;
+  padding: 3px 0;
+  width: 100%;
+  font-weight: normal;
+  border-bottom: 2px solid #000000;
+}
+.woocommerce form.billing-shipping-edit p select {
+  border: none;
+  background: transparent;
+  text-transform: lowercase;
+}
+.woocommerce form.billing-shipping-edit p input {
+  text-transform: lowercase;
 }
 .woocommerce ul.products {
   margin: 0;
@@ -1303,7 +1352,7 @@ Woocommerce Overrides
   padding: 5px 40px;
 }
 .woocommerce .product .product-description a:hover {
-  background-color: #444;
+  background-color: #444444;
   color: #ffffff;
 }
 .woocommerce .product .product-description .desc {
@@ -1351,7 +1400,7 @@ Woocommerce Overrides
   box-shadow: none;
 }
 .woocommerce .product .product-add form.cart button:hover {
-  background-color: #444;
+  background-color: #444444;
 }
 .woocommerce .product .product-add .qty-text {
   padding: 6px 0;
@@ -1446,7 +1495,7 @@ Woocommerce Overrides
   background-position: center center;
 }
 .woocommerce .cart-collaterals a:hover {
-  background-color: #444;
+  background-color: #444444;
 }
 .woocommerce .cart-collaterals p {
   margin: 45px 0 1.5em !important;
@@ -1623,7 +1672,7 @@ Woocommerce Overrides
   border-bottom: none;
 }
 .woocommerce .woocommerce-checkout #payment input[type='submit']:hover {
-  background-color: #444;
+  background-color: #444444;
 }
 .woocommerce .color-choice {
   display: none;
@@ -1642,7 +1691,7 @@ Woocommerce Overrides
 }
 .woocommerce .color-choice .back-to-product a.buttons {
   font-size: 1.4em;
-  background-color: #444;
+  background-color: #444444;
   border: none;
   cursor: pointer;
   background-position: center center;
@@ -1684,7 +1733,7 @@ Woocommerce Overrides
 }
 .woocommerce .color-choice .color-selection .choose-this-color a.buttons {
   font-size: 1.4em;
-  background-color: #444;
+  background-color: #444444;
   border: none;
   cursor: pointer;
   background-position: center center;
@@ -1994,7 +2043,7 @@ Header
 #header-box header .sign-in-menu .login-form input[type='submit'],
 #header-box header .sign-in-menu .register-form input[type='submit'] {
   padding: 0.75em 1.8em;
-  background-color: #444;
+  background-color: #444444;
   background-position: center center;
   text-indent: -9999px;
 }
@@ -2033,7 +2082,7 @@ Header
 }
 #header-box header .sign-in-menu .back-home a.buttons {
   font-size: 1.4em;
-  background-color: #444;
+  background-color: #444444;
   border: none;
   cursor: pointer;
   background-position: center center;
@@ -2301,7 +2350,7 @@ Content
 }
 .page-confirmation .confirmation-back-home a.buttons {
   font-size: 1.4em;
-  background-color: #444;
+  background-color: #444444;
   border: none;
   cursor: pointer;
   background-position: center center;

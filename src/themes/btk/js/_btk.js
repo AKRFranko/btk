@@ -2,7 +2,7 @@
 ( function( $ ) { $( window ).load( function(){
 
 
-	// back to top
+	// back to top - scrolling anim
 	$('#back-to-top a').on('click', function(e) {
 		e.preventDefault();
 		$('body,html').animate({
@@ -200,6 +200,12 @@
 		$(this).addClass('fa-check-square').removeClass('fa-square');
 	}
 
+
+	$('.billing-shipping-edit input').each(function(){
+		if ($(this).attr('placeholder') === '') {
+			$(this).attr('placeholder', $(this).parent().children('label').text().toLowerCase());
+		}
+	});
 
 } ) } )( jQuery );
 

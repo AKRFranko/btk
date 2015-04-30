@@ -22,19 +22,38 @@ Woocommerce Overrides
 .woocommerce {
 	min-height:250px;
 // login - register - edit account
-	.customer-login, .customer-register, .edit-account, .edit-address {
+	.customer-login, .customer-register, #edit-account, #edit-address {
 		padding:0 15px 15px;
-		h2 { font-size:1.5em; margin:0 0 45px; padding-top:20px; border-top:3px solid @black; }
+		h2 { font-size:1.5em; margin:0 0 40px; padding-top:20px; border-top:3px solid @black; }
 		p { margin:0 0 1.5em !important; }
 		form { margin-bottom:50px !important; }
 		fieldset { margin:0; padding:0; border:none; }
 	}
 	.customer-login, .customer-register, .lost_reset_password,
-	.edit-account, .edit-address {
+	#edit-account, #edit-address, form.billing-shipping-edit {
 		input[type="submit"] { padding:0.75em 1.8em; background-position:center center; text-indent:-9999px; }
 	}
-	.edit-address {
-		> h2 { margin-bottom:20px; }
+	#edit-address {
+		padding:0 0 15px;
+		> h2 { margin:0 15px 20px; }
+		> p { margin:0 15px 1.5em !important; }
+	}
+	form.billing-shipping-edit {
+		padding:0 15px;
+		h2 { border:none !important; }
+		label { display:none; }
+		p {
+			margin:0 0 1.5em !important; padding:0;
+			&.form-row-first, &.form-row-last { float:none; width:100%; }
+			&#billing_state_field, &#shipping_state_field { padding-bottom:1px; border-bottom:2px solid @black; }
+			#billing_state, #shipping_state { margin-left:-6px; }
+			strong {
+				display:inline-block; padding:3px 0; width:100%;
+				font-weight:normal; border-bottom:2px solid @black;
+			}
+			select { border:none; background:transparent; text-transform:lowercase; }
+			input { text-transform:lowercase; }
+		}
 	}
 
 
@@ -138,7 +157,7 @@ Woocommerce Overrides
 			a {
 				display:inline-block; border:1px solid @black; padding:5px 30px;
 				&.pr-rev { padding:5px 40px; }
-				&:hover { background-color:#444; color:@white; }
+				&:hover { background-color:@gray; color:@white; }
 			}
 			.desc { padding-bottom:25px; }
 		}
@@ -158,7 +177,7 @@ Woocommerce Overrides
 					float:none; margin:20px 0 20px 10px; .buttons();
 					padding:0.75em 2em; background-position:center center;
 					border:none; box-shadow:none;
-					&:hover { background-color:#444; }
+					&:hover { background-color:@gray; }
 				}
 			}
 			.qty-text { padding:6px 0; border-bottom:1px solid @black; }
@@ -205,7 +224,7 @@ Woocommerce Overrides
 		padding:0 15px 30px;
 		a {
 			.buttons(); padding:0.75em 2.15em; background-position:center center;
-			&:hover { background-color:#444; }
+			&:hover { background-color:@gray; }
 		}
 		p {
 			margin:45px 0 1.5em !important; font-size:1.2em;
@@ -288,7 +307,7 @@ Woocommerce Overrides
 			input[type='submit'] {
 				padding:0.75em 2em; font-size:1.4em;
 				background-position:center center; border-bottom:none;
-				&:hover { background-color:#444; }
+				&:hover { background-color:@gray; }
 			}
 		}
 	}
