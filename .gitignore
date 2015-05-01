@@ -35,3 +35,5 @@ _btk.js
 # tmp
 
 src/composer
+
+gdrivesync.sh

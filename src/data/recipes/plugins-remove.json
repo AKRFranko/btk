@@ -9,6 +9,12 @@
          },
          {
             "args":{
+               "plugin":"wpMandrill"
+            }
+           , "opts":{ "quiet":true }
+         },
+         {
+            "args":{
                "plugin":"woocommerce"
             }
            , "opts":{ "quiet":true }

@@ -207,7 +207,8 @@ module.exports = function(grunt) {
       },
       generate_catalog: {
         options: {
-          cwd: '<%= cfg.project_dir %>/src/data/media/mock-catalog/'
+          cwd: '<%= cfg.project_dir %>/src/data/media/mock-catalog/',
+          args: [  config['gdrive-catalog'] ]
         },
         src: ['<%= cfg.project_dir %>/src/data/media/mock-catalog/tojson.js']
       }
