@@ -387,7 +387,7 @@ createPost = function(data) {
       bindTerms(data.varname + "_" + variant, [variant]);
       return recipe.post.create[data.varname + "_" + variant] = {
         opts: {
-          post_title: "{data.name} - " + variant,
+          post_title: data.name + " - " + variant,
           post_type: "product_variation",
           post_status: "publish",
           post_parent: "" + data.varname,
