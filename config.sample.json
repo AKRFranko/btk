@@ -1,3 +1,5 @@
 {
-  "notify": true
+  "notify": true,
+  "gdrive-catalog": "/path/to/gdrive-catalog",
+  "rclone-remote":"remote://edb/catalog"
 }

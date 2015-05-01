@@ -1,4 +1,4 @@
-var addToCat, basename, bindTerms, buildRecipe, cat_tree, createPost, createTerm, enableVariations, enableVisibility, fs, getCatVar, getPaths, importMedia, materials, output, readTree, recipe, setMaterial, setMockdata, setSKU, variant_cats,pad, getSKU, indexes, adler32;
+var argv,addToCat, basename, bindTerms, buildRecipe, cat_tree, createPost, createTerm, enableVariations, enableVisibility, fs, getCatVar, getPaths, importMedia, materials, output, readTree, recipe, setMaterial, setMockdata, setSKU, variant_cats,pad, getSKU, indexes, adler32, goo;
 
 adler32 = require('adler32');
 fs = require('fs');
@@ -70,18 +70,18 @@ indexes = {}
 
 getSKU = function( data, variant ){
   sub  = data.sub ? sku_tree[data.sub] : '00';
-  sku = [ sku_tree[ data.cat ], sub  ].join('')
-  # pnm = indexes[sku]  ?  (++indexes[sku]) : (indexes[sku] = 1);
-  # full = sku + pad( pnm , 3);
+  sku = [ sku_tree[ data.cat ], sub  ].join('-')
+  // pnm = indexes[sku]  ?  (++indexes[sku]) : (indexes[sku] = 1);
+  // full = sku + pad( pnm , 3);
   pnm = adler32.sum( new Buffer( data.name + (variant ? ' ' + variant : '')) ) 
-  full = sku + pnm.toString(32);
+  full = sku + '-' + pnm.toString(32);
   return full.toLowerCase();
 }
 
 getPaths = function(cat, base) {
   var category_paths, hasSub, sub, _i, _len, _ref;
   if (base == null) {
-    base = __dirname;
+    base = process.argv[process.argv.length - 1];
   }
   hasSub = cat_tree[cat].length > 0;
   category_paths = [];
@@ -105,6 +105,7 @@ getPaths = function(cat, base) {
   return category_paths.reduce(function(paths, path) {
     var names;
     names = fs.readdirSync(path.path);
+    names = names.filter(function(f){ return !/^\./.test(f)});
     return paths.concat(names.map(function(name) {
       return {
         path: path.path + "/" + name,
@@ -271,13 +272,25 @@ bindTerms = function(post_varname, variants) {
     }
   });
 };
+var readFolderImages = function( folder ){
+  var files = fs.readdirSync(folder).filter( function( f ){
+    return /(jpg|png|gif|jpeg)/.test( f )
+  })
+  return files.map( function( f ){
+    return folder + "/" + f
+  })
+}
 
 importMedia = function(data) {
   var all, angles, featured, scenes, tech;
-  featured = data.path + "/images/angles/front.jpg";
-  angles = [data.path + "/images/angles/left.jpg", data.path + "/images/angles/right.jpg", data.path + "/images/angles/top.jpg"];
-  scenes = [data.path + "/images/scenes/01.jpg", data.path + "/images/scenes/02.jpg", data.path + "/images/scenes/03.jpg", data.path + "/images/scenes/04.jpg"];
-  tech = [data.path + "/images/tech/01.jpg", data.path + "/images/tech/02.jpg"];
+  angles = readFolderImages( data.path + "/images/cutout" )
+  scenes = readFolderImages( data.path + "/images/ambiance" )
+  tech = readFolderImages( data.path + "/images/tech" )
+  // featured = data.path + "/images/cutout/front.jpg";
+  // angles = [data.path + "/images/cutout/left.jpg", data.path + "/images/cutout/right.jpg", data.path + "/images/cutout/top.jpg"];
+  // scenes = [data.path + "/images/ambiance/01.jpg", data.path + "/images/ambiance/02.jpg", data.path + "/images/ambiance/03.jpg", data.path + "/images/ambiance/04.jpg"];
+  // tech = [data.path + "/images/tech/01.jpg", data.path + "/images/tech/02.jpg"];
+  featured = angles.shift();
   all = [angles, scenes, tech].reduce(function(a, b) {
     if (!a) {
       return b;
@@ -437,7 +450,8 @@ buildRecipe = function() {
 
 output = JSON.stringify(buildRecipe());
 
-console.log(output);
+//console.log(output);
+console.log( 'updated catalog-create.json!' );
 
 fs.writeFileSync('catalog-create.json', output.replace(/\\/g, '\\\\\\'));
 
