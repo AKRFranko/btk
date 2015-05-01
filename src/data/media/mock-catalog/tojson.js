@@ -69,7 +69,7 @@ pad = function (n, width, z) {
 indexes = {}
 
 getSKU = function( data, variant ){
-  sub  = data.sub ? sku_tree[data.sub] : '00';
+  sub  = data.sub ? sku_tree[data.sub] : 'ZZZ';
   sku = [ sku_tree[ data.cat ], sub  ].join('-')
   // pnm = indexes[sku]  ?  (++indexes[sku]) : (indexes[sku] = 1);
   // full = sku + pad( pnm , 3);

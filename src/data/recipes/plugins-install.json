@@ -12,7 +12,7 @@
 	         },
 	         {
 	            "args":{
-	               "plugin":"wpMandrill"
+	               "plugin":"wpmandrill"
 	            },
 	            "opts":{
 	               "force":true,
