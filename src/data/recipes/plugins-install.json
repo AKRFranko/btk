@@ -12,6 +12,15 @@
 	         },
 	         {
 	            "args":{
+	               "plugin":"wpMandrill"
+	            },
+	            "opts":{
+	               "force":true,
+	               "activate":true
+	            }
+	         },
+	         {
+	            "args":{
 	               "plugin":"woocommerce"
 	            },
 	            "opts":{
@@ -56,7 +65,7 @@
 	      ]
 	},
 	"eval": {
-      "args": { "php": "WC_Install::create_pages();WC_Admin_Notices::remove_notice( 'install' );" },
+      "args": { "php": "WC_Install::create_pages();WC_Admin_Notices::remove_notice( 'install' );update_option('wpmandrill', array('api_key'=>'pRkvHbB81Ifoh8x6BI2_kw','from_name'=>'franko','from_username'=>'franko@akr.club','reply_to'=>'franko@akr.club', 'track_opens'=>1, 'track_clicks'=> 1));" },
       "opts": { "quiet": true }
    	}
 }
