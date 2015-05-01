@@ -169,6 +169,10 @@ module.exports = function(grunt) {
       //   options: { args: [ '-j', '<%= cfg.project_dir %>/src/data/edb-themeonly.json', '-y', '<%= cfg.project_dir %>/wp-cli.yml' ] },
       //   src: ['<%= cfg.project_dir %>/node_modules/nwp/bin/nwp']
       // },
+      send_done_email: {
+        options: { args: [ '-j', '<%= cfg.project_dir %>/src/data/recipes/send-donemail.json', '-y', '<%= cfg.project_dir %>/wp-cli.yml' ] },
+        src: ['<%= cfg.project_dir %>/node_modules/nwp/bin/nwp']
+      },
       site_remove: {
         options: { args: [ '-j', '<%= cfg.project_dir %>/src/data/recipes/site-remove.json', '-y', '<%= cfg.project_dir %>/wp-cli.yml' ] },
         src: ['<%= cfg.project_dir %>/node_modules/nwp/bin/nwp']
@@ -212,6 +216,7 @@ module.exports = function(grunt) {
         },
         src: ['<%= cfg.project_dir %>/src/data/media/mock-catalog/tojson.js']
       }
+
     }
 
   });
@@ -227,6 +232,7 @@ module.exports = function(grunt) {
   grunt.registerTask('site:install', [ "execute:site_install" ] )
   grunt.registerTask('site:remove',  [ "execute:site_remove" ] )
   grunt.registerTask('site:reset',   [ "site:remove","site:install" ] )
+  grunt.registerTask('site:email',   [ "execute:send_done_email" ] )
   
   grunt.registerTask('plugins:install', [ "execute:plugins_install" ] )
   grunt.registerTask('plugins:remove',  [ "execute:plugins_remove" ] )
@@ -242,7 +248,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('theme:update',   [ "build", "compress", "execute:theme_update" ] )
   
-  grunt.registerTask('release', ["execute:generate_catalog", "site:reset", "plugins:install", "blog:create", "catalog:create", "theme:update" ] )
+  grunt.registerTask('release', ["execute:generate_catalog", "site:reset", "plugins:install", "blog:create", "catalog:create", "theme:update", "site:email"] )
   grunt.registerTask('install', [ "theme:update" ] )
 
 

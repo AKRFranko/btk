@@ -2,6 +2,14 @@
    "core": {
       "install": {
       	 "opts": { "title": "edb" } 
+      },
+      "update": {
+      	"opts": { "force": true }
       }
+    },
+    "db": {
+    	"repair": { 
+    		"opts": { "quiet": true }
+    	}
     }
 }
