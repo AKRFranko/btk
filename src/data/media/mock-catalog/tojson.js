@@ -1,5 +1,6 @@
-var addToCat, basename, bindTerms, buildRecipe, cat_tree, createPost, createTerm, enableVariations, enableVisibility, fs, getCatVar, getPaths, importMedia, materials, output, readTree, recipe, setMaterial, setMockdata, setSKU, variant_cats,pad, getSKU, indexes;
+var addToCat, basename, bindTerms, buildRecipe, cat_tree, createPost, createTerm, enableVariations, enableVisibility, fs, getCatVar, getPaths, importMedia, materials, output, readTree, recipe, setMaterial, setMockdata, setSKU, variant_cats,pad, getSKU, indexes, adler32;
 
+adler32 = require('adler32');
 fs = require('fs');
 
 basename = require('path').basename;
@@ -67,12 +68,13 @@ pad = function (n, width, z) {
 
 indexes = {}
 
-getSKU = function( data ){
+getSKU = function( data, variant ){
   sub  = data.sub ? sku_tree[data.sub] : '00';
   sku = [ sku_tree[ data.cat ], sub  ].join('')
   # pnm = indexes[sku]  ?  (++indexes[sku]) : (indexes[sku] = 1);
   # full = sku + pad( pnm , 3);
-  pnm = 
+  pnm = adler32.sum( new Buffer( data.name + (variant ? ' ' + variant : '')) ) 
+  full = sku + pnm.toString(32);
   return full.toLowerCase();
 }
 
