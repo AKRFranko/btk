@@ -43,89 +43,43 @@ wc_print_notices();
 <?php wc_get_template( 'myaccount/my-downloads.php' ); ?>
 
 <div id="edit-address">
-	<?php //wc_get_template( 'myaccount/my-address.php' ); ?>
 	<h2>My addresses</h2>
 	<p class="myaccount_address">
 		<?php echo apply_filters( 'woocommerce_my_account_my_address_description', __( 'The following addresses will be used on the checkout page by default.', 'woocommerce' ) ); ?>
 	</p>
+	<?php foreach ( $get_addresses as $name => $title ) : ?>
+	<div>
+		<h3 class="alignleft"><?php echo $title; ?></h3>
+		<a href="<?php echo wc_get_endpoint_url( 'edit-address', $name ); ?>" class="edit alignright"><?php _e( 'Edit', 'woocommerce' ); ?></a>
 	<?php
-		foreach ( $get_addresses as $name => $title ) :
+		$address = apply_filters( 'woocommerce_my_account_my_address_formatted_address', array(
+			'first_name'  => get_user_meta( $customer_id, $name . '_first_name', true ),
+			'last_name'   => get_user_meta( $customer_id, $name . '_last_name', true ),
+			'company'     => get_user_meta( $customer_id, $name . '_company', true ),
+			'address_1'   => get_user_meta( $customer_id, $name . '_address_1', true ),
+			'address_2'   => get_user_meta( $customer_id, $name . '_address_2', true ),
+			'city'        => get_user_meta( $customer_id, $name . '_city', true ),
+			'state'       => get_user_meta( $customer_id, $name . '_state', true ),
+			'postcode'    => get_user_meta( $customer_id, $name . '_postcode', true ),
+			'country'     => get_user_meta( $customer_id, $name . '_country', true )
+		), $customer_id, $name);
+
+		$formatted_address = WC()->countries->get_formatted_address( $address );
 	?>
-			<h3><?php echo $title; ?></h3>
-			<a href="<?php echo wc_get_endpoint_url( 'edit-address', $name ); ?>" class="edit"><?php _e( 'Edit', 'woocommerce' ); ?></a>
-<?php
-			$address = apply_filters( 'woocommerce_my_account_my_address_formatted_address', array(
-				'first_name'  => get_user_meta( $customer_id, $name . '_first_name', true ),
-				'last_name'   => get_user_meta( $customer_id, $name . '_last_name', true ),
-				'company'     => get_user_meta( $customer_id, $name . '_company', true ),
-				'address_1'   => get_user_meta( $customer_id, $name . '_address_1', true ),
-				'address_2'   => get_user_meta( $customer_id, $name . '_address_2', true ),
-				'city'        => get_user_meta( $customer_id, $name . '_city', true ),
-				'state'       => get_user_meta( $customer_id, $name . '_state', true ),
-				'postcode'    => get_user_meta( $customer_id, $name . '_postcode', true ),
-				'country'     => get_user_meta( $customer_id, $name . '_country', true )
-			), $customer_id, $name);
-//			$address = WC()->countries->get_address_fields( '', $type = $name . '_' );
-//			foreach ( $temp as $key => $value ):
-//				$address[$name . '_'. $key]['value'] = $value;
-//			endforeach;
-//			if ($name === 'billing') {
-//				if ( get_user_meta( $customer_id, 'billing_email', true ) === '' ) {
-//					$address['billing_email']['value'] = $current_user->user_email;
-//				} else {
-//					$address['billing_email']['value'] = get_user_meta( $customer_id, 'billing_email', true );
-//				}
-//				$address['billing_phone']['value'] = get_user_meta( $customer_id, 'billing_phone', true );
-//			}
-
-			//wc_get_template( 'myaccount/form-edit-address.php', array( 'address' => $address, 'type' => $name ) );
-
-				$formatted_address = WC()->countries->get_formatted_address( $address );
-
-				if ( ! $formatted_address )
-					_e( 'You have not set up this type of address yet.', 'woocommerce' );
-				else
-					echo $formatted_address;
-		endforeach;
-	?>
-
-
-<?php foreach ( $get_addresses as $name => $title ) : ?>
-
-	<div class="col-<?php echo ( ( $col = $col * -1 ) < 0 ) ? 1 : 2; ?> address">
-		<header class="title">
-			<h3><?php echo $title; ?></h3>
-			<a href="<?php echo wc_get_endpoint_url( 'edit-address', $name ); ?>" class="edit"><?php _e( 'Edit', 'woocommerce' ); ?></a>
-		</header>
-		<address>
-			<?php
-				$address = apply_filters( 'woocommerce_my_account_my_address_formatted_address', array(
-					'first_name'  => get_user_meta( $customer_id, $name . '_first_name', true ),
-					'last_name'   => get_user_meta( $customer_id, $name . '_last_name', true ),
-					'company'     => get_user_meta( $customer_id, $name . '_company', true ),
-					'address_1'   => get_user_meta( $customer_id, $name . '_address_1', true ),
-					'address_2'   => get_user_meta( $customer_id, $name . '_address_2', true ),
-					'city'        => get_user_meta( $customer_id, $name . '_city', true ),
-					'state'       => get_user_meta( $customer_id, $name . '_state', true ),
-					'postcode'    => get_user_meta( $customer_id, $name . '_postcode', true ),
-					'country'     => get_user_meta( $customer_id, $name . '_country', true )
-				), $customer_id, $name );
-
-				$formatted_address = WC()->countries->get_formatted_address( $address );
-
-				if ( ! $formatted_address )
-					_e( 'You have not set up this type of address yet.', 'woocommerce' );
-				else
-					echo $formatted_address;
-			?>
-		</address>
+		<p>
+		<?php
+			if ( ! $formatted_address )
+				_e( 'You have not set up this type of address yet.', 'woocommerce' );
+			else
+				echo $formatted_address;
+		?>
+		</p>
 	</div>
-
-<?php endforeach; ?>
-
-
+	<?php endforeach; ?>
 </div>
 
-<?php wc_get_template( 'myaccount/my-orders.php', array( 'order_count' => $order_count ) ); ?>
+<div class="recent-orders">
+	<?php wc_get_template( 'myaccount/my-orders.php', array( 'order_count' => $order_count ) ); ?>
+</div>
 
 <?php do_action( 'woocommerce_after_my_account' ); ?>
