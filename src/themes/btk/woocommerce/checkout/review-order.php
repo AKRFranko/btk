@@ -61,6 +61,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 		<?php endforeach; ?>
 
+		<?php if ( WC()->cart->needs_shipping() && WC()->cart->show_shipping() ) : ?>
+
+			<?php do_action( 'woocommerce_review_order_before_shipping' ); ?>
+
+			<?php wc_cart_totals_shipping_html(); ?>
+
+			<?php do_action( 'woocommerce_review_order_after_shipping' ); ?>
+
+		<?php endif; ?>
+
 		<?php if ( WC()->cart->tax_display_cart === 'excl' ) : ?>
 			<?php if ( get_option( 'woocommerce_tax_total_display' ) === 'itemized' ) : ?>
 				<?php foreach ( WC()->cart->get_tax_totals() as $code => $tax ) : ?>
@@ -75,16 +85,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<span class="alignright"><?php echo wc_price( WC()->cart->get_taxes_total() ); ?></span>
 				</div>
 			<?php endif; ?>
-		<?php endif; ?>
-
-		<?php if ( WC()->cart->needs_shipping() && WC()->cart->show_shipping() ) : ?>
-
-			<?php do_action( 'woocommerce_review_order_before_shipping' ); ?>
-
-			<?php wc_cart_totals_shipping_html(); ?>
-
-			<?php do_action( 'woocommerce_review_order_after_shipping' ); ?>
-
 		<?php endif; ?>
 
 		<?php do_action( 'woocommerce_review_order_before_order_total' ); ?>

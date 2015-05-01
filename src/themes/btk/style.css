@@ -1078,14 +1078,18 @@ Woocommerce Overrides
 .woocommerce .customer-register,
 .woocommerce #edit-account,
 .woocommerce #edit-address,
-.woocommerce .recent-orders {
+.woocommerce .recent-orders,
+.woocommerce .order-details,
+.woocommerce .customer-details {
   padding: 0 15px 15px;
 }
 .woocommerce .customer-login h2,
 .woocommerce .customer-register h2,
 .woocommerce #edit-account h2,
 .woocommerce #edit-address h2,
-.woocommerce .recent-orders h2 {
+.woocommerce .recent-orders h2,
+.woocommerce .order-details h2,
+.woocommerce .customer-details h2 {
   font-size: 1.5em;
   margin: 0 0 40px;
   padding-top: 20px;
@@ -1095,21 +1099,27 @@ Woocommerce Overrides
 .woocommerce .customer-register p,
 .woocommerce #edit-account p,
 .woocommerce #edit-address p,
-.woocommerce .recent-orders p {
+.woocommerce .recent-orders p,
+.woocommerce .order-details p,
+.woocommerce .customer-details p {
   margin: 0 0 1.5em !important;
 }
 .woocommerce .customer-login form,
 .woocommerce .customer-register form,
 .woocommerce #edit-account form,
 .woocommerce #edit-address form,
-.woocommerce .recent-orders form {
+.woocommerce .recent-orders form,
+.woocommerce .order-details form,
+.woocommerce .customer-details form {
   margin-bottom: 50px !important;
 }
 .woocommerce .customer-login fieldset,
 .woocommerce .customer-register fieldset,
 .woocommerce #edit-account fieldset,
 .woocommerce #edit-address fieldset,
-.woocommerce .recent-orders fieldset {
+.woocommerce .recent-orders fieldset,
+.woocommerce .order-details fieldset,
+.woocommerce .customer-details fieldset {
   margin: 0;
   padding: 0;
   border: none;
@@ -1186,6 +1196,44 @@ Woocommerce Overrides
 }
 .woocommerce form.billing-shipping-edit p input {
   text-transform: lowercase;
+}
+.woocommerce .order-details .order_details div {
+  padding-bottom: 4px;
+}
+.woocommerce .order-details .order_details .order_item + .order,
+.woocommerce .order-details .order_details .order:last-child {
+  margin-top: 5px;
+  padding-top: 15px;
+  border-top: 1px solid #000000;
+}
+.woocommerce .order-details .order_details .order:last-child {
+  font-weight: bold;
+}
+.woocommerce .order-info mark {
+  background: transparent;
+  font-weight: bold;
+}
+.woocommerce .product-name .variation {
+  margin: 0 0 0 25px;
+}
+.woocommerce .product-name .variation dt {
+  display: inline-block;
+}
+.woocommerce .product-name .variation dd {
+  display: inline-block;
+  margin: 0;
+}
+.woocommerce .product-name .variation dd p {
+  margin: 0 !important;
+}
+.woocommerce table.shop_table .order-actions a {
+  background: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 0;
+}
+.woocommerce table.shop_table .order-actions a:hover {
+  background: #000000;
+  color: #ffffff;
 }
 .woocommerce ul.products {
   margin: 0;
@@ -1535,12 +1583,6 @@ Woocommerce Overrides
 }
 .woocommerce .checkout {
   margin-bottom: 0 !important;
-  /*
-		#billing_company_field,
-		#billing_phone_field,
-		#billing_address_2_field,
-		#billing_email { display:none !important; }
-*/
 }
 .woocommerce .checkout h3 {
   margin: 0 0 15px;
@@ -1785,7 +1827,8 @@ Woocommerce Overrides
   }
 }
 @media (min-width: 768px) {
-  .woocommerce #edit-address > div {
+  .woocommerce #edit-address > div,
+  .woocommerce .customer-details > div {
     float: left;
     width: 50%;
   }

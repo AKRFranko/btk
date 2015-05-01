@@ -22,7 +22,8 @@ Woocommerce Overrides
 .woocommerce {
 	min-height:250px;
 // login - register - edit account
-	.customer-login, .customer-register, #edit-account, #edit-address, .recent-orders {
+	.customer-login, .customer-register, #edit-account,
+	#edit-address, .recent-orders, .order-details, .customer-details {
 		padding:0 15px 15px;
 		h2 { font-size:1.5em; margin:0 0 40px; padding-top:20px; border-top:3px solid @black; }
 		p { margin:0 0 1.5em !important; }
@@ -58,6 +59,38 @@ Woocommerce Overrides
 			}
 			select { border:none; background:transparent; text-transform:lowercase; }
 			input { text-transform:lowercase; }
+		}
+	}
+
+
+
+// order details
+	.order-details {
+		.order_details {
+			div { padding-bottom:4px; }
+			.order_item + .order, .order:last-child {
+				margin-top:5px; padding-top:15px; border-top:1px solid @black;
+			}
+			.order:last-child { font-weight:bold; }
+		}
+	}
+	.order-info {
+		mark { background:transparent; font-weight:bold; }
+	}
+	.product-name {
+		.variation {
+			margin:0 0 0 25px;
+			dt { display:inline-block; }
+			dd { display:inline-block; margin:0;  p { margin:0 !important; } }
+		}
+	}
+
+	table.shop_table {
+		.order-actions {
+			a {
+				background:@white; border:1px solid @black; border-radius:0;
+				&:hover { background:@black; color:@white; }
+			}
 		}
 	}
 
@@ -257,12 +290,6 @@ Woocommerce Overrides
 			.select2-chosen { font-size:0.95em; }
 		}
 
-/*
-		#billing_company_field,
-		#billing_phone_field,
-		#billing_address_2_field,
-		#billing_email { display:none !important; }
-*/
 		#billing_country_field, #billing_state_field { padding-bottom:3px; border-bottom:1px solid @black; }
 		#billing_state_field { padding-top:2px; }
 		.col2-set {
@@ -344,8 +371,6 @@ Woocommerce Overrides
 			}
 		}
 	}
-
-	table.shop_table { }
 }
 
 
@@ -357,6 +382,7 @@ Woocommerce Overrides
 
 
 @media (min-width: 768px) {
-	.woocommerce #edit-address > div { float:left; width:50%; }
+	.woocommerce #edit-address > div,
+	.woocommerce .customer-details > div { float:left; width:50%; }
 }
 
