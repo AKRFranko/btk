@@ -4,7 +4,7 @@
  *
  * @author 		WooThemes
  * @package 	WooCommerce/Templates
- * @version     2.3.0
+ * @version     2.3.8
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -49,8 +49,6 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 	<?php echo WC()->cart->get_cart_subtotal(); ?>
 
-	<?php do_action( 'woocommerce_cart_collaterals' ); ?>
-
 	<span class="alignright">
 		<span class="valign">check out</span>
 		<a href="<?php echo esc_url(home_url('/'));?>checkout/" class="valign icon-arrow-lite-right-white"></a>
@@ -59,8 +57,6 @@ do_action( 'woocommerce_before_cart' ); ?>
 		<span class="valign">continue shopping</span>
 		<a href="<?php echo esc_url(home_url('/'));?>products/" class="valign icon-arrow-lite-left-white"></a>
 	</span>
-
-	<?php //woocommerce_cart_totals(); ?>
 
 </div>
 
