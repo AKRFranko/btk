@@ -21,8 +21,6 @@ get_currentuserinfo();
 
 <form method="post" class="billing-shipping-edit">
 
-	<h2><?php echo $type; ?> Address</h2>
-
 	<?php do_action( "woocommerce_before_edit_address_form_{$type}" ); ?>
 
 	<?php foreach ( $address as $key => $field ) : ?>

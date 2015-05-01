@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php wc_print_notices(); ?>
 
-<form action="" method="post">
+<form method="post">
 
 	<?php do_action( 'woocommerce_edit_account_form_start' ); ?>
 

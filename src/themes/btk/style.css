@@ -1077,13 +1077,15 @@ Woocommerce Overrides
 .woocommerce .customer-login,
 .woocommerce .customer-register,
 .woocommerce #edit-account,
-.woocommerce #edit-address {
+.woocommerce #edit-address,
+.woocommerce .recent-orders {
   padding: 0 15px 15px;
 }
 .woocommerce .customer-login h2,
 .woocommerce .customer-register h2,
 .woocommerce #edit-account h2,
-.woocommerce #edit-address h2 {
+.woocommerce #edit-address h2,
+.woocommerce .recent-orders h2 {
   font-size: 1.5em;
   margin: 0 0 40px;
   padding-top: 20px;
@@ -1092,19 +1094,22 @@ Woocommerce Overrides
 .woocommerce .customer-login p,
 .woocommerce .customer-register p,
 .woocommerce #edit-account p,
-.woocommerce #edit-address p {
+.woocommerce #edit-address p,
+.woocommerce .recent-orders p {
   margin: 0 0 1.5em !important;
 }
 .woocommerce .customer-login form,
 .woocommerce .customer-register form,
 .woocommerce #edit-account form,
-.woocommerce #edit-address form {
+.woocommerce #edit-address form,
+.woocommerce .recent-orders form {
   margin-bottom: 50px !important;
 }
 .woocommerce .customer-login fieldset,
 .woocommerce .customer-register fieldset,
 .woocommerce #edit-account fieldset,
-.woocommerce #edit-address fieldset {
+.woocommerce #edit-address fieldset,
+.woocommerce .recent-orders fieldset {
   margin: 0;
   padding: 0;
   border: none;
@@ -1120,7 +1125,8 @@ Woocommerce Overrides
   text-indent: -9999px;
 }
 .woocommerce #edit-address {
-  padding: 0 0 15px;
+  padding: 0 0 50px;
+  overflow: hidden;
 }
 .woocommerce #edit-address > h2 {
   margin: 0 15px 20px;
@@ -1128,10 +1134,21 @@ Woocommerce Overrides
 .woocommerce #edit-address > p {
   margin: 0 15px 1.5em !important;
 }
-.woocommerce form.billing-shipping-edit {
+.woocommerce #edit-address > div {
   padding: 0 15px;
 }
+.woocommerce #edit-address > div > a {
+  margin: 20px 0 10px;
+}
+.woocommerce #edit-address > div > p {
+  clear: both;
+}
+.woocommerce form.billing-shipping-edit {
+  margin-bottom: 50px !important;
+  padding: 20px 15px 0;
+}
 .woocommerce form.billing-shipping-edit h2 {
+  margin: 10px 0 40px;
   border: none !important;
 }
 .woocommerce form.billing-shipping-edit label {
@@ -1765,6 +1782,12 @@ Woocommerce Overrides
   .woocommerce #payment #place_order {
     width: initial;
     margin-bottom: 0;
+  }
+}
+@media (min-width: 768px) {
+  .woocommerce #edit-address > div {
+    float: left;
+    width: 50%;
   }
 }
 .icon-arrow-lite-left-white,
