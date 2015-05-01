@@ -26,14 +26,15 @@ sku_tree = {
   "headboards": "HEA",
   "storage": "STO",
   "accessories": "ACC",
-  "pillows": "001",
-  "rugs": "002",
-  "other": "003",
-  "2-seater": "001", 
-  "3-seater": "002",
-  "left-facing": "001",
-  "right-facing": "002"
+  "pillows": "PIL",
+  "rugs": "RUG",
+  "other": "OTH",
+  "2-seater": "2ST", 
+  "3-seater": "3ST",
+  "left-facing": "LFT",
+  "right-facing": "RGT"
 }
+
 
 materials = ["velvet", "concrete", "cream", "coffee", "pumpkin"];
 
@@ -69,8 +70,10 @@ indexes = {}
 getSKU = function( data ){
   sub  = data.sub ? sku_tree[data.sub] : '00';
   sku = [ sku_tree[ data.cat ], sub  ].join('')
-  pnm = indexes[sku]  ?  (++indexes[sku]) : (indexes[sku] = 1);
-  return sku + pad( pnm , 3);
+  # pnm = indexes[sku]  ?  (++indexes[sku]) : (indexes[sku] = 1);
+  # full = sku + pad( pnm , 3);
+  pnm = 
+  return full.toLowerCase();
 }
 
 getPaths = function(cat, base) {
@@ -240,7 +243,7 @@ setMockdata = function(post_varname) {
   });
 };
 
-setSKU = function(post_varname, data) {
+setSKU = function(post_varname, data, variant) {
   var cat, slug;
   cat = data.sub ? data.cat + "_" + data.sub : "" + data.cat;
   slug = post_varname.replace(/\$/, '');
@@ -248,7 +251,7 @@ setSKU = function(post_varname, data) {
     args: {
       id: "" + post_varname,
       key: "_sku",
-      value: getSKU( data )
+      value: getSKU( data, variant )
     }
   });
 };
@@ -365,7 +368,7 @@ createPost = function(data) {
       enableVisibility(data.varname + "_" + variant);
       setMaterial(data.varname + "_" + variant, variant);
       setMockdata(data.varname + "_" + variant);
-      setSKU(data.varname + "_" + variant, data);
+      setSKU(data.varname + "_" + variant, data, variant );
       bindTerms(data.varname + "_" + variant, [variant]);
       return recipe.post.create[data.varname + "_" + variant] = {
         opts: {
