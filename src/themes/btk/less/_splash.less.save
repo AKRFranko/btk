@@ -1,4 +1,4 @@
-body.splash-on{
+b tq,body.splash-on{
 	position:fixed;
 	max-height:100%;
 	overflow:hidden;
@@ -59,7 +59,7 @@ body.splash-on > *{opacity:0;}
 	box-shadow:0 0 2px rgba(0,0,0,0.3);
 	width:10em;
 	height:3em;
-	margin-left:-5em;
+	margin-top:-4em;
 	text-align:center;
 }
 #splash-page button:hover{
@@ -67,10 +67,10 @@ body.splash-on > *{opacity:0;}
 	color:#fff;
 }
 #splash-page button:first-of-type{
-	margin-left:-9em;
+	margin-left:-11em;
 }
 #splash-page button:last-of-type{
-	margin-right:-5em;
+	margin-right:-11em;
 }
 
 
