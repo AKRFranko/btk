@@ -21,6 +21,7 @@
 			var keys = store.keys();
 			var json = keys.reduce( function( obj, key ){
 				obj[key] = store.get( key );
+				return obj;
 			}, {} );
 			return json;
 		},
