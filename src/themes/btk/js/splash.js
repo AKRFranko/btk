@@ -39,6 +39,7 @@
 		// Synchronize with $_SESSION.
 		sync: function( callback ){
 			var it = this;
+			var callback = callback || $.noop;
 			var data = { "edb-browser-storage": this.all(), action: 'synchronize_browser_storage' };
 			$.ajax({
 				url: btk_ajax.ajax_url,
@@ -69,6 +70,7 @@
 
 	EDBSplashPage.prototype = {
 		show: function( callback ){
+			var callback = callback || $.noop;
 			var it = this;
 			var now = (new Date()).getTime();
 			var data = this.store.all();
@@ -105,6 +107,7 @@
 			return container;
 		},
 		fetch: function( callback ){
+			var callback = callback || $.noop;
 			var it = this;
 			$.ajax({
 				url: btk_ajax.ajax_url,
