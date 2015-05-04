@@ -48,8 +48,9 @@ module.exports = function(grunt) {
         theme: {
             files: {
                 '<%= cfg.project_dir %>/src/themes/btk/style.css': '<%= cfg.project_dir %>/src/themes/btk/less/btk.less'
-            },
-            tasks: [ 'autoprefixer:theme']
+            }
+            // },
+            // tasks: [ 'autoprefixer:theme']
         }
     },
 
@@ -68,6 +69,7 @@ module.exports = function(grunt) {
     // see: https://github.com/nDmitry/grunt-autoprefixer
     autoprefixer: {
          theme: {
+             options: {  browsers: ['last 2 version', 'ie 9', 'ios 7'] },
              src: '<%= cfg.project_dir %>/src/themes/btk/style.css'
         }
     },
@@ -197,6 +199,14 @@ module.exports = function(grunt) {
         options: { args: [ '-j', '<%= cfg.project_dir %>/src/data/recipes/blog-delete.json', '-y', '<%= cfg.project_dir %>/wp-cli.yml' ] },
         src: ['<%= cfg.project_dir %>/node_modules/nwp/bin/nwp']
       },
+      splash_create: {
+        options: { args: [ '-j', '<%= cfg.project_dir %>/src/data/recipes/splash-create.json', '-y', '<%= cfg.project_dir %>/wp-cli.yml' ] },
+        src: ['<%= cfg.project_dir %>/node_modules/nwp/bin/nwp']
+      },
+      splash_delete: {
+        options: { args: [ '-j', '<%= cfg.project_dir %>/src/data/recipes/splash-delete.json', '-y', '<%= cfg.project_dir %>/wp-cli.yml' ] },
+        src: ['<%= cfg.project_dir %>/node_modules/nwp/bin/nwp']
+      },
       catalog_create: {
         options: { args: [ '-j', '<%= cfg.project_dir %>/src/data/media/mock-catalog/catalog-create.json', '-y', '<%= cfg.project_dir %>/wp-cli.yml' ] },
         src: ['<%= cfg.project_dir %>/node_modules/nwp/bin/nwp']
@@ -222,7 +232,7 @@ module.exports = function(grunt) {
   });
 
 
-  grunt.registerTask('build', [ 'clean', 'bower_concat' , 'less', 'concat', 'uglify', 'phplint','copy' ] );
+  grunt.registerTask('build', [ 'clean', 'bower_concat' , 'less', 'autoprefixer', 'concat', 'uglify', 'phplint','copy' ] );
   //grunt.registerTask('build_theme', [ 'clean:theme', 'bower_concat:theme' , 'less:theme', 'concat:theme',  'uglify:theme', 'copy:theme' ] );
   
 
@@ -242,13 +252,17 @@ module.exports = function(grunt) {
   grunt.registerTask('blog:delete',  [ "execute:blog_delete" ] )
   grunt.registerTask('blog:reset',   [ "blog:delete","blog:create" ] )
 
+  grunt.registerTask('splash:create', [ "execute:splash_create" ] )
+  grunt.registerTask('splash:delete',  [ "execute:splash_delete" ] )
+  grunt.registerTask('splash:reset',   [ "splash:delete","splash:create" ] )
+
   grunt.registerTask('catalog:create', [ "execute:catalog_create" ] )
   grunt.registerTask('catalog:delete',  [ "execute:catalog_delete" ] )
   grunt.registerTask('catalog:reset',   [ "catalog:delete","catalog:create" ] )
 
   grunt.registerTask('theme:update',   [ "build", "compress", "execute:theme_update" ] )
   
-  grunt.registerTask('release', ["execute:generate_catalog", "site:reset", "plugins:install", "blog:create", "catalog:create", "theme:update", "site:email"] )
+  grunt.registerTask('release', ["execute:generate_catalog", "site:reset", "plugins:install", "splash:create", "blog:create", "catalog:create", "theme:update", "site:email"] )
   grunt.registerTask('install', [ "theme:update" ] )
 
 

@@ -6,6 +6,104 @@
  */
 
 /**
+ * Session Support Hooks
+ */
+
+function btk_session_start() {
+	if (!session_id()) {
+		session_start();
+	}
+}
+
+function btk_session_end() {
+	session_destroy();
+}
+
+add_action('init', 'btk_session_start', 1);
+add_action('wp_logout', 'btk_session_end');
+add_action('wp_login', 'btk_session_end');
+
+/**
+ * Synchronize Browser Storage Values With Session Values. (using basil.js in front-end)
+ */
+
+function synchronize_browser_storage() {
+	if ($_REQUEST['action'] !== 'synchronize_browser_storage') {
+		return;
+	}
+
+	$utimestamp = microtime(true);
+	$timestamp = floor($utimestamp);
+	$milliseconds = round(($utimestamp - $timestamp) * 1000000);
+	if (!isset($_SESSION['edb-browser-storage'])) {
+		$local = json_encode(
+			array(
+				'lang' => array('time' => $milliseconds, 'value' => null),
+				'splash' => array('time' => $milliseconds, 'value' => false),
+			)
+		);
+		$_SESSION['edb-browser-storage'] = $local;
+	} else {
+		$local = $_SESSION['edb-browser-storage'];
+	}
+	if (!isset($_REQUEST['edb-browser-storage'])) {
+		$response = $local;
+	} else {
+		$browser = json_decode($_REQUEST['edb-browser-storage']);
+		$response = array();
+		foreach ($browser as $key => $data) {
+			$loc = $local[$key];
+			if ($data['time'] > $loc['time']) {
+				$response[$key] = $data;
+			} else {
+				$response[$key] = $loc[$key];
+			}
+		}
+	}
+	header('Content-Type: application/json');
+	echo json_encode($response);
+	wp_die();
+}
+
+add_action('wp_ajax_synchronize_browser_storage', 'synchronize_browser_storage');
+add_action('wp_ajax_nopriv_synchronize_browser_storage', 'synchronize_browser_storage');
+
+/**
+ * Provide Images Marked For Splash Page as Array
+ */
+function provide_splash_images() {
+	global $wpdb;
+	if ($_REQUEST['action'] !== 'provide_splash_images') {
+		return;
+	}
+
+	$response = array();
+	if (isset($_REQUEST['edb-splash-images'])) {
+		$the_slug = 'splash_page';
+		$args = array(
+			'name' => $the_slug,
+			'post_type' => 'post',
+			'post_status' => 'any',
+			'numberposts' => 1,
+		);
+		$posts = get_posts($args);
+		if ($posts) {
+			$splash_post_id = $posts[0]->ID;
+			$images = get_attached_media('image', $splash_post_id);
+			foreach ($images as $image) {
+				array_push($response, wp_get_attachment_image_src($image->ID, 'full')[0]);
+			}
+		}
+	}
+	header('Content-Type: application/json');
+	echo json_encode($response);
+	wp_die();
+}
+
+add_action('wp_ajax_provide_splash_images', 'provide_splash_images');
+add_action('wp_ajax_nopriv_provide_splash_images', 'provide_splash_images');
+
+/**
  * Set the content width based on the theme's design and stylesheet.
  */
 if (!isset($content_width)) {
@@ -115,6 +213,8 @@ function btk_scripts() {
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
 	}
+
+	wp_localize_script('btk-btk', 'btk_ajax', array('ajax_url' => admin_url('admin-ajax.php')));
 }
 add_action('wp_enqueue_scripts', 'btk_scripts');
 
@@ -131,24 +231,21 @@ function add_slug_body_class($classes) {
 add_filter('body_class', 'add_slug_body_class');
 add_filter('show_admin_bar', '__return_false');
 
-
-
 /**
  * Redirect if not logged in on checkout page
  */
 function woo_redirect() {
-	if ( ! is_user_logged_in() && is_checkout() ) {
-		wp_redirect( home_url() . '/my-account' );
+	if (!is_user_logged_in() && is_checkout()) {
+		wp_redirect(home_url() . '/my-account');
 		exit;
 	}
 }
-add_action( 'template_redirect', 'woo_redirect' );
-
+add_action('template_redirect', 'woo_redirect');
 
 /**
  * Overriding some checkout fields
  */
-function custom_override_checkout_fields( $fields ) {
+function custom_override_checkout_fields($fields) {
 	$fields['billing']['billing_first_name']['placeholder'] = 'first name';
 	$fields['billing']['billing_last_name']['placeholder'] = 'last name';
 	$fields['billing']['billing_email']['placeholder'] = 'email address';
@@ -159,113 +256,7 @@ function custom_override_checkout_fields( $fields ) {
 	unset($fields['order']['order_comments']);
 	return $fields;
 }
-add_filter( 'woocommerce_checkout_fields', 'custom_override_checkout_fields' );
-
-
-
-/**
- * Add new register fields for WooCommerce registration.
- *
- * @return string Register fields HTML.
- */
-function btk_extra_register_fields() {
-	?>
-
-	<p>
-		<label for="reg_billing_first_name" class="hide"></label>
-		<input type="text" class="input-text" name="billing_first_name" id="reg_billing_first_name" placeholder="<?php _e( 'first name', 'woocommerce' ); ?>" value="<?php if ( ! empty( $_POST['billing_first_name'] ) ) esc_attr_e( $_POST['billing_first_name'] ); ?>" />
-	</p>
-
-	<p>
-		<label for="reg_billing_last_name" class="hide"></label>
-		<input type="text" class="input-text" name="billing_last_name" id="reg_billing_last_name" placeholder="<?php _e( 'last name', 'woocommerce' ); ?> " value="<?php if ( ! empty( $_POST['billing_last_name'] ) ) esc_attr_e( $_POST['billing_last_name'] ); ?>" />
-	</p>
-
-	<?php
-}
-add_action( 'woocommerce_register_form_start', 'btk_extra_register_fields' );
-
-
-
-/**
- * Add new register fields for WooCommerce registration.
- *
- * @return string Register fields HTML.
- */
-function btk_extra_register_fields2() {
-	?>
-
-	<p>
-		<label for="reg_billing_city" class="hide"></label>
-		<input type="text" class="input-text" name="billing_city" id="reg_billing_city" placeholder="<?php _e( 'city', 'woocommerce' ); ?> " value="<?php if ( ! empty( $_POST['billing_city'] ) ) esc_attr_e( $_POST['billing_city'] ); ?>" />
-	</p>
-
-	<?php
-}
-add_action( 'woocommerce_register_form', 'btk_extra_register_fields2' );
-
-
-
-/**
- * Validate the extra register fields.
- *
- * @param  string $username          Current username.
- * @param  string $email             Current email.
- * @param  object $validation_errors WP_Error object.
- *
- * @return void
- */
-function btk_validate_extra_register_fields( $username, $email, $validation_errors ) {
-	if ( isset( $_POST['billing_first_name'] ) && empty( $_POST['billing_first_name'] ) ) {
-		$validation_errors->add( 'billing_first_name_error', __( 'First name is required.', 'woocommerce' ) );
-	}
-
-	if ( isset( $_POST['billing_last_name'] ) && empty( $_POST['billing_last_name'] ) ) {
-		$validation_errors->add( 'billing_last_name_error', __( 'Last name is required.', 'woocommerce' ) );
-	}
-
-	if ( isset( $_POST['billing_city'] ) && empty( $_POST['billing_city'] ) ) {
-		$validation_errors->add( 'billing_city_error', __( 'City is required.', 'woocommerce' ) );
-	}
-}
-add_action( 'woocommerce_register_post', 'btk_validate_extra_register_fields', 10, 3 );
-
-
-
-/**
- * Save the extra register fields.
- *
- * @param  int  $customer_id Current customer ID.
- *
- * @return void
- */
-function btk_save_extra_register_fields( $customer_id ) {
-	if ( isset( $_POST['billing_first_name'] ) ) {
-		// WordPress default first name field.
-		update_user_meta( $customer_id, 'first_name', sanitize_text_field( $_POST['billing_first_name'] ) );
-
-		// WooCommerce billing first name.
-		update_user_meta( $customer_id, 'billing_first_name', sanitize_text_field( $_POST['billing_first_name'] ) );
-	}
-
-	if ( isset( $_POST['billing_last_name'] ) ) {
-		// WordPress default last name field.
-		update_user_meta( $customer_id, 'last_name', sanitize_text_field( $_POST['billing_last_name'] ) );
-
-		// WooCommerce billing last name.
-		update_user_meta( $customer_id, 'billing_last_name', sanitize_text_field( $_POST['billing_last_name'] ) );
-	}
-
-	if ( isset( $_POST['billing_city'] ) ) {
-		// WooCommerce billing phone
-		update_user_meta( $customer_id, 'billing_city', sanitize_text_field( $_POST['billing_city'] ) );
-	}
-}
-add_action( 'woocommerce_created_customer', 'btk_save_extra_register_fields' );
-
-
-
-
+add_filter('woocommerce_checkout_fields', 'custom_override_checkout_fields');
 
 /**
  * Implement the Custom Header feature.

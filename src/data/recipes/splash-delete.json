@@ -1,0 +1,12 @@
+{
+	"post": {
+	     "list": {
+	       "$_posts": {
+	         "opts": { "post_name": "splash_page", "post_status":"private", "format": "ids"}
+	       }
+	     }
+	},
+	"eval": [
+	     { "args": { "php": "foreach( explode( ' ', '$_posts' ) as \\$id){ wp_delete_post('\\$id', true); }"} }
+	]
+}

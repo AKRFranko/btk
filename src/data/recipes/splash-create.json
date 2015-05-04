@@ -1,0 +1,21 @@
+{
+   "post":{
+      "create":{
+         "$splash_page":{
+            "opts":{
+               "post_title":"splash page image hook post",
+               "post_type":"post",
+               "post_status":"any",
+               "post_name":"splash_page"
+            }
+         }
+      }
+   },
+   "media":{
+      "import": [
+         { "args": { "file": "./src/data/media/splash-images/1.jpg"   } , "opts": { "post_id": "$splash_page"} },
+         { "args": { "file": "./src/data/media/splash-images/2.jpg"   } , "opts": { "post_id": "$splash_page"} },
+         { "args": { "file": "./src/data/media/splash-images/3.jpg"   } , "opts": { "post_id": "$splash_page"} }
+     ]  
+   }
+}
