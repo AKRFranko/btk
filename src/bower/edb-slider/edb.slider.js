@@ -46,6 +46,8 @@ var EDBSlider = function( el, opts ){
 		it.cycle( -1 );
 	});
 	
+	$.event.special.swipe.settings.threshold = 0.2;
+	$.event.special.swipe.settings.sensitivity = 10;
 	$( it.el ).on('movestart', function( e ){
 		// If the movestart is heading off in an upwards or downwards
 		// direction, prevent it so that the browser scrolls normally.
