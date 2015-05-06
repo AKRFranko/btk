@@ -6804,7 +6804,7 @@ ul.bxslider {
   	-o-transition:all  .1s ease-in-out;
   	transition:all  .1s ease-in-out;
   	margin-left:0;
-  	background:rgba(0,0,0,0.1);
+  	
  }
 .edb-slider .slide-link{
 	z-index:50;
@@ -6814,6 +6814,7 @@ ul.bxslider {
 	height:100%;
 	text-align:center;
 	top:0;left:0;
+	background:rgba(0,0,0,0.1);
 }
 /*.edb-slider .slide-link:hover,
 .edb-slider .slide-link:active{

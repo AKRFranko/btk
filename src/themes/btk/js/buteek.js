@@ -135,6 +135,21 @@
 
 
 
+	// product reviews
+	$('.product .pr-rev').click(function(e){
+		e.preventDefault();
+		$('.product #reviews').toggle();
+		if ( $('.product #reviews').is(':visible') ) {
+			$(this).addClass('active');
+		} else {
+			$(this).removeClass('active');
+		}
+	});
+	$('.product .submit').addClass('valign').addClass('icon-arrow-lite-right-white');
+	$('.product .form-submit').prepend('<span class="valign">submit review</span>');
+
+
+
 	// product quantities stuff
 	$('.entry-content p:has(img)').css('margin', '0');
 	$('.pdf p:has(a)').append('<span class="icon-chevron-lite-right-black"></span>');

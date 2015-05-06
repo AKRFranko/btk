@@ -96,6 +96,7 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 		</p>
 	</div>
 
+	<?php comments_template( 'single-product-reviews.php' ); ?>
 
 	<div class="product-add">
 		<?php

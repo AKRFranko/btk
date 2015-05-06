@@ -195,7 +195,7 @@ Woocommerce Overrides
 			a {
 				display:inline-block; border:1px solid @black; padding:5px 30px;
 				&.pr-rev { padding:5px 40px; }
-				&:hover { background-color:@gray; color:@white; }
+				&:hover, &.active { background-color:@gray; color:@white; }
 			}
 			.desc { padding-bottom:25px; }
 		}
@@ -219,6 +219,35 @@ Woocommerce Overrides
 				}
 			}
 			.qty-text { padding:6px 0; border-bottom:1px solid @black; }
+		}
+
+		#reviews {
+			display:none; padding:0 15px 20px; .imgborder();
+			h2 { font-size:1.5em; margin:0 0 40px; padding-top:20px; }
+			h3 { margin:10px 0 20px; }
+			p { margin:0 0 1.5em !important; }
+			label { margin-bottom:10px; font-weight:normal; }
+			input#submit {
+				.buttons(); padding:0.75em 1.8em; text-indent:-9999px;
+				background-position:center center;
+				background-image:url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22iso-8859-1%22%3F%3E%0D%0A%3C%21--%20Generator%3A%20Adobe%20Illustrator%2018.1.1%2C%20SVG%20Export%20Plug-In%20.%20SVG%20Version%3A%206.00%20Build%200%29%20%20--%3E%0D%0A%3Csvg%20version%3D%221.1%22%20id%3D%22Capa_1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20x%3D%220px%22%20y%3D%220px%22%0D%0A%09%20viewBox%3D%220%200%20227.096%20227.096%22%20style%3D%22enable-background%3Anew%200%200%20227.096%20227.096%3B%22%20xml%3Aspace%3D%22preserve%22%3E%3Cstyle%20type%3D%22text/css%22%3Ecircle%2C%20ellipse%2C%20line%2C%20path%2C%20polygon%2C%20polyline%2C%20rect%2C%20text%20%7B%20fill%3A%20white%20%21important%3B%20%7D%3C/style%3E%0D%0A%3Cg%3E%0D%0A%09%3Cg%3E%0D%0A%09%09%3Cpolygon%20style%3D%22fill%3A%23010002%3B%22%20points%3D%22152.835%2C39.285%20146.933%2C45.183%20211.113%2C109.373%200%2C109.373%200%2C117.723%20211.124%2C117.723%20%0D%0A%09%09%09146.933%2C181.902%20152.835%2C187.811%20227.096%2C113.55%20%09%09%22/%3E%0D%0A%09%3C/g%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3C/svg%3E%0D%0A');
+			}
+			.form-submit { float:right; }
+			p.stars a { margin-right:0.8em; }
+			#comments {
+				ol.commentlist {
+					padding:0;
+					li {
+						img { display:none; }
+						p.meta {
+							font-size:1em;
+							span { display:block; }
+							span + span { font-size:0.875em; }
+						}
+						.comment-text { margin:0 0 0.5em; padding:0; border:none; }
+					}
+				}
+			}
 		}
 	}
 

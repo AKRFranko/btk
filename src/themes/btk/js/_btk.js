@@ -136,6 +136,21 @@
 
 
 
+	// product reviews
+	$('.product .pr-rev').click(function(e){
+		e.preventDefault();
+		$('.product #reviews').toggle();
+		if ( $('.product #reviews').is(':visible') ) {
+			$(this).addClass('active');
+		} else {
+			$(this).removeClass('active');
+		}
+	});
+	$('.product .submit').addClass('valign').addClass('icon-arrow-lite-right-white');
+	$('.product .form-submit').prepend('<span class="valign">submit review</span>');
+
+
+
 	// product quantities stuff
 	$('.entry-content p:has(img)').css('margin', '0');
 	$('.pdf p:has(a)').append('<span class="icon-chevron-lite-right-black"></span>');
@@ -346,6 +361,7 @@
 			var keys = store.keys();
 			var json = keys.reduce( function( obj, key ){
 				obj[key] = store.get( key );
+				return obj;
 			}, {} );
 			return json;
 		},
@@ -363,6 +379,7 @@
 		// Synchronize with $_SESSION.
 		sync: function( callback ){
 			var it = this;
+			var callback = callback || $.noop;
 			var data = { "edb-browser-storage": this.all(), action: 'synchronize_browser_storage' };
 			$.ajax({
 				url: btk_ajax.ajax_url,
@@ -393,6 +410,7 @@
 
 	EDBSplashPage.prototype = {
 		show: function( callback ){
+			var callback = callback || $.noop;
 			var it = this;
 			var now = (new Date()).getTime();
 			var data = this.store.all();
@@ -429,6 +447,7 @@
 			return container;
 		},
 		fetch: function( callback ){
+			var callback = callback || $.noop;
 			var it = this;
 			$.ajax({
 				url: btk_ajax.ajax_url,
