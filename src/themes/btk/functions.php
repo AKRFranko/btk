@@ -258,6 +258,111 @@ function custom_override_checkout_fields($fields) {
 }
 add_filter('woocommerce_checkout_fields', 'custom_override_checkout_fields');
 
+
+
+/**
+ * Settings page setup in admin
+ */
+function check_color($value) {
+	if ( preg_match( '/^#[a-f0-9]{6}$/i' , $value ) ) {
+		return true;
+	}
+	return false;
+}
+
+function convert_to_rgb($value) {
+	$value = str_replace('#', '', $value);
+	$r = hexdec(substr($value, 0, 2));
+	$g = hexdec(substr($value, 2, 2));
+	$b = hexdec(substr($value, 4, 2));
+	$rgb = array($r, $g, $b);
+	return $rgb;
+}
+
+function btk_theme_settings() {
+	if (!current_user_can('manage_options')) {
+		wp_die('You do not have sufficient permissions to access this page.');
+	}
+
+	if (isset($_POST['background-color'])) {
+		$bkg_color = esc_attr($_POST['background-color']);
+		if ( check_color($bkg_color) ) {
+			update_option('btk_background_color', $bkg_color);
+			update_option('btk_text_color', $_POST['text-color']);
+?>
+		<div id="message" class="updated">
+			<p><strong>Settings saved</strong></p>
+		</div>
+<?php
+		}
+		else {
+?>
+		<div id="message" class="error">
+			<p><strong>Background color should be a valid color</strong></p>
+		</div>
+<?php
+		}
+	}
+	$bkg_color = get_option('btk_background_color');
+	$text_color = get_option('btk_text_color');
+	if ( $bkg_color === '' ) { $bkg_color = '#000000'; }
+	if ( $text_color === '' ) { $text_color = '#fff'; }
+?>
+	<div class="wrap">
+		<h2>Btk Theme Settings</h2>
+		<form method='post' action=''>
+			<p>
+				<label for="background-color">Select background color for menus: </label>
+				<input type="text" class="color-field" name="background-color" value="<?php echo $bkg_color; ?>">
+			</p>
+			<p>
+				<label for="text-color">Select text color: </label>
+				<input type="radio" name="text-color" value="#fff" <?php if ($text_color === '#fff') echo 'checked'; ?>>white
+				<input type="radio" name="text-color" value="#000" <?php if ($text_color === '#000') echo 'checked'; ?>>black
+			</p>
+			<p>
+				<input type="submit" value="Save settings" class="button-primary">
+			</p>
+		</form>
+	</div>
+<?php
+}
+
+function btk_setup_theme_admin_menus() {
+	add_submenu_page('themes.php', 'BTK Theme Settings', 'BTK Settings', 'manage_options', 'btk-theme-settings', 'btk_theme_settings');
+}
+add_action('admin_menu', 'btk_setup_theme_admin_menus');
+
+function btk_add_color_picker() {
+	wp_enqueue_style('wp-color-picker');
+	wp_enqueue_script('color-picker-script', plugins_url('js/color-picker.js', __FILE__), array('wp-color-picker'), false, true);
+}
+add_action('admin_enqueue_scripts', 'btk_add_color_picker');
+
+function btk_color_settings() {
+	$bkg_color = get_option('btk_background_color');
+	$text_color = get_option('btk_text_color');
+	if ( $bkg_color === '' ) { $bkg_color = '#000000'; }
+	if ( $text_color === '' ) { $text_color = '#fff'; }
+	$rgb = convert_to_rgb($bkg_color);
+?>
+	<style type="text/css">
+		#header-box.open {
+			background:rgba(<?php echo $rgb[0]; ?>, <?php echo $rgb[1]; ?>, <?php echo $rgb[2]; ?>, 0.88);
+		}
+
+		#header-box.open a,
+		#header-box.open p,
+		#header-box.open span {
+			color:<?php echo $text_color; ?>;
+		}
+	</style>
+<?php
+}
+add_action('wp_head', 'btk_color_settings');
+
+
+
 /**
  * Implement the Custom Header feature.
  */

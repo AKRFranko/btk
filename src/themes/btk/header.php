@@ -6,7 +6,14 @@
  *
  * @package buteek
  */
-?><!DOCTYPE html>
+
+$bkg_color = get_option('btk_background_color');
+$text_color = get_option('btk_text_color');
+if ( $bkg_color === '' ) { $bkg_color = '#000000'; }
+if ( $text_color === '' ) { $text_color = '#fff'; }
+?>
+
+<!DOCTYPE html>
 <html <?php language_attributes();?>>
 <head>
 <meta charset="<?php bloginfo('charset');?>">
@@ -29,15 +36,6 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/wp-content/themes/btk/img/favicon-16x16.png">
 
 <?php wp_head();?>
-
-<?php if ( is_user_logged_in() ) { ?>
-<style type="text/css">
-	@media screen and (max-width: 767px) {
-		html { margin-top:0px !important; }
-		* html body { margin-top:0px !important; }
-	}
-</style>
-<?php } ?>
 
 <noscript><link href="/wp-content/themes/btk/icons/icons.fallback.css" rel="stylesheet"></noscript>
 
@@ -68,7 +66,6 @@
 						<nav class="nav-header" role="navigation">
 
 							<?php //wp_nav_menu(array('menu' => 'header')); ?>
-
 
 							<div class="menu-header-container">
 								<ul id="menu-header">
