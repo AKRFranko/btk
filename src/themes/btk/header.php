@@ -104,7 +104,9 @@ if ( $text_color === '' ) { $text_color = '#fff'; }
 									$product_categories = get_terms('product_cat', $args);
 									foreach ($product_categories as $cat) {
 								?>
-									<li><a href="<?php echo esc_url(home_url('/')); ?>product-category/<?php echo $cat->slug; ?>/"><?php echo $cat->name; ?></a></li>
+									<li>
+										<a <?php if ($cat->parent > 0) { echo 'class="sub"'; } ?>href="<?php echo esc_url(home_url('/')); ?>product-category/<?php echo $cat->slug; ?>/"><?php echo $cat->name; ?></a>
+									</li>
 								<?php } ?>
 								</ul>
 							</div>

@@ -106,12 +106,12 @@ Header
 				}
 				.navbar-collapse, .woo-categories {
 					width:50%; margin-top:60px; padding:20px; box-shadow:none;
-					ul li { padding:6px 0; }
+					ul li { padding:5px 0; .sub { padding-left:25px; } }
 					a { font-size:1.25em; }
 					&.collapsing { transition:height 0.01s; }
 				}
 				.navbar-collapse { float:left; }
-				.woo-categories { display:none; float:right; }
+				.woo-categories { display:none; float:right; height:85vh; overflow-y:scroll; }
 			}
 		}
 		.navigation { margin-right:50px; }

@@ -2203,7 +2203,11 @@ Header
 }
 #header-box header nav.nav-hamburger .navbar-collapse ul li,
 #header-box header nav.nav-hamburger .woo-categories ul li {
-  padding: 6px 0;
+  padding: 5px 0;
+}
+#header-box header nav.nav-hamburger .navbar-collapse ul li .sub,
+#header-box header nav.nav-hamburger .woo-categories ul li .sub {
+  padding-left: 25px;
 }
 #header-box header nav.nav-hamburger .navbar-collapse a,
 #header-box header nav.nav-hamburger .woo-categories a {
@@ -2219,6 +2223,8 @@ Header
 #header-box header nav.nav-hamburger .woo-categories {
   display: none;
   float: right;
+  height: 85vh;
+  overflow-y: scroll;
 }
 #header-box header .navigation {
   margin-right: 50px;
