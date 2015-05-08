@@ -105,7 +105,7 @@ if ( $text_color === '' ) { $text_color = '#fff'; }
 									foreach ($product_categories as $cat) {
 								?>
 									<li>
-										<a <?php if ($cat->parent > 0) { echo 'class="sub"'; } ?>href="<?php echo esc_url(home_url('/')); ?>product-category/<?php echo $cat->slug; ?>/"><?php echo $cat->name; ?></a>
+										<a<?php if ($cat->parent > 0) { echo ' class="sub"'; } ?> href="<?php echo esc_url(home_url('/')); ?>product-category/<?php echo $cat->slug; ?>/"><?php echo $cat->name; ?></a>
 									</li>
 								<?php } ?>
 								</ul>
@@ -185,11 +185,11 @@ if ( $text_color === '' ) { $text_color = '#fff'; }
 					</div>
 
 					<!-- logo -->
-					<h1 class="site-title alignleft lower">
+					<div class="site-title alignleft lower">
 						<a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
 							<span class="title bold valign"><?php bloginfo('name'); ?></span>
 						</a>
-					</h1>
+					</div>
 
 					<!-- page confirmation -->
 					<?php if (is_page('confirmation')) { ?>

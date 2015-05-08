@@ -48,7 +48,7 @@ $my_query = new WP_Query(array(
 																					<?php
 	$hires = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
 	$lores = wp_get_attachment_image_src(get_post_thumbnail_id(), 'medium');
-	echo '<img src="' . $lores[0] . '" data-hires-image="' . $hires[0] . '">';
+	echo '<img src="' . $lores[0] . '" data-hires-image="' . $hires[0] . '" alt="' . get_the_title() . '">';
 	?>
 																				<?php ;endif;?></a>
 																				<p>
