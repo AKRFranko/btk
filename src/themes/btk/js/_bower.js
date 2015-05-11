@@ -362,7 +362,7 @@
 })();
 
 /*!
- * jQuery JavaScript Library v2.1.4
+ * jQuery JavaScript Library v2.1.3
  * http://jquery.com/
  *
  * Includes Sizzle.js
@@ -372,7 +372,7 @@
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2015-04-28T16:01Z
+ * Date: 2014-12-18T15:11Z
  */
 
 (function( global, factory ) {
@@ -430,7 +430,7 @@ var
 	// Use the correct document accordingly with window argument (sandbox)
 	document = window.document,
 
-	version = "2.1.4",
+	version = "2.1.3",
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -894,12 +894,7 @@ jQuery.each("Boolean Number String Function Array Date RegExp Object Error".spli
 });
 
 function isArraylike( obj ) {
-
-	// Support: iOS 8.2 (not reproducible in simulator)
-	// `in` check used to prevent JIT error (gh-2145)
-	// hasOwn isn't used here due to false negatives
-	// regarding Nodelist length in IE
-	var length = "length" in obj && obj.length,
+	var length = obj.length,
 		type = jQuery.type( obj );
 
 	if ( type === "function" || jQuery.isWindow( obj ) ) {
@@ -14236,23 +14231,16 @@ var EDBSlider = function( el, opts ){
 		e.preventDefault()
 		it.cycle( -1 );
 	});
-	
-	$( it.el ).on('movestart', function( e ){
-		// If the movestart is heading off in an upwards or downwards
-		// direction, prevent it so that the browser scrolls normally.
-		if ((e.distX > e.distY && e.distX < -e.distY) || (e.distX < e.distY && e.distX > -e.distY)) {
-		  e.preventDefault();
-		}
-	}).on('swipeleft',function( e, dir ){
+	$( it.el ).on('swipeleft',function( e, dir ){
 				e.preventDefault()
 				it.cycle( 1 );
 				console.log( event.type )
-	}).on('swiperight',function( e, dir ){
+			})
+		$( it.el ).on('swiperight',function( e, dir ){
 				e.preventDefault()
 				it.cycle( -1 );
 				console.log( event.type )
-	});
-
+			})
 
 	var lastResize = null;
 	var handleResize = function(){
@@ -14324,14 +14312,8 @@ EDBSlider.prototype={
 	},
 	cycle: function( dir ){ // 1 || -1
 		var index = this.index + dir;
-		if( $('body').hasClass('mobile')){
-			if( index == this.total ) index = index - 1;
-			if( index < 0 ) index = 0;	
-		}else{
-			if( index == this.total ) index = 0;
-			if( index < 0 ) index = this.total - 1;
-		}
-		
+		if( index == this.total ) index = 0;
+		if( index < 0 ) index = this.total - 1;
 		this.toggle( index, 'on' );
 	},
 	toggle: function( index, state ){

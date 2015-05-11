@@ -1957,11 +1957,20 @@ body.splash-on > * {
   height: 100%;
 }
 #splash-page .splash-image {
-  animation: splashcycler 12s infinite;
+  -webkit-animation: splashcycler 12s infinite;
+          animation: splashcycler 12s infinite;
   opacity: 0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+@-webkit-keyframes splashcycler {
+  39% {
+    opacity: 1;
+  }
+  41% {
+    opacity: 0;
+  }
 }
 @keyframes splashcycler {
   39% {
@@ -1984,14 +1993,18 @@ body.splash-on > * {
   height: 3em;
   margin-left: -5em;
   text-align: center;
-  transform-origin: center;
+  -webkit-transform-origin: center;
+      -ms-transform-origin: center;
+          transform-origin: center;
 }
 #splash-page button:hover {
   background: #000;
   color: #fff;
 }
 #splash-page button:active {
-  transform: scale(0.8);
+  -webkit-transform: scale(0.8);
+      -ms-transform: scale(0.8);
+          transform: scale(0.8);
 }
 #splash-page button:first-of-type {
   margin-top: -9em;
@@ -2000,13 +2013,16 @@ body.splash-on > * {
   margin-top: -5em;
 }
 #splash-page .splash-image:nth-child(1) {
-  animation-delay: 0s;
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
 }
 #splash-page .splash-image:nth-child(2) {
-  animation-delay: 4s;
+  -webkit-animation-delay: 4s;
+          animation-delay: 4s;
 }
 #splash-page .splash-image:nth-child(3) {
-  animation-delay: 8s;
+  -webkit-animation-delay: 8s;
+          animation-delay: 8s;
 }
 /*
 ===
@@ -2655,7 +2671,9 @@ Footer
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transform: translate(0, 0);
+  -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+          transform: translate(0, 0);
   width: 19px !important;
   height: 19px !important;
   font-size: 1.5em !important;
