@@ -78,12 +78,14 @@
 			var now = (new Date()).getTime();
 			var data = this.store.all();
 			if (this.store.get('devon')) return true;
+
 			// if( data.splash && data.splash.value === true ){
 			// 	return callback( null, false );
 			// }else{
 			it.fetch(function(error, images) {
 				var splash = it.build(images);
-				splash.find('button').on('click', function() {
+				splash.find('button').on('click', function(e) {
+					e.preventDefault();
 					var btn = $(this);
 					var lang = btn.data('lang');
 					it.store.set('splash', {
@@ -96,6 +98,7 @@
 					});
 					it.store.sync(callback);
 					$('body').removeClass('splash-on');
+					$('#splash-page').remove();
 				})
 				$('body').append(splash).addClass('splash-on')
 			});
