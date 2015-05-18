@@ -110,6 +110,7 @@ if ( $text_color === '' ) { $text_color = '#fff'; }
 								<?php } ?>
 								</ul>
 							</div>
+							
 						</nav>
 
 

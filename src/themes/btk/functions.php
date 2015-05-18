@@ -361,7 +361,22 @@ function btk_color_settings() {
 }
 add_action('wp_head', 'btk_color_settings');
 
+/**
+ * Change excerpt length for read more
+ **/
+ 
+function btk_custom_excerpt_length( $length ) {
+	return 20;
+}
+add_filter( 'excerpt_length', 'btk_custom_excerpt_length', 140 );
 
+/**
+ * Link for read more
+ **/
+function btk_excerpt_more( $more ) {
+	return '... <a class="read-more" href="' . get_permalink( get_the_ID() ) . '">' . __( 'more', 'btk' ) . '</a>';
+}
+add_filter( 'excerpt_more', 'new_excerpt_more' );
 
 /**
  * Implement the Custom Header feature.

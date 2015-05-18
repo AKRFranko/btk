@@ -51,11 +51,11 @@ $my_query = new WP_Query(array(
 	echo '<img src="' . $lores[0] . '" data-hires-image="' . $hires[0] . '" alt="' . get_the_title() . '">';
 	?>
 																				<?php ;endif;?></a>
+																				<h2><a href="<?php echo get_permalink();?>"><?php the_title();?></a></h2>
 																				<p>
-																					<?php //btk_home_entry_categories();?>
-																					<a href="<?php echo get_permalink();?>"><?php the_title();?></a>
+																					<?php the_excerpt(); ?>
 																				</p>
-																				<?php //btk_home_entry_tags();?>
+																			
 																			</div>
 																		<?php endwhile;?>
 

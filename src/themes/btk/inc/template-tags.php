@@ -327,3 +327,4 @@ function btk_category_transient_flusher() {
 }
 add_action('edit_category', 'btk_category_transient_flusher');
 add_action('save_post', 'btk_category_transient_flusher');
+

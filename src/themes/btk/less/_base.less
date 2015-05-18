@@ -11,6 +11,7 @@ body { height:100%; background-color:@white; font:100%/1.4 @fontfamily; }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family:@altfontfamily; font-weight:normal; color:@black; clear:none;
+    
 }
 h1, .h1 { font-size:2em; }
 h2, .h2 { font-size:1.75em; }
@@ -28,6 +29,10 @@ a:visited { text-decoration:none; }
 a:active { text-decoration:none; }
 a:hover { color:@hovercolor; text-decoration:none; }
 a:focus { outline:none; }
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+	a:link, a:visited, a:active, a:hover { color:inherit; font-size:inherit; font-family:inherit; }
+}
 
 input[type="text"],
 input[type="email"],
