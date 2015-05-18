@@ -55,7 +55,7 @@ if ( $text_color === '' ) { $text_color = '#fff'; }
 					<!-- logo -->
 					<h2 class="long-title alignleft lower">
 						<a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
-							<span class="title semi-bold valign">element<br />de<br />base</span>
+							<span class="title valign">élément<br />de<br />base</span>
 						</a>
 					</h2>
 
@@ -110,7 +110,6 @@ if ( $text_color === '' ) { $text_color = '#fff'; }
 								<?php } ?>
 								</ul>
 							</div>
-							
 						</nav>
 
 

@@ -4,13 +4,13 @@ Variables LESS
 ==========================================================================
 */
 
-@fontfamily: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-@altfontfamily:  'Adobe Caslon Pro', Georgia, Times New Roman, Times, serif;
+@fontfamily: 'Theinhardt', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+@altfontfamily: 'Adobe Caslon Pro', Georgia, 'Times New Roman', Times, serif;
 @fsizemobile: 0.9rem;
 @fsizetablet: 1rem;
 @fsizedesktop: 1rem;
 @fsizefull: 1rem;
-@headerheight: 100px;
+@headerheight: 90px;
 
 @black: #000;
 @gray: #444;
@@ -63,5 +63,15 @@ Mixins
 	margin-left:10px; padding:0.3em 1.3em; background-color:@black; border-radius:0;
 	color:@white; font-size:1.4em;
 }
+
+.post-titles {
+	display:table; width:100%; margin-bottom:20px;
+	a { display:block; }
+	p { position:relative; width:100%; margin:0; }
+	span[class*="icon-chevron"] {
+		display:table-cell; background-position:center; font-size:1.5em;
+	}
+}
+
 
 

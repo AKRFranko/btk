@@ -78,16 +78,17 @@ Header
 	&.open { .open-menu(); }
 
 	header {
-		background:inherit; position:relative; height:@headerheight; padding:10px 0px 10px 15px;
+		background:inherit; position:relative; padding:10px 0px 10px 12px;
+		//height:@headerheight;
 		h2 {
-			width:25%; margin:0; padding-bottom:5px; font-size:0.9em; line-height:1em;
+			width:25%; margin:0; padding-bottom:5px; font-size:0.8em; line-height:1em;
 			span { line-height:1em; }
 		}
 		div[class*="col-"] { padding:0; }
 
 		nav {
 			&.nav-header {
-				display:inline-block;
+				font-size:0.9em;
 				ul li { display:inline-block; margin-left:15px; }
 				.menu-header-container { display:inline-block; }
 				.language { margin:0 5px 0 15px; }
@@ -97,11 +98,11 @@ Header
 				position:absolute; width:100%; right:5px; top:42px;
 				.navbar-toggle {
 					margin-top:-42px; cursor:pointer;
-					span.fa { font-size:1.5em; }
+					span.fa { font-size:1.25em; }
 					&:hover span.fa { color:@hovercolor; }
 				}
 				.navbar-collapse, .woo-categories {
-					width:50%; margin-top:60px; padding:20px; box-shadow:none;
+					width:50%; margin-top:50px; padding:20px; box-shadow:none;
 					ul li { padding:5px 0; .sub { padding-left:25px; } }
 					a { font-size:1.25em; }
 					&.collapsing { transition:height 0.01s; }
@@ -112,7 +113,7 @@ Header
 		}
 		.navigation { margin-right:50px; }
 		.site-title {
-			clear:both; width:25%; margin:0; font-size:0.9em; line-height:1em;
+			clear:both; width:25%; margin:0; font-size:0.8em; line-height:1em;
 			span { font-size:3em; line-height:1em; letter-spacing:0.05em; }
 		}
 
@@ -171,8 +172,12 @@ Header
 
 
 
+@media (min-width: 768px) and (max-width: 991px) {
+	#header-box header { padding-left:15px; }
+}
 @media (min-width: 992px) {
 	.nav-hamburger { display:none; }
+	#header-box header { padding-left:20px; }
 }
 
 
@@ -236,6 +241,10 @@ Slider
 }
 
 
+.home .edb-slider { margin-bottom:20px; }
+
+
+
 @media (min-width: 768px) {
 	.sliders img { max-height:100%; }
 }
@@ -278,12 +287,12 @@ Content
 	}
 
 	.pdf {
-		.imgborder();
-		a { display:block; padding:20px 15px; }
+		> a { display:block; }
 		img { width:100%; }
-		p {
-			position:relative; width:100%; margin:0; font-size:1.35em;
-			.icon-chevron-lite-right-black { position:absolute; bottom:18px; right:10px; font-size:1.5em; }
+		.title {
+			.post-titles(); padding-right:10px;
+			a { padding:12px; font-family:@altfontfamily; text-transform:uppercase; }
+			p { font-size:1.35em; }
 		}
 	}
 }
@@ -305,16 +314,28 @@ Content
 
 
 .home {
-	.main-collection, .main-news { .imgborder(); }
 	.main-collection, .main-news, .main-article {
+		> a { display:block; }
 		img { width:100%; }
-		p {
-			position:relative; width:100%; margin:0; font-size:1.35em;
-			a { display:inline-block; padding:20px 15px; }
-			//span { position:absolute; bottom:18px; right:10px; font-size:1.5em; }
+		.title {
+			.post-titles(); padding:12px;
+			h2 { margin:0 0 2px; font-size:1.4em; }
+			p { padding-right:25px; font-size:0.9em; }
+			.subtitle { font-style:italic; margin-bottom:2px; }
 		}
 	}
 }
+
+
+@media (min-width: 768px) and (max-width: 991px) {
+	.home .main-article .title,
+	#content .pdf .title a { padding:15px; }
+}
+@media (min-width: 992px) {
+	.home .main-article .title,
+	#content .pdf .title a { padding:20px; }
+}
+
 
 
 
@@ -332,6 +353,7 @@ Footer
 		padding:15px; color:@textcolor;
 		p { margin-bottom:0; }
 		div[class*="col-"] { padding:0 0 30px; }
+		nav ul li { padding-bottom:2px; }
 
 		.social {
 			margin-top:17px;

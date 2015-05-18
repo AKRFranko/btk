@@ -259,6 +259,109 @@ function custom_override_checkout_fields($fields) {
 add_filter('woocommerce_checkout_fields', 'custom_override_checkout_fields');
 
 
+/**
+ * Add new register fields for WooCommerce registration.
+ *
+ * @return string Register fields HTML.
+ */
+function btk_extra_register_fields() {
+	?>
+
+	<p>
+		<label for="reg_billing_first_name" class="hide"></label>
+		<input type="text" class="input-text" name="billing_first_name" id="reg_billing_first_name" placeholder="<?php _e( 'first name', 'woocommerce' ); ?>" value="<?php if ( ! empty( $_POST['billing_first_name'] ) ) esc_attr_e( $_POST['billing_first_name'] ); ?>" />
+	</p>
+
+	<p>
+		<label for="reg_billing_last_name" class="hide"></label>
+		<input type="text" class="input-text" name="billing_last_name" id="reg_billing_last_name" placeholder="<?php _e( 'last name', 'woocommerce' ); ?> " value="<?php if ( ! empty( $_POST['billing_last_name'] ) ) esc_attr_e( $_POST['billing_last_name'] ); ?>" />
+	</p>
+
+	<?php
+}
+add_action( 'woocommerce_register_form_start', 'btk_extra_register_fields' );
+
+
+
+/**
+ * Add new register fields for WooCommerce registration.
+ *
+ * @return string Register fields HTML.
+ */
+function btk_extra_register_fields2() {
+	?>
+
+	<p>
+		<label for="reg_billing_city" class="hide"></label>
+		<input type="text" class="input-text" name="billing_city" id="reg_billing_city" placeholder="<?php _e( 'city', 'woocommerce' ); ?> " value="<?php if ( ! empty( $_POST['billing_city'] ) ) esc_attr_e( $_POST['billing_city'] ); ?>" />
+	</p>
+
+	<?php
+}
+add_action( 'woocommerce_register_form', 'btk_extra_register_fields2' );
+
+
+
+/**
+ * Validate the extra register fields.
+ *
+ * @param  string $username          Current username.
+ * @param  string $email             Current email.
+ * @param  object $validation_errors WP_Error object.
+ *
+ * @return void
+ */
+function btk_validate_extra_register_fields( $username, $email, $validation_errors ) {
+	if ( isset( $_POST['billing_first_name'] ) && empty( $_POST['billing_first_name'] ) ) {
+		$validation_errors->add( 'billing_first_name_error', __( 'First name is required.', 'woocommerce' ) );
+	}
+
+	if ( isset( $_POST['billing_last_name'] ) && empty( $_POST['billing_last_name'] ) ) {
+		$validation_errors->add( 'billing_last_name_error', __( 'Last name is required.', 'woocommerce' ) );
+	}
+
+	if ( isset( $_POST['billing_city'] ) && empty( $_POST['billing_city'] ) ) {
+		$validation_errors->add( 'billing_city_error', __( 'City is required.', 'woocommerce' ) );
+	}
+}
+add_action( 'woocommerce_register_post', 'btk_validate_extra_register_fields', 10, 3 );
+
+
+
+/**
+ * Save the extra register fields.
+ *
+ * @param  int  $customer_id Current customer ID.
+ *
+ * @return void
+ */
+function btk_save_extra_register_fields( $customer_id ) {
+	if ( isset( $_POST['billing_first_name'] ) ) {
+		// WordPress default first name field.
+		update_user_meta( $customer_id, 'first_name', sanitize_text_field( $_POST['billing_first_name'] ) );
+
+		// WooCommerce billing first name.
+		update_user_meta( $customer_id, 'billing_first_name', sanitize_text_field( $_POST['billing_first_name'] ) );
+	}
+
+	if ( isset( $_POST['billing_last_name'] ) ) {
+		// WordPress default last name field.
+		update_user_meta( $customer_id, 'last_name', sanitize_text_field( $_POST['billing_last_name'] ) );
+
+		// WooCommerce billing last name.
+		update_user_meta( $customer_id, 'billing_last_name', sanitize_text_field( $_POST['billing_last_name'] ) );
+	}
+
+	if ( isset( $_POST['billing_city'] ) ) {
+		// WooCommerce billing city
+		update_user_meta( $customer_id, 'billing_city', sanitize_text_field( $_POST['billing_city'] ) );
+	}
+}
+add_action( 'woocommerce_created_customer', 'btk_save_extra_register_fields' );
+
+
+
+
 
 /**
  * Settings page setup in admin
@@ -313,7 +416,7 @@ function btk_theme_settings() {
 		<form method='post' action=''>
 			<p>
 				<label for="background-color">Select background color for menus: </label>
-				<input type="text" class="color-field" name="background-color" value="<?php echo $bkg_color; ?>">
+				<input type="color" class="color-field" name="background-color" value="<?php echo $bkg_color; ?>">
 			</p>
 			<p>
 				<label for="text-color">Select text color: </label>
@@ -364,7 +467,6 @@ add_action('wp_head', 'btk_color_settings');
 /**
  * Change excerpt length for read more
  **/
- 
 function btk_custom_excerpt_length( $length ) {
 	return 20;
 }

@@ -152,7 +152,7 @@
 
 	// product quantities stuff
 	$('.entry-content p:has(img)').css('margin', '0');
-	$('.pdf p:has(a)').append('<span class="icon-chevron-lite-right-black"></span>');
+//	$('.pdf p:has(a)').append('<span class="icon-chevron-lite-right-black"></span>');
 	$('.woocommerce .quantity').prepend('<a href="" class="qty-sub">-</a>').append('<a href="" class="qty-add">+</a>');
 	$('.woocommerce .quantity input').attr('readonly', 'readonly');
 

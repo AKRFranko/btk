@@ -811,6 +811,24 @@ Mixins
   color: #ffffff;
   font-size: 1.4em;
 }
+.post-titles {
+  display: table;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.post-titles a {
+  display: block;
+}
+.post-titles p {
+  position: relative;
+  width: 100%;
+  margin: 0;
+}
+.post-titles span[class*="icon-chevron"] {
+  display: table-cell;
+  background-position: center;
+  font-size: 1.5em;
+}
 /*
 ==========================================================================
 Global classes
@@ -909,7 +927,7 @@ html {
 body {
   height: 100%;
   background-color: #ffffff;
-  font: 100%/1.4 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font: 100%/1.4 'Theinhardt', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 h1,
 h2,
@@ -923,7 +941,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: 'Adobe Caslon Pro', Georgia, Times New Roman, Times, serif;
+  font-family: 'Adobe Caslon Pro', Georgia, 'Times New Roman', Times, serif;
   font-weight: normal;
   color: #000000;
   clear: none;
@@ -948,7 +966,7 @@ p,
 span {
   color: #242021;
   font-size: 1em;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Theinhardt', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   line-height: 1.3em;
 }
 p {
@@ -965,7 +983,7 @@ a:active,
 a:hover {
   color: #242021;
   font-size: 1em;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Theinhardt', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 a:link {
   text-decoration: none;
@@ -1431,7 +1449,7 @@ Woocommerce Overrides
   position: static;
   padding: 12px 0 0;
   color: #000000;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Theinhardt', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 1em;
   font-weight: normal;
 }
@@ -2009,20 +2027,11 @@ body.splash-on > * {
   height: 100%;
 }
 #splash-page .splash-image {
-  -webkit-animation: splashcycler 12s infinite;
-          animation: splashcycler 12s infinite;
+  animation: splashcycler 12s infinite;
   opacity: 0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-}
-@-webkit-keyframes splashcycler {
-  39% {
-    opacity: 1;
-  }
-  41% {
-    opacity: 0;
-  }
 }
 @keyframes splashcycler {
   39% {
@@ -2045,18 +2054,14 @@ body.splash-on > * {
   height: 3em;
   margin-left: -5em;
   text-align: center;
-  -webkit-transform-origin: center;
-      -ms-transform-origin: center;
-          transform-origin: center;
+  transform-origin: center;
 }
 #splash-page button:hover {
   background: #000;
   color: #fff;
 }
 #splash-page button:active {
-  -webkit-transform: scale(0.8);
-      -ms-transform: scale(0.8);
-          transform: scale(0.8);
+  transform: scale(0.8);
 }
 #splash-page button:first-of-type {
   margin-top: -9em;
@@ -2065,16 +2070,13 @@ body.splash-on > * {
   margin-top: -5em;
 }
 #splash-page .splash-image:nth-child(1) {
-  -webkit-animation-delay: 0s;
-          animation-delay: 0s;
+  animation-delay: 0s;
 }
 #splash-page .splash-image:nth-child(2) {
-  -webkit-animation-delay: 4s;
-          animation-delay: 4s;
+  animation-delay: 4s;
 }
 #splash-page .splash-image:nth-child(3) {
-  -webkit-animation-delay: 8s;
-          animation-delay: 8s;
+  animation-delay: 8s;
 }
 /*
 ===
@@ -2189,14 +2191,13 @@ Header
 #header-box header {
   background: inherit;
   position: relative;
-  height: 100px;
-  padding: 10px 0px 10px 15px;
+  padding: 10px 0px 10px 12px;
 }
 #header-box header h2 {
   width: 25%;
   margin: 0;
   padding-bottom: 5px;
-  font-size: 0.9em;
+  font-size: 0.8em;
   line-height: 1em;
 }
 #header-box header h2 span {
@@ -2206,7 +2207,7 @@ Header
   padding: 0;
 }
 #header-box header nav.nav-header {
-  display: inline-block;
+  font-size: 0.9em;
 }
 #header-box header nav.nav-header ul li {
   display: inline-block;
@@ -2229,7 +2230,7 @@ Header
   cursor: pointer;
 }
 #header-box header nav.nav-hamburger .navbar-toggle span.fa {
-  font-size: 1.5em;
+  font-size: 1.25em;
 }
 #header-box header nav.nav-hamburger .navbar-toggle:hover span.fa {
   color: #9c9c9c;
@@ -2237,7 +2238,7 @@ Header
 #header-box header nav.nav-hamburger .navbar-collapse,
 #header-box header nav.nav-hamburger .woo-categories {
   width: 50%;
-  margin-top: 60px;
+  margin-top: 50px;
   padding: 20px;
   box-shadow: none;
 }
@@ -2273,7 +2274,7 @@ Header
   clear: both;
   width: 25%;
   margin: 0;
-  font-size: 0.9em;
+  font-size: 0.8em;
   line-height: 1em;
 }
 #header-box header .site-title span {
@@ -2284,7 +2285,7 @@ Header
 #header-box header .sign-in-menu {
   display: none;
   position: absolute;
-  top: 100px;
+  top: 90px;
   left: 0;
   width: 100%;
   height: 81vh;
@@ -2393,9 +2394,17 @@ Header
 #header-box header .confirmation a {
   padding: 0.75em 1.8em;
 }
+@media (min-width: 768px) and (max-width: 991px) {
+  #header-box header {
+    padding-left: 15px;
+  }
+}
 @media (min-width: 992px) {
   .nav-hamburger {
     display: none;
+  }
+  #header-box header {
+    padding-left: 20px;
   }
 }
 /*
@@ -2530,6 +2539,9 @@ Slider
   right: 10px;
   font-size: 2em;
 }
+.home .edb-slider {
+  margin-bottom: 20px;
+}
 @media (min-width: 768px) {
   .sliders img {
     max-height: 100%;
@@ -2544,7 +2556,7 @@ Content
 ==========================================================================
 */
 #content {
-  margin-top: 100px;
+  margin-top: 90px;
 }
 #content h1 {
   margin: 10px 15px 20px;
@@ -2590,27 +2602,38 @@ Content
   color: #ffffff;
   font-size: 1.4em;
 }
-#content .pdf {
-  border-bottom: 3px solid #000000;
-}
-#content .pdf a {
+#content .pdf > a {
   display: block;
-  padding: 20px 15px;
 }
 #content .pdf img {
   width: 100%;
 }
-#content .pdf p {
+#content .pdf .title {
+  display: table;
+  width: 100%;
+  margin-bottom: 20px;
+  padding-right: 10px;
+}
+#content .pdf .title a {
+  display: block;
+}
+#content .pdf .title p {
   position: relative;
   width: 100%;
   margin: 0;
-  font-size: 1.35em;
 }
-#content .pdf p .icon-chevron-lite-right-black {
-  position: absolute;
-  bottom: 18px;
-  right: 10px;
+#content .pdf .title span[class*="icon-chevron"] {
+  display: table-cell;
+  background-position: center;
   font-size: 1.5em;
+}
+#content .pdf .title a {
+  padding: 12px;
+  font-family: 'Adobe Caslon Pro', Georgia, 'Times New Roman', Times, serif;
+  text-transform: uppercase;
+}
+#content .pdf .title p {
+  font-size: 1.35em;
 }
 .page-confirmation #header-box {
   height: 100vh;
@@ -2656,28 +2679,72 @@ Content
   padding: 0.75em 1.8em;
   background-position: center center;
 }
-.home .main-collection,
-.home .main-news {
-  border-bottom: 3px solid #000000;
+.home .main-collection > a,
+.home .main-news > a,
+.home .main-article > a {
+  display: block;
 }
 .home .main-collection img,
 .home .main-news img,
 .home .main-article img {
   width: 100%;
 }
-.home .main-collection p,
-.home .main-news p,
-.home .main-article p {
+.home .main-collection .title,
+.home .main-news .title,
+.home .main-article .title {
+  display: table;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+}
+.home .main-collection .title a,
+.home .main-news .title a,
+.home .main-article .title a {
+  display: block;
+}
+.home .main-collection .title p,
+.home .main-news .title p,
+.home .main-article .title p {
   position: relative;
   width: 100%;
   margin: 0;
-  font-size: 1.35em;
 }
-.home .main-collection p a,
-.home .main-news p a,
-.home .main-article p a {
-  display: inline-block;
-  padding: 20px 15px;
+.home .main-collection .title span[class*="icon-chevron"],
+.home .main-news .title span[class*="icon-chevron"],
+.home .main-article .title span[class*="icon-chevron"] {
+  display: table-cell;
+  background-position: center;
+  font-size: 1.5em;
+}
+.home .main-collection .title h2,
+.home .main-news .title h2,
+.home .main-article .title h2 {
+  margin: 0 0 2px;
+  font-size: 1.4em;
+}
+.home .main-collection .title p,
+.home .main-news .title p,
+.home .main-article .title p {
+  padding-right: 25px;
+  font-size: 0.9em;
+}
+.home .main-collection .title .subtitle,
+.home .main-news .title .subtitle,
+.home .main-article .title .subtitle {
+  font-style: italic;
+  margin-bottom: 2px;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .home .main-article .title,
+  #content .pdf .title a {
+    padding: 15px;
+  }
+}
+@media (min-width: 992px) {
+  .home .main-article .title,
+  #content .pdf .title a {
+    padding: 20px;
+  }
 }
 /*
 ==========================================================================
@@ -2698,6 +2765,9 @@ Footer
 }
 #footer-box footer div[class*="col-"] {
   padding: 0 0 30px;
+}
+#footer-box footer nav ul li {
+  padding-bottom: 2px;
 }
 #footer-box footer .social {
   margin-top: 17px;
@@ -2723,9 +2793,7 @@ Footer
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-transform: translate(0, 0);
-      -ms-transform: translate(0, 0);
-          transform: translate(0, 0);
+  transform: translate(0, 0);
   width: 19px !important;
   height: 19px !important;
   font-size: 1.5em !important;

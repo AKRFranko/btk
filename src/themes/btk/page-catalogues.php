@@ -17,17 +17,19 @@ get_header(); ?>
 				while ( $my_query->have_posts() ) : $my_query->the_post();
 			?>
 			<div class="pdf">
-			<?php
-				if ( has_post_thumbnail() ) {
-					echo get_the_post_thumbnail();
-				}
-				the_content();
-			?>
+				<?php
+					if ( has_post_thumbnail() ) {
+						echo get_the_post_thumbnail();
+					}
+				?>
+				<div class="title">
+					<?php the_content(); ?>
+					<span class="icon-chevron-lite-right-black"></span>
+				</div>
 			</div>
 			<?php endwhile; ?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
-<?php //get_sidebar(); ?>
 <?php get_footer(); ?>

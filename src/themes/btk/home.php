@@ -42,22 +42,22 @@ $my_query = new WP_Query(array(
 
 		<?php /* Start the Loop */?>
 			<?php while ($my_query->have_posts()): $my_query->the_post();?>
-																			<div class="main-article">
-																				<a href="<?php echo get_permalink();?>">
-																				<?php if (has_post_thumbnail()): ?>
-																					<?php
-	$hires = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
-	$lores = wp_get_attachment_image_src(get_post_thumbnail_id(), 'medium');
-	echo '<img src="' . $lores[0] . '" data-hires-image="' . $hires[0] . '" alt="' . get_the_title() . '">';
-	?>
-																				<?php ;endif;?></a>
-																				<h2><a href="<?php echo get_permalink();?>"><?php the_title();?></a></h2>
-																				<p>
-																					<?php the_excerpt(); ?>
-																				</p>
-																			
-																			</div>
-																		<?php endwhile;?>
+				<div class="main-article">
+					<a href="<?php echo get_permalink();?>">
+					<?php if (has_post_thumbnail()): ?>
+						<?php
+							$hires = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
+							$lores = wp_get_attachment_image_src(get_post_thumbnail_id(), 'medium');
+							echo '<img src="' . $lores[0] . '" data-hires-image="' . $hires[0] . '" alt="' . get_the_title() . '">';
+						?>
+					<?php ;endif;?></a>
+					<div class="title">
+						<h2 class="upper"><a href="<?php echo get_permalink();?>"><?php the_title();?></a></h2>
+						<?php the_excerpt(); ?>
+						<span class="icon-chevron-lite-right-black"></span>
+					</div>
+				</div>
+			<?php endwhile;?>
 
 			<?php //the_posts_navigation();?>
 
