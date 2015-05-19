@@ -48,7 +48,12 @@
                "plugin":"wp-maintenance-mode"
             }
             , "opts":{ "quiet":true }
-            
+         },
+         {
+            "args":{
+               "plugin":"subtitles"
+            }
+            , "opts":{ "quiet":true }
          }
       ]
     }

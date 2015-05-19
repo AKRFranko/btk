@@ -61,17 +61,10 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 
 	<div class="product-desc lower">
 		<a href="<?php the_permalink(); ?>">
-			<span><?php the_title(); ?></span>
-			<?php
-				/**
-				 * woocommerce_after_shop_loop_item_title hook
-				 *
-				 * @hooked woocommerce_template_loop_rating - 5
-				 * @hooked woocommerce_template_loop_price - 10
-				 */
-				do_action( 'woocommerce_after_shop_loop_item_title' );
-			?>
+			<span class="product-title upper"><?php the_title(); ?></span>
+			<span class="product-price">_ <?php echo $product->get_price_html(); ?></span>
 		</a>
+		<?php the_excerpt(); ?>
 		<span class="icon-chevron-lite-right-black"></span>
 	</div>
 

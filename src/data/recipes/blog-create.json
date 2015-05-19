@@ -290,6 +290,7 @@
             },
             "opts":{
                "post_title":"lookbook",
+               "post_subtitle":"see our featured products",
                "post_type":"post",
                "post_status":"publish",
                "post_category":"$cat_news"
@@ -301,6 +302,7 @@
             },
             "opts":{
                "post_title":"designers",
+               "post_subtitle":"the best on the planet",
                "post_type":"post",
                "post_status":"publish",
                "post_category":"$cat_news,$cat_people"
@@ -312,6 +314,7 @@
             },
             "opts":{
                "post_title":"our best sofas",
+               "post_subtitle":"they are confortable, arent they?",
                "post_type":"post",
                "post_status":"publish",
                "post_category":"$cat_news"
@@ -323,6 +326,7 @@
             },
             "opts":{
                "post_title":"order your fabric samples",
+               "post_subtitle":"you will not regret it",
                "post_type":"post",
                "post_status":"publish",
                "post_category":"$cat_news"

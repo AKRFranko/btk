@@ -120,7 +120,7 @@ Header
 				.navbar-toggle {
 					margin-top:-42px; cursor:pointer;
 					span.fa { font-size:1.25em; }
-					&:hover span.fa { color:@hovercolor; }
+					//&:hover span.fa { color:@hovercolor; }
 				}
 				.navbar-collapse, .woo-categories {
 					width:50%; margin-top:50px; padding:20px; box-shadow:none;
@@ -262,8 +262,6 @@ Slider
 }
 
 
-.home .edb-slider { margin-bottom:20px; }
-
 
 
 @media (min-width: 768px) {
@@ -336,13 +334,14 @@ Content
 
 .home {
 	.main-collection, .main-news, .main-article {
+		margin-top:20px;
 		> a { display:block; }
 		img { width:100%; }
 		.title {
-			.post-titles(); padding:12px;
-			h2 { margin:0 0 2px; font-size:1.4em; }
+			.post-titles(); padding:12px; margin-bottom:0;
+			h2 { margin:0 0 5px; font-size:1.35em; }
 			p { padding-right:25px; font-size:0.9em; }
-			.subtitle { font-style:italic; margin-bottom:2px; }
+			.subtitle { font-style:italic; margin-bottom:2px; font-size:0.8em; }
 		}
 	}
 }
