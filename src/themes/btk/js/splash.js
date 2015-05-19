@@ -97,17 +97,21 @@
 						time: now
 					});
 					it.store.sync(callback);
-					$('body').removeClass('splash-on');
-					$('#splash-page').remove();
-				})
+					setTimeout(function() {
+						$('body').removeClass('splash-on');
+						$('#splash-page').remove();
+					}, 200);
+				});
 				$('body').append(splash).addClass('splash-on')
 			});
 			//}
 		},
 		build: function(data) {
 			var container = $('<form>').attr('id', 'splash-page');
-			var enBtn = $('<button>').text('enter').data('lang', 'en');
-			var frBtn = $('<button>').text('entrez').data('lang', 'fr');
+			var enBtn = $('<button>').data('lang', 'en');
+			var frBtn = $('<button>').data('lang', 'fr');
+			enBtn.append($('<span>').text('enter').attr('title', 'english'));
+			frBtn.append($('<span>').text('entrez').attr('title', 'français'));
 			var images = $('<div>');
 			data.forEach(function(src) {
 				var image = $('<div>').addClass('splash-image');

@@ -2001,82 +2001,153 @@ body.splash-on > * {
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 999999;
+  z-index: 16777270;
   background: #000;
+  font-size: 17px;
+  font-size: 1.7rem;
 }
 #splash-page:after {
   content: '';
   display: block;
   position: absolute;
-  top: 1em;
-  left: 50%;
-  margin-left: -25%;
+  top: 5%;
+  left: 10%;
   background-image: url("img/edb.svg");
   background-size: contain;
-  background-position: center;
+  background-position: bottom center;
   background-repeat: no-repeat;
-  z-index: 9999999;
-  width: 50%;
-  height: 50%;
+  z-index: 300;
+  width: 80%;
+  height: 45%;
 }
+/* using 'div' cascades on .splash-image */
 #splash-page div {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: 200;
 }
+/* slides */
 #splash-page .splash-image {
-  animation: splashcycler 12s infinite;
+  z-index: 300;
+  -webkit-animation: splashcycler 12s infinite;
+          animation: splashcycler 12s infinite;
   opacity: 0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
-@keyframes splashcycler {
-  39% {
+/* slide animation */
+@-webkit-keyframes splashcycler {
+  0% {
     opacity: 1;
   }
-  41% {
+  33% {
+    opacity: 1;
+  }
+  35% {
+    opacity: 0;
+  }
+  100% {
     opacity: 0;
   }
 }
-#splash-page button {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid #fff;
-  font-size: 2em;
-  font-weight: bold;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
-  width: 10em;
-  height: 3em;
-  margin-left: -5em;
-  text-align: center;
-  transform-origin: center;
+@keyframes splashcycler {
+  0% {
+    opacity: 1;
+  }
+  33% {
+    opacity: 1;
+  }
+  35% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
 }
-#splash-page button:hover {
-  background: #000;
-  color: #fff;
-}
-#splash-page button:active {
-  transform: scale(0.8);
-}
-#splash-page button:first-of-type {
-  margin-top: -9em;
-}
-#splash-page button:last-of-type {
-  margin-top: -5em;
-}
+/* slide offsets (relative to splashcycler duration)*/
 #splash-page .splash-image:nth-child(1) {
-  animation-delay: 0s;
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
 }
 #splash-page .splash-image:nth-child(2) {
-  animation-delay: 4s;
+  -webkit-animation-delay: 4s;
+          animation-delay: 4s;
 }
 #splash-page .splash-image:nth-child(3) {
-  animation-delay: 8s;
+  -webkit-animation-delay: 8s;
+          animation-delay: 8s;
+}
+#splash-page button {
+  position: absolute;
+  padding: 0;
+  top: 60%;
+  left: 10%;
+  background: rgba(255, 255, 255, 0);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 0) 100%);
+  border: 1px solid #fff;
+  font-size: 1em;
+  font-weight: bold;
+  box-shadow: none;
+  width: 80%;
+  height: 10%;
+  border: 0;
+  border-radius: 0;
+  text-align: center;
+  transition: all 0.1s ease-in-out;
+  -webkit-transform-origin: center;
+      -ms-transform-origin: center;
+          transform-origin: center;
+  z-index: 500;
+}
+#splash-page button span {
+  display: inline-block;
+  padding: .3em 3em;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  color: #000;
+  text-shadow: 1px 1px 1px #ffffff;
+}
+#splash-page button:hover,
+#splash-page button:active {
+  background: rgba(0, 0, 0, 0.1);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #ffffff 40%, #ffffff 60%, rgba(255, 255, 255, 0) 100%);
+}
+#splash-page button:active {
+  transition: none;
+}
+#splash-page button:active span,
+#splash-page button:hover span {
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+#splash-page button:last-of-type {
+  top: 80%;
+}
+@media all and (orientation: landscape) {
+  #splash-page:after {
+    top: 10%;
+    left: 5%;
+    width: 50%;
+    height: 80%;
+    background-position: center center;
+  }
+  #splash-page button {
+    top: 50%;
+    left: 60%;
+    width: 40%;
+    height: 10%;
+  }
+  #splash-page button:first-of-type {
+    top: 40%;
+  }
+  #splash-page button:last-of-type {
+    top: 55%;
+  }
 }
 /*
 ===
@@ -2793,7 +2864,9 @@ Footer
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transform: translate(0, 0);
+  -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+          transform: translate(0, 0);
   width: 19px !important;
   height: 19px !important;
   font-size: 1.5em !important;
