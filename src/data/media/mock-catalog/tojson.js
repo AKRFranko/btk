@@ -169,7 +169,7 @@ createTerm = function(term, parent) {
 		}
 	};
 	if (parent) {
-		term.opts.parent = varname;
+		term.opts.parent = getCatVar(parent);
 	}
 	cat_idx++;
 	recipe.eval.push({
