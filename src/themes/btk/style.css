@@ -819,6 +819,9 @@ Mixins
 .post-titles a {
   display: block;
 }
+.post-titles a.read-more {
+  display: inline;
+}
 .post-titles p {
   position: relative;
   width: 100%;
@@ -2151,14 +2154,30 @@ body.splash-on > * {
 }
 /*
 ===
-  Temporary Home Page Stylings
+  Temporary Requested by Client
+===
+*/
+body.woocommerce-page .page-title,
+body.page .page-title,
+body.woocommerce-page .term-description,
+body.page .term-description {
+  display: none;
+}
+/*
+===
+	Slider Config
 ===
 */
 .edb-slider .slide-text {
   font-size: 1.75em;
+  text-transform: uppercase;
+}
+.edb-slider .slide-link {
+  background-color: rgba(0, 0, 0, 0.3);
 }
 .edb-slider .controls {
   font-size: 1em;
+  font-weight: bold;
 }
 /*
 ==========================================================================
@@ -2289,6 +2308,12 @@ Header
 }
 #header-box header nav.nav-header .language {
   margin: 0 5px 0 15px;
+}
+#header-box header nav .badge {
+  -webkit-transform: scale(0.6) translateY(-0.5em);
+      -ms-transform: scale(0.6) translateY(-0.5em);
+          transform: scale(0.6) translateY(-0.5em);
+  font-family: monospace;
 }
 #header-box header nav.nav-hamburger {
   position: absolute;
@@ -2688,6 +2713,9 @@ Content
 #content .pdf .title a {
   display: block;
 }
+#content .pdf .title a.read-more {
+  display: inline;
+}
 #content .pdf .title p {
   position: relative;
   width: 100%;
@@ -2772,6 +2800,11 @@ Content
 .home .main-news .title a,
 .home .main-article .title a {
   display: block;
+}
+.home .main-collection .title a.read-more,
+.home .main-news .title a.read-more,
+.home .main-article .title a.read-more {
+  display: inline;
 }
 .home .main-collection .title p,
 .home .main-news .title p,
