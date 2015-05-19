@@ -478,7 +478,7 @@ add_filter( 'excerpt_length', 'btk_custom_excerpt_length', 140 );
 function btk_excerpt_more( $more ) {
 	return '... <a class="read-more" href="' . get_permalink( get_the_ID() ) . '">' . __( 'more', 'btk' ) . '</a>';
 }
-add_filter( 'excerpt_more', 'new_excerpt_more' );
+add_filter( 'excerpt_more', 'btk_excerpt_more' );
 
 /**
  * Implement the Custom Header feature.
