@@ -83,8 +83,8 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 
 
 	<div class="product-summary">
-		<h2 class="product-title"><?php the_title(); ?></h2>
-		<p class="product-price"><?php echo $product->get_price_html(); ?></p>
+		<h2 class="product-title upper"><?php the_title(); ?></h2>
+		<p class="product-price">_ <?php echo $product->get_price_html(); ?></p>
 	</div>
 
 

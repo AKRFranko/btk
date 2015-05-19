@@ -78,18 +78,8 @@
 		});
 
 
-		// carousel principal
-		$('.slider').bxSlider({
-			nextSelector: '#main-next',
-			prevSelector: '#main-prev',
-			nextText: '',
-			prevText: '',
-			pager: true,
-			pagerType: 'short',
-			pagerShortSeparator: ' | '
-		});
 
-
+		// sliderz
 		$('.edb-slider').each(function() {
 			var el = $(this).get(0);
 			var opts = {
@@ -98,36 +88,6 @@
 			var slider = window.EDBSlider(el, opts);
 			slider.toggle(0, 'on');
 		});
-
-
-		/*
-			// carousel collections
-			$('.slider-collections').bxSlider({
-				nextSelector: '#coll-next',
-				prevSelector: '#coll-prev',
-				nextText: '',
-				prevText: '',
-				pager: false
-			});
-
-			// carousel news
-			$('.slider-news').bxSlider({
-				nextSelector: '#news-next',
-				prevSelector: '#news-prev',
-				nextText: '',
-				prevText: '',
-				pager: false
-			});
-
-			// carousel article
-			$('.slider-article').bxSlider({
-				nextSelector: '#article-next',
-				prevSelector: '#article-prev',
-				nextText: '',
-				prevText: '',
-				pager: false
-			});
-		*/
 
 		// slider product images
 		$('.product-slider').bxSlider({

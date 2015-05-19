@@ -814,7 +814,7 @@ Mixins
 .post-titles {
   display: table;
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 .post-titles a {
   display: block;
@@ -871,6 +871,9 @@ Global classes
 }
 .inline {
   display: inline-block !important;
+}
+.italic {
+  font-style: italic;
 }
 .large {
   font-size: 115%;
@@ -1314,7 +1317,6 @@ Woocommerce Overrides
 .woocommerce ul.products li.product {
   width: 100%;
   margin: 0;
-  border-bottom: 3px solid #000000;
 }
 .woocommerce ul.products li.product a img {
   margin: 0;
@@ -1338,22 +1340,41 @@ Woocommerce Overrides
   left: 15px;
 }
 .woocommerce ul.products li.product .product-desc {
-  position: relative;
+  display: table;
   width: 100%;
-  font-size: 1.35em;
+  margin-bottom: 20px;
+  padding: 12px;
 }
 .woocommerce ul.products li.product .product-desc a {
   display: block;
-  padding: 15px;
 }
-.woocommerce ul.products li.product .product-desc .star-rating {
+.woocommerce ul.products li.product .product-desc a.read-more {
+  display: inline;
+}
+.woocommerce ul.products li.product .product-desc p {
+  position: relative;
+  width: 100%;
+  margin: 0;
+}
+.woocommerce ul.products li.product .product-desc span[class*="icon-chevron"] {
+  display: table-cell;
+  background-position: center;
+  font-size: 1.5em;
+}
+.woocommerce ul.products li.product .product-desc .product-title {
+  display: block;
+  font-size: 1.35em;
+  font-family: 'Adobe Caslon Pro', Georgia, 'Times New Roman', Times, serif;
+  line-height: 1em;
+}
+.woocommerce ul.products li.product .product-desc .product-price {
+  font-size: 1.15em;
+}
+.woocommerce ul.products li.product .product-desc a.read-more {
   display: none;
 }
-.woocommerce ul.products li.product .product-desc .icon-chevron-lite-right-black {
-  position: absolute;
-  bottom: 24px;
-  right: 10px;
-  font-size: 1.5em;
+.woocommerce ul.products li.product .product-desc > a {
+  margin-bottom: 5px;
 }
 .woocommerce ul.products li.product .product-add {
   display: none;
@@ -1466,11 +1487,11 @@ Woocommerce Overrides
 }
 .woocommerce .product .product-summary h2 {
   margin: 0;
-  font-size: 1.4em;
+  font-size: 1.35em;
 }
 .woocommerce .product .product-summary p {
   margin: 0;
-  font-size: 1.25em;
+  font-size: 1.15em;
 }
 .woocommerce .product .product-summary p del {
   display: inline-block;
@@ -1968,6 +1989,16 @@ Woocommerce Overrides
     width: 50%;
   }
 }
+@media (min-width: 768px) and (max-width: 991px) {
+  .woocommerce ul.products li.product .product-desc {
+    padding: 15px;
+  }
+}
+@media (min-width: 992px) {
+  .woocommerce ul.products li.product .product-desc {
+    padding: 20px;
+  }
+}
 .icon-arrow-lite-left-white,
 .icon-arrow-lite-left-black,
 .icon-arrow-lite-left-grey,
@@ -2173,7 +2204,7 @@ body.page .term-description {
   text-transform: uppercase;
 }
 .edb-slider .slide-link {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 .edb-slider .controls {
   font-size: 1em;
@@ -2327,9 +2358,6 @@ Header
 }
 #header-box header nav.nav-hamburger .navbar-toggle span.fa {
   font-size: 1.25em;
-}
-#header-box header nav.nav-hamburger .navbar-toggle:hover span.fa {
-  color: #9c9c9c;
 }
 #header-box header nav.nav-hamburger .navbar-collapse,
 #header-box header nav.nav-hamburger .woo-categories {
@@ -2643,9 +2671,6 @@ Slider
   right: 10px;
   font-size: 2em;
 }
-.home .edb-slider {
-  margin-bottom: 20px;
-}
 @media (min-width: 768px) {
   .sliders img {
     max-height: 100%;
@@ -2715,7 +2740,7 @@ Content
 #content .pdf .title {
   display: table;
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   padding-right: 10px;
 }
 #content .pdf .title a {
@@ -2786,6 +2811,11 @@ Content
   padding: 0.75em 1.8em;
   background-position: center center;
 }
+.home .main-collection,
+.home .main-news,
+.home .main-article {
+  margin-top: 20px;
+}
 .home .main-collection > a,
 .home .main-news > a,
 .home .main-article > a {
@@ -2801,8 +2831,9 @@ Content
 .home .main-article .title {
   display: table;
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   padding: 12px;
+  margin-bottom: 0;
 }
 .home .main-collection .title a,
 .home .main-news .title a,
@@ -2831,8 +2862,8 @@ Content
 .home .main-collection .title h2,
 .home .main-news .title h2,
 .home .main-article .title h2 {
-  margin: 0 0 2px;
-  font-size: 1.4em;
+  margin: 0 0 5px;
+  font-size: 1.35em;
 }
 .home .main-collection .title p,
 .home .main-news .title p,
@@ -2845,6 +2876,7 @@ Content
 .home .main-article .title .subtitle {
   font-style: italic;
   margin-bottom: 2px;
+  font-size: 0.8em;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .home .main-article .title,
