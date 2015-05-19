@@ -98,16 +98,27 @@ if ( $text_color === '' ) { $text_color = '#fff'; }
 							<div class="woo-categories">
 								<ul>
 								<?php
-									$args = array(
-										'exclude' => '38'  // id of lookbook cat
-									);
-									$product_categories = get_terms('product_cat', $args);
-									foreach ($product_categories as $cat) {
+									$maincats = get_terms( 'product_cat', array('get'=>'all', 'parent' => 0, 'hide_empty' => false) );
+									foreach($maincats as $main){
+										
+										if($main->name !== 'lookbook'){
+											echo "<li>";
+											$subcats = get_terms( 'product_cat', array( 'parent' => $main->term_id, 'hide_empty' => false ) );
+											if( !empty($subcats)){
+												echo '<a class="toggle" href="#">' . __( $main->name, 'btk') . '</a>';
+												echo '<ul class="subnav">';
+												foreach($subcats as $sub){
+													echo '<li><a href="' . get_term_link( $sub ) . '" title="' . sprintf( __( 'View all post filed under %s', 'btk' ), $sub->name ) . '">'.__( $sub->name , 'btk' ).'</a></li>';
+												}	
+												echo '<li><a href="' . get_term_link( $main ) . '" title="' . sprintf( __( 'View all post filed under %s', 'btk' ), $main->name ) . '">'.__( 'all', 'btk' ).'</a></li>';
+												echo "</ul>";
+											}else{
+												echo '<a href="' . get_term_link( $main ) . '" title="' . sprintf( __( 'View all %s', 'btk' ), $main->name ) . '">' . __( $main->name, 'btk') . '</a>';
+											}
+											echo "</li>";
+										}
+									}
 								?>
-									<li>
-										<a<?php if ($cat->parent > 0) { echo ' class="sub"'; } ?> href="<?php echo esc_url(home_url('/')); ?>product-category/<?php echo $cat->slug; ?>/"><?php echo $cat->name; ?></a>
-									</li>
-								<?php } ?>
 								</ul>
 							</div>
 						</nav>

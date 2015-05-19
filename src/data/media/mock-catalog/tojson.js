@@ -1,10 +1,10 @@
-var argv, addToCat, basename, bindTerms, buildRecipe, cat_tree, createPost, createTerm, enableVariations, enableVisibility, fs, getCatVar, getPaths, importMedia, materials, output, readTree, recipe, setMaterial, setMockdata, setSKU, variant_cats, pad, getSKU, indexes, adler32, goo;
+var argv, addToCat, basename, bindTerms, buildRecipe, cat_tree, createPost, createTerm, enableVariations, enableVisibility, fs, getCatVar, getPaths, importMedia, materials, output, readTree, recipe, setMaterial, setMockdata, setSKU, variant_cats, pad, getSKU, indexes, adler32, goo, cat_idx;
 
 adler32 = require('adler32');
 fs = require('fs');
 
 basename = require('path').basename;
-
+cat_idx = 0;
 cat_tree = {
 	"sofas": ['2-seater', '3-seater'],
 	"sofa-beds": [],
@@ -169,8 +169,14 @@ createTerm = function(term, parent) {
 		}
 	};
 	if (parent) {
-		term.opts.parent = parent;
+		term.opts.parent = varname;
 	}
+	cat_idx++;
+	recipe.eval.push({
+		"args": {
+			"php": "update_woocommerce_term_meta( " + varname + ", 'order', '" + cat_idx + "' );"
+		}
+	});
 	return recipe.term.create[varname] = term;
 };
 

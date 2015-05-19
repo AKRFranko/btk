@@ -2363,6 +2363,14 @@ Header
   height: 85vh;
   overflow-y: scroll;
 }
+#header-box header nav.nav-hamburger .woo-categories .subnav {
+  overflow: hidden;
+  height: 0;
+  transition: height 0.2s ease-in;
+}
+#header-box header nav.nav-hamburger .woo-categories .toggle.on + .subnav {
+  height: 100%;
+}
 #header-box header .navigation {
   margin-right: 50px;
 }

@@ -1,300 +1,656 @@
 {
 	"term": {
 		"create": {
-			"$cat_prod_sofa":{
-			   "args":{
-			      "taxonomy":"product_cat",
-			      "term":"sofas"
-			   },
-			   "opts":{
-			      "slug":"sofas",
-			      "description":"This category is for sofas."
-			   }
+			"$cat_prod_lookbook": {
+				"args": {
+					"taxonomy": "product_cat",
+					"term": "lookbook"
+				},
+				"opts": {
+					"slug": "lookbook",
+					"description": "This category is for lookbook items."
+				}
 			},
-			"$cat_prod_sectionals":{
-			   "args":{
-			      "taxonomy":"product_cat",
-			      "term":"sectionals"
-			   },
-			   "opts":{
-			      "slug":"sectionals",
-			      "description":"This category is for sectionals."
-			   }
+			"$cat_prod_sofa": {
+				"args": {
+					"taxonomy": "product_cat",
+					"term": "sofas"
+				},
+				"opts": {
+					"slug": "sofas",
+					"description": "This category is for sofas."
+				}
 			},
-			"$cat_prod_sofa_beds":{
-			   "args":{
-			      "taxonomy":"product_cat",
-			      "term":"sofa beds"
-			   },
-			   "opts":{
-			      "slug":"sofa-beds",
-			      "description":"This category is for sofas.",
-			      "parent":"$cat_prod_sofa"
-			   }
+			"$cat_prod_sectionals": {
+				"args": {
+					"taxonomy": "product_cat",
+					"term": "sectionals"
+				},
+				"opts": {
+					"slug": "sectionals",
+					"description": "This category is for sectionals."
+				}
 			},
-			"$cat_prod_armchairs":{
-			   "args":{
-			      "taxonomy":"product_cat",
-			      "term":"armchairs"
-			   },
-			   "opts":{
-			      "slug":"armchairs",
-			      "description":"This category is for armchairs."
-			   }
+			"$cat_prod_sofa_beds": {
+				"args": {
+					"taxonomy": "product_cat",
+					"term": "sofa beds"
+				},
+				"opts": {
+					"slug": "sofa-beds",
+					"description": "This category is for sofas."
+				}
 			},
-			"$cat_prod_coffee_tables":{
-			   "args":{
-			      "taxonomy":"product_cat",
-			      "term":"coffee tables"
-			   },
-			   "opts":{
-			      "slug":"coffee_tables",
-			      "description":"This category is for coffee tables."
-			   }
+			"$cat_prod_armchairs": {
+				"args": {
+					"taxonomy": "product_cat",
+					"term": "armchairs"
+				},
+				"opts": {
+					"slug": "armchairs",
+					"description": "This category is for armchairs."
+				}
 			},
-			"$cat_prod_benches_ottomans":{
-			   "args":{
-			      "taxonomy":"product_cat",
-			      "term":"benches & ottomans"
-			   },
-			   "opts":{
-			      "slug":"benches-ottomans",
-			      "description":"This category is for benches & ottomans."
-			   }
+			"$cat_prod_coffee_tables": {
+				"args": {
+					"taxonomy": "product_cat",
+					"term": "coffee tables"
+				},
+				"opts": {
+					"slug": "coffee_tables",
+					"description": "This category is for coffee tables."
+				}
 			},
-			"$cat_prod_headboards":{
-			   "args":{
-			      "taxonomy":"product_cat",
-			      "term":"headboards"
-			   },
-			   "opts":{
-			      "slug":"headboards",
-			      "description":"This category is for headboards."
-			   }
+			"$cat_prod_benches_ottomans": {
+				"args": {
+					"taxonomy": "product_cat",
+					"term": "benches & ottomans"
+				},
+				"opts": {
+					"slug": "benches-ottomans",
+					"description": "This category is for benches & ottomans."
+				}
 			},
-			"$cat_prod_storage":{
-			   "args":{
-			      "taxonomy":"product_cat",
-			      "term":"storage"
-			   },
-			   "opts":{
-			      "slug":"storage",
-			      "description":"This category is for storage."
-			   }
+			"$cat_prod_headboards": {
+				"args": {
+					"taxonomy": "product_cat",
+					"term": "headboards"
+				},
+				"opts": {
+					"slug": "headboards",
+					"description": "This category is for headboards."
+				}
 			},
-			"$cat_prod_accessories":{
-			   "args":{
-			      "taxonomy":"product_cat",
-			      "term":"accessories"
-			   },
-			   "opts":{
-			      "slug":"accessories",
-			      "description":"This category is for accessories."
-			   }
+			"$cat_prod_storage": {
+				"args": {
+					"taxonomy": "product_cat",
+					"term": "storage"
+				},
+				"opts": {
+					"slug": "storage",
+					"description": "This category is for storage."
+				}
 			},
-			"$cat_prod_sofa_2st":{
-			   "args":{
-			      "taxonomy":"product_cat",
-			      "term":"2 seater"
-			   },
-			   "opts":{
-			      "slug":"2-seat",
-			      "description":"This category is for 2 seater sofas.",
-			      "parent":"$cat_prod_sofa"
-			   }
+			"$cat_prod_accessories": {
+				"args": {
+					"taxonomy": "product_cat",
+					"term": "accessories"
+				},
+				"opts": {
+					"slug": "accessories",
+					"description": "This category is for accessories."
+				}
 			},
-			"$cat_prod_sofa_3st":{
-			   "args":{
-			      "taxonomy":"product_cat",
-			      "term":"3 seater"
-			   },
-			   "opts":{
-			      "slug":"3-seat",
-			      "description":"This category is for 3 seater sofas.",
-			      "parent":"$cat_prod_sofa"
-			   }
+			"$cat_prod_sofa_2st": {
+				"args": {
+					"taxonomy": "product_cat",
+					"term": "2 seater"
+				},
+				"opts": {
+					"slug": "2-seat",
+					"description": "This category is for 2 seater sofas.",
+					"parent": "$cat_prod_sofa"
+				}
 			},
-			"$cat_prod_sectional_l":{
-			   "args":{
-			      "taxonomy":"product_cat",
-			      "term":"right facing"
-			   },
-			   "opts":{
-			      "slug":"right-sectional",
-			      "description":"This category is for left facing sectionals.",
-			      "parent":"$cat_prod_sectionals"
-			   }
+			"$cat_prod_sofa_3st": {
+				"args": {
+					"taxonomy": "product_cat",
+					"term": "3 seater"
+				},
+				"opts": {
+					"slug": "3-seat",
+					"description": "This category is for 3 seater sofas.",
+					"parent": "$cat_prod_sofa"
+				}
 			},
-			"$cat_prod_sectional_r":{
-			   "args":{
-			      "taxonomy":"product_cat",
-			      "term":"left facing"
-			   },
-			   "opts":{
-			      "slug":"left-sectionals",
-			      "description":"This category is for right facing sectionals.",
-			      "parent":"$cat_prod_sectionals"
-			   }
+			//"$cat_prod_sofa_sofa_bed": {
+			//	"args": {
+			//		"taxonomy": "product_cat",
+			//		"term": "beds"
+			//	},
+			//	"opts": {
+			//		"slug": "beds",
+			//		"description": "This category links ot sofa-beds.",
+			//		"parent": "$cat_prod_sofa",
+			//		"alias_of": "sofa-beds"
+			//	}
+			//},
+			"$cat_prod_sectional_l": {
+				"args": {
+					"taxonomy": "product_cat",
+					"term": "right facing"
+				},
+				"opts": {
+					"slug": "right-sectional",
+					"description": "This category is for left facing sectionals.",
+					"parent": "$cat_prod_sectionals"
+				}
+			},
+			"$cat_prod_sectional_r": {
+				"args": {
+					"taxonomy": "product_cat",
+					"term": "left facing"
+				},
+				"opts": {
+					"slug": "left-sectionals",
+					"description": "This category is for right facing sectionals.",
+					"parent": "$cat_prod_sectionals"
+				}
 			}
 		}
 	},
 	"post": {
 		// Create Sofas
 		"create": {
-			"$sofa_001":{
-			   "args":{ "file":"./src/data/text/product.txt" },
-			   "opts":{
-			      "post_title":"The Bunhaven",
-			      "post_type":"product",
-			      "post_status":"publish",
-			      "post_excerpt": "Artisanal quality of life Lufthansa, Winkreative hand-crafted eclectic Toto Singapore Fast Lane impeccable flat white.",
-			      "post_name":"sofa_001"
-			   }
+			"$sofa_001": {
+				"args": {
+					"file": "./src/data/text/product.txt"
+				},
+				"opts": {
+					"post_title": "The Bunhaven",
+					"post_type": "product",
+					"post_status": "publish",
+					"post_excerpt": "Artisanal quality of life Lufthansa, Winkreative hand-crafted eclectic Toto Singapore Fast Lane impeccable flat white.",
+					"post_name": "sofa_001"
+				}
 			},
-			"$sofa_002":{
-			   "args":{
-			      "file":"./src/data/text/product.txt"
-			   },
-			   "opts":{
-			      "post_title":"Cheekbliss",
-			      "post_type":"product",
-			      "post_status":"publish",
-			      "post_excerpt": "Artisanal quality of life Lufthansa, Winkreative hand-crafted eclectic Toto Singapore Fast Lane impeccable flat white.",
-			      "post_name":"sofa_002"
-			   }
+			"$sofa_002": {
+				"args": {
+					"file": "./src/data/text/product.txt"
+				},
+				"opts": {
+					"post_title": "Cheekbliss",
+					"post_type": "product",
+					"post_status": "publish",
+					"post_excerpt": "Artisanal quality of life Lufthansa, Winkreative hand-crafted eclectic Toto Singapore Fast Lane impeccable flat white.",
+					"post_name": "sofa_002"
+				}
 			},
-			"$sofa_003":{
-			   "args":{ "file":"./src/data/text/product.txt" },
-			   "opts":{
-			      "post_title":"Nimbus",
-			      "post_type":"product",
-			      "post_status":"publish",
-			      "post_excerpt": "Artisanal quality of life Lufthansa, Winkreative hand-crafted eclectic Toto Singapore Fast Lane impeccable flat white.",
-			      "post_name":"sofa_003"
-			   }
+			"$sofa_003": {
+				"args": {
+					"file": "./src/data/text/product.txt"
+				},
+				"opts": {
+					"post_title": "Nimbus",
+					"post_type": "product",
+					"post_status": "publish",
+					"post_excerpt": "Artisanal quality of life Lufthansa, Winkreative hand-crafted eclectic Toto Singapore Fast Lane impeccable flat white.",
+					"post_name": "sofa_003"
+				}
 			},
-			"$sofa_001_velvet":{
-			   "opts":{
-			      "post_title":"The Bunhaven - Velvet", 
-			      "post_type":"product_variation", "post_status":"publish", 
-			      "post_parent": "$sofa_001", "post_name":"sofa_001_a"
-			   }
+			"$sofa_001_velvet": {
+				"opts": {
+					"post_title": "The Bunhaven - Velvet",
+					"post_type": "product_variation",
+					"post_status": "publish",
+					"post_parent": "$sofa_001",
+					"post_name": "sofa_001_a"
+				}
 			},
-			"$sofa_001_concrete":{
-			   "opts":{
-			      "post_title":"The Bunhaven - Concrete", 
-			      "post_type":"product_variation", "post_status":"publish",
-			      "post_parent": "$sofa_001", "post_name":"sofa_001_b"
-			   }
+			"$sofa_001_concrete": {
+				"opts": {
+					"post_title": "The Bunhaven - Concrete",
+					"post_type": "product_variation",
+					"post_status": "publish",
+					"post_parent": "$sofa_001",
+					"post_name": "sofa_001_b"
+				}
 			},
-			"$sofa_002_cream":{
-			   "opts":{
-			      "post_title":"Cheekbliss - Cream", 
-			      "post_type":"product_variation", "post_status":"publish",
-			      "post_parent": "$sofa_002", "post_name":"sofa_002_a"
-			   }
+			"$sofa_002_cream": {
+				"opts": {
+					"post_title": "Cheekbliss - Cream",
+					"post_type": "product_variation",
+					"post_status": "publish",
+					"post_parent": "$sofa_002",
+					"post_name": "sofa_002_a"
+				}
 			},
-			"$sofa_002_charcoal":{
-			   "opts":{
-			      "post_title":"Cheekbliss - Charcoal",
-			      "post_type":"product_variation", "post_status":"publish",
-			      "post_parent": "$sofa_002", "post_name":"sofa_002_b"
-			   }
+			"$sofa_002_charcoal": {
+				"opts": {
+					"post_title": "Cheekbliss - Charcoal",
+					"post_type": "product_variation",
+					"post_status": "publish",
+					"post_parent": "$sofa_002",
+					"post_name": "sofa_002_b"
+				}
 			},
-			"$sofa_002_coffee":{
-			   "opts":{
-			      "post_title":"Cheekbliss - Coffee",
-			      "post_type":"product_variation", "post_status":"publish",
-			      "post_parent": "$sofa_002", "post_name":"sofa_002_c"
-			   }
+			"$sofa_002_coffee": {
+				"opts": {
+					"post_title": "Cheekbliss - Coffee",
+					"post_type": "product_variation",
+					"post_status": "publish",
+					"post_parent": "$sofa_002",
+					"post_name": "sofa_002_c"
+				}
 			},
-			"$sofa_003_espresso":{
-			   "opts":{
-			      "post_title":"Nimbus - Espresso", 
-			      "post_type":"product_variation", "post_status":"publish",
-			      "post_parent": "$sofa_003", "post_name":"sofa_003_a"
-			   }
+			"$sofa_003_espresso": {
+				"opts": {
+					"post_title": "Nimbus - Espresso",
+					"post_type": "product_variation",
+					"post_status": "publish",
+					"post_parent": "$sofa_003",
+					"post_name": "sofa_003_a"
+				}
 			},
-			"$sofa_003_latte":{
-			   "opts":{
-			      "post_title":"Nimbus - Latte",
-			      "post_type":"product_variation", "post_status":"publish",
-			      "post_parent": "$sofa_003", "post_name":"sofa_003_b"
-			   }
+			"$sofa_003_latte": {
+				"opts": {
+					"post_title": "Nimbus - Latte",
+					"post_type": "product_variation",
+					"post_status": "publish",
+					"post_parent": "$sofa_003",
+					"post_name": "sofa_003_b"
+				}
 			}
 		},
 		// Enable sofa variations
 		"meta": {
 			"update": [
 				// Enable Sofa variations
-				{ "args": { "id": "$sofa_001", "key": "_product_attributes", "value": "{\\\"edb_material\\\": { \\\"name\\\":\\\"edb_material\\\",\\\"value\\\":\\\"velvet|concrete\\\",\\\"is_visible\\\": 1, \\\"is_variation\\\": 1, \\\"taxonomy\\\": 1}}" } , "opts": { "format": "json"}},
-				{ "args": { "id": "$sofa_002", "key": "_product_attributes", "value": "{\\\"edb_material\\\": { \\\"name\\\":\\\"edb_material\\\",\\\"value\\\":\\\"cream|charcoal|coffee\\\",\\\"is_visible\\\": 1, \\\"is_variation\\\": 1, \\\"taxonomy\\\": 1}}" } , "opts": { "format": "json"}},
-				{ "args": { "id": "$sofa_003", "key": "_product_attributes", "value": "{\\\"edb_material\\\": { \\\"name\\\":\\\"edb_material\\\",\\\"value\\\":\\\"espresso|latte\\\",\\\"is_visible\\\": 1, \\\"is_variation\\\": 1, \\\"taxonomy\\\": 1}}" } , "opts": { "format": "json"}},
+				{
+					"args": {
+						"id": "$sofa_001",
+						"key": "_product_attributes",
+						"value": "{\\\"edb_material\\\": { \\\"name\\\":\\\"edb_material\\\",\\\"value\\\":\\\"velvet|concrete\\\",\\\"is_visible\\\": 1, \\\"is_variation\\\": 1, \\\"taxonomy\\\": 1}}"
+					},
+					"opts": {
+						"format": "json"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_002",
+						"key": "_product_attributes",
+						"value": "{\\\"edb_material\\\": { \\\"name\\\":\\\"edb_material\\\",\\\"value\\\":\\\"cream|charcoal|coffee\\\",\\\"is_visible\\\": 1, \\\"is_variation\\\": 1, \\\"taxonomy\\\": 1}}"
+					},
+					"opts": {
+						"format": "json"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_003",
+						"key": "_product_attributes",
+						"value": "{\\\"edb_material\\\": { \\\"name\\\":\\\"edb_material\\\",\\\"value\\\":\\\"espresso|latte\\\",\\\"is_visible\\\": 1, \\\"is_variation\\\": 1, \\\"taxonomy\\\": 1}}"
+					},
+					"opts": {
+						"format": "json"
+					}
+				},
 				// Sub-product variations
-				{ "args": { "id": "$sofa_001_velvet", "key": "_product_attributes", "value": "{\\\"edb_material\\\": { \\\"name\\\":\\\"edb_material\\\",\\\"value\\\":\\\"velvet\\\",\\\"is_visible\\\": 1, \\\"is_variation\\\": 1, \\\"taxonomy\\\": 1}}" } , "opts": { "format": "json"}},
-				{ "args": { "id": "$sofa_001_concrete", "key": "_product_attributes", "value": "{\\\"edb_material\\\": { \\\"name\\\":\\\"edb_material\\\",\\\"value\\\":\\\"concrete\\\",\\\"is_visible\\\": 1, \\\"is_variation\\\": 1, \\\"taxonomy\\\": 1}}" } , "opts": { "format": "json"}},
+				{
+					"args": {
+						"id": "$sofa_001_velvet",
+						"key": "_product_attributes",
+						"value": "{\\\"edb_material\\\": { \\\"name\\\":\\\"edb_material\\\",\\\"value\\\":\\\"velvet\\\",\\\"is_visible\\\": 1, \\\"is_variation\\\": 1, \\\"taxonomy\\\": 1}}"
+					},
+					"opts": {
+						"format": "json"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_001_concrete",
+						"key": "_product_attributes",
+						"value": "{\\\"edb_material\\\": { \\\"name\\\":\\\"edb_material\\\",\\\"value\\\":\\\"concrete\\\",\\\"is_visible\\\": 1, \\\"is_variation\\\": 1, \\\"taxonomy\\\": 1}}"
+					},
+					"opts": {
+						"format": "json"
+					}
+				},
 
-				{ "args": { "id": "$sofa_002_cream", "key": "_product_attributes", "value": "{\\\"edb_material\\\": { \\\"name\\\":\\\"edb_material\\\",\\\"value\\\":\\\"cream\\\",\\\"is_visible\\\": 1, \\\"is_variation\\\": 1, \\\"taxonomy\\\": 1}}" } , "opts": { "format": "json"}},
-				{ "args": { "id": "$sofa_002_charcoal", "key": "_product_attributes", "value": "{\\\"edb_material\\\": { \\\"name\\\":\\\"edb_material\\\",\\\"value\\\":\\\"charcoal\\\",\\\"is_visible\\\": 1, \\\"is_variation\\\": 1, \\\"taxonomy\\\": 1}}" } , "opts": { "format": "json"}},
-				{ "args": { "id": "$sofa_002_coffee", "key": "_product_attributes", "value": "{\\\"edb_material\\\": { \\\"name\\\":\\\"edb_material\\\",\\\"value\\\":\\\"coffee\\\",\\\"is_visible\\\": 1, \\\"is_variation\\\": 1, \\\"taxonomy\\\": 1}}" } , "opts": { "format": "json"}},
+				{
+					"args": {
+						"id": "$sofa_002_cream",
+						"key": "_product_attributes",
+						"value": "{\\\"edb_material\\\": { \\\"name\\\":\\\"edb_material\\\",\\\"value\\\":\\\"cream\\\",\\\"is_visible\\\": 1, \\\"is_variation\\\": 1, \\\"taxonomy\\\": 1}}"
+					},
+					"opts": {
+						"format": "json"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_002_charcoal",
+						"key": "_product_attributes",
+						"value": "{\\\"edb_material\\\": { \\\"name\\\":\\\"edb_material\\\",\\\"value\\\":\\\"charcoal\\\",\\\"is_visible\\\": 1, \\\"is_variation\\\": 1, \\\"taxonomy\\\": 1}}"
+					},
+					"opts": {
+						"format": "json"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_002_coffee",
+						"key": "_product_attributes",
+						"value": "{\\\"edb_material\\\": { \\\"name\\\":\\\"edb_material\\\",\\\"value\\\":\\\"coffee\\\",\\\"is_visible\\\": 1, \\\"is_variation\\\": 1, \\\"taxonomy\\\": 1}}"
+					},
+					"opts": {
+						"format": "json"
+					}
+				},
 
-				{ "args": { "id": "$sofa_003_espresso", "key": "_product_attributes", "value": "{\\\"edb_material\\\": { \\\"name\\\":\\\"edb_material\\\",\\\"value\\\":\\\"espresso\\\",\\\"is_visible\\\": 1, \\\"is_variation\\\": 1, \\\"taxonomy\\\": 1}}" } , "opts": { "format": "json"}},
-				{ "args": { "id": "$sofa_003_latte", "key": "_product_attributes", "value": "{\\\"edb_material\\\": { \\\"name\\\":\\\"edb_material\\\",\\\"value\\\":\\\"latte\\\",\\\"is_visible\\\": 1, \\\"is_variation\\\": 1, \\\"taxonomy\\\": 1}}" } , "opts": { "format": "json"}},
-				
+				{
+					"args": {
+						"id": "$sofa_003_espresso",
+						"key": "_product_attributes",
+						"value": "{\\\"edb_material\\\": { \\\"name\\\":\\\"edb_material\\\",\\\"value\\\":\\\"espresso\\\",\\\"is_visible\\\": 1, \\\"is_variation\\\": 1, \\\"taxonomy\\\": 1}}"
+					},
+					"opts": {
+						"format": "json"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_003_latte",
+						"key": "_product_attributes",
+						"value": "{\\\"edb_material\\\": { \\\"name\\\":\\\"edb_material\\\",\\\"value\\\":\\\"latte\\\",\\\"is_visible\\\": 1, \\\"is_variation\\\": 1, \\\"taxonomy\\\": 1}}"
+					},
+					"opts": {
+						"format": "json"
+					}
+				},
+
 				//set sofa visibility:
-				{ "args": { "id": "$sofa_001", "key": "_visibility", "value": "visible" } },
-				{ "args": { "id": "$sofa_002", "key": "_visibility", "value": "visible" } },
-				{ "args": { "id": "$sofa_003", "key": "_visibility", "value": "visible" } },
+				{
+					"args": {
+						"id": "$sofa_001",
+						"key": "_visibility",
+						"value": "visible"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_002",
+						"key": "_visibility",
+						"value": "visible"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_003",
+						"key": "_visibility",
+						"value": "visible"
+					}
+				},
 
-				{ "args": { "id": "$sofa_001_velvet", "key": "_visibility", "value": "visible" } },
-				{ "args": { "id": "$sofa_001_velvet", "key": "_stock_status", "value": "instock" } },
-				{ "args": { "id": "$sofa_001_velvet", "key": "_stock", "value": "13" } },
-				{ "args": { "id": "$sofa_001_velvet", "key": "_price", "value": "1.00" } },
-				{ "args": { "id": "$sofa_001_velvet", "key": "_sku", "value": "sofa_001_velvet" } },
-				{ "args": { "id": "$sofa_001_velvet", "key": "attribute_edb_material", "value": "velvet" } },
+				{
+					"args": {
+						"id": "$sofa_001_velvet",
+						"key": "_visibility",
+						"value": "visible"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_001_velvet",
+						"key": "_stock_status",
+						"value": "instock"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_001_velvet",
+						"key": "_stock",
+						"value": "13"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_001_velvet",
+						"key": "_price",
+						"value": "1.00"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_001_velvet",
+						"key": "_sku",
+						"value": "sofa_001_velvet"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_001_velvet",
+						"key": "attribute_edb_material",
+						"value": "velvet"
+					}
+				},
 
-				{ "args": { "id": "$sofa_001_concrete", "key": "_visibility", "value": "visible" } },
-				{ "args": { "id": "$sofa_001_concrete", "key": "_stock_status", "value": "instock" } },
-				{ "args": { "id": "$sofa_001_concrete", "key": "_stock", "value": "11" } },
-				{ "args": { "id": "$sofa_001_concrete", "key": "_price", "value": "1.00" } },
-				{ "args": { "id": "$sofa_001_concrete", "key": "_sku", "value": "sofa_001_concrete" } },
-				{ "args": { "id": "$sofa_001_concrete", "key": "attribute_edb_material", "value": "concrete" } },
+				{
+					"args": {
+						"id": "$sofa_001_concrete",
+						"key": "_visibility",
+						"value": "visible"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_001_concrete",
+						"key": "_stock_status",
+						"value": "instock"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_001_concrete",
+						"key": "_stock",
+						"value": "11"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_001_concrete",
+						"key": "_price",
+						"value": "1.00"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_001_concrete",
+						"key": "_sku",
+						"value": "sofa_001_concrete"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_001_concrete",
+						"key": "attribute_edb_material",
+						"value": "concrete"
+					}
+				},
 
 
-				{ "args": { "id": "$sofa_002_cream", "key": "_visibility", "value": "visible" } },
-				{ "args": { "id": "$sofa_002_cream", "key": "_stock_status", "value": "instock" } },
-				{ "args": { "id": "$sofa_002_cream", "key": "_stock", "value": "9" } },
-				{ "args": { "id": "$sofa_002_cream", "key": "_price", "value": "1.00" } },
-				{ "args": { "id": "$sofa_002_cream", "key": "_sku", "value": "sofa_002_cream" } },
-				{ "args": { "id": "$sofa_002_cream", "key": "attribute_edb_material", "value": "cream" } },
+				{
+					"args": {
+						"id": "$sofa_002_cream",
+						"key": "_visibility",
+						"value": "visible"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_002_cream",
+						"key": "_stock_status",
+						"value": "instock"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_002_cream",
+						"key": "_stock",
+						"value": "9"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_002_cream",
+						"key": "_price",
+						"value": "1.00"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_002_cream",
+						"key": "_sku",
+						"value": "sofa_002_cream"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_002_cream",
+						"key": "attribute_edb_material",
+						"value": "cream"
+					}
+				},
 
-				{ "args": { "id": "$sofa_002_charcoal", "key": "_visibility", "value": "visible" } },
-				{ "args": { "id": "$sofa_002_charcoal", "key": "_stock_status", "value": "instock" } },
-				{ "args": { "id": "$sofa_002_charcoal", "key": "_stock", "value": "5" } },
-				{ "args": { "id": "$sofa_002_charcoal", "key": "_price", "value": "1.00" } },
-				{ "args": { "id": "$sofa_002_charcoal", "key": "_sku", "value": "sofa_002_charcoal" } },
-				{ "args": { "id": "$sofa_002_charcoal", "key": "attribute_edb_material", "value": "charcoal" } },
+				{
+					"args": {
+						"id": "$sofa_002_charcoal",
+						"key": "_visibility",
+						"value": "visible"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_002_charcoal",
+						"key": "_stock_status",
+						"value": "instock"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_002_charcoal",
+						"key": "_stock",
+						"value": "5"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_002_charcoal",
+						"key": "_price",
+						"value": "1.00"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_002_charcoal",
+						"key": "_sku",
+						"value": "sofa_002_charcoal"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_002_charcoal",
+						"key": "attribute_edb_material",
+						"value": "charcoal"
+					}
+				},
 
-				{ "args": { "id": "$sofa_002_coffee", "key": "_visibility", "value": "visible" } },
-				{ "args": { "id": "$sofa_002_coffee", "key": "_stock_status", "value": "instock" } },
-				{ "args": { "id": "$sofa_002_coffee", "key": "_stock", "value": "12" } },
-				{ "args": { "id": "$sofa_002_coffee", "key": "_price", "value": "1.00" } },
-				{ "args": { "id": "$sofa_002_coffee", "key": "_sku", "value": "sofa_002_coffee" } },
-				{ "args": { "id": "$sofa_002_coffee", "key": "attribute_edb_material", "value": "coffee" } },
+				{
+					"args": {
+						"id": "$sofa_002_coffee",
+						"key": "_visibility",
+						"value": "visible"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_002_coffee",
+						"key": "_stock_status",
+						"value": "instock"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_002_coffee",
+						"key": "_stock",
+						"value": "12"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_002_coffee",
+						"key": "_price",
+						"value": "1.00"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_002_coffee",
+						"key": "_sku",
+						"value": "sofa_002_coffee"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_002_coffee",
+						"key": "attribute_edb_material",
+						"value": "coffee"
+					}
+				},
 
-				{ "args": { "id": "$sofa_003_espresso", "key": "_visibility", "value": "visible" } },
-				{ "args": { "id": "$sofa_003_espresso", "key": "_stock_status", "value": "instock" } },
-				{ "args": { "id": "$sofa_003_espresso", "key": "_stock", "value": "5" } },
-				{ "args": { "id": "$sofa_003_espresso", "key": "_price", "value": "1.00" } },
-				{ "args": { "id": "$sofa_003_espresso", "key": "_sku", "value": "sofa_003_espresso" } },
-				{ "args": { "id": "$sofa_003_espresso", "key": "attribute_edb_material", "value": "espresso" } },
+				{
+					"args": {
+						"id": "$sofa_003_espresso",
+						"key": "_visibility",
+						"value": "visible"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_003_espresso",
+						"key": "_stock_status",
+						"value": "instock"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_003_espresso",
+						"key": "_stock",
+						"value": "5"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_003_espresso",
+						"key": "_price",
+						"value": "1.00"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_003_espresso",
+						"key": "_sku",
+						"value": "sofa_003_espresso"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_003_espresso",
+						"key": "attribute_edb_material",
+						"value": "espresso"
+					}
+				},
 
-				{ "args": { "id": "$sofa_003_latte", "key": "_visibility", "value": "visible" } },
-				{ "args": { "id": "$sofa_003_latte", "key": "_stock_status", "value": "instock" } },
-				{ "args": { "id": "$sofa_003_latte", "key": "_stock", "value": "8" } },
-				{ "args": { "id": "$sofa_003_latte", "key": "_price", "value": "1.00" } },
-				{ "args": { "id": "$sofa_003_latte", "key": "_sku", "value": "sofa_003_latte" } },
-				{ "args": { "id": "$sofa_003_latte", "key": "attribute_edb_material", "value": "latte" } }
+				{
+					"args": {
+						"id": "$sofa_003_latte",
+						"key": "_visibility",
+						"value": "visible"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_003_latte",
+						"key": "_stock_status",
+						"value": "instock"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_003_latte",
+						"key": "_stock",
+						"value": "8"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_003_latte",
+						"key": "_price",
+						"value": "1.00"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_003_latte",
+						"key": "_sku",
+						"value": "sofa_003_latte"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_003_latte",
+						"key": "attribute_edb_material",
+						"value": "latte"
+					}
+				}
 
 
 			]
@@ -302,76 +658,380 @@
 		// Setup product variations and categorizations.
 		"term": {
 			"set": [
-			// makes sofas variable products
-				{ "args": { "id": "$sofa_001", "taxonomy": "product_type", "term": "variable" } },
-				{ "args": { "id": "$sofa_002", "taxonomy": "product_type", "term": "variable" } },
-				{ "args": { "id": "$sofa_003", "taxonomy": "product_type", "term": "variable" } },
-			// put sofas in categories
-				{ "args": { "id": "$sofa_001", "taxonomy": "product_cat", "term": "2-seat" } },
-				{ "args": { "id": "$sofa_002", "taxonomy": "product_cat", "term": "3-seat" } },
-				{ "args": { "id": "$sofa_003", "taxonomy": "product_cat", "term": "3-seat" } }
+				// makes sofas variable products
+				{
+					"args": {
+						"id": "$sofa_001",
+						"taxonomy": "product_type",
+						"term": "variable"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_002",
+						"taxonomy": "product_type",
+						"term": "variable"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_003",
+						"taxonomy": "product_type",
+						"term": "variable"
+					}
+				},
+				// put sofas in categories
+				{
+					"args": {
+						"id": "$sofa_001",
+						"taxonomy": "product_cat",
+						"term": "2-seat"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_002",
+						"taxonomy": "product_cat",
+						"term": "3-seat"
+					}
+				}, {
+					"args": {
+						"id": "$sofa_003",
+						"taxonomy": "product_cat",
+						"term": "3-seat"
+					}
+				}
 			]
 		}
 	},
 	// Attach images
-	"media":{
-      "import": [
-         { "args": { "file": "./src/data/media/product-images/sofa_001/sofa_001_wht1.jpg"   } , "opts": { "post_id": "$sofa_001", "featured_image": true } },
-         { "args": { "file": "./src/data/media/product-images/sofa_001/sofa_001_wht4.jpg"   } , "opts": { "post_id": "$sofa_001_velvet", "featured_image": true } },         
-		 { "args": { "file": "./src/data/media/product-images/sofa_001/sofa_001_wht2.jpg"   } , "opts": { "post_id": "$sofa_001_concrete", "featured_image": true } },
-		 { "args": { "file": "./src/data/media/product-images/sofa_001/sofa_001_wht3.jpg"   } , "opts": { "post_id": "$sofa_001"  } },
-         { "args": { "file": "./src/data/media/product-images/sofa_001/sofa_001_wht5.jpg"   } , "opts": { "post_id": "$sofa_001"  } },
-		 { "args": { "file": "./src/data/media/product-images/sofa_001/sofa_001_amb1.jpg"   } , "opts": { "post_id": "$sofa_001"  } },
-		 { "args": { "file": "./src/data/media/product-images/sofa_001/sofa_001_amb2.jpg"   } , "opts": { "post_id": "$sofa_001"  } },
-		 { "args": { "file": "./src/data/media/product-images/sofa_001/sofa_001_amb3.jpg"   } , "opts": { "post_id": "$sofa_001"  } },
-		 { "args": { "file": "./src/data/media/product-images/sofa_001/sofa_001_amb4.jpg"   } , "opts": { "post_id": "$sofa_001"  } },
-		 { "args": { "file": "./src/data/media/product-images/sofa_001/sofa_001_amb5.jpg"   } , "opts": { "post_id": "$sofa_001"  } },
-		 { "args": { "file": "./src/data/media/product-images/sofa_001/sofa_001_td1.jpg"    } , "opts": { "post_id": "$sofa_001"  } },
-		 { "args": { "file": "./src/data/media/product-images/sofa_001/sofa_001_td2.jpg"    } , "opts": { "post_id": "$sofa_001" } },
+	"media": {
+		"import": [{
+				"args": {
+					"file": "./src/data/media/product-images/sofa_001/sofa_001_wht1.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_001",
+					"featured_image": true
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_001/sofa_001_wht4.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_001_velvet",
+					"featured_image": true
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_001/sofa_001_wht2.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_001_concrete",
+					"featured_image": true
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_001/sofa_001_wht3.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_001"
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_001/sofa_001_wht5.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_001"
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_001/sofa_001_amb1.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_001"
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_001/sofa_001_amb2.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_001"
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_001/sofa_001_amb3.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_001"
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_001/sofa_001_amb4.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_001"
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_001/sofa_001_amb5.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_001"
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_001/sofa_001_td1.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_001"
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_001/sofa_001_td2.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_001"
+				}
+			},
 
-         { "args": { "file": "./src/data/media/product-images/sofa_002/sofa_002_wht1.jpg"   } , "opts": { "post_id": "$sofa_002", "featured_image": true } },
-         { "args": { "file": "./src/data/media/product-images/sofa_002/sofa_002_wht2.jpg"   } , "opts": { "post_id": "$sofa_002_cream", "featured_image": true } },         
-		 { "args": { "file": "./src/data/media/product-images/sofa_002/sofa_002_wht4.jpg"   } , "opts": { "post_id": "$sofa_002_charcoal", "featured_image": true } },
-		 { "args": { "file": "./src/data/media/product-images/sofa_002/sofa_002_wht6.jpg"   } , "opts": { "post_id": "$sofa_002_coffee", "featured_image": true } },		 
-		 { "args": { "file": "./src/data/media/product-images/sofa_002/sofa_002_wht3.jpg"   } , "opts": { "post_id": "$sofa_002"  } },
-         { "args": { "file": "./src/data/media/product-images/sofa_002/sofa_002_wht5.jpg"   } , "opts": { "post_id": "$sofa_002"  } },
-		 { "args": { "file": "./src/data/media/product-images/sofa_002/sofa_002_amb1.jpg"   } , "opts": { "post_id": "$sofa_002"  } },
-		 { "args": { "file": "./src/data/media/product-images/sofa_002/sofa_002_amb2.jpg"   } , "opts": { "post_id": "$sofa_002"  } },
-		 { "args": { "file": "./src/data/media/product-images/sofa_002/sofa_002_amb3.jpg"   } , "opts": { "post_id": "$sofa_002"  } },
-		 { "args": { "file": "./src/data/media/product-images/sofa_002/sofa_002_amb4.jpg"   } , "opts": { "post_id": "$sofa_002"  } },
-		 { "args": { "file": "./src/data/media/product-images/sofa_002/sofa_002_amb5.jpg"   } , "opts": { "post_id": "$sofa_002"  } },
-		 { "args": { "file": "./src/data/media/product-images/sofa_002/sofa_002_amb6.jpg"   } , "opts": { "post_id": "$sofa_002"  } },
-		 { "args": { "file": "./src/data/media/product-images/sofa_002/sofa_002_amb7.jpg"   } , "opts": { "post_id": "$sofa_002"  } },
-		 { "args": { "file": "./src/data/media/product-images/sofa_002/sofa_002_td1.jpg"    } , "opts": { "post_id": "$sofa_002"  } },
-		 { "args": { "file": "./src/data/media/product-images/sofa_002/sofa_002_td2.jpg"    } , "opts": { "post_id": "$sofa_002" } },
+			{
+				"args": {
+					"file": "./src/data/media/product-images/sofa_002/sofa_002_wht1.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_002",
+					"featured_image": true
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_002/sofa_002_wht2.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_002_cream",
+					"featured_image": true
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_002/sofa_002_wht4.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_002_charcoal",
+					"featured_image": true
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_002/sofa_002_wht6.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_002_coffee",
+					"featured_image": true
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_002/sofa_002_wht3.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_002"
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_002/sofa_002_wht5.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_002"
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_002/sofa_002_amb1.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_002"
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_002/sofa_002_amb2.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_002"
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_002/sofa_002_amb3.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_002"
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_002/sofa_002_amb4.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_002"
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_002/sofa_002_amb5.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_002"
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_002/sofa_002_amb6.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_002"
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_002/sofa_002_amb7.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_002"
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_002/sofa_002_td1.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_002"
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_002/sofa_002_td2.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_002"
+				}
+			},
 
-		 { "args": { "file": "./src/data/media/product-images/sofa_003/sofa_003_wht1.jpg"   } , "opts": { "post_id": "$sofa_003", "featured_image": true } },
-         { "args": { "file": "./src/data/media/product-images/sofa_003/sofa_003_wht3.jpg"   } , "opts": { "post_id": "$sofa_003_espresso", "featured_image": true } },         
-		 { "args": { "file": "./src/data/media/product-images/sofa_003/sofa_003_wht2.jpg"   } , "opts": { "post_id": "$sofa_003_latte", "featured_image": true } },
-		 { "args": { "file": "./src/data/media/product-images/sofa_003/sofa_003_amb1.jpg"   } , "opts": { "post_id": "$sofa_003"  } },
-		 { "args": { "file": "./src/data/media/product-images/sofa_003/sofa_003_amb2.jpg"   } , "opts": { "post_id": "$sofa_003"  } },
-		 { "args": { "file": "./src/data/media/product-images/sofa_003/sofa_003_amb3.jpg"   } , "opts": { "post_id": "$sofa_003"  } },
-		 { "args": { "file": "./src/data/media/product-images/sofa_003/sofa_003_amb4.jpg"   } , "opts": { "post_id": "$sofa_003"  } },
-		 { "args": { "file": "./src/data/media/product-images/sofa_003/sofa_003_amb5.jpg"   } , "opts": { "post_id": "$sofa_003"  } },
-		 { "args": { "file": "./src/data/media/product-images/sofa_003/sofa_003_amb6.jpg"   } , "opts": { "post_id": "$sofa_003"  } },
-		 { "args": { "file": "./src/data/media/product-images/sofa_003/sofa_003_td1.jpg"    } , "opts": { "post_id": "$sofa_003"  } },
-		 { "args": { "file": "./src/data/media/product-images/sofa_003/sofa_003_td2.jpg"    } , "opts": { "post_id": "$sofa_003" } }
+			{
+				"args": {
+					"file": "./src/data/media/product-images/sofa_003/sofa_003_wht1.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_003",
+					"featured_image": true
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_003/sofa_003_wht3.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_003_espresso",
+					"featured_image": true
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_003/sofa_003_wht2.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_003_latte",
+					"featured_image": true
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_003/sofa_003_amb1.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_003"
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_003/sofa_003_amb2.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_003"
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_003/sofa_003_amb3.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_003"
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_003/sofa_003_amb4.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_003"
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_003/sofa_003_amb5.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_003"
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_003/sofa_003_amb6.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_003"
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_003/sofa_003_td1.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_003"
+				}
+			}, {
+				"args": {
+					"file": "./src/data/media/product-images/sofa_003/sofa_003_td2.jpg"
+				},
+				"opts": {
+					"post_id": "$sofa_003"
+				}
+			}
 
 
-       ]
-    },
-	"eval": [
-		{ "args": { "php": "wp_set_object_terms( $sofa_001, array('velvet','concrete'), 'edb_material');" } },
-		{ "args": { "php": "wp_set_object_terms( $sofa_001_velvet, 'velvet', 'edb_material');" } },
-		{ "args": { "php": "wp_set_object_terms( $sofa_001_concrete, 'concrete', 'edb_material');" } },
+		]
+	},
+	"eval": [{
+			"args": {
+				"php": "wp_set_object_terms( $sofa_001, array('velvet','concrete'), 'edb_material');"
+			}
+		}, {
+			"args": {
+				"php": "wp_set_object_terms( $sofa_001_velvet, 'velvet', 'edb_material');"
+			}
+		}, {
+			"args": {
+				"php": "wp_set_object_terms( $sofa_001_concrete, 'concrete', 'edb_material');"
+			}
+		},
 
-		{ "args": { "php": "wp_set_object_terms( $sofa_002, array('cream','charcoal','coffee'), 'edb_material');" } },
-		{ "args": { "php": "wp_set_object_terms( $sofa_002_cream, 'cream', 'edb_material');" } },
-		{ "args": { "php": "wp_set_object_terms( $sofa_002_charcoal, 'charcoal', 'edb_material');" } },
-		{ "args": { "php": "wp_set_object_terms( $sofa_002_coffee, 'coffee', 'edb_material');" } },
+		{
+			"args": {
+				"php": "wp_set_object_terms( $sofa_002, array('cream','charcoal','coffee'), 'edb_material');"
+			}
+		}, {
+			"args": {
+				"php": "wp_set_object_terms( $sofa_002_cream, 'cream', 'edb_material');"
+			}
+		}, {
+			"args": {
+				"php": "wp_set_object_terms( $sofa_002_charcoal, 'charcoal', 'edb_material');"
+			}
+		}, {
+			"args": {
+				"php": "wp_set_object_terms( $sofa_002_coffee, 'coffee', 'edb_material');"
+			}
+		},
 
-		{ "args": { "php": "wp_set_object_terms( $sofa_003, array('espresso','latte'), 'edb_material');" } },
-		{ "args": { "php": "wp_set_object_terms( $sofa_003_espresso, 'espresso', 'edb_material');" } },
-		{ "args": { "php": "wp_set_object_terms( $sofa_003_latte, 'latte', 'edb_material');" } }
+		{
+			"args": {
+				"php": "wp_set_object_terms( $sofa_003, array('espresso','latte'), 'edb_material');"
+			}
+		}, {
+			"args": {
+				"php": "wp_set_object_terms( $sofa_003_espresso, 'espresso', 'edb_material');"
+			}
+		}, {
+			"args": {
+				"php": "wp_set_object_terms( $sofa_003_latte, 'latte', 'edb_material');"
+			}
+		}
 	]
 }

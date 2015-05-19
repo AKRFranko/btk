@@ -35,7 +35,7 @@ body.woocommerce-page, body.page{
 	text-transform:uppercase;
 }
 .edb-slider .slide-link{
-	background-color:rgba(0,0,0,0.3);	
+	background-color:rgba(0,0,0,0.1);	
 }
 
 .edb-slider .controls{
@@ -130,6 +130,14 @@ Header
 				}
 				.navbar-collapse { float:left; }
 				.woo-categories { display:none; float:right; height:85vh; overflow-y:scroll; }
+				.woo-categories .subnav{
+					overflow:hidden;
+					height:0;
+					transition:height .2s ease-in;
+				}
+				.woo-categories .toggle.on + .subnav{
+					height:100%;
+				}
 			}
 		}
 		.navigation { margin-right:50px; }
