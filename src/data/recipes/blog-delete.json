@@ -1,40 +1,46 @@
-{      
- 
-    "term": {
-        "list": {
-          "$_categories": {
-            "args": { "taxonomy": "category" }, 
-            "opts": { "format": "json", "field": "term_id",  "quiet": true } 
-          },
-          "$_tags": {
-            "args": { "taxonomy": "post_tag" }, 
-            "opts": { "format": "json", "field": "term_id",  "quiet": true } 
-          }
-        }
-    },
-    "post": {
-      "list": {
-        "$_pages": {
-          "opts": { "post_type": "page", "format": "ids"}
-        },
-        "$_posts": {
-          "opts": { "post_type": "post", "format": "ids"}
-        }
-      }
-    },
-    "eval": [
-    
-      { "args": { "php": "foreach($_categories as \\$cat){ wp_delete_term( \\$catid, 'product_cat' ); };" } },
-      { "args": { "php": "foreach( $_tags as \\$tagid ){ wp_delete_term( \\$tagid, 'product_cat'); }"} },
-      { "args": { "php": "foreach( explode( ' ', '$_posts' ) as \\$id){ wp_delete_post('\\$id', true); }"} },
-      { "args": { "php": "foreach( explode( ' ', '$_pages' ) as \\$id){ wp_delete_post('\\$id', true); }"} }
-    ],
-    "menu":{
-      "delete":[
-         { "args":{ "menu-name":"Header" } },
-         { "args":{ "menu-name":"Hamburger" } },
-         { "args":{ "menu-name":"Footer" }  },
-         { "args":{ "menu-name":"Footer2" } }
-        ]
-    }
+{
+	"option": {
+		"update": [{
+			"args": {
+				"key": "default_category",
+				"value": "0"
+			}
+		}]
+	},
+	"eval": [{
+		"args": {
+			"php": "foreach( get_terms( 'category', array('hide_empty' => 0, 'orderby' =>'id', 'order' => 'DESC' ) ) as \\$catid){ wp_delete_term( \\$catid->term_id, 'category'); }"
+		}
+	}, {
+		"args": {
+			"php": "foreach( get_terms( 'post_tag', array('hide_empty' => 0 ) ) as \\$catid){ wp_delete_term( \\$catid->term_id, 'post_tag'); }"
+		}
+	}, {
+		"args": {
+			"php": "foreach( get_posts( array('post_type' => 'post', 'posts_per_page' => -1 ) ) as \\$postid ){  wp_delete_post( \\$postid->ID, true); }"
+		}
+	}, {
+		"args": {
+			"php": "foreach( get_posts( array('post_type' => 'page', 'posts_per_page' => -1 ) ) as \\$postid ){ wp_delete_post( \\$postid->ID, true); }"
+		}
+	}],
+	"menu": {
+		"delete": [{
+			"args": {
+				"menu-name": "Header"
+			}
+		}, {
+			"args": {
+				"menu-name": "Hamburger"
+			}
+		}, {
+			"args": {
+				"menu-name": "Footer"
+			}
+		}, {
+			"args": {
+				"menu-name": "Footer2"
+			}
+		}]
+	}
 }

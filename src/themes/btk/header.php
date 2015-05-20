@@ -65,8 +65,6 @@ if ( $text_color === '' ) { $text_color = '#fff'; }
 						<?php if (!is_page('confirmation')) { ?>
 						<nav class="nav-header" role="navigation">
 
-							<?php //wp_nav_menu(array('menu' => 'header')); ?>
-
 							<div class="menu-header-container">
 								<ul id="menu-header">
 									<?php if ( is_user_logged_in() ) : ?>

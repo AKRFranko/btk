@@ -2394,10 +2394,25 @@ Header
 #header-box header nav.nav-hamburger .woo-categories .subnav {
   overflow: hidden;
   height: 0;
-  transition: height 0.2s ease-in;
+  transition: all 0.3s ease-in;
+  opacity: 0;
+}
+#header-box header nav.nav-hamburger .woo-categories .toggle:after {
+  font-family: "FontAwesome";
+  font-size: .75em;
+  line-height: 1;
+  opacity: 0.5;
+  margin-left: .5em;
+  content: "\f0da";
+}
+#header-box header nav.nav-hamburger .woo-categories .toggle.on:after {
+  content: "\f0d7";
 }
 #header-box header nav.nav-hamburger .woo-categories .toggle.on + .subnav {
-  height: 100%;
+  height: 100px;
+  min-height: 100%;
+  max-height: 100%;
+  opacity: 1;
 }
 #header-box header .navigation {
   margin-right: 50px;
@@ -2888,6 +2903,48 @@ Content
   .home .main-article .title,
   #content .pdf .title a {
     padding: 20px;
+  }
+}
+/*
+==========================================================================
+Larger Displays
+==========================================================================
+
+*/
+@media (min-width: 768px) and (max-width: 991px) {
+  .home .main-article,
+  .woocommerce ul.products li.product {
+    display: inline-block;
+    width: calc(50% - 7px);
+    vertical-align: top;
+  }
+  .home .main-article:nth-of-type(even),
+  .woocommerce ul.products li.product:nth-of-type(even) {
+    margin-right: 7px;
+  }
+  .home .main-article:nth-of-type(odd),
+  .woocommerce ul.products li.product:nth-of-type(odd) {
+    margin-left: 7px;
+  }
+}
+@media (min-width: 992px) {
+  .home .main-article,
+  .woocommerce ul.products li.product {
+    display: inline-block;
+    width: calc(33% -  6.66666667px );
+    vertical-align: top;
+    margin: 6.66666667px;
+    clear: none;
+  }
+  .home .main-article:nth-of-type(3n),
+  .woocommerce ul.products li.product:nth-of-type(3n) {
+    margin-right: 0;
+  }
+  .home .main-article:first-of-type,
+  .woocommerce ul.products li.product:first-of-type,
+  .home .main-article:nth-of-type(3n+1),
+  .woocommerce ul.products li.product:nth-of-type(3n+1) {
+    margin-left: 0;
   }
 }
 /*

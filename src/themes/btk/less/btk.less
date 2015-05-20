@@ -133,10 +133,25 @@ Header
 				.woo-categories .subnav{
 					overflow:hidden;
 					height:0;
-					transition:height .2s ease-in;
+					transition:all .3s ease-in;
+					opacity:0;
+				}
+				.woo-categories .toggle:after{
+					font-family:"FontAwesome";
+					font-size:.75em;
+					line-height:1;
+					opacity:0.5;
+					margin-left:.5em;
+					content:"\f0da";
+				}
+				.woo-categories .toggle.on:after{
+					content:"\f0d7";
 				}
 				.woo-categories .toggle.on + .subnav{
-					height:100%;
+					height:100px;
+					min-height:100%;
+					max-height:100%;
+					opacity:1;
 				}
 			}
 		}
@@ -364,6 +379,43 @@ Content
 	#content .pdf .title a { padding:20px; }
 }
 
+
+/*
+==========================================================================
+Larger Displays
+==========================================================================
+
+*/
+@media (min-width: 768px) and (max-width: 991px) {
+	.home .main-article,
+	.woocommerce ul.products li.product{
+		display:inline-block;
+		width:~"calc(50% - 7px)";
+		vertical-align:top;
+		&:nth-of-type(even){
+			margin-right:7px;
+		}
+		&:nth-of-type(odd){
+			margin-left:7px;
+		}
+	}	
+}
+@media (min-width: 992px) {
+	.home .main-article,
+	.woocommerce ul.products li.product{
+		display:inline-block;
+		width:~"calc(33% - " (20px/3) ~")";
+		vertical-align:top;
+		margin:(20px/3);
+		clear:none;
+		&:nth-of-type(3n){
+			margin-right:0;
+		}
+		&:first-of-type,&:nth-of-type(3n+1){
+			margin-left:0;
+		}
+	}	
+}
 
 
 

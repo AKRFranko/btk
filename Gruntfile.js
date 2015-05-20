@@ -56,6 +56,11 @@ module.exports = function(grunt) {
 
 		// see: https://github.com/gruntjs/grunt-contrib-uglify
 		uglify: {
+			options: {
+				screwIE8: true,
+				mangle: false,
+				sourceMap: false
+			},
 			theme: {
 				files: {
 					'<%= cfg.project_dir %>/src/themes/btk/js/_all.min.js': [

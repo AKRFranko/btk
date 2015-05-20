@@ -39,10 +39,8 @@ $my_query = new WP_Query(array(
 ));
 ?>
 		<?php if ($my_query->have_posts()): ?>
-
 		<?php /* Start the Loop */?>
-			<?php while ($my_query->have_posts()): $my_query->the_post();?>
-				<div class="main-article">
+			<?php while ($my_query->have_posts()): $my_query->the_post();?><div class="main-article">
 					<a href="<?php echo get_permalink();?>">
 					<?php if (has_post_thumbnail()): ?>
 						<?php
@@ -59,18 +57,11 @@ $my_query = new WP_Query(array(
 						<?php the_excerpt(); ?>
 						<span class="icon-chevron-lite-right-black"></span>
 					</div>
-				</div>
-			<?php endwhile;?>
-
+			</div><?php endwhile;?>
 			<?php //the_posts_navigation();?>
-
 		<?php else: ?>
-
 			<?php get_template_part('content', 'none');?>
-
 		<?php endif;?>
-
-
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
