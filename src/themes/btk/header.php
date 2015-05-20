@@ -98,8 +98,7 @@ if ( $text_color === '' ) { $text_color = '#fff'; }
 								<?php
 									$maincats = get_terms( 'product_cat', array('get'=>'all', 'parent' => 0, 'hide_empty' => false) );
 									foreach($maincats as $main){
-										
-										if($main->name !== 'lookbook'){
+										if ( strtolower($main->name) !== 'lookbook' ) {
 											echo "<li>";
 											$subcats = get_terms( 'product_cat', array( 'parent' => $main->term_id, 'hide_empty' => false ) );
 											if( !empty($subcats)){
@@ -107,7 +106,7 @@ if ( $text_color === '' ) { $text_color = '#fff'; }
 												echo '<ul class="subnav">';
 												foreach($subcats as $sub){
 													echo '<li><a href="' . get_term_link( $sub ) . '" title="' . sprintf( __( 'View all post filed under %s', 'btk' ), $sub->name ) . '">'.__( $sub->name , 'btk' ).'</a></li>';
-												}	
+												}
 												echo '<li><a href="' . get_term_link( $main ) . '" title="' . sprintf( __( 'View all post filed under %s', 'btk' ), $main->name ) . '">'.__( 'all', 'btk' ).'</a></li>';
 												echo "</ul>";
 											}else{

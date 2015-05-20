@@ -106,7 +106,7 @@ foreach ($terms as $term) {
 
 			<p class="product-color clearfix">
 				<span class="valign"><?php echo $term_name; ?></span>
-				<a class="alignright" style="background-color:<?php echo $term_desc; ?>">&nbsp;</a>
+				<span class="alignright" style="background-color:<?php echo $term_desc; ?>">&nbsp;</span>
 			</p>
 
 			<p class="right">

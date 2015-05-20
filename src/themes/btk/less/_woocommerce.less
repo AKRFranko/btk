@@ -61,10 +61,12 @@ Woocommerce Overrides
 			input { text-transform:lowercase; }
 		}
 	}
+	.customer-details h3 { margin-top:0; }
 
 
 
 // order details
+	ul.order_details { margin-left:15px; }
 	.order-details {
 		.order_details {
 			div { padding-bottom:4px; }
@@ -84,7 +86,6 @@ Woocommerce Overrides
 			dd { display:inline-block; margin:0;  p { margin:0 !important; } }
 		}
 	}
-
 	table.shop_table {
 		.order-actions {
 			a {
@@ -115,7 +116,6 @@ Woocommerce Overrides
 				.post-titles(); padding:12px;
 				.product-title { display:block; font-size:1.35em; font-family:@altfontfamily; line-height:1em; }
 				.product-price { font-size:1.15em; }
-				a.read-more { display:none; }
 				> a { margin-bottom:5px; }
 			}
 			.product-add { display:none; }
@@ -176,6 +176,17 @@ Woocommerce Overrides
 					position:static; padding:12px 0 0;
 					color:@black; font-family:@fontfamily; font-size:1em; font-weight:normal;
 				}
+			}
+		}
+
+		.product-color-choice {
+			margin-bottom:30px; padding-bottom:10px; text-align:center; .imgborder();
+			ul li {
+				display:inline-block; margin:0 5px 10px;
+				width:70px; height:35px; border:1px solid @gray;
+//				a { display:block; width:70px; height:35px; cursor:pointer; border:1px solid @gray; }
+				a { display:block; width:100%; height:100%; cursor:pointer; background-color:transparent; }
+				a:hover { background-color:rgba(0, 0, 0, 0.25); }
 			}
 		}
 
@@ -264,6 +275,7 @@ Woocommerce Overrides
 		padding:6px 0; border-bottom:1px solid @black;
 		a { padding:0.35em 2.65em; cursor:pointer; }
 		span { padding-top:10px; }
+		span + span { padding:0.35em 2.65em; }
 	}
 
 
@@ -384,7 +396,9 @@ Woocommerce Overrides
 		}
 		ul li {
 			width:100%; .imgborder();
+//			float:left; margin-right:20px;
 			a { display:block; padding:16px 10px; color:@white; text-shadow:@headertxtshadow; cursor:pointer; }
+//			a { display:block; width:70px; height:40px; cursor:pointer; }
 		}
 		.color-selection {
 			display:none; position:fixed; top:0; left:0; width:100%; height:100%;
@@ -419,7 +433,9 @@ Woocommerce Overrides
 
 @media (min-width: 768px) and (max-width: 991px) {
 	.woocommerce ul.products li.product .product-desc { padding:15px; }
+	.woocommerce .product .product-color-choice ul li { margin:0 8px 15px; }
 }
 @media (min-width: 992px) {
 	.woocommerce ul.products li.product .product-desc { padding:20px; }
+	.woocommerce .product .product-color-choice ul li { margin:0 10px 20px; }
 }

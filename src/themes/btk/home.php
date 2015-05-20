@@ -51,8 +51,10 @@ $my_query = new WP_Query(array(
 					<?php ;endif;?></a>
 					<div class="title">
 						<h2>
-							<a href="<?php echo get_permalink();?>" class="upper"><?php the_title();?></a>
-							<span class="subtitle">_ <?php the_subtitle();?></span>
+							<a href="<?php echo get_permalink();?>" class="upper">
+								<?php the_title();?>
+								<span class="subtitle lower">_ <?php the_subtitle();?></span>
+							</a>
 						</h2>
 						<?php the_excerpt(); ?>
 						<span class="icon-chevron-lite-right-black"></span>

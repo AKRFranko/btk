@@ -139,29 +139,13 @@
 
 
 		// product colors change
-		$('.product-color a').click(function() {
-			$('.color-choice').show();
-		});
-		$('.back-to-product a').click(function() {
-			$('.color-choice').hide();
-		});
-		$('.color-choice ul li a').each(function() {
+		$('.product-color-choice ul li a').each(function() {
 			$(this).on('click', function() {
-				$('.color-selection').show().css('background-color', $(this).css('background-color'));
-				$('.color-selection .selected').text($(this).text());
-				$('.choose-this-color a').attr('data-variation', $(this).attr('data-variation'));
+				$('.pa_color').val($(this).attr('title'));
+				$('.product-color span').first().text($(this).attr('title'));
+				$('.product-color span').last().css('background-color', $(this).parent().css('background-color'));
+				$('.single_variation_wrap .variation_id').val($(this).attr('data-variation'));
 			});
-		});
-		$('.choose-this-color a').click(function() {
-			$('.color-selection').hide();
-			$('.color-choice').hide();
-			$('.pa_color').val($('.color-selection .selected').text());
-			$('.product-color span').text($('.color-selection .selected').text());
-			$('.product-color a').css('background-color', $('.color-selection').css('background-color'));
-			$('.single_variation_wrap .variation_id').val($(this).attr('data-variation'));
-		});
-		$('.color-selection .cancel').click(function() {
-			$('.color-selection').hide();
 		});
 
 
