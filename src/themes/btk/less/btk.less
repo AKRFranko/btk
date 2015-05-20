@@ -387,20 +387,38 @@ Larger Displays
 
 */
 @media (min-width: 768px) and (max-width: 991px) {
+	main{
+		text-align:center;
+		& > *{text-align:left;}
+	}
 	.home .main-article,
 	.woocommerce ul.products li.product{
 		display:inline-block;
 		width:~"calc(50% - 7px)";
 		vertical-align:top;
+	}
+	.woocommerce ul.products li.product{
+		&:nth-of-type(odd){
+			margin-right:7px;
+		}
+		&:nth-of-type(even){
+			margin-left:7px;
+		}		
+	}
+	.home .main-article{
 		&:nth-of-type(even){
 			margin-right:7px;
 		}
 		&:nth-of-type(odd){
 			margin-left:7px;
 		}
-	}	
+	}
 }
 @media (min-width: 992px) {
+	main{
+		text-align:center;
+		& > *{text-align:left;}
+	}
 	.home .main-article,
 	.woocommerce ul.products li.product{
 		display:inline-block;
@@ -408,13 +426,26 @@ Larger Displays
 		vertical-align:top;
 		margin:(20px/3);
 		clear:none;
+	
+	}	
+	.woocommerce ul.products li.product{
 		&:nth-of-type(3n){
 			margin-right:0;
 		}
-		&:first-of-type,&:nth-of-type(3n+1){
+		&:first-of-type,
+		&:nth-of-type(3n+1){
 			margin-left:0;
 		}
-	}	
+	}
+	.home .main-article{
+		&:nth-of-type(3n+1){
+			margin-right:0;
+		}
+		&:nth-child(2),
+		&:nth-of-type(3n+2){
+			margin-left:0;
+		}
+	}
 }
 
 

@@ -1,79 +1,74 @@
 {
-	"plugin":{
-	      "install":[
-	         {
-	            "args":{
-	               "plugin":"social-media-feather"
-	            },
-	            "opts":{
-	               "force":true,
-	               "activate":true
-	            }
-	         },
-	         {
-	            "args":{
-	               "plugin":"wpmandrill"
-	            },
-	            "opts":{
-	               "force":true,
-	               "activate":true
-	            }
-	         },
-	         {
-	            "args":{
-	               "plugin":"woocommerce"
-	            },
-	            "opts":{
-	               "force":true,
-	               "activate":true
-	            }
-	         },
-	         {
-	            "args":{
-	               "plugin":"contact-form-7"
-	            },
-	            "opts":{
-	               "force":true,
-	               "activate":true
-	            }
-	         },
-	         {
-	            "args":{
-	               "plugin":"simple-page-ordering"
-	            },
-	            "opts":{
-	               "force":true,
-	               "activate":true
-	            }
-	         },
-	         {
-	            "args":{
-	               "plugin":"woocommerce-poor-guys-swiss-knife"
-	            },
-	            "opts":{
-	               "activate":false
-	            }
-	         },
-	         {
-	            "args":{
-	               "plugin":"wp-maintenance-mode"
-	            },
-	            "opts":{
-	               "activate":false
-	            }
-	         },
-	         {
-	            "args":{
-	               "plugin":"subtitles"
-	            },
-	            "opts":{
-	               "activate":false
-	            }
-	         }
-	      ]
+	"plugin": {
+		"install": [{
+			"args": {
+				"plugin": "social-media-feather"
+			},
+			"opts": {
+				"force": true,
+				"activate": true
+			}
+		}, {
+			"args": {
+				"plugin": "wpmandrill"
+			},
+			"opts": {
+				"force": true,
+				"activate": true
+			}
+		}, {
+			"args": {
+				"plugin": "woocommerce"
+			},
+			"opts": {
+				"force": true,
+				"activate": true
+			}
+		}, {
+			"args": {
+				"plugin": "contact-form-7"
+			},
+			"opts": {
+				"force": true,
+				"activate": true
+			}
+		}, {
+			"args": {
+				"plugin": "simple-page-ordering"
+			},
+			"opts": {
+				"force": true,
+				"activate": true
+			}
+		}, {
+			"args": {
+				"plugin": "woocommerce-poor-guys-swiss-knife"
+			},
+			"opts": {
+				"activate": false
+			}
+		}, {
+			"args": {
+				"plugin": "wp-maintenance-mode"
+			},
+			"opts": {
+				"activate": false
+			}
+		}, {
+			"args": {
+				"plugin": "subtitles"
+			},
+			"opts": {
+				"activate": true
+			}
+		}]
 	},
 	"eval": {
-      "args": { "php": "WC_Install::create_pages();WC_Admin_Notices::remove_notice( 'install' );update_option('wpmandrill', array('api_key'=>'pRkvHbB81Ifoh8x6BI2_kw','from_name'=>'franko','from_username'=>'franko@akr.club','reply_to'=>'franko@akr.club', 'track_opens'=>1, 'track_clicks'=> 1));" },
-      "opts": { "quiet": true }
-   	}
+		"args": {
+			"php": "WC_Install::create_pages();WC_Admin_Notices::remove_notice( 'install' );update_option('wpmandrill', array('api_key'=>'pRkvHbB81Ifoh8x6BI2_kw','from_name'=>'franko','from_username'=>'franko@akr.club','reply_to'=>'franko@akr.club', 'track_opens'=>1, 'track_clicks'=> 1));"
+		},
+		"opts": {
+			"quiet": true
+		}
+	}
 }
