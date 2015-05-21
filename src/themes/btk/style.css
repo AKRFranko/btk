@@ -1379,14 +1379,16 @@ Woocommerce Overrides
 .woocommerce ul.products li.product .product-desc > a {
   margin-bottom: 5px;
 }
-.woocommerce ul.products li.product .product-add {
-  display: none;
-}
-.woocommerce.lookbook ul.products li.product .product-add {
-  display: block;
-}
-.woocommerce.lookbook ul.products li.product .product-add:last-child {
+.woocommerce ul.products li.product .product-add:last-child {
   border: none;
+}
+.woocommerce.lookbook ul.products .product-color-choice {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+.woocommerce.lookbook ul.products .product-color-choice ul {
+  margin: 0;
 }
 .woocommerce #content div.product {
   text-transform: lowercase;

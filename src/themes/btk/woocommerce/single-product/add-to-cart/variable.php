@@ -31,64 +31,9 @@ foreach ($terms as $term) {
 <form class="variations_form cart" method="post" enctype='multipart/form-data' data-product_id="<?php echo $post->ID; ?>" data-product_variations="<?php echo esc_attr( json_encode( $available_variations ) ) ?>">
 	<?php if ( ! empty( $available_variations ) ) : ?>
 
-		<div class="color-choice">
-			<?php foreach ( $attributes as $name => $options ) : ?>
-			<input type="hidden" class="<?php echo esc_attr( sanitize_title( $name ) ); ?>" name="attribute_<?php echo sanitize_title( $name ); ?>" data-attribute_name="attribute_<?php echo sanitize_title( $name ); ?>" value="<?php echo $term_slug; ?>" />
-			<ul>
-			<?php
-				if ( is_array( $options ) ) {
-
-					if ( isset( $_REQUEST[ 'attribute_' . sanitize_title( $name ) ] ) ) {
-						$selected_value = $_REQUEST[ 'attribute_' . sanitize_title( $name ) ];
-					} elseif ( isset( $selected_attributes[ sanitize_title( $name ) ] ) ) {
-						$selected_value = $selected_attributes[ sanitize_title( $name ) ];
-					} else {
-						$selected_value = '';
-					}
-
-					// Get terms if this is a taxonomy - ordered
-					if ( taxonomy_exists( $name ) ) {
-
-						$terms = wc_get_product_terms( $post->ID, $name, array( 'fields' => 'all' ) );
-
-						foreach ( $terms as $term ) {
-							if ( ! in_array( $term->slug, $options ) ) {
-								continue;
-							}
-
-							$variation = 0;
-							foreach ($available_variations as $color) {
-								if ( $color['attributes']['attribute_pa_color'] == $term->slug ) {
-									$variation = $color['variation_id'];
-									if ($selected_value == $term->slug) {
-										$default_variation_id = $variation;
-									}
-								}
-							}
-
-							echo '<li><a style="background-color:' . $term->description . '" data-variation="' . $variation . '">' . apply_filters( 'woocommerce_variation_option_name', $term->name ) . '</a></li>';
-						}
-					}
-				}
-			?>
-			</ul>
-			<?php endforeach;?>
-			<p class="back-to-product">
-				<span class="valign">Back to product</span>
-				<a class="buttons valign icon-arrow-lite-left-white"></a>
-			</p>
-
-			<div class="color-selection">
-				<span class="selected valign">Color</span>
-				<a class="cancel alignright">x</a>
-				<p class="choose-this-color">
-					<span class="valign">Choose this color</span>
-					<a class="buttons valign icon-arrow-lite-right-white"></a>
-				</p>
-			</div>
-		</div>
-
-
+		<?php foreach ( $attributes as $name => $options ) : ?>
+		<input type="hidden" class="<?php echo esc_attr( sanitize_title( $name ) ); ?>" name="attribute_<?php echo sanitize_title( $name ); ?>" data-attribute_name="attribute_<?php echo sanitize_title( $name ); ?>" value="<?php echo $term_slug; ?>" />
+		<?php endforeach;?>
 
 		<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
 

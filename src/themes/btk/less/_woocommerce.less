@@ -118,10 +118,15 @@ Woocommerce Overrides
 				.product-price { font-size:1.15em; }
 				> a { margin-bottom:5px; }
 			}
-			.product-add { display:none; }
+			.product-add { &:last-child { border:none; } }
 		}
 	}
-	&.lookbook ul.products li.product .product-add { display:block; &:last-child { border:none; } }
+	&.lookbook ul.products {
+		.product-color-choice {
+			margin:0; padding:0; border:none;
+			ul { margin:0; }
+		}
+	}
 
 
 	#content {
@@ -184,7 +189,6 @@ Woocommerce Overrides
 			ul li {
 				display:inline-block; margin:0 5px 10px;
 				width:70px; height:35px; border:1px solid @gray;
-//				a { display:block; width:70px; height:35px; cursor:pointer; border:1px solid @gray; }
 				a { display:block; width:100%; height:100%; cursor:pointer; background-color:transparent; }
 				a:hover { background-color:rgba(0, 0, 0, 0.25); }
 			}

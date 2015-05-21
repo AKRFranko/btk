@@ -79,6 +79,60 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 
 	?>
 
+
+<?php if ( is_page('lookbook') ) { ?>
+
+	<?php
+		if ( $product->is_type('variable') ) {
+			$available_variations = $product->get_available_variations();
+			$attributes = $product->get_variation_attributes();
+			$selected_attributes = $product->get_variation_default_attributes();
+	?>
+	<div class="product-color-choice clearfix">
+		<p class="center">select color</p>
+		<?php foreach ( $attributes as $name => $options ) : ?>
+		<ul>
+		<?php
+			if ( is_array( $options ) ) {
+
+				if ( isset( $_REQUEST[ 'attribute_' . sanitize_title( $name ) ] ) ) {
+					$selected_value = $_REQUEST[ 'attribute_' . sanitize_title( $name ) ];
+				} elseif ( isset( $selected_attributes[ sanitize_title( $name ) ] ) ) {
+					$selected_value = $selected_attributes[ sanitize_title( $name ) ];
+				} else {
+					$selected_value = '';
+				}
+
+				// Get terms if this is a taxonomy - ordered
+				if ( taxonomy_exists( $name ) ) {
+
+					$terms = wc_get_product_terms( $post->ID, $name, array( 'fields' => 'all' ) );
+
+					foreach ( $terms as $term ) {
+						if ( ! in_array( $term->slug, $options ) ) {
+							continue;
+						}
+
+						$variation = 0;
+						foreach ($available_variations as $color) {
+							if ( $color['attributes']['attribute_pa_color'] == $term->slug ) {
+								$variation = $color['variation_id'];
+								if ($selected_value == $term->slug) {
+									$default_variation_id = $variation;
+								}
+							}
+						}
+
+						echo '<li style="background-color:' . $term->description . '"><a data-variation="' . $variation . '" title="' . apply_filters( 'woocommerce_variation_option_name', $term->name ) . '"></a></li>';
+					}
+				}
+			}
+		?>
+		</ul>
+		<?php endforeach;?>
+	</div>
+	<?php } ?>
+
 	<div class="product-add">
 		<?php
 			if ( $product->is_type('variable') ) {
@@ -93,5 +147,7 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 			}
 		?>
 	</div>
+
+<?php } ?>
 
 </li>
