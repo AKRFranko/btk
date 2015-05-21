@@ -377,7 +377,7 @@
 					"file": "./src/data/text/shipping.txt"
 				},
 				"opts": {
-					"post_title": "shipping",
+					"post_title": "shipping info",
 					"post_name": "about-shipping",
 					"post_type": "page",
 					"post_status": "publish"
@@ -486,7 +486,7 @@
 					"file": "./src/data/text/contact.txt"
 				},
 				"opts": {
-					"post_title": "contact",
+					"post_title": "contact us",
 					"post_name": "contact",
 					"post_type": "page",
 					"post_status": "publish"
@@ -505,8 +505,8 @@
 			},
 			"$account_page": {
 				"opts": {
-					"post_title": "account",
-					"post_name": "account",
+					"post_title": "my account",
+					"post_name": "my-account",
 					"post_type": "page",
 					"post_status": "publish",
 					"post_content": "[woocommerce_my_account]"
