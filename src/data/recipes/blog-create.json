@@ -465,8 +465,8 @@
 			},
 			"$samples_page": {
 				"opts": {
-					"post_title": "samples",
-					"post_name": "samples",
+					"post_title": "order samples",
+					"post_name": "order-samples",
 					"post_type": "page",
 					"post_status": "publish",
 					"post_content": "Samples Page"
@@ -474,8 +474,8 @@
 			},
 			"$delivery_page": {
 				"opts": {
-					"post_title": "delivery",
-					"post_name": "delivery",
+					"post_title": "free delivery",
+					"post_name": "free-delivery",
 					"post_type": "page",
 					"post_status": "publish",
 					"post_content": "Delivery Page"
@@ -517,7 +517,7 @@
 					"file": "./src/data/text/mailchimp.txt"
 				},
 				"opts": {
-					"post_title": "sign up for email",
+					"post_title": "sign up for emails",
 					"post_name": "emails",
 					"post_type": "page",
 					"post_status": "publish"
