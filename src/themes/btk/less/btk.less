@@ -319,6 +319,11 @@ Content
 				overflow:hidden; margin-bottom:1.5em;
 				img { width:auto; border:none; }
 			}
+			.entry-title-primary { font-family:@altfontfamily; }
+			.entry-subtitle {
+				font-style:italic; font-size:0.625em;
+				&:before { content:'_ '; }
+			}
 		}
 		&.error-404 {
 			min-height:250px;
