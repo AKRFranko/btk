@@ -13,9 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 global $product, $post;
 
-$term_name = $selected_attributes['pa_color'];
+$term_name = reset($selected_attributes);
 $term_slug = '';
-$terms = wc_get_product_terms($product->id, 'pa_color', array( 'fields' => 'all' ));
+$terms = wc_get_product_terms($product->id, key($selected_attributes), array( 'fields' => 'all' ));
 foreach ($terms as $term) {
 	if ($term_name === $term->slug) {
 		$term_slug = $term->name;
@@ -33,6 +33,38 @@ foreach ($terms as $term) {
 
 		<?php foreach ( $attributes as $name => $options ) : ?>
 		<input type="hidden" class="<?php echo esc_attr( sanitize_title( $name ) ); ?>" name="attribute_<?php echo sanitize_title( $name ); ?>" data-attribute_name="attribute_<?php echo sanitize_title( $name ); ?>" value="<?php echo $term_slug; ?>" />
+		<?php
+			if ( is_array( $options ) ) {
+
+				if ( isset( $_REQUEST[ 'attribute_' . sanitize_title( $name ) ] ) ) {
+					$selected_value = $_REQUEST[ 'attribute_' . sanitize_title( $name ) ];
+				} elseif ( isset( $selected_attributes[ sanitize_title( $name ) ] ) ) {
+					$selected_value = $selected_attributes[ sanitize_title( $name ) ];
+				} else {
+					$selected_value = '';
+				}
+
+				// Get terms if this is a taxonomy - ordered
+				if ( taxonomy_exists( $name ) ) {
+
+					$terms = wc_get_product_terms( $post->ID, $name, array( 'fields' => 'all' ) );
+
+					foreach ( $terms as $term ) {
+						if ( ! in_array( $term->slug, $options ) ) { continue; }
+
+						$variation = 0;
+						foreach ($available_variations as $color) {
+							if ( $color['attributes']['attribute_' . $name] == $term->slug ) {
+								$variation = $color['variation_id'];
+								if ($selected_value == $term->slug) {
+									$default_variation_id = $variation;
+								}
+							}
+						}
+					}
+				}
+			}
+		?>
 		<?php endforeach;?>
 
 		<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>

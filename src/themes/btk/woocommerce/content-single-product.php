@@ -109,13 +109,11 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 					$terms = wc_get_product_terms( $post->ID, $name, array( 'fields' => 'all' ) );
 
 					foreach ( $terms as $term ) {
-						if ( ! in_array( $term->slug, $options ) ) {
-							continue;
-						}
+						if ( ! in_array( $term->slug, $options ) ) { continue; }
 
 						$variation = 0;
 						foreach ($available_variations as $color) {
-							if ( $color['attributes']['attribute_pa_color'] == $term->slug ) {
+							if ( $color['attributes']['attribute_' . $name] == $term->slug ) {
 								$variation = $color['variation_id'];
 								if ($selected_value == $term->slug) {
 									$default_variation_id = $variation;

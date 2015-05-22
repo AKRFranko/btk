@@ -141,7 +141,7 @@
 		// product colors change
 		$('.product-color-choice ul li a').each(function() {
 			$(this).on('click', function() {
-				$('.pa_color').val($(this).attr('title'));
+				$('input[name^="attribute_"]').val($(this).attr('title'));
 				$('.product-color span').first().text($(this).attr('title'));
 				$('.product-color span').last().css('background-color', $(this).parent().css('background-color'));
 				$('.single_variation_wrap .variation_id').val($(this).attr('data-variation'));
