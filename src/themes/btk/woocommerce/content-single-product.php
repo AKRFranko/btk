@@ -90,7 +90,6 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 	?>
 	<div class="product-color-choice clearfix">
 		<p class="center">select color</p>
-		<?php echo '<pre>'; print_r($attributes); echo '</pre>'; ?>
 		<?php foreach ( $attributes as $name => $options ) : ?>
 		<ul>
 		<?php
