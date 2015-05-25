@@ -36,37 +36,20 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 <div itemscope itemtype="<?php echo woocommerce_get_product_schema(); ?>" id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 	<div class="product-images">
-		<?php if ( ! count( $product->get_gallery_attachment_ids() ) > 0 ) { ?>
-		<div>
-		<?php
-			if ( has_post_thumbnail() ) {
-				$image_title 	= esc_attr( get_the_title( get_post_thumbnail_id() ) );
-				$image_link  	= wp_get_attachment_url( get_post_thumbnail_id() );
-				echo '<img src="' . $image_link . '" alt="' . $image_title . '">';
-			} else {
-				echo apply_filters( 'woocommerce_single_product_image_html', sprintf( '<img src="%s" alt="%s" />', wc_placeholder_img_src(), __( 'Placeholder', 'woocommerce' ) ), $post->ID );
-			}
-		?>
-		</div>
-		<?php } else { ?>
+			<!-- main slider -->
 		<div class="edb-slider">
-			<?php
-				btk_edb_slider('post_type=any&p='. get_the_ID(), $attachment_ids);
-			?>
+				<?php btk_edb_single_product_slider();?>
 			<div class="controls">
-				<a class="prev" href="#"><span class="icon-arrow-lite-left-black"></span></a>
-				<span class="index">0</span>
-				<span class="separator"> | </span>
-				<span class="total"> 5 </span>
-				<a class="next" href="#"><span class="icon-arrow-lite-right-black"></span></a>
+				<a class="prev" href="#"><span class="icon-arrow-lite-left-white"></span></a>
+					<span class="index">0</span>
+					<span class="separator"> | </span>
+					<span class="total"> 5 </span>
+				<a class="next" href="#"><span class="icon-arrow-lite-right-white"></span></a>
 			</div>
+			<?php if ( $product->is_in_stock() ) { ?>
+				<span class="in-stock"<?php if ( count( $product->get_gallery_attachment_ids() ) > 0 ) { echo ' style="bottom:80px;"'; } ?>>in stock</span>
+			<?php } ?>
 		</div>
-		<?php } ?>
-
-
-		<?php if ( $product->is_in_stock() ) { ?>
-		<span class="in-stock"<?php if ( count( $product->get_gallery_attachment_ids() ) > 0 ) { echo ' style="bottom:80px;"'; } ?>>in stock</span>
-		<?php } ?>
 	</div>
 
 
@@ -78,44 +61,52 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 	?>
 	<div class="product-color-choice clearfix">
 		<p class="center">select color</p>
-		<?php foreach ( $attributes as $name => $options ) : ?>
 		<ul>
+		<?php foreach ( $attributes['edb_material'] as $color ){
+			$current = $_REQUEST[ 'attribute_edb_material' ] === $color ? 'current' : '';
+			$src = get_bloginfo('template_directory'). "/img/textures/$color.jpg";
+			$html = '<li><a href="#" data-variation="'.sanitize_title($color).'" title="'.sanitize_title($color).'" class="product-color-choice-option edb-material-'.sanitize_title($color).'">';
+			$html .= '<img class=\"material\" src="'.$src.'">';
+			$html .= '</a></li>';
+			echo $html;
+		}; ?>
+		
 		<?php
-			if ( is_array( $options ) ) {
+			// var_dump($option);
+			// if ( is_array( $options ) ) {
 
-				if ( isset( $_REQUEST[ 'attribute_' . sanitize_title( $name ) ] ) ) {
-					$selected_value = $_REQUEST[ 'attribute_' . sanitize_title( $name ) ];
-				} elseif ( isset( $selected_attributes[ sanitize_title( $name ) ] ) ) {
-					$selected_value = $selected_attributes[ sanitize_title( $name ) ];
-				} else {
-					$selected_value = '';
-				}
+			// 	if ( isset( $_REQUEST[ 'attribute_' . sanitize_title( $name ) ] ) ) {
+			// 		$selected_value = $_REQUEST[ 'attribute_' . sanitize_title( $name ) ];
+			// 	} elseif ( isset( $selected_attributes[ sanitize_title( $name ) ] ) ) {
+			// 		$selected_value = $selected_attributes[ sanitize_title( $name ) ];
+			// 	} else {
+			// 		$selected_value = '';
+			// 	}
 
-				// Get terms if this is a taxonomy - ordered
-				if ( taxonomy_exists( $name ) ) {
+			// 	// Get terms if this is a taxonomy - ordered
+			// 	if ( taxonomy_exists( $name ) ) {
 
-					$terms = wc_get_product_terms( $post->ID, $name, array( 'fields' => 'all' ) );
+			// 		$terms = wc_get_product_terms( $post->ID, $name, array( 'fields' => 'all' ) );
 
-					foreach ( $terms as $term ) {
-						if ( ! in_array( $term->slug, $options ) ) { continue; }
+			// 		foreach ( $terms as $term ) {
+			// 			if ( ! in_array( $term->slug, $options ) ) { continue; }
 
-						$variation = 0;
-						foreach ($available_variations as $color) {
-							if ( $color['attributes']['attribute_' . $name] == $term->slug ) {
-								$variation = $color['variation_id'];
-								if ($selected_value == $term->slug) {
-									$default_variation_id = $variation;
-								}
-							}
-						}
+			// 			$variation = 0;
+			// 			foreach ($available_variations as $color) {
+			// 				if ( $color['attributes']['attribute_' . $name] == $term->slug ) {
+			// 					$variation = $color['variation_id'];
+			// 					if ($selected_value == $term->slug) {
+			// 						$default_variation_id = $variation;
+			// 					}
+			// 				}
+			// 			}
 
-						echo '<li style="background-color:' . $term->description . '"><a data-variation="' . $variation . '" title="' . apply_filters( 'woocommerce_variation_option_name', $term->name ) . '"></a></li>';
-					}
-				}
-			}
+			// 			echo '<li style="background-color:' . $term->description . '"><a data-variation="' . $variation . '" title="' . apply_filters( 'woocommerce_variation_option_name', $term->name ) . '"></a></li>';
+			// 		}
+			// 	}
+			// }
 		?>
 		</ul>
-		<?php endforeach;?>
 	</div>
 	<?php } ?>
 
@@ -127,6 +118,7 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 
 
 	<div class="product-description clearfix">
+		<?php var_dump($product); ?>
 		<p class="desc"><?php echo get_the_content(); ?></p>
 		<p class="right">
 			<a href="" download="" class="upper pr-pdf">PDF</a>

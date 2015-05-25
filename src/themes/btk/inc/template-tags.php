@@ -312,6 +312,7 @@ function btk_edb_slider($query, $attach = null) {
 			array_push($data, array("src" => $src[0], "text" => $title, "url" => $href));
 		}
 	}
+/*
 	if ($attach) {
 		foreach ( $attach as $attachment_id ) {
 			$src = wp_get_attachment_image_src( $attachment_id, 'large');
@@ -320,8 +321,31 @@ function btk_edb_slider($query, $attach = null) {
 			array_push($data, array("src" => $src[0], "text" => $title, "url" => $href));
 		}
 	}
+*/
 	?><script type="application/json"><?php echo json_encode($data);?></script><?php
 }
+
+function btk_edb_single_product_slider() {
+	$data = array();
+	$images =  get_posts(array(
+		'post_parent' => get_the_ID(),
+		'post_type' => 'attachment',
+		'numberposts' => -1,
+		'orderby'        => 'title',
+		'order'           => 'ASC',
+		'post_mime_type' => 'image'
+		));
+	foreach ($images as $image) {
+		$src = wp_get_attachment_image_src($image->ID, 'large');
+		$title = get_the_title();
+		$href = get_permalink();
+		array_push($data, array("src" => $src[0], "text" => $title, "url" => $href));
+	}
+	?><script type="application/json"><?php echo json_encode($data);?></script><?php
+}
+
+
+
 
 /**
  * Flush out the transients used in btk_categorized_blog.
