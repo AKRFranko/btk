@@ -122,6 +122,7 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 
 
 	<div class="product-description clearfix">
+		<?php var_dump($product); ?>
 		<p class="desc"><?php echo get_the_content(); ?></p>
 		<p class="right">
 			<a href="" download="" class="upper pr-pdf">PDF</a>
