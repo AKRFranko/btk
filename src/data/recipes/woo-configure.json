@@ -26,7 +26,7 @@
 			}, {
 				"args": {
 					"name": "woocommerce_hide_out_of_stock_items",
-					"value": "yes"
+					"value": "no"
 				}
 			}, {
 				"args": {
@@ -35,7 +35,17 @@
 				}
 			}, {
 				"args": {
-					"name": "catalog_image_size",
+					"name": "woocommerce_product_category_slug",
+					"value": "products"
+				}
+			}, {
+				"args": {
+					"name": "woocommerce_product_tag_slug",
+					"value": "showcase"
+				}
+			}, {
+				"args": {
+					"name": "shop_catalog_image_size",
 					"value": "{\\\"width\\\":600,\\\"height\\\":600,\\\"crop\\\":0}"
 				},
 				"opts": {
