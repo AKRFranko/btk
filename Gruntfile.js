@@ -258,6 +258,12 @@ module.exports = function(grunt) {
 				},
 				src: ['<%= cfg.project_dir %>/node_modules/nwp/bin/nwp']
 			},
+			woo_configure: {
+				options: {
+					args: ['-j', '<%= cfg.project_dir %>/src/data/recipes/woo-configure.json', '-y', '<%= cfg.project_dir %>/wp-cli.yml']
+				},
+				src: ['<%= cfg.project_dir %>/node_modules/nwp/bin/nwp']
+			},
 			generate_catalog: {
 				options: {
 					cwd: '<%= cfg.project_dir %>/src/data/media/mock-catalog/',
@@ -299,6 +305,8 @@ module.exports = function(grunt) {
 	grunt.registerTask('catalog:delete', ["execute:catalog_delete"])
 	grunt.registerTask('catalog:reset', ["catalog:delete", "catalog:create"])
 
+
+	grunt.registerTask('woo:configure', ["execute:woo_configure"])
 	grunt.registerTask('theme:update', ["build", "compress", "execute:theme_update"])
 
 	grunt.registerTask('release', ["execute:generate_catalog", "site:reset", "plugins:install", "splash:create", "blog:create", "catalog:create", "theme:update", "site:email"])

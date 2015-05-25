@@ -1,0 +1,15 @@
+{
+	"theme": {
+		"delete": {
+			"args": {
+				"theme": "twentyfourteen"
+			}
+			"args": {
+				"theme": "twentyfifteen"
+			}
+			"args": {
+				"theme": "twentythirteen"
+			}
+		}
+	}
+}

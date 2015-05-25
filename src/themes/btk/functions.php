@@ -24,6 +24,14 @@ add_action('wp_logout', 'btk_session_end');
 add_action('wp_login', 'btk_session_end');
 
 /**
+ * This theme supports woocommerce (and voila! one less anoying admin notification box!)
+ */
+function woocommerce_support() {
+    add_theme_support( 'woocommerce' );
+}
+add_action( 'after_setup_theme', 'woocommerce_support' );
+
+/**
  * Synchronize Browser Storage Values With Session Values. (using basil.js in front-end)
  */
 
