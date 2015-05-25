@@ -312,7 +312,6 @@ function btk_edb_slider($query, $attach = null) {
 			array_push($data, array("src" => $src[0], "text" => $title, "url" => $href));
 		}
 	}
-/*
 	if ($attach) {
 		foreach ( $attach as $attachment_id ) {
 			$src = wp_get_attachment_image_src( $attachment_id, 'large');
@@ -321,7 +320,6 @@ function btk_edb_slider($query, $attach = null) {
 			array_push($data, array("src" => $src[0], "text" => $title, "url" => $href));
 		}
 	}
-*/
 	?><script type="application/json"><?php echo json_encode($data);?></script><?php
 }
 

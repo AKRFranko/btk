@@ -36,20 +36,20 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 <div itemscope itemtype="<?php echo woocommerce_get_product_schema(); ?>" id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 	<div class="product-images">
-			<!-- main slider -->
 		<div class="edb-slider">
-				<?php btk_edb_single_product_slider();?>
+			<?php btk_edb_single_product_slider();?>
 			<div class="controls">
-				<a class="prev" href="#"><span class="icon-arrow-lite-left-white"></span></a>
+				<a class="prev" href="#"><span class="icon-arrow-lite-left-black"></span></a>
 					<span class="index">0</span>
 					<span class="separator"> | </span>
 					<span class="total"> 5 </span>
-				<a class="next" href="#"><span class="icon-arrow-lite-right-white"></span></a>
+				<a class="next" href="#"><span class="icon-arrow-lite-right-black"></span></a>
 			</div>
-			<?php if ( $product->is_in_stock() ) { ?>
-				<span class="in-stock"<?php if ( count( $product->get_gallery_attachment_ids() ) > 0 ) { echo ' style="bottom:80px;"'; } ?>>in stock</span>
-			<?php } ?>
 		</div>
+
+		<?php if ( $product->is_in_stock() ) { ?>
+			<span class="in-stock"<?php if ( count( $product->get_gallery_attachment_ids() ) > 0 ) { echo ' style="bottom:80px;"'; } ?>>in stock</span>
+		<?php } ?>
 	</div>
 
 
