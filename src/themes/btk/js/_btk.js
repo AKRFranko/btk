@@ -89,7 +89,16 @@
 			var slider = window.EDBSlider(el, opts);
 			slider.toggle(0, 'on');
 		});
+		$('.edb-product-slider').each(function() {
+			var el = $(this).get(0);
+			var opts = {
+				spacing: "#masthead"
+			}
+			var slider = window.EDBSlider(el, opts);
+			slider.toggle(0, 'on');
+		});
 
+/*
 		// slider product images
 		$('.product-slider').bxSlider({
 			nextSelector: '#controls-next',
@@ -100,7 +109,7 @@
 			pagerType: 'short',
 			pagerShortSeparator: ' | '
 		});
-
+*/
 
 
 		// product reviews

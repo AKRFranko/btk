@@ -35,49 +35,37 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 
 <div itemscope itemtype="<?php echo woocommerce_get_product_schema(); ?>" id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-
 	<div class="product-images">
-		<ul class="<?php if ( count( $product->get_gallery_attachment_ids() ) > 0 ) { echo 'product-slider'; } ?>">
+		<?php if ( ! count( $product->get_gallery_attachment_ids() ) > 0 ) { ?>
+		<div>
 		<?php
 			if ( has_post_thumbnail() ) {
-
 				$image_title 	= esc_attr( get_the_title( get_post_thumbnail_id() ) );
 				$image_link  	= wp_get_attachment_url( get_post_thumbnail_id() );
-
-				echo '<li><img src="' . $image_link . '" alt="' . $image_title . '"></li>';
-
+				echo '<img src="' . $image_link . '" alt="' . $image_title . '">';
 			} else {
-
-				echo apply_filters( 'woocommerce_single_product_image_html', sprintf( '<li><img src="%s" alt="%s" /></li>', wc_placeholder_img_src(), __( 'Placeholder', 'woocommerce' ) ), $post->ID );
-
-			}
-
-		?>
-
-		<?php
-			if ( $attachment_ids ) {
-
-				foreach ( $attachment_ids as $attachment_id ) {
-
-					$image_link = wp_get_attachment_url( $attachment_id );
-					$image_title = esc_attr( get_the_title( $attachment_id ) );
-
-					echo '<li><img src="' . $image_link . '" alt="' . $image_title . '"></li>';
-
-				}
+				echo apply_filters( 'woocommerce_single_product_image_html', sprintf( '<img src="%s" alt="%s" />', wc_placeholder_img_src(), __( 'Placeholder', 'woocommerce' ) ), $post->ID );
 			}
 		?>
-		</ul>
+		</div>
+		<?php } else { ?>
+		<div class="edb-slider">
+			<?php
+				btk_edb_slider('post_type=any&p='. get_the_ID(), $attachment_ids);
+			?>
+			<div class="controls">
+				<a class="prev" href="#"><span class="icon-arrow-lite-left-black"></span></a>
+				<span class="index">0</span>
+				<span class="separator"> | </span>
+				<span class="total"> 5 </span>
+				<a class="next" href="#"><span class="icon-arrow-lite-right-black"></span></a>
+			</div>
+		</div>
+		<?php } ?>
+
 
 		<?php if ( $product->is_in_stock() ) { ?>
 		<span class="in-stock"<?php if ( count( $product->get_gallery_attachment_ids() ) > 0 ) { echo ' style="bottom:80px;"'; } ?>>in stock</span>
-		<?php } ?>
-
-		<?php if ( count( $product->get_gallery_attachment_ids() ) > 0 ) { ?>
-		<div class="product-slider-controls">
-			<span id="controls-prev" class="icon-arrow-lite-left-black"></span>
-			<span id="controls-next" class="icon-arrow-lite-right-black"></span>
-		</div>
 		<?php } ?>
 	</div>
 
