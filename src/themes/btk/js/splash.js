@@ -72,39 +72,50 @@
 	}
 
 	EDBSplashPage.prototype = {
+		debugToggle: function($btn) {
+			var val = this.store.get('debug');
+			if (val) {
+				this.store.set('debug', false);
+
+			} else {
+				this.store.set('debug', true);
+
+			}
+			window.location.reload(true);
+		},
 		show: function(callback) {
 			var callback = callback || $.noop;
 			var it = this;
 			var now = (new Date()).getTime();
 			var data = this.store.all();
-			if (this.store.get('devon')) return true;
+			if (!this.store.get('debug') && this.store.get('devon')) return true;
 
-			// if( data.splash && data.splash.value === true ){
-			// 	return callback( null, false );
-			// }else{
-			it.fetch(function(error, images) {
-				var splash = it.build(images);
-				splash.find('button').on('click', function(e) {
-					e.preventDefault();
-					var btn = $(this);
-					var lang = btn.data('lang');
-					it.store.set('splash', {
-						value: true,
-						time: now
+			if (!this.store.get('debug') && (data.splash && data.splash.value === true)) {
+				return callback(null, false);
+			} else {
+				it.fetch(function(error, images) {
+					var splash = it.build(images);
+					splash.find('button').on('click', function(e) {
+						e.preventDefault();
+						var btn = $(this);
+						var lang = btn.data('lang');
+						it.store.set('splash', {
+							value: true,
+							time: now
+						});
+						it.store.set('lang', {
+							value: lang,
+							time: now
+						});
+						it.store.sync(callback);
+						setTimeout(function() {
+							$('body').removeClass('splash-on');
+							$('#splash-page').remove();
+						}, 200);
 					});
-					it.store.set('lang', {
-						value: lang,
-						time: now
-					});
-					it.store.sync(callback);
-					setTimeout(function() {
-						$('body').removeClass('splash-on');
-						$('#splash-page').remove();
-					}, 200);
+					$('body').append(splash).addClass('splash-on')
 				});
-				$('body').append(splash).addClass('splash-on')
-			});
-			//}
+			}
 		},
 		build: function(data) {
 			var container = $('<form>').attr('id', 'splash-page');
@@ -152,6 +163,11 @@
 
 		var splashPage = new EDBSplashPage();
 		splashPage.show();
+		var $tog = $('<button>').text('turn debug ' + (store.get('debug') ? 'off' : 'on'));
+		$('#colophon').append($tog);
+		$tog.on('click', function() {
+			splashPage.debugToggle($(this));
+		})
 	});
 
 
