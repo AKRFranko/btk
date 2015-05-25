@@ -1399,7 +1399,7 @@ Woocommerce Overrides
 }
 .woocommerce #content div.product div.images img {
   width: 100%;
-  max-height: 400px;
+  height: auto;
   border-bottom: 3px solid #000000;
 }
 .woocommerce #content div.product div.summary {
