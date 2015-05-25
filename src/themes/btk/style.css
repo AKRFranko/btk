@@ -1437,14 +1437,6 @@ Woocommerce Overrides
 .woocommerce .product .product-images {
   position: relative;
   padding-bottom: 30px;
-  /*
-			.edb-slider { margin-bottom:30px; .imgborder(); }
-			.controls {
-				top:initial; bottom:-40px;
-				a { font-size:1.25em; vertical-align:middle; }
-				> span { color:@black; text-shadow:none; font-weight:normal; }
-			}
-*/
 }
 .woocommerce .product .product-images img {
   width: 100%;
@@ -1471,6 +1463,26 @@ Woocommerce Overrides
   left: 0;
   width: 100%;
   height: 100%;
+}
+.woocommerce .product .product-images .edb-slider {
+  margin-bottom: 30px;
+  border-bottom: 3px solid #000000;
+}
+.woocommerce .product .product-images .edb-slider .slide a {
+  display: none;
+}
+.woocommerce .product .product-images .controls {
+  top: initial;
+  bottom: -40px;
+}
+.woocommerce .product .product-images .controls a {
+  font-size: 1.25em;
+  vertical-align: middle;
+}
+.woocommerce .product .product-images .controls > span {
+  color: #000000;
+  text-shadow: none;
+  font-weight: normal;
 }
 .woocommerce .product .product-images .in-stock {
   position: absolute;

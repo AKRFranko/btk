@@ -90,18 +90,6 @@
 			slider.toggle(0, 'on');
 		});
 
-/*
-		// slider product images
-		$('.product-slider').bxSlider({
-			nextSelector: '#controls-next',
-			prevSelector: '#controls-prev',
-			nextText: '',
-			prevText: '',
-			pager: true,
-			pagerType: 'short',
-			pagerShortSeparator: ' | '
-		});
-*/
 
 
 		// product reviews
