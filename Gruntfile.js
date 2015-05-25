@@ -309,8 +309,9 @@ module.exports = function(grunt) {
 	grunt.registerTask('woo:configure', ["execute:woo_configure"])
 	grunt.registerTask('theme:update', ["build", "compress", "execute:theme_update"])
 
-	grunt.registerTask('release', ["execute:generate_catalog", "site:reset", "plugins:install", "splash:create", "blog:create", "catalog:create", "theme:update", "site:email"])
-	grunt.registerTask('install', ["theme:update"])
+	grunt.registerTask('release', ["execute:generate_catalog", "site:reset", "plugins:install", "splash:create", "blog:create", "catalog:create", "woo:configure", "install", "site:email"])
+		//grunt.registerTask('install', ["theme:update"])
+	grunt.registerTask('install', ["build"])
 
 
 	grunt.registerTask('work', ['build', 'watch']);
