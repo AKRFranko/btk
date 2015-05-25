@@ -300,7 +300,7 @@ function btk_categorized_blog() {
 	}
 }
 
-function btk_edb_slider($query) {
+function btk_edb_slider($query, $attach = null) {
 	$slider_query = new WP_Query($query);
 	$data = array();
 	while ($slider_query->have_posts()) {
@@ -312,6 +312,16 @@ function btk_edb_slider($query) {
 			array_push($data, array("src" => $src[0], "text" => $title, "url" => $href));
 		}
 	}
+/*
+	if ($attach) {
+		foreach ( $attach as $attachment_id ) {
+			$src = wp_get_attachment_image_src( $attachment_id, 'large');
+			$title = esc_attr( get_the_title( $attachment_id ) );
+			$href = get_permalink();
+			array_push($data, array("src" => $src[0], "text" => $title, "url" => $href));
+		}
+	}
+*/
 	?><script type="application/json"><?php echo json_encode($data);?></script><?php
 }
 

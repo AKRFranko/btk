@@ -35,9 +35,7 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 
 <div itemscope itemtype="<?php echo woocommerce_get_product_schema(); ?>" id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-
 	<div class="product-images">
-	
 			<!-- main slider -->
 		<div class="edb-slider">
 				<?php btk_edb_single_product_slider();?>
@@ -52,8 +50,6 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 				<span class="in-stock"<?php if ( count( $product->get_gallery_attachment_ids() ) > 0 ) { echo ' style="bottom:80px;"'; } ?>>in stock</span>
 			<?php } ?>
 		</div>
-
-	
 	</div>
 
 

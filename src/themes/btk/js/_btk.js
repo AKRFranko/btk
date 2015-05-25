@@ -90,6 +90,7 @@
 			slider.toggle(0, 'on');
 		});
 
+/*
 		// slider product images
 		$('.product-slider').bxSlider({
 			nextSelector: '#controls-next',
@@ -100,7 +101,7 @@
 			pagerType: 'short',
 			pagerShortSeparator: ' | '
 		});
-
+*/
 
 
 		// product reviews
