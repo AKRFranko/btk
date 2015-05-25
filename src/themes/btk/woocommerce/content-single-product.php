@@ -61,15 +61,20 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 		if ( $product->is_type('variable') ) {
 			$available_variations = $product->get_available_variations();
 			$attributes = $product->get_variation_attributes();
-			var_dump($attributes);
 			$selected_attributes = $product->get_variation_default_attributes();
 	?>
 	<div class="product-color-choice clearfix">
 		<p class="center">select color</p>
-		<?php foreach ( $attributes['edb_material'] as $color ){
-			echo "$color";
-		}; ?>
 		<ul>
+		<?php foreach ( $attributes['edb_material'] as $color ){
+			$current = $_REQUEST[ 'attribute_edb_material' ] === $color ? 'current' : '';
+			$src = get_bloginfo('template_directory'). "/img/textures/$color.jpg";
+			$html = '<li><a href="#" data-variation="'.sanitize_title($color).'" title="'.sanitize_title($color).'" class="product-color-choice-option edb-material-'.sanitize_title($color).'">';
+			$html .= '<img class=\"material\" src="'.$src.'">';
+			$html .= '</a></li>';
+			echo $html;
+		}; ?>
+		
 		<?php
 			// var_dump($option);
 			// if ( is_array( $options ) ) {
