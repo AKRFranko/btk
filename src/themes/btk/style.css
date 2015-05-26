@@ -1468,17 +1468,6 @@ Woocommerce Overrides
   left: 15px;
   z-index: 5;
 }
-.woocommerce .product .product-images .bx-wrapper {
-  overflow: inherit;
-}
-.woocommerce .product .product-images .bx-wrapper .bx-pager {
-  position: static;
-  padding: 12px 0 0;
-  color: #000000;
-  font-family: 'Theinhardt', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 1em;
-  font-weight: normal;
-}
 .woocommerce .product .product-color-choice {
   margin-bottom: 30px;
   padding-bottom: 10px;
@@ -1604,7 +1593,7 @@ Woocommerce Overrides
 .woocommerce .product .product-image:after {
   content: '';
   display: block;
-  background-color: rgba(0, 0, 0, 0.01);
+  background-color: rgba(0, 0, 0, 0.1);
   width: 100%;
   height: 100%;
   position: absolute;
@@ -2246,22 +2235,6 @@ body.page .term-description {
   display: none;
 }
 /*
-===
-	Slider Config
-===
-*/
-.edb-slider .slide-text {
-  font-size: 1.75em;
-  text-transform: uppercase;
-}
-.edb-slider .slide-link {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-.edb-slider .controls {
-  font-size: 1em;
-  font-weight: bold;
-}
-/*
 ==========================================================================
 Overridez
 ==========================================================================
@@ -2612,15 +2585,18 @@ Header
 Slider
 ==========================================================================
 */
-.bx-wrapper {
-  margin: 0;
-  box-shadow: none;
-  border: 0;
-  background: transparent;
-  overflow: hidden;
+.edb-slider .slide-link {
+  background-color: rgba(0, 0, 0, 0.1);
 }
-.bx-wrapper img {
-  width: 100%;
+.edb-slider .controls {
+  font-size: 1em;
+  font-weight: bold;
+}
+.edb-slider .slide-text {
+  font-size: 1.85em;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 .main-slider {
   height: 76vmax;
@@ -2628,41 +2604,6 @@ Slider
   min-height: 76vmax;
   max-height: 76vmax;
   overflow: hidden;
-}
-.main-slider .bx-wrapper {
-  height: 100% !important;
-}
-.main-slider .bx-wrapper img {
-  display: none !important;
-  min-width: 100%;
-}
-.main-slider .bx-wrapper .bx-viewport {
-  height: 100% !important;
-}
-.main-slider .bx-wrapper .bx-pager {
-  bottom: 0;
-  padding-bottom: 20px;
-  font-size: 1em;
-  font-weight: normal;
-  background-image: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2));
-}
-.main-slider .bx-wrapper .caption {
-  display: table;
-  width: 100%;
-  height: 100%;
-}
-.main-slider .bx-wrapper .caption h2 {
-  display: table-cell;
-  margin: 0;
-  vertical-align: middle;
-  letter-spacing: 0.05em;
-  text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.8);
-}
-.main-slider .bx-wrapper .bx-pager,
-.main-slider .bx-wrapper .caption h2 {
-  color: #ffffff;
-  text-shadow: 1px 1px 0 #000000;
-  /*text-shadow:@headertxtshadow;*/
 }
 .main-slider .slider,
 .main-slider .slider li {

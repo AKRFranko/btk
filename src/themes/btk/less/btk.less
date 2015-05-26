@@ -25,23 +25,8 @@ body.woocommerce-page, body.page{
 	}
 }
 
-/*
-===
-	Slider Config
-===
-*/
-.edb-slider .slide-text{
-	font-size:1.75em;
-	text-transform:uppercase;
-}
-.edb-slider .slide-link{
-	background-color:rgba(0,0,0,0.1);	
-}
 
-.edb-slider .controls{
-	font-size:1em;
-	font-weight:bold;
-}
+
 
 
 /*
@@ -237,30 +222,17 @@ Slider
 ==========================================================================
 */
 
-.bx-wrapper {
-	margin:0; box-shadow:none; border:0; background:transparent; overflow:hidden;
-	img { width:100%; }
+.edb-slider .slide-link { background-color:rgba(0, 0, 0, 0.1); }
+.edb-slider .controls { font-size:1em; font-weight:bold; }
+.edb-slider .slide-text {
+	font-size:1.85em; font-weight:500; text-transform:uppercase;
+	letter-spacing:0.1em;
 }
 
 .main-slider {
 	height:76vmax; .imgborder();
 	// Helps pageload flickr.
 	min-height:76vmax; max-height:76vmax; overflow:hidden;
-
-	.bx-wrapper {
-		height:100% !important;
-		img { display:none !important; min-width:100%; }
-		.bx-viewport { height:100% !important; }
-		.bx-pager {
-			bottom:0; padding-bottom:20px; font-size:1em; font-weight:normal;
-			background-image:linear-gradient( rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) );
-		}
-		.caption {
-			display:table; width:100%; height:100%;
-			h2 { display:table-cell; margin:0; vertical-align:middle; letter-spacing:0.05em; text-shadow:@headertxtshadow; }
-		}
-		.bx-pager, .caption h2 { color:@white; text-shadow:1px 1px 0 @black; /*text-shadow:@headertxtshadow;*/ }
-	}
 
 	.slider, .slider li { height:100% !important; }
 	.slider li { background-repeat: no-repeat; background-position:top center; background-size:cover; }
