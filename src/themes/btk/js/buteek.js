@@ -17,7 +17,6 @@
 
 
 		// sign in behaviour
-		//	$('#menu-header a:first').on('click', function(e) {
 		$('#menu-header .login').on('click', function(e) {
 			e.preventDefault();
 			if (!$('#header-box').hasClass('open')) {
@@ -27,9 +26,11 @@
 				$('.login-form').hide();
 				$('.register-form').hide();
 				$('.back-home').show();
+				$('body').css('overflow', 'hidden');
 			} else if ($('.sign-in, .login-form, .register-form').is(':visible')) {
 				$('.sign-in-menu').hide();
 				$('#header-box').removeClass('open');
+				$('body').css('overflow', 'auto');
 			}
 		});
 
@@ -37,6 +38,7 @@
 			e.preventDefault();
 			$('.sign-in-menu').hide();
 			$('#header-box').removeClass('open');
+			$('body').css('overflow', 'auto');
 		});
 
 		$('.signin').on('click', function(e) {
@@ -58,19 +60,21 @@
 			if ($('.sign-in, .login-form, .register-form').is(':visible')) {
 				$('.sign-in-menu').hide();
 				$('#header-box').removeClass('open');
+				$('body').css('overflow', 'auto');
 			}
 			if ($(this).hasClass('collapsed')) {
 				$('#header-box').addClass('open');
 				$('#header-box .confirmation').hide();
 				$('.navbar-header .fa').removeClass('fa-bars').addClass('fa-times');
+				$('body').css('overflow', 'hidden');
 			} else {
 				$('#header-box').removeClass('open');
 				$('#header-box .confirmation').show();
 				$('.woo-categories').hide();
 				$('.navbar-header .fa').removeClass('fa-times').addClass('fa-bars');
+				$('body').css('overflow', 'auto');
 			}
 		});
-
 
 		$('#menu-hamburger li a[href*="products"]').click(function(e) {
 			e.preventDefault();

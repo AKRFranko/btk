@@ -92,7 +92,10 @@ Header
 	// fix for chrome "fixed" flicker
 	-webkit-backface-visibility:hidden; -webkit-transform: translateZ(0);
 	background:@headerbkgcolor; margin-bottom:25px;
-	&.open { .open-menu(); }
+	&.open {
+		.open-menu();
+		//.nav-hamburger { overflow-y:scroll; }
+	}
 
 	header {
 		background:inherit; position:relative; padding:10px 0px 10px 12px;
@@ -117,18 +120,19 @@ Header
 
 			&.nav-hamburger {
 				position:absolute; width:100%; right:5px; top:42px;
+				> div + div { margin-top:50px; overflow-y:scroll; }
 				.navbar-toggle {
 					margin-top:-42px; cursor:pointer;
 					span.fa { font-size:1.25em; }
 				}
 				.navbar-collapse, .woo-categories {
-					width:50%; margin-top:50px; padding:20px; box-shadow:none;
+					width:50%; padding:20px; box-shadow:none;
 					ul li { padding:5px 0; .sub { padding-left:25px; } }
 					a { font-size:1.25em; }
 					&.collapsing { transition:height 0.01s; }
 				}
 				.navbar-collapse { float:left; }
-				.woo-categories { display:none; float:right; height:85vh; overflow-y:scroll; }
+				.woo-categories { display:none; float:right; height:85vh; }
 				.woo-categories .subnav{
 					overflow:hidden;
 					height:0;

@@ -89,34 +89,36 @@ if ( $text_color === '' ) { $text_color = '#fff'; }
 								</a>
 							</div>
 
-    						<div class="collapse navbar-collapse" id="nav-hamburger">
-							<?php wp_nav_menu(array('menu' => 'hamburger')); ?>
-							</div>
+							<div>
+	    						<div class="collapse navbar-collapse" id="nav-hamburger">
+								<?php wp_nav_menu(array('menu' => 'hamburger')); ?>
+								</div>
 
-							<div class="woo-categories">
-								<ul>
-								<?php
-									$maincats = get_terms( 'product_cat', array('get'=>'all', 'parent' => 0, 'hide_empty' => false) );
-									foreach($maincats as $main){
-										if ( strtolower($main->name) !== 'lookbook' ) {
-											echo "<li>";
-											$subcats = get_terms( 'product_cat', array( 'parent' => $main->term_id, 'hide_empty' => false ) );
-											if( !empty($subcats)){
-												echo '<a class="toggle" href="#">' . __( $main->name, 'btk') . '</a>';
-												echo '<ul class="subnav">';
-												foreach($subcats as $sub){
-													echo '<li><a href="' . get_term_link( $sub ) . '" title="' . sprintf( __( 'View all post filed under %s', 'btk' ), $sub->name ) . '">'.__( $sub->name , 'btk' ).'</a></li>';
+								<div class="woo-categories">
+									<ul>
+									<?php
+										$maincats = get_terms( 'product_cat', array('get'=>'all', 'parent' => 0, 'hide_empty' => false) );
+										foreach($maincats as $main){
+											if ( strtolower($main->name) !== 'lookbook' ) {
+												echo "<li>";
+												$subcats = get_terms( 'product_cat', array( 'parent' => $main->term_id, 'hide_empty' => false ) );
+												if( !empty($subcats)){
+													echo '<a class="toggle" href="#">' . __( $main->name, 'btk') . '</a>';
+													echo '<ul class="subnav">';
+													foreach($subcats as $sub){
+														echo '<li><a href="' . get_term_link( $sub ) . '" title="' . sprintf( __( 'View all post filed under %s', 'btk' ), $sub->name ) . '">'.__( $sub->name , 'btk' ).'</a></li>';
+													}
+													echo '<li><a href="' . get_term_link( $main ) . '" title="' . sprintf( __( 'View all post filed under %s', 'btk' ), $main->name ) . '">'.__( 'all', 'btk' ).'</a></li>';
+													echo "</ul>";
+												}else{
+													echo '<a href="' . get_term_link( $main ) . '" title="' . sprintf( __( 'View all %s', 'btk' ), $main->name ) . '">' . __( $main->name, 'btk') . '</a>';
 												}
-												echo '<li><a href="' . get_term_link( $main ) . '" title="' . sprintf( __( 'View all post filed under %s', 'btk' ), $main->name ) . '">'.__( 'all', 'btk' ).'</a></li>';
-												echo "</ul>";
-											}else{
-												echo '<a href="' . get_term_link( $main ) . '" title="' . sprintf( __( 'View all %s', 'btk' ), $main->name ) . '">' . __( $main->name, 'btk') . '</a>';
+												echo "</li>";
 											}
-											echo "</li>";
 										}
-									}
-								?>
-								</ul>
+									?>
+									</ul>
+								</div>
 							</div>
 						</nav>
 
