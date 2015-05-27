@@ -1484,11 +1484,14 @@ Woocommerce Overrides
 }
 .woocommerce .product .product-color-choice ul li a {
   display: block;
-  width: 100%;
+  width: calc(100% - 10px);
   height: 100%;
   cursor: pointer;
   background-color: transparent;
-  magin-right: 5px;
+  margin-left: 5px;
+}
+.woocommerce .product .product-color-choice ul li a.na {
+  border: 1px dashed #ccc;
 }
 .woocommerce .product .product-color-choice ul li a:hover {
   background-color: rgba(0, 0, 0, 0.25);

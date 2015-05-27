@@ -76,7 +76,7 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 		}; 
 		while( $count < 14){
 			$count++;
-			echo "<li>N/A</li>";
+			echo '<li><a href="#" class="na"></a></li>';
 		}
 		?>
 		
