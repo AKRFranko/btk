@@ -1337,7 +1337,6 @@ Woocommerce Overrides
 .woocommerce ul.products li.product .price,
 .woocommerce ul.products li.product .product-price {
   margin: 0;
-  color: transparent;
 }
 .woocommerce ul.products li.product .price del,
 .woocommerce ul.products li.product .product-price del {
@@ -1436,7 +1435,6 @@ Woocommerce Overrides
 .woocommerce #content div.product div.summary p.price,
 .woocommerce #content div.product div.summary p.product-price {
   margin: 0;
-  color: transparent;
 }
 .woocommerce #content div.product div.summary p.price del,
 .woocommerce #content div.product div.summary p.product-price del {
