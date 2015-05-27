@@ -1338,6 +1338,12 @@ Woocommerce Overrides
   margin: 0;
 }
 .woocommerce ul.products li.product .price del {
+  display: none;
+}
+.woocommerce ul.products li.product .price ins .amount:last-of-type {
+  display: none;
+}
+.woocommerce ul.products li.product .price ins .amount:first-of-type {
   display: inline-block;
 }
 .woocommerce ul.products li.product .in-stock {
@@ -1520,12 +1526,20 @@ Woocommerce Overrides
   font-size: 1.15em;
 }
 .woocommerce .product .product-summary p del {
-  display: inline-block;
+  display: none;
   opacity: 0.5;
 }
 .woocommerce .product .product-summary p ins {
   background: inherit;
   font-weight: 700;
+  color: transparent;
+}
+.woocommerce .product .product-summary p ins .amount:last-of-type {
+  display: none;
+}
+.woocommerce .product .product-summary p ins .amount:first-of-type {
+  display: inline-block;
+  color: #000000;
 }
 .woocommerce .product .product-description {
   padding: 20px 15px;

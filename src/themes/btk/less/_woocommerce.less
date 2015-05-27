@@ -108,7 +108,9 @@ Woocommerce Overrides
 			.add_to_cart_button { display:none; }
 			.price {
 				margin:0;
-				del { display:inline-block; }
+				del { display:none; }
+				ins .amount:last-of-type { display:none; }
+				ins .amount:first-of-type { display:inline-block; }
 			}
 			.in-stock { position:absolute; bottom:15px; left:15px; }
 
@@ -212,8 +214,10 @@ Woocommerce Overrides
 			h2 { margin:0; font-size:1.35em; }
 			p {
 				margin:0; font-size:1.15em;
-				del { display:inline-block; opacity:0.5; }
-				ins { background:inherit; font-weight:700; }
+				del { display:none; opacity:0.5; }
+				ins { background:inherit; font-weight:700; color:transparent; }
+				ins .amount:last-of-type{display:none;}
+				ins .amount:first-of-type{display:inline-block;color:@black;}
 			}
 		}
 

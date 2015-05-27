@@ -131,13 +131,24 @@ readTree = function() {
 		product.varname = ("$prod_" + product.cat + (product.sub ? "_" + product.sub : "") + "_" + (basename(path.path))).replace(/\-/g, '_');
 		product.hasVariants = !!~variant_cats.indexOf(path.cat);
 		descpath = path.path + "/description.txt";
+		pricepath = path.path + "/price.txt";
 		try {
 			fs.realpathSync(descpath);
 		} catch (E) {
 			descpath = null
 		}
+		try {
+			fs.realpathSync(pricepath);
+		} catch (E) {
+			pricepath = null
+		}
 		if (descpath) {
 			product.description = descpath;
+		}
+		if (pricepath) {
+			product.price = fs.readFileSync(pricepath, 'utf8').trim().replace('$', '');
+		} else {
+			product.price = Math.floor(Math.random() * 300 + 5) + '.00';
 		}
 		if (product.hasVariants) {
 			product.variants = materials;
@@ -260,6 +271,16 @@ setMockdata = function(post_varname) {
 			value: Math.floor(Math.random() * 300 + 5) + '.00'
 		}
 	});
+};
+
+setProductData = function(post_varname, key, value) {
+	return recipe.post.meta.update.push({
+		args: {
+			id: "" + post_varname,
+			key: key,
+			value: value
+		}
+	})
 };
 
 setSKU = function(post_varname, data, variant) {
@@ -399,6 +420,7 @@ createPost = function(data) {
 			enableVisibility(data.varname + "_" + variant);
 			setMaterial(data.varname + "_" + variant, variant);
 			setMockdata(data.varname + "_" + variant);
+			setProductData(data.varname + "_" + variant, '_regular_price', data.price);
 			setSKU(data.varname + "_" + variant, data, variant);
 			bindTerms(data.varname + "_" + variant, [variant]);
 			return recipe.post.create[data.varname + "_" + variant] = {
@@ -413,6 +435,7 @@ createPost = function(data) {
 		});
 	} else {
 		setMockdata(data.varname);
+		setProductData(data.varname, '_regular_price', data.price);
 		return setSKU(data.varname, data);
 	}
 };
