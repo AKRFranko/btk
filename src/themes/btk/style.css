@@ -2595,8 +2595,10 @@ Slider
 .edb-slider .slide-text {
   font-family: "pragmatica-web-condensed", 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 400;
-  font-size: 1.85em;
+  font-size: 2.4em;
+  line-height: 1.1;
   text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 .main-slider {
   height: 76vmax;
