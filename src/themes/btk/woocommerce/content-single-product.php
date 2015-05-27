@@ -44,12 +44,13 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 					<span class="separator"> | </span>
 					<span class="total"> 5 </span>
 				<a class="next" href="#"><span class="icon-arrow-lite-right-black"></span></a>
+				<?php if ( $product->is_in_stock() ) { ?>
+			<span class="in-stock"<?php if ( count( $product->get_gallery_attachment_ids() ) > 0 ) { echo ' style="bottom:80px;"'; } ?>>in stock</span>
+		<?php } ?>
 			</div>
 		</div>
 
-		<?php if ( $product->is_in_stock() ) { ?>
-			<span class="in-stock"<?php if ( count( $product->get_gallery_attachment_ids() ) > 0 ) { echo ' style="bottom:80px;"'; } ?>>in stock</span>
-		<?php } ?>
+		
 	</div>
 
 

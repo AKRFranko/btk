@@ -86,8 +86,9 @@
 		// sliderz
 		$('.edb-slider').each(function() {
 			var el = $(this).get(0);
+			var swatches = $('.product-color-choice:first');
 			var opts = {
-				spacing: "#masthead"
+				spacing: $("#masthead").outerHeight() + (swatches.length ? swatches.outerHeight() * 2 : 0)
 			}
 			var slider = window.EDBSlider(el, opts);
 			slider.toggle(0, 'on');
