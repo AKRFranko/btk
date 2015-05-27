@@ -63,14 +63,22 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 	<div class="product-color-choice clearfix">
 		<p class="center">select color</p>
 		<ul>
-		<?php foreach ( $attributes['edb_material'] as $color ){
+		<?php 
+		$count = 0;
+		foreach ( $attributes['edb_material'] as $color ){
 			$current = $_REQUEST[ 'attribute_edb_material' ] === $color ? 'current' : '';
 			$src = get_bloginfo('template_directory'). "/img/textures/$color.jpg";
 			$html = '<li><a href="#" data-variation="'.sanitize_title($color).'" title="'.sanitize_title($color).'" class="product-color-choice-option edb-material-'.sanitize_title($color).'">';
 			$html .= '<img class=\"material\" src="'.$src.'">';
 			$html .= '</a></li>';
 			echo $html;
-		}; ?>
+			$count++;
+		}; 
+		while( $count < 14){
+			$count++;
+			echo "<li>N/A</li>";
+		}
+		?>
 		
 	
 		</ul>
