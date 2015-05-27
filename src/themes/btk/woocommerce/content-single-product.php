@@ -36,6 +36,25 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 <div itemscope itemtype="<?php echo woocommerce_get_product_schema(); ?>" id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 	<div class="product-images">
+	<?php if ( ! count( $product->get_gallery_attachment_ids() ) > 0 ) { ?>
+		<div class="single-image">
+		<?php
+			if ( has_post_thumbnail() ) {
+				$image_title 	= esc_attr( get_the_title( get_post_thumbnail_id() ) );
+				$image_link  	= wp_get_attachment_url( get_post_thumbnail_id() );
+				echo '<img src="' . $image_link . '" alt="' . $image_title . '">';
+			} else {
+				echo apply_filters( 'woocommerce_single_product_image_html', sprintf( '<img src="%s" alt="%s" />', wc_placeholder_img_src(), __( 'Placeholder', 'woocommerce' ) ), $post->ID );
+			}
+		?>
+		<?php if ( $product->is_in_stock() ) { ?>
+			<span class="in-stock">in stock</span>
+		<?php } else { ?>
+			<span class="in-stock">out of stock</span>
+		<?php } ?>
+		</div>
+
+		<?php } else { ?>
 		<div class="edb-slider">
 			<?php btk_edb_single_product_slider();?>
 			<div class="controls">
@@ -44,13 +63,14 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 					<span class="separator"> | </span>
 					<span class="total"> 5 </span>
 				<a class="next" href="#"><span class="icon-arrow-lite-right-black"></span></a>
-				<?php if ( $product->is_in_stock() ) { ?>
-			<span class="in-stock"<?php if ( count( $product->get_gallery_attachment_ids() ) > 0 ) { echo ' style="bottom:80px;"'; } ?>>in stock</span>
-		<?php } ?>
+			<?php if ( $product->is_in_stock() ) { ?>
+				<span class="in-stock">in stock</span>
+			<?php } else { ?>
+				<span class="in-stock">out of stock</span>
+			<?php } ?>
 			</div>
 		</div>
-
-		
+	<?php } ?>
 	</div>
 
 
@@ -63,24 +83,22 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 	<div class="product-color-choice clearfix">
 		<p class="center">select color</p>
 		<ul>
-		<?php 
-		$count = 0;
-		foreach ( $attributes['edb_material'] as $color ){
-			$current = $_REQUEST[ 'attribute_edb_material' ] === $color ? 'current' : '';
-			$src = get_bloginfo('template_directory'). "/img/textures/$color.jpg";
-			$html = '<li><a href="#" data-variation="'.sanitize_title($color).'" title="'.sanitize_title($color).'" class="product-color-choice-option edb-material-'.sanitize_title($color).'">';
-			$html .= '<img class=\"material\" src="'.$src.'">';
-			$html .= '</a></li>';
-			echo $html;
-			$count++;
-		}; 
-		while( $count < 14){
-			$count++;
-			echo '<li><a href="#" class="na"></a></li>';
-		}
+		<?php
+			$count = 0;
+			foreach ( $attributes['edb_material'] as $color ){
+				$current = $_REQUEST[ 'attribute_edb_material' ] === $color ? 'current' : '';
+				$src = get_bloginfo('template_directory'). "/img/textures/$color.jpg";
+				$html = '<li><a href="#" data-variation="'.sanitize_title($color).'" title="'.sanitize_title($color).'" class="product-color-choice-option edb-material-'.sanitize_title($color).'">';
+				$html .= '<img class=\"material\" src="'.$src.'">';
+				$html .= '</a></li>';
+				echo $html;
+				$count++;
+			};
+			while($count < 14){
+				$count++;
+				echo '<li><a href="#" class="na"></a></li>';
+			}
 		?>
-		
-	
 		</ul>
 	</div>
 	<?php } ?>
@@ -91,9 +109,7 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 		<p class="product-price">_ <?php echo $product->get_price_html(); ?></p>
 	</div>
 
-
 	<div class="product-description clearfix">
-		
 		<p class="desc"><?php echo get_the_content(); ?></p>
 		<p class="right">
 			<a href="" download="" class="upper pr-pdf">PDF</a>
@@ -118,9 +134,8 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 		?>
 	</div>
 
-
 	<meta itemprop="url" content="<?php the_permalink(); ?>" />
 
-</div><!-- #product-<?php the_ID(); ?> -->
+</div>
 
 <?php do_action( 'woocommerce_after_single_product' ); ?>

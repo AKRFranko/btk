@@ -18,7 +18,6 @@
     "modernizr": "~2.8.3",
     "basil.js": "~0.4.0",
     "fontawesome": "~4.3.0",
-    "bx-slider.js": "~4.2.3",
     "edb.icon.loader.js": "./src/bower/edb-icons/",
     "edb.slider.js": "./src/bower/edb-slider/"
   }

@@ -127,6 +127,7 @@ Woocommerce Overrides
 		}
 	}
 	&.lookbook ul.products {
+		li.product .product-image { .imgborder(); }
 		.product-color-choice {
 			margin:0; padding:0; border:none;
 			ul { margin:0; }
@@ -174,14 +175,15 @@ Woocommerce Overrides
 // product summary
 	.product {
 		.product-images {
-			position:relative; padding-bottom:30px;
-			img { width:100%; .imgborder(); }
+			position:relative; padding-bottom:20px;
+			img { width:100%; }
+			> div { .imgborder(); }
 			.edb-slider {
-				margin-bottom:30px; .imgborder();
+				margin-bottom:10px;
 				.slide a { display:none; }
 			}
 			.controls {
-				top:initial; bottom:-40px;
+				top:initial; bottom:-40px; padding-top:15px;
 				a { font-size:1.25em; vertical-align:middle; }
 				> span { color:@black; text-shadow:none; font-weight:normal; }
 			}
@@ -189,15 +191,15 @@ Woocommerce Overrides
 		}
 
 		.product-color-choice {
-			margin-bottom:30px; padding-bottom:10px; text-align:center; .imgborder();
+			margin-bottom:20px; padding-bottom:10px; text-align:center; .imgborder();
 			ul li {
-				display:inline-block; margin:0 0 .5em 0;
+				display:inline-block; margin:0 0 10px 0;
 				vertical-align:top;
 				width: ~"calc( 100% / 7 )";
 				height:2em;
 				border:none;
 				a { display:block; 
-				width: ~"calc(100% - 10px)"; 
+				width: ~"calc(100% - 12px)"; 
 				height:100%; 
 				cursor:pointer; 
 				background-color:transparent; 
@@ -217,7 +219,7 @@ Woocommerce Overrides
 	
 
 		.product-summary {
-			float:none; width:initial; padding:10px 0; margin:0 15px;
+			float:none; width:initial; padding:10px 0; margin:30px 15px 0;
 			border-top:1px solid @black; border-bottom:1px solid @black;
 
 			h2 { margin:0; font-size:1.35em; }
@@ -477,6 +479,7 @@ Woocommerce Overrides
 	.woocommerce .product .product-color-choice ul li { margin:0 8px 15px; }
 }
 @media (min-width: 992px) {
-	.woocommerce ul.products li.product .product-desc { padding:20px; }
+	.woocommerce ul.products li.product .product-desc,
+	.woocommerce .product .product-images .controls { padding:20px; }
 	.woocommerce .product .product-color-choice ul li { margin:0 10px 20px; }
 }
