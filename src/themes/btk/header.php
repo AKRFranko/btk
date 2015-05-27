@@ -35,7 +35,11 @@ if ( $text_color === '' ) { $text_color = '#fff'; }
 <link rel="icon" type="image/png" sizes="96x96" href="/wp-content/themes/btk/img/favicon-96x96.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/wp-content/themes/btk/img/favicon-16x16.png">
 
+
 <?php wp_head();?>
+
+<script src="//use.typekit.net/osv5fru.js"></script>
+<script>try{Typekit.load();}catch(e){}</script>
 
 <noscript><link href="/wp-content/themes/btk/icons/icons.fallback.css" rel="stylesheet"></noscript>
 

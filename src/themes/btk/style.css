@@ -947,7 +947,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: 'Adobe Caslon Pro', Georgia, 'Times New Roman', Times, serif;
+  font-family: "adobe-caslon-pro", Georgia, 'Times New Roman', Times, serif;
   font-weight: normal;
   color: #000000;
   clear: none;
@@ -1370,7 +1370,7 @@ Woocommerce Overrides
 .woocommerce ul.products li.product .product-desc .product-title {
   display: block;
   font-size: 1.35em;
-  font-family: 'Adobe Caslon Pro', Georgia, 'Times New Roman', Times, serif;
+  font-family: "adobe-caslon-pro", Georgia, 'Times New Roman', Times, serif;
   line-height: 1em;
 }
 .woocommerce ul.products li.product .product-desc .product-price {
@@ -2593,10 +2593,10 @@ Slider
   font-weight: bold;
 }
 .edb-slider .slide-text {
+  font-family: "pragmatica-web-condensed", 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 400;
   font-size: 1.85em;
-  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
 }
 .main-slider {
   height: 76vmax;
@@ -2731,7 +2731,7 @@ Content
   border: none;
 }
 #content article .entry-content .entry-title-primary {
-  font-family: 'Adobe Caslon Pro', Georgia, 'Times New Roman', Times, serif;
+  font-family: "adobe-caslon-pro", Georgia, 'Times New Roman', Times, serif;
 }
 #content article .entry-content .entry-subtitle {
   font-style: italic;
@@ -2780,7 +2780,7 @@ Content
 }
 #content .pdf .title a {
   padding: 12px;
-  font-family: 'Adobe Caslon Pro', Georgia, 'Times New Roman', Times, serif;
+  font-family: "adobe-caslon-pro", Georgia, 'Times New Roman', Times, serif;
   text-transform: uppercase;
 }
 #content .pdf .title p {
