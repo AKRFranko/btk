@@ -1334,17 +1334,29 @@ Woocommerce Overrides
 .woocommerce ul.products li.product .add_to_cart_button {
   display: none;
 }
-.woocommerce ul.products li.product .price {
+.woocommerce ul.products li.product .price,
+.woocommerce ul.products li.product .product-price {
   margin: 0;
+  color: transparent;
 }
-.woocommerce ul.products li.product .price del {
+.woocommerce ul.products li.product .price del,
+.woocommerce ul.products li.product .product-price del {
   display: none;
 }
-.woocommerce ul.products li.product .price ins .amount:last-of-type {
+.woocommerce ul.products li.product .price ins,
+.woocommerce ul.products li.product .product-price ins {
+  background: transparent;
+  font-weight: 700;
+  color: transparent;
+}
+.woocommerce ul.products li.product .price ins .amount:last-of-type,
+.woocommerce ul.products li.product .product-price ins .amount:last-of-type {
   display: none;
 }
-.woocommerce ul.products li.product .price ins .amount:first-of-type {
+.woocommerce ul.products li.product .price ins .amount:first-of-type,
+.woocommerce ul.products li.product .product-price ins .amount:first-of-type {
   display: inline-block;
+  color: #000000;
 }
 .woocommerce ul.products li.product .in-stock {
   position: absolute;
@@ -1421,11 +1433,29 @@ Woocommerce Overrides
   margin: 0;
   font-size: 1.4em;
 }
-.woocommerce #content div.product div.summary p.price {
+.woocommerce #content div.product div.summary p.price,
+.woocommerce #content div.product div.summary p.product-price {
   margin: 0;
+  color: transparent;
 }
-.woocommerce #content div.product div.summary p.price del {
+.woocommerce #content div.product div.summary p.price del,
+.woocommerce #content div.product div.summary p.product-price del {
+  display: none;
+}
+.woocommerce #content div.product div.summary p.price ins,
+.woocommerce #content div.product div.summary p.product-price ins {
+  background: transparent;
+  font-weight: 700;
+  color: transparent;
+}
+.woocommerce #content div.product div.summary p.price ins .amount:last-of-type,
+.woocommerce #content div.product div.summary p.product-price ins .amount:last-of-type {
+  display: none;
+}
+.woocommerce #content div.product div.summary p.price ins .amount:first-of-type,
+.woocommerce #content div.product div.summary p.product-price ins .amount:first-of-type {
   display: inline-block;
+  color: #000000;
 }
 .woocommerce #content div.product .woocommerce-tabs ul.tabs {
   display: none;

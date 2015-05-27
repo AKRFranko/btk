@@ -106,11 +106,14 @@ Woocommerce Overrides
 
 			.product-image { display:block; position:relative; }
 			.add_to_cart_button { display:none; }
-			.price {
+			.price,.product-price {
 				margin:0;
-				del { display:none; }
-				ins .amount:last-of-type { display:none; }
-				ins .amount:first-of-type { display:inline-block; }
+				color:transparent;
+				del { display:none;}
+				ins { background:transparent; font-weight:700; color:transparent; }
+				ins .amount:last-of-type{display:none;}
+				ins .amount:first-of-type{display:inline-block;color:@black;}
+
 			}
 			.in-stock { position:absolute; bottom:15px; left:15px; }
 
@@ -143,12 +146,15 @@ Woocommerce Overrides
 				border-top:1px solid @black; border-bottom:1px solid @black;
 
 				h1, h2 { margin:0; font-size:1.4em; }
-				p.price {
-					margin:0;
-					del { display:none; opacity:0.5; }
-					ins { background:inherit; font-weight:700; color:transparent; }
-					ins .amount:last-of-type{display:none;}
-					ins .amount:first-of-type{display:inline-block;color:@black;}
+				p.price, p.product-price {
+									margin:0;
+				color:transparent;
+				del { display:none;}
+				ins { background:transparent; font-weight:700; color:transparent; }
+				ins .amount:last-of-type{display:none;}
+				ins .amount:first-of-type{display:inline-block;color:@black;}
+
+
 				}
 			}
 
