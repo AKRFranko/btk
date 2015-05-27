@@ -145,7 +145,10 @@ Woocommerce Overrides
 				h1, h2 { margin:0; font-size:1.4em; }
 				p.price {
 					margin:0;
-					del { display:inline-block; }
+					del { display:none; opacity:0.5; }
+					ins { background:inherit; font-weight:700; color:transparent; }
+					ins .amount:last-of-type{display:none;}
+					ins .amount:first-of-type{display:inline-block;color:@black;}
 				}
 			}
 
