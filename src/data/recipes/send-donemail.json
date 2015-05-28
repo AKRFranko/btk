@@ -1,7 +1,7 @@
 {
     "eval": {
         "args": {
-            "php": "wp_mail( 'franko@akr.club', 'EDB Server Notification', 'SSH_CONNECTION: $SSH_CONNECTION.' );"
+            "php": "wp_mail( get_bloginfo('admin_email'), 'EDB Server Notification', 'Server '.site_url().' has been updated via: '.getenv('SSH_CONNECTION') );"
         },
         "opts": {
             "quiet": true
