@@ -1,6 +1,10 @@
 {
-	"eval": {
-      "args": { "php": "wp_mail( 'franko@akr.club', 'edb release done!', 'Did a lot of things successfully.' );" },
-      "opts": { "quiet": true }
-   	}
+    "eval": {
+        "args": {
+            "php": "wp_mail( 'franko@akr.club', 'EDB Server Notification', 'SSH_CONNECTION: $SSH_CONNECTION.' );"
+        },
+        "opts": {
+            "quiet": true
+        }
+    }
 }
