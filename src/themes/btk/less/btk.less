@@ -77,7 +77,10 @@ Header
 	// fix for chrome "fixed" flicker
 	-webkit-backface-visibility:hidden; -webkit-transform: translateZ(0);
 	background:@headerbkgcolor; margin-bottom:25px;
-	&.open { .open-menu(); }
+	&.open {
+		.open-menu();
+		.nav-hamburger > div + div { overflow-y:scroll; height:80vh; }
+	}
 
 	header {
 		background:inherit; position:relative; padding:10px 0px 10px 12px;
@@ -101,7 +104,7 @@ Header
 
 			&.nav-hamburger {
 				position:absolute; width:100%; right:5px; top:42px;
-				> div + div { margin-top:50px; overflow-y:scroll; height:80vh; }
+				> div + div { margin-top:50px; }
 				.navbar-toggle {
 					margin-top:-42px; cursor:pointer;
 					span.fa { font-size:1.25em; }

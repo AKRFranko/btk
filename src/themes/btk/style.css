@@ -2375,6 +2375,10 @@ Header
 #header-box.open header {
   height: 100vh;
 }
+#header-box.open .nav-hamburger > div + div {
+  overflow-y: scroll;
+  height: 80vh;
+}
 #header-box header {
   background: inherit;
   position: relative;
@@ -2418,8 +2422,6 @@ Header
 }
 #header-box header nav.nav-hamburger > div + div {
   margin-top: 50px;
-  overflow-y: scroll;
-  height: 80vh;
 }
 #header-box header nav.nav-hamburger .navbar-toggle {
   margin-top: -42px;
