@@ -77,14 +77,10 @@ Header
 	// fix for chrome "fixed" flicker
 	-webkit-backface-visibility:hidden; -webkit-transform: translateZ(0);
 	background:@headerbkgcolor; margin-bottom:25px;
-	&.open {
-		.open-menu();
-		//.nav-hamburger { overflow-y:scroll; }
-	}
+	&.open { .open-menu(); }
 
 	header {
 		background:inherit; position:relative; padding:10px 0px 10px 12px;
-		//height:@headerheight;
 		h2 {
 			width:25%; margin:0; padding-bottom:5px; font-size:0.8em; line-height:1em;
 			span { line-height:1em; }
@@ -105,7 +101,7 @@ Header
 
 			&.nav-hamburger {
 				position:absolute; width:100%; right:5px; top:42px;
-				> div + div { margin-top:50px; overflow-y:scroll; }
+				> div + div { margin-top:50px; overflow-y:scroll; height:80vh; }
 				.navbar-toggle {
 					margin-top:-42px; cursor:pointer;
 					span.fa { font-size:1.25em; }
@@ -117,29 +113,17 @@ Header
 					&.collapsing { transition:height 0.01s; }
 				}
 				.navbar-collapse { float:left; }
-				.woo-categories { display:none; float:right; height:85vh; }
-				.woo-categories .subnav{
-					overflow:hidden;
-					height:0;
-					transition:all .3s ease-in;
-					opacity:0;
-				}
-				.woo-categories .toggle:after{
-					font-family:"FontAwesome";
-					font-size:.75em;
-					line-height:1;
-					opacity:0.5;
-					margin-left:.5em;
-					content:"\f0da";
-				}
-				.woo-categories .toggle.on:after{
-					content:"\f0d7";
-				}
-				.woo-categories .toggle.on + .subnav{
-					height:100px;
-					min-height:100%;
-					max-height:100%;
-					opacity:1;
+				.woo-categories {
+					display:none; float:right;
+					> ul { margin-bottom:75px; }
+					.subnav { overflow:hidden; height:0; transition:all .3s ease-in; opacity:0; }
+
+					.toggle:after{
+						margin-left:.5em; font-family:"FontAwesome"; font-size:.75em;
+						line-height:1; opacity:0.5; content:"\f0da";
+					}
+					.toggle.on + .subnav { height:100px; min-height:100%; max-height:100%; opacity:1; }
+					.toggle.on:after { content:"\f0d7"; }
 				}
 			}
 		}
