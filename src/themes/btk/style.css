@@ -2346,6 +2346,10 @@ div.wpcf7-validation-errors {
 Header
 ==========================================================================
 */
+.mobile #header-box.open .nav-hamburger > div + div,
+.ipad #header-box.open .nav-hamburger > div + div {
+  width: 103%;
+}
 #header-box {
   position: fixed;
   left: 0;
