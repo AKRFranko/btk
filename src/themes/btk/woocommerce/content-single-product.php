@@ -48,9 +48,9 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 			}
 		?>
 		<?php if ( $product->is_in_stock() ) { ?>
-			<span class="in-stock">in stock</span>
+			<span class="in-stock"><?php _e('in stock', 'btk'); ?></span>
 		<?php } else { ?>
-			<span class="in-stock">out of stock</span>
+			<span class="in-stock"><?php _e('out of stock', 'btk'); ?></span>
 		<?php } ?>
 		</div>
 
@@ -64,9 +64,9 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 					<span class="total"> 5 </span>
 				<a class="next" href="#"><span class="icon-arrow-lite-right-black"></span></a>
 			<?php if ( $product->is_in_stock() ) { ?>
-				<span class="in-stock">in stock</span>
+				<span class="in-stock"><?php _e('in stock', 'btk'); ?></span>
 			<?php } else { ?>
-				<span class="in-stock">out of stock</span>
+				<span class="in-stock"><?php _e('out of stock', 'btk'); ?></span>
 			<?php } ?>
 			</div>
 		</div>
@@ -81,7 +81,7 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 			$selected_attributes = $product->get_variation_default_attributes();
 	?>
 	<div class="product-color-choice clearfix">
-		<p class="center">select color</p>
+		<p class="center"><?php _e('select color', 'btk'); ?></p>
 		<ul>
 		<?php
 			$count = 0;
@@ -113,7 +113,7 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 		<p class="desc"><?php echo get_the_content(); ?></p>
 		<p class="right">
 			<a href="" download="" class="upper pr-pdf">PDF</a>
-			<a href="" class="pr-rev">Customer reviews</a>
+			<a href="" class="pr-rev"><?php _e('Customer reviews', 'btk'); ?></a>
 		</p>
 	</div>
 

@@ -78,7 +78,7 @@ foreach ($terms as $term) {
 
 			<?php woocommerce_quantity_input(); ?>
 			<p class="qty-text">
-				<span>Quantity</span>
+				<span><?php _e('Quantity', 'btk'); ?></span>
 			</p>
 
 			<p class="product-color clearfix">
@@ -98,7 +98,7 @@ foreach ($terms as $term) {
 
 	<?php else : ?>
 
-		<p class="stock out-of-stock"><?php _e( 'This product is currently out of stock and unavailable.', 'woocommerce' ); ?></p>
+		<p class="stock out-of-stock"><?php _e( 'This product is currently out of stock and unavailable.', 'btk' ); ?></p>
 
 	<?php endif; ?>
 

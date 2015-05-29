@@ -38,18 +38,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 		<div class="cart-subtotal clearfix">
-			<span class="alignleft"><?php _e( 'Cart subtotal', 'woocommerce' ); ?></span>
+			<span class="alignleft"><?php _e( 'Cart subtotal', 'btk' ); ?></span>
 			<span class="alignright"><?php wc_cart_totals_subtotal_html(); ?></span>
 		</div>
 
 		<div class="cart-discount clearfix coupon">
 		<?php if ( count(WC()->cart->get_coupons()) > 0 ) : ?>
 		<?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
-			<span class="alignleft">Discount: <?php wc_cart_totals_coupon_label( $coupon ); ?></span>
+			<span class="alignleft"><?php _e('Discount', 'btk'); ?>: <?php wc_cart_totals_coupon_label( $coupon ); ?></span>
 			<span class="alignright"><?php wc_cart_totals_coupon_html( $coupon ); ?></span>
 		<?php endforeach; ?>
 		<?php else : ?>
-			<span class="alignleft">Discount</span>
+			<span class="alignleft"><?php _e('Discount', 'btk'); ?></span>
 			<span class="alignright">-</span>
 		<?php endif; ?>
 		</div>
@@ -90,7 +90,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php do_action( 'woocommerce_review_order_before_order_total' ); ?>
 
 		<div class="order-total clearfix">
-			<span class="alignleft"><?php _e( 'Total', 'woocommerce' ); ?></span>
+			<span class="alignleft"><?php _e( 'Total', 'btk' ); ?></span>
 			<span class="alignright"><?php wc_cart_totals_order_total_html(); ?></span>
 		</div>
 

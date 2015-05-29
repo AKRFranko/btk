@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 global $current_user;
 
-$page_title = ( $load_address === 'billing' ) ? __( 'Billing Address', 'woocommerce' ) : __( 'Shipping Address', 'woocommerce' );
+$page_title = ( $load_address === 'billing' ) ? __( 'Billing Address', 'btk' ) : __( 'Shipping Address', 'btk' );
 
 get_currentuserinfo();
 
@@ -34,8 +34,8 @@ get_currentuserinfo();
 	<?php do_action( "woocommerce_after_edit_address_form_{$load_address}" ); ?>
 
 	<p class="alignright">
-		<span class="valign">save <?php echo $load_address; ?> address</span>
-		<input type="submit" class="valign icon-arrow-lite-right-white" name="save_address" value="<?php _e( 'Save Address', 'woocommerce' ); ?>" />
+		<span class="valign"><?php printf( __('save %s address', 'btk'), $load_address ); ?></span>
+		<input type="submit" class="valign icon-arrow-lite-right-white" name="save_address" value="<?php _e( 'Save Address', 'btk' ); ?>" />
 		<?php wp_nonce_field( 'woocommerce-edit_address' ); ?>
 		<input type="hidden" name="action" value="edit_address" />
 	</p>

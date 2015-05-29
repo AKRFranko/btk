@@ -54,7 +54,7 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 		?>
 
 		<?php if ( $product->is_in_stock() ) { ?>
-		<span class="in-stock">in stock</span>
+		<span class="in-stock"><?php _e('in stock', 'btk'); ?></span>
 		<?php } ?>
 
 	</a>
@@ -89,7 +89,7 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 			$selected_attributes = $product->get_variation_default_attributes();
 	?>
 	<div class="product-color-choice clearfix">
-		<p class="center">select color</p>
+		<p class="center"><?php _e('select color', 'btk'); ?></p>
 		<?php foreach ( $attributes as $name => $options ) : ?>
 		<ul>
 		<?php

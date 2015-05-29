@@ -19,24 +19,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<?php if( 'lost_password' == $args['form'] ) : ?>
 
-		<p><?php echo apply_filters( 'woocommerce_lost_password_message', __( 'Lost your password? Please enter your username or email address. You will receive a link to create a new password via email.', 'woocommerce' ) ); ?></p>
+		<p><?php echo apply_filters( 'woocommerce_lost_password_message', __( 'Lost your password? Please enter your username or email address. You will receive a link to create a new password via email.', 'btk' ) ); ?></p>
 
 		<p>
 			<label for="user_login" class="hide"></label>
-			<input class="input-text" type="text" name="user_login" id="user_login" placeholder="<?php _e( 'username or email', 'woocommerce' ); ?>" />
+			<input class="input-text" type="text" name="user_login" id="user_login" placeholder="<?php _e( 'username or email', 'btk' ); ?>" />
 		</p>
 
 	<?php else : ?>
 
-		<p><?php echo apply_filters( 'woocommerce_reset_password_message', __( 'Enter a new password below.', 'woocommerce') ); ?></p>
+		<p><?php echo apply_filters( 'woocommerce_reset_password_message', __( 'Enter a new password below.', 'btk') ); ?></p>
 
 		<p>
 			<label for="password_1" class="hide"></label>
-			<input type="password" class="input-text" name="password_1" id="password_1" placeholder="<?php _e( 'new password', 'woocommerce' ); ?>" />
+			<input type="password" class="input-text" name="password_1" id="password_1" placeholder="<?php _e( 'new password', 'btk' ); ?>" />
 		</p>
 		<p>
 			<label for="password_2" class="hide"></label>
-			<input type="password" class="input-text" name="password_2" id="password_2" placeholder="<?php _e( 're-enter new password', 'woocommerce' ); ?>" />
+			<input type="password" class="input-text" name="password_2" id="password_2" placeholder="<?php _e( 're-enter new password', 'btk' ); ?>" />
 		</p>
 
 		<input type="hidden" name="reset_key" value="<?php echo isset( $args['key'] ) ? $args['key'] : ''; ?>" />
@@ -48,7 +48,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<p class="alignright">
 		<input type="hidden" name="wc_reset_password" value="true" />
-		<span class="valign"><?php echo 'lost_password' == $args['form'] ? __( 'Reset Password', 'woocommerce' ) : __( 'Save', 'woocommerce' ); ?></span>
+		<span class="valign"><?php echo 'lost_password' == $args['form'] ? __( 'Reset Password', 'btk' ) : __( 'Save', 'btk' ); ?></span>
 		<input class="valign icon-arrow-lite-right-white" type="submit" value="" />
 	</p>
 

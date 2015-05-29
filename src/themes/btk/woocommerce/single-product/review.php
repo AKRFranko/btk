@@ -26,7 +26,7 @@ $rating = intval( get_comment_meta( $comment->comment_ID, 'rating', true ) );
 
 			<?php if ( $rating && get_option( 'woocommerce_enable_review_rating' ) == 'yes' ) : ?>
 
-				<div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" class="star-ratings" title="<?php echo sprintf( __( 'Rated %d out of 5', 'woocommerce' ), $rating ) ?>">
+				<div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" class="star-ratings" title="<?php echo sprintf( __( 'Rated %d out of 5', 'btk' ), $rating ) ?>">
 				<?php
 					for ($i = 1; $i <= 5; $i++) {
 						if ( $i <= $rating ) {
@@ -41,7 +41,7 @@ $rating = intval( get_comment_meta( $comment->comment_ID, 'rating', true ) );
 
 			<?php if ( $comment->comment_approved == '0' ) : ?>
 
-				<p class="meta"><em><?php _e( 'Your comment is awaiting approval', 'woocommerce' ); ?></em></p>
+				<p class="meta"><em><?php _e( 'Your comment is awaiting approval', 'btk' ); ?></em></p>
 
 			<?php else : ?>
 
@@ -51,7 +51,7 @@ $rating = intval( get_comment_meta( $comment->comment_ID, 'rating', true ) );
 
 						if ( get_option( 'woocommerce_review_rating_verification_label' ) === 'yes' )
 							if ( wc_customer_bought_product( $comment->comment_author_email, $comment->user_id, $comment->comment_post_ID ) )
-								echo '<em class="verified">(' . __( 'verified owner', 'woocommerce' ) . ')</em> ';
+								echo '<em class="verified">(' . __( 'verified owner', 'btk' ) . ')</em> ';
 
 					?>
 					<span itemprop="datePublished" datetime="<?php echo get_comment_date( 'c' ); ?>"><?php echo get_comment_date( 'd.m.Y' ); ?></span>

@@ -16,7 +16,7 @@ $order = wc_get_order( $order_id );
 ?>
 
 <div class="order-details">
-	<h2><?php _e( 'Order Details', 'woocommerce' ); ?></h2>
+	<h2><?php _e( 'Order Details', 'btk' ); ?></h2>
 
 	<div class="shop_table order_details">
 		<?php
@@ -53,7 +53,7 @@ $order = wc_get_order( $order_id );
 									foreach ( $download_files as $download_id => $file ) {
 										$i++;
 
-										$links[] = '<small><a href="' . esc_url( $file['download_url'] ) . '">' . sprintf( __( 'Download file%s', 'woocommerce' ), ( count( $download_files ) > 1 ? ' ' . $i . ': ' : ': ' ) ) . esc_html( $file['name'] ) . '</a></small>';
+										$links[] = '<small><a href="' . esc_url( $file['download_url'] ) . '">' . sprintf( __( 'Download file%s', 'btk' ), ( count( $download_files ) > 1 ? ' ' . $i . ': ' : ': ' ) ) . esc_html( $file['name'] ) . '</a></small>';
 									}
 
 									echo '<br/>' . implode( '<br/>', $links );
@@ -118,11 +118,11 @@ $order = wc_get_order( $order_id );
 						}
 
 						if ( ! empty( $tax_del_array ) ) {
-							$refunded_tax_del .= ' ' . sprintf( __( '(Includes %s)', 'woocommerce' ), implode( ', ', $tax_del_array ) );
+							$refunded_tax_del .= ' ' . sprintf( __( '(Includes %s)', 'btk' ), implode( ', ', $tax_del_array ) );
 						}
 
 						if ( ! empty( $tax_ins_array ) ) {
-							$refunded_tax_ins .= ' ' . sprintf( __( '(Includes %s)', 'woocommerce' ), implode( ', ', $tax_ins_array ) );
+							$refunded_tax_ins .= ' ' . sprintf( __( '(Includes %s)', 'btk' ), implode( ', ', $tax_ins_array ) );
 						}
 					}
 
@@ -140,7 +140,7 @@ $order = wc_get_order( $order_id );
 		// Check for refund
 		if ( $has_refund ) { ?>
 			<tr>
-				<th scope="row"><?php _e( 'Refunded:', 'woocommerce' ); ?></th>
+				<th scope="row"><?php _e( 'Refunded:', 'btk' ); ?></th>
 				<td>-<?php echo wc_price( $total_refunded, array( 'currency' => $order->get_order_currency() ) ); ?></td>
 			</tr>
 		<?php
@@ -149,7 +149,7 @@ $order = wc_get_order( $order_id );
 		// Check for customer note
 		if ( '' != $order->customer_note ) { ?>
 			<tr>
-				<th scope="row"><?php _e( 'Note:', 'woocommerce' ); ?></th>
+				<th scope="row"><?php _e( 'Note:', 'btk' ); ?></th>
 				<td><?php echo wptexturize( $order->customer_note ); ?></td>
 			</tr>
 		<?php } ?>
@@ -162,15 +162,15 @@ $order = wc_get_order( $order_id );
 
 
 <div class="customer-details clearfix">
-	<h2><?php _e( 'Customer details', 'woocommerce' ); ?></h2>
+	<h2><?php _e( 'Customer details', 'btk' ); ?></h2>
 	<p>
 	<?php
 		if ( $order->billing_email ) {
-			echo '<span>' . __( 'Email:', 'woocommerce' ) . '&nbsp;&nbsp;' . $order->billing_email . '</span>';
+			echo '<span>' . __( 'Email:', 'btk' ) . '&nbsp;&nbsp;' . $order->billing_email . '</span>';
 		}
 
 		if ( $order->billing_phone ) {
-			echo '<span>' . __( 'Telephone:', 'woocommerce' ) . '&nbsp;&nbsp;' . $order->billing_phone . '</span>';
+			echo '<span>' . __( 'Telephone:', 'btk' ) . '&nbsp;&nbsp;' . $order->billing_phone . '</span>';
 		}
 
 		// Additional customer details hook
@@ -183,11 +183,11 @@ $order = wc_get_order( $order_id );
 <?php endif; ?>
 
 	<div>
-		<h3><?php _e( 'Billing Address', 'woocommerce' ); ?></h3>
+		<h3><?php _e( 'Billing Address', 'btk' ); ?></h3>
 		<address>
 			<?php
 				if ( ! $order->get_formatted_billing_address() ) {
-					_e( 'N/A', 'woocommerce' );
+					_e( 'N/A', 'btk' );
 				} else {
 					echo $order->get_formatted_billing_address();
 				}
@@ -198,11 +198,11 @@ $order = wc_get_order( $order_id );
 <?php if ( ! wc_ship_to_billing_address_only() && $order->needs_shipping_address() && get_option( 'woocommerce_calc_shipping' ) !== 'no' ) : ?>
 
 	<div>
-		<h3><?php _e( 'Shipping Address', 'woocommerce' ); ?></h3>
+		<h3><?php _e( 'Shipping Address', 'btk' ); ?></h3>
 		<address>
 			<?php
 				if ( ! $order->get_formatted_shipping_address() ) {
-					_e( 'N/A', 'woocommerce' );
+					_e( 'N/A', 'btk' );
 				} else {
 					echo $order->get_formatted_shipping_address();
 				}

@@ -1154,7 +1154,7 @@ Woocommerce Overrides
 .woocommerce .customer-register,
 .woocommerce #edit-account,
 .woocommerce #edit-address,
-.woocommerce .recent-orders,
+.woocommerce #recent-orders,
 .woocommerce .order-details,
 .woocommerce .customer-details {
   padding: 0 15px 15px;
@@ -1163,7 +1163,7 @@ Woocommerce Overrides
 .woocommerce .customer-register h2,
 .woocommerce #edit-account h2,
 .woocommerce #edit-address h2,
-.woocommerce .recent-orders h2,
+.woocommerce #recent-orders h2,
 .woocommerce .order-details h2,
 .woocommerce .customer-details h2 {
   font-size: 1.5em;
@@ -1175,7 +1175,7 @@ Woocommerce Overrides
 .woocommerce .customer-register p,
 .woocommerce #edit-account p,
 .woocommerce #edit-address p,
-.woocommerce .recent-orders p,
+.woocommerce #recent-orders p,
 .woocommerce .order-details p,
 .woocommerce .customer-details p {
   margin: 0 0 1.5em !important;
@@ -1184,7 +1184,7 @@ Woocommerce Overrides
 .woocommerce .customer-register form,
 .woocommerce #edit-account form,
 .woocommerce #edit-address form,
-.woocommerce .recent-orders form,
+.woocommerce #recent-orders form,
 .woocommerce .order-details form,
 .woocommerce .customer-details form {
   margin-bottom: 50px !important;
@@ -1193,7 +1193,7 @@ Woocommerce Overrides
 .woocommerce .customer-register fieldset,
 .woocommerce #edit-account fieldset,
 .woocommerce #edit-address fieldset,
-.woocommerce .recent-orders fieldset,
+.woocommerce #recent-orders fieldset,
 .woocommerce .order-details fieldset,
 .woocommerce .customer-details fieldset {
   margin: 0;

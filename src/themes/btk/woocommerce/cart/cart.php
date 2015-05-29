@@ -25,7 +25,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 		<?php wc_get_template( 'cart/cart-contents.php' ); ?>
 
-		<input type="submit" class="button lower" name="update_cart" value="<?php _e( 'Update Cart', 'woocommerce' ); ?>" />
+		<input type="submit" class="button lower" name="update_cart" value="<?php _e( 'Update Cart', 'btk' ); ?>" />
 
 		<?php do_action( 'woocommerce_cart_actions' ); ?>
 
@@ -45,16 +45,16 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 <div class="cart-collaterals lower">
 
-	<p class="alignleft">Cart subtotal<span>(excluding tax + shipping)</span></p>
+	<p class="alignleft"><?php _e('Cart subtotal<span>(excluding tax + shipping)</span>', 'btk'); ?></p>
 
 	<?php echo WC()->cart->get_cart_subtotal(); ?>
 
 	<span class="alignright">
-		<span class="valign">check out</span>
+		<span class="valign"><?php _e('check out', 'btk'); ?></span>
 		<a href="<?php echo esc_url(home_url('/'));?>checkout/" class="valign icon-arrow-lite-right-white"></a>
 	</span>
 	<span class="alignright">
-		<span class="valign">continue shopping</span>
+		<span class="valign"><?php _e('continue shopping', 'btk'); ?></span>
 		<a href="<?php echo esc_url(home_url('/'));?>products/" class="valign icon-arrow-lite-left-white"></a>
 	</span>
 

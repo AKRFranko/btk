@@ -47,7 +47,7 @@ if ( $text_color === '' ) { $text_color = '#fff'; }
 
 <body id="top" <?php body_class();?>>
 <div id="page" class="hfeed site">
-	<a class="skip-link screen-reader-text" href="#content"><?php _e('Skip to content', 'btk');?></a>
+	<a class="skip-link screen-reader-text" href="#content"><?php _e('Skip to content', 'btk'); ?></a>
 
 
 	<!-- header -->
@@ -72,11 +72,11 @@ if ( $text_color === '' ) { $text_color = '#fff'; }
 							<div class="menu-header-container">
 								<ul id="menu-header">
 									<?php if ( is_user_logged_in() ) : ?>
-									<li class="logout"><a href="<?php echo wp_logout_url( home_url('/') ); ?>">Sign out</a></li>
+									<li class="logout"><a href="<?php echo wp_logout_url( home_url('/') ); ?>"><?php _e('Sign out', 'btk'); ?></a></li>
 									<?php else: ?>
-									<li class="login"><a href="<?php echo esc_url(home_url('/')); ?>sign-in">Sign in</a></li>
+									<li class="login"><a href="<?php echo esc_url(home_url('/')); ?>sign-in"><?php _e('Sign in', 'btk'); ?></a></li>
 									<?php endif; ?>
-									<li><a href="<?php echo esc_url(home_url('/')); ?>cart">Cart</a></li>
+									<li><a href="<?php echo esc_url(home_url('/')); ?>cart"><?php _e('Cart', 'btk'); ?></a></li>
 								</ul>
 							</div>
 							<?php if ( WC()->cart->get_cart_contents_count() > 0 ) { echo '<span class="semi-bold">' . WC()->cart->get_cart_contents_count() . '</span>'; } ?>
@@ -88,7 +88,7 @@ if ( $text_color === '' ) { $text_color = '#fff'; }
 						<nav class="nav-hamburger navbar valign" role="navigation">
 							<div class="navbar-header">
 								<a class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-hamburger">
-									<span class="sr-only">Toggle navigation</span>
+									<span class="sr-only"><?php _e('Toggle navigation', 'btk'); ?></span>
 									<span class="fa fa-bars"></span>
 								</a>
 							</div>
@@ -129,62 +129,62 @@ if ( $text_color === '' ) { $text_color = '#fff'; }
 
 						<!-- menu login -->
 						<div class="sign-in-menu">
-							<p class="welcome">Welcome</p>
+							<p class="welcome"><?php _e('Welcome', 'btk');?></p>
 							<div class='sign-in'>
 								<a href="#" class="choices signin">
-									Returning customers<br />Please sign in
+									<?php _e('Returning customers<br />Please sign in', 'btk'); ?>
 									<span class="icon-chevron-lite-right-white"></span>
 								</a>
 								<a href="#" class="choices signup">
-									New customers<br />Sign up for shopping<br />and exclusive offers
+									<?php _e('New customers<br />Sign up for shopping<br />and exclusive offers', 'btk'); ?>
 									<span class="icon-chevron-lite-right-white"></span>
 								</a>
 							</div>
 
 							<!-- form login -->
 							<div class="login-form">
-								<p>Returning customers<br />Please sign in</p>
+								<p><?php _e('Returning customers<br />Please sign in', 'btk'); ?></p>
 								<form method="post" class="login" action="<?php echo esc_url(home_url('/')); ?>my-account">
 									<?php do_action( 'woocommerce_login_form_start' ); ?>
 									<p>
-										<input id="username" name="username" type="text" class="input-text" value="" placeholder="<?php _e('email'); ?>" />
+										<input id="username" name="username" type="text" class="input-text" value="" placeholder="<?php _e('email', 'btk'); ?>" />
 										<label for="username"></label>
 									</p>
 									<p>
-										<input id="password" name="password" type="password" class="input-text" value="" placeholder="<?php _e('password'); ?>" />
+										<input id="password" name="password" type="password" class="input-text" value="" placeholder="<?php _e('password', 'btk'); ?>" />
 										<label for="password"></label>
 									</p>
 									<?php do_action( 'woocommerce_login_form' ); ?>
 									<p class="submit">
 										<?php wp_nonce_field( 'woocommerce-login' ); ?>
-										<span class="valign">enter edb</span>
-										<input class="valign icon-arrow-lite-right-white" type="submit"  name="login" value="<?php _e( 'Login', 'woocommerce' ); ?>" />
+										<span class="valign"><?php _e('enter edb', 'btk'); ?></span>
+										<input class="valign icon-arrow-lite-right-white" type="submit"  name="login" value="<?php _e( 'Login', 'btk' ); ?>" />
 										<input name="rememberme" type="checkbox" id="rememberme" value="forever" class="hide" checked="checked" />
 									</p>
-									<a href="<?php echo esc_url(home_url('/')); ?>my-account/lost-password" class="lost-password alignright">> Click here to recover lost password</a>
+									<a href="<?php echo esc_url(home_url('/')); ?>my-account/lost-password" class="lost-password alignright"><?php _e('> Click here to recover lost password', 'btk'); ?></a>
 									<?php do_action( 'woocommerce_login_form_end' ); ?>
 								</form>
 							</div>
 
 							<!-- form register -->
 							<div class="register-form">
-								<p>New customers sign up for shopping<br />and exclusive offers</p>
+								<p><?php _e('New customers sign up for shopping<br />and exclusive offers', 'btk'); ?></p>
 								<form method="post" action="<?php echo esc_url(home_url('/')); ?>my-account">
 									<?php do_action( 'woocommerce_register_form_start' ); ?>
 									<p>
 										<label for="reg_email" class="hide"></label>
-										<input type="email" class="input-text" name="email" id="reg_email" placeholder="<?php _e( 'email', 'woocommerce' ); ?>" value="<?php if ( ! empty( $_POST['email'] ) ) echo esc_attr( $_POST['email'] ); ?>" />
+										<input type="email" class="input-text" name="email" id="reg_email" placeholder="<?php _e( 'email', 'btk' ); ?>" value="<?php if ( ! empty( $_POST['email'] ) ) echo esc_attr( $_POST['email'] ); ?>" />
 									</p>
 									<p>
 										<label for="reg_password" class="hide"></label>
-										<input type="password" class="input-text" name="password" id="reg_password" placeholder="<?php _e( 'password', 'woocommerce' ); ?>" />
+										<input type="password" class="input-text" name="password" id="reg_password" placeholder="<?php _e( 'password', 'btk' ); ?>" />
 									</p>
 									<?php do_action( 'woocommerce_register_form' ); ?>
 									<?php do_action( 'register_form' ); ?>
 									<p class="submit">
 										<?php wp_nonce_field( 'woocommerce-register' ); ?>
-										<span class="valign">enter edb</span>
-										<input type="submit" class="valign icon-arrow-lite-right-white" name="register" value="<?php _e( 'Register', 'woocommerce' ); ?>" />
+										<span class="valign"><?php _e('enter edb', 'btk'); ?></span>
+										<input type="submit" class="valign icon-arrow-lite-right-white" name="register" value="<?php _e( 'Register', 'btk' ); ?>" />
 									</p>
 									<?php do_action( 'woocommerce_register_form_end' ); ?>
 								</form>
@@ -192,7 +192,7 @@ if ( $text_color === '' ) { $text_color = '#fff'; }
 
 							<!-- close menu -->
 							<p class="back-home">
-								<span class="valign">Back home</span>
+								<span class="valign"><?php _e('Back home', 'btk'); ?></span>
 								<a class="buttons valign icon-arrow-lite-left-white"></a>
 							</p>
 						</div>
@@ -214,7 +214,7 @@ if ( $text_color === '' ) { $text_color = '#fff'; }
 						endwhile;
 					?>
 						<p class="confirmation-back-home">
-							<span class="valign">Back home</span>
+							<span class="valign"><?php _e('Back home', 'btk'); ?></span>
 							<a href="<?php echo esc_url(home_url('/')); ?>" class="buttons valign icon-arrow-lite-left-white"></a>
 						</p>
 					</div>

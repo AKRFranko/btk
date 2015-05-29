@@ -17,7 +17,7 @@ wc_print_notices();
 
 // If checkout registration is disabled and not logged in, the user cannot checkout
 if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_user_logged_in() ) {
-	echo apply_filters( 'woocommerce_checkout_must_be_logged_in_message', __( 'You must be logged in to checkout.', 'woocommerce' ) );
+	echo apply_filters( 'woocommerce_checkout_must_be_logged_in_message', __( 'You must be logged in to checkout.', 'btk' ) );
 	return;
 }
 
@@ -35,10 +35,10 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
 
 <div class="forms">
 	<form class="checkout-coupon" method="post">
-		<h3>Discount</h3>
+		<h3><?php _e('Discount', 'btk'); ?></h3>
 		<p class="form-row">
-			<input type="text" name="coupon_code" class="input-text lower" placeholder="<?php _e( 'Enter code', 'woocommerce' ); ?>" id="coupon_code" value="" />
-			<input type="submit" class="button lower right" name="apply_coupon" value="<?php _e( 'Apply', 'woocommerce' ); ?>" />
+			<input type="text" name="coupon_code" class="input-text lower" placeholder="<?php _e( 'Enter code', 'btk' ); ?>" id="coupon_code" value="" />
+			<input type="submit" class="button lower right" name="apply_coupon" value="<?php _e( 'Apply', 'btk' ); ?>" />
 		</p>
 	</form>
 
@@ -79,7 +79,7 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
 
 <div class="cart-collaterals">
 	<span class="alignright">
-		<span class="valign">continue shopping</span>
+		<span class="valign"><?php _e('continue shopping', 'btk'); ?></span>
 		<a href="<?php echo esc_url(home_url('/'));?>products/" class="valign icon-arrow-lite-left-white"></a>
 	</span>
 </div>

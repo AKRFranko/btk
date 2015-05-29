@@ -277,12 +277,12 @@ function btk_extra_register_fields() {
 
 	<p>
 		<label for="reg_billing_first_name" class="hide"></label>
-		<input type="text" class="input-text" name="billing_first_name" id="reg_billing_first_name" placeholder="<?php _e( 'first name', 'woocommerce' ); ?>" value="<?php if ( ! empty( $_POST['billing_first_name'] ) ) esc_attr_e( $_POST['billing_first_name'] ); ?>" />
+		<input type="text" class="input-text" name="billing_first_name" id="reg_billing_first_name" placeholder="<?php _e( 'first name', 'btk' ); ?>" value="<?php if ( ! empty( $_POST['billing_first_name'] ) ) esc_attr_e( $_POST['billing_first_name'] ); ?>" />
 	</p>
 
 	<p>
 		<label for="reg_billing_last_name" class="hide"></label>
-		<input type="text" class="input-text" name="billing_last_name" id="reg_billing_last_name" placeholder="<?php _e( 'last name', 'woocommerce' ); ?> " value="<?php if ( ! empty( $_POST['billing_last_name'] ) ) esc_attr_e( $_POST['billing_last_name'] ); ?>" />
+		<input type="text" class="input-text" name="billing_last_name" id="reg_billing_last_name" placeholder="<?php _e( 'last name', 'btk' ); ?> " value="<?php if ( ! empty( $_POST['billing_last_name'] ) ) esc_attr_e( $_POST['billing_last_name'] ); ?>" />
 	</p>
 
 	<?php
@@ -301,7 +301,7 @@ function btk_extra_register_fields2() {
 
 	<p>
 		<label for="reg_billing_city" class="hide"></label>
-		<input type="text" class="input-text" name="billing_city" id="reg_billing_city" placeholder="<?php _e( 'city', 'woocommerce' ); ?> " value="<?php if ( ! empty( $_POST['billing_city'] ) ) esc_attr_e( $_POST['billing_city'] ); ?>" />
+		<input type="text" class="input-text" name="billing_city" id="reg_billing_city" placeholder="<?php _e( 'city', 'btk' ); ?> " value="<?php if ( ! empty( $_POST['billing_city'] ) ) esc_attr_e( $_POST['billing_city'] ); ?>" />
 	</p>
 
 	<?php
@@ -321,15 +321,15 @@ add_action( 'woocommerce_register_form', 'btk_extra_register_fields2' );
  */
 function btk_validate_extra_register_fields( $username, $email, $validation_errors ) {
 	if ( isset( $_POST['billing_first_name'] ) && empty( $_POST['billing_first_name'] ) ) {
-		$validation_errors->add( 'billing_first_name_error', __( 'First name is required.', 'woocommerce' ) );
+		$validation_errors->add( 'billing_first_name_error', __( 'First name is required.', 'btk' ) );
 	}
 
 	if ( isset( $_POST['billing_last_name'] ) && empty( $_POST['billing_last_name'] ) ) {
-		$validation_errors->add( 'billing_last_name_error', __( 'Last name is required.', 'woocommerce' ) );
+		$validation_errors->add( 'billing_last_name_error', __( 'Last name is required.', 'btk' ) );
 	}
 
 	if ( isset( $_POST['billing_city'] ) && empty( $_POST['billing_city'] ) ) {
-		$validation_errors->add( 'billing_city_error', __( 'City is required.', 'woocommerce' ) );
+		$validation_errors->add( 'billing_city_error', __( 'City is required.', 'btk' ) );
 	}
 }
 add_action( 'woocommerce_register_post', 'btk_validate_extra_register_fields', 10, 3 );
@@ -392,7 +392,7 @@ function convert_to_rgb($value) {
 
 function btk_theme_settings() {
 	if (!current_user_can('manage_options')) {
-		wp_die('You do not have sufficient permissions to access this page.');
+		wp_die( __('You do not have sufficient permissions to access this page.', 'btk') );
 	}
 
 	if (isset($_POST['background-color'])) {
@@ -402,14 +402,14 @@ function btk_theme_settings() {
 			update_option('btk_text_color', $_POST['text-color']);
 ?>
 		<div id="message" class="updated">
-			<p><strong>Settings saved</strong></p>
+			<p><strong><?php _e('Settings saved', 'btk'); ?></strong></p>
 		</div>
 <?php
 		}
 		else {
 ?>
 		<div id="message" class="error">
-			<p><strong>Background color should be a valid color</strong></p>
+			<p><strong><?php _e('Background color should be a valid color', 'btk'); ?></strong></p>
 		</div>
 <?php
 		}
@@ -420,16 +420,16 @@ function btk_theme_settings() {
 	if ( $text_color === '' ) { $text_color = '#fff'; }
 ?>
 	<div class="wrap">
-		<h2>Btk Theme Settings</h2>
+		<h2><?php _e('Btk Theme Settings', 'btk'); ?></h2>
 		<form method='post' action=''>
 			<p>
-				<label for="background-color">Select background color for menus: </label>
+				<label for="background-color"><?php _e('Select background color for menus:', 'btk'); ?> </label>
 				<input type="color" class="color-field" name="background-color" value="<?php echo $bkg_color; ?>">
 			</p>
 			<p>
-				<label for="text-color">Select text color: </label>
-				<input type="radio" name="text-color" value="#fff" <?php if ($text_color === '#fff') echo 'checked'; ?>>white
-				<input type="radio" name="text-color" value="#000" <?php if ($text_color === '#000') echo 'checked'; ?>>black
+				<label for="text-color"><?php _e('Select text color:', 'btk'); ?> </label>
+				<input type="radio" name="text-color" value="#fff" <?php if ($text_color === '#fff') echo 'checked'; ?>><?php _e('white', 'btk'); ?>
+				<input type="radio" name="text-color" value="#000" <?php if ($text_color === '#000') echo 'checked'; ?>><?php _e('black', 'btk'); ?>
 			</p>
 			<p>
 				<input type="submit" value="Save settings" class="button-primary">
@@ -440,7 +440,7 @@ function btk_theme_settings() {
 }
 
 function btk_setup_theme_admin_menus() {
-	add_submenu_page('themes.php', 'BTK Theme Settings', 'BTK Settings', 'manage_options', 'btk-theme-settings', 'btk_theme_settings');
+	add_submenu_page('themes.php', __('Btk Theme Settings', 'btk'), __('Btk Settings', 'btk'), 'manage_options', 'btk-theme-settings', 'btk_theme_settings');
 }
 add_action('admin_menu', 'btk_setup_theme_admin_menus');
 

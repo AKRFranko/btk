@@ -45,7 +45,7 @@ if ( ! $product->is_purchasable() ) {
 		<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $product->id ); ?>" />
 
 		<p class="qty-text">
-			<span>Quantity</span>
+			<span><?php _e('Quantity', 'btk'); ?></span>
 		</p>
 
 		<p class="right">

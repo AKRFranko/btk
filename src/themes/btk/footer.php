@@ -20,7 +20,7 @@
 			<div class="row">
 
 				<div id="back-to-top" class="lower center">
-					<a href="#top">Back to top</a>
+					<a href="#top"><?php _e('Back to top', 'btk'); ?></a>
 				</div>
 
 				<footer id="colophon" class="site-footer lower clearfix" role="contentinfo">
@@ -36,16 +36,6 @@
 						</nav><!-- #site-navigation -->
 
 						<div class="social">
-<!--
-							<ul>
-								<li><a href="https://facebook.com" class="fa fa-facebook-square" rel="external" title="facebook"></a></li>
-								<li><a href="https://twitter.com" class="fa fa-twitter-square" rel="external" title="twitter"></a></li>
-								<li><a href="https://pinterest.com" class="fa fa-pinterest-square" rel="external" title="pinterest"></a></li>
-								<li><a href="https://instagram.com" class="fa fa-instagram" rel="external" title="instagram"></a></li>
-								<li><a href="https://youtube.com" class="fa fa-youtube-square" rel="external" title="youtube"></a></li>
-								<li><a href="https://tumblr.com" class="fa fa-tumblr-square" rel="external" title="tumblr"></a></li>
-							</ul>
--->
 							<?php echo do_shortcode('[feather_follow show="facebook, twitter, pinterest, instagram, youtube, tumblr"]'); ?>
 						</div>
 					</div>

@@ -27,7 +27,7 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 			<?php if ( ! is_checkout() ) { ?>
 			<div class="product-remove alignright">
 				<?php
-					echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="remove" title="%s">&times;</a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ), __( 'Remove this item', 'woocommerce' ) ), $cart_item_key );
+					echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="remove" title="%s">&times;</a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ), __( 'Remove this item', 'btk' ) ), $cart_item_key );
 				?>
 			</div>
 			<?php } ?>
@@ -52,7 +52,7 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 
        				// Backorder notification
        				if ( $_product->backorders_require_notification() && $_product->is_on_backorder( $cart_item['quantity'] ) )
-       					echo '<p class="backorder_notification">' . __( 'Available on backorder', 'woocommerce' ) . '</p>';
+       					echo '<p class="backorder_notification">' . __( 'Available on backorder', 'btk' ) . '</p>';
 				?>
 			</div>
 
@@ -63,7 +63,7 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 			</div>
 
 			<div class="product-quantity clearfix">
-				<p>Quantity</p>
+				<p><?php _e('Quantity', 'btk'); ?></p>
 				<?php
 					if ( $_product->is_sold_individually() ) {
 						$product_quantity = sprintf( '1 <input type="hidden" name="cart[%s][qty]" value="1" />', $cart_item_key );
