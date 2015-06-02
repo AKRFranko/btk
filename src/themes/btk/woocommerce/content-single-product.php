@@ -31,6 +31,11 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 	 	echo get_the_password_form();
 	 	return;
 	 }
+
+	 $pin_image = '';
+	 if ( has_post_thumbnail() ) {
+	 	$pin_image = wp_get_attachment_url( get_post_thumbnail_id() );
+	 }
 ?>
 
 <div itemscope itemtype="<?php echo woocommerce_get_product_schema(); ?>" id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -106,8 +111,19 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 
 	<div class="product-summary">
 		<h2 class="product-title upper"><?php the_title(); ?></h2>
-		<p class="product-price">_ <?php echo $product->get_price_html(); ?></p>
+		<p class="product-price valign">_ <?php echo $product->get_price_html(); ?></p>
+		<p class="sharing alignright">
+			<a href="https://www.facebook.com/sharer.php?u=<?php echo get_permalink(); ?>" class="fa fa-facebook-square" title="<?php _e('Share to facebook', 'btk'); ?>" target="_blank">
+			</a>
+			<a href="https://twitter.com/share?text=<?php the_title(); echo ' on element de base'; ?>&amp;url=<?php echo get_permalink(); ?>&amp;via=elementdebase" class="fa fa-twitter-square" title="<?php _e('Share to twitter', 'btk'); ?>" target="_blank"></a>
+			<span class="fa fa-pinterest-square" title="<?php _e('Share to pinterest', 'btk'); ?>">
+				<a href="//fr.pinterest.com/pin/create/button/?url=<?php echo get_permalink(); ?>&amp;media=<?php echo $pin_image; ?>&amp;description=<?php the_title(); ?>" data-pin-do="buttonPin" data-pin-config="none">
+					<img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" /></a>
+				<script type="text/javascript" async defer src="//assets.pinterest.com/js/pinit.js"></script>
+			</span>
+		</p>
 	</div>
+
 
 	<div class="product-description clearfix">
 		<p class="desc"><?php echo get_the_content(); ?></p>
@@ -116,6 +132,7 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 			<a href="" class="pr-rev"><?php _e('Customer reviews', 'btk'); ?></a>
 		</p>
 	</div>
+
 
 	<?php comments_template( 'single-product-reviews.php' ); ?>
 

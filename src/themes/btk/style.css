@@ -1575,6 +1575,26 @@ Woocommerce Overrides
   display: inline-block;
   color: #000000;
 }
+.woocommerce .product .product-summary .sharing {
+  font-size: 1.4em;
+}
+.woocommerce .product .product-summary .sharing a {
+  color: #9c9c9c;
+}
+.woocommerce .product .product-summary .sharing a:hover {
+  color: #666;
+}
+.woocommerce .product .product-summary .sharing > span {
+  color: #9c9c9c;
+}
+.woocommerce .product .product-summary .sharing > span:hover {
+  color: #666;
+}
+.woocommerce .product .product-summary .sharing > span a {
+  width: 18px !important;
+  margin-left: -23px;
+  background: none !important;
+}
 .woocommerce .product .product-description {
   padding: 20px 15px;
   border-bottom: 3px solid #000000;
