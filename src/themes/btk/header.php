@@ -21,9 +21,6 @@ if ( $text_color === '' ) { $text_color = '#fff'; }
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo('pingback_url');?>">
 
-<meta property="og:site_name" content="élément de base">
-<meta property="og:type" content="article">
-
 <link rel="apple-touch-icon" sizes="57x57" href="/wp-content/themes/btk/img/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="/wp-content/themes/btk/img/apple-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72" href="/wp-content/themes/btk/img/apple-icon-72x72.png">

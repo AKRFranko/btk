@@ -370,6 +370,44 @@ add_action( 'woocommerce_created_customer', 'btk_save_extra_register_fields' );
 
 
 
+/**
+ * Settings page setup in admin
+ */
+function doctype_opengraph($output) {
+	return $output . ' xmlns:og="http://opengraphprotocol.org/schema/"xmlns:fb="http://www.facebook.com/2008/fbml"';
+}
+add_filter('language_attributes', 'doctype_opengraph');
+
+function fb_opengraph() {
+	global $post;
+	if ( is_single() ) {
+		if ( has_post_thumbnail($post->ID) ) {
+			$img_src = wp_get_attachment_image_src(get_post_thumbnail_id( $post->ID ), 'medium');
+			$img_src = $img_src[0];
+		} else {
+			$img_src = get_stylesheet_directory_uri() . '/img/collection.jpg';
+		}
+		if ( $excerpt = $post->post_content ) {
+		$excerpt = strip_tags($post->post_content);
+		$excerpt = str_replace("", "'", $excerpt);
+		if (strlen($excerpt) > 100) { $excerpt = substr($excerpt, 0, 100) . '...'; }
+	} else {
+		$excerpt = get_bloginfo('description');
+	}
+	?>
+	<meta property="og:title" content="<?php echo the_title(); ?>"/>
+	<meta property="og:description" content="<?php echo $excerpt; ?>"/>
+	<meta property="og:type" content="article"/>
+	<meta property="og:url" content="<?php echo the_permalink(); ?>"/>
+	<meta property="og:site_name" content="élément de base"/>
+	<meta property="og:image" content="<?php echo $img_src; ?>"/>
+<?php
+	} else { return; }
+}
+add_action('wp_head', 'fb_opengraph', 5);
+
+
+
 
 /**
  * Settings page setup in admin
