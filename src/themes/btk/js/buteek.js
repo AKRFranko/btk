@@ -26,7 +26,7 @@
 				$('.login-form').hide();
 				$('.register-form').hide();
 				$('.back-home').show();
-				$('#page').css({ 'overflow-x': 'hidden', position: 'fixed'});
+				$('#page').css('position', 'fixed');
 			} else if ($('.sign-in, .login-form, .register-form').is(':visible')) {
 				$('.sign-in-menu').hide();
 				$('#header-box').removeClass('open');
@@ -66,7 +66,7 @@
 				$('#header-box').addClass('open');
 				$('#header-box .confirmation').hide();
 				$('.navbar-header .fa').removeClass('fa-bars').addClass('fa-times');
-				$('#page').css({ 'overflow-x': 'hidden', position: 'fixed'});
+				$('#page').css('position', 'fixed');
 			} else {
 				$('#header-box').removeClass('open');
 				$('#header-box .confirmation').show();
