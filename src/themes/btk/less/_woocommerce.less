@@ -470,6 +470,35 @@ Woocommerce Overrides
 			}
 		}
 	}
+
+
+
+// error messages
+	.woocommerce-message {
+		background-color:#5cb85c;
+		&:before { content:'\f058'; }
+	}
+
+	.woocommerce-info {
+		background-color:#5bc0de;
+		&:before { content:'\f05a'; }
+	}
+
+	.woocommerce-error {
+		background-color:#d9534f;
+		&:before { content:'\f06a'; }
+	}
+
+	.woocommerce-message, .woocommerce-info, .woocommerce-error {
+		border:none; color:@white; padding-top:0.85em !important; padding-bottom:0.85em !important;
+		a { color:@white; &:hover { color:@black; } }
+		&:before { font-family:FontAwesome; display:inline-block; top:0.9em; color:@white; }
+		a.button {
+			padding:0.4em 1em; background:@black; border-radius:0;
+			font-weight:normal; text-transform:lowercase;
+			&:hover { background-color:@gray; color:@white; }
+		}
+	}
 }
 
 

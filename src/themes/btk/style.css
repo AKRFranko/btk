@@ -2083,6 +2083,65 @@ Woocommerce Overrides
   color: #ffffff;
   text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.8);
 }
+.woocommerce .woocommerce-message {
+  background-color: #5cb85c;
+}
+.woocommerce .woocommerce-message:before {
+  content: '\f058';
+}
+.woocommerce .woocommerce-info {
+  background-color: #5bc0de;
+}
+.woocommerce .woocommerce-info:before {
+  content: '\f05a';
+}
+.woocommerce .woocommerce-error {
+  background-color: #d9534f;
+}
+.woocommerce .woocommerce-error:before {
+  content: '\f06a';
+}
+.woocommerce .woocommerce-message,
+.woocommerce .woocommerce-info,
+.woocommerce .woocommerce-error {
+  border: none;
+  color: #ffffff;
+  padding-top: 0.85em !important;
+  padding-bottom: 0.85em !important;
+}
+.woocommerce .woocommerce-message a,
+.woocommerce .woocommerce-info a,
+.woocommerce .woocommerce-error a {
+  color: #ffffff;
+}
+.woocommerce .woocommerce-message a:hover,
+.woocommerce .woocommerce-info a:hover,
+.woocommerce .woocommerce-error a:hover {
+  color: #000000;
+}
+.woocommerce .woocommerce-message:before,
+.woocommerce .woocommerce-info:before,
+.woocommerce .woocommerce-error:before {
+  font-family: FontAwesome;
+  display: inline-block;
+  top: 0.9em;
+  color: #ffffff;
+}
+.woocommerce .woocommerce-message a.button,
+.woocommerce .woocommerce-info a.button,
+.woocommerce .woocommerce-error a.button {
+  padding: 0.4em 1em;
+  background: #000000;
+  border-radius: 0;
+  font-weight: normal;
+  text-transform: lowercase;
+}
+.woocommerce .woocommerce-message a.button:hover,
+.woocommerce .woocommerce-info a.button:hover,
+.woocommerce .woocommerce-error a.button:hover {
+  background-color: #444444;
+  color: #ffffff;
+}
 @media (max-width: 767px) {
   .woocommerce #payment #place_order {
     width: initial;
@@ -2527,7 +2586,7 @@ Header
 #header-box header .sign-in-menu {
   display: none;
   position: absolute;
-  top: 90px;
+  top: 87px;
   left: 0;
   width: 100%;
   height: 81vh;
@@ -2765,7 +2824,7 @@ Content
 ==========================================================================
 */
 #content {
-  margin-top: 90px;
+  margin-top: 87px;
 }
 #content h1 {
   margin: 10px 15px 20px;
@@ -2968,6 +3027,11 @@ Content
   font-style: italic;
   margin-bottom: 2px;
   font-size: 0.8em;
+}
+@media (min-width: 768px) {
+  #content {
+    margin-top: 97px;
+  }
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .home .main-article .title,
