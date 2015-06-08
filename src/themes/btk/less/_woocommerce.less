@@ -175,18 +175,9 @@ Woocommerce Overrides
 // product summary
 	.product {
 		.product-images {
-			position:relative; padding-bottom:20px;
+			position:relative; padding-bottom:40px;
 			img { width:100%; max-height:70vh; }
 			> div { .imgborder(); }
-			.edb-slider {
-				margin-bottom:10px;
-				.slide a { display:none; }
-			}
-			.controls {
-				top:initial; bottom:-40px; padding-top:15px;
-				a { font-size:1.25em; vertical-align:middle; }
-				> span { color:@black; text-shadow:none; font-weight:normal; }
-			}
 			.in-stock { position:absolute; bottom:50px; left:15px; z-index:5; }
 		}
 
@@ -314,6 +305,23 @@ Woocommerce Overrides
 						.comment-text { margin:0 0 0.5em; padding:0; border:none; }
 					}
 				}
+			}
+		}
+
+		.recently-viewed {
+			margin-bottom:60px;
+			> h2 { padding:20px 15px; margin:0; }
+			.edb-slider .slide a { display:block; }
+			.edb-slider .slide span { display:none; }
+		}
+
+		.edb-slider {
+			margin-bottom:10px;
+			.slide a { display:none; }
+			.controls {
+				top:initial; bottom:-40px; padding-top:15px;
+				a { font-size:1.25em; vertical-align:middle; }
+				> span { color:@black; text-shadow:none; font-weight:normal; }
 			}
 		}
 	}

@@ -344,6 +344,26 @@ function btk_edb_single_product_slider() {
 
 
 
+/**
+ * Recently viewed products
+ **/
+function btk_recently_viewed() {
+	global $woocommerce;
+
+    $viewed_products = ! empty( $_COOKIE['woocommerce_recently_viewed'] ) ? (array) explode( '|', $_COOKIE['woocommerce_recently_viewed'] ) : array();
+    $viewed_products = array_filter( array_map( 'absint', $viewed_products ) );
+
+    $query = array(
+    	'post_type' => 'product',
+    	'post_status' => 'publish',
+    	'post__in' => $viewed_products,
+    	'order_by' => 'rand'
+    );
+
+    btk_edb_slider($query);
+}
+
+
 
 /**
  * Flush out the transients used in btk_categorized_blog.

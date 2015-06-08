@@ -1473,7 +1473,7 @@ Woocommerce Overrides
 }
 .woocommerce .product .product-images {
   position: relative;
-  padding-bottom: 20px;
+  padding-bottom: 40px;
 }
 .woocommerce .product .product-images img {
   width: 100%;
@@ -1481,26 +1481,6 @@ Woocommerce Overrides
 }
 .woocommerce .product .product-images > div {
   border-bottom: 3px solid #000000;
-}
-.woocommerce .product .product-images .edb-slider {
-  margin-bottom: 10px;
-}
-.woocommerce .product .product-images .edb-slider .slide a {
-  display: none;
-}
-.woocommerce .product .product-images .controls {
-  top: initial;
-  bottom: -40px;
-  padding-top: 15px;
-}
-.woocommerce .product .product-images .controls a {
-  font-size: 1.25em;
-  vertical-align: middle;
-}
-.woocommerce .product .product-images .controls > span {
-  color: #000000;
-  text-shadow: none;
-  font-weight: normal;
 }
 .woocommerce .product .product-images .in-stock {
   position: absolute;
@@ -1733,6 +1713,39 @@ Woocommerce Overrides
   margin: 0 0 0.5em;
   padding: 0;
   border: none;
+}
+.woocommerce .product .recently-viewed {
+  margin-bottom: 60px;
+}
+.woocommerce .product .recently-viewed > h2 {
+  padding: 20px 15px;
+  margin: 0;
+}
+.woocommerce .product .recently-viewed .edb-slider .slide a {
+  display: block;
+}
+.woocommerce .product .recently-viewed .edb-slider .slide span {
+  display: none;
+}
+.woocommerce .product .edb-slider {
+  margin-bottom: 10px;
+}
+.woocommerce .product .edb-slider .slide a {
+  display: none;
+}
+.woocommerce .product .edb-slider .controls {
+  top: initial;
+  bottom: -40px;
+  padding-top: 15px;
+}
+.woocommerce .product .edb-slider .controls a {
+  font-size: 1.25em;
+  vertical-align: middle;
+}
+.woocommerce .product .edb-slider .controls > span {
+  color: #000000;
+  text-shadow: none;
+  font-weight: normal;
 }
 .woocommerce .quantity {
   float: right;
@@ -2251,8 +2264,7 @@ body.splash-on > * {
 /* slides */
 #splash-page .splash-image {
   z-index: 300;
-  -webkit-animation: splashcycler 12s infinite;
-          animation: splashcycler 12s infinite;
+  animation: splashcycler 12s infinite;
   opacity: 0;
   background-size: cover;
   background-position: center;
@@ -2267,20 +2279,6 @@ body.splash-on > * {
   height: 100%;
 }
 /* slide animation */
-@-webkit-keyframes splashcycler {
-  0% {
-    opacity: 1;
-  }
-  33% {
-    opacity: 1;
-  }
-  35% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
-}
 @keyframes splashcycler {
   0% {
     opacity: 1;
@@ -2297,16 +2295,13 @@ body.splash-on > * {
 }
 /* slide offsets (relative to splashcycler duration)*/
 #splash-page .splash-image:nth-child(1) {
-  -webkit-animation-delay: 0s;
-          animation-delay: 0s;
+  animation-delay: 0s;
 }
 #splash-page .splash-image:nth-child(2) {
-  -webkit-animation-delay: 4s;
-          animation-delay: 4s;
+  animation-delay: 4s;
 }
 #splash-page .splash-image:nth-child(3) {
-  -webkit-animation-delay: 8s;
-          animation-delay: 8s;
+  animation-delay: 8s;
 }
 #splash-page button {
   position: absolute;
@@ -2321,9 +2316,7 @@ body.splash-on > * {
   border-radius: 0;
   text-align: center;
   transition: all 0.1s ease-in-out;
-  -webkit-transform-origin: center;
-      -ms-transform-origin: center;
-          transform-origin: center;
+  transform-origin: center;
   z-index: 500;
   white-space: nowrap;
   line-height: 1.2;
@@ -2517,9 +2510,7 @@ Header
   margin: 0 5px 0 15px;
 }
 #header-box header nav .badge {
-  -webkit-transform: scale(0.6) translateY(-0.5em);
-      -ms-transform: scale(0.6) translateY(-0.5em);
-          transform: scale(0.6) translateY(-0.5em);
+  transform: scale(0.6) translateY(-0.5em);
   font-family: monospace;
 }
 #header-box header nav.nav-hamburger {
@@ -3179,9 +3170,7 @@ Footer
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-transform: translate(0, 0);
-      -ms-transform: translate(0, 0);
-          transform: translate(0, 0);
+  transform: translate(0, 0);
   width: 19px !important;
   height: 19px !important;
   font-size: 1.5em !important;
