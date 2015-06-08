@@ -20,9 +20,9 @@ get_header();?>
 				<?php btk_edb_slider('category_name=carousel&posts_per_page=5');?>
 				<div class="controls">
 					<a class="prev" href="#"><span class="icon-arrow-lite-left-white"></span></a>
-					<span class="index">0</span>
+					<span class="index"> - </span>
 					<span class="separator"> | </span>
-					<span class="total"> 5 </span>
+					<span class="total"> - </span>
 					<a class="next" href="#"><span class="icon-arrow-lite-right-white"></span></a>
 				</div>
 			</div>

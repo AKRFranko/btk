@@ -64,9 +64,9 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 			<?php btk_edb_single_product_slider();?>
 			<div class="controls">
 				<a class="prev" href="#"><span class="icon-arrow-lite-left-black"></span></a>
-					<span class="index">0</span>
+					<span class="index"> - </span>
 					<span class="separator"> | </span>
-					<span class="total"> 5 </span>
+					<span class="total"> - </span>
 				<a class="next" href="#"><span class="icon-arrow-lite-right-black"></span></a>
 			<?php if ( $product->is_in_stock() ) { ?>
 				<span class="in-stock"><?php _e('in stock', 'btk'); ?></span>
