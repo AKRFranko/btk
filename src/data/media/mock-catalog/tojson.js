@@ -1,4 +1,4 @@
-var argv, addToCat, basename, bindTerms, buildRecipe, cat_tree, createPost, createTerm, enableVariations, enableVisibility, fs, getCatVar, getPaths, importMedia, materials, output, readTree, recipe, setMaterial, setMockdata, setSKU, variant_cats, pad, getSKU, indexes, adler32, goo, cat_idx;
+var argv, addToCat, basename, bindTerms, buildRecipe, cat_tree, createPost, createTerm, enableVariations, enableVisibility, fs, getCatVar, getPaths, importMedia, materials, output, readTree, recipe, setMaterial, setMockdata, setSKU, variant_cats, pad, getSKU, indexes, adler32, goo, cat_idx, genMediaVar;
 
 adler32 = require('adler32');
 fs = require('fs');
@@ -55,7 +55,7 @@ recipe = {
         }
     },
     "media": {
-        "import": []
+        "import": {}
     },
     "eval": []
 };
@@ -117,6 +117,12 @@ getPaths = function(cat, base) {
         }));
     }, []);
 };
+
+genMediaVar = function(post_varname) {
+    var index = genMediaVar.index ? genMediaVar.index : 0;
+    genMediaVar.index = index + 1;
+    return post_varname + "_media_" + index;
+}
 
 readTree = function() {
     var product_paths, products;
@@ -219,6 +225,17 @@ enableVariations = function(post_varname) {
     });
 };
 
+enableFeaturedImage = function(post_varname, imageid) {
+    recipe.post.meta.update.push({
+        args: {
+            id: "" + post_varname,
+            key: "_product_image_gallery",
+            value: "" + imageid
+        }
+    })
+}
+
+
 enableVisibility = function(post_varname) {
     return recipe.post.meta.update.push({
         args: {
@@ -264,13 +281,7 @@ setMockdata = function(post_varname) {
             value: 10
         }
     });
-    // return recipe.post.meta.update.push({
-    //     args: {
-    //         id: "" + post_varname,
-    //         key: "_price",
-    //         value: Math.floor(Math.random() * 300 + 5) + '.00'
-    //     }
-    // });
+
 };
 
 setProductData = function(post_varname, key, value) {
@@ -287,13 +298,7 @@ setSKU = function(post_varname, data, variant) {
     var cat, slug;
     cat = data.sub ? data.cat + "_" + data.sub : "" + data.cat;
     slug = post_varname.replace(/\$/, '');
-    return recipe.post.meta.update.push({
-        args: {
-            id: "" + post_varname,
-            key: "_sku",
-            value: getSKU(data, variant)
-        }
-    });
+    return setProductData(post_varname, '_sku', getSKU(data, variant));
 };
 
 bindTerms = function(post_varname, variants) {
@@ -319,23 +324,36 @@ var readFolderImages = function(folder) {
 }
 
 importMedia = function(data) {
-    var all, angles, featured, scenes, tech;
+    var all, angles, featured, scenes, tech, mats, image_varnames;
+    image_varnames = []
     angles = readFolderImages(data.path + "/images/cutout")
     scenes = readFolderImages(data.path + "/images/ambiance")
     tech = readFolderImages(data.path + "/images/tech")
-        // featured = data.path + "/images/cutout/front.jpg";
-        // angles = [data.path + "/images/cutout/left.jpg", data.path + "/images/cutout/right.jpg", data.path + "/images/cutout/top.jpg"];
-        // scenes = [data.path + "/images/ambiance/01.jpg", data.path + "/images/ambiance/02.jpg", data.path + "/images/ambiance/03.jpg", data.path + "/images/ambiance/04.jpg"];
-        // tech = [data.path + "/images/tech/01.jpg", data.path + "/images/tech/02.jpg"];
-    featured = angles.shift();
-    all = [angles, scenes, tech].reduce(function(a, b) {
+    try {
+        mats = readFolderImages(data.path + "/images/materials")
+    } catch (e) {
+        mats = []
+    }
+    // featured = data.path + "/images/cutout/front.jpg";
+    // angles = [data.path + "/images/cutout/left.jpg", data.path + "/images/cutout/right.jpg", data.path + "/images/cutout/top.jpg"];
+    // scenes = [data.path + "/images/ambiance/01.jpg", data.path + "/images/ambiance/02.jpg", data.path + "/images/ambiance/03.jpg", data.path + "/images/ambiance/04.jpg"];
+    // tech = [data.path + "/images/tech/01.jpg", data.path + "/images/tech/02.jpg"];
+    try {
+        var features = readFolderImages(data.path + "/images/listing");
+        featured = names.shift()
+    } catch (E) {
+        featured = angles.shift();
+    }
+    all = [angles, scenes, mats, tech].reduce(function(a, b) {
         if (!a) {
             return b;
         } else {
             return a.concat(b);
         }
     });
-    recipe.media["import"].push({
+    var feat_varname = genMediaVar(data.varname);
+    image_varnames.push(feat_varname);
+    recipe.media["import"][feat_varname] = {
         args: {
             file: featured
         },
@@ -343,54 +361,80 @@ importMedia = function(data) {
             post_id: data.varname,
             featured_image: true
         }
-    });
+    };
+
     all.map(function(path) {
-        return recipe.media["import"].push({
+        var sub_varname = genMediaVar(data.varname);
+        image_varnames.push(sub_varname);
+        recipe.media["import"][sub_varname] = {
             args: {
                 file: path
             },
             opts: {
                 post_id: data.varname
             }
-        });
+        };
     });
-    if (data.hasVariations) {
-        return materials.forEach(function(mat) {
-            recipe.media["import"].push({
-                args: {
-                    file: data.path + "/images/materials/" + mat + "/front.jpg"
-                },
-                opts: {
-                    post_id: data.varname + "_" + mat,
-                    featured_image: true
-                }
-            });
-            recipe.media["import"].push({
-                args: {
-                    file: data.path + "/images/materials/" + mat + "/left.jpg"
-                },
-                opts: {
-                    post_id: data.varname + "_" + mat
-                }
-            });
-            recipe.media["import"].push({
-                args: {
-                    file: data.path + "/images/materials/" + mat + "/right.jpg"
-                },
-                opts: {
-                    post_id: data.varname + "_" + mat
-                }
-            });
-            return recipe.media["import"].push({
-                args: {
-                    file: data.path + "/images/materials/" + mat + "/top.jpg"
-                },
-                opts: {
-                    post_id: data.varname + "_" + mat
-                }
-            });
+
+    image_varnames.map(function(image_varname) {
+        recipe.eval.push({
+            "args": {
+                "php": "update_post_meta( " + data.varname + ", '_product_image_gallery', '" + image_varname + "' );"
+            }
         });
-    }
+
+        if (data.hasVariantions) {
+            materials.forEach(function(mat) {
+
+                recipe.eval.push({
+                    "args": {
+                        "php": "update_post_meta( " + data.varname + '_' + mat + ", '_product_image_gallery', '" + image_varname + "' );"
+                    }
+                });
+            })
+        }
+    })
+
+
+    // if (data.hasVariations) {
+    //     return materials.forEach(function(mat) {
+    //         var mimages = 
+    //         var sub_varname = genMediaVar( data.varname + "_" + mat );
+    //         recipe.media["import"].push({
+    //             args: {
+    //                 file: data.path + "/images/materials/" + mat + "/front.jpg"
+    //             },
+    //             opts: {
+    //                 post_id: data.varname + "_" + mat,
+    //                 featured_image: true
+    //             }
+    //         });
+    //         recipe.media["import"].push({
+    //             args: {
+    //                 file: data.path + "/images/materials/" + mat + "/left.jpg"
+    //             },
+    //             opts: {
+    //                 post_id: data.varname + "_" + mat
+    //             }
+    //         });
+    //         recipe.media["import"].push({
+    //             args: {
+    //                 file: data.path + "/images/materials/" + mat + "/right.jpg"
+    //             },
+    //             opts: {
+    //                 post_id: data.varname + "_" + mat
+    //             }
+    //         });
+    //         return recipe.media["import"].push({
+    //             args: {
+    //                 file: data.path + "/images/materials/" + mat + "/top.jpg"
+    //             },
+    //             opts: {
+    //                 post_id: data.varname + "_" + mat
+    //             }
+    //         });
+    //     });
+    //}
 };
 
 createPost = function(data) {
