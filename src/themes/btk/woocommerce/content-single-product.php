@@ -90,10 +90,17 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 		<ul>
 		<?php
 			$count = 0;
+			
+
 			foreach ( $attributes['edb_material'] as $color ){
+				foreach( $available_variations as $variation){
+          if($variation['attributes']['attribute_edb_material'] === $color){
+            $variation_id = $variation['variation_id'];
+          };
+        };
 				$current = $_REQUEST[ 'attribute_edb_material' ] === $color ? 'current' : '';
 				$src = get_bloginfo('template_directory'). "/img/textures/$color.jpg";
-				$html = '<li><a href="#" data-variation="'.sanitize_title($color).'" title="'.sanitize_title($color).'" class="product-color-choice-option edb-material-'.sanitize_title($color).'">';
+				$html = '<li><a href="#" data-variation="'.sanitize_title($color).'" data-variation-attribute="attribute_edb_material" data-variation-id="'.$variation_id.'" title="'.sanitize_title($color).'" class="product-color-choice-option edb-material-'.sanitize_title($color).'">';
 				$html .= '<img class=\"material\" src="'.$src.'">';
 				$html .= '</a></li>';
 				echo $html;
