@@ -374,7 +374,7 @@ add_action( 'woocommerce_created_customer', 'btk_save_extra_register_fields' );
  * Settings page setup in admin
  */
 function doctype_opengraph($output) {
-	return $output . ' xmlns:og="http://opengraphprotocol.org/schema/"xmlns:fb="http://www.facebook.com/2008/fbml"';
+	return $output . ' xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"';
 }
 add_filter('language_attributes', 'doctype_opengraph');
 

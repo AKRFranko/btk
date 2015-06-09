@@ -13,6 +13,7 @@ get_header(); ?>
 			<h1><?php the_title(); ?></h1>
 
 			<div class="lookbook woocommerce lower">
+				<?php wc_print_notices(); ?>
 				<ul class="products">
 				<?php
 					$args = array( 'post_type' => 'product', 'post_per_page' => '5', 'product_cat' => 'lookbook' );

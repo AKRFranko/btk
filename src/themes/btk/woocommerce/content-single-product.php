@@ -122,10 +122,10 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 		<p class="sharing alignright">
 			<a href="https://www.facebook.com/sharer.php?u=<?php echo get_permalink(); ?>" class="fa fa-facebook-square" title="<?php _e('Share to facebook', 'btk'); ?>" target="_blank">
 			</a>
-			<a href="https://twitter.com/share?text=<?php the_title(); echo ' on element de base'; ?>&amp;url=<?php echo get_permalink(); ?>&amp;via=elementdebase" class="fa fa-twitter-square" title="<?php _e('Share to twitter', 'btk'); ?>" target="_blank"></a>
+			<a href="https://twitter.com/share?text=<?php echo rawurlencode(get_the_title() . ' on element de base'); ?>&amp;url=<?php echo get_permalink(); ?>&amp;via=elementdebase" class="fa fa-twitter-square" title="<?php _e('Share to twitter', 'btk'); ?>" target="_blank"></a>
 			<span class="fa fa-pinterest-square" title="<?php _e('Share to pinterest', 'btk'); ?>">
-				<a href="//fr.pinterest.com/pin/create/button/?url=<?php echo get_permalink(); ?>&amp;media=<?php echo $pin_image; ?>&amp;description=<?php the_title(); ?>" data-pin-do="buttonPin" data-pin-config="none">
-					<img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" /></a>
+				<a href="//fr.pinterest.com/pin/create/button/?url=<?php echo get_permalink(); ?>&amp;media=<?php echo $pin_image; ?>&amp;description=<?php echo rawurlencode(get_the_title()); ?>" data-pin-do="buttonPin" data-pin-config="none">
+					<img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" alt="pinterest" /></a>
 				<script type="text/javascript" async defer src="//assets.pinterest.com/js/pinit.js"></script>
 			</span>
 		</p>
