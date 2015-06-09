@@ -464,6 +464,9 @@
 				}
 			},
 			"$samples_page": {
+				"args": {
+					"file": "./src/data/text/samples.txt"
+				},
 				"opts": {
 					"post_title": "order samples",
 					"post_name": "order-samples",
