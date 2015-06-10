@@ -536,5 +536,10 @@ Woocommerce Overrides
 	.woocommerce .product .product-images .controls { padding:20px; }
 	.woocommerce .product .product-color-choice ul li { margin:0 10px 20px; }
 
-	.ie11 .woocommerce .product .product-images .controls { padding-top:60px; }
+	.ie10, .ie11, .NaN {
+		.woocommerce .product .product-images .controls,
+		.woocommerce .product .edb-slider .controls { padding-top:60px; }
+	}
 }
+
+
