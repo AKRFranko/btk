@@ -354,16 +354,19 @@ Woocommerce Overrides
 			font-size:2em; line-height:0.7em;
 			&:hover { background:transparent; }
 		}
-		
 		.cart_item { padding:15px 15px 30px; .imgborder(); }
 		.product-name, .product-price { font-size:1.1em; }
-		.product-thumbnail img { margin-bottom:3px; }
+		.product-thumbnail {
+			width:100px;
+			img { width:100% !important; margin-bottom:3px; border:1px solid #ccc !important; }
+		}
 		.product-quantity {
 			position:relative; padding-top:25px; border-bottom:1px solid @black;
 			p { margin:0 !important; padding:6px 0; }
 		}
 		.quantity { position:absolute; bottom:-3px; right:0; }
 	}
+
 	.cart-collaterals {
 		padding:0 15px 30px;
 		a {
@@ -532,4 +535,6 @@ Woocommerce Overrides
 	.woocommerce ul.products li.product .product-desc,
 	.woocommerce .product .product-images .controls { padding:20px; }
 	.woocommerce .product .product-color-choice ul li { margin:0 10px 20px; }
+
+	.ie11 .woocommerce .product .product-images .controls { padding-top:60px; }
 }

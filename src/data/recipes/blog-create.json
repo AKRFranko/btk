@@ -451,7 +451,6 @@
 					"post_name": "products",
 					"post_type": "page",
 					"post_status": "publish",
-					"post_content": "Products Page"
 				}
 			},
 			"$lookbook_page": {
@@ -464,15 +463,12 @@
 				}
 			},
 			"$samples_page": {
-				"args": {
-					"file": "./src/data/text/samples.txt"
-				},
 				"opts": {
 					"post_title": "order samples",
 					"post_name": "order-samples",
 					"post_type": "page",
 					"post_status": "publish",
-					"post_content": "Samples Page"
+					"post_content": "[contact-form-7 id='93' title='Order samples']"
 				}
 			},
 			"$delivery_page": {
