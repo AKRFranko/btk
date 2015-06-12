@@ -5,5 +5,3 @@ Congratulations, your order has been placed successfully!
 In the next few minutes you will receive a confirmation email with your receipt.
 
 <hr />
-
-Detail message about customer service ressources...

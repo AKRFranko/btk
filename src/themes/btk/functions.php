@@ -510,6 +510,98 @@ function btk_color_settings() {
 }
 add_action('wp_head', 'btk_color_settings');
 
+
+
+/**
+ * Redirect to custom thank you page after checkout
+ **/
+function wc_custom_redirect_after_purchase() {
+	global $wp;
+
+	if ( is_checkout() && ! empty( $wp->query_vars['order-received'] ) ) {
+		$order_id = absint( $wp->query_vars['order-received'] );
+		wp_redirect( home_url('/') . 'confirmation?order=' . $order_id );
+		exit;
+	}
+}
+add_action( 'template_redirect', 'wc_custom_redirect_after_purchase' );
+
+function wc_custom_thankyou( $content ) {
+	if ( ! is_page( 'confirmation' ) ) {
+		return $content;
+	}
+
+	if ( ! isset( $_GET['order'] ) ) {
+		return $content;
+	}
+
+	$order = wc_get_order( intval( $_GET['order'] ) );
+	ob_start();
+
+	if ( ! $order ) {
+		?><p><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', __( 'Thank you. Your order has been received.', 'btk' ), null ); ?></p><?php
+	} else {
+		if ( $order->has_status( 'failed' ) ) {
+?>
+		<p><?php _e( 'Unfortunately your order cannot be processed as the originating bank/merchant has declined your transaction.', 'btk' ); ?></p>
+
+		<p><?php
+			if ( is_user_logged_in() )
+				_e( 'Please attempt your purchase again or go to your account page.', 'btk' );
+			else
+				_e( 'Please attempt your purchase again.', 'btk' );
+		?></p>
+
+		<p>
+			<a href="<?php echo esc_url( $order->get_checkout_payment_url() ); ?>" class="button pay"><?php _e( 'Pay', 'btk' ) ?></a>
+			<?php if ( is_user_logged_in() ) : ?>
+			<a href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>" class="button pay"><?php _e( 'My Account', 'btk' ); ?></a>
+			<?php endif; ?>
+		</p>
+<?php
+		} else {
+?>
+		<div class="woocommerce">
+			<ul class="order_details">
+				<li class="order">
+					<?php _e( 'Order Number:', 'woocommerce' ); ?>
+					<strong><?php echo $order->get_order_number(); ?></strong>
+				</li>
+				<li class="date">
+					<?php _e( 'Date:', 'woocommerce' ); ?>
+					<strong><?php echo date_i18n( get_option( 'date_format' ), strtotime( $order->order_date ) ); ?></strong>
+				</li>
+				<li class="total">
+					<?php _e( 'Total:', 'woocommerce' ); ?>
+					<strong><?php echo $order->get_formatted_order_total(); ?></strong>
+				</li>
+				<?php if ( $order->payment_method_title ) : ?>
+				<li class="method">
+					<?php _e( 'Payment Method:', 'woocommerce' ); ?>
+					<strong><?php echo $order->payment_method_title; ?></strong>
+				</li>
+				<?php endif; ?>
+				<li class="view">
+					<span class="valign"><?php _e('view order', 'btk'); ?></span>
+					<a href="<?php echo esc_url( home_url('/') . 'my-account/view-order/' . $order->get_order_number() ); ?>" class="buttons valign icon-arrow-lite-right-white"></a>
+				</li>
+			</ul>
+			<div class="clear"></div>
+		</div>
+<?php
+		}
+	}
+
+	$content .= ob_get_contents();
+	ob_end_clean();
+
+	return $content;
+}
+add_filter( 'the_content', 'wc_custom_thankyou' );
+
+
+
+
 /**
  * Change excerpt length for read more
  **/

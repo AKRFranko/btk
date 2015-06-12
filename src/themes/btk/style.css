@@ -2932,6 +2932,18 @@ Content
 .page-confirmation #content article {
   display: none;
 }
+.page-confirmation .woocommerce {
+  min-height: 50px;
+  color: #ffffff;
+}
+.page-confirmation .woocommerce .order_details {
+  margin-left: 0;
+}
+.page-confirmation .woocommerce .order_details li.view a {
+  font-size: 1.6em;
+  background-color: #444;
+  background-position: center center;
+}
 .page-confirmation .confirmation-back-home {
   position: absolute;
   bottom: 60px;
