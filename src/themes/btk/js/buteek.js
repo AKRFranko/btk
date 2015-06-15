@@ -134,11 +134,24 @@
 
         // product colors change
         $('.product-color-choice ul li a').each(function() {
+            var beforeHover = '';
+            $(this).hover(function(e) {
+                beforeHover = $('.product-color-choice .colorname').first().text();
+                $('.product-color-choice .colorname').text($(this).attr('title'));
+
+            }, function(e) {
+                $('.product-color-choice .colorname').text(beforeHover);
+            });
+
             $(this).on('click', function(e) {
                 e.preventDefault();
+                beforeHover = '';
                 $('input[name^="attribute_"]').val($(this).attr('title'));
                 $('.product-color span').first().text($(this).attr('title'));
-                $('.product-color span').last().css('background-color', $(this).parent().css('background-color'));
+                $('.product-color-choice .colorname').text($(this).attr('title'));
+                $('.product-color-choice .none-selected').hide()
+                $('.product-color-choice .one-selected').show()
+                $('.product-color span').last().css('background-image', "url(" + $(this).find('img').attr('src') + ")");
                 $('.single_variation_wrap .variation_id').val($(this).attr('data-variation-id'));
             });
         });

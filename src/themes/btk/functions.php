@@ -99,7 +99,11 @@ function provide_splash_images() {
 			$splash_post_id = $posts[0]->ID;
 			$images = get_attached_media('image', $splash_post_id);
 			foreach ($images as $image) {
-				array_push($response, wp_get_attachment_image_src($image->ID, 'full')[0]);
+			  $imageSource = wp_get_attachment_image_src($image->ID, 'full')[0];
+			  if(is_ssl()){
+			    $imageSource = preg_replace( "/^http:/", "https:", $imageSource );  
+			  }
+				array_push($response, $imageSource);
 			}
 		}
 	}

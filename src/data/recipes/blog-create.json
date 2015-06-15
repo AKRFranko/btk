@@ -1,1065 +1,1056 @@
 {
-	"term": {
-		"create": {
-			"$cat_article": {
-				"args": {
-					"taxonomy": "category",
-					"term": "article"
-				},
-				"opts": {
-					"slug": "article",
-					"description": "This category is for generic content."
-				}
-			},
-			"$cat_carousel": {
-				"args": {
-					"taxonomy": "category",
-					"term": "carousel"
-				},
-				"opts": {
-					"slug": "carousel",
-					"description": "This category determines if a post featured image will be shown in the caroussel."
-				}
-			},
-			"$cat_news": {
-				"args": {
-					"taxonomy": "category",
-					"term": "news"
-				},
-				"opts": {
-					"slug": "news",
-					"description": "This category is for blog posts that should end up in the news section."
-				}
-			},
-			"$cat_collection": {
-				"args": {
-					"taxonomy": "category",
-					"term": "collection"
-				},
-				"opts": {
-					"slug": "collection",
-					"description": "Bundle items by collection."
-				}
-			},
-			"$cat_trade": {
-				"args": {
-					"taxonomy": "category",
-					"term": "trade"
-				},
-				"opts": {
-					"slug": "trade",
-					"description": "Trade Articles."
-				}
-			},
-			"$cat_people": {
-				"args": {
-					"taxonomy": "category",
-					"term": "people"
-				},
-				"opts": {
-					"slug": "people",
-					"description": "People Articles."
-				}
-			},
+    "term": {
+        "create": {
+            "$cat_article": {
+                "args": {
+                    "taxonomy": "category",
+                    "term": "article"
+                },
+                "opts": {
+                    "slug": "article",
+                    "description": "This category is for generic content."
+                }
+            },
+            "$cat_carousel": {
+                "args": {
+                    "taxonomy": "category",
+                    "term": "carousel"
+                },
+                "opts": {
+                    "slug": "carousel",
+                    "description": "This category determines if a post featured image will be shown in the caroussel."
+                }
+            },
+            "$cat_news": {
+                "args": {
+                    "taxonomy": "category",
+                    "term": "news"
+                },
+                "opts": {
+                    "slug": "news",
+                    "description": "This category is for blog posts that should end up in the news section."
+                }
+            },
+            "$cat_collection": {
+                "args": {
+                    "taxonomy": "category",
+                    "term": "collection"
+                },
+                "opts": {
+                    "slug": "collection",
+                    "description": "Bundle items by collection."
+                }
+            },
+            "$cat_trade": {
+                "args": {
+                    "taxonomy": "category",
+                    "term": "trade"
+                },
+                "opts": {
+                    "slug": "trade",
+                    "description": "Trade Articles."
+                }
+            },
+            "$cat_people": {
+                "args": {
+                    "taxonomy": "category",
+                    "term": "people"
+                },
+                "opts": {
+                    "slug": "people",
+                    "description": "People Articles."
+                }
+            },
 
-			"$cat_pdf": {
-				"args": {
-					"taxonomy": "category",
-					"term": "PDF"
-				},
-				"opts": {
-					"slug": "pdf",
-					"description": "This content is a PDF."
-				}
-			},
-			"$cat_legal": {
-				"args": {
-					"taxonomy": "category",
-					"term": "legal"
-				},
-				"opts": {
-					"slug": "legal",
-					"description": "Legal Pages Should Be Categorized With This."
-				}
-			},
-			"$tag_accessories": {
-				"args": {
-					"taxonomy": "post_tag",
-					"term": "accessories"
-				},
-				"opts": {
-					"slug": "accessories",
-					"description": "People Articles."
-				}
-			},
-			"$tag_sofas": {
-				"args": {
-					"taxonomy": "post_tag",
-					"term": "sofas"
-				},
-				"opts": {
-					"slug": "sofas",
-					"description": "Links some widget Sofas."
-				}
-			},
-			"$tag_sectionals": {
-				"args": {
-					"taxonomy": "post_tag",
-					"term": "sectionals"
-				},
-				"opts": {
-					"slug": "sectionals",
-					"description": "Links some widget sectionals."
-				}
-			},
-			"$tag_sofas": {
-				"args": {
-					"taxonomy": "post_tag",
-					"term": "sofas"
-				},
-				"opts": {
-					"slug": "sofas",
-					"description": "Links some widget Sofas."
-				}
-			},
-			"$tag_sofabeds": {
-				"args": {
-					"taxonomy": "post_tag",
-					"term": "sofa-bed"
-				},
-				"opts": {
-					"slug": "sofa-bed",
-					"description": "Links some widget sofa-beds."
-				}
-			},
-			"$tag_armchairs": {
-				"args": {
-					"taxonomy": "post_tag",
-					"term": "armchairs"
-				},
-				"opts": {
-					"slug": "armchairs",
-					"description": "Links some widget armchairs."
-				}
-			},
-			"$tag_benches": {
-				"args": {
-					"taxonomy": "post_tag",
-					"term": "benches"
-				},
-				"opts": {
-					"slug": "benches",
-					"description": "Links some widget benches."
-				}
-			},
-			"$tag_coffee_tables": {
-				"args": {
-					"taxonomy": "post_tag",
-					"term": "coffee tables"
-				},
-				"opts": {
-					"slug": "coffee-tables",
-					"description": "Links some widget coffe tables."
-				}
-			},
-			"$tag_ottomans": {
-				"args": {
-					"taxonomy": "post_tag",
-					"term": "ottomans"
-				},
-				"opts": {
-					"slug": "ottomans",
-					"description": "Links some widget ottomans."
-				}
-			},
-			"$tag_headboards": {
-				"args": {
-					"taxonomy": "post_tag",
-					"term": "headboards"
-				},
-				"opts": {
-					"slug": "headboards",
-					"description": "Links some widget headboards."
-				}
-			},
-			"$tag_storage": {
-				"args": {
-					"taxonomy": "post_tag",
-					"term": "storage"
-				},
-				"opts": {
-					"slug": "storage",
-					"description": "Links some widget storage items."
-				}
-			}
-		}
-	},
-	"post": {
-		"create": {
-			"$news_08": {
-				"args": {
-					"file": "./src/data/text/news-3.txt"
-				},
-				"opts": {
-					"post_title": "prepare to be extremely well seated.",
-					"post_type": "post",
-					"post_status": "publish",
-					"post_category": "$cat_collection,$cat_news"
-				}
-			},
-			"$news_07": {
-				"args": {
-					"file": "./src/data/text/news-2.txt"
-				},
-				"opts": {
-					"post_title": "designers, the good ones, are people too.",
-					"post_type": "post",
-					"post_status": "publish",
-					"post_category": "$cat_people,$cat_news"
-				}
-			},
-			"$news_06": {
-				"args": {
-					"file": "./src/data/text/news-1.txt"
-				},
-				"opts": {
-					"post_title": "we will be at designex, everywhere!",
-					"post_type": "post",
-					"post_status": "publish",
-					"post_category": "$cat_trade,$cat_news"
-				}
-			},
-			"$news_05": {
-				"args": {
-					"file": "./src/data/text/news-5.txt"
-				},
-				"opts": {
-					"post_title": "what is element de base",
-					"post_type": "post",
-					"post_status": "publish",
-					"post_category": "$cat_carousel"
-				}
-			},
-			"$news_04": {
-				"args": {
-					"file": "./src/data/text/news-4.txt"
-				},
-				"opts": {
-					"post_title": "the beauty of natural materials",
-					"post_type": "post",
-					"post_status": "publish",
-					"post_category": "$cat_carousel"
-				}
-			},
-			"$news_03": {
-				"args": {
-					"file": "./src/data/text/news-3.txt"
-				},
-				"opts": {
-					"post_title": "original designs",
-					"post_type": "post",
-					"post_status": "publish",
-					"post_category": "$cat_carousel"
-				}
-			},
-			"$news_02": {
-				"args": {
-					"file": "./src/data/text/news-2.txt"
-				},
-				"opts": {
-					"post_title": "new arrival",
-					"post_type": "post",
-					"post_status": "publish",
-					"post_category": "$cat_carousel"
-				}
-			},
-			"$news_01": {
-				"args": {
-					"file": "./src/data/text/news-1.txt"
-				},
-				"opts": {
-					"post_title": "spring 2015",
-					"post_type": "post",
-					"post_status": "publish",
-					"post_category": "$cat_carousel"
-				}
-			},
-			"$homepost_1": {
-				"args": {
-					"file": "./src/data/text/news-1.txt"
-				},
-				"opts": {
-					"post_title": "lookbook",
-					"post_type": "post",
-					"post_status": "publish",
-					"post_category": "$cat_news"
-				}
-			},
-			"$homepost_2": {
-				"args": {
-					"file": "./src/data/text/news-2.txt"
-				},
-				"opts": {
-					"post_title": "designers",
-					"post_type": "post",
-					"post_status": "publish",
-					"post_category": "$cat_news,$cat_people"
-				}
-			},
-			"$homepost_3": {
-				"args": {
-					"file": "./src/data/text/news-3.txt"
-				},
-				"opts": {
-					"post_title": "our best sofas",
-					"post_type": "post",
-					"post_status": "publish",
-					"post_category": "$cat_news"
-				}
-			},
-			"$homepost_4": {
-				"args": {
-					"file": "./src/data/text/news-4.txt"
-				},
-				"opts": {
-					"post_title": "order your fabric samples",
-					"post_type": "post",
-					"post_status": "publish",
-					"post_category": "$cat_news"
-				}
-			},
-			"$about_page": {
-				"args": {
-					"file": "./src/data/text/about.txt"
-				},
-				"opts": {
-					"post_title": "about / faq",
-					"post_name": "about",
-					"post_type": "page",
-					"post_status": "publish"
-				}
-			},
-			"$press_page": {
-				"args": {
-					"file": "./src/data/text/press.txt"
-				},
-				"opts": {
-					"post_title": "in the press",
-					"post_name": "about-press",
-					"post_type": "page",
-					"post_status": "publish"
-				}
-			},
-			"$trade_page": {
-				"args": {
-					"file": "./src/data/text/trade.txt"
-				},
-				"opts": {
-					"post_title": "trade & designers",
-					"post_name": "about-trade",
-					"post_type": "page",
-					"post_status": "publish"
-				}
-			},
-			"$environment_page": {
-				"args": {
-					"file": "./src/data/text/environment.txt"
-				},
-				"opts": {
-					"post_title": "environment",
-					"post_name": "about-environment",
-					"post_type": "page",
-					"post_status": "publish"
-				}
-			},
-			"$shipping_page": {
-				"args": {
-					"file": "./src/data/text/shipping.txt"
-				},
-				"opts": {
-					"post_title": "shipping info",
-					"post_name": "about-shipping",
-					"post_type": "page",
-					"post_status": "publish"
-				}
-			},
-			"$exchange_page": {
-				"args": {
-					"file": "./src/data/text/exchange.txt"
-				},
-				"opts": {
-					"post_title": "return & exchange",
-					"post_name": "about-exchange",
-					"post_type": "page",
-					"post_status": "publish"
-				}
-			},
-			"$privacy_page": {
-				"args": {
-					"file": "./src/data/text/privacy.txt"
-				},
-				"opts": {
-					"post_title": "privacy policy",
-					"post_name": "about-privacy",
-					"post_type": "page",
-					"post_status": "publish"
-				}
-			},
-			"$terms_page": {
-				"args": {
-					"file": "./src/data/text/terms.txt"
-				},
-				"opts": {
-					"post_title": "terms of use",
-					"post_name": "terms",
-					"post_type": "page",
-					"post_status": "publish"
-				}
-			},
-			"$affiliate_page": {
-				"args": {
-					"file": "./src/data/text/affiliate.txt"
-				},
-				"opts": {
-					"post_title": "reward program",
-					"post_name": "affiliate",
-					"post_type": "page",
-					"post_status": "publish"
-				}
-			},
-			"$woo_cart_page": {
-				"opts": {
-					"post_title": "cart",
-					"post_name": "cart",
-					"post_type": "page",
-					"post_status": "publish",
-					"post_content": "[woocommerce_cart]"
-				}
-			},
-			"$sign_in_page": {
-				"opts": {
-					"post_title": "sign in",
-					"post_name": "sign-in",
-					"post_type": "page",
-					"post_status": "publish",
-					"post_content": "Sign In Page"
-				}
-			},
-			"$products_page": {
-				"opts": {
-					"post_title": "products",
-					"post_name": "products",
-					"post_type": "page",
-					"post_status": "publish",
-				}
-			},
-			"$lookbook_page": {
-				"opts": {
-					"post_title": "lookbook",
-					"post_name": "lookbook",
-					"post_type": "page",
-					"post_status": "publish",
-					"post_content": "Lookbook Page"
-				}
-			},
-			"$samples_page": {
-				"opts": {
-					"post_title": "order samples",
-					"post_name": "order-samples",
-					"post_type": "page",
-					"post_status": "publish",
-					"post_content": "[contact-form-7 id='93' title='Order samples']"
-				}
-			},
-			"$delivery_page": {
-				"opts": {
-					"post_title": "free delivery",
-					"post_name": "free-delivery",
-					"post_type": "page",
-					"post_status": "publish",
-					"post_content": "Delivery Page"
-				}
-			},
-			"$contact_page": {
-				"args": {
-					"file": "./src/data/text/contact.txt"
-				},
-				"opts": {
-					"post_title": "contact us",
-					"post_name": "contact",
-					"post_type": "page",
-					"post_status": "publish"
-				}
-			},
-			"$confirmation_page": {
-				"args": {
-					"file": "./src/data/text/confirmation.txt"
-				},
-				"opts": {
-					"post_title": "confirmation",
-					"post_name": "confirmation",
-					"post_type": "page",
-					"post_status": "publish"
-				}
-			},
-			"$account_page": {
-				"opts": {
-					"post_title": "my account",
-					"post_name": "my-account",
-					"post_type": "page",
-					"post_status": "publish",
-					"post_content": "[woocommerce_my_account]"
-				}
-			},
-			"$mailchimp_page": {
-				"args": {
-					"file": "./src/data/text/mailchimp.txt"
-				},
-				"opts": {
-					"post_title": "sign up for emails",
-					"post_name": "emails",
-					"post_type": "page",
-					"post_status": "publish"
-				}
-			},
-			"$catalog_page": {
-				"opts": {
-					"post_title": "catalogs",
-					"post_name": "catalogs",
-					"post_type": "page",
-					"post_status": "publish"
-				}
-			}
-		},
-		"meta": {
-			"add": [
+            "$cat_pdf": {
+                "args": {
+                    "taxonomy": "category",
+                    "term": "PDF"
+                },
+                "opts": {
+                    "slug": "pdf",
+                    "description": "This content is a PDF."
+                }
+            },
+            "$cat_legal": {
+                "args": {
+                    "taxonomy": "category",
+                    "term": "legal"
+                },
+                "opts": {
+                    "slug": "legal",
+                    "description": "Legal Pages Should Be Categorized With This."
+                }
+            },
+            "$tag_accessories": {
+                "args": {
+                    "taxonomy": "post_tag",
+                    "term": "accessories"
+                },
+                "opts": {
+                    "slug": "accessories",
+                    "description": "People Articles."
+                }
+            },
+            "$tag_sofas": {
+                "args": {
+                    "taxonomy": "post_tag",
+                    "term": "sofas"
+                },
+                "opts": {
+                    "slug": "sofas",
+                    "description": "Links some widget Sofas."
+                }
+            },
+            "$tag_sectionals": {
+                "args": {
+                    "taxonomy": "post_tag",
+                    "term": "sectionals"
+                },
+                "opts": {
+                    "slug": "sectionals",
+                    "description": "Links some widget sectionals."
+                }
+            },
 
-				{
-					"args": {
-						"id": "$homepost_1",
-						"key": "_subtitle",
-						"value": "Here is possibility of subtitle"
-					}
+            "$tag_sofabeds": {
+                "args": {
+                    "taxonomy": "post_tag",
+                    "term": "sofa-bed"
+                },
+                "opts": {
+                    "slug": "sofa-bed",
+                    "description": "Links some widget sofa-beds."
+                }
+            },
+            "$tag_armchairs": {
+                "args": {
+                    "taxonomy": "post_tag",
+                    "term": "armchairs"
+                },
+                "opts": {
+                    "slug": "armchairs",
+                    "description": "Links some widget armchairs."
+                }
+            },
+            "$tag_benches": {
+                "args": {
+                    "taxonomy": "post_tag",
+                    "term": "benches"
+                },
+                "opts": {
+                    "slug": "benches",
+                    "description": "Links some widget benches."
+                }
+            },
+            "$tag_coffee_tables": {
+                "args": {
+                    "taxonomy": "post_tag",
+                    "term": "coffee tables"
+                },
+                "opts": {
+                    "slug": "coffee-tables",
+                    "description": "Links some widget coffe tables."
+                }
+            },
+            "$tag_ottomans": {
+                "args": {
+                    "taxonomy": "post_tag",
+                    "term": "ottomans"
+                },
+                "opts": {
+                    "slug": "ottomans",
+                    "description": "Links some widget ottomans."
+                }
+            },
+            "$tag_headboards": {
+                "args": {
+                    "taxonomy": "post_tag",
+                    "term": "headboards"
+                },
+                "opts": {
+                    "slug": "headboards",
+                    "description": "Links some widget headboards."
+                }
+            },
+            "$tag_storage": {
+                "args": {
+                    "taxonomy": "post_tag",
+                    "term": "storage"
+                },
+                "opts": {
+                    "slug": "storage",
+                    "description": "Links some widget storage items."
+                }
+            }
+        }
+    },
+    "post": {
+        "create": {
+            "$news_08": {
+                "args": {
+                    "file": "./src/data/text/news-3.txt"
+                },
+                "opts": {
+                    "post_title": "prepare to be extremely well seated.",
+                    "post_type": "post",
+                    "post_status": "publish",
+                    "post_category": "$cat_collection,$cat_news"
+                }
+            },
+            "$news_07": {
+                "args": {
+                    "file": "./src/data/text/news-2.txt"
+                },
+                "opts": {
+                    "post_title": "designers, the good ones, are people too.",
+                    "post_type": "post",
+                    "post_status": "publish",
+                    "post_category": "$cat_people,$cat_news"
+                }
+            },
+            "$news_06": {
+                "args": {
+                    "file": "./src/data/text/news-1.txt"
+                },
+                "opts": {
+                    "post_title": "we will be at designex, everywhere!",
+                    "post_type": "post",
+                    "post_status": "publish",
+                    "post_category": "$cat_trade,$cat_news"
+                }
+            },
+            "$news_05": {
+                "args": {
+                    "file": "./src/data/text/news-5.txt"
+                },
+                "opts": {
+                    "post_title": "what is element de base",
+                    "post_type": "post",
+                    "post_status": "publish",
+                    "post_category": "$cat_carousel"
+                }
+            },
+            "$news_04": {
+                "args": {
+                    "file": "./src/data/text/news-4.txt"
+                },
+                "opts": {
+                    "post_title": "the beauty of natural materials",
+                    "post_type": "post",
+                    "post_status": "publish",
+                    "post_category": "$cat_carousel"
+                }
+            },
+            "$news_03": {
+                "args": {
+                    "file": "./src/data/text/news-3.txt"
+                },
+                "opts": {
+                    "post_title": "original designs",
+                    "post_type": "post",
+                    "post_status": "publish",
+                    "post_category": "$cat_carousel"
+                }
+            },
+            "$news_02": {
+                "args": {
+                    "file": "./src/data/text/news-2.txt"
+                },
+                "opts": {
+                    "post_title": "new arrival",
+                    "post_type": "post",
+                    "post_status": "publish",
+                    "post_category": "$cat_carousel"
+                }
+            },
+            "$news_01": {
+                "args": {
+                    "file": "./src/data/text/news-1.txt"
+                },
+                "opts": {
+                    "post_title": "spring 2015",
+                    "post_type": "post",
+                    "post_status": "publish",
+                    "post_category": "$cat_carousel"
+                }
+            },
+            "$homepost_1": {
+                "args": {
+                    "file": "./src/data/text/news-1.txt"
+                },
+                "opts": {
+                    "post_title": "lookbook",
+                    "post_type": "post",
+                    "post_status": "publish",
+                    "post_category": "$cat_news"
+                }
+            },
+            "$homepost_2": {
+                "args": {
+                    "file": "./src/data/text/news-2.txt"
+                },
+                "opts": {
+                    "post_title": "designers",
+                    "post_type": "post",
+                    "post_status": "publish",
+                    "post_category": "$cat_news,$cat_people"
+                }
+            },
+            "$homepost_3": {
+                "args": {
+                    "file": "./src/data/text/news-3.txt"
+                },
+                "opts": {
+                    "post_title": "our best sofas",
+                    "post_type": "post",
+                    "post_status": "publish",
+                    "post_category": "$cat_news"
+                }
+            },
+            "$homepost_4": {
+                "args": {
+                    "file": "./src/data/text/news-4.txt"
+                },
+                "opts": {
+                    "post_title": "order your fabric samples",
+                    "post_type": "post",
+                    "post_status": "publish",
+                    "post_category": "$cat_news"
+                }
+            },
+            "$about_page": {
+                "args": {
+                    "file": "./src/data/text/about.txt"
+                },
+                "opts": {
+                    "post_title": "about / faq",
+                    "post_name": "about",
+                    "post_type": "page",
+                    "post_status": "publish"
+                }
+            },
+            "$press_page": {
+                "args": {
+                    "file": "./src/data/text/press.txt"
+                },
+                "opts": {
+                    "post_title": "in the press",
+                    "post_name": "about-press",
+                    "post_type": "page",
+                    "post_status": "publish"
+                }
+            },
+            "$trade_page": {
+                "args": {
+                    "file": "./src/data/text/trade.txt"
+                },
+                "opts": {
+                    "post_title": "trade & designers",
+                    "post_name": "about-trade",
+                    "post_type": "page",
+                    "post_status": "publish"
+                }
+            },
+            "$environment_page": {
+                "args": {
+                    "file": "./src/data/text/environment.txt"
+                },
+                "opts": {
+                    "post_title": "environment",
+                    "post_name": "about-environment",
+                    "post_type": "page",
+                    "post_status": "publish"
+                }
+            },
+            "$shipping_page": {
+                "args": {
+                    "file": "./src/data/text/shipping.txt"
+                },
+                "opts": {
+                    "post_title": "shipping info",
+                    "post_name": "about-shipping",
+                    "post_type": "page",
+                    "post_status": "publish"
+                }
+            },
+            "$exchange_page": {
+                "args": {
+                    "file": "./src/data/text/exchange.txt"
+                },
+                "opts": {
+                    "post_title": "return & exchange",
+                    "post_name": "about-exchange",
+                    "post_type": "page",
+                    "post_status": "publish"
+                }
+            },
+            "$privacy_page": {
+                "args": {
+                    "file": "./src/data/text/privacy.txt"
+                },
+                "opts": {
+                    "post_title": "privacy policy",
+                    "post_name": "about-privacy",
+                    "post_type": "page",
+                    "post_status": "publish"
+                }
+            },
+            "$terms_page": {
+                "args": {
+                    "file": "./src/data/text/terms.txt"
+                },
+                "opts": {
+                    "post_title": "terms of use",
+                    "post_name": "terms",
+                    "post_type": "page",
+                    "post_status": "publish"
+                }
+            },
+            "$affiliate_page": {
+                "args": {
+                    "file": "./src/data/text/affiliate.txt"
+                },
+                "opts": {
+                    "post_title": "reward program",
+                    "post_name": "affiliate",
+                    "post_type": "page",
+                    "post_status": "publish"
+                }
+            },
+            "$woo_cart_page": {
+                "opts": {
+                    "post_title": "cart",
+                    "post_name": "cart",
+                    "post_type": "page",
+                    "post_status": "publish",
+                    "post_content": "[woocommerce_cart]"
+                }
+            },
+            "$sign_in_page": {
+                "opts": {
+                    "post_title": "sign in",
+                    "post_name": "sign-in",
+                    "post_type": "page",
+                    "post_status": "publish",
+                    "post_content": "Sign In Page"
+                }
+            },
+            "$products_page": {
+                "opts": {
+                    "post_title": "products",
+                    "post_name": "products",
+                    "post_type": "page",
+                    "post_status": "publish"
+                }
+            },
+            "$lookbook_page": {
+                "opts": {
+                    "post_title": "lookbook",
+                    "post_name": "lookbook",
+                    "post_type": "page",
+                    "post_status": "publish",
+                    "post_content": "Lookbook Page"
+                }
+            },
+            "$samples_page": {
+                "opts": {
+                    "post_title": "order samples",
+                    "post_name": "order-samples",
+                    "post_type": "page",
+                    "post_status": "publish",
+                    "post_content": "[contact-form-7 id='93' title='Order samples']"
+                }
+            },
+            "$delivery_page": {
+                "opts": {
+                    "post_title": "free delivery",
+                    "post_name": "free-delivery",
+                    "post_type": "page",
+                    "post_status": "publish",
+                    "post_content": "Delivery Page"
+                }
+            },
+            "$contact_page": {
+                "args": {
+                    "file": "./src/data/text/contact.txt"
+                },
+                "opts": {
+                    "post_title": "contact us",
+                    "post_name": "contact",
+                    "post_type": "page",
+                    "post_status": "publish"
+                }
+            },
+            "$confirmation_page": {
+                "args": {
+                    "file": "./src/data/text/confirmation.txt"
+                },
+                "opts": {
+                    "post_title": "confirmation",
+                    "post_name": "confirmation",
+                    "post_type": "page",
+                    "post_status": "publish"
+                }
+            },
+            "$account_page": {
+                "opts": {
+                    "post_title": "my account",
+                    "post_name": "my-account",
+                    "post_type": "page",
+                    "post_status": "publish",
+                    "post_content": "[woocommerce_my_account]"
+                }
+            },
+            "$mailchimp_page": {
+                "args": {
+                    "file": "./src/data/text/mailchimp.txt"
+                },
+                "opts": {
+                    "post_title": "sign up for emails",
+                    "post_name": "emails",
+                    "post_type": "page",
+                    "post_status": "publish"
+                }
+            },
+            "$catalog_page": {
+                "opts": {
+                    "post_title": "catalogs",
+                    "post_name": "catalogs",
+                    "post_type": "page",
+                    "post_status": "publish"
+                }
+            }
+        },
+        "meta": {
+            "add": [
 
-				}, {
-					"args": {
-						"id": "$homepost_2",
-						"key": "_subtitle",
-						"value": "Here is possibility of subtitle"
-					}
+                {
+                    "args": {
+                        "id": "$homepost_1",
+                        "key": "_subtitle",
+                        "value": "Here is possibility of subtitle"
+                    }
 
-				}, {
-					"args": {
-						"id": "$homepost_3",
-						"key": "_subtitle",
-						"value": "Here is possibility of subtitle"
-					}
+                }, {
+                    "args": {
+                        "id": "$homepost_2",
+                        "key": "_subtitle",
+                        "value": "Here is possibility of subtitle"
+                    }
 
-				}, {
-					"args": {
-						"id": "$homepost_4",
-						"key": "_subtitle",
-						"value": "Here is possibility of subtitle"
-					}
+                }, {
+                    "args": {
+                        "id": "$homepost_3",
+                        "key": "_subtitle",
+                        "value": "Here is possibility of subtitle"
+                    }
 
-				},
+                }, {
+                    "args": {
+                        "id": "$homepost_4",
+                        "key": "_subtitle",
+                        "value": "Here is possibility of subtitle"
+                    }
 
-				{
-					"args": {
-						"id": "$news_01",
-						"key": "_subtitle",
-						"value": "Here is possibility of subtitle"
-					}
-				}, {
-					"args": {
-						"id": "$news_02",
-						"key": "_subtitle",
-						"value": "Here is possibility of subtitle"
-					}
-				}, {
-					"args": {
-						"id": "$news_03",
-						"key": "_subtitle",
-						"value": "Here is possibility of subtitle"
-					}
-				}, {
-					"args": {
-						"id": "$news_04",
-						"key": "_subtitle",
-						"value": "Here is possibility of subtitle"
-					}
-				}, {
-					"args": {
-						"id": "$news_05",
-						"key": "_subtitle",
-						"value": "Here is possibility of subtitle"
-					}
-				}, {
-					"args": {
-						"id": "$news_06",
-						"key": "_subtitle",
-						"value": "Here is possibility of subtitle"
-					}
-				}, {
-					"args": {
-						"id": "$news_07",
-						"key": "_subtitle",
-						"value": "Here is possibility of subtitle"
-					}
-				}, {
-					"args": {
-						"id": "$news_08",
-						"key": "_subtitle",
-						"value": "Here is possibility of subtitle"
-					}
-				}
-			]
-		},
-		"term": {
-			"add": [{
-				"args": {
-					"id": "$news_08",
-					"taxonomy": "post_tag",
-					"term": "sofa-beds"
-				}
-			}, {
-				"args": {
-					"id": "$news_08",
-					"taxonomy": "post_tag",
-					"term": "sofas"
-				}
-			}, {
-				"args": {
-					"id": "$news_07",
-					"taxonomy": "post_tag",
-					"term": "sectionals"
-				}
-			}, {
-				"args": {
-					"id": "$news_07",
-					"taxonomy": "post_tag",
-					"term": "accessories"
-				}
-			}, {
-				"args": {
-					"id": "$news_06",
-					"taxonomy": "post_tag",
-					"term": "ottomans"
-				}
-			}, {
-				"args": {
-					"id": "$news_06",
-					"taxonomy": "post_tag",
-					"term": "benches"
-				}
-			}, {
-				"args": {
-					"id": "$news_05",
-					"taxonomy": "post_tag",
-					"term": "sofas"
-				}
-			}, {
-				"args": {
-					"id": "$news_05",
-					"taxonomy": "post_tag",
-					"term": "sectionals"
-				}
-			}, {
-				"args": {
-					"id": "$news_04",
-					"taxonomy": "post_tag",
-					"term": "coffee-tables"
-				}
-			}, {
-				"args": {
-					"id": "$news_03",
-					"taxonomy": "post_tag",
-					"term": "sofas"
-				}
-			}, {
-				"args": {
-					"id": "$news_03",
-					"taxonomy": "post_tag",
-					"term": "sofa-beds"
-				}
-			}, {
-				"args": {
-					"id": "$news_02",
-					"taxonomy": "post_tag",
-					"term": "sectionals"
-				}
-			}, {
-				"args": {
-					"id": "$news_02",
-					"taxonomy": "post_tag",
-					"term": "headboards"
-				}
-			}, {
-				"args": {
-					"id": "$news_01",
-					"taxonomy": "post_tag",
-					"term": "sofas"
-				}
-			}, {
-				"args": {
-					"id": "$news_01",
-					"taxonomy": "post_tag",
-					"term": "sofa-beds"
-				}
-			}]
-		}
-	},
-	"menu": {
-		"create": {
-			"$header_menu": {
-				"args": {
-					"menu-name": "Header"
-				}
-			},
-			"$hamburger_menu": {
-				"args": {
-					"menu-name": "Hamburger"
-				}
-			},
-			"$footer_menu": {
-				"args": {
-					"menu-name": "Footer"
-				}
-			},
-			"$footer_alt_menu": {
-				"args": {
-					"menu-name": "Footer2"
-				}
-			}
-		},
-		"item": {
-			"add-post": [{
-				"args": {
-					"menu": "$header_menu",
-					"post": "$sign_in_page"
-				}
-			}, {
-				"args": {
-					"menu": "$header_menu",
-					"post": "$woo_cart_page"
-				}
-			}, {
-				"args": {
-					"menu": "$hamburger_menu",
-					"post": "$products_page"
-				}
-			}, {
-				"args": {
-					"menu": "$hamburger_menu",
-					"post": "$lookbook_page"
-				}
-			}, {
-				"args": {
-					"menu": "$hamburger_menu",
-					"post": "$samples_page"
-				}
-			}, {
-				"args": {
-					"menu": "$hamburger_menu",
-					"post": "$delivery_page"
-				}
-			}, {
-				"args": {
-					"menu": "$hamburger_menu",
-					"post": "$about_page"
-				}
-			}, {
-				"args": {
-					"menu": "$hamburger_menu",
-					"post": "$contact_page"
-				}
-			}, {
-				"args": {
-					"menu": "$footer_menu",
-					"post": "$contact_page"
-				}
-			}, {
-				"args": {
-					"menu": "$footer_menu",
-					"post": "$shipping_page"
-				}
-			}, {
-				"args": {
-					"menu": "$footer_menu",
-					"post": "$exchange_page"
-				}
-			}, {
-				"args": {
-					"menu": "$footer_menu",
-					"post": "$privacy_page"
-				}
-			}, {
-				"args": {
-					"menu": "$footer_menu",
-					"post": "$terms_page"
-				}
-			}, {
-				"args": {
-					"menu": "$footer_menu",
-					"post": "$affiliate_page"
-				}
-			}, {
-				"args": {
-					"menu": "$footer_menu",
-					"post": "$account_page"
-				}
-			}, {
-				"args": {
-					"menu": "$footer_menu",
-					"post": "$mailchimp_page"
-				}
-			}, {
-				"args": {
-					"menu": "$footer_alt_menu",
-					"post": "$about_page"
-				}
-			}, {
-				"args": {
-					"menu": "$footer_alt_menu",
-					"post": "$press_page"
-				}
-			}, {
-				"args": {
-					"menu": "$footer_alt_menu",
-					"post": "$trade_page"
-				}
-			}, {
-				"args": {
-					"menu": "$footer_alt_menu",
-					"post": "$catalog_page"
-				}
-			}, {
-				"args": {
-					"menu": "$footer_alt_menu",
-					"post": "$lookbook_page"
-				}
-			}, {
-				"args": {
-					"menu": "$footer_alt_menu",
-					"post": "$environment_page"
-				}
-			}]
-		}
-	},
-	"media": {
-		"import": [{
-				"args": {
-					"file": "./src/data/media/carousel-images/lookbook.jpg"
-				},
-				"opts": {
-					"post_id": "$homepost_1",
-					"featured_image": true
-				}
-			}, {
-				"args": {
-					"file": "./src/data/media/carousel-images/designers.jpg"
-				},
-				"opts": {
-					"post_id": "$homepost_2",
-					"featured_image": true
-				}
-			}, {
-				"args": {
-					"file": "./src/data/media/carousel-images/best-sofas.jpg"
-				},
-				"opts": {
-					"post_id": "$homepost_3",
-					"featured_image": true
-				}
-			}, {
-				"args": {
-					"file": "./src/data/media/carousel-images/fabric-samples.jpg"
-				},
-				"opts": {
-					"post_id": "$homepost_4",
-					"featured_image": true
-				}
-			},
+                },
 
-			{
-				"args": {
-					"file": "./src/data/media/vertical-images/1.jpg"
-				},
-				"opts": {
-					"post_id": "$news_01",
-					"featured_image": true
-				}
-			}, {
-				"args": {
-					"file": "./src/data/media/vertical-images/2.jpg"
-				},
-				"opts": {
-					"post_id": "$news_02",
-					"featured_image": true
-				}
-			}, {
-				"args": {
-					"file": "./src/data/media/vertical-images/3.jpg"
-				},
-				"opts": {
-					"post_id": "$news_03",
-					"featured_image": true
-				}
-			}, {
-				"args": {
-					"file": "./src/data/media/vertical-images/4.jpg"
-				},
-				"opts": {
-					"post_id": "$news_04",
-					"featured_image": true
-				}
-			}, {
-				"args": {
-					"file": "./src/data/media/vertical-images/5.jpg"
-				},
-				"opts": {
-					"post_id": "$news_05",
-					"featured_image": true
-				}
-			}, {
-				"args": {
-					"file": "./src/data/media/horizontal-images/1.jpg"
-				},
-				"opts": {
-					"post_id": "$news_01"
-				}
-			}, {
-				"args": {
-					"file": "./src/data/media/horizontal-images/2.jpg"
-				},
-				"opts": {
-					"post_id": "$news_02"
-				}
-			}, {
-				"args": {
-					"file": "./src/data/media/horizontal-images/3.jpg"
-				},
-				"opts": {
-					"post_id": "$news_03"
-				}
-			}, {
-				"args": {
-					"file": "./src/data/media/horizontal-images/4.jpg"
-				},
-				"opts": {
-					"post_id": "$news_04"
-				}
-			}, {
-				"args": {
-					"file": "./src/data/media/horizontal-images/5.jpg"
-				},
-				"opts": {
-					"post_id": "$news_05"
-				}
-			}, {
-				"args": {
-					"file": "./src/data/media/trade-images/1.jpg"
-				},
-				"opts": {
-					"post_id": "$news_06",
-					"featured_image": true
-				}
-			}, {
-				"args": {
-					"file": "./src/data/media/trade-images/2.jpg"
-				},
-				"opts": {
-					"post_id": "$news_06"
-				}
-			}, {
-				"args": {
-					"file": "./src/data/media/trade-images/3.jpg"
-				},
-				"opts": {
-					"post_id": "$news_06"
-				}
-			}, {
-				"args": {
-					"file": "./src/data/media/people-images/1.jpg"
-				},
-				"opts": {
-					"post_id": "$news_07",
-					"featured_image": true
-				}
-			}, {
-				"args": {
-					"file": "./src/data/media/people-images/2.jpg"
-				},
-				"opts": {
-					"post_id": "$news_07"
-				}
-			}, {
-				"args": {
-					"file": "./src/data/media/people-images/3.jpg"
-				},
-				"opts": {
-					"post_id": "$news_07"
-				}
-			}, {
-				"args": {
-					"file": "./src/data/media/collection-images/1.jpg"
-				},
-				"opts": {
-					"post_id": "$news_08",
-					"featured_image": true
-				}
-			}, {
-				"args": {
-					"file": "./src/data/media/collection-images/2.jpg"
-				},
-				"opts": {
-					"post_id": "$news_08"
-				}
-			}, {
-				"args": {
-					"file": "./src/data/media/collection-images/3.jpg"
-				},
-				"opts": {
-					"post_id": "$news_08"
-				}
-			}, {
-				"args": {
-					"file": "./src/data/media/collection-images/4.jpg"
-				},
-				"opts": {
-					"post_id": "$news_08"
-				}
-			}, {
-				"args": {
-					"file": "./src/data/media/collection-images/5.jpg"
-				},
-				"opts": {
-					"post_id": "$news_08"
-				}
-			}
-		]
-	},
-	"option": {
-		"update": [{
-			"args": {
-				"key": "posts_per_page",
-				"value": 5
-			}
-		}, {
-			"args": {
-				"key": "gzipcompression",
-				"value": 1
-			}
-		}, {
-			"args": {
-				"key": "permalink_structure",
-				"value": "/%postname%/"
-			}
-		}, {
-			"args": {
-				"key": "default_category",
-				"value": "$cat_news"
-			}
-		}]
-	}
+                {
+                    "args": {
+                        "id": "$news_01",
+                        "key": "_subtitle",
+                        "value": "Here is possibility of subtitle"
+                    }
+                }, {
+                    "args": {
+                        "id": "$news_02",
+                        "key": "_subtitle",
+                        "value": "Here is possibility of subtitle"
+                    }
+                }, {
+                    "args": {
+                        "id": "$news_03",
+                        "key": "_subtitle",
+                        "value": "Here is possibility of subtitle"
+                    }
+                }, {
+                    "args": {
+                        "id": "$news_04",
+                        "key": "_subtitle",
+                        "value": "Here is possibility of subtitle"
+                    }
+                }, {
+                    "args": {
+                        "id": "$news_05",
+                        "key": "_subtitle",
+                        "value": "Here is possibility of subtitle"
+                    }
+                }, {
+                    "args": {
+                        "id": "$news_06",
+                        "key": "_subtitle",
+                        "value": "Here is possibility of subtitle"
+                    }
+                }, {
+                    "args": {
+                        "id": "$news_07",
+                        "key": "_subtitle",
+                        "value": "Here is possibility of subtitle"
+                    }
+                }, {
+                    "args": {
+                        "id": "$news_08",
+                        "key": "_subtitle",
+                        "value": "Here is possibility of subtitle"
+                    }
+                }
+            ]
+        },
+        "term": {
+            "add": [{
+                "args": {
+                    "id": "$news_08",
+                    "taxonomy": "post_tag",
+                    "term": "sofa-beds"
+                }
+            }, {
+                "args": {
+                    "id": "$news_08",
+                    "taxonomy": "post_tag",
+                    "term": "sofas"
+                }
+            }, {
+                "args": {
+                    "id": "$news_07",
+                    "taxonomy": "post_tag",
+                    "term": "sectionals"
+                }
+            }, {
+                "args": {
+                    "id": "$news_07",
+                    "taxonomy": "post_tag",
+                    "term": "accessories"
+                }
+            }, {
+                "args": {
+                    "id": "$news_06",
+                    "taxonomy": "post_tag",
+                    "term": "ottomans"
+                }
+            }, {
+                "args": {
+                    "id": "$news_06",
+                    "taxonomy": "post_tag",
+                    "term": "benches"
+                }
+            }, {
+                "args": {
+                    "id": "$news_05",
+                    "taxonomy": "post_tag",
+                    "term": "sofas"
+                }
+            }, {
+                "args": {
+                    "id": "$news_05",
+                    "taxonomy": "post_tag",
+                    "term": "sectionals"
+                }
+            }, {
+                "args": {
+                    "id": "$news_04",
+                    "taxonomy": "post_tag",
+                    "term": "coffee-tables"
+                }
+            }, {
+                "args": {
+                    "id": "$news_03",
+                    "taxonomy": "post_tag",
+                    "term": "sofas"
+                }
+            }, {
+                "args": {
+                    "id": "$news_03",
+                    "taxonomy": "post_tag",
+                    "term": "sofa-beds"
+                }
+            }, {
+                "args": {
+                    "id": "$news_02",
+                    "taxonomy": "post_tag",
+                    "term": "sectionals"
+                }
+            }, {
+                "args": {
+                    "id": "$news_02",
+                    "taxonomy": "post_tag",
+                    "term": "headboards"
+                }
+            }, {
+                "args": {
+                    "id": "$news_01",
+                    "taxonomy": "post_tag",
+                    "term": "sofas"
+                }
+            }, {
+                "args": {
+                    "id": "$news_01",
+                    "taxonomy": "post_tag",
+                    "term": "sofa-beds"
+                }
+            }]
+        }
+    },
+    "menu": {
+        "create": {
+            "$header_menu": {
+                "args": {
+                    "menu-name": "Header"
+                }
+            },
+            "$hamburger_menu": {
+                "args": {
+                    "menu-name": "Hamburger"
+                }
+            },
+            "$footer_menu": {
+                "args": {
+                    "menu-name": "Footer"
+                }
+            },
+            "$footer_alt_menu": {
+                "args": {
+                    "menu-name": "Footer2"
+                }
+            }
+        },
+        "item": {
+            "add-post": [{
+                "args": {
+                    "menu": "$header_menu",
+                    "post": "$sign_in_page"
+                }
+            }, {
+                "args": {
+                    "menu": "$header_menu",
+                    "post": "$woo_cart_page"
+                }
+            }, {
+                "args": {
+                    "menu": "$hamburger_menu",
+                    "post": "$products_page"
+                }
+            }, {
+                "args": {
+                    "menu": "$hamburger_menu",
+                    "post": "$lookbook_page"
+                }
+            }, {
+                "args": {
+                    "menu": "$hamburger_menu",
+                    "post": "$samples_page"
+                }
+            }, {
+                "args": {
+                    "menu": "$hamburger_menu",
+                    "post": "$delivery_page"
+                }
+            }, {
+                "args": {
+                    "menu": "$hamburger_menu",
+                    "post": "$about_page"
+                }
+            }, {
+                "args": {
+                    "menu": "$hamburger_menu",
+                    "post": "$contact_page"
+                }
+            }, {
+                "args": {
+                    "menu": "$footer_menu",
+                    "post": "$contact_page"
+                }
+            }, {
+                "args": {
+                    "menu": "$footer_menu",
+                    "post": "$shipping_page"
+                }
+            }, {
+                "args": {
+                    "menu": "$footer_menu",
+                    "post": "$exchange_page"
+                }
+            }, {
+                "args": {
+                    "menu": "$footer_menu",
+                    "post": "$privacy_page"
+                }
+            }, {
+                "args": {
+                    "menu": "$footer_menu",
+                    "post": "$terms_page"
+                }
+            }, {
+                "args": {
+                    "menu": "$footer_menu",
+                    "post": "$affiliate_page"
+                }
+            }, {
+                "args": {
+                    "menu": "$footer_menu",
+                    "post": "$account_page"
+                }
+            }, {
+                "args": {
+                    "menu": "$footer_menu",
+                    "post": "$mailchimp_page"
+                }
+            }, {
+                "args": {
+                    "menu": "$footer_alt_menu",
+                    "post": "$about_page"
+                }
+            }, {
+                "args": {
+                    "menu": "$footer_alt_menu",
+                    "post": "$press_page"
+                }
+            }, {
+                "args": {
+                    "menu": "$footer_alt_menu",
+                    "post": "$trade_page"
+                }
+            }, {
+                "args": {
+                    "menu": "$footer_alt_menu",
+                    "post": "$catalog_page"
+                }
+            }, {
+                "args": {
+                    "menu": "$footer_alt_menu",
+                    "post": "$lookbook_page"
+                }
+            }, {
+                "args": {
+                    "menu": "$footer_alt_menu",
+                    "post": "$environment_page"
+                }
+            }]
+        }
+    },
+    "media": {
+        "import": [{
+                "args": {
+                    "file": "./src/data/media/carousel-images/lookbook.jpg"
+                },
+                "opts": {
+                    "post_id": "$homepost_1",
+                    "featured_image": true
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/carousel-images/designers.jpg"
+                },
+                "opts": {
+                    "post_id": "$homepost_2",
+                    "featured_image": true
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/carousel-images/best-sofas.jpg"
+                },
+                "opts": {
+                    "post_id": "$homepost_3",
+                    "featured_image": true
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/carousel-images/fabric-samples.jpg"
+                },
+                "opts": {
+                    "post_id": "$homepost_4",
+                    "featured_image": true
+                }
+            },
+
+            {
+                "args": {
+                    "file": "./src/data/media/vertical-images/1.jpg"
+                },
+                "opts": {
+                    "post_id": "$news_01",
+                    "featured_image": true
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/vertical-images/2.jpg"
+                },
+                "opts": {
+                    "post_id": "$news_02",
+                    "featured_image": true
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/vertical-images/3.jpg"
+                },
+                "opts": {
+                    "post_id": "$news_03",
+                    "featured_image": true
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/vertical-images/4.jpg"
+                },
+                "opts": {
+                    "post_id": "$news_04",
+                    "featured_image": true
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/vertical-images/5.jpg"
+                },
+                "opts": {
+                    "post_id": "$news_05",
+                    "featured_image": true
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/horizontal-images/1.jpg"
+                },
+                "opts": {
+                    "post_id": "$news_01"
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/horizontal-images/2.jpg"
+                },
+                "opts": {
+                    "post_id": "$news_02"
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/horizontal-images/3.jpg"
+                },
+                "opts": {
+                    "post_id": "$news_03"
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/horizontal-images/4.jpg"
+                },
+                "opts": {
+                    "post_id": "$news_04"
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/horizontal-images/5.jpg"
+                },
+                "opts": {
+                    "post_id": "$news_05"
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/trade-images/1.jpg"
+                },
+                "opts": {
+                    "post_id": "$news_06",
+                    "featured_image": true
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/trade-images/2.jpg"
+                },
+                "opts": {
+                    "post_id": "$news_06"
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/trade-images/3.jpg"
+                },
+                "opts": {
+                    "post_id": "$news_06"
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/people-images/1.jpg"
+                },
+                "opts": {
+                    "post_id": "$news_07",
+                    "featured_image": true
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/people-images/2.jpg"
+                },
+                "opts": {
+                    "post_id": "$news_07"
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/people-images/3.jpg"
+                },
+                "opts": {
+                    "post_id": "$news_07"
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/collection-images/1.jpg"
+                },
+                "opts": {
+                    "post_id": "$news_08",
+                    "featured_image": true
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/collection-images/2.jpg"
+                },
+                "opts": {
+                    "post_id": "$news_08"
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/collection-images/3.jpg"
+                },
+                "opts": {
+                    "post_id": "$news_08"
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/collection-images/4.jpg"
+                },
+                "opts": {
+                    "post_id": "$news_08"
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/collection-images/5.jpg"
+                },
+                "opts": {
+                    "post_id": "$news_08"
+                }
+            }
+        ]
+    },
+    "option": {
+        "update": [{
+            "args": {
+                "key": "posts_per_page",
+                "value": 5
+            }
+        }, {
+            "args": {
+                "key": "gzipcompression",
+                "value": 1
+            }
+        }, {
+            "args": {
+                "key": "permalink_structure",
+                "value": "/%postname%/"
+            }
+        }, {
+            "args": {
+                "key": "default_category",
+                "value": "$cat_news"
+            }
+        }]
+    }
 }

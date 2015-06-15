@@ -86,7 +86,10 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 			$selected_attributes = $product->get_variation_default_attributes();
 	?>
 	<div class="product-color-choice clearfix">
-		<p class="center"><?php _e('select color', 'btk'); ?></p>
+		<p class="center">
+		  <span class="none-selected"><?php _e('select color', 'btk'); ?> <b class="colorname"></b></span>
+		  <span class="one-selected"><?php _e('selected color', 'btk'); ?> <b class="colorname"></b></span>
+		</p>
 		<ul>
 		<?php
 			$count = 0;
@@ -114,6 +117,22 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 		</ul>
 	</div>
 	<?php } ?>
+	
+	<div class="product-add">
+		<?php
+			if ( $product->is_type('variable') ) {
+				wp_enqueue_script( 'wc-add-to-cart-variation' );
+				wc_get_template( 'single-product/add-to-cart/variable.php', array(
+					'available_variations'  => $product->get_available_variations(),
+					'attributes'   			=> $product->get_variation_attributes(),
+					'selected_attributes' 	=> $product->get_variation_default_attributes()
+				) );
+			} else {
+				wc_get_template( 'single-product/add-to-cart/simple.php' );
+			}
+		?>
+	</div>
+
 
 
 	<div class="product-summary">
@@ -143,21 +162,7 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 
 	<?php comments_template( 'single-product-reviews.php' ); ?>
 
-	<div class="product-add">
-		<?php
-			if ( $product->is_type('variable') ) {
-				wp_enqueue_script( 'wc-add-to-cart-variation' );
-				wc_get_template( 'single-product/add-to-cart/variable.php', array(
-					'available_variations'  => $product->get_available_variations(),
-					'attributes'   			=> $product->get_variation_attributes(),
-					'selected_attributes' 	=> $product->get_variation_default_attributes()
-				) );
-			} else {
-				wc_get_template( 'single-product/add-to-cart/simple.php' );
-			}
-		?>
-	</div>
-
+	
 
 	<?php if (! empty( $_COOKIE['woocommerce_recently_viewed'] ) ) { ?>
 	<div class="recently-viewed lower">
