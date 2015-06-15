@@ -140,7 +140,7 @@
                 $('.product-color-choice .colorname').text($(this).attr('title'));
 
             }, function(e) {
-                $('.product-color-choice .colorname').text(beforeHover);
+                $('.product-color-choice .none-selected .colorname').text(beforeHover);
             });
 
             $(this).on('click', function(e) {
