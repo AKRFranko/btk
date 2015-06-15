@@ -37,7 +37,8 @@ sku_tree = {
 }
 
 
-materials = ["velvet", "concrete", "cream", "coffee", "pumpkin"];
+
+materials = ["aluminium", "argon", "concrete", "emerald", "noise", "orange", "purple", "sky", "steel", "teal", "wine", "yolk"];
 
 variant_cats = ["sofas", "sectionals", "sofa-beds"];
 
