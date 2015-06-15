@@ -87,8 +87,7 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 	?>
 	<div class="product-color-choice clearfix">
 		<p class="center">
-		  <span class="none-selected"><?php _e('select color', 'btk'); ?> <b class="colorname"></b></span>
-		  <span class="one-selected"><?php _e('selected color', 'btk'); ?> <b class="colorname"></b></span>
+		  <?php _e('select color', 'btk'); ?> <b class="colorname"></b>
 		</p>
 		<ul>
 		<?php

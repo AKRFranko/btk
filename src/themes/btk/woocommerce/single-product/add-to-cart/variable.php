@@ -80,12 +80,12 @@ foreach ($terms as $term) {
 			<p class="qty-text">
 				<span><?php _e('Quantity', 'btk'); ?></span>
 			</p>
-
+      
 			<p class="product-color clearfix">
 				<span class="valign"><?php echo $term_name; ?></span>
 				<span class="alignright" style="background-color:<?php echo $term_desc; ?>">&nbsp;</span>
 			</p>
-
+      
 			<p class="right">
 				<span class="valign"><?php echo $product->single_add_to_cart_text(); ?></span>
 				<button type="submit" class="valign icon-arrow-lite-right-white"></button>
