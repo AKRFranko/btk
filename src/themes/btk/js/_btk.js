@@ -152,6 +152,7 @@
                     'color': '#fff'
                 }
                 $siblings.removeClass('clicked');
+
                 $(this).addClass('clicked');
                 $('input[name^="attribute_"]').val($(this).attr('title'));
                 $('.product-color span').first().text($(this).attr('title'));
@@ -159,6 +160,13 @@
                 $('.product-color span').last().css(bgfg);
                 // $('.single_variation_wrap .quantity').css(bgfg);
                 $('.single_variation_wrap .variation_id').val($(this).attr('data-variation-id'));
+                var imageSrc = $(this).data('variation-image');
+                var activeSlide = $('.edb-slider .slides .slide.active');
+                var originalBG = activeSlide.css('background-image');
+                activeSlide.css('background-image', 'url(' + imageSrc + ')');
+                $('.edb-slider').one('cycled', function() {
+                    activeSlide.css('background-image', originalBG);
+                });
 
             });
         });

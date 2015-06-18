@@ -308,6 +308,7 @@ function btk_edb_slider($query, $attach = null) {
 		if (has_post_thumbnail()) {
 			$src = wp_get_attachment_image_src(get_post_thumbnail_id(), 'large');
 			$title = get_the_title();
+			$content = get_the_content();
 			$href = get_permalink();
 			array_push($data, array("src" => $src[0], "text" => $title, "url" => $href));
 		}
@@ -340,6 +341,13 @@ function btk_edb_single_product_slider() {
 		array_push($data, array("src" => $src[0], "text" => $title, "url" => $href));
 	}
 	?><script type="application/json"><?php echo json_encode($data);?></script><?php
+}
+
+function btk_product_technical_drawing(){
+  $imageID = get_post_meta( get_the_ID(), '_product_technical_drawing', true );
+  $src = wp_get_attachment_image_src($imageID, 'large')[0];
+  $title = get_the_title();
+  return "<img alt=\"$title technical drawing\" src=\"$src\" />";
 }
 
 

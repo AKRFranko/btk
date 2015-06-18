@@ -145,7 +145,7 @@ EDBSlider.prototype = {
             if (index == this.total) index = 0;
             if (index < 0) index = this.total - 1;
         }
-
+        $(this.el).trigger('cycled');
         this.toggle(index, 'on');
     },
     toggle: function(index, state) {

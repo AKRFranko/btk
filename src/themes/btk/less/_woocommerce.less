@@ -209,8 +209,8 @@ Woocommerce Overrides
 					  max-height:100%;
   					border:2px solid #fff;
 				  }
-				  &.clicked{
-				    transform:scale(1.2);
+				  &.clicked, &:hover{
+				    transform:scale(1.1);
 				    transform-origin:center;
 				  }
 				  &.clicked:after{
@@ -227,10 +227,9 @@ Woocommerce Overrides
 				    
 				  }
 				}
-				a:hover img{ border:2px solid #000; }
+				// a:hover img{ border:2px solid #000; }
 
 			}
-			.one-selected{display:none;}
 		}
 
 
@@ -268,6 +267,15 @@ Woocommerce Overrides
 				&:hover, &.active { background-color:@gray; color:@white; }
 			}
 			.desc { padding-bottom:25px; }
+			.tech { 
+			  text-align:center;
+			  padding-bottom:25px; 
+			  img{ 
+			    display:inline-block ;
+			    min-width:100%;
+			    min-height:100%;
+			  }
+			}
 		}
 
 		.product-add {

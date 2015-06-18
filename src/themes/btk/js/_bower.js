@@ -9577,9 +9577,9 @@ return jQuery;
 }));
 
 /*!
- * Bootstrap v3.3.4 (http://getbootstrap.com)
+ * Bootstrap v3.3.5 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * Licensed under the MIT license
  */
 
 if (typeof jQuery === 'undefined') {
@@ -9595,7 +9595,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: transition.js v3.3.4
+ * Bootstrap: transition.js v3.3.5
  * http://getbootstrap.com/javascript/#transitions
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -9655,7 +9655,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: alert.js v3.3.4
+ * Bootstrap: alert.js v3.3.5
  * http://getbootstrap.com/javascript/#alerts
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -9674,7 +9674,7 @@ if (typeof jQuery === 'undefined') {
     $(el).on('click', dismiss, this.close)
   }
 
-  Alert.VERSION = '3.3.4'
+  Alert.VERSION = '3.3.5'
 
   Alert.TRANSITION_DURATION = 150
 
@@ -9750,7 +9750,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: button.js v3.3.4
+ * Bootstrap: button.js v3.3.5
  * http://getbootstrap.com/javascript/#buttons
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -9770,7 +9770,7 @@ if (typeof jQuery === 'undefined') {
     this.isLoading = false
   }
 
-  Button.VERSION  = '3.3.4'
+  Button.VERSION  = '3.3.5'
 
   Button.DEFAULTS = {
     loadingText: 'loading...'
@@ -9782,7 +9782,7 @@ if (typeof jQuery === 'undefined') {
     var val  = $el.is('input') ? 'val' : 'html'
     var data = $el.data()
 
-    state = state + 'Text'
+    state += 'Text'
 
     if (data.resetText == null) $el.data('resetText', $el[val]())
 
@@ -9807,15 +9807,19 @@ if (typeof jQuery === 'undefined') {
     if ($parent.length) {
       var $input = this.$element.find('input')
       if ($input.prop('type') == 'radio') {
-        if ($input.prop('checked') && this.$element.hasClass('active')) changed = false
-        else $parent.find('.active').removeClass('active')
+        if ($input.prop('checked')) changed = false
+        $parent.find('.active').removeClass('active')
+        this.$element.addClass('active')
+      } else if ($input.prop('type') == 'checkbox') {
+        if (($input.prop('checked')) !== this.$element.hasClass('active')) changed = false
+        this.$element.toggleClass('active')
       }
-      if (changed) $input.prop('checked', !this.$element.hasClass('active')).trigger('change')
+      $input.prop('checked', this.$element.hasClass('active'))
+      if (changed) $input.trigger('change')
     } else {
       this.$element.attr('aria-pressed', !this.$element.hasClass('active'))
+      this.$element.toggleClass('active')
     }
-
-    if (changed) this.$element.toggleClass('active')
   }
 
 
@@ -9858,7 +9862,7 @@ if (typeof jQuery === 'undefined') {
       var $btn = $(e.target)
       if (!$btn.hasClass('btn')) $btn = $btn.closest('.btn')
       Plugin.call($btn, 'toggle')
-      e.preventDefault()
+      if (!($(e.target).is('input[type="radio"]') || $(e.target).is('input[type="checkbox"]'))) e.preventDefault()
     })
     .on('focus.bs.button.data-api blur.bs.button.data-api', '[data-toggle^="button"]', function (e) {
       $(e.target).closest('.btn').toggleClass('focus', /^focus(in)?$/.test(e.type))
@@ -9867,7 +9871,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: carousel.js v3.3.4
+ * Bootstrap: carousel.js v3.3.5
  * http://getbootstrap.com/javascript/#carousel
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -9898,7 +9902,7 @@ if (typeof jQuery === 'undefined') {
       .on('mouseleave.bs.carousel', $.proxy(this.cycle, this))
   }
 
-  Carousel.VERSION  = '3.3.4'
+  Carousel.VERSION  = '3.3.5'
 
   Carousel.TRANSITION_DURATION = 600
 
@@ -10105,7 +10109,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: collapse.js v3.3.4
+ * Bootstrap: collapse.js v3.3.5
  * http://getbootstrap.com/javascript/#collapse
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -10135,7 +10139,7 @@ if (typeof jQuery === 'undefined') {
     if (this.options.toggle) this.toggle()
   }
 
-  Collapse.VERSION  = '3.3.4'
+  Collapse.VERSION  = '3.3.5'
 
   Collapse.TRANSITION_DURATION = 350
 
@@ -10317,7 +10321,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: dropdown.js v3.3.4
+ * Bootstrap: dropdown.js v3.3.5
  * http://getbootstrap.com/javascript/#dropdowns
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -10337,7 +10341,41 @@ if (typeof jQuery === 'undefined') {
     $(element).on('click.bs.dropdown', this.toggle)
   }
 
-  Dropdown.VERSION = '3.3.4'
+  Dropdown.VERSION = '3.3.5'
+
+  function getParent($this) {
+    var selector = $this.attr('data-target')
+
+    if (!selector) {
+      selector = $this.attr('href')
+      selector = selector && /#[A-Za-z]/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
+    }
+
+    var $parent = selector && $(selector)
+
+    return $parent && $parent.length ? $parent : $this.parent()
+  }
+
+  function clearMenus(e) {
+    if (e && e.which === 3) return
+    $(backdrop).remove()
+    $(toggle).each(function () {
+      var $this         = $(this)
+      var $parent       = getParent($this)
+      var relatedTarget = { relatedTarget: this }
+
+      if (!$parent.hasClass('open')) return
+
+      if (e && e.type == 'click' && /input|textarea/i.test(e.target.tagName) && $.contains($parent[0], e.target)) return
+
+      $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget))
+
+      if (e.isDefaultPrevented()) return
+
+      $this.attr('aria-expanded', 'false')
+      $parent.removeClass('open').trigger('hidden.bs.dropdown', relatedTarget)
+    })
+  }
 
   Dropdown.prototype.toggle = function (e) {
     var $this = $(this)
@@ -10352,7 +10390,10 @@ if (typeof jQuery === 'undefined') {
     if (!isActive) {
       if ('ontouchstart' in document.documentElement && !$parent.closest('.navbar-nav').length) {
         // if mobile we use a backdrop because click events don't delegate
-        $('<div class="dropdown-backdrop"/>').insertAfter($(this)).on('click', clearMenus)
+        $(document.createElement('div'))
+          .addClass('dropdown-backdrop')
+          .insertAfter($(this))
+          .on('click', clearMenus)
       }
 
       var relatedTarget = { relatedTarget: this }
@@ -10385,55 +10426,23 @@ if (typeof jQuery === 'undefined') {
     var $parent  = getParent($this)
     var isActive = $parent.hasClass('open')
 
-    if ((!isActive && e.which != 27) || (isActive && e.which == 27)) {
+    if (!isActive && e.which != 27 || isActive && e.which == 27) {
       if (e.which == 27) $parent.find(toggle).trigger('focus')
       return $this.trigger('click')
     }
 
     var desc = ' li:not(.disabled):visible a'
-    var $items = $parent.find('[role="menu"]' + desc + ', [role="listbox"]' + desc)
+    var $items = $parent.find('.dropdown-menu' + desc)
 
     if (!$items.length) return
 
     var index = $items.index(e.target)
 
-    if (e.which == 38 && index > 0)                 index--                        // up
-    if (e.which == 40 && index < $items.length - 1) index++                        // down
-    if (!~index)                                      index = 0
+    if (e.which == 38 && index > 0)                 index--         // up
+    if (e.which == 40 && index < $items.length - 1) index++         // down
+    if (!~index)                                    index = 0
 
     $items.eq(index).trigger('focus')
-  }
-
-  function clearMenus(e) {
-    if (e && e.which === 3) return
-    $(backdrop).remove()
-    $(toggle).each(function () {
-      var $this         = $(this)
-      var $parent       = getParent($this)
-      var relatedTarget = { relatedTarget: this }
-
-      if (!$parent.hasClass('open')) return
-
-      $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget))
-
-      if (e.isDefaultPrevented()) return
-
-      $this.attr('aria-expanded', 'false')
-      $parent.removeClass('open').trigger('hidden.bs.dropdown', relatedTarget)
-    })
-  }
-
-  function getParent($this) {
-    var selector = $this.attr('data-target')
-
-    if (!selector) {
-      selector = $this.attr('href')
-      selector = selector && /#[A-Za-z]/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
-    }
-
-    var $parent = selector && $(selector)
-
-    return $parent && $parent.length ? $parent : $this.parent()
   }
 
 
@@ -10473,13 +10482,12 @@ if (typeof jQuery === 'undefined') {
     .on('click.bs.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
     .on('click.bs.dropdown.data-api', toggle, Dropdown.prototype.toggle)
     .on('keydown.bs.dropdown.data-api', toggle, Dropdown.prototype.keydown)
-    .on('keydown.bs.dropdown.data-api', '[role="menu"]', Dropdown.prototype.keydown)
-    .on('keydown.bs.dropdown.data-api', '[role="listbox"]', Dropdown.prototype.keydown)
+    .on('keydown.bs.dropdown.data-api', '.dropdown-menu', Dropdown.prototype.keydown)
 
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: modal.js v3.3.4
+ * Bootstrap: modal.js v3.3.5
  * http://getbootstrap.com/javascript/#modals
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -10513,7 +10521,7 @@ if (typeof jQuery === 'undefined') {
     }
   }
 
-  Modal.VERSION  = '3.3.4'
+  Modal.VERSION  = '3.3.5'
 
   Modal.TRANSITION_DURATION = 300
   Modal.BACKDROP_TRANSITION_DURATION = 150
@@ -10570,9 +10578,7 @@ if (typeof jQuery === 'undefined') {
         that.$element[0].offsetWidth // force reflow
       }
 
-      that.$element
-        .addClass('in')
-        .attr('aria-hidden', false)
+      that.$element.addClass('in')
 
       that.enforceFocus()
 
@@ -10606,7 +10612,6 @@ if (typeof jQuery === 'undefined') {
 
     this.$element
       .removeClass('in')
-      .attr('aria-hidden', true)
       .off('click.dismiss.bs.modal')
       .off('mouseup.dismiss.bs.modal')
 
@@ -10670,7 +10675,8 @@ if (typeof jQuery === 'undefined') {
     if (this.isShown && this.options.backdrop) {
       var doAnimate = $.support.transition && animate
 
-      this.$backdrop = $('<div class="modal-backdrop ' + animate + '" />')
+      this.$backdrop = $(document.createElement('div'))
+        .addClass('modal-backdrop ' + animate)
         .appendTo(this.$body)
 
       this.$element.on('click.dismiss.bs.modal', $.proxy(function (e) {
@@ -10819,7 +10825,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: tooltip.js v3.3.4
+ * Bootstrap: tooltip.js v3.3.5
  * http://getbootstrap.com/javascript/#tooltip
  * Inspired by the original jQuery.tipsy by Jason Frame
  * ========================================================================
@@ -10841,11 +10847,12 @@ if (typeof jQuery === 'undefined') {
     this.timeout    = null
     this.hoverState = null
     this.$element   = null
+    this.inState    = null
 
     this.init('tooltip', element, options)
   }
 
-  Tooltip.VERSION  = '3.3.4'
+  Tooltip.VERSION  = '3.3.5'
 
   Tooltip.TRANSITION_DURATION = 150
 
@@ -10870,7 +10877,8 @@ if (typeof jQuery === 'undefined') {
     this.type      = type
     this.$element  = $(element)
     this.options   = this.getOptions(options)
-    this.$viewport = this.options.viewport && $(this.options.viewport.selector || this.options.viewport)
+    this.$viewport = this.options.viewport && $($.isFunction(this.options.viewport) ? this.options.viewport.call(this, this.$element) : (this.options.viewport.selector || this.options.viewport))
+    this.inState   = { click: false, hover: false, focus: false }
 
     if (this.$element[0] instanceof document.constructor && !this.options.selector) {
       throw new Error('`selector` option must be specified when initializing ' + this.type + ' on the window.document object!')
@@ -10929,14 +10937,18 @@ if (typeof jQuery === 'undefined') {
     var self = obj instanceof this.constructor ?
       obj : $(obj.currentTarget).data('bs.' + this.type)
 
-    if (self && self.$tip && self.$tip.is(':visible')) {
-      self.hoverState = 'in'
-      return
-    }
-
     if (!self) {
       self = new this.constructor(obj.currentTarget, this.getDelegateOptions())
       $(obj.currentTarget).data('bs.' + this.type, self)
+    }
+
+    if (obj instanceof $.Event) {
+      self.inState[obj.type == 'focusin' ? 'focus' : 'hover'] = true
+    }
+
+    if (self.tip().hasClass('in') || self.hoverState == 'in') {
+      self.hoverState = 'in'
+      return
     }
 
     clearTimeout(self.timeout)
@@ -10950,6 +10962,14 @@ if (typeof jQuery === 'undefined') {
     }, self.options.delay.show)
   }
 
+  Tooltip.prototype.isInStateTrue = function () {
+    for (var key in this.inState) {
+      if (this.inState[key]) return true
+    }
+
+    return false
+  }
+
   Tooltip.prototype.leave = function (obj) {
     var self = obj instanceof this.constructor ?
       obj : $(obj.currentTarget).data('bs.' + this.type)
@@ -10958,6 +10978,12 @@ if (typeof jQuery === 'undefined') {
       self = new this.constructor(obj.currentTarget, this.getDelegateOptions())
       $(obj.currentTarget).data('bs.' + this.type, self)
     }
+
+    if (obj instanceof $.Event) {
+      self.inState[obj.type == 'focusout' ? 'focus' : 'hover'] = false
+    }
+
+    if (self.isInStateTrue()) return
 
     clearTimeout(self.timeout)
 
@@ -11005,6 +11031,7 @@ if (typeof jQuery === 'undefined') {
         .data('bs.' + this.type, this)
 
       this.options.container ? $tip.appendTo(this.options.container) : $tip.insertAfter(this.$element)
+      this.$element.trigger('inserted.bs.' + this.type)
 
       var pos          = this.getPosition()
       var actualWidth  = $tip[0].offsetWidth
@@ -11012,13 +11039,12 @@ if (typeof jQuery === 'undefined') {
 
       if (autoPlace) {
         var orgPlacement = placement
-        var $container   = this.options.container ? $(this.options.container) : this.$element.parent()
-        var containerDim = this.getPosition($container)
+        var viewportDim = this.getPosition(this.$viewport)
 
-        placement = placement == 'bottom' && pos.bottom + actualHeight > containerDim.bottom ? 'top'    :
-                    placement == 'top'    && pos.top    - actualHeight < containerDim.top    ? 'bottom' :
-                    placement == 'right'  && pos.right  + actualWidth  > containerDim.width  ? 'left'   :
-                    placement == 'left'   && pos.left   - actualWidth  < containerDim.left   ? 'right'  :
+        placement = placement == 'bottom' && pos.bottom + actualHeight > viewportDim.bottom ? 'top'    :
+                    placement == 'top'    && pos.top    - actualHeight < viewportDim.top    ? 'bottom' :
+                    placement == 'right'  && pos.right  + actualWidth  > viewportDim.width  ? 'left'   :
+                    placement == 'left'   && pos.left   - actualWidth  < viewportDim.left   ? 'right'  :
                     placement
 
         $tip
@@ -11059,8 +11085,8 @@ if (typeof jQuery === 'undefined') {
     if (isNaN(marginTop))  marginTop  = 0
     if (isNaN(marginLeft)) marginLeft = 0
 
-    offset.top  = offset.top  + marginTop
-    offset.left = offset.left + marginLeft
+    offset.top  += marginTop
+    offset.left += marginLeft
 
     // $.fn.offset doesn't round pixel values
     // so we use setOffset directly with our own function B-0
@@ -11142,7 +11168,7 @@ if (typeof jQuery === 'undefined') {
 
   Tooltip.prototype.fixTitle = function () {
     var $e = this.$element
-    if ($e.attr('title') || typeof ($e.attr('data-original-title')) != 'string') {
+    if ($e.attr('title') || typeof $e.attr('data-original-title') != 'string') {
       $e.attr('data-original-title', $e.attr('title') || '').attr('title', '')
     }
   }
@@ -11197,7 +11223,7 @@ if (typeof jQuery === 'undefined') {
       var rightEdgeOffset = pos.left + viewportPadding + actualWidth
       if (leftEdgeOffset < viewportDimensions.left) { // left overflow
         delta.left = viewportDimensions.left - leftEdgeOffset
-      } else if (rightEdgeOffset > viewportDimensions.width) { // right overflow
+      } else if (rightEdgeOffset > viewportDimensions.right) { // right overflow
         delta.left = viewportDimensions.left + viewportDimensions.width - rightEdgeOffset
       }
     }
@@ -11223,7 +11249,13 @@ if (typeof jQuery === 'undefined') {
   }
 
   Tooltip.prototype.tip = function () {
-    return (this.$tip = this.$tip || $(this.options.template))
+    if (!this.$tip) {
+      this.$tip = $(this.options.template)
+      if (this.$tip.length != 1) {
+        throw new Error(this.type + ' `template` option must consist of exactly 1 top-level element!')
+      }
+    }
+    return this.$tip
   }
 
   Tooltip.prototype.arrow = function () {
@@ -11252,7 +11284,13 @@ if (typeof jQuery === 'undefined') {
       }
     }
 
-    self.tip().hasClass('in') ? self.leave(self) : self.enter(self)
+    if (e) {
+      self.inState.click = !self.inState.click
+      if (self.isInStateTrue()) self.enter(self)
+      else self.leave(self)
+    } else {
+      self.tip().hasClass('in') ? self.leave(self) : self.enter(self)
+    }
   }
 
   Tooltip.prototype.destroy = function () {
@@ -11260,6 +11298,12 @@ if (typeof jQuery === 'undefined') {
     clearTimeout(this.timeout)
     this.hide(function () {
       that.$element.off('.' + that.type).removeData('bs.' + that.type)
+      if (that.$tip) {
+        that.$tip.detach()
+      }
+      that.$tip = null
+      that.$arrow = null
+      that.$viewport = null
     })
   }
 
@@ -11296,7 +11340,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: popover.js v3.3.4
+ * Bootstrap: popover.js v3.3.5
  * http://getbootstrap.com/javascript/#popovers
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -11316,7 +11360,7 @@ if (typeof jQuery === 'undefined') {
 
   if (!$.fn.tooltip) throw new Error('Popover requires tooltip.js')
 
-  Popover.VERSION  = '3.3.4'
+  Popover.VERSION  = '3.3.5'
 
   Popover.DEFAULTS = $.extend({}, $.fn.tooltip.Constructor.DEFAULTS, {
     placement: 'right',
@@ -11405,7 +11449,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: scrollspy.js v3.3.4
+ * Bootstrap: scrollspy.js v3.3.5
  * http://getbootstrap.com/javascript/#scrollspy
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -11434,7 +11478,7 @@ if (typeof jQuery === 'undefined') {
     this.process()
   }
 
-  ScrollSpy.VERSION  = '3.3.4'
+  ScrollSpy.VERSION  = '3.3.5'
 
   ScrollSpy.DEFAULTS = {
     offset: 10
@@ -11578,7 +11622,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: tab.js v3.3.4
+ * Bootstrap: tab.js v3.3.5
  * http://getbootstrap.com/javascript/#tabs
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -11593,10 +11637,12 @@ if (typeof jQuery === 'undefined') {
   // ====================
 
   var Tab = function (element) {
+    // jscs:disable requireDollarBeforejQueryAssignment
     this.element = $(element)
+    // jscs:enable requireDollarBeforejQueryAssignment
   }
 
-  Tab.VERSION = '3.3.4'
+  Tab.VERSION = '3.3.5'
 
   Tab.TRANSITION_DURATION = 150
 
@@ -11644,7 +11690,7 @@ if (typeof jQuery === 'undefined') {
     var $active    = container.find('> .active')
     var transition = callback
       && $.support.transition
-      && (($active.length && $active.hasClass('fade')) || !!container.find('> .fade').length)
+      && ($active.length && $active.hasClass('fade') || !!container.find('> .fade').length)
 
     function next() {
       $active
@@ -11732,7 +11778,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: affix.js v3.3.4
+ * Bootstrap: affix.js v3.3.5
  * http://getbootstrap.com/javascript/#affix
  * ========================================================================
  * Copyright 2011-2015 Twitter, Inc.
@@ -11761,7 +11807,7 @@ if (typeof jQuery === 'undefined') {
     this.checkPosition()
   }
 
-  Affix.VERSION  = '3.3.4'
+  Affix.VERSION  = '3.3.5'
 
   Affix.RESET    = 'affix affix-top affix-bottom'
 
@@ -11811,7 +11857,7 @@ if (typeof jQuery === 'undefined') {
     var offset       = this.options.offset
     var offsetTop    = offset.top
     var offsetBottom = offset.bottom
-    var scrollHeight = $(document.body).height()
+    var scrollHeight = Math.max($(document).height(), $(document.body).height())
 
     if (typeof offset != 'object')         offsetBottom = offsetTop = offset
     if (typeof offsetTop == 'function')    offsetTop    = offset.top(this.$element)
@@ -11894,1560 +11940,6 @@ if (typeof jQuery === 'undefined') {
 
 }(jQuery);
 
-/***
- * BxSlider v4.2.3 - Fully loaded, responsive content slider
- * http://bxslider.com
- *
- * Copyright 2014, Steven Wanderski - http://stevenwanderski.com - http://bxcreative.com
- * Written while drinking Belgian ales and listening to jazz
- *
- * Released under the MIT license - http://opensource.org/licenses/MIT
- ***/
-
-;(function($){
-
-	var defaults = {
-
-		// GENERAL
-		mode: 'horizontal',
-		slideSelector: '',
-		infiniteLoop: true,
-		hideControlOnEnd: false,
-		speed: 500,
-		easing: null,
-		slideMargin: 0,
-		startSlide: 0,
-		randomStart: false,
-		captions: false,
-		ticker: false,
-		tickerHover: false,
-		adaptiveHeight: false,
-		adaptiveHeightSpeed: 500,
-		video: false,
-		useCSS: true,
-		preloadImages: 'visible',
-		responsive: true,
-		slideZIndex: 50,
-		wrapperClass: 'bx-wrapper',
-
-		// TOUCH
-		touchEnabled: true,
-		swipeThreshold: 50,
-		oneToOneTouch: true,
-		preventDefaultSwipeX: true,
-		preventDefaultSwipeY: false,
-
-		// KEYBOARD
-		keyboardEnabled: false,
-
-		// PAGER
-		pager: true,
-		pagerType: 'full',
-		pagerShortSeparator: ' / ',
-		pagerSelector: null,
-		buildPager: null,
-		pagerCustom: null,
-
-		// CONTROLS
-		controls: true,
-		nextText: 'Next',
-		prevText: 'Prev',
-		nextSelector: null,
-		prevSelector: null,
-		autoControls: false,
-		startText: 'Start',
-		stopText: 'Stop',
-		autoControlsCombine: false,
-		autoControlsSelector: null,
-
-		// AUTO
-		auto: false,
-		pause: 4000,
-		autoStart: true,
-		autoDirection: 'next',
-		autoHover: false,
-		autoDelay: 0,
-		autoSlideForOnePage: false,
-
-		// CAROUSEL
-		minSlides: 1,
-		maxSlides: 1,
-		moveSlides: 0,
-		slideWidth: 0,
-
-		// CALLBACKS
-		onSliderLoad: function(){ return true },
-		onSlideBefore: function(){ return true },
-		onSlideAfter: function(){ return true },
-		onSlideNext: function(){ return true },
-		onSlidePrev: function(){ return true },
-		onSliderResize: function(){ return true }
-	};
-
-	$.fn.bxSlider = function(options){
-
-		if(this.length === 0){
-			return this;
-		} 
-
-		// support multiple elements
-		if(this.length > 1){
-			this.each(function(){
-				$(this).bxSlider(options);
-			});
-			return this;
-		}
-
-		// create a namespace to be used throughout the plugin
-		var slider = {};
-		// set a reference to our slider element
-		var el = this;
-
-		/**
-		 * Makes slideshow responsive
-		 */
-		// first get the original window dimens (thanks a lot IE)
-		var windowWidth = $(window).width();
-		var windowHeight = $(window).height();
-
-
-
-		/**
-		 * ===================================================================================
-		 * = PRIVATE FUNCTIONS
-		 * ===================================================================================
-		 */
-
-		/**
-		 * Initializes namespace settings to be used throughout plugin
-		 */
-		var init = function(){
-			// merge user-supplied options with the defaults
-			slider.settings = $.extend({}, defaults, options);
-			// parse slideWidth setting
-			slider.settings.slideWidth = parseInt(slider.settings.slideWidth);
-			// store the original children
-			slider.children = el.children(slider.settings.slideSelector);
-			// check if actual number of slides is less than minSlides / maxSlides
-			if(slider.children.length < slider.settings.minSlides){ slider.settings.minSlides = slider.children.length; } 
-			if(slider.children.length < slider.settings.maxSlides){ slider.settings.maxSlides = slider.children.length; }
-			// if random start, set the startSlide setting to random number
-			if(slider.settings.randomStart){ slider.settings.startSlide = Math.floor(Math.random() * slider.children.length); }
-			// store active slide information
-			slider.active = { index: slider.settings.startSlide };
-			// store if the slider is in carousel mode (displaying / moving multiple slides)
-			slider.carousel = slider.settings.minSlides > 1 || slider.settings.maxSlides > 1 ? true : false;
-			// if carousel, force preloadImages = 'all'
-			if(slider.carousel){ slider.settings.preloadImages = 'all'; }
-			// calculate the min / max width thresholds based on min / max number of slides
-			// used to setup and update carousel slides dimensions
-			slider.minThreshold = (slider.settings.minSlides * slider.settings.slideWidth) + ((slider.settings.minSlides - 1) * slider.settings.slideMargin);
-			slider.maxThreshold = (slider.settings.maxSlides * slider.settings.slideWidth) + ((slider.settings.maxSlides - 1) * slider.settings.slideMargin);
-			// store the current state of the slider (if currently animating, working is true)
-			slider.working = false;
-			// initialize the controls object
-			slider.controls = {};
-			// initialize an auto interval
-			slider.interval = null;
-			// determine which property to use for transitions
-			slider.animProp = slider.settings.mode === 'vertical' ? 'top' : 'left';
-			// determine if hardware acceleration can be used
-			slider.usingCSS = slider.settings.useCSS && slider.settings.mode !== 'fade' && (function(){
-				// create our test div element
-				var div = document.createElement('div');
-				// css transition properties
-				var props = ['WebkitPerspective', 'MozPerspective', 'OPerspective', 'msPerspective'];
-				// test for each property
-				for(var i in props){
-					if(div.style[props[i]] !== undefined){
-						slider.cssPrefix = props[i].replace('Perspective', '').toLowerCase();
-						slider.animProp = '-' + slider.cssPrefix + '-transform';
-						return true;
-					}
-				}
-				return false;
-			}());
-			// if vertical mode always make maxSlides and minSlides equal
-			if(slider.settings.mode === 'vertical'){ slider.settings.maxSlides = slider.settings.minSlides; }
-			// save original style data
-			el.data("origStyle", el.attr("style"));
-			el.children(slider.settings.slideSelector).each(function(){
-			  $(this).data("origStyle", $(this).attr("style"));
-			});
-			// perform all DOM / CSS modifications
-			setup();
-		};
-
-		/**
-		 * Performs all DOM and CSS modifications
-		 */
-		var setup = function(){
-			// wrap el in a wrapper
-			el.wrap('<div class="' + slider.settings.wrapperClass + '"><div class="bx-viewport"></div></div>');
-			// store a namespace reference to .bx-viewport
-			slider.viewport = el.parent();
-			// add a loading div to display while images are loading
-			slider.loader = $('<div class="bx-loading" />');
-			slider.viewport.prepend(slider.loader);
-			// set el to a massive width, to hold any needed slides
-			// also strip any margin and padding from el
-			el.css({
-				width: slider.settings.mode === 'horizontal' ? (slider.children.length * 1000 + 215) + '%' : 'auto',
-				position: 'absolute'
-			});
-			// if using CSS, add the easing property
-			if(slider.usingCSS && slider.settings.easing){
-				el.css('-' + slider.cssPrefix + '-transition-timing-function', slider.settings.easing);
-			// if not using CSS and no easing value was supplied, use the default JS animation easing (swing)
-			}else if(!slider.settings.easing){
-				slider.settings.easing = 'swing';
-			}
-			var slidesShowing = getNumberSlidesShowing();
-			// make modifications to the viewport (.bx-viewport)
-			slider.viewport.css({
-				width: '100%',
-				overflow: 'hidden',
-				position: 'relative'
-			});
-			slider.viewport.parent().css({
-				maxWidth: getViewportMaxWidth()
-			});
-			// make modification to the wrapper (.bx-wrapper)
-			if(!slider.settings.pager && !slider.settings.controls){
-				slider.viewport.parent().css({
-					margin: '0 auto 0px'
-				});
-			}
-			// apply css to all slider children
-			slider.children.css({
-				'float': slider.settings.mode === 'horizontal' ? 'left' : 'none',
-				listStyle: 'none',
-				position: 'relative'
-			});
-			// apply the calculated width after the float is applied to prevent scrollbar interference
-			slider.children.css('width', getSlideWidth());
-			// if slideMargin is supplied, add the css
-			if(slider.settings.mode === 'horizontal' && slider.settings.slideMargin > 0){ slider.children.css('marginRight', slider.settings.slideMargin); }
-			if(slider.settings.mode === 'vertical' && slider.settings.slideMargin > 0){ slider.children.css('marginBottom', slider.settings.slideMargin); }
-			// if "fade" mode, add positioning and z-index CSS
-			if(slider.settings.mode === 'fade'){
-				slider.children.css({
-					position: 'absolute',
-					zIndex: 0,
-					display: 'none'
-				});
-				// prepare the z-index on the showing element
-				slider.children.eq(slider.settings.startSlide).css({zIndex: slider.settings.slideZIndex, display: 'block'});
-			}
-			// create an element to contain all slider controls (pager, start / stop, etc)
-			slider.controls.el = $('<div class="bx-controls" />');
-			// if captions are requested, add them
-			if(slider.settings.captions){ appendCaptions(); }
-			// check if startSlide is last slide
-			slider.active.last = slider.settings.startSlide === getPagerQty() - 1;
-			// if video is true, set up the fitVids plugin
-			if(slider.settings.video){ el.fitVids(); }
-			// set the default preload selector (visible)
-			var preloadSelector = slider.children.eq(slider.settings.startSlide);
-			if(slider.settings.preloadImages === "all" || slider.settings.ticker){ preloadSelector = slider.children; }
-			// only check for control addition if not in "ticker" mode
-			if(!slider.settings.ticker){
-				// if controls are requested, add them
-				if(slider.settings.controls){ appendControls(); }
-				// if auto is true, and auto controls are requested, add them
-				if(slider.settings.auto && slider.settings.autoControls){ appendControlsAuto(); }
-				// if pager is requested, add it
-				if(slider.settings.pager){ appendPager(); }
-				// if any control option is requested, add the controls wrapper
-				if(slider.settings.controls || slider.settings.autoControls || slider.settings.pager){ slider.viewport.after(slider.controls.el); }
-			// if ticker mode, do not allow a pager
-			} else {
-				slider.settings.pager = false;
-			}
-			loadElements(preloadSelector, start);
-		};
-
-		var loadElements = function(selector, callback){
-			var total = selector.find('img:not([src=""]), iframe').length;
-			if(total === 0){
-				callback();
-				return;
-			}
-			var count = 0;
-			selector.find('img:not([src=""]), iframe').each(function(){
-				$(this).one('load error', function(){
-				  if(++count === total){ callback(); }
-				}).each(function(){
-				  if(this.complete){ $(this).load(); }
-				});
-			});
-		};
-
-		/**
-		 * Start the slider
-		 */
-		var start = function(){
-			// if infinite loop, prepare additional slides
-			if(slider.settings.infiniteLoop && slider.settings.mode !== 'fade' && !slider.settings.ticker){
-				var slice = slider.settings.mode === 'vertical' ? slider.settings.minSlides : slider.settings.maxSlides;
-				var sliceAppend = slider.children.slice(0, slice).clone(true).addClass('bx-clone');
-				var slicePrepend = slider.children.slice(-slice).clone(true).addClass('bx-clone');
-				el.append(sliceAppend).prepend(slicePrepend);
-			}
-			// remove the loading DOM element
-			slider.loader.remove();
-			// set the left / top position of "el"
-			setSlidePosition();
-			// if "vertical" mode, always use adaptiveHeight to prevent odd behavior
-			if(slider.settings.mode === 'vertical'){ slider.settings.adaptiveHeight = true; }
-			// set the viewport height
-			slider.viewport.height(getViewportHeight());
-			// make sure everything is positioned just right (same as a window resize)
-			el.redrawSlider();
-			// onSliderLoad callback
-			slider.settings.onSliderLoad(slider,slider.active.index);
-			// slider has been fully initialized
-			slider.initialized = true;
-			// bind the resize call to the window
-			if(slider.settings.responsive){ $(window).bind('resize', resizeWindow); }
-			// if auto is true and has more than 1 page, start the show
-			if(slider.settings.auto && slider.settings.autoStart && (getPagerQty() > 1 || slider.settings.autoSlideForOnePage)){ initAuto(); }
-			// if ticker is true, start the ticker
-			if(slider.settings.ticker){ initTicker(); }
-			// if pager is requested, make the appropriate pager link active
-			if(slider.settings.pager){ updatePagerActive(slider.settings.startSlide); }
-			// check for any updates to the controls (like hideControlOnEnd updates)
-			if(slider.settings.controls){ updateDirectionControls(); }
-			// if touchEnabled is true, setup the touch events
-			if(slider.settings.touchEnabled && !slider.settings.ticker){ initTouch(); }
-			// if keyboardEnabled is true, setup the keyboard events
-			if (slider.settings.keyboardEnabled && !slider.settings.ticker) { 
-				$(document).keydown(keyPress);
-			}
-		};
-
-		/**
-		 * Returns the calculated height of the viewport, used to determine either adaptiveHeight or the maxHeight value
-		 */
-		var getViewportHeight = function(){
-			var height = 0;
-			// first determine which children (slides) should be used in our height calculation
-			var children = $();
-			// if mode is not "vertical" and adaptiveHeight is false, include all children
-			if(slider.settings.mode !== 'vertical' && !slider.settings.adaptiveHeight){
-				children = slider.children;
-			}else{
-				// if not carousel, return the single active child
-				if(!slider.carousel){
-					children = slider.children.eq(slider.active.index);
-				// if carousel, return a slice of children
-				}else{
-					// get the individual slide index
-					var currentIndex = slider.settings.moveSlides === 1 ? slider.active.index : slider.active.index * getMoveBy();
-					// add the current slide to the children
-					children = slider.children.eq(currentIndex);
-					// cycle through the remaining "showing" slides
-					for (i = 1; i <= slider.settings.maxSlides - 1; i++){
-						// if looped back to the start
-						if(currentIndex + i >= slider.children.length){
-							children = children.add(slider.children.eq(i - 1));
-						}else{
-							children = children.add(slider.children.eq(currentIndex + i));
-						}
-					}
-				}
-			}
-			// if "vertical" mode, calculate the sum of the heights of the children
-			if(slider.settings.mode === 'vertical'){
-				children.each(function(index){
-				  height += $(this).outerHeight();
-				});
-				// add user-supplied margins
-				if(slider.settings.slideMargin > 0){
-					height += slider.settings.slideMargin * (slider.settings.minSlides - 1);
-				}
-			// if not "vertical" mode, calculate the max height of the children
-			}else{
-				height = Math.max.apply(Math, children.map(function(){
-					return $(this).outerHeight(false);
-				}).get());
-			}
-
-			if(slider.viewport.css('box-sizing') === 'border-box'){
-				height +=	parseFloat(slider.viewport.css('padding-top')) + parseFloat(slider.viewport.css('padding-bottom')) +
-							parseFloat(slider.viewport.css('border-top-width')) + parseFloat(slider.viewport.css('border-bottom-width'));
-			}else if(slider.viewport.css('box-sizing') === 'padding-box'){
-				height +=	parseFloat(slider.viewport.css('padding-top')) + parseFloat(slider.viewport.css('padding-bottom'));
-			}
-
-			return height;
-		};
-
-		/**
-		 * Returns the calculated width to be used for the outer wrapper / viewport
-		 */
-		var getViewportMaxWidth = function(){
-			var width = '100%';
-			if(slider.settings.slideWidth > 0){
-				if(slider.settings.mode === 'horizontal'){
-					width = (slider.settings.maxSlides * slider.settings.slideWidth) + ((slider.settings.maxSlides - 1) * slider.settings.slideMargin);
-				}else{
-					width = slider.settings.slideWidth;
-				}
-			}
-			return width;
-		};
-
-		/**
-		 * Returns the calculated width to be applied to each slide
-		 */
-		var getSlideWidth = function(){
-			// start with any user-supplied slide width
-			var newElWidth = slider.settings.slideWidth;
-			// get the current viewport width
-			var wrapWidth = slider.viewport.width();
-			// if slide width was not supplied, or is larger than the viewport use the viewport width
-			if(slider.settings.slideWidth === 0 ||
-				(slider.settings.slideWidth > wrapWidth && !slider.carousel) ||
-				slider.settings.mode === 'vertical'){
-				newElWidth = wrapWidth;
-			// if carousel, use the thresholds to determine the width
-			}else if(slider.settings.maxSlides > 1 && slider.settings.mode === 'horizontal'){
-				if(wrapWidth > slider.maxThreshold){
-					// newElWidth = (wrapWidth - (slider.settings.slideMargin * (slider.settings.maxSlides - 1))) / slider.settings.maxSlides;
-				}else if(wrapWidth < slider.minThreshold){
-					newElWidth = (wrapWidth - (slider.settings.slideMargin * (slider.settings.minSlides - 1))) / slider.settings.minSlides;
-				}
-			}
-			return newElWidth;
-		};
-
-		/**
-		 * Returns the number of slides currently visible in the viewport (includes partially visible slides)
-		 */
-		var getNumberSlidesShowing = function(){
-			var slidesShowing = 1;
-			if(slider.settings.mode === 'horizontal' && slider.settings.slideWidth > 0){
-				// if viewport is smaller than minThreshold, return minSlides
-				if(slider.viewport.width() < slider.minThreshold){
-					slidesShowing = slider.settings.minSlides;
-				// if viewport is larger than maxThreshold, return maxSlides
-				}else if(slider.viewport.width() > slider.maxThreshold){
-					slidesShowing = slider.settings.maxSlides;
-				// if viewport is between min / max thresholds, divide viewport width by first child width
-				}else{
-					var childWidth = slider.children.first().width() + slider.settings.slideMargin;
-					slidesShowing = Math.floor((slider.viewport.width() +
-						slider.settings.slideMargin) / childWidth);
-				}
-			// if "vertical" mode, slides showing will always be minSlides
-			}else if(slider.settings.mode === 'vertical'){
-				slidesShowing = slider.settings.minSlides;
-			}
-			return slidesShowing;
-		};
-
-		/**
-		 * Returns the number of pages (one full viewport of slides is one "page")
-		 */
-		var getPagerQty = function(){
-			var pagerQty = 0;
-			// if moveSlides is specified by the user
-			if(slider.settings.moveSlides > 0){
-				if(slider.settings.infiniteLoop){
-					pagerQty = Math.ceil(slider.children.length / getMoveBy());
-				}else{
-					// use a while loop to determine pages
-					var breakPoint = 0;
-					var counter = 0;
-					// when breakpoint goes above children length, counter is the number of pages
-					while (breakPoint < slider.children.length){
-						++pagerQty;
-						breakPoint = counter + getNumberSlidesShowing();
-						counter += slider.settings.moveSlides <= getNumberSlidesShowing() ? slider.settings.moveSlides : getNumberSlidesShowing();
-					}
-				}
-			// if moveSlides is 0 (auto) divide children length by sides showing, then round up
-			}else{
-				pagerQty = Math.ceil(slider.children.length / getNumberSlidesShowing());
-			}
-			return pagerQty;
-		};
-
-		/**
-		 * Returns the number of individual slides by which to shift the slider
-		 */
-		var getMoveBy = function(){
-			// if moveSlides was set by the user and moveSlides is less than number of slides showing
-			if(slider.settings.moveSlides > 0 && slider.settings.moveSlides <= getNumberSlidesShowing()){
-				return slider.settings.moveSlides;
-			}
-			// if moveSlides is 0 (auto)
-			return getNumberSlidesShowing();
-		};
-
-		/**
-		 * Sets the slider's (el) left or top position
-		 */
-		var setSlidePosition = function(){
-			var position;
-			// if last slide, not infinite loop, and number of children is larger than specified maxSlides
-			if(slider.children.length > slider.settings.maxSlides && slider.active.last && !slider.settings.infiniteLoop){
-				if(slider.settings.mode === 'horizontal'){
-					// get the last child's position
-					var lastChild = slider.children.last();
-					position = lastChild.position();
-					// set the left position
-					setPositionProperty(-(position.left - (slider.viewport.width() - lastChild.outerWidth())), 'reset', 0);
-				}else if(slider.settings.mode === 'vertical'){
-					// get the last showing index's position
-					var lastShowingIndex = slider.children.length - slider.settings.minSlides;
-					position = slider.children.eq(lastShowingIndex).position();
-					// set the top position
-					setPositionProperty(-position.top, 'reset', 0);
-				}
-			// if not last slide
-			}else{
-				// get the position of the first showing slide
-				position = slider.children.eq(slider.active.index * getMoveBy()).position();
-				// check for last slide
-				if(slider.active.index === getPagerQty() - 1){ slider.active.last = true; }
-				// set the respective position
-				if(position !== undefined){
-					if(slider.settings.mode === 'horizontal'){ setPositionProperty(-position.left, 'reset', 0); }
-					else if(slider.settings.mode === 'vertical'){ setPositionProperty(-position.top, 'reset', 0); }
-				}
-			}
-		};
-
-		/**
-		 * Sets the el's animating property position (which in turn will sometimes animate el).
-		 * If using CSS, sets the transform property. If not using CSS, sets the top / left property.
-		 *
-		 * @param value (int)
-		 *  - the animating property's value
-		 *
-		 * @param type (string) 'slide', 'reset', 'ticker'
-		 *  - the type of instance for which the function is being
-		 *
-		 * @param duration (int)
-		 *  - the amount of time (in ms) the transition should occupy
-		 *
-		 * @param params (array) optional
-		 *  - an optional parameter containing any variables that need to be passed in
-		 */
-		var setPositionProperty = function(value, type, duration, params){
-			// use CSS transform
-			if(slider.usingCSS){
-				// determine the translate3d value
-				var propValue = slider.settings.mode === 'vertical' ? 'translate3d(0, ' + value + 'px, 0)' : 'translate3d(' + value + 'px, 0, 0)';
-				// add the CSS transition-duration
-				el.css('-' + slider.cssPrefix + '-transition-duration', duration / 1000 + 's');
-				if(type === 'slide'){
-					setTimeout(function() {
-						// set the property value
-						el.css(slider.animProp, propValue);
-						// if value 0, just update
-						if(value === 0) {
-							updateAfterSlideTransition();
-						} else {
-							// bind a callback method - executes when CSS transition completes
-							el.bind('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function(){
-								// unbind the callback
-								el.unbind('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd');
-								updateAfterSlideTransition();
-							});
-						}
-					}, 0);
-				}else if(type === 'reset'){
-					el.css(slider.animProp, propValue);
-				}else if(type === 'ticker'){
-					// make the transition use 'linear'
-					el.css('-' + slider.cssPrefix + '-transition-timing-function', 'linear');
-					el.css(slider.animProp, propValue);
-					// bind a callback method - executes when CSS transition completes
-					el.bind('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function(){
-						// unbind the callback
-						el.unbind('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd');
-						// reset the position
-						setPositionProperty(params.resetValue, 'reset', 0);
-						// start the loop again
-						tickerLoop();
-					});
-				}
-			// use JS animate
-			}else{
-				var animateObj = {};
-				animateObj[slider.animProp] = value;
-				if(type === 'slide'){
-					el.animate(animateObj, duration, slider.settings.easing, function(){
-						updateAfterSlideTransition();
-					});
-				}else if(type === 'reset'){
-					el.css(slider.animProp, value);
-				}else if(type === 'ticker'){
-					el.animate(animateObj, speed, 'linear', function(){
-						setPositionProperty(params.resetValue, 'reset', 0);
-						// run the recursive loop after animation
-						tickerLoop();
-					});
-				}
-			}
-		};
-
-		/**
-		 * Populates the pager with proper amount of pages
-		 */
-		var populatePager = function(){
-			var pagerHtml = '';
-			var pagerQty = getPagerQty();
-			// loop through each pager item
-			for(var i=0; i < pagerQty; i++){
-				var linkContent = '';
-				// if a buildPager function is supplied, use it to get pager link value, else use index + 1
-				if(slider.settings.buildPager && $.isFunction(slider.settings.buildPager) || slider.settings.pagerCustom){
-					linkContent = slider.settings.buildPager(i);
-					slider.pagerEl.addClass('bx-custom-pager');
-				}else{
-					linkContent = i + 1;
-					slider.pagerEl.addClass('bx-default-pager');
-				}
-				// var linkContent = slider.settings.buildPager && $.isFunction(slider.settings.buildPager) ? slider.settings.buildPager(i) : i + 1;
-				// add the markup to the string
-				pagerHtml += '<div class="bx-pager-item"><a href="" data-slide-index="' + i + '" class="bx-pager-link">' + linkContent + '</a></div>';
-			}
-			// populate the pager element with pager links
-			slider.pagerEl.html(pagerHtml);
-		};
-
-		/**
-		 * Appends the pager to the controls element
-		 */
-		var appendPager = function(){
-			if(!slider.settings.pagerCustom){
-				// create the pager DOM element
-				slider.pagerEl = $('<div class="bx-pager" />');
-				// if a pager selector was supplied, populate it with the pager
-				if(slider.settings.pagerSelector){
-					$(slider.settings.pagerSelector).html(slider.pagerEl);
-				// if no pager selector was supplied, add it after the wrapper
-				}else{
-					slider.controls.el.addClass('bx-has-pager').append(slider.pagerEl);
-				}
-				// populate the pager
-				populatePager();
-			}else{
-				slider.pagerEl = $(slider.settings.pagerCustom);
-			}
-			// assign the pager click binding
-			slider.pagerEl.on('click touchend', 'a', clickPagerBind);
-		};
-
-		/**
-		 * Appends prev / next controls to the controls element
-		 */
-		var appendControls = function(){
-			slider.controls.next = $('<a class="bx-next" href="">' + slider.settings.nextText + '</a>');
-			slider.controls.prev = $('<a class="bx-prev" href="">' + slider.settings.prevText + '</a>');
-			// bind click actions to the controls
-			slider.controls.next.bind('click touchend', clickNextBind);
-			slider.controls.prev.bind('click touchend', clickPrevBind);
-			// if nextSelector was supplied, populate it
-			if(slider.settings.nextSelector){
-				$(slider.settings.nextSelector).append(slider.controls.next);
-			}
-			// if prevSelector was supplied, populate it
-			if(slider.settings.prevSelector){
-				$(slider.settings.prevSelector).append(slider.controls.prev);
-			}
-			// if no custom selectors were supplied
-			if(!slider.settings.nextSelector && !slider.settings.prevSelector){
-				// add the controls to the DOM
-				slider.controls.directionEl = $('<div class="bx-controls-direction" />');
-				// add the control elements to the directionEl
-				slider.controls.directionEl.append(slider.controls.prev).append(slider.controls.next);
-				// slider.viewport.append(slider.controls.directionEl);
-				slider.controls.el.addClass('bx-has-controls-direction').append(slider.controls.directionEl);
-			}
-		};
-
-		/**
-		 * Appends start / stop auto controls to the controls element
-		 */
-		var appendControlsAuto = function(){
-			slider.controls.start = $('<div class="bx-controls-auto-item"><a class="bx-start" href="">' + slider.settings.startText + '</a></div>');
-			slider.controls.stop = $('<div class="bx-controls-auto-item"><a class="bx-stop" href="">' + slider.settings.stopText + '</a></div>');
-			// add the controls to the DOM
-			slider.controls.autoEl = $('<div class="bx-controls-auto" />');
-			// bind click actions to the controls
-			slider.controls.autoEl.on('click', '.bx-start', clickStartBind);
-			slider.controls.autoEl.on('click', '.bx-stop', clickStopBind);
-			// if autoControlsCombine, insert only the "start" control
-			if(slider.settings.autoControlsCombine){
-				slider.controls.autoEl.append(slider.controls.start);
-			// if autoControlsCombine is false, insert both controls
-			}else{
-				slider.controls.autoEl.append(slider.controls.start).append(slider.controls.stop);
-			}
-			// if auto controls selector was supplied, populate it with the controls
-			if(slider.settings.autoControlsSelector){
-				$(slider.settings.autoControlsSelector).html(slider.controls.autoEl);
-			// if auto controls selector was not supplied, add it after the wrapper
-			}else{
-				slider.controls.el.addClass('bx-has-controls-auto').append(slider.controls.autoEl);
-			}
-			// update the auto controls
-			updateAutoControls(slider.settings.autoStart ? 'stop' : 'start');
-		};
-
-		/**
-		 * Appends image captions to the DOM
-		 */
-		var appendCaptions = function(){
-			// cycle through each child
-			slider.children.each(function(index){
-				// get the image title attribute
-				var title = $(this).find('img:first').attr('title');
-				// append the caption
-				if(title !== undefined && ('' + title).length){
-					$(this).append('<div class="bx-caption"><span>' + title + '</span></div>');
-				}
-			});
-		};
-
-		/**
-		 * Click next binding
-		 *
-		 * @param e (event)
-		 *  - DOM event object
-		 */
-		var clickNextBind = function(e){
-			e.preventDefault();
-			if (slider.controls.el.hasClass('disabled')) {
-				return;
-			}
-			// if auto show is running, stop it
-			if(slider.settings.auto){ el.stopAuto(); }
-			el.goToNextSlide();
-		};
-
-		/**
-		 * Click prev binding
-		 *
-		 * @param e (event)
-		 *  - DOM event object
-		 */
-		var clickPrevBind = function(e){
-			e.preventDefault();
-			if (slider.controls.el.hasClass('disabled')) {
-				return;
-			}
-			// if auto show is running, stop it
-			if(slider.settings.auto){ el.stopAuto(); }
-			el.goToPrevSlide();
-		};
-
-		/**
-		 * Click start binding
-		 *
-		 * @param e (event)
-		 *  - DOM event object
-		 */
-		var clickStartBind = function(e){
-			el.startAuto();
-			e.preventDefault();
-		};
-
-		/**
-		 * Click stop binding
-		 *
-		 * @param e (event)
-		 *  - DOM event object
-		 */
-		var clickStopBind = function(e){
-			el.stopAuto();
-			e.preventDefault();
-		};
-
-		/**
-		 * Click pager binding
-		 *
-		 * @param e (event)
-		 *  - DOM event object
-		 */
-		var clickPagerBind = function(e){
-			e.preventDefault();
-			if (slider.controls.el.hasClass('disabled')) {
-				return;
-			}
-			// if auto show is running, stop it
-			if(slider.settings.auto){ el.stopAuto(); }
-			var pagerLink = $(e.currentTarget);
-			if(pagerLink.attr('data-slide-index') !== undefined){
-				var pagerIndex = parseInt(pagerLink.attr('data-slide-index'));
-				// if clicked pager link is not active, continue with the goToSlide call
-				if(pagerIndex !== slider.active.index){ el.goToSlide(pagerIndex); }
-			}
-		};
-
-		/**
-		 * Updates the pager links with an active class
-		 *
-		 * @param slideIndex (int)
-		 *  - index of slide to make active
-		 */
-		var updatePagerActive = function(slideIndex){
-			// if "short" pager type
-			var len = slider.children.length; // nb of children
-			if(slider.settings.pagerType === 'short'){
-				if(slider.settings.maxSlides > 1){
-					len = Math.ceil(slider.children.length/slider.settings.maxSlides);
-				}
-				slider.pagerEl.html( (slideIndex + 1) + slider.settings.pagerShortSeparator + len);
-				return;
-			}
-			// remove all pager active classes
-			slider.pagerEl.find('a').removeClass('active');
-			// apply the active class for all pagers
-			slider.pagerEl.each(function(i, el){ $(el).find('a').eq(slideIndex).addClass('active'); });
-		};
-
-		/**
-		 * Performs needed actions after a slide transition
-		 */
-		var updateAfterSlideTransition = function(){
-			// if infinite loop is true
-			if(slider.settings.infiniteLoop){
-				var position = '';
-				// first slide
-				if(slider.active.index === 0){
-					// set the new position
-					position = slider.children.eq(0).position();
-				// carousel, last slide
-				}else if(slider.active.index === getPagerQty() - 1 && slider.carousel){
-					position = slider.children.eq((getPagerQty() - 1) * getMoveBy()).position();
-				// last slide
-				}else if(slider.active.index === slider.children.length - 1){
-					position = slider.children.eq(slider.children.length - 1).position();
-				}
-				if(position){
-					if(slider.settings.mode === 'horizontal'){ setPositionProperty(-position.left, 'reset', 0); }
-					else if(slider.settings.mode === 'vertical'){ setPositionProperty(-position.top, 'reset', 0); }
-				}
-			}
-			// declare that the transition is complete
-			slider.working = false;
-			// onSlideAfter callback
-			slider.settings.onSlideAfter(slider.children.eq(slider.active.index), slider.oldIndex, slider.active.index);
-		};
-
-		/**
-		 * Updates the auto controls state (either active, or combined switch)
-		 *
-		 * @param state (string) "start", "stop"
-		 *  - the new state of the auto show
-		 */
-		var updateAutoControls = function(state){
-			// if autoControlsCombine is true, replace the current control with the new state
-			if(slider.settings.autoControlsCombine){
-				slider.controls.autoEl.html(slider.controls[state]);
-			// if autoControlsCombine is false, apply the "active" class to the appropriate control
-			}else{
-				slider.controls.autoEl.find('a').removeClass('active');
-				slider.controls.autoEl.find('a:not(.bx-' + state + ')').addClass('active');
-			}
-		};
-
-		/**
-		 * Updates the direction controls (checks if either should be hidden)
-		 */
-		var updateDirectionControls = function(){
-			if(getPagerQty() === 1){
-				slider.controls.prev.addClass('disabled');
-				slider.controls.next.addClass('disabled');
-			}else if(!slider.settings.infiniteLoop && slider.settings.hideControlOnEnd){
-				// if first slide
-				if(slider.active.index === 0){
-					slider.controls.prev.addClass('disabled');
-					slider.controls.next.removeClass('disabled');
-				// if last slide
-				}else if(slider.active.index === getPagerQty() - 1){
-					slider.controls.next.addClass('disabled');
-					slider.controls.prev.removeClass('disabled');
-				// if any slide in the middle
-				}else{
-					slider.controls.prev.removeClass('disabled');
-					slider.controls.next.removeClass('disabled');
-				}
-			}
-		};
-
-		/**
-		 * Initializes the auto process
-		 */
-		var initAuto = function(){
-			// if autoDelay was supplied, launch the auto show using a setTimeout() call
-			if(slider.settings.autoDelay > 0){
-				var timeout = setTimeout(el.startAuto, slider.settings.autoDelay);
-			// if autoDelay was not supplied, start the auto show normally
-			}else{
-				el.startAuto();
-
-				//add focus and blur events to ensure its running if timeout gets paused
-				$(window).focus(function() {
-					el.startAuto();
-				}).blur(function() {
-					el.stopAuto();
-				});
-				
-
-			}
-			// if autoHover is requested
-			if(slider.settings.autoHover){
-				// on el hover
-				el.hover(function(){
-					// if the auto show is currently playing (has an active interval)
-					if(slider.interval){
-						// stop the auto show and pass true argument which will prevent control update
-						el.stopAuto(true);
-						// create a new autoPaused value which will be used by the relative "mouseout" event
-						slider.autoPaused = true;
-					}
-				}, function(){
-					// if the autoPaused value was created be the prior "mouseover" event
-					if(slider.autoPaused){
-						// start the auto show and pass true argument which will prevent control update
-						el.startAuto(true);
-						// reset the autoPaused value
-						slider.autoPaused = null;
-					}
-				});
-			}
-		};
-
-		/**
-		 * Initializes the ticker process
-		 */
-		var initTicker = function(){
-			var startPosition = 0;
-			// if autoDirection is "next", append a clone of the entire slider
-			if(slider.settings.autoDirection === 'next'){
-				el.append(slider.children.clone().addClass('bx-clone'));
-			// if autoDirection is "prev", prepend a clone of the entire slider, and set the left position
-			}else{
-				el.prepend(slider.children.clone().addClass('bx-clone'));
-				var position = slider.children.first().position();
-				startPosition = slider.settings.mode === 'horizontal' ? -position.left : -position.top;
-			}
-			setPositionProperty(startPosition, 'reset', 0);
-			// do not allow controls in ticker mode
-			slider.settings.pager = false;
-			slider.settings.controls = false;
-			slider.settings.autoControls = false;
-			// if autoHover is requested
-			if(slider.settings.tickerHover){
-				if(slider.usingCSS){
-					var value;
-					var idx = slider.settings.mode == 'horizontal' ? 4 : 5;
-					slider.viewport.hover(function(){
-						var transform = el.css('-' + slider.cssPrefix + '-transform');
-						value = parseFloat(transform.split(',')[idx]);
-						setPositionProperty(value, 'reset', 0);
-					}, function(){
-						var totalDimens = 0;
-						slider.children.each(function(index){
-						  totalDimens += slider.settings.mode == 'horizontal' ? $(this).outerWidth(true) : $(this).outerHeight(true);
-						});
-						// calculate the speed ratio (used to determine the new speed to finish the paused animation)
-						var ratio = slider.settings.speed / totalDimens;
-						// determine which property to use
-						var property = slider.settings.mode == 'horizontal' ? 'left' : 'top';
-						// calculate the new speed
-						var newSpeed = ratio * (totalDimens - (Math.abs(parseInt(value))));
-						tickerLoop(newSpeed);
-					});
-				} else {
-					// on el hover
-					slider.viewport.hover(function(){
-						el.stop();
-					}, function(){
-						// calculate the total width of children (used to calculate the speed ratio)
-						var totalDimens = 0;
-						slider.children.each(function(index){
-						  totalDimens += slider.settings.mode == 'horizontal' ? $(this).outerWidth(true) : $(this).outerHeight(true);
-						});
-						// calculate the speed ratio (used to determine the new speed to finish the paused animation)
-						var ratio = slider.settings.speed / totalDimens;
-						// determine which property to use
-						var property = slider.settings.mode == 'horizontal' ? 'left' : 'top';
-						// calculate the new speed
-						var newSpeed = ratio * (totalDimens - (Math.abs(parseInt(el.css(property)))));
-						tickerLoop(newSpeed);
-					});
-				}
-			}
-			// start the ticker loop
-			tickerLoop();
-		};
-
-		/**
-		 * Runs a continuous loop, news ticker-style
-		 */
-		var tickerLoop = function(resumeSpeed){
-			speed = resumeSpeed ? resumeSpeed : slider.settings.speed;
-			var position = {left: 0, top: 0};
-			var reset = {left: 0, top: 0};
-			// if "next" animate left position to last child, then reset left to 0
-			if(slider.settings.autoDirection === 'next'){
-				position = el.find('.bx-clone').first().position();
-			// if "prev" animate left position to 0, then reset left to first non-clone child
-			}else{
-				reset = slider.children.first().position();
-			}
-			var animateProperty = slider.settings.mode === 'horizontal' ? -position.left : -position.top;
-			var resetValue = slider.settings.mode === 'horizontal' ? -reset.left : -reset.top;
-			var params = {resetValue: resetValue};
-			setPositionProperty(animateProperty, 'ticker', speed, params);
-		};
-
-		/**
-		 * Check if el is on screen
-		 */
-		var isOnScreen = function(el){
-			var win = $(window);
-			var viewport = {
-				top : win.scrollTop(),
-				left : win.scrollLeft()
-			};
-			viewport.right = viewport.left + win.width();
-			viewport.bottom = viewport.top + win.height();
-
-			var bounds = el.offset();
-			bounds.right = bounds.left + el.outerWidth();
-			bounds.bottom = bounds.top + el.outerHeight();
-
-			return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
-		};
-
-		/**
-		 * Initializes keyboard events
-		 */
-		var keyPress = function(e){
-			var activeElementTag = document.activeElement.tagName.toLowerCase();
-			var tagFilters='input|textarea';
-			var p = new RegExp(activeElementTag,["i"]);
-			var result = p.exec(tagFilters);
-			if (result == null && isOnScreen(el)) {
-				if (e.keyCode == 39) {
-					clickNextBind(e);
-					return false;
-				}
-				else if (e.keyCode == 37) {
-					clickPrevBind(e);
-					return false;
-				}
-			}
-		};
-
-		/**
-		 * Initializes touch events
-		 */
-		var initTouch = function(){
-			// initialize object to contain all touch values
-			slider.touch = {
-				start: {x: 0, y: 0},
-				end: {x: 0, y: 0}
-			};
-			slider.viewport.bind('touchstart MSPointerDown pointerdown', onTouchStart);
-			
-			//for browsers that have implemented pointer events and fire a click after
-			//every pointerup regardless of whether pointerup is on same screen location as pointerdown or not
-			slider.viewport.on('click', '.bxslider a', function(e) {
-				if (slider.viewport.hasClass('click-disabled')) {
-					e.preventDefault();
-					slider.viewport.removeClass('click-disabled');
-				}
-			});
-		};
-
-		/**
-		 * Event handler for "touchstart"
-		 *
-		 * @param e (event)
-		 *  - DOM event object
-		 */
-		var onTouchStart = function(e){
-			//disable slider controls while user is interacting with slides to avoid slider freeze that happens on touch devices when a slide swipe happens immediately after interacting with slider controls
-			slider.controls.el.addClass('disabled');
-
-			if(slider.working){
-				e.preventDefault();
-				slider.controls.el.removeClass('disabled');
-			}else{
-				// record the original position when touch starts
-				slider.touch.originalPos = el.position();
-				var orig = e.originalEvent;
-				var touchPoints = (typeof orig.changedTouches != 'undefined') ? orig.changedTouches : [orig];
-				// record the starting touch x, y coordinates
-				slider.touch.start.x = touchPoints[0].pageX;
-				slider.touch.start.y = touchPoints[0].pageY;
-
-				if (slider.viewport.get(0).setPointerCapture) {
-					slider.pointerId = orig.pointerId;
-					slider.viewport.get(0).setPointerCapture(slider.pointerId);
-				}
-				// bind a "touchmove" event to the viewport
-				slider.viewport.bind('touchmove MSPointerMove pointermove', onTouchMove);
-				// bind a "touchend" event to the viewport
-				slider.viewport.bind('touchend MSPointerUp pointerup', onTouchEnd);
-				slider.viewport.bind('MSPointerCancel pointercancel', onPointerCancel);
-			}
-		};
-
-		/**
-		 * Cancel Pointer for Windows Phone
-		 *
-		 * @param e (event)
-		 *  - DOM event object
-		 */
-		var onPointerCancel = function(e) {
-		/* onPointerCancel handler is needed to deal with situations when a touchend
-		doesn't fire after a touchstart (this happens on windows phones only) */
-			setPositionProperty(slider.touch.originalPos.left, 'reset', 0);
-
-			//remove handlers
-			slider.controls.el.removeClass('disabled');
-			slider.viewport.unbind('MSPointerCancel pointercancel', onPointerCancel);
-			slider.viewport.unbind('touchmove MSPointerMove pointermove', onTouchMove);
-			slider.viewport.unbind('touchend MSPointerUp pointerup', onTouchEnd);
-			if (slider.viewport.get(0).releasePointerCapture) {
-				slider.viewport.get(0).releasePointerCapture(slider.pointerId);
- 			}
-		}
-
-		/**
-		 * Event handler for "touchmove"
-		 *
-		 * @param e (event)
-		 *  - DOM event object
-		 */
-		var onTouchMove = function(e){
-			var orig = e.originalEvent;
-			var touchPoints = (typeof orig.changedTouches != 'undefined') ? orig.changedTouches : [orig];
-			// if scrolling on y axis, do not prevent default
-			var xMovement = Math.abs(touchPoints[0].pageX - slider.touch.start.x);
-			var yMovement = Math.abs(touchPoints[0].pageY - slider.touch.start.y);
-			// x axis swipe
-			if((xMovement * 3) > yMovement && slider.settings.preventDefaultSwipeX){
-				e.preventDefault();
-			// y axis swipe
-			}else if((yMovement * 3) > xMovement && slider.settings.preventDefaultSwipeY){
-				e.preventDefault();
-			}
-			if(slider.settings.mode !== 'fade' && slider.settings.oneToOneTouch){
-				var value = 0, change = 0;
-				// if horizontal, drag along x axis
-				if(slider.settings.mode === 'horizontal'){
-					change = touchPoints[0].pageX - slider.touch.start.x;
-					value = slider.touch.originalPos.left + change;
-				// if vertical, drag along y axis
-				}else{
-					change = touchPoints[0].pageY - slider.touch.start.y;
-					value = slider.touch.originalPos.top + change;
-				}
-				setPositionProperty(value, 'reset', 0);
-			}
-		};
-
-		/**
-		 * Event handler for "touchend"
-		 *
-		 * @param e (event)
-		 *  - DOM event object
-		 */
-		var onTouchEnd = function(e){
-			slider.viewport.unbind('touchmove MSPointerMove pointermove', onTouchMove);
-			//enable slider controls as soon as user stops interacing with slides
-			slider.controls.el.removeClass('disabled');
-			var orig = e.originalEvent;
-			var touchPoints = (typeof orig.changedTouches != 'undefined') ? orig.changedTouches : [orig];
-			var value = 0;
-			var distance = 0;
-			// record end x, y positions
-			slider.touch.end.x = touchPoints[0].pageX;
-			slider.touch.end.y = touchPoints[0].pageY;
-			// if fade mode, check if absolute x distance clears the threshold
-			if(slider.settings.mode === 'fade'){
-				distance = Math.abs(slider.touch.start.x - slider.touch.end.x);
-				if(distance >= slider.settings.swipeThreshold){
-					if(slider.touch.start.x > slider.touch.end.x){
-						el.goToNextSlide();
-					} else {
-						el.goToPrevSlide();
-					} 
-					el.stopAuto();
-				}
-			// not fade mode
-			}else{
-				// calculate distance and el's animate property
-				if(slider.settings.mode === 'horizontal'){
-					distance = slider.touch.end.x - slider.touch.start.x;
-					value = slider.touch.originalPos.left;
-				}else{
-					distance = slider.touch.end.y - slider.touch.start.y;
-					value = slider.touch.originalPos.top;
-				}
-				// if not infinite loop and first / last slide, do not attempt a slide transition
-				if(!slider.settings.infiniteLoop && ((slider.active.index === 0 && distance > 0) || (slider.active.last && distance < 0))){
-					setPositionProperty(value, 'reset', 200);
-				}else{
-					// check if distance clears threshold
-					if(Math.abs(distance) >= slider.settings.swipeThreshold){
-						if(distance < 0){
-							el.goToNextSlide();
-						} else {
-							el.goToPrevSlide();
-						} 
-						el.stopAuto();
-					}else{
-						// el.animate(property, 200);
-						setPositionProperty(value, 'reset', 200);
-					}
-				}
-			}
-			slider.viewport.unbind('touchend MSPointerUp pointerup', onTouchEnd);
-			if (slider.viewport.get(0).releasePointerCapture) {
-				slider.viewport.get(0).releasePointerCapture(slider.pointerId);
-			}
-		};
-
-		/**
-		 * Window resize event callback
-		 */
-		var resizeWindow = function(e){
-			// don't do anything if slider isn't initialized.
-			if(!slider.initialized){ return; }
-			// Delay if slider working.
-			if (slider.working) {
-				window.setTimeout(resizeWindow, 10);
-			} else {
-				// get the new window dimens (again, thank you IE)
-				var windowWidthNew = $(window).width();
-				var windowHeightNew = $(window).height();
-				// make sure that it is a true window resize
-				// *we must check this because our dinosaur friend IE fires a window resize event when certain DOM elements
-				// are resized. Can you just die already?*
-				if(windowWidth !== windowWidthNew || windowHeight !== windowHeightNew){
-					// set the new window dimens
-					windowWidth = windowWidthNew;
-					windowHeight = windowHeightNew;
-					// update all dynamic elements
-					el.redrawSlider();
-					// Call user resize handler
-					slider.settings.onSliderResize.call(el, slider.active.index);
-				}
-			}
-		};
-
-		/**
-		 * ===================================================================================
-		 * = PUBLIC FUNCTIONS
-		 * ===================================================================================
-		 */
-
-		/**
-		 * Performs slide transition to the specified slide
-		 *
-		 * @param slideIndex (int)
-		 *  - the destination slide's index (zero-based)
-		 *
-		 * @param direction (string)
-		 *  - INTERNAL USE ONLY - the direction of travel ("prev" / "next")
-		 */
-		el.goToSlide = function(slideIndex, direction){
-			// if plugin is currently in motion, ignore request
-			if(slider.working || slider.active.index === slideIndex){ return; }
-			// declare that plugin is in motion
-			slider.working = true;
-			// store the old index
-			slider.oldIndex = slider.active.index;
-			// if slideIndex is less than zero, set active index to last child (this happens during infinite loop)
-			if(slideIndex < 0){
-				slider.active.index = getPagerQty() - 1;
-			// if slideIndex is greater than children length, set active index to 0 (this happens during infinite loop)
-			}else if(slideIndex >= getPagerQty()){
-				slider.active.index = 0;
-			// set active index to requested slide
-			}else{
-				slider.active.index = slideIndex;
-			}
-			// onSlideBefore, onSlideNext, onSlidePrev callbacks
-			// Allow transition canceling based on returned value
-			var performTransition = true;
-
-			performTransition = slider.settings.onSlideBefore(slider.children.eq(slider.active.index), slider.oldIndex, slider.active.index);
-			
-			if ( typeof(performTransition) !== "undefined" && !performTransition ) {
-				slider.active.index = slider.oldIndex; // restore old index
-				slider.working = false; // is not in motion
-				return;	
-			}
-			if(direction === 'next'){
-				// Prevent canceling in future functions or lack there-of from negating previous commands to cancel
-				if(!slider.settings.onSlideNext(slider.children.eq(slider.active.index), slider.oldIndex, slider.active.index)){
-					performTransition = false;
-				}
-			}else if(direction === 'prev'){
-				// Prevent canceling in future functions or lack there-of from negating previous commands to cancel
-				if(!slider.settings.onSlidePrev(slider.children.eq(slider.active.index), slider.oldIndex, slider.active.index)){
-					performTransition = false;
-				}
-			}
-
-			// If transitions canceled, reset and return
-			if ( typeof(performTransition) !== "undefined" && !performTransition ) {
-				slider.active.index = slider.oldIndex; // restore old index
-				slider.working = false; // is not in motion
-				return;	
-			}
-
-			// check if last slide
-			slider.active.last = slider.active.index >= getPagerQty() - 1;
-			// update the pager with active class
-			if(slider.settings.pager || slider.settings.pagerCustom){ updatePagerActive(slider.active.index); }
-			// // check for direction control update
-			if(slider.settings.controls){ updateDirectionControls(); }
-			// if slider is set to mode: "fade"
-			if(slider.settings.mode === 'fade'){
-				// if adaptiveHeight is true and next height is different from current height, animate to the new height
-				if(slider.settings.adaptiveHeight && slider.viewport.height() !== getViewportHeight()){
-					slider.viewport.animate({height: getViewportHeight()}, slider.settings.adaptiveHeightSpeed);
-				}
-				// fade out the visible child and reset its z-index value
-				slider.children.filter(':visible').fadeOut(slider.settings.speed).css({zIndex: 0});
-				// fade in the newly requested slide
-				slider.children.eq(slider.active.index).css('zIndex', slider.settings.slideZIndex+1).fadeIn(slider.settings.speed, function(){
-					$(this).css('zIndex', slider.settings.slideZIndex);
-					updateAfterSlideTransition();
-				});
-			// slider mode is not "fade"
-			}else{
-				// if adaptiveHeight is true and next height is different from current height, animate to the new height
-				if(slider.settings.adaptiveHeight && slider.viewport.height() !== getViewportHeight()){
-					slider.viewport.animate({height: getViewportHeight()}, slider.settings.adaptiveHeightSpeed);
-				}
-				var moveBy = 0;
-				var position = {left: 0, top: 0};
-				var lastChild = null;
-				// if carousel and not infinite loop
-				if(!slider.settings.infiniteLoop && slider.carousel && slider.active.last){
-					if(slider.settings.mode === 'horizontal'){
-						// get the last child position
-						lastChild = slider.children.eq(slider.children.length - 1);
-						position = lastChild.position();
-						// calculate the position of the last slide
-						moveBy = slider.viewport.width() - lastChild.outerWidth();
-					}else{
-						// get last showing index position
-						var lastShowingIndex = slider.children.length - slider.settings.minSlides;
-						position = slider.children.eq(lastShowingIndex).position();
-					}
-					// horizontal carousel, going previous while on first slide (infiniteLoop mode)
-				}else if(slider.carousel && slider.active.last && direction === 'prev'){
-					// get the last child position
-					var eq = slider.settings.moveSlides === 1 ? slider.settings.maxSlides - getMoveBy() : ((getPagerQty() - 1) * getMoveBy()) - (slider.children.length - slider.settings.maxSlides);
-					lastChild = el.children('.bx-clone').eq(eq);
-					position = lastChild.position();
-				// if infinite loop and "Next" is clicked on the last slide
-				}else if(direction === 'next' && slider.active.index === 0){
-					// get the last clone position
-					position = el.find('> .bx-clone').eq(slider.settings.maxSlides).position();
-					slider.active.last = false;
-				// normal non-zero requests
-				}else if(slideIndex >= 0){
-					var requestEl = slideIndex * getMoveBy();
-					position = slider.children.eq(requestEl).position();
-				}
-
-				
-				/* If the position doesn't exist
-				 * (e.g. if you destroy the slider on a next click),
-				 * it doesn't throw an error.
-				 */
-				if("undefined" !== typeof(position)){
-					var value = slider.settings.mode === 'horizontal' ? -(position.left - moveBy) : -position.top;
-					// plugin values to be animated
-					setPositionProperty(value, 'slide', slider.settings.speed);
-				}
-			}
-		};
-
-		/**
-		 * Transitions to the next slide in the show
-		 */
-		el.goToNextSlide = function(){
-			// if infiniteLoop is false and last page is showing, disregard call
-			if(!slider.settings.infiniteLoop && slider.active.last){ return; }
-			var pagerIndex = parseInt(slider.active.index) + 1;
-			el.goToSlide(pagerIndex, 'next');
-		};
-
-		/**
-		 * Transitions to the prev slide in the show
-		 */
-		el.goToPrevSlide = function(){
-			// if infiniteLoop is false and last page is showing, disregard call
-			if(!slider.settings.infiniteLoop && slider.active.index === 0){ return; }
-			var pagerIndex = parseInt(slider.active.index) - 1;
-			el.goToSlide(pagerIndex, 'prev');
-		};
-
-		/**
-		 * Starts the auto show
-		 *
-		 * @param preventControlUpdate (boolean)
-		 *  - if true, auto controls state will not be updated
-		 */
-		el.startAuto = function(preventControlUpdate){
-			// if an interval already exists, disregard call
-			if(slider.interval){ return; }
-			// create an interval
-			slider.interval = setInterval(function(){
-				if(slider.settings.autoDirection === 'next'){ 
-					el.goToNextSlide(); 
-				}else{
-					el.goToPrevSlide();
-				}
-			}, slider.settings.pause);
-			// if auto controls are displayed and preventControlUpdate is not true
-			if(slider.settings.autoControls && preventControlUpdate !== true){ updateAutoControls('stop'); }
-		};
-
-		/**
-		 * Stops the auto show
-		 *
-		 * @param preventControlUpdate (boolean)
-		 *  - if true, auto controls state will not be updated
-		 */
-		el.stopAuto = function(preventControlUpdate){
-			// if no interval exists, disregard call
-			if(!slider.interval){ return; }
-			// clear the interval
-			clearInterval(slider.interval);
-			slider.interval = null;
-			// if auto controls are displayed and preventControlUpdate is not true
-			if(slider.settings.autoControls && preventControlUpdate !== true){ updateAutoControls('start'); }
-		};
-
-		/**
-		 * Returns current slide index (zero-based)
-		 */
-		el.getCurrentSlide = function(){
-			return slider.active.index;
-		};
-
-		/**
-		 * Returns current slide element
-		 */
-		el.getCurrentSlideElement = function(){
-			return slider.children.eq(slider.active.index);
-		};
-
-		/**
-		 * Returns number of slides in show
-		 */
-		el.getSlideCount = function(){
-			return slider.children.length;
-		};
-
-		/**
-		 * Return slider.working variable
-		 */
-		el.isWorking = function() {
-			return slider.working;
-		}
-
-		/**
-		 * Update all dynamic slider elements
-		 */
-		el.redrawSlider = function(){
-			// resize all children in ratio to new screen size
-			slider.children.add(el.find('.bx-clone')).outerWidth(getSlideWidth());
-			// adjust the height
-			slider.viewport.css('height', getViewportHeight());
-			// update the slide position
-			if(!slider.settings.ticker) { setSlidePosition(); }                 
-			// if active.last was true before the screen resize, we want
-			// to keep it last no matter what screen size we end on
-			if (slider.active.last) { slider.active.index = getPagerQty() - 1; }
-			// if the active index (page) no longer exists due to the resize, simply set the index as last
-			if (slider.active.index >= getPagerQty()) { slider.active.last = true; }
-			// if a pager is being displayed and a custom pager is not being used, update it
-			if(slider.settings.pager && !slider.settings.pagerCustom){
-				populatePager();
-				updatePagerActive(slider.active.index);
-			}
-		};
-
-		/**
-		 * Destroy the current instance of the slider (revert everything back to original state)
-		 */
-		el.destroySlider = function(){
-			// don't do anything if slider has already been destroyed
-			if(!slider.initialized){ return; }
-			slider.initialized = false;
-			$('.bx-clone', this).remove();
-			slider.children.each(function(){
-				if($(this).data("origStyle") !== undefined){
-					$(this).attr("style", $(this).data("origStyle"));
-				} else {
-					$(this).removeAttr('style');
-				}
-			});
-			if($(this).data("origStyle") !== undefined){
-				this.attr("style", $(this).data("origStyle"));
-			} else {
-				$(this).removeAttr('style');
-			}
-			$(this).unwrap().unwrap();
-			if(slider.controls.el){ slider.controls.el.remove(); }
-			if(slider.controls.next){ slider.controls.next.remove(); }
-			if(slider.controls.prev){ slider.controls.prev.remove(); }
-			if(slider.pagerEl && slider.settings.controls && !slider.settings.pagerCustom){ slider.pagerEl.remove(); }
-			$('.bx-caption', this).remove();
-			if(slider.controls.autoEl){ slider.controls.autoEl.remove(); }
-			clearInterval(slider.interval);
-			if(slider.settings.responsive){ $(window).unbind('resize', resizeWindow); }
-			if(slider.settings.keyboardEnabled){ $(document).unbind('keydown', keyPress); }
-		};
-
-		/**
-		 * Reload the slider (revert all DOM changes, and re-initialize)
-		 */
-		el.reloadSlider = function(settings){
-			if(settings !== undefined){ options = settings; }
-			el.destroySlider();
-			init();
-		};
-
-		init();
-
-		// returns the current jQuery object
-		return this;
-	};
-
-})(jQuery);
-
-/***
- * BxSlider v4.2.3 - Fully loaded, responsive content slider
- * http://bxslider.com
- *
- * Copyright 2014, Steven Wanderski - http://stevenwanderski.com - http://bxcreative.com
- * Written while drinking Belgian ales and listening to jazz
- *
- * Released under the MIT license - http://opensource.org/licenses/MIT
- ***/
-!function(e){var t={mode:"horizontal",slideSelector:"",infiniteLoop:!0,hideControlOnEnd:!1,speed:500,easing:null,slideMargin:0,startSlide:0,randomStart:!1,captions:!1,ticker:!1,tickerHover:!1,adaptiveHeight:!1,adaptiveHeightSpeed:500,video:!1,useCSS:!0,preloadImages:"visible",responsive:!0,slideZIndex:50,wrapperClass:"bx-wrapper",touchEnabled:!0,swipeThreshold:50,oneToOneTouch:!0,preventDefaultSwipeX:!0,preventDefaultSwipeY:!1,keyboardEnabled:!1,pager:!0,pagerType:"full",pagerShortSeparator:" / ",pagerSelector:null,buildPager:null,pagerCustom:null,controls:!0,nextText:"Next",prevText:"Prev",nextSelector:null,prevSelector:null,autoControls:!1,startText:"Start",stopText:"Stop",autoControlsCombine:!1,autoControlsSelector:null,auto:!1,pause:4e3,autoStart:!0,autoDirection:"next",autoHover:!1,autoDelay:0,autoSlideForOnePage:!1,minSlides:1,maxSlides:1,moveSlides:0,slideWidth:0,onSliderLoad:function(){return!0},onSlideBefore:function(){return!0},onSlideAfter:function(){return!0},onSlideNext:function(){return!0},onSlidePrev:function(){return!0},onSliderResize:function(){return!0}};e.fn.bxSlider=function(n){if(0===this.length)return this;if(this.length>1)return this.each(function(){e(this).bxSlider(n)}),this;var s={},o=this,r=e(window).width(),a=e(window).height(),l=function(){s.settings=e.extend({},t,n),s.settings.slideWidth=parseInt(s.settings.slideWidth),s.children=o.children(s.settings.slideSelector),s.children.length<s.settings.minSlides&&(s.settings.minSlides=s.children.length),s.children.length<s.settings.maxSlides&&(s.settings.maxSlides=s.children.length),s.settings.randomStart&&(s.settings.startSlide=Math.floor(Math.random()*s.children.length)),s.active={index:s.settings.startSlide},s.carousel=s.settings.minSlides>1||s.settings.maxSlides>1?!0:!1,s.carousel&&(s.settings.preloadImages="all"),s.minThreshold=s.settings.minSlides*s.settings.slideWidth+(s.settings.minSlides-1)*s.settings.slideMargin,s.maxThreshold=s.settings.maxSlides*s.settings.slideWidth+(s.settings.maxSlides-1)*s.settings.slideMargin,s.working=!1,s.controls={},s.interval=null,s.animProp="vertical"===s.settings.mode?"top":"left",s.usingCSS=s.settings.useCSS&&"fade"!==s.settings.mode&&function(){var e=document.createElement("div"),t=["WebkitPerspective","MozPerspective","OPerspective","msPerspective"];for(var i in t)if(void 0!==e.style[t[i]])return s.cssPrefix=t[i].replace("Perspective","").toLowerCase(),s.animProp="-"+s.cssPrefix+"-transform",!0;return!1}(),"vertical"===s.settings.mode&&(s.settings.maxSlides=s.settings.minSlides),o.data("origStyle",o.attr("style")),o.children(s.settings.slideSelector).each(function(){e(this).data("origStyle",e(this).attr("style"))}),d()},d=function(){o.wrap('<div class="'+s.settings.wrapperClass+'"><div class="bx-viewport"></div></div>'),s.viewport=o.parent(),s.loader=e('<div class="bx-loading" />'),s.viewport.prepend(s.loader),o.css({width:"horizontal"===s.settings.mode?1e3*s.children.length+215+"%":"auto",position:"absolute"}),s.usingCSS&&s.settings.easing?o.css("-"+s.cssPrefix+"-transition-timing-function",s.settings.easing):s.settings.easing||(s.settings.easing="swing");v();s.viewport.css({width:"100%",overflow:"hidden",position:"relative"}),s.viewport.parent().css({maxWidth:u()}),s.settings.pager||s.settings.controls||s.viewport.parent().css({margin:"0 auto 0px"}),s.children.css({"float":"horizontal"===s.settings.mode?"left":"none",listStyle:"none",position:"relative"}),s.children.css("width",h()),"horizontal"===s.settings.mode&&s.settings.slideMargin>0&&s.children.css("marginRight",s.settings.slideMargin),"vertical"===s.settings.mode&&s.settings.slideMargin>0&&s.children.css("marginBottom",s.settings.slideMargin),"fade"===s.settings.mode&&(s.children.css({position:"absolute",zIndex:0,display:"none"}),s.children.eq(s.settings.startSlide).css({zIndex:s.settings.slideZIndex,display:"block"})),s.controls.el=e('<div class="bx-controls" />'),s.settings.captions&&P(),s.active.last=s.settings.startSlide===f()-1,s.settings.video&&o.fitVids();var t=s.children.eq(s.settings.startSlide);("all"===s.settings.preloadImages||s.settings.ticker)&&(t=s.children),s.settings.ticker?s.settings.pager=!1:(s.settings.controls&&C(),s.settings.auto&&s.settings.autoControls&&T(),s.settings.pager&&w(),(s.settings.controls||s.settings.autoControls||s.settings.pager)&&s.viewport.after(s.controls.el)),c(t,g)},c=function(t,i){var n=t.find('img:not([src=""]), iframe').length;if(0===n)return void i();var s=0;t.find('img:not([src=""]), iframe').each(function(){e(this).one("load error",function(){++s===n&&i()}).each(function(){this.complete&&e(this).load()})})},g=function(){if(s.settings.infiniteLoop&&"fade"!==s.settings.mode&&!s.settings.ticker){var t="vertical"===s.settings.mode?s.settings.minSlides:s.settings.maxSlides,i=s.children.slice(0,t).clone(!0).addClass("bx-clone"),n=s.children.slice(-t).clone(!0).addClass("bx-clone");o.append(i).prepend(n)}s.loader.remove(),m(),"vertical"===s.settings.mode&&(s.settings.adaptiveHeight=!0),s.viewport.height(p()),o.redrawSlider(),s.settings.onSliderLoad(s,s.active.index),s.initialized=!0,s.settings.responsive&&e(window).bind("resize",Z),s.settings.auto&&s.settings.autoStart&&(f()>1||s.settings.autoSlideForOnePage)&&A(),s.settings.ticker&&H(),s.settings.pager&&I(s.settings.startSlide),s.settings.controls&&W(),s.settings.touchEnabled&&!s.settings.ticker&&O(),s.settings.keyboardEnabled&&!s.settings.ticker&&e(document).keydown(N)},p=function(){var t=0,n=e();if("vertical"===s.settings.mode||s.settings.adaptiveHeight)if(s.carousel){var o=1===s.settings.moveSlides?s.active.index:s.active.index*x();for(n=s.children.eq(o),i=1;i<=s.settings.maxSlides-1;i++)n=n.add(o+i>=s.children.length?s.children.eq(i-1):s.children.eq(o+i))}else n=s.children.eq(s.active.index);else n=s.children;return"vertical"===s.settings.mode?(n.each(function(){t+=e(this).outerHeight()}),s.settings.slideMargin>0&&(t+=s.settings.slideMargin*(s.settings.minSlides-1))):t=Math.max.apply(Math,n.map(function(){return e(this).outerHeight(!1)}).get()),"border-box"===s.viewport.css("box-sizing")?t+=parseFloat(s.viewport.css("padding-top"))+parseFloat(s.viewport.css("padding-bottom"))+parseFloat(s.viewport.css("border-top-width"))+parseFloat(s.viewport.css("border-bottom-width")):"padding-box"===s.viewport.css("box-sizing")&&(t+=parseFloat(s.viewport.css("padding-top"))+parseFloat(s.viewport.css("padding-bottom"))),t},u=function(){var e="100%";return s.settings.slideWidth>0&&(e="horizontal"===s.settings.mode?s.settings.maxSlides*s.settings.slideWidth+(s.settings.maxSlides-1)*s.settings.slideMargin:s.settings.slideWidth),e},h=function(){var e=s.settings.slideWidth,t=s.viewport.width();return 0===s.settings.slideWidth||s.settings.slideWidth>t&&!s.carousel||"vertical"===s.settings.mode?e=t:s.settings.maxSlides>1&&"horizontal"===s.settings.mode&&(t>s.maxThreshold||t<s.minThreshold&&(e=(t-s.settings.slideMargin*(s.settings.minSlides-1))/s.settings.minSlides)),e},v=function(){var e=1;if("horizontal"===s.settings.mode&&s.settings.slideWidth>0)if(s.viewport.width()<s.minThreshold)e=s.settings.minSlides;else if(s.viewport.width()>s.maxThreshold)e=s.settings.maxSlides;else{var t=s.children.first().width()+s.settings.slideMargin;e=Math.floor((s.viewport.width()+s.settings.slideMargin)/t)}else"vertical"===s.settings.mode&&(e=s.settings.minSlides);return e},f=function(){var e=0;if(s.settings.moveSlides>0)if(s.settings.infiniteLoop)e=Math.ceil(s.children.length/x());else for(var t=0,i=0;t<s.children.length;)++e,t=i+v(),i+=s.settings.moveSlides<=v()?s.settings.moveSlides:v();else e=Math.ceil(s.children.length/v());return e},x=function(){return s.settings.moveSlides>0&&s.settings.moveSlides<=v()?s.settings.moveSlides:v()},m=function(){var e;if(s.children.length>s.settings.maxSlides&&s.active.last&&!s.settings.infiniteLoop){if("horizontal"===s.settings.mode){var t=s.children.last();e=t.position(),S(-(e.left-(s.viewport.width()-t.outerWidth())),"reset",0)}else if("vertical"===s.settings.mode){var i=s.children.length-s.settings.minSlides;e=s.children.eq(i).position(),S(-e.top,"reset",0)}}else e=s.children.eq(s.active.index*x()).position(),s.active.index===f()-1&&(s.active.last=!0),void 0!==e&&("horizontal"===s.settings.mode?S(-e.left,"reset",0):"vertical"===s.settings.mode&&S(-e.top,"reset",0))},S=function(e,t,i,n){if(s.usingCSS){var r="vertical"===s.settings.mode?"translate3d(0, "+e+"px, 0)":"translate3d("+e+"px, 0, 0)";o.css("-"+s.cssPrefix+"-transition-duration",i/1e3+"s"),"slide"===t?setTimeout(function(){o.css(s.animProp,r),0===e?q():o.bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd",function(){o.unbind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd"),q()})},0):"reset"===t?o.css(s.animProp,r):"ticker"===t&&(o.css("-"+s.cssPrefix+"-transition-timing-function","linear"),o.css(s.animProp,r),o.bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd",function(){o.unbind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd"),S(n.resetValue,"reset",0),L()}))}else{var a={};a[s.animProp]=e,"slide"===t?o.animate(a,i,s.settings.easing,function(){q()}):"reset"===t?o.css(s.animProp,e):"ticker"===t&&o.animate(a,speed,"linear",function(){S(n.resetValue,"reset",0),L()})}},b=function(){for(var t="",i=f(),n=0;i>n;n++){var o="";s.settings.buildPager&&e.isFunction(s.settings.buildPager)||s.settings.pagerCustom?(o=s.settings.buildPager(n),s.pagerEl.addClass("bx-custom-pager")):(o=n+1,s.pagerEl.addClass("bx-default-pager")),t+='<div class="bx-pager-item"><a href="" data-slide-index="'+n+'" class="bx-pager-link">'+o+"</a></div>"}s.pagerEl.html(t)},w=function(){s.settings.pagerCustom?s.pagerEl=e(s.settings.pagerCustom):(s.pagerEl=e('<div class="bx-pager" />'),s.settings.pagerSelector?e(s.settings.pagerSelector).html(s.pagerEl):s.controls.el.addClass("bx-has-pager").append(s.pagerEl),b()),s.pagerEl.on("click touchend","a",z)},C=function(){s.controls.next=e('<a class="bx-next" href="">'+s.settings.nextText+"</a>"),s.controls.prev=e('<a class="bx-prev" href="">'+s.settings.prevText+"</a>"),s.controls.next.bind("click touchend",E),s.controls.prev.bind("click touchend",y),s.settings.nextSelector&&e(s.settings.nextSelector).append(s.controls.next),s.settings.prevSelector&&e(s.settings.prevSelector).append(s.controls.prev),s.settings.nextSelector||s.settings.prevSelector||(s.controls.directionEl=e('<div class="bx-controls-direction" />'),s.controls.directionEl.append(s.controls.prev).append(s.controls.next),s.controls.el.addClass("bx-has-controls-direction").append(s.controls.directionEl))},T=function(){s.controls.start=e('<div class="bx-controls-auto-item"><a class="bx-start" href="">'+s.settings.startText+"</a></div>"),s.controls.stop=e('<div class="bx-controls-auto-item"><a class="bx-stop" href="">'+s.settings.stopText+"</a></div>"),s.controls.autoEl=e('<div class="bx-controls-auto" />'),s.controls.autoEl.on("click",".bx-start",k),s.controls.autoEl.on("click",".bx-stop",M),s.settings.autoControlsCombine?s.controls.autoEl.append(s.controls.start):s.controls.autoEl.append(s.controls.start).append(s.controls.stop),s.settings.autoControlsSelector?e(s.settings.autoControlsSelector).html(s.controls.autoEl):s.controls.el.addClass("bx-has-controls-auto").append(s.controls.autoEl),D(s.settings.autoStart?"stop":"start")},P=function(){s.children.each(function(){var t=e(this).find("img:first").attr("title");void 0!==t&&(""+t).length&&e(this).append('<div class="bx-caption"><span>'+t+"</span></div>")})},E=function(e){e.preventDefault(),s.controls.el.hasClass("disabled")||(s.settings.auto&&o.stopAuto(),o.goToNextSlide())},y=function(e){e.preventDefault(),s.controls.el.hasClass("disabled")||(s.settings.auto&&o.stopAuto(),o.goToPrevSlide())},k=function(e){o.startAuto(),e.preventDefault()},M=function(e){o.stopAuto(),e.preventDefault()},z=function(t){if(t.preventDefault(),!s.controls.el.hasClass("disabled")){s.settings.auto&&o.stopAuto();var i=e(t.currentTarget);if(void 0!==i.attr("data-slide-index")){var n=parseInt(i.attr("data-slide-index"));n!==s.active.index&&o.goToSlide(n)}}},I=function(t){var i=s.children.length;return"short"===s.settings.pagerType?(s.settings.maxSlides>1&&(i=Math.ceil(s.children.length/s.settings.maxSlides)),void s.pagerEl.html(t+1+s.settings.pagerShortSeparator+i)):(s.pagerEl.find("a").removeClass("active"),void s.pagerEl.each(function(i,n){e(n).find("a").eq(t).addClass("active")}))},q=function(){if(s.settings.infiniteLoop){var e="";0===s.active.index?e=s.children.eq(0).position():s.active.index===f()-1&&s.carousel?e=s.children.eq((f()-1)*x()).position():s.active.index===s.children.length-1&&(e=s.children.eq(s.children.length-1).position()),e&&("horizontal"===s.settings.mode?S(-e.left,"reset",0):"vertical"===s.settings.mode&&S(-e.top,"reset",0))}s.working=!1,s.settings.onSlideAfter(s.children.eq(s.active.index),s.oldIndex,s.active.index)},D=function(e){s.settings.autoControlsCombine?s.controls.autoEl.html(s.controls[e]):(s.controls.autoEl.find("a").removeClass("active"),s.controls.autoEl.find("a:not(.bx-"+e+")").addClass("active"))},W=function(){1===f()?(s.controls.prev.addClass("disabled"),s.controls.next.addClass("disabled")):!s.settings.infiniteLoop&&s.settings.hideControlOnEnd&&(0===s.active.index?(s.controls.prev.addClass("disabled"),s.controls.next.removeClass("disabled")):s.active.index===f()-1?(s.controls.next.addClass("disabled"),s.controls.prev.removeClass("disabled")):(s.controls.prev.removeClass("disabled"),s.controls.next.removeClass("disabled")))},A=function(){if(s.settings.autoDelay>0){setTimeout(o.startAuto,s.settings.autoDelay)}else o.startAuto(),e(window).focus(function(){o.startAuto()}).blur(function(){o.stopAuto()});s.settings.autoHover&&o.hover(function(){s.interval&&(o.stopAuto(!0),s.autoPaused=!0)},function(){s.autoPaused&&(o.startAuto(!0),s.autoPaused=null)})},H=function(){var t=0;if("next"===s.settings.autoDirection)o.append(s.children.clone().addClass("bx-clone"));else{o.prepend(s.children.clone().addClass("bx-clone"));var i=s.children.first().position();t="horizontal"===s.settings.mode?-i.left:-i.top}if(S(t,"reset",0),s.settings.pager=!1,s.settings.controls=!1,s.settings.autoControls=!1,s.settings.tickerHover)if(s.usingCSS){var n,r="horizontal"==s.settings.mode?4:5;s.viewport.hover(function(){var e=o.css("-"+s.cssPrefix+"-transform");n=parseFloat(e.split(",")[r]),S(n,"reset",0)},function(){var t=0;s.children.each(function(){t+="horizontal"==s.settings.mode?e(this).outerWidth(!0):e(this).outerHeight(!0)});var i=s.settings.speed/t,o=("horizontal"==s.settings.mode?"left":"top",i*(t-Math.abs(parseInt(n))));L(o)})}else s.viewport.hover(function(){o.stop()},function(){var t=0;s.children.each(function(){t+="horizontal"==s.settings.mode?e(this).outerWidth(!0):e(this).outerHeight(!0)});var i=s.settings.speed/t,n="horizontal"==s.settings.mode?"left":"top",r=i*(t-Math.abs(parseInt(o.css(n))));L(r)});L()},L=function(e){speed=e?e:s.settings.speed;var t={left:0,top:0},i={left:0,top:0};"next"===s.settings.autoDirection?t=o.find(".bx-clone").first().position():i=s.children.first().position();var n="horizontal"===s.settings.mode?-t.left:-t.top,r="horizontal"===s.settings.mode?-i.left:-i.top,a={resetValue:r};S(n,"ticker",speed,a)},F=function(t){var i=e(window),n={top:i.scrollTop(),left:i.scrollLeft()};n.right=n.left+i.width(),n.bottom=n.top+i.height();var s=t.offset();return s.right=s.left+t.outerWidth(),s.bottom=s.top+t.outerHeight(),!(n.right<s.left||n.left>s.right||n.bottom<s.top||n.top>s.bottom)},N=function(e){var t=document.activeElement.tagName.toLowerCase(),i="input|textarea",n=new RegExp(t,["i"]),s=n.exec(i);if(null==s&&F(o)){if(39==e.keyCode)return E(e),!1;if(37==e.keyCode)return y(e),!1}},O=function(){s.touch={start:{x:0,y:0},end:{x:0,y:0}},s.viewport.bind("touchstart MSPointerDown pointerdown",X),s.viewport.on("click",".bxslider a",function(e){s.viewport.hasClass("click-disabled")&&(e.preventDefault(),s.viewport.removeClass("click-disabled"))})},X=function(e){if(s.controls.el.addClass("disabled"),s.working)e.preventDefault(),s.controls.el.removeClass("disabled");else{s.touch.originalPos=o.position();var t=e.originalEvent,i="undefined"!=typeof t.changedTouches?t.changedTouches:[t];s.touch.start.x=i[0].pageX,s.touch.start.y=i[0].pageY,s.viewport.get(0).setPointerCapture&&(s.pointerId=t.pointerId,s.viewport.get(0).setPointerCapture(s.pointerId)),s.viewport.bind("touchmove MSPointerMove pointermove",R),s.viewport.bind("touchend MSPointerUp pointerup",V),s.viewport.bind("MSPointerCancel pointercancel",Y)}},Y=function(){S(s.touch.originalPos.left,"reset",0),s.controls.el.removeClass("disabled"),s.viewport.unbind("MSPointerCancel pointercancel",Y),s.viewport.unbind("touchmove MSPointerMove pointermove",R),s.viewport.unbind("touchend MSPointerUp pointerup",V),s.viewport.get(0).releasePointerCapture&&s.viewport.get(0).releasePointerCapture(s.pointerId)},R=function(e){var t=e.originalEvent,i="undefined"!=typeof t.changedTouches?t.changedTouches:[t],n=Math.abs(i[0].pageX-s.touch.start.x),o=Math.abs(i[0].pageY-s.touch.start.y);if(3*n>o&&s.settings.preventDefaultSwipeX?e.preventDefault():3*o>n&&s.settings.preventDefaultSwipeY&&e.preventDefault(),"fade"!==s.settings.mode&&s.settings.oneToOneTouch){var r=0,a=0;"horizontal"===s.settings.mode?(a=i[0].pageX-s.touch.start.x,r=s.touch.originalPos.left+a):(a=i[0].pageY-s.touch.start.y,r=s.touch.originalPos.top+a),S(r,"reset",0)}},V=function(e){s.viewport.unbind("touchmove MSPointerMove pointermove",R),s.controls.el.removeClass("disabled");var t=e.originalEvent,i="undefined"!=typeof t.changedTouches?t.changedTouches:[t],n=0,r=0;s.touch.end.x=i[0].pageX,s.touch.end.y=i[0].pageY,"fade"===s.settings.mode?(r=Math.abs(s.touch.start.x-s.touch.end.x),r>=s.settings.swipeThreshold&&(s.touch.start.x>s.touch.end.x?o.goToNextSlide():o.goToPrevSlide(),o.stopAuto())):("horizontal"===s.settings.mode?(r=s.touch.end.x-s.touch.start.x,n=s.touch.originalPos.left):(r=s.touch.end.y-s.touch.start.y,n=s.touch.originalPos.top),!s.settings.infiniteLoop&&(0===s.active.index&&r>0||s.active.last&&0>r)?S(n,"reset",200):Math.abs(r)>=s.settings.swipeThreshold?(0>r?o.goToNextSlide():o.goToPrevSlide(),o.stopAuto()):S(n,"reset",200)),s.viewport.unbind("touchend MSPointerUp pointerup",V),s.viewport.get(0).releasePointerCapture&&s.viewport.get(0).releasePointerCapture(s.pointerId)},Z=function(){if(s.initialized)if(s.working)window.setTimeout(Z,10);else{var t=e(window).width(),i=e(window).height();(r!==t||a!==i)&&(r=t,a=i,o.redrawSlider(),s.settings.onSliderResize.call(o,s.active.index))}};return o.goToSlide=function(t,i){if(!s.working&&s.active.index!==t){s.working=!0,s.oldIndex=s.active.index,s.active.index=0>t?f()-1:t>=f()?0:t;var n=!0;if(n=s.settings.onSlideBefore(s.children.eq(s.active.index),s.oldIndex,s.active.index),"undefined"!=typeof n&&!n)return s.active.index=s.oldIndex,void(s.working=!1);if("next"===i?s.settings.onSlideNext(s.children.eq(s.active.index),s.oldIndex,s.active.index)||(n=!1):"prev"===i&&(s.settings.onSlidePrev(s.children.eq(s.active.index),s.oldIndex,s.active.index)||(n=!1)),"undefined"!=typeof n&&!n)return s.active.index=s.oldIndex,void(s.working=!1);if(s.active.last=s.active.index>=f()-1,(s.settings.pager||s.settings.pagerCustom)&&I(s.active.index),s.settings.controls&&W(),"fade"===s.settings.mode)s.settings.adaptiveHeight&&s.viewport.height()!==p()&&s.viewport.animate({height:p()},s.settings.adaptiveHeightSpeed),s.children.filter(":visible").fadeOut(s.settings.speed).css({zIndex:0}),s.children.eq(s.active.index).css("zIndex",s.settings.slideZIndex+1).fadeIn(s.settings.speed,function(){e(this).css("zIndex",s.settings.slideZIndex),q()});else{s.settings.adaptiveHeight&&s.viewport.height()!==p()&&s.viewport.animate({height:p()},s.settings.adaptiveHeightSpeed);var r=0,a={left:0,top:0},l=null;if(!s.settings.infiniteLoop&&s.carousel&&s.active.last)if("horizontal"===s.settings.mode)l=s.children.eq(s.children.length-1),a=l.position(),r=s.viewport.width()-l.outerWidth();else{var d=s.children.length-s.settings.minSlides;a=s.children.eq(d).position()}else if(s.carousel&&s.active.last&&"prev"===i){var c=1===s.settings.moveSlides?s.settings.maxSlides-x():(f()-1)*x()-(s.children.length-s.settings.maxSlides);l=o.children(".bx-clone").eq(c),a=l.position()}else if("next"===i&&0===s.active.index)a=o.find("> .bx-clone").eq(s.settings.maxSlides).position(),s.active.last=!1;else if(t>=0){var g=t*x();a=s.children.eq(g).position()}if("undefined"!=typeof a){var u="horizontal"===s.settings.mode?-(a.left-r):-a.top;S(u,"slide",s.settings.speed)}}}},o.goToNextSlide=function(){if(s.settings.infiniteLoop||!s.active.last){var e=parseInt(s.active.index)+1;o.goToSlide(e,"next")}},o.goToPrevSlide=function(){if(s.settings.infiniteLoop||0!==s.active.index){var e=parseInt(s.active.index)-1;o.goToSlide(e,"prev")}},o.startAuto=function(e){s.interval||(s.interval=setInterval(function(){"next"===s.settings.autoDirection?o.goToNextSlide():o.goToPrevSlide()},s.settings.pause),s.settings.autoControls&&e!==!0&&D("stop"))},o.stopAuto=function(e){s.interval&&(clearInterval(s.interval),s.interval=null,s.settings.autoControls&&e!==!0&&D("start"))},o.getCurrentSlide=function(){return s.active.index},o.getCurrentSlideElement=function(){return s.children.eq(s.active.index)},o.getSlideCount=function(){return s.children.length},o.isWorking=function(){return s.working},o.redrawSlider=function(){s.children.add(o.find(".bx-clone")).outerWidth(h()),s.viewport.css("height",p()),s.settings.ticker||m(),s.active.last&&(s.active.index=f()-1),s.active.index>=f()&&(s.active.last=!0),s.settings.pager&&!s.settings.pagerCustom&&(b(),I(s.active.index))},o.destroySlider=function(){s.initialized&&(s.initialized=!1,e(".bx-clone",this).remove(),s.children.each(function(){void 0!==e(this).data("origStyle")?e(this).attr("style",e(this).data("origStyle")):e(this).removeAttr("style")}),void 0!==e(this).data("origStyle")?this.attr("style",e(this).data("origStyle")):e(this).removeAttr("style"),e(this).unwrap().unwrap(),s.controls.el&&s.controls.el.remove(),s.controls.next&&s.controls.next.remove(),s.controls.prev&&s.controls.prev.remove(),s.pagerEl&&s.settings.controls&&!s.settings.pagerCustom&&s.pagerEl.remove(),e(".bx-caption",this).remove(),s.controls.autoEl&&s.controls.autoEl.remove(),clearInterval(s.interval),s.settings.responsive&&e(window).unbind("resize",Z),s.settings.keyboardEnabled&&e(document).unbind("keydown",N))},o.reloadSlider=function(e){void 0!==e&&(n=e),o.destroySlider(),l()},l(),this}}(jQuery);
 /*
  CSS Browser Selector (revived) 0.7
  Originally written by Rafael Lima (http://rafael.adm.br)
@@ -14194,185 +12686,185 @@ function log(e){window.console&&showLog&&console.log(e)}function css_browser_sel
 });
 
 var EDBSlider = function(el, opts) {
-	if (!(this instanceof EDBSlider)) return new EDBSlider(el, opts);
-	if ($(el).data('slider')) return $(el).data('slider');
-	var it = this;
-	it.el = el;
-	it.slides = [];
-	it.options = opts || {};
-	it.index = -1;
-	it.slideEl = $('<div>').addClass('slides').get(0)
-	$(it.el).append(it.slideEl)
-	json = $(it.el).find('script').html()
-	$(it.el).find('script').replaceWith(it.slideEl)
+    if (!(this instanceof EDBSlider)) return new EDBSlider(el, opts);
+    if ($(el).data('slider')) return $(el).data('slider');
+    var it = this;
+    it.el = el;
+    it.slides = [];
+    it.options = opts || {};
+    it.index = -1;
+    it.slideEl = $('<div>').addClass('slides').get(0)
+    $(it.el).append(it.slideEl)
+    json = $(it.el).find('script').html()
+    $(it.el).find('script').replaceWith(it.slideEl)
 
-	try {
-		it.slides = JSON.parse(json)
-	} catch (E) {
-		it.slides = []
-	}
-	if (!it.slides.length) {
-		console.log("Broken! No slides found", el)
-		return it;
-	}
-	it.isLoaded = EDBSlider.no;
-	it.total = it.slides.length;
-	var loaded = 0;
-	it.slides = it.slides.map(function(data, index) {
-		var slide = EDBSlider.Slide(data, index);
-		$(it.slideEl).append(slide.el);
-		$(slide).on('loaded', function() {
-			loaded++;
-			if (loaded >= it.total) {
-				it.isLoaded = EDBSlider.yes;
-				$(it).trigger('loaded', [it])
-			}
-		});
-		return slide;
-	});
+    try {
+        it.slides = JSON.parse(json)
+    } catch (E) {
+        it.slides = []
+    }
+    if (!it.slides.length) {
+        console.log("Broken! No slides found", el)
+        return it;
+    }
+    it.isLoaded = EDBSlider.no;
+    it.total = it.slides.length;
+    var loaded = 0;
+    it.slides = it.slides.map(function(data, index) {
+        var slide = EDBSlider.Slide(data, index);
+        $(it.slideEl).append(slide.el);
+        $(slide).on('loaded', function() {
+            loaded++;
+            if (loaded >= it.total) {
+                it.isLoaded = EDBSlider.yes;
+                $(it).trigger('loaded', [it])
+            }
+        });
+        return slide;
+    });
 
-	$(it.el).find('.controls .next').on('click', function(e) {
-		e.preventDefault()
-		it.cycle(1);
-	});
-	$(it.el).find('.controls .prev').on('click', function(e) {
-		e.preventDefault()
-		it.cycle(-1);
-	});
+    $(it.el).find('.controls .next').on('click', function(e) {
+        e.preventDefault()
+        it.cycle(1);
+    });
+    $(it.el).find('.controls .prev').on('click', function(e) {
+        e.preventDefault()
+        it.cycle(-1);
+    });
 
-	$.event.special.swipe.settings.threshold = 0.2;
-	$.event.special.swipe.settings.sensitivity = 10;
-	$(it.el).on('movestart', function(e) {
-		// If the movestart is heading off in an upwards or downwards
-		// direction, prevent it so that the browser scrolls normally.
-		if ((e.distX > e.distY && e.distX < -e.distY) || (e.distX < e.distY && e.distX > -e.distY)) {
-			e.preventDefault();
-		}
-	}).on('swipeleft', function(e, dir) {
-		e.preventDefault()
-		it.cycle(1);
-		console.log(event.type)
-	}).on('swiperight', function(e, dir) {
-		e.preventDefault()
-		it.cycle(-1);
-		console.log(event.type)
-	});
+    $.event.special.swipe.settings.threshold = 0.1;
+    $.event.special.swipe.settings.sensitivity = 12;
+    $(it.el).on('movestart', function(e) {
+        // If the movestart is heading off in an upwards or downwards
+        // direction, prevent it so that the browser scrolls normally.
+        if ((e.distX > e.distY && e.distX < -e.distY) || (e.distX < e.distY && e.distX > -e.distY)) {
+            e.preventDefault();
+        }
+    }).on('swipeleft', function(e, dir) {
+        e.preventDefault()
+        it.cycle(1);
+        console.log(event.type)
+    }).on('swiperight', function(e, dir) {
+        e.preventDefault()
+        it.cycle(-1);
+        console.log(event.type)
+    });
 
 
-	var lastResize = null;
-	var handleResize = function() {
-		clearTimeout(lastResize);
-		lastResize = setTimeout(function() {
-			it.adjustHeight(it.options.spacing || 0)
-		}, 200);
-	}
-	$(window).on('resize', handleResize).resize();
-	$(it.el).data('slider', it);
-	return this;
+    var lastResize = null;
+    var handleResize = function() {
+        clearTimeout(lastResize);
+        lastResize = setTimeout(function() {
+            it.adjustHeight(it.options.spacing || 0)
+        }, 200);
+    }
+    $(window).on('resize', handleResize).resize();
+    $(it.el).data('slider', it);
+    return this;
 }
 EDBSlider.yes = function() {
-	return true;
+    return true;
 }
 EDBSlider.no = function() {
-	return false;
+    return false;
 }
 EDBSlider.Slide = function(data, index) {
-	if (!(this instanceof EDBSlider.Slide)) return new EDBSlider.Slide(data, index);
-	it = this
-	it.index = index;
-	it.el = document.createElement('div')
-	it.img = new Image();
-	it.isLoaded = EDBSlider.no;
-	$(it.img).on('load', function(event) {
-		it.isLoaded = EDBSlider.yes;
-		$(it).trigger('loaded', [it]);
-	});
-	it.img.src = data.src;
-	var link = $('<a>').attr('href', data.url).prop('draggable', false).addClass('slide-link').html('<span class="slide-text">' + data.text + '</span>')
-	$(it.el).css('background-image', 'url("' + data.src + '")');
-	$(it.el).addClass('slide').data('slide', it).append(it.img).append(link)
-	return it;
+    if (!(this instanceof EDBSlider.Slide)) return new EDBSlider.Slide(data, index);
+    it = this
+    it.index = index;
+    it.el = document.createElement('div')
+    it.img = new Image();
+    it.isLoaded = EDBSlider.no;
+    $(it.img).on('load', function(event) {
+        it.isLoaded = EDBSlider.yes;
+        $(it).trigger('loaded', [it]);
+    });
+    it.img.src = data.src;
+    var link = $('<a>').attr('href', data.url).prop('draggable', false).addClass('slide-link').html('<span class="slide-text">' + data.text + '</span>')
+    $(it.el).css('background-image', 'url("' + data.src + '")');
+    $(it.el).addClass('slide').data('slide', it).append(it.img).append(link)
+    return it;
 }
 
 EDBSlider.Slide.prototype = {
 
-	adjustHeight: function(h) {
-		$(this.el).css({
-			"min-height": h,
-			"max-height": h,
-			"height": h
-		})
-	},
-	isActive: function() {
-		return $(this.el).hasClass('active');
-	},
-	activate: function() {
-		if (this.isActive()) return true;
-		$(this.el).addClass('active');
-	},
-	deactivate: function() {
-		if (!this.isActive()) return true;
-		$(this.el).removeClass('active');
-	}
+    adjustHeight: function(h) {
+        $(this.el).css({
+            "min-height": h,
+            "max-height": h,
+            "height": h
+        })
+    },
+    isActive: function() {
+        return $(this.el).hasClass('active');
+    },
+    activate: function() {
+        if (this.isActive()) return true;
+        $(this.el).addClass('active');
+    },
+    deactivate: function() {
+        if (!this.isActive()) return true;
+        $(this.el).removeClass('active');
+    }
 }
 
 EDBSlider.prototype = {
 
-	adjustHeight: function(minus) {
-		var winHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
-		if (isNaN(minus)) minus = $(minus).outerHeight();
-		$(this.el).css({
-			"min-height": winHeight - minus,
-			"max-height": winHeight - minus,
-			"height": winHeight - minus
-		})
-	},
-	update: function() {
-		$(this.el).find('.controls .index').text(this.index + 1);
-		$(this.el).find('.controls .total').text(this.total);
-	},
-	cycle: function(dir) { // 1 || -1
-		var index = this.index + dir;
-		if ($('body').hasClass('mobile')) {
-			if (index == this.total) index = index - 1;
-			if (index < 0) index = 0;
-		} else {
-			if (index == this.total) index = 0;
-			if (index < 0) index = this.total - 1;
-		}
-
-		this.toggle(index, 'on');
-	},
-	toggle: function(index, state) {
-		var it = this;
-		var target = it.slides[index];
-		var current = it.slides[it.index];
-		var sameSlide = index === it.index;
-		var sameState = target.isActive() && current.isActive();
-		var operation = state === 'on' ? 'activate' : 'deactivate'
-		if (sameSlide && sameState) return it;
-		var hasActiveSlide = false;
-		it.slides.forEach(function(other, idx) {
-			if (!hasActiveSlide && other.isActive()) hasActiveSlide = true;
-			other.deactivate()
-				// if( other.index == target.index ) return;
-				// if( state === 'on' && other.isActive() ){
-				// 	other.deactivate()
-				// }else if( state === 'off' && other.isActive() ){
-				// 	hasActiveSlide = true;
-				// };
-		});
-		if (state === 'off' && !hasActiveSlide) {
-			it.slides[0].activate();
-			it.index = 0;
-		} else {
-			target[operation].call(target);
-			console.log('setting index to', index)
-			it.index = index;
-		}
-		it.update();
-		return it
-	}
+    adjustHeight: function(minus) {
+        var winHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+        if (isNaN(minus)) minus = $(minus).outerHeight();
+        $(this.el).css({
+            "min-height": winHeight - minus,
+            "max-height": winHeight - minus,
+            "height": winHeight - minus
+        })
+    },
+    update: function() {
+        $(this.el).find('.controls .index').text(this.index + 1);
+        $(this.el).find('.controls .total').text(this.total);
+    },
+    cycle: function(dir) { // 1 || -1
+        var index = this.index + dir;
+        if ($('body').hasClass('mobile')) {
+            if (index == this.total) index = index - 1;
+            if (index < 0) index = 0;
+        } else {
+            if (index == this.total) index = 0;
+            if (index < 0) index = this.total - 1;
+        }
+        $(this.el).trigger('cycled');
+        this.toggle(index, 'on');
+    },
+    toggle: function(index, state) {
+        var it = this;
+        var target = it.slides[index];
+        var current = it.slides[it.index];
+        var sameSlide = index === it.index;
+        var sameState = target.isActive() && current.isActive();
+        var operation = state === 'on' ? 'activate' : 'deactivate'
+        if (sameSlide && sameState) return it;
+        var hasActiveSlide = false;
+        it.slides.forEach(function(other, idx) {
+            if (!hasActiveSlide && other.isActive()) hasActiveSlide = true;
+            other.deactivate()
+                // if( other.index == target.index ) return;
+                // if( state === 'on' && other.isActive() ){
+                // 	other.deactivate()
+                // }else if( state === 'off' && other.isActive() ){
+                // 	hasActiveSlide = true;
+                // };
+        });
+        if (state === 'off' && !hasActiveSlide) {
+            it.slides[0].activate();
+            it.index = 0;
+        } else {
+            target[operation].call(target);
+            console.log('setting index to', index)
+            it.index = index;
+        }
+        it.update();
+        return it
+    }
 }
 
 window.EDBSlider = EDBSlider;

@@ -1524,9 +1524,14 @@ Woocommerce Overrides
   max-height: 100%;
   border: 2px solid #fff;
 }
-.woocommerce .product .product-color-choice ul li a.clicked {
-  transform: scale(1.2);
-  transform-origin: center;
+.woocommerce .product .product-color-choice ul li a.clicked,
+.woocommerce .product .product-color-choice ul li a:hover {
+  -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-transform-origin: center;
+      -ms-transform-origin: center;
+          transform-origin: center;
 }
 .woocommerce .product .product-color-choice ul li a.clicked:after {
   content: "\f00c";
@@ -1539,12 +1544,6 @@ Woocommerce Overrides
   top: 100%;
   margin-left: -2.5em;
   margin-top: -2.75em;
-}
-.woocommerce .product .product-color-choice ul li a:hover img {
-  border: 2px solid #000;
-}
-.woocommerce .product .product-color-choice .one-selected {
-  display: none;
 }
 .woocommerce .product .product-summary {
   float: none;
@@ -1617,6 +1616,15 @@ Woocommerce Overrides
 }
 .woocommerce .product .product-description .desc {
   padding-bottom: 25px;
+}
+.woocommerce .product .product-description .tech {
+  text-align: center;
+  padding-bottom: 25px;
+}
+.woocommerce .product .product-description .tech img {
+  display: inline-block;
+  min-width: 100%;
+  min-height: 100%;
 }
 .woocommerce .product .product-add {
   padding: 20px 15px;
@@ -2300,7 +2308,8 @@ body.splash-on > * {
 /* slides */
 #splash-page .splash-image {
   z-index: 300;
-  animation: splashcycler 12s infinite;
+  -webkit-animation: splashcycler 12s infinite;
+          animation: splashcycler 12s infinite;
   opacity: 0;
   background-size: cover;
   background-position: center;
@@ -2315,6 +2324,20 @@ body.splash-on > * {
   height: 100%;
 }
 /* slide animation */
+@-webkit-keyframes splashcycler {
+  0% {
+    opacity: 1;
+  }
+  33% {
+    opacity: 1;
+  }
+  35% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 @keyframes splashcycler {
   0% {
     opacity: 1;
@@ -2331,13 +2354,16 @@ body.splash-on > * {
 }
 /* slide offsets (relative to splashcycler duration)*/
 #splash-page .splash-image:nth-child(1) {
-  animation-delay: 0s;
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
 }
 #splash-page .splash-image:nth-child(2) {
-  animation-delay: 4s;
+  -webkit-animation-delay: 4s;
+          animation-delay: 4s;
 }
 #splash-page .splash-image:nth-child(3) {
-  animation-delay: 8s;
+  -webkit-animation-delay: 8s;
+          animation-delay: 8s;
 }
 #splash-page button {
   position: absolute;
@@ -2352,7 +2378,9 @@ body.splash-on > * {
   border-radius: 0;
   text-align: center;
   transition: all 0.1s ease-in-out;
-  transform-origin: center;
+  -webkit-transform-origin: center;
+      -ms-transform-origin: center;
+          transform-origin: center;
   z-index: 500;
   white-space: nowrap;
   line-height: 1.2;
@@ -2528,7 +2556,9 @@ Header
   margin: 0 5px 0 15px;
 }
 #header-box header nav .badge {
-  transform: scale(0.6) translateY(-0.5em);
+  -webkit-transform: scale(0.6) translateY(-0.5em);
+      -ms-transform: scale(0.6) translateY(-0.5em);
+          transform: scale(0.6) translateY(-0.5em);
   font-family: monospace;
 }
 #header-box header nav.nav-hamburger {
@@ -3101,7 +3131,9 @@ Footer
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transform: translate(0, 0);
+  -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+          transform: translate(0, 0);
   width: 19px !important;
   height: 19px !important;
   font-size: 1.5em !important;

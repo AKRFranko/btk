@@ -76,7 +76,7 @@ getSKU = function(data, variant) {
         // full = sku + pad( pnm , 3);
     pnm = adler32.sum(new Buffer(data.name + (variant ? ' ' + variant : '')))
     full = sku + '-' + pnm.toString(32);
-    return full.toLowerCase();
+    return full.toUpperCase();
 }
 
 getPaths = function(cat, base) {
@@ -130,7 +130,7 @@ readTree = function() {
     product_paths = Object.keys(cat_tree).reduce(function(all, c) {
         return all.concat(getPaths(c));
     }, []);
-    return products = product_paths.map(function(path) {
+    products = product_paths.map(function(path) {
         var product, descpath;
         product = path;
         product.name = basename(path.path).split('-').join(' ');
@@ -162,6 +162,7 @@ readTree = function() {
         }
         return product;
     });
+    return products;
 };
 
 getCatVar = function(cat, sub) {
@@ -325,15 +326,16 @@ var readFolderImages = function(folder) {
 }
 
 importMedia = function(data) {
-    var all, angles, featured, scenes, tech, mats, image_varnames;
-    image_varnames = []
-    angles = readFolderImages(data.path + "/images/cutout")
-    scenes = readFolderImages(data.path + "/images/ambiance")
-    tech = readFolderImages(data.path + "/images/tech")
+    var all, angles, featured, scenes, tech, mats, image_varnames, mat_varnames;
+    image_varnames = [];
+    mat_varnames = [];
+    angles = readFolderImages(data.path + "/images/cutout");
+    scenes = readFolderImages(data.path + "/images/ambiance");
+    tech = readFolderImages(data.path + "/images/tech");
     try {
-        mats = readFolderImages(data.path + "/images/materials")
+        mats = readFolderImages(data.path + "/images/materials");
     } catch (e) {
-        mats = []
+        mats = [];
     }
     // featured = data.path + "/images/cutout/front.jpg";
     // angles = [data.path + "/images/cutout/left.jpg", data.path + "/images/cutout/right.jpg", data.path + "/images/cutout/top.jpg"];
@@ -345,7 +347,7 @@ importMedia = function(data) {
     } catch (E) {
         featured = angles.shift();
     }
-    all = [angles, scenes, mats, tech].reduce(function(a, b) {
+    all = [angles, scenes].reduce(function(a, b) {
         if (!a) {
             return b;
         } else {
@@ -376,66 +378,56 @@ importMedia = function(data) {
             }
         };
     });
+    if (data.hasVariants) {
+        var mat_names = [].concat(materials);
+        mats.map(function(path) {
+            var sub_varname = genMediaVar(data.varname);
+            var mat_name = mat_names.shift();
+
+            recipe.media["import"][sub_varname] = {
+                args: {
+                    file: path
+                },
+                opts: {
+                    post_id: sub_varname,
+                    featured_image: true
+                }
+            };
+            recipe["eval"].push({
+                args: {
+                    "php": "update_post_meta( " + data.varname + ", '_product_variation_image_" + mat_name + "', '" + sub_varname + "' );"
+                }
+            });
+        });
+    }
 
     image_varnames.map(function(image_varname) {
-        recipe.eval.push({
+        recipe['eval'].push({
             "args": {
                 "php": "update_post_meta( " + data.varname + ", '_product_image_gallery', '" + image_varname + "' );"
             }
         });
+    });
 
-        if (data.hasVariantions) {
-            materials.forEach(function(mat) {
+    if (tech.length) {
+        var tech_varname = genMediaVar(data.varname);
+        recipe.media["import"][tech_varname] = {
+            args: {
+                file: tech[0]
+            },
+            opts: {
+                post_id: data.varname
+            }
+        };
+        recipe['eval'].push({
+            "args": {
+                "php": "update_post_meta( " + data.varname + ", '_product_technical_drawing', '" + tech_varname + "' );"
+            }
+        });
+    }
 
-                recipe.eval.push({
-                    "args": {
-                        "php": "update_post_meta( " + data.varname + '_' + mat + ", '_product_image_gallery', '" + image_varname + "' );"
-                    }
-                });
-            })
-        }
-    })
 
 
-    // if (data.hasVariations) {
-    //     return materials.forEach(function(mat) {
-    //         var mimages = 
-    //         var sub_varname = genMediaVar( data.varname + "_" + mat );
-    //         recipe.media["import"].push({
-    //             args: {
-    //                 file: data.path + "/images/materials/" + mat + "/front.jpg"
-    //             },
-    //             opts: {
-    //                 post_id: data.varname + "_" + mat,
-    //                 featured_image: true
-    //             }
-    //         });
-    //         recipe.media["import"].push({
-    //             args: {
-    //                 file: data.path + "/images/materials/" + mat + "/left.jpg"
-    //             },
-    //             opts: {
-    //                 post_id: data.varname + "_" + mat
-    //             }
-    //         });
-    //         recipe.media["import"].push({
-    //             args: {
-    //                 file: data.path + "/images/materials/" + mat + "/right.jpg"
-    //             },
-    //             opts: {
-    //                 post_id: data.varname + "_" + mat
-    //             }
-    //         });
-    //         return recipe.media["import"].push({
-    //             args: {
-    //                 file: data.path + "/images/materials/" + mat + "/top.jpg"
-    //             },
-    //             opts: {
-    //                 post_id: data.varname + "_" + mat
-    //             }
-    //         });
-    //     });
-    //}
 };
 
 createPost = function(data) {

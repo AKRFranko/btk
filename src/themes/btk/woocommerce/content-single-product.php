@@ -52,11 +52,13 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 				echo apply_filters( 'woocommerce_single_product_image_html', sprintf( '<img src="%s" alt="%s" />', wc_placeholder_img_src(), __( 'Placeholder', 'woocommerce' ) ), $post->ID );
 			}
 		?>
+		<!--
 		<?php if ( $product->is_in_stock() ) { ?>
 			<span class="in-stock"><?php _e('in stock', 'btk'); ?></span>
 		<?php } else { ?>
 			<span class="in-stock"><?php _e('out of stock', 'btk'); ?></span>
 		<?php } ?>
+		-->
 		</div>
 
 		<?php } else { ?>
@@ -68,11 +70,13 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 					<span class="separator"> | </span>
 					<span class="total"> - </span>
 				<a class="next" href="#"><span class="icon-arrow-lite-right-black"></span></a>
+			<!--	
 			<?php if ( $product->is_in_stock() ) { ?>
 				<span class="in-stock"><?php _e('in stock', 'btk'); ?></span>
 			<?php } else { ?>
 				<span class="in-stock"><?php _e('out of stock', 'btk'); ?></span>
 			<?php } ?>
+			-->
 			</div>
 		</div>
 	<?php } ?>
@@ -101,8 +105,10 @@ $attachment_ids = $product->get_gallery_attachment_ids();
           };
         };
 				$current = $_REQUEST[ 'attribute_edb_material' ] === $color ? 'current' : '';
+				$galleryImageID = get_post_meta( get_the_ID(), "_product_variation_image_$color", true );
+				$galleryImageSRC = wp_get_attachment_image_src($galleryImageID, 'large')[0];
 				$src = get_bloginfo('template_directory'). "/img/textures/$color.jpg";
-				$html = '<li><a href="#" data-variation="'.sanitize_title($color).'" data-variation-attribute="attribute_edb_material" data-variation-id="'.$variation_id.'" title="'.sanitize_title($color).'" class="product-color-choice-option edb-material-'.sanitize_title($color).'">';
+				$html = '<li><a href="#" data-variation-image="'.$galleryImageSRC.'" data-variation="'.sanitize_title($color).'" data-variation-attribute="attribute_edb_material" data-variation-id="'.$variation_id.'" title="'.sanitize_title($color).'" class="product-color-choice-option edb-material-'.sanitize_title($color).'">';
 				$html .= '<img class=\"material\" src="'.$src.'">';
 				$html .= '</a></li>';
 				echo $html;
@@ -156,6 +162,7 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 			<a href="" download="" class="upper pr-pdf">PDF</a>
 			<a href="" class="pr-rev"><?php _e('Customer reviews', 'btk'); ?></a>
 		</p>
+		<p class="tech"><?php echo btk_product_technical_drawing(); ?></p>
 	</div>
 
 
