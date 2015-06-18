@@ -1147,6 +1147,15 @@ Woocommerce Overrides
   padding: 0;
   border: none;
 }
+.devshow {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -1em;
+  margin-left: -2em;
+  color: #fff;
+}
 .woocommerce {
   min-height: 250px;
 }
@@ -1532,18 +1541,6 @@ Woocommerce Overrides
   -webkit-transform-origin: center;
       -ms-transform-origin: center;
           transform-origin: center;
-}
-.woocommerce .product .product-color-choice ul li a.clicked:after {
-  content: "\f00c";
-  font-family: FontAwesome;
-  color: #ffffff;
-  position: absolute;
-  width: 1em;
-  height: 1em;
-  left: 100%;
-  top: 100%;
-  margin-left: -2.5em;
-  margin-top: -2.75em;
 }
 .woocommerce .product .product-summary {
   float: none;

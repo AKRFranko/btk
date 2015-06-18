@@ -17,7 +17,12 @@ Woocommerce Overrides
 .woocommerce form.login,
 .woocommerce form.register { margin:0; padding:0; border:none; }
 
-.devshow{display:none;}
+.devshow{display:block;position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -1em;
+  margin-left: -2em;
+  color: #fff;}
 
 .woocommerce {
 	min-height:250px;
@@ -213,19 +218,19 @@ Woocommerce Overrides
 				    transform:scale(1.1);
 				    transform-origin:center;
 				  }
-				  &.clicked:after{
-				    content:"\f00c";
-				    font-family:FontAwesome; 
-				    color:@white;
-				    position:absolute;
-				    width: 1em;
-            height: 1em;
-            left: 100%;
-            top: 100%;
-            margin-left: -2.5em;
-            margin-top: -2.75em;
+				  // &.clicked:after{
+				  //   content:"\f00c";
+				  //   font-family:FontAwesome; 
+				  //   color:@white;
+				  //   position:absolute;
+				  //   width: 1em;
+      //       height: 1em;
+      //       left: 100%;
+      //       top: 100%;
+      //       margin-left: -2.5em;
+      //       margin-top: -2.75em;
 				    
-				  }
+				  // }
 				}
 				// a:hover img{ border:2px solid #000; }
 
@@ -358,19 +363,14 @@ Woocommerce Overrides
 		}
 	}
 	
-	.recently-viewed .edb-slider .slide{
-	  width:50%;
-	  height:50%;
-	}
-	.recently-viewed .edb-slider .slide + .slide{
-	  margin-let:50%;
-	}
-	.recently-viewed .edb-slider{
-	  margin-bottom:-60%;
-	}
-	.recently-viewed .edb-slider .controls{
-	  top:50%;
-	}
+// 	.recently-viewed .edb-slider .slide{
+// 	  width:50%;
+// 	  height:50%;
+// 	}
+// 	.recently-viewed .edb-slider .slide + .slide{
+// 	  margin-let:50%;
+// 	}
+	
 
 
 	.quantity {
