@@ -1,4 +1,4 @@
-gmodule.exports = function(grunt) {
+module.exports = function(grunt) {
 
     try {
         var configFile = grunt.file.readJSON('config.json');
