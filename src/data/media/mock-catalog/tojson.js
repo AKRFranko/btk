@@ -331,7 +331,11 @@ importMedia = function(data) {
     mat_varnames = [];
     angles = readFolderImages(data.path + "/images/cutout");
     scenes = readFolderImages(data.path + "/images/ambiance");
-    tech = readFolderImages(data.path + "/images/tech");
+    try {
+        tech = readFolderImages(data.path + "/images/tech");
+    } catch (e) {
+        tech = [];
+    }
     try {
         mats = readFolderImages(data.path + "/images/materials");
     } catch (e) {
