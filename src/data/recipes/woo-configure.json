@@ -1,74 +1,79 @@
 {
-	"option": {
-		"update": [{
-				"args": {
-					"name": "woocommerce_default_country",
-					"value": "CA:QC"
-				}
-			}, {
-				"args": {
-					"name": "woocommerce_allowed_countries",
-					"value": "specific"
-				}
-			}, {
-				"args": {
-					"name": "woocommerce_specific_allowed_countries",
-					"value": "[\\\"CA\\\"]"
-				},
-				"opts": {
-					"format": "json"
-				}
-			}, {
-				"args": {
-					"name": "woocommerce_default_customer_address",
-					"value": "geolocation"
-				}
-			}, {
-				"args": {
-					"name": "woocommerce_hide_out_of_stock_items",
-					"value": "no"
-				}
-			}, {
-				"args": {
-					"name": "woocommerce_enable_lightbox",
-					"value": "no"
-				}
-			}, {
-				"args": {
-					"name": "woocommerce_product_category_slug",
-					"value": "products"
-				}
-			}, {
-				"args": {
-					"name": "woocommerce_product_tag_slug",
-					"value": "showcase"
-				}
-			}, {
-				"args": {
-					"name": "shop_catalog_image_size",
-					"value": "{\\\"width\\\":600,\\\"height\\\":600,\\\"crop\\\":0}"
-				},
-				"opts": {
-					"format": "json"
-				}
-			}, {
-				"args": {
-					"name": "shop_single_image_size",
-					"value": "{\\\"width\\\":900,\\\"height\\\":900,\\\"crop\\\":0}"
-				},
-				"opts": {
-					"format": "json"
-				}
-			}, {
-				"args": {
-					"name": "shop_thumbnail_image_size",
-					"value": "{\\\"width\\\":900,\\\"height\\\":900,\\\"crop\\\":0}"
-				},
-				"opts": {
-					"format": "json"
-				}
-			}
+    "option": {
+        "update": [{
+                "args": {
+                    "name": "woocommerce_default_country",
+                    "value": "CA:QC"
+                }
+            }, {
+                "args": {
+                    "name": "woocommerce_allowed_countries",
+                    "value": "specific"
+                }
+            }, {
+                "args": {
+                    "name": "woocommerce_specific_allowed_countries",
+                    "value": "[\\\"CA\\\"]"
+                },
+                "opts": {
+                    "format": "json"
+                }
+            }, {
+                "args": {
+                    "name": "woocommerce_default_customer_address",
+                    "value": "geolocation"
+                }
+            }, {
+                "args": {
+                    "name": "woocommerce_hide_out_of_stock_items",
+                    "value": "no"
+                }
+            }, {
+                "args": {
+                    "name": "woocommerce_enable_lightbox",
+                    "value": "no"
+                }
+            }, {
+                "args": {
+                    "name": "woocommerce_product_category_slug",
+                    "value": "products"
+                }
+            }, {
+                "args": {
+                    "name": "woocommerce_product_tag_slug",
+                    "value": "showcase"
+                }
+            }, {
+                "args": {
+                    "name": "woocommerce_enable_myaccount_registration",
+                    "value": "yes"
+                }
+            }, {
+                "args": {
+                    "name": "shop_catalog_image_size",
+                    "value": "{\\\"width\\\":600,\\\"height\\\":600,\\\"crop\\\":0}"
+                },
+                "opts": {
+                    "format": "json"
+                }
+            }, {
+                "args": {
+                    "name": "shop_single_image_size",
+                    "value": "{\\\"width\\\":900,\\\"height\\\":900,\\\"crop\\\":0}"
+                },
+                "opts": {
+                    "format": "json"
+                }
+            }, {
+                "args": {
+                    "name": "shop_thumbnail_image_size",
+                    "value": "{\\\"width\\\":900,\\\"height\\\":900,\\\"crop\\\":0}"
+                },
+                "opts": {
+                    "format": "json"
+                }
+            }
 
-		]
-	}
+        ]
+    }
 }
