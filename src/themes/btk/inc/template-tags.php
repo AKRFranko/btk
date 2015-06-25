@@ -37,6 +37,8 @@ if (!function_exists('the_posts_navigation')):
 }
 endif;
 
+
+
 if (!function_exists('the_post_navigation')):
 /**
  * Display navigation to next/previous post when applicable.
@@ -350,6 +352,21 @@ function btk_product_technical_drawing(){
   return "<img alt=\"$title technical drawing\" src=\"$src\" />";
 }
 
+/**
+ * Category CSS classes
+ * 
+ **/
+function btk_get_category_classes(){
+    $categories = (array) get_the_category();
+    $thelist = '';
+    foreach($categories as $category) {    // concate
+        $thelist .= ' cat-' . $category->slug;
+    }
+    
+    return $thelist;
+
+}
+ 
 
 
 /**

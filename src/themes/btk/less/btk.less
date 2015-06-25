@@ -200,6 +200,9 @@ Sliders
 	text-transform:uppercase;
 	letter-spacing:0.05em;
 }
+.edb-slider .slide{
+  background-position:center 70%;  
+}
 
 .main-slider {
 	height:76vmax; .imgborder();
@@ -247,6 +250,13 @@ Content
 	article {
 		margin:0;
 		.attachment-post-thumbnail { width:100%; margin-bottom:10px; .imgborder(); }
+		&.category-carousel{
+		  .attachment-thumbnail-wrapper{
+		    max-height:30vh;
+		    overflow:hidden;
+		  }
+		  
+		}
 		.entry-header, .entry-footer { margin:0 15px; }
 		.entry-content {
 			margin:0;

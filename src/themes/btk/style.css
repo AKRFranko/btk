@@ -2777,6 +2777,9 @@ Sliders
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
+.edb-slider .slide {
+  background-position: center 70%;
+}
 .main-slider {
   height: 76vmax;
   border-bottom: 3px solid #000000;
@@ -2878,6 +2881,10 @@ Content
   width: 100%;
   margin-bottom: 10px;
   border-bottom: 3px solid #000000;
+}
+#content article.category-carousel .attachment-thumbnail-wrapper {
+  max-height: 30vh;
+  overflow: hidden;
 }
 #content article .entry-header,
 #content article .entry-footer {

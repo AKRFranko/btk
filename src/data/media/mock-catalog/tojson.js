@@ -332,7 +332,7 @@ importMedia = function(data) {
     angles = readFolderImages(data.path + "/images/cutout");
     scenes = readFolderImages(data.path + "/images/ambiance");
     try {
-        tech = readFolderImages(data.path + "/images/tech");
+        tech = readFolderImages(data.path + "/images/tech")[0];
     } catch (e) {
         tech = [];
     }
@@ -415,14 +415,7 @@ importMedia = function(data) {
 
     if (tech.length) {
         var tech_varname = genMediaVar(data.varname);
-        recipe.media["import"][tech_varname] = {
-            args: {
-                file: tech[0]
-            },
-            opts: {
-                post_id: data.varname
-            }
-        };
+
         recipe['eval'].push({
             "args": {
                 "php": "update_post_meta( " + data.varname + ", '_product_technical_drawing', '" + tech_varname + "' );"
