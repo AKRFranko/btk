@@ -332,7 +332,7 @@ importMedia = function(data) {
     angles = readFolderImages(data.path + "/images/cutout");
     scenes = readFolderImages(data.path + "/images/ambiance");
     try {
-        tech = readFolderImages(data.path + "/images/tech")[0];
+        tech = readFolderImages(data.path + "/images/tech");
     } catch (e) {
         tech = [];
     }
