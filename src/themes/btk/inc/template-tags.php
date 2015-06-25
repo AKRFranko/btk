@@ -373,19 +373,37 @@ function btk_get_category_classes(){
  * Recently viewed products
  **/
 function btk_recently_viewed() {
-	global $woocommerce;
+  echo do_shortcode('[recent_products per_page="3" columns="4"]');
+// 	global $woocommerce;
 
-    $viewed_products = ! empty( $_COOKIE['woocommerce_recently_viewed'] ) ? (array) explode( '|', $_COOKIE['woocommerce_recently_viewed'] ) : array();
-    $viewed_products = array_filter( array_map( 'absint', $viewed_products ) );
+//     $viewed_products = !empty( $_COOKIE['woocommerce_recently_viewed'] ) ? (array) explode( '|', $_COOKIE['woocommerce_recently_viewed'] ) : array();
+//     $viewed_products = array_filter( array_map( 'absint', $viewed_products ) );
+//     $skus = array();
+//     foreach( $viewed_products as $viewed){
+//       var_dump($viewed);
+//       $product = new WC_Product( $viewed );
+      
+//       array_push( $skus, $product->get_sku() );
+//     }
+//     var_dump($skus);
+    //echo do_shortcode('[products skus="'.implode(',',$skus).'"]')
+//     $query = array(
+//     	'post_type' => 'product',
+//     	'post_status' => 'publish',
+//     	'post__in' => $viewed_products,
+//     	'order_by' => 'rand'
+//     );
+//     $skus = array();
+    
+//     $viewed_query = new WP_Query($query);
+	
+// 	while ($viewed_query->have_posts()) {
+// 		$viewed_query->the_post();
+// 		get_sku();
+// 	}
 
-    $query = array(
-    	'post_type' => 'product',
-    	'post_status' => 'publish',
-    	'post__in' => $viewed_products,
-    	'order_by' => 'rand'
-    );
-
-    btk_edb_slider($query);
+//     echo do_shortcode('[products skus="'.implode(',',$skus).'"]')
+//     // btk_edb_slider($query);
 }
 
 

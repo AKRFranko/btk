@@ -174,19 +174,8 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 	
 
 	<?php if (! empty( $_COOKIE['woocommerce_recently_viewed'] ) ) { ?>
-	<div class="recently-viewed lower">
-		<h2><?php _e('Recently viewed', 'btk'); ?></h2>
-		<div class="edb-slider">
-			<?php btk_recently_viewed(); ?>
-			<div class="controls">
-				<a class="prev" href="#"><span class="icon-arrow-lite-left-black"></span></a>
-					<span class="index"> - </span>
-					<span class="separator"> | </span>
-					<span class="total"> - </span>
-				<a class="next" href="#"><span class="icon-arrow-lite-right-black"></span></a>
-			</div>
-		</div>
-	</div>
+	  <h2><?php _e('Recently viewed', 'btk'); ?></h2>
+    <?php btk_recently_viewed(); ?>
 	<?php } ?>
 
 
