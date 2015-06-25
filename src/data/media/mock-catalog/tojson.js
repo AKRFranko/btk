@@ -415,7 +415,11 @@ importMedia = function(data) {
 
     if (tech.length) {
         var tech_varname = genMediaVar(data.varname);
-
+        recipe.media["import"][tech_varname] = {
+            args: {
+                file: featured
+            }
+        }
         recipe['eval'].push({
             "args": {
                 "php": "update_post_meta( " + data.varname + ", '_product_technical_drawing', '" + tech_varname + "' );"

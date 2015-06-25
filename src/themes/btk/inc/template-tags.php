@@ -349,7 +349,12 @@ function btk_product_technical_drawing(){
   $imageID = get_post_meta( get_the_ID(), '_product_technical_drawing', true );
   $src = wp_get_attachment_image_src($imageID, 'large')[0];
   $title = get_the_title();
-  return "<img alt=\"$title technical drawing\" src=\"$src\" />";
+  if( !empty($src)){
+    return "<img alt=\"$title technical drawing\" src=\"$src\" />";  
+  }else{
+    return '';
+  }
+  
 }
 
 /**

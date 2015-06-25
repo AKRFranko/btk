@@ -65,7 +65,8 @@
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
-<!-- Piwik -->
+<!--
+
 <script type="text/javascript">
   var _paq = _paq || [];
   _paq.push(['trackPageView']);
@@ -79,6 +80,7 @@
   })();
 </script>
 <noscript><p><img src="http://anal.akr.club/piwik.php?idsite=4" style="border:0;" alt="" /></p></noscript>
-<!-- End Piwik Code -->
+
+-->
 </body>
 </html>

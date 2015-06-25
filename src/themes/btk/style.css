@@ -1147,7 +1147,7 @@ Woocommerce Overrides
   padding: 0;
   border: none;
 }
-.devshow {
+.product-color-choice-option .instock {
   display: block;
   position: absolute;
   top: 50%;
