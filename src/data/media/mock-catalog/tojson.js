@@ -417,7 +417,7 @@ importMedia = function(data) {
         var tech_varname = genMediaVar(data.varname);
         recipe.media["import"][tech_varname] = {
             args: {
-                file: featured
+                file: tech[0]
             }
         }
         recipe['eval'].push({
