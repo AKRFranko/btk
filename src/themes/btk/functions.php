@@ -656,7 +656,9 @@ function btk_lookbook_shortcode( $atts ) {
     $product = btk_get_product_by_sku( $sku );
     
     if( !empty($product->post->post_parent)){
+      $price = $product->get_price();
       $product = new WC_Product( $product->post->post_parent );
+      $product->set_price( $price );
     }
     if( isset($product) ){
       array_push( $products, $product );
