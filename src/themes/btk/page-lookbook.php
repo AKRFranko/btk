@@ -10,7 +10,7 @@ get_header(); ?>
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main lower" role="main">
 
-			<h1><?php the_title(); ?></h1>
+			
 	<div class="edb-slider lookbook-slider">
 			<?php btk_edb_lookbook_slider();?>
 			<div class="controls">

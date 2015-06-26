@@ -2817,6 +2817,9 @@ Sliders
   width: 100%;
   text-align: center;
 }
+.lookbook-slider .slide-html li {
+  white-space: nowrap;
+}
 .lookbook-slider .slide-html .disp-cat,
 .lookbook-slider .slide-html .disp-name,
 .lookbook-slider .slide-html .disp-price {
