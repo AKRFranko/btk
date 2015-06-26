@@ -330,7 +330,7 @@
                     "post_category": "$cat_news"
                 }
             },
-            "lookbook_1": {
+            "$lookbook_1": {
                 "opts": {
                     "post_title": "The Finest Collection",
                     "post_type": "post",
