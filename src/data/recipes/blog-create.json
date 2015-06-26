@@ -11,6 +11,16 @@
                     "description": "This category is for generic content."
                 }
             },
+            "$cat_lookbook": {
+                "args": {
+                    "taxonomy": "category",
+                    "term": "lookbook"
+                },
+                "opts": {
+                    "slug": "lookbook",
+                    "description": "This category is for lookbook special content."
+                }
+            },
             "$cat_carousel": {
                 "args": {
                     "taxonomy": "category",
@@ -277,10 +287,10 @@
             },
             "$homepost_1": {
                 "args": {
-                    "file": "./src/data/text/news-1.txt"
+                    "file": "./src/data/text/news-3.txt"
                 },
                 "opts": {
-                    "post_title": "lookbook",
+                    "post_title": "the move-in",
                     "post_type": "post",
                     "post_status": "publish",
                     "post_category": "$cat_news"
@@ -297,6 +307,7 @@
                     "post_category": "$cat_news,$cat_people"
                 }
             },
+
             "$homepost_3": {
                 "args": {
                     "file": "./src/data/text/news-3.txt"
@@ -317,6 +328,42 @@
                     "post_type": "post",
                     "post_status": "publish",
                     "post_category": "$cat_news"
+                }
+            },
+            "lookbook_1": {
+                "opts": {
+                    "post_title": "The Finest Collection",
+                    "post_type": "post",
+                    "post_status": "publish",
+                    "post_category": "$cat_lookbook",
+                    "post_content": "[lookbook skus='SOF-2ST-8MI0RQ, COF-ZZZ-2NA0FF, ACC-PIL-3960H7']"
+                }
+            },
+            "$lookbook_2": {
+                "opts": {
+                    "post_title": "The Best of Now",
+                    "post_type": "post",
+                    "post_status": "publish",
+                    "post_category": "$cat_lookbook",
+                    "post_content": "[lookbook skus='SOF-2ST-8MI0RQ, COF-ZZZ-2NA0FF, ACC-PIL-3960H7']"
+                }
+            },
+            "$lookbook_3": {
+                "opts": {
+                    "post_title": "Soul Purification",
+                    "post_type": "post",
+                    "post_status": "publish",
+                    "post_category": "$cat_lookbook",
+                    "post_content": "[lookbook skus='SOF-2ST-8MI0RQ, COF-ZZZ-2NA0FF, ACC-PIL-3960H7']"
+                }
+            },
+            "$lookbook_4": {
+                "opts": {
+                    "post_title": "Den of the Denizen",
+                    "post_type": "post",
+                    "post_status": "publish",
+                    "post_category": "$cat_lookbook",
+                    "post_content": "[lookbook skus='SOF-2ST-8MI0RQ, COF-ZZZ-2NA0FF, ACC-PIL-3960H7']"
                 }
             },
             "$about_page": {
@@ -1026,6 +1073,38 @@
                 },
                 "opts": {
                     "post_id": "$news_08"
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/lookbook/4.jpg"
+                },
+                "opts": {
+                    "post_id": "$lookbook_4",
+                    "featured_image": true
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/lookbook/3.jpg"
+                },
+                "opts": {
+                    "post_id": "$lookbook_3",
+                    "featured_image": true
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/lookbook/2.jpg"
+                },
+                "opts": {
+                    "post_id": "$lookbook_2",
+                    "featured_image": true
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/lookbook/1.jpg"
+                },
+                "opts": {
+                    "post_id": "$lookbook_1",
+                    "featured_image": true
                 }
             }
         ]

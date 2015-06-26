@@ -302,6 +302,7 @@ function btk_categorized_blog() {
 	}
 }
 
+
 function btk_edb_slider($query, $attach = null) {
 	$slider_query = new WP_Query($query);
 	$data = array();
@@ -310,9 +311,9 @@ function btk_edb_slider($query, $attach = null) {
 		if (has_post_thumbnail()) {
 			$src = wp_get_attachment_image_src(get_post_thumbnail_id(), 'large');
 			$title = get_the_title();
-			$content = get_the_content();
+			$content = apply_filters( 'the_content', get_the_content() );
 			$href = get_permalink();
-			array_push($data, array("src" => $src[0], "text" => $title, "url" => $href));
+			array_push($data, array("src" => $src[0], "text" => $title, "url" => $href, "html" => $content ));
 		}
 	}
 	if ($attach) {
@@ -324,6 +325,11 @@ function btk_edb_slider($query, $attach = null) {
 		}
 	}
 	?><script type="application/json"><?php echo json_encode($data);?></script><?php
+}
+
+function btk_edb_lookbook_slider(){
+  $query = array( 'post_type' => 'post', 'post_per_page' => '5', 'category_name' => 'lookbook' );
+  btk_edb_slider( $query );
 }
 
 function btk_edb_single_product_slider() {

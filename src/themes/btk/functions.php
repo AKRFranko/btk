@@ -31,6 +31,20 @@ function woocommerce_support() {
 }
 add_action( 'after_setup_theme', 'woocommerce_support' );
 
+function btk_get_product_by_sku( $sku ) {
+
+  global $wpdb;
+
+
+
+  $product_id = $wpdb->get_var( $wpdb->prepare( "SELECT post_id FROM $wpdb->postmeta WHERE meta_key='_sku' AND meta_value='%s' LIMIT 1", $sku ) );
+
+  if ( $product_id ) return new WC_Product( $product_id );
+
+  return null;
+
+}
+
 /**
  * Synchronize Browser Storage Values With Session Values. (using basil.js in front-end)
  */
@@ -630,6 +644,43 @@ function btk_excerpt_more( $more ) {
 	return '... <a class="read-more" href="' . get_permalink( get_the_ID() ) . '">' . __( 'more', 'btk' ) . '</a>';
 }
 add_filter( 'excerpt_more', 'btk_excerpt_more' );
+
+
+/**
+ * Get Lookbook Post Products Shortcode
+ **/
+function btk_lookbook_shortcode( $atts ) {
+	$skus = preg_split('/,\s+?/', $atts['skus'], -1, PREG_SPLIT_NO_EMPTY);
+  $products = array();
+  foreach($skus as $sku){
+    $product = btk_get_product_by_sku( $sku );
+    
+    if( !empty($product->post->post_parent)){
+      $product = new WC_Product( $product->post->post_parent );
+    }
+    if( isset($product) ){
+      array_push( $products, $product );
+    }
+  }
+  $html = '<ul class="lookbook-detail">';
+  foreach($products as $product){
+    $name = preg_replace( '/ \- .+$/','',$product->get_title());
+  
+    $cats = get_the_terms( $product->id, 'product_cat' );
+    $catsarray = array();
+    foreach ( $cats as $cat ) {
+		  array_push( $catsarray, $cat->name );
+	  }
+	  $catstring = implode(' / ', $catsarray );
+    $price = $product->get_price();
+    $href = $product->get_permalink();
+    $html .= "<li><a href='$href'><span class='disp-cat'>$catstring</span><span class='disp-name'>$name</span><span class='price'>$$price</span></a></li>";
+  }
+	return $html."</ul>";
+}
+add_shortcode( 'lookbook', 'btk_lookbook_shortcode' );
+
+
 
 /**
  * Implement the Custom Header feature.

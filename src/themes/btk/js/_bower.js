@@ -12675,7 +12675,7 @@ var EDBSlider = function(el, opts) {
         it.cycle(-1);
     });
 
-    $.event.special.swipe.settings.threshold = 0.1;
+    $.event.special.swipe.settings.threshold = 0.02;
     $.event.special.swipe.settings.sensitivity = 12;
     $(it.el).on('movestart', function(e) {
         // If the movestart is heading off in an upwards or downwards
@@ -12726,6 +12726,10 @@ EDBSlider.Slide = function(data, index) {
     var link = $('<a>').attr('href', data.url).prop('draggable', false).addClass('slide-link').html('<span class="slide-text">' + data.text + '</span>')
     $(it.el).css('background-image', 'url("' + data.src + '")');
     $(it.el).addClass('slide').data('slide', it).append(it.img).append(link)
+    if (data.html) {
+        var content = $('<div>').addClass('slide-html').html(data.html);
+        $(it.el).append(content);
+    };
     return it;
 }
 

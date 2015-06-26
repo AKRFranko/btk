@@ -2423,7 +2423,7 @@ body.splash-on > * {
 }
 /*
 ===
-  Temporary Requested by Client
+  Dontshow Requested by Client
 ===
 */
 body.woocommerce-page .page-title,
@@ -2769,6 +2769,15 @@ Sliders
   font-size: 1em;
   font-weight: bold;
 }
+.edb-slider .controls a {
+  font-size: 1.25em;
+  vertical-align: middle;
+}
+.edb-slider .controls > span {
+  color: #000000;
+  text-shadow: none;
+  font-weight: normal;
+}
 .edb-slider .slide-text {
   font-family: "pragmatica-web-condensed", 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 400;
@@ -2779,6 +2788,80 @@ Sliders
 }
 .edb-slider .slide {
   background-position: center 70%;
+}
+.edb-slider .slide-html {
+  display: none;
+}
+.lookbook-slider {
+  min-height: 780px;
+  max-height: 100vh;
+  height: 100vh;
+}
+.lookbook-slider .slide {
+  height: 50%;
+}
+.lookbook-slider .slide-text {
+  top: 100%;
+  margin-top: 4em;
+  font-size: 1.35em;
+  font-family: "adobe-caslon-pro", Georgia, 'Times New Roman', Times, serif;
+  text-transform: lowercase;
+  color: #000;
+  text-shadow: none;
+}
+.lookbook-slider .slide-html {
+  display: block;
+  position: absolute;
+  top: 100%;
+  margin-top: 8em;
+  width: 100%;
+  text-align: center;
+}
+.lookbook-slider .slide-html .disp-cat,
+.lookbook-slider .slide-html .disp-name,
+.lookbook-slider .slide-html .disp-price {
+  display: inline-block;
+  min-width: 120px;
+}
+.lookbook-slider .slide-html .disp-cat:before {
+  content: '_ ';
+}
+.lookbook-slider .slide-html .price {
+  color: #666;
+}
+.lookbook-slider .slide-html .disp-cat:after,
+.lookbook-slider .slide-html .disp-name:after {
+  content: ' ';
+}
+.lookbook-slider .slide-html .disp-name {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.lookbook-slider .controls {
+  top: 50%;
+  bottom: 0;
+  padding-top: 2em;
+  margin-top: 0;
+}
+.lookbook-slider .controls a {
+  font-size: 1.25em;
+  vertical-align: middle;
+}
+.lookbook-slider .controls .index,
+.lookbook-slider .controls .separator,
+.lookbook-slider .controls .total {
+  color: #000000;
+  text-shadow: none;
+  font-weight: normal;
+}
+.lookbook-detail {
+  width: 20em;
+  left: 50%;
+  position: relative;
+  margin-left: -10em;
+}
+.lookbook-detail li {
+  text-align: left;
 }
 .main-slider {
   height: 76vmax;

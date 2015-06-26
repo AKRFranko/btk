@@ -414,7 +414,7 @@ importMedia = function(data) {
     });
 
     if (tech.length) {
-        var tech_varname = genMediaVar(data.varname);
+        var tech_varname = genMediaVar(data.varname) + "_tech";
         recipe.media["import"][tech_varname] = {
             args: {
                 file: tech[0]

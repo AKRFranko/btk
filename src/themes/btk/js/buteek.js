@@ -170,11 +170,14 @@
                 // $('.single_variation_wrap .quantity').css(bgfg);
                 $('.single_variation_wrap .variation_id').val($(this).attr('data-variation-id'));
                 var imageSrc = $(this).data('variation-image');
-                var activeSlide = $('.edb-slider .slides .slide.active');
-                var originalBG = activeSlide.css('background-image');
-                activeSlide.css('background-image', 'url(' + imageSrc + ')');
-                $('.edb-slider').one('cycled', function() {
-                    activeSlide.css('background-image', originalBG);
+                var activeSlide = $('.edb-slider:first .slides .slide.active');
+                var tempSlide = activeSlide.clone().removeClass('active').addClass('temporary')
+                tempSlide.css('background-image', 'url(' + imageSrc + ')');
+                $('.edb-slider:first .slides').append(tempSlide);
+                $('.edb-slider:first .index').html('<i class="fa fa-eye"></i>')
+                $('.edb-slider:first .total').text($(this).attr('title'))
+                $('.edb-slider:first').one('cycled', function() {
+                    tempSlide.remove();
                 });
 
             });
