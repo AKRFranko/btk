@@ -191,7 +191,9 @@ Sliders
 */
 
 .edb-slider .slide-link { background-color:rgba(0, 0, 0, 0.1); }
-.edb-slider .controls { font-size:1em; font-weight:bold;
+.edb-slider .controls { 
+  font-size:1em; 
+  font-weight:bold;
   a { font-size:1.25em; vertical-align:middle; }
   > span { color:@black; text-shadow:none; font-weight:normal; }
   
@@ -206,6 +208,12 @@ Sliders
 }
 .edb-slider .slide{
   background-position:center 70%;  
+  img{
+    display:block;
+    opacity:0;
+    width:100%;
+    height:100%;
+  } 
 }
 
 .edb-slider .slide-html{
@@ -216,6 +224,11 @@ Sliders
   min-height:780px;
   max-height:100vh;
   height:100vh;
+  margin-bottom:50%;
+  .slides{
+    min-height:200%;
+    height:200%;
+  }
   .slide{
     height:50%;
   }
@@ -252,7 +265,7 @@ Sliders
     }
   }
   .controls{
-    top: 50%;
+    top: 100%;
     bottom: 0;
     padding-top: 2em;
     margin-top: 0;
@@ -273,7 +286,7 @@ Sliders
 }
 
 .main-slider {
-	height:76vmax; .imgborder();
+ .imgborder();
 	// Helps pageload flickr.
 	min-height:76vmax; max-height:76vmax; overflow:hidden;
 
@@ -466,6 +479,27 @@ Footer
 }
 
 
+// Shopnow Incentives
+.shopnow{
+			  font-family:@altfontfamily;
+        font-size:.5em;
+        font-weight:bold;
+        text-transform:lowercase;
+			}
+			
+      .shopnow:after{
+        content:attr(data-text);
+        
+      }
+      
+.home .edb-slider{
+  .shopnow:after {
+    content: attr(data-text);
+    display: block;
+    color: #fff;
+    font-size: .5em;
+  }
+}
 
 
 
@@ -527,6 +561,19 @@ Media Queries and Devices
 	.home .main-article .title,
 	#content .pdf .title a { padding:20px; }
 	.nav-hamburger { display:none; }
+// 	#header-box header .nav-hamburger { top:-1em; }
+// 	#header-box header #menu-hamburger{
+// 	  display:block;
+// 	  ul{
+// 	    text-align:center;
+// 	  }
+// 	  ul li{
+// 	    display:inline-block;
+// 	    width:auto;
+// 	    text-align:center;
+// 	    padding:5px 1em;
+// 	  }
+// 	}
 	#header-box header { padding-left:20px; }
 	.wpcf7-form { padding-top:10px; }
 

@@ -61,7 +61,7 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 
 	<div class="product-desc lower">
 		<a href="<?php the_permalink(); ?>">
-			<span class="product-title upper"><?php the_title(); ?></span>
+			<span class="product-title upper"><?php the_title(); ?> <span data-text="<?php _e('shop', 'btk' ); ?>" class="shopnow"></span></span>
 			<span class="product-price">_ <?php echo $product->get_price_html(); ?></span>
 		</a>
 		<?php the_excerpt(); ?>

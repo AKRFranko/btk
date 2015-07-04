@@ -1,0 +1,21 @@
+<p>Your Name (required)<br />
+    [text* your-name] </p>
+
+<p>Your Email (required)<br />
+    [email* your-email] </p>
+
+<p>Your Street Address<br />
+    [text* street-address id:street-address class:street-address]</p>
+
+<p>Your Province<br />
+  [select* province id:province class:province include_blank "Alberta" "British Columbia" "Manitoba" "New Brunswick" "Newfoundland and Labrador" "Northwest Territories" "Nova Scotia" "Nunavut" "Ontario" "Prince Edward Island" "Quebec" "Saskatchewan" "Yukon Territory"]</p>
+
+<p>Your City<br />
+    [text* city id:city class:city]</p>
+
+<p>Your Postal Code
+    [text* potsal-code id:postal-code class:postal-code]
+
+<p>[submit "Send"]</p>
+
+

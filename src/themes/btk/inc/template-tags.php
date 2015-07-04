@@ -312,15 +312,15 @@ function btk_edb_slider($query, $attach = null) {
 			$src = wp_get_attachment_image_src(get_post_thumbnail_id(), 'large');
 			$title = get_the_title();
 			$content = apply_filters( 'the_content', get_the_content() );
-			$href = get_permalink();
+			$href = get_permalink( $slider_query->post->ID );
 			array_push($data, array("src" => $src[0], "text" => $title, "url" => $href, "html" => $content ));
 		}
 	}
 	if ($attach) {
 		foreach ( $attach as $attachment_id ) {
-			$src = wp_get_attachment_image_src( $attachment_id, 'large');
+			$src   = wp_get_attachment_image_src( $attachment_id, 'large');
 			$title = esc_attr( get_the_title( $attachment_id ) );
-			$href = get_permalink();
+			$href  = get_permalink();
 			array_push($data, array("src" => $src[0], "text" => $title, "url" => $href));
 		}
 	}
@@ -384,7 +384,9 @@ function btk_get_category_classes(){
  * Recently viewed products
  **/
 function btk_recently_viewed() {
+  ?><div id="recently-viewed"><?php
   echo do_shortcode('[recent_products per_page="3" columns="4"]');
+  ?></div><?php
 // 	global $woocommerce;
 
 //     $viewed_products = !empty( $_COOKIE['woocommerce_recently_viewed'] ) ? (array) explode( '|', $_COOKIE['woocommerce_recently_viewed'] ) : array();

@@ -86,22 +86,36 @@
         // sliderz
         $('.edb-slider').each(function() {
             var el = $(this).get(0);
-            var isChildOf = $('body').hasClass('single-product') ? 'product' : $('body').hasClass('single-post') ? 'post' : 'generic';
-            switch (isChildOf) {
-                case 'product':
-                    var pads = $.makeArray($('#masthead,.product-color-choice:first,.product-add'));
-                    var spacing = pads.reduce(function(s, el) {
-                        return s + $(el).outerHeight();
-                    }, 0);
-                    break;
-                case 'post':
-                default:
-                    var spacing = $('#masthead').outerHeight()
+            // var isChildOf = $('body').hasClass('single-product') ? 'product' : $('body').hasClass('single-post') ? 'post' : 'generic';
+            // // switch (isChildOf) {
+            // //     // case 'product':
+            // //     //     var pads = $.makeArray($('#masthead,.product-color-choice:first,.product-add'));
+            // //     //     var spacing = pads.reduce(function(s, el) {
+            // //     //         return s + $(el).outerHeight();
+            // //     //     }, 0);
+            // //     //     break;
+            // //     // case 'post':
+            // //     default: var spacing = $('#masthead').outerHeight()
+            // // };
+            var spacing
+            var masthead = $('#masthead').outerHeight()
+            var winHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+            if ($('body').is('.home')) {
+                spacing = masthead;
+            } else {
+                spacing = (winHeight / 2) + (masthead / 2);
             }
+            // if (!$(el).hasClass('lookbook-slider')) {
+            //     spacing += winHeight / 2
+            // }
             var slider = window.EDBSlider(el, {
                 spacing: spacing
             });
             slider.toggle(0, 'on');
+            $(el).find('.slide').each(function(slide) {
+                $(this).find('img').prependTo($(this).find('.slide-link'))
+            })
+
         });
 
 

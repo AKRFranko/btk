@@ -197,6 +197,16 @@
     },
     "post": {
         "create": {
+            "$samples_form": {
+                "args": {
+                    "file": "./src/data/text/samples_form.txt"
+                },
+                "opts": {
+                    "post_title": "Order Samples",
+                    "post_type": "wpcf7_contact_form",
+                    "post_status": "publish"
+                }
+            },
             "$news_08": {
                 "args": {
                     "file": "./src/data/text/news-3.txt"
@@ -275,14 +285,12 @@
                 }
             },
             "$news_01": {
-                "args": {
-                    "file": "./src/data/text/news-1.txt"
-                },
                 "opts": {
                     "post_title": "spring 2015",
                     "post_type": "post",
                     "post_status": "publish",
-                    "post_category": "$cat_carousel"
+                    "post_category": "$cat_carousel",
+                    "post_content": "[products skus='COF-ZZZ-2NA0FF, ACC-PIL-3960H7, COF-ZZZ-40M0J7']"
                 }
             },
             "$homepost_1": {
@@ -290,7 +298,7 @@
                     "file": "./src/data/text/news-3.txt"
                 },
                 "opts": {
-                    "post_title": "the move-in",
+                    "post_title": "lookbook",
                     "post_type": "post",
                     "post_status": "publish",
                     "post_category": "$cat_news"
@@ -506,7 +514,7 @@
                     "post_name": "order-samples",
                     "post_type": "page",
                     "post_status": "publish",
-                    "post_content": "[contact-form-7 id='93' title='Order samples']"
+                    "post_content": "[contact-form-7 id='$samples_form' title='Order Samples']"
                 }
             },
             "$delivery_page": {
@@ -1131,5 +1139,10 @@
                 "value": "$cat_news"
             }
         }]
+    },
+    "eval": {
+        "args": {
+            "php": "\\$spfrm = WPCF7_ContactForm::find(array('id'=>$samples_form))[0];if(!empty(\\$spfrm)){ \\$spfrm->set_properties(array( 'form' => file_get_contents( './src/data/text/samples_form.txt'), 'mail' => array('subject'=> 'I want samples!','sender'=> '[your-name] <wordpress@badb0x.akr.club>','body'=> 'From: [your-name] <[your-email]>\nSubject: I want samples!\nPlease send them to:\n\n\n[your-name]\n[street-address]\n[province]\n[city]\n[postal-code]\n\n\n--\nThis e-mail was sent from a contact form on edb (http://badb0x.ark.club)','recipient'=>get_option('admin_email'),'additional_headers'=> 'Reply-To: [your-email]' )));\\$spfrm->save();}"
+        }
     }
 }
