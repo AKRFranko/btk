@@ -578,9 +578,13 @@
             }
         },
         "meta": {
-            "add": [
-
-                {
+            "add": [{
+                    "args": {
+                        "id": "$samples_form",
+                        "key": "_form",
+                        "value": "<p>Your Name (required)<br />\n\t[text* your-name] </p>\n<p>Your Email (required)<br />\n\t[email* your-email] </p>\n<p>Your Street Address<br />\n\t[text* street-address id:street-address class:street-address]</p>\n<p>Your Province<br />\n\t[select* province id:province class:province include_blank 'Alberta' 'British Columbia' 'Manitoba' 'New Brunswick' 'Newfoundland and Labrador' 'Northwest Territories' 'Nova Scotia' 'Nunavut' 'Ontario' 'Prince Edward Island' 'Quebec' 'Saskatchewan' 'Yukon Territory']</p>\n<p>Your City<br />\n\t[text* city id:city class:city]</p>\n<p>Your Postal Code\n\t[text* potsal-code id:postal-code class:postal-code]\n<p>[submit 'Send']</p>"
+                    }
+                }, {
                     "args": {
                         "id": "$homepost_1",
                         "key": "_subtitle",
@@ -1142,7 +1146,8 @@
     },
     "eval": {
         "args": {
-            "php": "\\$spfrm = WPCF7_ContactForm::find(array('id'=>$samples_form))[0];if(!empty(\\$spfrm)){ \\$spfrm->set_properties(array( 'form' => file_get_contents( './src/data/text/samples_form.txt'), 'mail' => array('subject'=> 'I want samples!','sender'=> '[your-name] <wordpress@badb0x.akr.club>','body'=> 'From: [your-name] <[your-email]>\nSubject: I want samples!\nPlease send them to:\n\n\n[your-name]\n[street-address]\n[province]\n[city]\n[postal-code]\n\n\n--\nThis e-mail was sent from a contact form on edb (http://badb0x.ark.club)','recipient'=>get_option('admin_email'),'additional_headers'=> 'Reply-To: [your-email]' )));\\$spfrm->save();}"
+            "php": "\\$spfrm = WPCF7_ContactForm::find(array('id'=>$samples_form))[0];if(!empty(\\$spfrm)){ \\$spfrm->set_properties(array( 'mail' => array('subject'=> 'I want samples!','sender'=> '[your-name] <wordpress@badb0x.akr.club>','body'=> 'From: [your-name] <[your-email]>\nSubject: I want samples!\nPlease send them to:\n\n\n[your-name]\n[street-address]\n[province]\n[city]\n[postal-code]\n\n\n--\nThis e-mail was sent from a contact form on edb (http://badb0x.ark.club)','recipient'=>get_option('admin_email'),'additional_headers'=> 'Reply-To: [your-email]' )));\\$spfrm->save();}"
         }
+
     }
 }
