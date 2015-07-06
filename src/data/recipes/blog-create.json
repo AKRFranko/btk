@@ -588,28 +588,28 @@
                     "args": {
                         "id": "$homepost_1",
                         "key": "_subtitle",
-                        "value": "Here is possibility of subtitle"
+                        "value": "take a look"
                     }
 
                 }, {
                     "args": {
                         "id": "$homepost_2",
                         "key": "_subtitle",
-                        "value": "Here is possibility of subtitle"
+                        "value": "shop around"
                     }
 
                 }, {
                     "args": {
                         "id": "$homepost_3",
                         "key": "_subtitle",
-                        "value": "Here is possibility of subtitle"
+                        "value": "shop now"
                     }
 
                 }, {
                     "args": {
                         "id": "$homepost_4",
                         "key": "_subtitle",
-                        "value": "Here is possibility of subtitle"
+                        "value": "discover"
                     }
 
                 },
@@ -618,49 +618,49 @@
                     "args": {
                         "id": "$news_01",
                         "key": "_subtitle",
-                        "value": "Here is possibility of subtitle"
+                        "value": "shop now"
                     }
                 }, {
                     "args": {
                         "id": "$news_02",
                         "key": "_subtitle",
-                        "value": "Here is possibility of subtitle"
+                        "value": "discover"
                     }
                 }, {
                     "args": {
                         "id": "$news_03",
                         "key": "_subtitle",
-                        "value": "Here is possibility of subtitle"
+                        "value": "learn more"
                     }
                 }, {
                     "args": {
                         "id": "$news_04",
                         "key": "_subtitle",
-                        "value": "Here is possibility of subtitle"
+                        "value": "shop around"
                     }
                 }, {
                     "args": {
                         "id": "$news_05",
                         "key": "_subtitle",
-                        "value": "Here is possibility of subtitle"
+                        "value": "get this"
                     }
                 }, {
                     "args": {
                         "id": "$news_06",
                         "key": "_subtitle",
-                        "value": "Here is possibility of subtitle"
+                        "value": "buy now"
                     }
                 }, {
                     "args": {
                         "id": "$news_07",
                         "key": "_subtitle",
-                        "value": "Here is possibility of subtitle"
+                        "value": "start shopping"
                     }
                 }, {
                     "args": {
                         "id": "$news_08",
                         "key": "_subtitle",
-                        "value": "Here is possibility of subtitle"
+                        "value": "buy this"
                     }
                 }
             ]

@@ -100,6 +100,10 @@ EDBSlider.Slide = function(data, index) {
         var content = $('<div>').addClass('slide-html').html(data.html);
         $(it.el).append(content);
     };
+    if (data.shopnow) {
+        var $shopnow = $('<span>').addClass('shopnow').attr('data-text', data.shopnow);
+        $(link).find('.slide-text').append($shopnow);
+    }
     return it;
 }
 

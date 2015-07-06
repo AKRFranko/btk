@@ -311,9 +311,10 @@ function btk_edb_slider($query, $attach = null) {
 		if (has_post_thumbnail()) {
 			$src = wp_get_attachment_image_src(get_post_thumbnail_id(), 'large');
 			$title = get_the_title();
+			$shopnow = get_post_meta($slider_query->post->ID, '_subtitle');
 			$content = apply_filters( 'the_content', get_the_content() );
 			$href = get_permalink( $slider_query->post->ID );
-			array_push($data, array("src" => $src[0], "text" => $title, "url" => $href, "html" => $content ));
+			array_push($data, array("src" => $src[0], "text" => $title, "shopnow" => $shopnow, "url" => $href, "html" => $content ));
 		}
 	}
 	if ($attach) {
