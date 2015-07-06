@@ -37,10 +37,10 @@
     background-repeat: no-repeat;
     position: absolute;
     -webkit-transform: translateZ(0);
-    -moz-transition: all .1s ease-in-out;
-    -webkit-transition: all .1s ease-in-out;
-    -o-transition: all .1s ease-in-out;
-    transition: all .1s ease-in-out;
+    -moz-transition: margin .1s ease-in-out;
+    -webkit-transition: margin .1s ease-in-out;
+    -o-transition: margin .1s ease-in-out;
+    transition: margin .1s ease-in-out;
     margin-left: 0;
     top: 0;
     left: 0;
@@ -97,7 +97,7 @@
 
 .edb-slider,
 .edb-slider .slide {
-    transition: all .1s ease-in-out;
+    transition: margin .1s ease-in-out;
 }
 
 .edb-slider .controls .prev,

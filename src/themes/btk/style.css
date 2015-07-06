@@ -3316,11 +3316,16 @@ Footer
 .shopnow:after {
   content: attr(data-text);
 }
+.slide-text .shopnow {
+  font-size: 1em;
+  font-weight: normal;
+  width: 100%;
+  /* text-align: center; */
+}
 .home .edb-slider .shopnow:after {
   content: attr(data-text);
   display: block;
   color: #fff;
-  font-size: .5em;
 }
 .woocommerce #recently-viewed ul.products {
   white-space: nowrap;
