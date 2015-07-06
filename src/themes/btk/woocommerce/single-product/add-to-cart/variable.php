@@ -76,15 +76,16 @@ foreach ($terms as $term) {
 			<input type="hidden" name="product_id" value="<?php echo esc_attr( $post->ID ); ?>" />
 			<input type="hidden" name="variation_id" class="variation_id" value="<?php echo $default_variation_id; ?>" />
 
+      <p class="product-color clearfix">
+				<span class="valign"><?php echo $term_name; ?></span>
+				<span class="alignright" style="background-color:<?php echo $term_desc; ?>">&nbsp;</span>
+			</p>
 			<?php woocommerce_quantity_input(); ?>
 			<p class="qty-text">
 				<span><?php _e('Quantity', 'btk'); ?></span>
 			</p>
       
-			<p class="product-color clearfix">
-				<span class="valign"><?php echo $term_name; ?></span>
-				<span class="alignright" style="background-color:<?php echo $term_desc; ?>">&nbsp;</span>
-			</p>
+			
       
 			<p class="right">
 				<span class="valign"><?php echo $product->single_add_to_cart_text(); ?></span>

@@ -89,7 +89,8 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 			$attributes = $product->get_variation_attributes();
 			$selected_attributes = $product->get_variation_default_attributes();
 	?>
-	<div class="product-color-choice clearfix">
+	<div id="user-product-settings">
+	<div class="product-color-choice">
 		<p class="center">
 		  <?php _e('select color', 'btk'); ?> <b class="colorname"></b>
 		</p>
@@ -141,7 +142,7 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 			}
 		?>
 	</div>
-
+  </div><!-- #user-product-settings -->
 
 
 	<div class="product-summary">

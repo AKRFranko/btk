@@ -303,7 +303,7 @@ Woocommerce Overrides
 					&:hover { background-color:@gray; }
 				}
 			}
-			.qty-text { padding:6px 0; border-bottom:1px solid @black; }
+			.qty-text { padding:6px 0;  }
 		}
 		
 		// Hack to make it look more like in PSD designs because we have not failed, the data has. 
@@ -383,7 +383,7 @@ Woocommerce Overrides
 		.qty { width:2.1em; text-align:right; color:@black; }
 	}
 	.product-color {
-		padding:6px 0; border-bottom:1px solid @black;
+		padding:6px 0; 
 		a { padding:0.35em 2.65em; cursor:pointer; }
 		span { padding-top:10px; }
 		span + span { padding:0.35em 2.65em; }
@@ -574,9 +574,29 @@ Woocommerce Overrides
 @media (min-width: 768px) {
 	.woocommerce #edit-address > div,
 	.woocommerce .customer-details > div { float:left; width:50%; }
-	.woocommerce .product .product-color-choice ul li{
-	  	width: ~"calc( 100% / 7 )";
+	.woocommerce .product #user-product-settings{
+	  position:relative;
+	  .product-color-choice,
+	  .product-add{
+	    border:0;
+	  }
+	  .product-color-choice{
+	    width:70%;
+	   // ul li{
+	  	//   width: ~"calc( 100% / 7 )";
+	   // }
+	  }
+	  .product-add{
+	    position:absolute;
+	    width:30%;
+	    top:15px;
+	    left:70%;
+	    .qty-text,.product-color{
+	      margin-bottom:18px;
+	    }
+	  }
 	}
+	
 }
 
 
