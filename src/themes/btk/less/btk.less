@@ -333,10 +333,11 @@ Content
 	article {
 		margin:0;
 		.attachment-post-thumbnail { width:100%; margin-bottom:10px; .imgborder(); }
-		&.category-carousel{
+		&.category-carousel,&.type-page{
 		  .attachment-thumbnail-wrapper{
 		    max-height:30vh;
 		    overflow:hidden;
+		    margin-bottom:.5em;
 		  }
 		  
 		}
@@ -580,20 +581,9 @@ Media Queries and Devices
 @media (min-width: 992px) {
 	.home .main-article .title,
 	#content .pdf .title a { padding:20px; }
-	.nav-hamburger { display:none; }
-// 	#header-box header .nav-hamburger { top:-1em; }
-// 	#header-box header #menu-hamburger{
-// 	  display:block;
-// 	  ul{
-// 	    text-align:center;
-// 	  }
-// 	  ul li{
-// 	    display:inline-block;
-// 	    width:auto;
-// 	    text-align:center;
-// 	    padding:5px 1em;
-// 	  }
-// 	}
+  .nav-hamburger { display:none; }
+  
+	
 	#header-box header { padding-left:20px; }
 	.wpcf7-form { padding-top:10px; }
 
