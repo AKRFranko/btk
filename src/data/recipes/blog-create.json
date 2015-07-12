@@ -533,7 +533,7 @@
                     "post_name": "contact-us",
                     "post_type": "page",
                     "post_status": "publish",
-                    "post_content": "<p class='opening-hours'>Open Monday To Friday from 5am to 9pm.</p><p class='showroom-address'>1449 St-Alexandre<br/>Montreal<br/>H3A 2G6<br/>T. 514-555-5555</p><a href='https://www.google.com/maps/dir//1449+St-Alexandre,+Montreal,+Quebec/'><img src='http://maps.googleapis.com/maps/api/staticmap?center=1449+St-Alexandre,+Montreal,+Quebec&zoom=13&scale=false&size=400x400&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:red%7Clabel:1%7C1449+St-Alexandre,+Montreal,+Quebec' alt='Google Map of 1449 St-Alexandre, Montreal, Quebec'></a>\n[contact-form-7 id='$contact_form' title='Contact US']"
+                    "post_content": "<p class='opening-hours'>Open Monday To Friday from 5am to 9pm.</p><p class='showroom-address'>1449 St-Alexandre<br/>Montreal<br/>H3A 2G6<br/>T. 514-555-5555</p><div class='showroom-map'><a href='https://www.google.com/maps/dir//1449+St-Alexandre,+Montreal,+Quebec/'><img src='http://maps.googleapis.com/maps/api/staticmap?center=1449+St-Alexandre,+Montreal,+Quebec&zoom=13&scale=false&size=400x400&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:red%7Clabel:1%7C1449+St-Alexandre,+Montreal,+Quebec' alt='Google Map of 1449 St-Alexandre, Montreal, Quebec'></a></div><div class='contact-form'>\n[contact-form-7 id='$contact_form' title='Contact US']</div>"
                 }
             },
             "$delivery_page": {
@@ -596,7 +596,7 @@
                     "args": {
                         "id": "$contact_form",
                         "key": "_form",
-                        "value": "<p>Your Name (required)<br />\n\t[text* your-name] </p>\n<p>Your Email (required)<br />\n\t[email* your-email] </p>\n<p>Subject<br />\n\t[text your-subject] </p>\n<p>Your Message<br />\n\t[textarea your-message] </p>\n<p>[submit 'Send']</p>"
+                        "value": "<h3>Write To Us</h3><p>Your Name (required)<br />\n\t[text* your-name] </p>\n<p>Your Email (required)<br />\n\t[email* your-email] </p>\n<p>Subject<br />\n\t[text your-subject] </p>\n<p>Your Message<br/><br />\n\t[textarea your-message] </p>\n<p>[submit 'Send']</p>"
                     }
                 }, {
                     "args": {

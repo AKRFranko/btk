@@ -3446,6 +3446,14 @@ Media Queries and Devices
   .nav-hamburger {
     display: none;
   }
+  div.showroom-map {
+    display: inline-block;
+    width: 400px;
+    float: right;
+  }
+  div.contact-form {
+    display: inline-block;
+  }
   #header-box header {
     padding-left: 20px;
   }
