@@ -207,6 +207,16 @@
                     "post_status": "publish"
                 }
             },
+            "$contact_form": {
+                "args": {
+                    "file": "./src/data/text/contact_form.txt"
+                },
+                "opts": {
+                    "post_title": "Contact Us",
+                    "post_type": "wpcf7_contact_form",
+                    "post_status": "publish"
+                }
+            },
             "$news_08": {
                 "args": {
                     "file": "./src/data/text/news-3.txt"
@@ -517,6 +527,15 @@
                     "post_content": "[contact-form-7 id='$samples_form' title='Order Samples']"
                 }
             },
+            "$contact_page": {
+                "opts": {
+                    "post_title": "contact us",
+                    "post_name": "contact-us",
+                    "post_type": "page",
+                    "post_status": "publish",
+                    "post_content": "<p class='opening-hours'>Open Monday To Friday from 5am to 9pm.</p><p class='showroom-address'>1449 St-Alexandre<br/>Montreal<br/>H3A 2G6<br/>T. 514-555-5555</p><a href='https://www.google.com/maps/dir//1449+St-Alexandre,+Montreal,+Quebec/'><img src='http://maps.googleapis.com/maps/api/staticmap?center=1449+St-Alexandre,+Montreal,+Quebec&zoom=13&scale=false&size=400x400&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:red%7Clabel:1%7C1449+St-Alexandre,+Montreal,+Quebec' alt='Google Map of 1449 St-Alexandre, Montreal, Quebec'></a>\n[contact-form-7 id='$contact_form' title='Contact US']"
+                }
+            },
             "$delivery_page": {
                 "opts": {
                     "post_title": "free delivery",
@@ -524,17 +543,6 @@
                     "post_type": "page",
                     "post_status": "publish",
                     "post_content": "Delivery Page"
-                }
-            },
-            "$contact_page": {
-                "args": {
-                    "file": "./src/data/text/contact.txt"
-                },
-                "opts": {
-                    "post_title": "contact us",
-                    "post_name": "contact",
-                    "post_type": "page",
-                    "post_status": "publish"
                 }
             },
             "$confirmation_page": {
@@ -583,6 +591,12 @@
                         "id": "$samples_form",
                         "key": "_form",
                         "value": "<p>Your Name (required)<br />\n\t[text* your-name] </p>\n<p>Your Email (required)<br />\n\t[email* your-email] </p>\n<p>Your Street Address<br />\n\t[text* street-address id:street-address class:street-address]</p>\n<p>Your Province<br />\n\t[select* province id:province class:province include_blank 'Alberta' 'British Columbia' 'Manitoba' 'New Brunswick' 'Newfoundland and Labrador' 'Northwest Territories' 'Nova Scotia' 'Nunavut' 'Ontario' 'Prince Edward Island' 'Quebec' 'Saskatchewan' 'Yukon Territory']</p>\n<p>Your City<br />\n\t[text* city id:city class:city]</p>\n<p>Your Postal Code\n\t[text* potsal-code id:postal-code class:postal-code]\n<p>[submit 'Send']</p>"
+                    }
+                }, {
+                    "args": {
+                        "id": "$contact_form",
+                        "key": "_form",
+                        "value": "<p>Your Name (required)<br />\n\t[text* your-name] </p>\n<p>Your Email (required)<br />\n\t[email* your-email] </p>\n<p>Subject<br />\n\t[text your-subject] </p>\n<p>Your Message<br />\n\t[textarea your-message] </p>\n<p>[submit 'Send']</p>"
                     }
                 }, {
                     "args": {
@@ -929,6 +943,22 @@
                     "post_id": "$homepost_4",
                     "featured_image": true
                 }
+            }, {
+                "args": {
+                    "file": "./src/data/media/splash-images/1.jpg"
+                },
+                "opts": {
+                    "post_id": "$samples_page",
+                    "featured_image": true
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/horizontal-images/storefront.jpg"
+                },
+                "opts": {
+                    "post_id": "$contact_page",
+                    "featured_image": true
+                }
             },
 
             {
@@ -1144,10 +1174,14 @@
             }
         }]
     },
-    "eval": {
+    "eval": [{
         "args": {
             "php": "\\$spfrm = WPCF7_ContactForm::find(array('id'=>$samples_form))[0];if(!empty(\\$spfrm)){ \\$spfrm->set_properties(array( 'mail' => array('subject'=> 'I want samples!','sender'=> '[your-name] <wordpress@badb0x.akr.club>','body'=> 'From: [your-name] <[your-email]>\nSubject: I want samples!\nPlease send them to:\n\n\n[your-name]\n[street-address]\n[province]\n[city]\n[postal-code]\n\n\n--\nThis e-mail was sent from a contact form on edb (http://badb0x.ark.club)','recipient'=>get_option('admin_email'),'additional_headers'=> 'Reply-To: [your-email]' )));\\$spfrm->save();}"
         }
+    }, {
+        "args": {
+            "php": "\\$spfrm = WPCF7_ContactForm::find(array('id'=>$contact_form))[0];if(!empty(\\$spfrm)){ \\$spfrm->set_properties(array( 'mail' => array('subject'=> '[your-subject]','sender'=> '[your-name] <wordpress@badb0x.akr.club>','body'=> 'From: [your-name] <[your-email]>\n\nSubject: [your-subject]\n\nMessage Body:\n[your-message]\n--\nThis e-mail was sent from a contact form on edb (http://badb0x.akr.club)','recipient'=>get_option('admin_email'),'additional_headers'=> 'Reply-To: [your-email]' )));\\$spfrm->save();}"
+        }
 
-    }
+    }]
 }
