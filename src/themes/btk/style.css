@@ -2629,6 +2629,8 @@ Header
   margin: 0;
   font-size: 0.8em;
   line-height: 1em;
+  z-index: 9999;
+  position: relative;
 }
 #header-box header .site-title span {
   font-size: 3em;
@@ -3462,7 +3464,7 @@ Media Queries and Devices
     position: absolute;
     top: 50px;
     left: 0;
-    width: calc(100vw - 120px);
+    width: 100vw;
     text-align: left;
     margin: 0;
     margin-left: -120px;
