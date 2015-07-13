@@ -592,7 +592,7 @@ Media Queries and Devices
         margin:0;
         position:relative;
         margin-top: -90px;
-        padding: 0 120px;
+        padding:0 20px 0 120px;
         > ul{
           display:block;
           width:~"calc(100% - 120px)";
@@ -607,12 +607,17 @@ Media Queries and Devices
           vertical-align: bottom;
           padding: 0 1em 0 0;
           margin: 0;
-          text-align: right;
+          text-align: left;
         }
         .subnav{
           position:absolute;
           height:0;
           overflow:hidden;
+          li{
+            display:inline-block;
+            width:auto;
+            padding:.5em 2em 0 0;
+          }
         }
         .toggle.on + .subnav{
           height: 100px;
@@ -626,12 +631,8 @@ Media Queries and Devices
           text-align: left;
           margin: 0;
           margin-left: -120px;
-          padding-left: 150px;
-          li{
-            display:inline-block;
-            width:auto;
-            padding:.5em 1em 0 0;
-          }
+          padding-left: 120px;
+          
         }
     }
   }

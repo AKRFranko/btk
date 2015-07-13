@@ -3426,7 +3426,7 @@ Media Queries and Devices
     margin: 0;
     position: relative;
     margin-top: -90px;
-    padding: 0 120px;
+    padding: 0 20px 0 120px;
   }
   #header-box header nav.nav-hamburger .woo-categories > ul {
     display: block;
@@ -3442,12 +3442,17 @@ Media Queries and Devices
     vertical-align: bottom;
     padding: 0 1em 0 0;
     margin: 0;
-    text-align: right;
+    text-align: left;
   }
   #header-box header nav.nav-hamburger .woo-categories .subnav {
     position: absolute;
     height: 0;
     overflow: hidden;
+  }
+  #header-box header nav.nav-hamburger .woo-categories .subnav li {
+    display: inline-block;
+    width: auto;
+    padding: .5em 2em 0 0;
   }
   #header-box header nav.nav-hamburger .woo-categories .toggle.on + .subnav {
     height: 100px;
@@ -3461,12 +3466,7 @@ Media Queries and Devices
     text-align: left;
     margin: 0;
     margin-left: -120px;
-    padding-left: 150px;
-  }
-  #header-box header nav.nav-hamburger .woo-categories .toggle.on + .subnav li {
-    display: inline-block;
-    width: auto;
-    padding: .5em 1em 0 0;
+    padding-left: 120px;
   }
   div.showroom-map {
     display: inline-block;
