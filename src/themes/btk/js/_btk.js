@@ -4,7 +4,11 @@
 
         // product sub/menu toggles
         $('.woo-categories .toggle').on('click', function() {
-            $(this).toggleClass('on');
+            var $it = $(this);
+            var $others = $('.woo-categories .toggle.on').not($it);
+            $it.toggleClass('on');
+            $others.removeClass('on');
+
         });
 
         // back to top - scrolling anim

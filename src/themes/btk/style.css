@@ -1431,6 +1431,17 @@ Woocommerce Overrides
   height: auto;
   border-bottom: 3px solid #000000;
 }
+.woocommerce #content div.product .tech {
+  text-align: center;
+  padding-bottom: 25px;
+}
+.woocommerce #content div.product .tech img {
+  display: inline-block;
+  max-width: 100%;
+  min-height: 50vh;
+  height: 50vh;
+  max-height: 50vh;
+}
 .woocommerce #content div.product div.summary {
   float: none;
   width: initial;
@@ -1532,12 +1543,8 @@ Woocommerce Overrides
 }
 .woocommerce .product .product-color-choice ul li a.clicked,
 .woocommerce .product .product-color-choice ul li a:hover {
-  -webkit-transform: scale(1.1);
-      -ms-transform: scale(1.1);
-          transform: scale(1.1);
-  -webkit-transform-origin: center;
-      -ms-transform-origin: center;
-          transform-origin: center;
+  transform: scale(1.1);
+  transform-origin: center;
 }
 .woocommerce .product .product-summary {
   float: none;
@@ -1610,16 +1617,6 @@ Woocommerce Overrides
 }
 .woocommerce .product .product-description .desc {
   padding-bottom: 25px;
-}
-.woocommerce .product .product-description .tech {
-  text-align: center;
-  padding-bottom: 25px;
-}
-.woocommerce .product .product-description .tech img {
-  display: inline-block;
-  max-width: 100%;
-  min-height: 50vh;
-  height: 50vh;
 }
 .woocommerce .product .product-add {
   padding: 20px 15px;
@@ -2318,8 +2315,7 @@ body.splash-on > * {
 /* slides */
 #splash-page .splash-image {
   z-index: 300;
-  -webkit-animation: splashcycler 12s infinite;
-          animation: splashcycler 12s infinite;
+  animation: splashcycler 12s infinite;
   opacity: 0;
   background-size: cover;
   background-position: center;
@@ -2334,20 +2330,6 @@ body.splash-on > * {
   height: 100%;
 }
 /* slide animation */
-@-webkit-keyframes splashcycler {
-  0% {
-    opacity: 1;
-  }
-  33% {
-    opacity: 1;
-  }
-  35% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
-}
 @keyframes splashcycler {
   0% {
     opacity: 1;
@@ -2364,16 +2346,13 @@ body.splash-on > * {
 }
 /* slide offsets (relative to splashcycler duration)*/
 #splash-page .splash-image:nth-child(1) {
-  -webkit-animation-delay: 0s;
-          animation-delay: 0s;
+  animation-delay: 0s;
 }
 #splash-page .splash-image:nth-child(2) {
-  -webkit-animation-delay: 4s;
-          animation-delay: 4s;
+  animation-delay: 4s;
 }
 #splash-page .splash-image:nth-child(3) {
-  -webkit-animation-delay: 8s;
-          animation-delay: 8s;
+  animation-delay: 8s;
 }
 #splash-page button {
   position: absolute;
@@ -2388,9 +2367,7 @@ body.splash-on > * {
   border-radius: 0;
   text-align: center;
   transition: all 0.1s ease-in-out;
-  -webkit-transform-origin: center;
-      -ms-transform-origin: center;
-          transform-origin: center;
+  transform-origin: center;
   z-index: 500;
   white-space: nowrap;
   line-height: 1.2;
@@ -2569,9 +2546,7 @@ Header
   margin: 0 5px 0 15px;
 }
 #header-box header nav .badge {
-  -webkit-transform: scale(0.6) translateY(-0.5em);
-      -ms-transform: scale(0.6) translateY(-0.5em);
-          transform: scale(0.6) translateY(-0.5em);
+  transform: scale(0.6) translateY(-0.5em);
   font-family: monospace;
 }
 #header-box header nav.nav-hamburger {
@@ -3247,9 +3222,7 @@ Footer
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-transform: translate(0, 0);
-      -ms-transform: translate(0, 0);
-          transform: translate(0, 0);
+  transform: translate(0, 0);
   width: 19px !important;
   height: 19px !important;
   font-size: 1.5em !important;
@@ -3443,8 +3416,56 @@ Media Queries and Devices
   #content .pdf .title a {
     padding: 20px;
   }
-  .nav-hamburger {
+  #header-box header nav.nav-hamburger .menu-hamburger-container {
     display: none;
+  }
+  #header-box header nav.nav-hamburger .woo-categories {
+    display: block;
+    width: 100%;
+    margin: 0;
+    position: relative;
+    margin-top: -6em;
+    padding: 0 120px;
+  }
+  #header-box header nav.nav-hamburger .woo-categories > ul {
+    display: block;
+    width: calc(100% - 120px);
+    position: absolute;
+    top: 0;
+    margin: 0;
+    padding: 0;
+  }
+  #header-box header nav.nav-hamburger .woo-categories > ul li {
+    display: inline-block;
+    width: calc(100% / 9);
+    vertical-align: bottom;
+    padding: 0 1em 0 0;
+    margin: 0;
+    text-align: right;
+  }
+  #header-box header nav.nav-hamburger .woo-categories .subnav {
+    position: absolute;
+    height: 0;
+    overflow: hidden;
+  }
+  #header-box header nav.nav-hamburger .woo-categories .toggle.on + .subnav {
+    height: 100px;
+    min-height: 100%;
+    max-height: 100%;
+    background-color: #fff;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: calc(100vw - 120px);
+    text-align: left;
+    margin: 0;
+    margin-left: -120px;
+    padding-left: 120px;
+  }
+  #header-box header nav.nav-hamburger .woo-categories .toggle.on + .subnav li {
+    display: inline-block;
+    width: auto;
+    padding: 0 1em 0 0;
   }
   div.showroom-map {
     display: inline-block;
@@ -3465,6 +3486,20 @@ Media Queries and Devices
   }
   main > * {
     text-align: left;
+  }
+  #content .desktop {
+    max-width: 750px;
+    width: 750px;
+  }
+  .woocommerce #content div.product,
+  .woocommerce #content div.product-description,
+  .woocommerce #content div.product-summary {
+    max-width: 750px;
+    width: 750px;
+  }
+  #content .content-area {
+    max-width: 750px;
+    width: 750px;
   }
   .home .main-article,
   .woocommerce ul.products li.product {

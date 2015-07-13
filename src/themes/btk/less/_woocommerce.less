@@ -147,6 +147,18 @@ Woocommerce Overrides
 				float:none; width:100%;
 				img { width:100%;height:auto; .imgborder(); }
 			}
+			.tech { 
+			  text-align:center;
+			  padding-bottom:25px; 
+			  
+			  img{ 
+			    display:inline-block ;
+			    max-width:100%;
+			    min-height:50vh;
+			    height:50vh;
+			    max-height:50vh;
+			  }
+			}
 			div.summary {
 				float:none; width:initial; padding:10px 0; margin:0 15px;
 				border-top:1px solid @black; border-bottom:1px solid @black;
@@ -272,19 +284,10 @@ Woocommerce Overrides
 				&:hover, &.active { background-color:@gray; color:@white; }
 			}
 			.desc { padding-bottom:25px; }
-			.tech { 
-			  text-align:center;
-			  padding-bottom:25px; 
-			  img{ 
-			    display:inline-block ;
-			    max-width:100%;
-			    min-height:50vh;
-			    height:50vh;
-			    
-			  }
-			}
-		}
+			
 
+		}
+		
 		.product-add {
 			padding:20px 15px; .imgborder();
 			form.cart {

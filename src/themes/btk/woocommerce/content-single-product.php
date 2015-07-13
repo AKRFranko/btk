@@ -165,13 +165,13 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 		<p class="desc"><?php echo get_the_content(); ?></p>
 		<p class="right">
 			<a href="" download="" class="upper pr-pdf">PDF</a>
-			<a href="" class="pr-rev"><?php _e('Customer reviews', 'btk'); ?></a>
+			<!-- <a href="" class="pr-rev"><?php _e('Customer reviews', 'btk'); ?></a> -->
 		</p>
 		<p class="tech"><?php echo btk_product_technical_drawing(); ?></p>
 	</div>
 
 
-	<?php comments_template( 'single-product-reviews.php' ); ?>
+	<?php //comments_template( 'single-product-reviews.php' ); ?>
 
 	
 

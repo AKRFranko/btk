@@ -28,6 +28,7 @@ body.woocommerce-page, body.page{
 
 .container{
   max-width:970px;
+  
 }
 
 
@@ -575,16 +576,66 @@ Media Queries and Devices
 	.navbar-nav>li { float:none; }
 	.navbar-nav>li>a { padding-top:10px; padding-bottom:10px; }
 	.collapse.in { display:block !important; }
-
+  
 }
 
 
 @media (min-width: 992px) {
 	.home .main-article .title,
 	#content .pdf .title a { padding:20px; }
-  .nav-hamburger { display:none; }
-  
-		 div.showroom-map{
+  #header-box header nav.nav-hamburger { 
+    .menu-hamburger-container{display:none;}
+    .woo-categories{
+      
+        display:block;
+        width:100%;
+        margin:0;
+        position:relative;
+        margin-top: -6em;
+        padding: 0 120px;
+        > ul{
+          display:block;
+          width:~"calc(100% - 120px)";
+          position:absolute;  
+          top:0;
+          margin:0;
+          padding:0;
+        }
+        > ul li{
+          display:inline-block;
+          width:~"calc(100% / 9)";
+          vertical-align: bottom;
+          padding: 0 1em 0 0;
+          margin: 0;
+          text-align: right;
+        }
+        .subnav{
+          position:absolute;
+          height:0;
+          overflow:hidden;
+        }
+        .toggle.on + .subnav{
+          height: 100px;
+          min-height: 100%;
+          max-height: 100%;
+          background-color: #fff;
+          position: absolute;
+          top: 60px;
+          left: 0;
+          width: ~"calc(100vw - 120px)";
+          text-align: left;
+          margin: 0;
+          margin-left: -120px;
+          padding-left: 120px;
+          li{
+            display:inline-block;
+            width:auto;
+            padding:0 1em 0 0;
+          }
+        }
+    }
+  }
+	div.showroom-map{
     display:inline-block;
     width: 400px;
     float: right;
@@ -600,6 +651,20 @@ Media Queries and Devices
 		text-align:center;
 		& > * { text-align:left; }
 	}
+	#content{
+	  .desktop{
+	      max-width:750px;
+        width:750px;
+	  }
+	  .woocommerce & {
+	    div.product,div.product-description,div.product-summary{
+        .desktop();
+      }  
+	  }
+    .content-area{
+      .desktop();
+    }
+  }
 	.home .main-article,
 	.woocommerce ul.products li.product {
 		display:inline-block; width:~"calc(33% - " (20px/3) ~")";
