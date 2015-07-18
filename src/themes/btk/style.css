@@ -2205,13 +2205,13 @@ Woocommerce Overrides
     border: 0;
   }
   .woocommerce .product #user-product-settings .product-color-choice {
-    width: 70%;
+    width: 50%;
   }
   .woocommerce .product #user-product-settings .product-add {
     position: absolute;
-    width: 30%;
+    width: 50%;
     top: 15px;
-    left: 70%;
+    left: 50%;
   }
   .woocommerce .product #user-product-settings .product-add .qty-text,
   .woocommerce .product #user-product-settings .product-add .product-color {

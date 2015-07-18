@@ -269,18 +269,19 @@ addToCat = function(post_varname, cat) {
 };
 
 setMockdata = function(post_varname) {
+    var hasStock = Math.round(Math.random()) % 2;
     recipe.post.meta.update.push({
         args: {
             id: "" + post_varname,
             key: "_stock_status",
-            value: 'instock'
+            value: hasStock ? 'instock' : 'outofstock'
         }
     });
     recipe.post.meta.update.push({
         args: {
             id: "" + post_varname,
             key: "_stock",
-            value: 10
+            value: hasStock ? Math.floor(Math.random() * 20) : 0
         }
     });
 
