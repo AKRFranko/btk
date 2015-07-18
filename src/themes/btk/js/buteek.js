@@ -85,7 +85,10 @@
             $('.woo-categories').toggle();
         });
 
+        // $('main').masonry({
 
+        //     itemSelector: '.main-article'
+        // });
 
         // sliderz
         $('.edb-slider').each(function() {
