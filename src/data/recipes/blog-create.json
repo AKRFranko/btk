@@ -913,7 +913,7 @@
     "media": {
         "import": [{
                 "args": {
-                    "file": "./src/data/media/carousel-images/best-sofase.jpg"
+                    "file": "./src/data/media/carousel-images/best-sofas.jpg"
                 },
                 "opts": {
                     "post_id": "$homepost_1",
