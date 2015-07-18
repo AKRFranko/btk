@@ -913,7 +913,7 @@
     "media": {
         "import": [{
                 "args": {
-                    "file": "./src/data/media/carousel-images/1.jpg"
+                    "file": "./src/data/media/carousel-images/best-sofase.jpg"
                 },
                 "opts": {
                     "post_id": "$homepost_1",
@@ -921,7 +921,7 @@
                 }
             }, {
                 "args": {
-                    "file": "./src/data/media/carousel-images/2.jpg"
+                    "file": "./src/data/media/carousel-images/designers.jpg"
                 },
                 "opts": {
                     "post_id": "$homepost_2",
@@ -929,7 +929,7 @@
                 }
             }, {
                 "args": {
-                    "file": "./src/data/media/carousel-images/3.jpg"
+                    "file": "./src/data/media/carousel-images/fabric-samples.jpg"
                 },
                 "opts": {
                     "post_id": "$homepost_3",
@@ -937,7 +937,7 @@
                 }
             }, {
                 "args": {
-                    "file": "./src/data/media/carousel-images/4.jpg"
+                    "file": "./src/data/media/carousel-images/lookbook.jpg"
                 },
                 "opts": {
                     "post_id": "$homepost_4",
@@ -963,7 +963,7 @@
 
             {
                 "args": {
-                    "file": "./src/data/media/vertical-images/1.jpg"
+                    "file": "./src/data/media/carousel-images/1.jpg"
                 },
                 "opts": {
                     "post_id": "$news_01",
@@ -971,7 +971,7 @@
                 }
             }, {
                 "args": {
-                    "file": "./src/data/media/vertical-images/2.jpg"
+                    "file": "./src/data/media/carousel-images/2.jpg"
                 },
                 "opts": {
                     "post_id": "$news_02",
@@ -979,7 +979,7 @@
                 }
             }, {
                 "args": {
-                    "file": "./src/data/media/vertical-images/3.jpg"
+                    "file": "./src/data/media/carousel-images/3.jpg"
                 },
                 "opts": {
                     "post_id": "$news_03",
@@ -987,7 +987,7 @@
                 }
             }, {
                 "args": {
-                    "file": "./src/data/media/vertical-images/4.jpg"
+                    "file": "./src/data/media/carousel-images/4.jpg"
                 },
                 "opts": {
                     "post_id": "$news_04",
@@ -995,7 +995,7 @@
                 }
             }, {
                 "args": {
-                    "file": "./src/data/media/vertical-images/5.jpg"
+                    "file": "./src/data/media/carousel-images/5.jpg"
                 },
                 "opts": {
                     "post_id": "$news_05",

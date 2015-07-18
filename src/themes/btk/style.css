@@ -1150,11 +1150,16 @@ Woocommerce Overrides
 .product-color-choice-option .instock {
   display: block;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -1em;
-  margin-left: -2em;
+  top: 0;
+  left: 0;
+  font-weight: normal;
+  font-size: x-small;
   color: #fff;
+  width: 100%;
+  white-space: normal;
+  height: 100%;
+  text-align: center;
+  line-height: 3;
 }
 .woocommerce {
   min-height: 250px;
