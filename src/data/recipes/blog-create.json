@@ -524,7 +524,7 @@
                     "post_name": "order-samples",
                     "post_type": "page",
                     "post_status": "publish",
-                    "post_content": "[contact-form-7 id='$samples_form' title='Order Samples']"
+                    "post_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tristique quam sit amet tellus volutpat pretium. Integer mollis tristique porta. Duis pretium sapien mattis elit eleifend hendrerit. Maecenas eu elementum dui. </p>[contact-form-7 id='$samples_form' title='Order Samples']"
                 }
             },
             "$contact_page": {
