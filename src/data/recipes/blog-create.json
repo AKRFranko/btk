@@ -913,7 +913,7 @@
     "media": {
         "import": [{
                 "args": {
-                    "file": "./src/data/media/carousel-images/lookbook.jpg"
+                    "file": "./src/data/media/carousel-images/1.jpg"
                 },
                 "opts": {
                     "post_id": "$homepost_1",
@@ -921,7 +921,7 @@
                 }
             }, {
                 "args": {
-                    "file": "./src/data/media/carousel-images/designers.jpg"
+                    "file": "./src/data/media/carousel-images/2.jpg"
                 },
                 "opts": {
                     "post_id": "$homepost_2",
@@ -929,7 +929,7 @@
                 }
             }, {
                 "args": {
-                    "file": "./src/data/media/carousel-images/best-sofas.jpg"
+                    "file": "./src/data/media/carousel-images/3.jpg"
                 },
                 "opts": {
                     "post_id": "$homepost_3",
@@ -937,7 +937,7 @@
                 }
             }, {
                 "args": {
-                    "file": "./src/data/media/carousel-images/fabric-samples.jpg"
+                    "file": "./src/data/media/carousel-images/4.jpg"
                 },
                 "opts": {
                     "post_id": "$homepost_4",
