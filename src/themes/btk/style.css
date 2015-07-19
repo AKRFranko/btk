@@ -3523,20 +3523,6 @@ Media Queries and Devices
   main > * {
     text-align: left;
   }
-  #content .desktop {
-    max-width: 750px;
-    width: 750px;
-  }
-  .woocommerce #content div.product,
-  .woocommerce #content div.product-description,
-  .woocommerce #content div.product-summary {
-    max-width: 750px;
-    width: 750px;
-  }
-  #content .content-area {
-    max-width: 750px;
-    width: 750px;
-  }
   .home .main-article,
   .woocommerce ul.products li.product {
     display: inline-block;
