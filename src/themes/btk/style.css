@@ -3001,7 +3001,8 @@ Content
   border-bottom: 3px solid #000000;
 }
 #content article.category-carousel .attachment-thumbnail-wrapper,
-#content article.type-page .attachment-thumbnail-wrapper {
+#content article.type-page .attachment-thumbnail-wrapper,
+#content article.type-post .attachment-thumbnail-wrapper {
   max-height: 20vh;
   overflow: hidden;
   margin-bottom: .5em;
