@@ -3002,7 +3002,7 @@ Content
 }
 #content article.category-carousel .attachment-thumbnail-wrapper,
 #content article.type-page .attachment-thumbnail-wrapper,
-#content article.type-post .attachment-thumbnail-wrapper {
+#content article.typede-post .attachment-thumbnail-wrapper {
   max-height: 20vh;
   overflow: hidden;
   margin-bottom: .5em;
@@ -3545,6 +3545,10 @@ Media Queries and Devices
   .home .main-article:nth-child(2),
   .home .main-article:nth-of-type(3n+2) {
     margin-left: 0;
+  }
+  .woocommerce .product .product-images {
+    max-width: 750px;
+    width: 750px;
   }
 }
 .safari .main-slider .slider li {

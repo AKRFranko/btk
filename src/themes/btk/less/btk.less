@@ -336,7 +336,7 @@ Content
 	article {
 		margin:0;
 		.attachment-post-thumbnail { width:100%; margin-bottom:10px; .imgborder(); }
-		&.category-carousel,&.type-page,&.type-post{
+		&.category-carousel,&.type-page,&.typede-post{
 		  .attachment-thumbnail-wrapper{
 		    max-height:20vh;
 		    overflow:hidden;
@@ -655,7 +655,9 @@ Media Queries and Devices
 		text-align:center;
 		& > * { text-align:left; }
 	}
+	
 	#content{
+	  
 	 // .desktop{
 	 //     max-width:750px;
   //       width:750px;
@@ -681,6 +683,10 @@ Media Queries and Devices
 	.home .main-article{
 		&:nth-of-type(3n+1) { margin-right:0; }
 		&:nth-child(2), &:nth-of-type(3n+2) { margin-left:0; }
+	}
+	.woocommerce .product .product-images{
+	  max-width:750px;
+	  width:750px;
 	}
 }
 
