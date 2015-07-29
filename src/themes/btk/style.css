@@ -3550,11 +3550,23 @@ Media Queries and Devices
   }
   div.showroom-map {
     display: inline-block;
-    width: 400px;
+    width: 45vw;
     float: right;
+    vertical-align: top;
+    position: absolute;
+    top: 40vh;
+    left: 50vw;
   }
   div.contact-form {
     display: inline-block;
+    margin-top: -2em;
+  }
+  div.contact-form h3 {
+    margin-left: .6em;
+  }
+  div.contact-form input[type="submit"] {
+    float: right;
+    margin-right: .75em;
   }
   #header-box header {
     padding-left: 20px;
