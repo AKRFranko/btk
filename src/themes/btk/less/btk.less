@@ -126,7 +126,7 @@ Header
 		}
 		.navigation { margin-right:50px; }
 		.site-title {
-			clear:both; width:25%; margin:0; font-size:0.8em; line-height:1em;
+			clear:both; width:auto; margin:0; font-size:0.8em; line-height:1em;
 			z-index:9999;
 			position:relative;
 			span { font-size:3em; line-height:1em; letter-spacing:0.05em; }
@@ -598,6 +598,8 @@ Media Queries and Devices
         position:relative;
         margin-top: -90px;
         padding:0 20px 0 120px;
+        z-index:9999;
+        text-align:center;
         > ul{
           display:block;
           width:~"calc(100% - 120px)";
@@ -608,27 +610,18 @@ Media Queries and Devices
         }
         > ul li{
           display:inline-block;
-          width:~"calc(100% / 9)";
+          width:auto;
           vertical-align: bottom;
-          padding: 0 1em 0 0;
+          padding:1.75em 1.5em 0 0em;
           margin: 0;
-          text-align: left;
+          text-align: center;
         }
         .subnav{
           position:absolute;
           height:0;
+          min-width:100vw;
           overflow:hidden;
-          li{
-            display:inline-block;
-            width:auto;
-            padding:.5em 2em 0 0;
-          }
-        }
-        .toggle.on + .subnav{
-          height: 100px;
-          min-height: 100%;
-          max-height: 100%;
-          background-color: #fff;
+           background-color: rgba(255,255,255,0.9);
           position: absolute;
           top: 50px;
           left: 0;
@@ -637,6 +630,18 @@ Media Queries and Devices
           margin: 0;
           margin-left: -120px;
           padding-left: 120px;
+          display:none;
+          li{
+            display:inline-block;
+            width:auto;
+            padding:2em 2em 0 0;
+          }
+        }
+        .toggle.on + .subnav{
+          height: 4em;
+          min-height: 6em;
+          max-height: 100%;
+         display:block;
           
         }
     }
