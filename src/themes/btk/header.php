@@ -36,7 +36,11 @@ if ( $text_color === '' ) { $text_color = '#fff'; }
 <link rel="icon" type="image/png" sizes="16x16" href="/wp-content/themes/btk/img/favicon-16x16.png">
 
 
-<?php wp_head();?>
+<?php wp_head();
+global $current_user;
+      get_currentuserinfo();
+      
+?>
 
 <script src="//use.typekit.net/osv5fru.js"></script>
 <script>try{Typekit.load();}catch(e){}</script>
@@ -72,7 +76,7 @@ if ( $text_color === '' ) { $text_color = '#fff'; }
 							<div class="menu-header-container">
 								<ul id="menu-header">
 									<?php if ( is_user_logged_in() ) : ?>
-									<li class="logout"><a href="<?php echo wp_logout_url( home_url('/') ); ?>"><?php _e('Sign out', 'btk'); ?></a></li>
+									<li class="logout"><a href="<?php echo wp_logout_url( home_url('/') ); ?>"><b><?php echo $current_user->user_nicename; ?></b>, <?php _e('sign out', 'btk'); ?></a></li>
 									<?php else: ?>
 									<li class="login"><a href="<?php echo esc_url(home_url('/')); ?>sign-in"><?php _e('Sign in', 'btk'); ?></a></li>
 									<?php endif; ?>
