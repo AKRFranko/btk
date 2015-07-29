@@ -40,7 +40,7 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 
 <div itemscope itemtype="<?php echo woocommerce_get_product_schema(); ?>" id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-	<div class="product-images">
+	<div class="product-images loading">
 	<?php if ( ! count( $product->get_gallery_attachment_ids() ) > 0 ) { ?>
 		<div class="single-image">
 		<?php

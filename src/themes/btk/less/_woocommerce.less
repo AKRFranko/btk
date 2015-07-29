@@ -363,6 +363,7 @@ Woocommerce Overrides
 		}
 
 		.edb-slider {
+		  min-height:200px;
 			margin-bottom:10px;
 			.slide a { display:none; }
 			.controls {
@@ -626,6 +627,75 @@ Woocommerce Overrides
 	.ie10, .ie11, .NaN {
 		.woocommerce .product .product-images .controls,
 		.woocommerce .product .edb-slider .controls { padding-top:60px; }
+	}
+	
+	.woocommerce .product #user-product-settings{
+	  position:absolute;
+	  top:0px;
+	  width:~"calc(100% - 750px)";
+	  left:750px;
+	 // background:red;
+	  margin:0;
+	  .controls{
+	    bottom:-4em;
+	  }
+	  .product-color-choice,
+	  .product-add{
+	    border:0;
+	  }
+	  .product-color-choice{
+	    width:100%;
+	    ul li{
+	  	  width: ~"calc( 100% / 4 )";
+	  	  
+	    }
+	    ul li a{
+	      padding:0px
+	    }
+	    .instock{
+	       transform: rotate(-45deg);
+  transform-origin: center;
+  top: 50%;
+  left: 50%;
+  margin: -2em;
+	    }
+	  }
+	  p.center{
+	    margin:0;
+	    padding:0;
+	  }
+	  .product-add{
+	    position:absolute;
+	    width:100%;
+	    top:180px;
+	    left:0;
+	    .qty-text,.product-color{
+	      margin:0;
+	      padding:0;
+	    }
+	    .product-color{
+	      margin-top:1em;
+	    }
+	    .qty-text{
+	      margin-top:1.5em;
+	      
+	    }
+	    .qty{
+	      margin-top:.25em;
+	    }
+	    p.right{
+	      text-align:left;
+	      span{
+	        margin-top:1.5em;
+	      }
+	      button{
+	        margin-top:.5em;
+	        float:right;
+	      }
+	    }
+	    
+	    
+	  }
 	}
 }
 

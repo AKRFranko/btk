@@ -77,6 +77,7 @@ foreach ($terms as $term) {
 			<input type="hidden" name="variation_id" class="variation_id" value="<?php echo $default_variation_id; ?>" />
 
       <p class="product-color clearfix">
+        <?php if(empty($term_name)){ $term_name = 'none selected'; }; ?>
 				<span class="valign"><?php echo $term_name; ?></span>
 				<span class="alignright" style="background-color:<?php echo $term_desc; ?>">&nbsp;</span>
 			</p>

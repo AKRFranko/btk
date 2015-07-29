@@ -1,6 +1,6 @@
 (function($) {
     $(window).load(function() {
-
+        $('.loading').removeClass('loading');
         // product sub/menu toggles
         $('.woo-categories .toggle').on('click', function() {
             var $it = $(this);
