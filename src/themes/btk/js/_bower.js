@@ -12701,7 +12701,10 @@ var EDBSlider = function(el, opts) {
             it.adjustHeight(it.options.spacing || 0)
         }, 200);
     }
+    $(window).on('orientationchange', handleResize)
     $(window).on('resize', handleResize).resize();
+
+
     $(it.el).data('slider', it);
     return this;
 }
@@ -12724,6 +12727,9 @@ EDBSlider.Slide = function(data, index) {
     });
     it.img.src = data.src;
     var link = $('<a>').attr('href', data.url).prop('draggable', false).addClass('slide-link').html('<span class="slide-text">' + data.text + '</span>')
+    if (data._blank) {
+        link.attr('target', '_blank');
+    }
     $(it.el).css('background-image', 'url("' + data.src + '")');
     $(it.el).addClass('slide').data('slide', it).append(it.img).append(link)
     if (data.html) {
@@ -12762,11 +12768,12 @@ EDBSlider.Slide.prototype = {
 EDBSlider.prototype = {
 
     adjustHeight: function(minus) {
+        console.log('adjust')
         var winHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
         if (isNaN(minus)) minus = $(minus).outerHeight();
         $(this.el).css({
-            "min-height": winHeight - minus,
-            "max-height": winHeight - minus,
+            "min-height": this.options.minHeight || winHeight - minus,
+            "max-height": this.options.minHeight || winHeight - minus,
             "height": winHeight - minus
         })
     },

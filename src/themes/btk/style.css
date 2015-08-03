@@ -1443,9 +1443,6 @@ Woocommerce Overrides
 .woocommerce #content div.product .tech img {
   display: inline-block;
   max-width: 100%;
-  min-height: 50vh;
-  height: 50vh;
-  max-height: 50vh;
 }
 .woocommerce #content div.product div.summary {
   float: none;
@@ -3360,10 +3357,31 @@ Footer
   width: 100%;
   /* text-align: center; */
 }
+.home .edb-slider {
+  /* PASTILLE */
+}
 .home .edb-slider .shopnow:after {
   content: attr(data-text);
   display: block;
   color: #fff;
+}
+.home .edb-slider .slide.active:nth-child(4):after {
+  content: 'Bam!';
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  width: 6rem;
+  height: 6rem;
+  background-color: hotpink;
+  z-index: 9999;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 6rem;
+  font-weight: bold;
+  color: #fff;
+  font-size: 2em;
+  box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.3);
+  border: 2px solid #fff;
 }
 .woocommerce #recently-viewed ul.products {
   white-space: nowrap;
@@ -3592,9 +3610,14 @@ Media Queries and Devices
   .home .main-article:nth-of-type(3n+2) {
     margin-left: 0;
   }
-  .woocommerce .product .product-images {
+  .woocommerce .product .product-images,
+  .page-lookbook .edb-slider {
     max-width: 750px;
     width: 750px;
+  }
+  .page-lookbook .edb-slider {
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 .safari .main-slider .slider li {
@@ -3603,4 +3626,11 @@ Media Queries and Devices
 .mobile #header-box.open .nav-hamburger > div + div,
 .ipad #header-box.open .nav-hamburger > div + div {
   width: 103%;
+}
+/* HACK */
+@media (min-width: 2000px) {
+  body {
+    transform: scale(3);
+    transform-origin: top;
+  }
 }

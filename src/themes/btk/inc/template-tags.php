@@ -303,7 +303,7 @@ function btk_categorized_blog() {
 }
 
 
-function btk_edb_slider($query, $attach = null) {
+function btk_edb_slider($query, $attach = null, $blankTargets = false) {
 	$slider_query = new WP_Query($query);
 	$data = array();
 	while ($slider_query->have_posts()) {
@@ -314,7 +314,7 @@ function btk_edb_slider($query, $attach = null) {
 			$shopnow = get_post_meta($slider_query->post->ID, '_subtitle');
 			$content = apply_filters( 'the_content', get_the_content() );
 			$href = get_permalink( $slider_query->post->ID );
-			array_push($data, array("src" => $src[0], "text" => $title, "shopnow" => $shopnow, "url" => $href, "html" => $content ));
+			array_push($data, array("src" => $src[0], "text" => $title, "shopnow" => $shopnow, "url" => $href, "html" => $content, "_blank" => $blankTargets  ));
 		}
 	}
 	if ($attach) {
@@ -322,7 +322,7 @@ function btk_edb_slider($query, $attach = null) {
 			$src   = wp_get_attachment_image_src( $attachment_id, 'large');
 			$title = esc_attr( get_the_title( $attachment_id ) );
 			$href  = get_permalink();
-			array_push($data, array("src" => $src[0], "text" => $title, "url" => $href));
+			array_push($data, array("src" => $src[0], "text" => $title, "url" => $href, "_blank" => $blankTargets ));
 		}
 	}
 	?><script type="application/json"><?php echo json_encode($data);?></script><?php
@@ -330,9 +330,12 @@ function btk_edb_slider($query, $attach = null) {
 
 function btk_edb_lookbook_slider(){
   $query = array( 'post_type' => 'post', 'post_per_page' => '5', 'category_name' => 'lookbook' );
-  btk_edb_slider( $query );
+  btk_edb_slider( $query, null, true );
 }
 
+function btk_product_pdf_link(){
+  	return '<a href="" download="" class="upper pr-pdf">PDF</a>';
+}
 function btk_edb_single_product_slider() {
 	$data = array();
 	$images =  get_posts(array(

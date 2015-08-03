@@ -76,7 +76,7 @@ global $current_user;
 							<div class="menu-header-container">
 								<ul id="menu-header">
 									<?php if ( is_user_logged_in() ) : ?>
-									<li class="logout"><a href="<?php echo wp_logout_url( home_url('/') ); ?>"><b><?php echo $current_user->user_nicename; ?></b>, <?php _e('sign out', 'btk'); ?></a></li>
+									<li class="logout"><a href="<?php echo wp_logout_url( home_url('/') ); ?>">Welcome <b><?php echo $current_user->user_nicename; ?></b>, <?php _e('sign out', 'btk'); ?></a></li>
 									<?php else: ?>
 									<li class="login"><a href="<?php echo esc_url(home_url('/')); ?>sign-in"><?php _e('Sign in', 'btk'); ?></a></li>
 									<?php endif; ?>

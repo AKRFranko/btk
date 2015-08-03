@@ -64,7 +64,9 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 			<span class="product-title upper"><?php the_title(); ?> <span data-text="<?php _e('shop', 'btk' ); ?>" class="shopnow"></span></span>
 			<span class="product-price">_ <?php echo $product->get_price_html(); ?></span>
 		</a>
+		
 		<?php the_excerpt(); ?>
+		
 		<span class="icon-chevron-lite-right-black"></span>
 	</div>
 
@@ -75,7 +77,7 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 		 *
 		 * @hooked woocommerce_template_loop_add_to_cart - 10
 		 */
-		do_action( 'woocommerce_after_shop_loop_item' );
+		//do_action( 'woocommerce_after_shop_loop_item' );
 
 	?>
 

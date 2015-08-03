@@ -514,6 +514,28 @@ Footer
     display: block;
     color: #fff;
   }
+  /* PASTILLE */
+  .slide.active:nth-child(4):after{
+    
+  content: 'Bam!';
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  width: 6rem;
+  height: 6rem;
+  background-color: hotpink;
+  z-index: 9999;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 6rem;
+  font-weight: bold;
+  color: #fff;
+  font-size: 2em;
+  box-shadow: 0 0 .1em rgba(0,0,0,0.3);
+  border: 2px solid #fff;
+
+  }
+  
 }
 
 
@@ -707,9 +729,13 @@ Media Queries and Devices
 		&:nth-of-type(3n+1) { margin-right:0; }
 		&:nth-child(2), &:nth-of-type(3n+2) { margin-left:0; }
 	}
-	.woocommerce .product .product-images{
+	.woocommerce .product .product-images,.page-lookbook .edb-slider{
 	  max-width:750px;
 	  width:750px;
+	}
+	.page-lookbook .edb-slider{
+	  margin-left:auto;
+	  margin-right:auto;
 	}
 }
 
@@ -723,5 +749,13 @@ Media Queries and Devices
 
 .mobile, .ipad {
 	#header-box.open .nav-hamburger > div + div { width:103%; }
+}
+
+/* HACK */
+@media (min-width: 2000px) {
+  body{
+    transform:scale(3);
+    transform-origin:top;
+  }
 }
 

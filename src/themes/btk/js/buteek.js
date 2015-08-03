@@ -104,10 +104,10 @@
             // //     // case 'post':
             // //     default: var spacing = $('#masthead').outerHeight()
             // // };
-            var spacing
-            var masthead = $('#masthead').outerHeight()
-            var winHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
-            if ($('body').is('.home')) {
+            var spacing;
+            var masthead = $('#masthead').outerHeight();
+            var winHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+            if ($('body').hasClass('home')) {
                 spacing = masthead;
             } else {
                 spacing = (winHeight / 2) + (masthead / 2);
@@ -116,7 +116,8 @@
             //     spacing += winHeight / 2
             // }
             var slider = window.EDBSlider(el, {
-                spacing: spacing
+                spacing: spacing,
+                minHeight: $('.maxw_320,.home').length ? null : 460
             });
             slider.toggle(0, 'on');
             $(el).find('.slide').each(function(slide) {
