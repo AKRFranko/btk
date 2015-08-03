@@ -164,7 +164,7 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 	<div class="product-description clearfix">
 		<p class="desc"><?php echo get_the_content(); ?></p>
 		<p class="right">
-		  <?php echo btk_product_pdf_link(); ?>
+		  <?php echo btk_product_pdf_link( get_the_ID() ); ?>
 		
 			<!-- <a href="" class="pr-rev"><?php _e('Customer reviews', 'btk'); ?></a> -->
 		</p>

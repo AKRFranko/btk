@@ -91,7 +91,7 @@ global $current_user;
 						<!-- menu hamburger -->
 						<nav class="nav-hamburger navbar valign" role="navigation">
 							<div class="navbar-header">
-								<a class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-hamburger">
+								<a class="navbar-toggle collapsed loading" data-toggle="collapse" data-target="#nav-hamburger">
 									<span class="sr-only"><?php _e('Toggle navigation', 'btk'); ?></span>
 									<span class="fa fa-bars"></span>
 								</a>

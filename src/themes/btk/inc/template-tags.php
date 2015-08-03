@@ -333,7 +333,8 @@ function btk_edb_lookbook_slider(){
   btk_edb_slider( $query, null, true );
 }
 
-function btk_product_pdf_link(){
+function btk_product_pdf_link( $productID ){
+    var_dump(get_attached_media('pdf',$productID));
   	return '<a href="" download="" class="upper pr-pdf">PDF</a>';
 }
 function btk_edb_single_product_slider() {

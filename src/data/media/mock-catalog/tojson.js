@@ -1,5 +1,3 @@
-var argv, addToCat, basename, bindTerms, buildRecipe, cat_tree, createPost, createTerm, enableVariations, enableVisibility, fs, getCatVar, getPaths, importMedia, materials, output, readTree, recipe, setMaterial, setMockdata, setSKU, variant_cats, pad, getSKU, indexes, adler32, goo, cat_idx, genMediaVar;
-
 adler32 = require('adler32');
 fs = require('fs');
 
@@ -332,6 +330,7 @@ importMedia = function(data) {
     mat_varnames = [];
     angles = readFolderImages(data.path + "/images/cutout");
     scenes = readFolderImages(data.path + "/images/ambiance");
+
     try {
         tech = readFolderImages(data.path + "/images/tech");
     } catch (e) {
@@ -370,7 +369,14 @@ importMedia = function(data) {
             featured_image: true
         }
     };
-
+    recipe.media["import"][feat_varname + '_pdf'] = {
+        args: {
+            file: '/home/franko/Code/edb.com/btk/src/data/media/pdfs/taiga-v3.pdf'
+        },
+        opts: {
+            post_id: data.varname
+        }
+    };
     all.map(function(path) {
         var sub_varname = genMediaVar(data.varname);
         image_varnames.push(sub_varname);

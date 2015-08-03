@@ -2479,6 +2479,13 @@ body.page .term-description {
 .container {
   max-width: 970px;
 }
+body.loading {
+  opacity: 0.6;
+}
+body {
+  opacity: 1;
+  transition: opacity 50ms ease-in;
+}
 /*
 ==========================================================================
 Overridez
@@ -2812,6 +2819,9 @@ Sliders
 .product-images.loading {
   min-height: 50vh;
 }
+.navbar-toggle.loading {
+  display: none;
+}
 .edb-slider .slide-link {
   background-color: rgba(0, 0, 0, 0.1);
 }
@@ -3028,7 +3038,7 @@ Content
 }
 #content article.category-carousel .attachment-thumbnail-wrapper,
 #content article.type-page .attachment-thumbnail-wrapper,
-#content article.typede-post .attachment-thumbnail-wrapper {
+#content article.type-post .attachment-thumbnail-wrapper {
   max-height: 20vh;
   overflow: hidden;
   margin-bottom: .5em;
@@ -3365,7 +3375,7 @@ Footer
   display: block;
   color: #fff;
 }
-.home .edb-slider .slide.active:nth-child(4):after {
+.home .edb-slider .slide.active:nth-child(2):after {
   content: 'Bam!';
   position: absolute;
   top: 10%;

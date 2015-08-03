@@ -30,6 +30,13 @@ body.woocommerce-page, body.page{
   max-width:970px;
   
 }
+body.loading{
+  opacity:0.6;
+}
+body{
+  opacity:1;
+  transition:opacity 50ms ease-in;
+}
 
 
 /*
@@ -197,6 +204,9 @@ Sliders
 .product-images.loading {
   min-height:50vh;
 }
+.navbar-toggle.loading{
+  display:none;
+}
 .edb-slider .slide-link { background-color:rgba(0, 0, 0, 0.1); }
 .edb-slider .controls { 
   font-size:1em; 
@@ -338,7 +348,7 @@ Content
 	article {
 		margin:0;
 		.attachment-post-thumbnail { width:100%; margin-bottom:10px; .imgborder(); }
-		&.category-carousel,&.type-page,&.typede-post{
+		&.category-carousel,&.type-page,&.type-post{
 		  .attachment-thumbnail-wrapper{
 		    max-height:20vh;
 		    overflow:hidden;
@@ -515,7 +525,7 @@ Footer
     color: #fff;
   }
   /* PASTILLE */
-  .slide.active:nth-child(4):after{
+  .slide.active:nth-child(2):after{
     
   content: 'Bam!';
   position: absolute;
