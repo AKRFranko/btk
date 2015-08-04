@@ -13,30 +13,37 @@
         setTimeout(hideToast, 1000);
     }
     var showToast = function() {
-        // store.set('lastToastSeen', 'initial');
+        store.set('lastToastSeen', 'initial');
         $('#toast').addClass('show');
     }
     var hideToast = function() {
         $('#toast').removeClass('show');
     }
     var onClickClose = function() {
-        // store.set('lastToastClosed', true);
+        store.set('lastToastClosed', true);
         hideToast();
     }
     var onClickSend = function() {
         store.set('lastToastSent', true);
         sayThankYou();
     }
-    var lastToastSeen = store.get('lastToastSeen');
-    var lastToastClosed = store.get('lastToastClosed');
-    if (!lastToastSeen) {
-        if (lastToastClosed) {
-            $(window).blur(showToast);
-        } else {
-            setTimeout(showToast, 2000);
+    if ($("#toast .invalid")) {
+        showToast();
+    } else {
+        var lastToastSeen = store.get('lastToastSeen');
+        var lastToastClosed = store.get('lastToastClosed');
+        if (!lastToastSeen) {
+            if (lastToastClosed) {
+                $(window).blur(showToast);
+            } else {
+                setTimeout(showToast, 2000);
 
+            }
         }
+
+
     }
-    $(document).on('click', '#toast .close', onClickClose)
+    $(document).on('click', '#toast .close', onClickClose);
+    $(document).on('submit', '#toast form', onClickSend);
 
 })(jQuery)
