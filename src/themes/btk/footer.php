@@ -83,6 +83,16 @@
 </script>
 <noscript><p><img src="//anal.akr.club/piwik.php?idsite=4" style="border:0;" alt="" /></p></noscript>
 <!-- End Piwik Code -->
-
+<div id="toast">
+<a href="#" class="close">close</a>
+<div class="page">
+<?php 
+$pageID = get_ID_by_page_name('contest-toast');
+$recent = new WP_Query("page_id=$pageID"); while($recent->have_posts()) : $recent->the_post();?>
+       <h3><?php the_title(); ?></h3>
+       <?php the_content(); ?>
+<?php endwhile; ?>
+</div>
+</div>
 </body>
 </html>

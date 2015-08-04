@@ -371,7 +371,7 @@ importMedia = function(data) {
     };
     recipe.media["import"][feat_varname + '_pdf'] = {
         args: {
-            file: '/home/franko/Code/edb.com/btk/src/data/media/pdfs/taiga-v3.pdf'
+            file: './src/data/media/pdfs/taiga-v3.pdf'
         },
         opts: {
             post_id: data.varname

@@ -204,6 +204,7 @@
                 "opts": {
                     "post_title": "Slideup Toast!",
                     "post_type": "wpcf7_contact_form",
+
                     "post_status": "publish"
                 }
             },

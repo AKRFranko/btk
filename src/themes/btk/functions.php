@@ -31,6 +31,12 @@ function woocommerce_support() {
 }
 add_action( 'after_setup_theme', 'woocommerce_support' );
 
+function get_ID_by_page_name($page_name) {
+   global $wpdb;
+   $page_name_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '".$page_name."' AND post_type = 'page'");
+   return $page_name_id;
+}
+
 function btk_get_product_by_sku( $sku ) {
 
   global $wpdb;
