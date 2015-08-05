@@ -44,14 +44,15 @@
         } else {
             hideToast();
         }
-        if (debugMode) {
-            showToast();
-        }
+
         toastInterval = setTimeout(checkToast, 1000);
     }
     $(function() {
         if (store.get('lastToastSent') != $('#toast').data('toast')) {
             checkToast()
+        }
+        if (debugMode) {
+            showToast();
         }
 
     });
