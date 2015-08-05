@@ -517,6 +517,7 @@ Footer
   width: 100%;
   /* text-align: center; */
 }
+
 #toast{
   opacity:0;
   position: fixed;
@@ -600,8 +601,40 @@ Footer
   position:absolute;
   top:1em;
   right:1em;
-  color:#000;
+  color:#000!important;
   font-weight:bold;
+  z-index:99999;
+}
+
+@media all and (max-width:700px){
+  #toast{
+    max-height:100vh;
+    min-height:100vh;
+  }
+ #toast .page{
+   width:100%;
+   max-height:none;
+   min-height:100vh;
+ } 
+ #toast.show{
+   margin-top:-100vh;
+   min-height:100vh;
+ }
+ #toast .image{
+   width:~"calc(100% - 1em)";
+   min-height:30vh;
+   max-height:30vh;
+ } 
+ #toast .content{
+   width:~"calc(100% - 2em)";
+   margin-left:1em;
+   margin-right:1em;
+ }
+ #toast .close{
+   position:absolute;
+   top:0;
+   right:0;
+ }
 }
 .home .edb-slider{
   .shopnow:after {
