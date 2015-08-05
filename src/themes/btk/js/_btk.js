@@ -538,35 +538,53 @@
 
 
     var store = new window.Basil(storeOptions);
+
     var sayThankYou = function() {
-        $('#toast').html('<p class="ty">Thanks! Good Luck!</p>');
-        setTimeout(hideToast, 1000);
+        $('#toast').find('form input').remove();
+        setTimeout(hideToast, 3000);
     }
     var showToast = function() {
-        // store.set('lastToastSeen', 'initial');
+        store.set('lastToastSeen', $('#toast').data('toast'));
         $('#toast').addClass('show');
     }
     var hideToast = function() {
         $('#toast').removeClass('show');
     }
     var onClickClose = function() {
-        // store.set('lastToastClosed', true);
+        store.set('lastToastClosed', new Date().getTime());
         hideToast();
     }
     var onClickSend = function() {
-        store.set('lastToastSent', true);
-        sayThankYou();
+        store.set('lastToastSent', $('#toast').data('toast'));
     }
-    var lastToastSeen = store.get('lastToastSeen');
-    var lastToastClosed = store.get('lastToastClosed');
-    if (!lastToastSeen) {
-        if (lastToastClosed) {
-            $(window).blur(showToast);
-        } else {
-            setTimeout(showToast, 2000);
 
+    $(document).on('click', '#toast .close', onClickClose);
+    $(document).on('submit', '#toast form', onClickSend);
+    var toastInterval = setTimeout(checkToast, 1000);
+    var checkToast = function() {
+        clearInterval(toastInterval);
+        var now = new Date().getTime();
+        var day = 1000 * 60 * 60 * 24;
+        if ($('#toast .wpcf7-mail-sent-ok').length) {
+            return sayThankYou();
+        } else if ($("#toast .invalid").length) {
+            showToast();
+        } else if (now - store.get('lastToastClosed') > day) {
+            showToast();
+        } else {
+            hideToast();
         }
+        toastInterval = setTimeout(checkToast, 1000);
     }
-    $(document).on('click', '#toast .close', onClickClose)
+    $(function() {
+        if (store.get('lastToastSent') != $('#toast').data('toast')) {
+            checkToast()
+        }
+
+    });
+
+
+
+
 
 })(jQuery)

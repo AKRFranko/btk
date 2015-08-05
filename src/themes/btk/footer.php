@@ -83,14 +83,29 @@
 </script>
 <noscript><p><img src="//anal.akr.club/piwik.php?idsite=4" style="border:0;" alt="" /></p></noscript>
 <!-- End Piwik Code -->
-<div id="toast">
+<?php $toastID = get_ID_by_page_name('contest-toast'); ?>
+<div id="toast" data-toast="<?php echo $toastID; ?>">
 <a href="#" class="close">close</a>
+
 <div class="page">
-<?php 
-$pageID = get_ID_by_page_name('contest-toast');
-$recent = new WP_Query("page_id=$pageID"); while($recent->have_posts()) : $recent->the_post();?>
-       <h3><?php the_title(); ?></h3>
-       <?php the_content(); ?>
+
+<?php $recent = new WP_Query("page_id=$toastID"); while($recent->have_posts()) : $recent->the_post();?>
+	<?php
+	  $bgimage = null;
+		if ( has_post_thumbnail() ) {
+		   $thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id($toastID), 'full' );
+		}
+		if ($thumbnail[0]){
+		  $bgimage = $thumbnail[0];
+		}
+	?>
+  <div class="image" style="background-image:url('<?php echo $bgimage; ?>')">
+	</div>
+	<div class="content">
+	     <h3 class="title"><?php the_title(); ?></h3>
+       <div class="body"><?php the_content(); ?></div>
+	</div>
+  
 <?php endwhile; ?>
 </div>
 </div>
