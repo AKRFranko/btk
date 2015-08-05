@@ -39,7 +39,7 @@
             return sayThankYou();
         } else if ($("#toast .invalid").length) {
             showToast();
-        } else if (now - store.get('lastToastClosed') > day) {
+        } else if (now - (1 * store.get('lastToastClosed')) > day) {
             showToast();
         } else {
             hideToast();

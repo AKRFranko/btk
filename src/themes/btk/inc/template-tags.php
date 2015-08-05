@@ -333,9 +333,13 @@ function btk_edb_lookbook_slider(){
   btk_edb_slider( $query, null, true );
 }
 
-function btk_product_pdf_link( $productID ){
-    var_dump(get_attached_media('pdf',$productID));
-  	return '<a href="" download="" class="upper pr-pdf">PDF</a>';
+function btk_product_pdf_link( $productID, $fileName){
+    $pdf = get_attached_media('application/pdf',$productID);
+    if(!empty($pdf)){
+      $pdflink = $pdf[0]['guid']; 
+      return '<a href="'.$pdflink.'" download="'.$fileName.'.pdf" class="upper pr-pdf">PDF</a>';
+    }
+  	return '';
 }
 function btk_edb_single_product_slider() {
 	$data = array();
