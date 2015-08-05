@@ -8,7 +8,7 @@
 
 
     var store = new window.Basil(storeOptions);
-
+    var debugMode = store.get('edb-splash:debug');
     var sayThankYou = function() {
         $('#toast').find('form input').remove();
         setTimeout(hideToast, 3000);
@@ -43,6 +43,9 @@
             showToast();
         } else {
             hideToast();
+        }
+        if (debugMode) {
+            showToast();
         }
         toastInterval = setTimeout(checkToast, 1000);
     }
