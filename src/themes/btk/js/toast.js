@@ -34,7 +34,7 @@
     var checkToast = function() {
         clearInterval(toastInterval);
         var now = new Date().getTime();
-        var day = 1000 * 60 * 60 * 24;
+        var day = 1000; // * 60 * 60 * 24;
         if ($('#toast .wpcf7-mail-sent-ok').length) {
             return sayThankYou();
         } else if ($("#toast .invalid").length) {
@@ -42,7 +42,10 @@
         } else if (now - (1 * store.get('lastToastClosed')) > day) {
             showToast();
         } else {
-            hideToast();
+            if (store.get('lastToastClosed')) {
+                hideToast();
+            }
+
         }
 
         toastInterval = setTimeout(checkToast, 1000);
@@ -51,9 +54,7 @@
         if (store.get('lastToastSent') != $('#toast').data('toast')) {
             checkToast()
         }
-        if (debugMode) {
-            showToast();
-        }
+
 
     });
 
