@@ -30,6 +30,7 @@
 
     $(document).on('click', '#toast .close', onClickClose);
     $(document).on('submit', '#toast form', onClickSend);
+
     var toastInterval = setTimeout(checkToast, 1000);
     var checkToast = function() {
         clearInterval(toastInterval);
@@ -51,9 +52,9 @@
         toastInterval = setTimeout(checkToast, 1000);
     }
     $(function() {
-        if (store.get('lastToastSent') != $('#toast').data('toast')) {
-            checkToast()
-        }
+        // if (store.get('lastToastSent') != $('#toast').data('toast')) {
+        //     checkToast()
+        // }
 
 
     });
