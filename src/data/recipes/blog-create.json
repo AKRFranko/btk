@@ -622,7 +622,7 @@
                     "args": {
                         "id": "$contact_form",
                         "key": "_form",
-                        "value": "<h3>Write To Us</h3><p>[text* your-name placeholder 'your name'] </p>\n<p>[email* your-email placeholder 'your email'] </p>\n<p>[text your-subject placholder 'subject'] </p>\n<p>Your Message<br/><br />\n\t[textarea your-message] </p>\n<p>[submit 'Send']</p>"
+                        "value": "<h3>Write To Us</h3><p>[text* your-name placeholder 'your name'] </p>\n<p>[email* your-email placeholder 'your email'] </p>\n<p>[text your-subject placeholder 'subject'] </p>\n<p>Your Message<br/><br />\n\t[textarea your-message] </p>\n<p>[submit 'Send']</p>"
                     }
                 }, {
                     "args": {

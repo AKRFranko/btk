@@ -187,7 +187,7 @@ global $current_user;
 									<?php do_action( 'register_form' ); ?>
 									<p class="submit">
 										<?php wp_nonce_field( 'woocommerce-register' ); ?>
-										<span class="valign"><?php _e('enter edb', 'btk'); ?></span>
+										<span class="valign"><?php _e('signup to edb', 'btk'); ?></span>
 										<input type="submit" class="valign icon-arrow-lite-right-white" name="register" value="<?php _e( 'Register', 'btk' ); ?>" />
 									</p>
 									<?php do_action( 'woocommerce_register_form_end' ); ?>

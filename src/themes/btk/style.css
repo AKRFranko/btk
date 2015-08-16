@@ -785,8 +785,8 @@ Mixins
 }
 .back-home-button {
   position: absolute;
-  bottom: 60px;
-  right: 15px;
+  bottom: 98px;
+  left: 15px;
 }
 .back-home-button a.buttons {
   font-size: 1.4em;
@@ -2037,8 +2037,8 @@ Woocommerce Overrides
 }
 .woocommerce .color-choice .back-to-product {
   position: absolute;
-  bottom: 60px;
-  right: 15px;
+  bottom: 98px;
+  left: 15px;
 }
 .woocommerce .color-choice .back-to-product a.buttons {
   font-size: 1.4em;
@@ -2079,8 +2079,8 @@ Woocommerce Overrides
 }
 .woocommerce .color-choice .color-selection .choose-this-color {
   position: absolute;
-  bottom: 60px;
-  right: 15px;
+  bottom: 98px;
+  left: 15px;
 }
 .woocommerce .color-choice .color-selection .choose-this-color a.buttons {
   font-size: 1.4em;
@@ -2572,7 +2572,7 @@ Header
   height: 100vh;
 }
 #header-box.open .nav-hamburger > div + div {
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 80vh;
 }
 #header-box header {
@@ -2789,8 +2789,8 @@ Header
 #header-box header .sign-in-menu .back-home {
   display: none;
   position: absolute;
-  bottom: 60px;
-  right: 15px;
+  bottom: 98px;
+  left: 15px;
 }
 #header-box header .sign-in-menu .back-home a.buttons {
   font-size: 1.4em;
@@ -3160,8 +3160,8 @@ Content
 }
 .page-confirmation .confirmation-back-home {
   position: absolute;
-  bottom: 60px;
-  right: 15px;
+  bottom: 98px;
+  left: 15px;
 }
 .page-confirmation .confirmation-back-home a.buttons {
   font-size: 1.4em;
