@@ -392,7 +392,7 @@
         // Synchronize with $_SESSION.
         sync: function(callback) {
             var it = this;
-            var callback = callback || $.noop;
+            var complete = callback || $.noop;
             var data = {
                 "edb-browser-storage": this.all(),
                 action: 'synchronize_browser_storage'
@@ -409,10 +409,10 @@
                     Object.keys(results).forEach(function(key) {
                         it.set(key, results[key]);
                     });
-                    callback(null, it.all());
+                    complete(null, it.all());
                 },
                 error: function(error) {
-                    callback(error);
+                    complete(error);
                 }
             });
         }
@@ -437,14 +437,15 @@
             window.location.reload(true);
         },
         show: function(callback) {
-            var callback = callback || $.noop;
+            var complete = callback || $.noop;
             var it = this;
             var now = (new Date()).getTime();
             var data = this.store.all();
             if (!this.store.get('debug') && this.store.get('devon')) return true;
 
             if (!this.store.get('debug') && (data.splash && data.splash.value === true)) {
-                return callback(null, false);
+                $('body').trigger('splash-closed', data);
+                return complete(null, false);
             } else {
                 it.fetch(function(error, images) {
                     var splash = it.build(images);
@@ -460,9 +461,10 @@
                             value: lang,
                             time: now
                         });
-                        it.store.sync(callback);
+                        it.store.sync(complete);
                         setTimeout(function() {
                             $('body').removeClass('splash-on');
+                            $('body').trigger('splash-closed', data);
                             $('#splash-page').remove();
                         }, 200);
                     });
@@ -560,30 +562,31 @@
 
     $(document).on('click', '#toast .close', onClickClose);
     $(document).on('submit', '#toast form', onClickSend);
-    var toastInterval = setTimeout(checkToast, 1000);
+
+    var toastInterval;
+    $('body').on('splash-closed', function() {
+        setTimeout(checkToast, 3000);
+    });
     var checkToast = function() {
         clearInterval(toastInterval);
         var now = new Date().getTime();
-        var day = 1000 * 60 * 60 * 24;
+        var day = 1000; // * 60 * 60 * 24;
         if ($('#toast .wpcf7-mail-sent-ok').length) {
             return sayThankYou();
         } else if ($("#toast .invalid").length) {
             showToast();
-        } else if (now - (1 * store.get('lastToastClosed')) > day) {
-            showToast();
-        } else {
+        } else if (store.get('lastToastClosed')) {
             hideToast();
+        } else {
+            showToast();
         }
-
         toastInterval = setTimeout(checkToast, 1000);
     }
     $(function() {
-        if (store.get('lastToastSent') != $('#toast').data('toast')) {
-            checkToast()
-        }
-        if (debugMode) {
-            showToast();
-        }
+        // if (store.get('lastToastSent') != $('#toast').data('toast')) {
+        //     checkToast()
+        // }
+
 
     });
 

@@ -337,7 +337,7 @@ function btk_product_pdf_link( $productID, $fileName){
     $pdf = get_attached_media('application/pdf',$productID);
     if(!empty($pdf)){
       $pdflink = $pdf[0]['guid']; 
-      return '<a target="_blank" href="'.$pdflink.'" download="'.$fileName.'.pdf" class="upper pr-pdf">PDF</a>';
+      return '<a target="_blank" href="'.$pdflink.'" download="'.$fileName.'.pdf" class="upper pr-pdf">download PDF</a>';
     }
   	return '';
 }

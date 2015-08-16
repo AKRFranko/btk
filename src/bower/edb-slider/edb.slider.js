@@ -99,6 +99,7 @@ EDBSlider.Slide = function(data, index) {
     var link = $('<a>').attr('href', data.url).prop('draggable', false).addClass('slide-link').html('<span class="slide-text">' + data.text + '</span>')
     if (data._blank) {
         link.attr('target', '_blank');
+        link.prop('target', '_blank');
     }
     $(it.el).css('background-image', 'url("' + data.src + '")');
     $(it.el).addClass('slide').data('slide', it).append(it.img).append(link)

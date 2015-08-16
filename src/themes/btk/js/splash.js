@@ -39,7 +39,7 @@
         // Synchronize with $_SESSION.
         sync: function(callback) {
             var it = this;
-            var callback = callback || $.noop;
+            var complete = callback || $.noop;
             var data = {
                 "edb-browser-storage": this.all(),
                 action: 'synchronize_browser_storage'
@@ -56,10 +56,10 @@
                     Object.keys(results).forEach(function(key) {
                         it.set(key, results[key]);
                     });
-                    callback(null, it.all());
+                    complete(null, it.all());
                 },
                 error: function(error) {
-                    callback(error);
+                    complete(error);
                 }
             });
         }
@@ -84,14 +84,15 @@
             window.location.reload(true);
         },
         show: function(callback) {
-            var callback = callback || $.noop;
+            var complete = callback || $.noop;
             var it = this;
             var now = (new Date()).getTime();
             var data = this.store.all();
             if (!this.store.get('debug') && this.store.get('devon')) return true;
 
             if (!this.store.get('debug') && (data.splash && data.splash.value === true)) {
-                return callback(null, false);
+                $('body').trigger('splash-closed', data);
+                return complete(null, false);
             } else {
                 it.fetch(function(error, images) {
                     var splash = it.build(images);
@@ -107,9 +108,10 @@
                             value: lang,
                             time: now
                         });
-                        it.store.sync(callback);
+                        it.store.sync(complete);
                         setTimeout(function() {
                             $('body').removeClass('splash-on');
+                            $('body').trigger('splash-closed', data);
                             $('#splash-page').remove();
                         }, 200);
                     });

@@ -31,7 +31,10 @@
     $(document).on('click', '#toast .close', onClickClose);
     $(document).on('submit', '#toast form', onClickSend);
 
-    var toastInterval = setTimeout(checkToast, 1000);
+    var toastInterval;
+    $('body').on('splash-closed', function() {
+        setTimeout(checkToast, 3000);
+    });
     var checkToast = function() {
         clearInterval(toastInterval);
         var now = new Date().getTime();
@@ -40,15 +43,11 @@
             return sayThankYou();
         } else if ($("#toast .invalid").length) {
             showToast();
-        } else if (now - (1 * store.get('lastToastClosed')) > day) {
-            showToast();
+        } else if (store.get('lastToastClosed')) {
+            hideToast();
         } else {
-            if (store.get('lastToastClosed')) {
-                hideToast();
-            }
-
+            showToast();
         }
-
         toastInterval = setTimeout(checkToast, 1000);
     }
     $(function() {

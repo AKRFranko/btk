@@ -3381,11 +3381,12 @@ Footer
   background: #fff;
   box-shadow: 0 0 20vh 2px rgba(0, 0, 0, 0.5);
   z-index: 99999999;
-  transition: all 0.2s ease-out;
+  transition: all 0.2s ease-in;
 }
 #toast.show {
   margin-top: -50vh;
   opacity: 1;
+  transition: all 1s ease-out;
 }
 #toast .page {
   display: block;
@@ -3397,9 +3398,9 @@ Footer
 }
 #toast .image {
   display: inline-block;
-  width: calc(250px - 1em);
-  min-height: 100%;
-  margin-top: 0;
+  width: 40%;
+  min-height: 80%;
+  margin-top: 2em;
   margin-right: 1em;
   text-align: center;
   position: relative;
@@ -3409,7 +3410,8 @@ Footer
 }
 #toast .content {
   display: inline-block;
-  max-width: calc(500px - 1em);
+  max-width: 50%;
+  margin-top: 1em;
 }
 #toast .image,
 #toast .content {
@@ -3472,6 +3474,8 @@ Footer
     width: calc(100% - 1em);
     min-height: 30vh;
     max-height: 30vh;
+    margin-top: 4em;
+    margin-bottom: 4em;
   }
   #toast .content {
     width: calc(100% - 2em);
@@ -3637,7 +3641,7 @@ Media Queries and Devices
     margin: 0;
     position: relative;
     margin-top: -90px;
-    padding: 0 20px 0 120px;
+    padding: 0 20px 0 100px;
     z-index: 9999;
     text-align: center;
   }
