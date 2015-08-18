@@ -191,6 +191,13 @@
                 $('.product-color span').last().css(bgfg);
                 // $('.single_variation_wrap .quantity').css(bgfg);
                 $('.single_variation_wrap .variation_id').val($(this).attr('data-variation-id'));
+                var avail = $(this).attr('data-variation-availability-delay');
+                if (avail) {
+                    avail = "backorder " + avail;
+                } else {
+                    avail = 'in stock';
+                }
+                $('.single_variation_wrap .product-variation-availability-delay').text(avail);
                 var imageSrc = $(this).data('variation-image');
                 var activeSlide = $('.edb-slider:first .slides .slide.active');
                 var tempSlide = activeSlide.clone().removeClass('active').addClass('temporary')

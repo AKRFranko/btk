@@ -52,13 +52,7 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 				echo apply_filters( 'woocommerce_single_product_image_html', sprintf( '<img src="%s" alt="%s" />', wc_placeholder_img_src(), __( 'Placeholder', 'woocommerce' ) ), $post->ID );
 			}
 		?>
-		<!--
-		<?php if ( $product->is_in_stock() ) { ?>
-			<span class="in-stock"><?php _e('in stock', 'btk'); ?></span>
-		<?php } else { ?>
-			<span class="in-stock"><?php _e('out of stock', 'btk'); ?></span>
-		<?php } ?>
-		-->
+
 		</div>
 
 		<?php } else { ?>
@@ -70,13 +64,7 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 					<span class="separator"> | </span>
 					<span class="total"> - </span>
 				<a class="next" href="#"><span class="icon-arrow-lite-right-black"></span></a>
-			<!--	
-			<?php if ( $product->is_in_stock() ) { ?>
-				<span class="in-stock"><?php _e('in stock', 'btk'); ?></span>
-			<?php } else { ?>
-				<span class="in-stock"><?php _e('out of stock', 'btk'); ?></span>
-			<?php } ?>
-			-->
+
 			</div>
 		</div>
 	<?php } ?>
@@ -109,10 +97,12 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 				$galleryImageID = get_post_meta( get_the_ID(), "_product_variation_image_$color", true );
 				$galleryImageSRC = wp_get_attachment_image_src($galleryImageID, 'large')[0];
 				$stock_qty = get_post_meta($variation_id,'_stock',true);
+				$stock_delay = get_post_meta($variation_id,'_stock_backorder_delay',true);
+				$stock_avail = $stock_qty > 0 ? '' : date('Y-m-d', strtotime($stock_delay));
 				$stock_msg = $stock_qty > 0 ? 'in stock' : '';
 				$stock_class = $stock_qty > 0 ? 'instock' : '';
 				$src = get_bloginfo('template_directory'). "/img/textures/$color.jpg";
-				$html = '<li><a href="#" data-variation-image="'.$galleryImageSRC.'" data-variation="'.sanitize_title($color).'" data-variation-attribute="attribute_edb_material" data-variation-id="'.$variation_id.'" title="'.sanitize_title($color).'" class="product-color-choice-option edb-material-'.sanitize_title($color).'">';
+				$html = '<li><a href="#" data-variation-availability-delay="'.$stock_avail.'" data-variation-image="'.$galleryImageSRC.'" data-variation="'.sanitize_title($color).'" data-variation-attribute="attribute_edb_material" data-variation-id="'.$variation_id.'" title="'.sanitize_title($color).'" class="product-color-choice-option edb-material-'.sanitize_title($color).'">';
 				$html .= '<img class=\"material\" src="'.$src.'">';
 				$html .= "<b class=\"$stock_class\">$stock_msg</b>";
 				$html .= '</a></li>';

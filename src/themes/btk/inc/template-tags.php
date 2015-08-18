@@ -67,6 +67,11 @@ if (!function_exists('the_post_navigation')):
 	}
 endif;
 
+function btk_log( $thing ){
+  $out = var_export( $thing, true );
+  echo "<script type=\"text/javascript\">console.log(\"".htmlspecialchars($out)."\")</script>";
+}
+
 if (!function_exists('btk_posted_on')):
 /**
  * Prints HTML with meta information for the current post-date/time and author.
