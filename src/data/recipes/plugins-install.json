@@ -18,6 +18,14 @@
             }
         }, {
             "args": {
+                "plugin": "contact-form-7"
+            },
+            "opts": {
+                "force": true,
+                "activate": true
+            }
+        }, {
+            "args": {
                 "plugin": "woocommerce"
             },
             "opts": {

@@ -18,6 +18,8 @@ if ( $text_color === '' ) { $text_color = '#fff'; }
 <head>
 <meta charset="<?php bloginfo('charset');?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000022">
+<meta name="msapplication-TileColor" content="#000022">
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo('pingback_url');?>">
 
@@ -182,6 +184,10 @@ global $current_user;
 									<p>
 										<label for="reg_password" class="hide"></label>
 										<input type="password" class="input-text" name="password" id="reg_password" placeholder="<?php _e( 'password', 'btk' ); ?>" />
+									</p>
+											<p>
+										<label for="reg_password2" class="hide"></label>
+										<input type="password" class="input-text" name="password2" id="reg_password2" placeholder="<?php _e( 'confirm password', 'btk' ); ?>" />
 									</p>
 									<?php do_action( 'woocommerce_register_form' ); ?>
 									<?php do_action( 'register_form' ); ?>

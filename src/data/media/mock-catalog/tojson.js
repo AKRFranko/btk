@@ -15,6 +15,7 @@ cat_tree = {
     "accessories": ['pillows', 'rugs', 'other']
 };
 
+
 sku_tree = {
     "sofas": "SOF",
     "sofa-beds": "SOB",
@@ -35,7 +36,21 @@ sku_tree = {
 }
 
 
-
+var dummy_texts = [
+    "It disrupted water mains and communication lines and opened a fissure into which the small town of Libertad sank.",
+    "Wintjiya came from an area north-west or north-east of Walungurru (the Pintupi-language name for Kintore, Northern Territory).",
+    "England in the early 7th century was ruled almost entirely by the Anglo-Saxon peoples who had come to Britain from northwestern Europe, starting in the early 5th century.",
+    "He married Eormenhild of Kent; no date is recorded for the marriage and there is no record of any children in the earliest sources, though Coenred, who was king of Mercia from 704 to 709, is recorded in John of Worcester's 12th century chronicle as Wulfhere's son.",
+    "Parliament, opposed to the growth of absolutism that was occurring in other European countries, as well as to the loss of legal supremacy for the Church of England, saw their opposition as a way to preserve what they regarded as traditional English liberties.",
+    "The initiative of starting the battle was with the Castilian side.",
+    "106 and 107 stand on the site of Tackley's Inn; built around 1295, it was the first piece of property that Adam de Brome acquired when he began to found the college in 1324.",
+    "After 1085, the annals are in various contemporary hands."
+];
+var randomText = function() {
+    var t = dummy_texts.shift();
+    dummy_texts.push(t);
+    return t;
+}
 materials = ["aluminium", "argon", "concrete", "emerald", "noise", "orange", "purple", "sky", "steel", "teal", "wine", "yolk"];
 
 variant_cats = ["sofas", "sectionals", "sofa-beds"];
@@ -278,8 +293,29 @@ setMockdata = function(post_varname) {
     recipe.post.meta.update.push({
         args: {
             id: "" + post_varname,
+            key: "_stock_backorder_delay",
+            value: "+30 days"
+        }
+    });
+    recipe.post.meta.update.push({
+        args: {
+            id: "" + post_varname,
             key: "_stock",
             value: hasStock ? Math.floor(Math.random() * 20) : 0
+        }
+    });
+    recipe.post.meta.update.push({
+        args: {
+            id: "" + post_varname,
+            key: "_manage_stock",
+            value: 'yes'
+        }
+    });
+    recipe.post.meta.update.push({
+        args: {
+            id: "" + post_varname,
+            key: "_backorders",
+            value: 'yes'
         }
     });
 
@@ -454,7 +490,7 @@ createPost = function(data) {
             post_title: data.name,
             post_type: 'product',
             post_status: 'publish',
-            post_excerpt: 'Artisanal quality of life Lufthansa, Winkreative hand-crafted eclectic Toto Singapore Fast Lane impeccable flat white.',
+            post_excerpt: randomText(),
             post_name: data.slug
         }
     };
