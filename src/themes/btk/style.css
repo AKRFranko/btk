@@ -1147,6 +1147,10 @@ Woocommerce Overrides
   padding: 0;
   border: none;
 }
+form.wpcf7-form.invalid,
+form.wpcf7-form.sent {
+  padding-top: 3em;
+}
 .product-color-choice-option .instock {
   display: block;
   position: absolute;
@@ -3072,7 +3076,7 @@ Content
 #content article.category-carousel .attachment-thumbnail-wrapper,
 #content article.type-page .attachment-thumbnail-wrapper,
 #content article.type-post .attachment-thumbnail-wrapper {
-  max-height: 20vh;
+  max-height: 150px;
   overflow: hidden;
   margin-bottom: .5em;
 }
@@ -3548,6 +3552,34 @@ Footer
   font-size: 2em;
   box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.3);
   border: 2px solid #fff;
+}
+.btk-form-success {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: calc(100% - 3em);
+  min-height: calc(100% - 3em);
+  padding: 2em;
+  overflow: hidden;
+  background: #fff;
+  margin: 1.5em;
+  box-shadow: 0 0 3em rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease-in;
+  -webkit-transform: scale(0) rotate(360deg);
+      -ms-transform: scale(0) rotate(360deg);
+          transform: scale(0) rotate(360deg);
+}
+.btk-form-success.show {
+  -webkit-transform: scale(1) rotate(360deg);
+      -ms-transform: scale(1) rotate(360deg);
+          transform: scale(1) rotate(360deg);
+}
+#content article .entry-content .btk-form-success img,
+.btk-form-success img {
+  display: inline-block;
+  width: auto;
+  max-height: 10em;
 }
 .woocommerce #recently-viewed ul.products {
   white-space: nowrap;

@@ -535,7 +535,7 @@
                     "post_name": "order-samples",
                     "post_type": "page",
                     "post_status": "publish",
-                    "post_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tristique quam sit amet tellus volutpat pretium. Integer mollis tristique porta. Duis pretium sapien mattis elit eleifend hendrerit. Maecenas eu elementum dui. </p>[contact-form-7 id='$samples_form' title='Order Samples']"
+                    "post_content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tristique quam sit amet tellus volutpat pretium. Integer mollis tristique porta. Duis pretium sapien mattis elit eleifend hendrerit. Maecenas eu elementum dui.</p>[contact-form-7 id='13' title='Order Samples']<div class='btk-form-success'><a class='close' href='#'>close</a><h3>Alright!</h3><p>Your order is sent, Donec pulvinar non mauris iaculis congue. Maecenas volutpat mattis varius. Mauris at erat commodo, viverra dolor vel, lobortis velit. Aliquam vitae dolor cursus, sollicitudin dui et, euismod dui. Pellentesque dapibus mattis velit, vel commodo nisi finibus ac. Pellentesque id sollicitudin leo.</p><img src='https://placekitten.com/g/200/300'></div>"
                 }
             },
             "$contact_page": {

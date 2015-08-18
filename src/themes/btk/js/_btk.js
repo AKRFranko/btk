@@ -1,5 +1,19 @@
 /* DO NOT EDIT, THIS FILE IS GENERATED */
 (function($) {
+    window.btk = {
+        handleFormSuccess: function(formName) {
+            $('.wpcf7-mail-sent-ok').remove();
+            $('.btk-form-success').addClass('show');
+            setTimeout(function() {
+                window.scrollTo(0, 0);
+            }, 200);
+            $('.btk-form-success .close').on('click', function() {
+                $('.btk-form-success').removeClass('show');
+
+                $('form').get(3).reset();
+            });
+        }
+    }
     $(window).load(function() {
         $('.loading').removeClass('loading');
         // product sub/menu toggles
@@ -204,10 +218,12 @@
                 var tempSlide = activeSlide.clone().removeClass('active').addClass('temporary')
                 tempSlide.css('background-image', 'url(' + imageSrc + ')');
                 $('.edb-slider:first .slides').append(tempSlide);
-                $('.edb-slider:first .index').html('<i class="fa fa-eye"></i>')
+                $('.edb-slider:first .index').html('')
+                $('.edb-slider:first .separator').hide()
                 $('.edb-slider:first .total').text($(this).attr('title'))
                 $('.edb-slider:first').one('cycled', function() {
                     tempSlide.remove();
+                    $('.edb-slider:first .separator').show()
                 });
 
             });
