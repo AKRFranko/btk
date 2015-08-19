@@ -3,16 +3,30 @@
     window.btk = {
         handleFormSuccess: function(formName) {
             $('.wpcf7-mail-sent-ok').remove();
-            $('.btk-form-success').addClass('show');
-            setTimeout(function() {
-                window.scrollTo(0, 0);
-            }, 200);
-            $('.btk-form-success .close').on('click', function() {
-                $('.btk-form-success').removeClass('show');
+            if (formName !== 'toast') {
 
-                $('form').get(3).reset();
-            });
+                $('.btk-form-success').addClass('show');
+
+                setTimeout(function() {
+                    window.scrollTo(0, 0);
+                }, 200);
+                $('.btk-form-success .close').on('click', function() {
+                    $('.btk-form-success').removeClass('show');
+
+                    $('form').get(3).reset();
+                });
+
+
+            } else {
+                $('#toast .btk-form-success .close').remove()
+                $('#toast .content > *').fadeOut(156, function() {
+                    $('#toast .content').html($('.btk-form-success').hide().html());
+                    $('.btk-form-success').fadeIn(333);
+                });
+
+            }
         }
+
     }
     $(window).load(function() {
         $('.loading').removeClass('loading');
