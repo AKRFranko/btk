@@ -398,8 +398,8 @@ function btk_get_category_classes(){
  * Recently viewed products
  **/
 function btk_recently_viewed() {
-  ?><div id="recently-viewed"><?php
-  echo do_shortcode('[recent_products per_page="3"]');
+  ?><div id="recently-viewed"><h2><?php _e('Recently viewed', 'btk'); ?></h2><?php
+  echo do_shortcode('[recent_products per_page="8"]');
   ?></div><?php
 // 	global $woocommerce;
 

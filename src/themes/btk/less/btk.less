@@ -699,14 +699,23 @@ Footer
 }
 
 
-
+.woocommerce #recently-viewed{
+  padding:1em;
+}
+.woocommerce #recently-viewed:hover ul.products{
+  margin:0 100% 0 -100%;
+}
 .woocommerce #recently-viewed ul.products{
+    transition:margin 4s linear;
 	  white-space:nowrap;
 	  .product{
 	   // width:calc(14%); 
 	   // margin:0 1.6% 0 0;
-	   width:28%;
-	   margin: 0 5% 0 0;
+	   width:~"calc( 100% / 4)";
+	   clear: none;
+    float: none;
+	   margin: 0;
+	   display:inline-block;
 	   .product-desc .product-price,
 	    .product-desc p,.icon-chevron-lite-right-black,.icon-chevron-lite-left-black{display:none;}
 	    .product-desc + a{display:none;}

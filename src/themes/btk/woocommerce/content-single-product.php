@@ -166,11 +166,7 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 	<?php //comments_template( 'single-product-reviews.php' ); ?>
 
 	
-
-	<?php if (! empty( $_COOKIE['woocommerce_recently_viewed'] ) ) { ?>
-	  <h2><?php _e('Recently viewed', 'btk'); ?></h2>
-    <?php btk_recently_viewed(); ?>
-	<?php } ?>
+  <?php btk_recently_viewed(); ?>
 
 
 	<meta itemprop="url" content="<?php the_permalink(); ?>" />
