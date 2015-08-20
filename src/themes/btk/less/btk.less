@@ -38,9 +38,12 @@ body.woocommerce-page, body.page{
   height:100vh;
   background:rgba(255,255,255,0.6);
   z-index:99999;
+  opacity:0;
+  transition:opacity .1s linear;
   display:none;
 }
 body.loading .coverall{
+  opacity:1;
   display:block;
 }
 

@@ -27,6 +27,9 @@
         }
 
     }
+    $(window).unload(function() {
+        $('body').addClass('loading');
+    })
     $(window).load(function() {
         $('.loading').removeClass('loading');
         // product sub/menu toggles
