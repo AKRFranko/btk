@@ -109,5 +109,6 @@
 <?php endwhile; ?>
 </div>
 </div>
+<div class="coverall"></div>
 </body>
 </html>
