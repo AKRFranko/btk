@@ -277,9 +277,9 @@ add_filter('show_admin_bar', '__return_false');
  */
 function woo_redirect() {
 	if (!is_user_logged_in() && is_checkout()) {
-		wp_redirect(home_url() . '/my-account');
+		wp_redirect(home_url() . '/my-account?redirect_to=checkout');
 		exit;
-	}
+	};
 }
 add_action('template_redirect', 'woo_redirect');
 
@@ -341,7 +341,15 @@ function btk_extra_register_fields2() {
 }
 add_action( 'woocommerce_register_form', 'btk_extra_register_fields2' );
 
-
+function btk_after_login_redirect_to_checkout(){
+    if( $_GET['redirect_to'] == 'checkout'){
+      return esc_url(home_url('/')) . 'checkout/';     
+    }else{
+      return esc_url(home_url('/'));
+    }
+}
+add_filter('woocommerce_login_redirect', 'btk_after_login_redirect_to_checkout');
+add_filter('woocommerce_register_redirect', 'btk_after_login_redirect_to_checkout');
 
 /**
  * Validate the extra register fields.
@@ -364,6 +372,7 @@ function btk_validate_extra_register_fields( $username, $email, $validation_erro
 	if ( isset( $_POST['billing_city'] ) && empty( $_POST['billing_city'] ) ) {
 		$validation_errors->add( 'billing_city_error', __( 'City is required.', 'btk' ) );
 	}
+	
 }
 add_action( 'woocommerce_register_post', 'btk_validate_extra_register_fields', 10, 3 );
 

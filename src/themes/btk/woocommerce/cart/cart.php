@@ -51,7 +51,10 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 	<span class="alignright">
 		<span class="valign"><?php _e('check out', 'btk'); ?></span>
-		<a href="<?php echo esc_url(home_url('/'));?>checkout/" class="valign icon-arrow-lite-right-white"></a>
+		  <?php 
+		    $checkouturl = esc_url( home_url('/') ) . 'checkout/'; 
+		  ?>
+		  <a href="<?php echo $checkouturl; ?>" class="valign icon-arrow-lite-right-white"></a>
 	</span>
 	<span class="alignright">
 		<span class="valign"><?php _e('continue shopping', 'btk'); ?></span>
