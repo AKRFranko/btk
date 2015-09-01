@@ -26,7 +26,7 @@ wc_print_notices();
 	<?php
 	printf(
 		__( 'Welcome <strong>%1$s</strong> (not %1$s? <a href="%2$s">Sign out</a>)<br />', 'btk' ) . ' ',
-		$current_user->display_name,
+		$current_user->user_nicename,
 		wc_get_endpoint_url( 'customer-logout', '', wc_get_page_permalink( 'myaccount' ) )
 	);
 	?>

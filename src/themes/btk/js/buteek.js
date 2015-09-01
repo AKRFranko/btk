@@ -39,7 +39,6 @@
         $('.login-form').hide();
         $('.register-form').hide();
         $('.back-home').show();
-
     }
     window.btk.hideSigninMenu = function() {
         $('.sign-in-menu').hide();
@@ -73,6 +72,7 @@
         // sign in behaviour
         $('#menu-header .login').on('click', function(e) {
             e.preventDefault();
+
             if (!$('#header-box').hasClass('open')) {
                 $('#header-box').addClass('open');
                 window.btk.showSigninMenu();
@@ -82,6 +82,10 @@
                 $('#header-box').removeClass('open');
                 $('#page').removeAttr('style');
             }
+            // } else {
+            //     window.btk.showSigninMenu();
+
+            // }
 
         });
 

@@ -282,6 +282,9 @@ function woo_redirect() {
 		wp_redirect(home_url() . '/my-account');
 		exit;
 	};
+	if($_REQUEST['guest']){
+	  $_SESSION['redirect_to'] = null;  
+	}
 	if(is_user_logged_in() && is_account_page()){
 	    $_SESSION['redirect_to'] = null;  
 	};
