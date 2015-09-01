@@ -17,7 +17,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php do_action( 'woocommerce_before_customer_login_form' ); ?>
 
-<div class="customer-login">
+ 
+ 
+<div class="customer-login <?php echo $_SESSION['redirect_to'] ?>">
 	<h2><?php _e('Returning customers<br />please sign in', 'btk'); ?></h2>
 
 	<form method="post" class="login">
@@ -40,9 +42,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<input name="rememberme" type="checkbox" id="rememberme" value="forever" class="hide" checked="checked" />
 			<label for="rememberme" class="regular hide"><?php _e( 'Remember me', 'btk' ); ?></label>
 		</p>
+		<p class="clearfix">
+			<a class="alignright toggle-register" href="#"><?php _e('> I want to signup for a new account.', 'btk'); ?></a>
+		</p>
 		<p class="alignright submit">
 			<?php wp_nonce_field( 'woocommerce-login' ); ?>
-			<span class="valign"><?php _e('enter edb', 'btk'); ?></span>
+			<span class="valign"><?php _e('login', 'btk'); ?></span>
 			<input class="valign icon-arrow-lite-right-white" type="submit" name="login" value="<?php _e( 'Login', 'btk' ); ?>" />
 		</p>
 
@@ -56,7 +61,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php if ( get_option( 'woocommerce_enable_myaccount_registration' ) === 'yes' ) : ?>
 
-<div class="customer-register">
+<div class="customer-register off  <?php echo $_SESSION['redirect_to'] ?>">
 
 	<h2><?php _e('New customers sign up for<br />shopping and exclusive offers', 'btk'); ?></h2>
 
@@ -93,6 +98,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php do_action( 'woocommerce_register_form' ); ?>
 		<?php do_action( 'register_form' ); ?>
 
+    <p class="clearfix">
+			<a class="alignright toggle-register" href="#"><?php _e('> I already have an account.', 'btk'); ?></a>
+		</p>
 		<p class="alignright">
 			<?php wp_nonce_field( 'woocommerce-register' ); ?>
 			<span class="valign"><?php _e('sign up', 'btk'); ?></span>
@@ -102,8 +110,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php do_action( 'woocommerce_register_form_end' ); ?>
 
 	</form>
+	
 
 </div>
+<?php if($_SESSION['redirect_to'] == 'checkout'){ ?>
+	  <div class="checkout-as-guest">
+	    <a href="<?php echo esc_url( home_url('/') ) . 'checkout/?guest=true' ?>">Checkout as guest.</a>
+	  </div>
+	<?php }; ?>
 
 <?php endif; ?>
 

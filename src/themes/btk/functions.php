@@ -276,10 +276,16 @@ add_filter('show_admin_bar', '__return_false');
  * Redirect if not logged in on checkout page
  */
 function woo_redirect() {
-	if (!is_user_logged_in() && is_checkout()) {
-		wp_redirect(home_url() . '/my-account?redirect_to=checkout');
+  
+	if (!is_user_logged_in() && is_checkout() && !$_REQUEST['guest']) {
+	  $_SESSION['redirect_to'] = 'checkout';
+		wp_redirect(home_url() . '/my-account');
 		exit;
 	};
+	if(is_user_logged_in() && is_account_page()){
+	    $_SESSION['redirect_to'] = null;  
+	};
+	
 }
 add_action('template_redirect', 'woo_redirect');
 
@@ -290,6 +296,9 @@ function custom_override_checkout_fields($fields) {
 	$fields['billing']['billing_first_name']['placeholder'] = 'first name';
 	$fields['billing']['billing_last_name']['placeholder'] = 'last name';
 	$fields['billing']['billing_email']['placeholder'] = 'email address';
+	$fields['shipping']['shipping_first_name']['placeholder'] = 'first name';
+	$fields['shipping']['shipping_last_name']['placeholder'] = 'last name';
+	$fields['shipping']['shipping_email']['placeholder'] = 'email address';
 	unset($fields['billing']['billing_company']);
 	unset($fields['billing']['billing_address_2']);
 	unset($fields['billing']['billing_email']);
@@ -342,7 +351,9 @@ function btk_extra_register_fields2() {
 add_action( 'woocommerce_register_form', 'btk_extra_register_fields2' );
 
 function btk_after_login_redirect_to_checkout(){
-    if( $_GET['redirect_to'] == 'checkout'){
+    if( $_SESSION['redirect_to'] == 'checkout'){
+      
+      
       return esc_url(home_url('/')) . 'checkout/';     
     }else{
       return esc_url(home_url('/'));

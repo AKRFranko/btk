@@ -27,6 +27,25 @@
         }
 
     }
+
+
+    $('.toggle-register').on('click', function(e) {
+        e.preventDefault();
+        $('.customer-register, .customer-login').toggleClass('off');
+    });
+    window.btk.showSigninMenu = function() {
+        $('.sign-in-menu').show();
+        $('.sign-in').show();
+        $('.login-form').hide();
+        $('.register-form').hide();
+        $('.back-home').show();
+
+    }
+    window.btk.hideSigninMenu = function() {
+        $('.sign-in-menu').hide();
+    }
+
+
     $(window).unload(function() {
         $('body').addClass('loading');
     })
@@ -56,17 +75,14 @@
             e.preventDefault();
             if (!$('#header-box').hasClass('open')) {
                 $('#header-box').addClass('open');
-                $('.sign-in-menu').show();
-                $('.sign-in').show();
-                $('.login-form').hide();
-                $('.register-form').hide();
-                $('.back-home').show();
+                window.btk.showSigninMenu();
                 $('#page').css('position', 'fixed');
             } else if ($('.sign-in, .login-form, .register-form').is(':visible')) {
-                $('.sign-in-menu').hide();
+                window.btk.hideSigninMenu();
                 $('#header-box').removeClass('open');
                 $('#page').removeAttr('style');
             }
+
         });
 
         $('.back-home .buttons').on('click', function(e) {
@@ -91,6 +107,14 @@
 
 
         // hamburglar menu on/off
+        var toggleBurgerIcon = function() {
+            if ($('#header-box').is('.open')) {
+                $('.navbar-header .fa').removeClass('fa-bars').addClass('fa-times');
+            } else {
+                $('.navbar-header .fa').addClass('fa-bars').removeClass('fa-times');
+            }
+        }
+
         $('.nav-hamburger .navbar-toggle').click(function() {
             if ($('.sign-in, .login-form, .register-form').is(':visible')) {
                 $('.sign-in-menu').hide();
@@ -100,15 +124,17 @@
             if ($(this).hasClass('collapsed')) {
                 $('#header-box').addClass('open');
                 $('#header-box .confirmation').hide();
-                $('.navbar-header .fa').removeClass('fa-bars').addClass('fa-times');
+
                 $('#page').css('position', 'fixed');
             } else {
                 $('#header-box').removeClass('open');
                 $('#header-box .confirmation').show();
                 $('.woo-categories').hide();
-                $('.navbar-header .fa').removeClass('fa-times').addClass('fa-bars');
+
                 $('#page').removeAttr('style');
             }
+            toggleBurgerIcon()
+
         });
 
         $('#menu-hamburger li a[href*="products"]').click(function(e) {
@@ -124,17 +150,7 @@
         // sliderz
         $('.edb-slider').each(function() {
             var el = $(this).get(0);
-            // var isChildOf = $('body').hasClass('single-product') ? 'product' : $('body').hasClass('single-post') ? 'post' : 'generic';
-            // // switch (isChildOf) {
-            // //     // case 'product':
-            // //     //     var pads = $.makeArray($('#masthead,.product-color-choice:first,.product-add'));
-            // //     //     var spacing = pads.reduce(function(s, el) {
-            // //     //         return s + $(el).outerHeight();
-            // //     //     }, 0);
-            // //     //     break;
-            // //     // case 'post':
-            // //     default: var spacing = $('#masthead').outerHeight()
-            // // };
+
             var spacing;
             var masthead = $('#masthead').outerHeight();
             var winHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
@@ -143,9 +159,6 @@
             } else {
                 spacing = (winHeight / 2) + (masthead / 2);
             }
-            // if (!$(el).hasClass('lookbook-slider')) {
-            //     spacing += winHeight / 2
-            // }
             var slider = window.EDBSlider(el, {
                 spacing: spacing,
                 minHeight: $('.maxw_320,.home').length ? null : 460
@@ -263,11 +276,17 @@
         }
 
 
-        $('.billing-shipping-edit input').each(function() {
-            if ($(this).attr('placeholder') === '') {
-                $(this).attr('placeholder', $(this).parent().children('label').text().toLowerCase());
+        $('.woocommerce-billing-fields label[for], .woocommerce-shipping-fields label[for]').each(function() {
+            var text = $(this).text().trim();
+            var input = $(this).parent().find('#' + $(this).attr('for'));
+            if (input.is('input')) {
+                input.attr('placeholder', text);
             }
+            // if ($(this).attr('placeholder') === '') {
+            //     $(this).attr('placeholder', $(this).parent().children('label').text().toLowerCase());
+            // }
         });
+
 
 
 
