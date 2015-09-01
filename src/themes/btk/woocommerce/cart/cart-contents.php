@@ -19,10 +19,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 	$_product     = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 	$product_id   = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
-
+	$categories = wp_get_post_terms( $_product->id, 'product_cat' );
+	$category = $categories[count($categories) - 1];
+  $json_data = json_encode( array( "price"=>$_product->price, "category"=>$category->slug  ));
 	if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
 		?>
-		<div class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
+		<div data-json="<?php echo htmlentities($json_data, ENT_QUOTES, 'UTF-8'); ?>" class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
 
 			<?php if ( ! is_checkout() ) { ?>
 			<div class="product-remove alignright">
