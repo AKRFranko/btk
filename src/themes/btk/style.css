@@ -3831,6 +3831,42 @@ Media Queries and Devices
     margin-right: auto;
   }
 }
+.category-lookbook .lookbook {
+  display: block;
+  float: left;
+  width: calc(100% / 2 - 2em);
+  margin: 0 1em 1em 0;
+}
+.category-lookbook .lookbook .title {
+  display: table;
+  width: 100%;
+  margin-bottom: 20px;
+  padding-right: 10px;
+}
+.category-lookbook .lookbook .title a {
+  display: block;
+}
+.category-lookbook .lookbook .title a.read-more {
+  display: inline;
+}
+.category-lookbook .lookbook .title p {
+  position: relative;
+  width: 95%;
+  margin: 0;
+}
+.category-lookbook .lookbook .title span[class*="icon-chevron"] {
+  display: table-cell;
+  background-position: center;
+  font-size: 1.5em;
+}
+.category-lookbook .lookbook .title a {
+  padding: 12px;
+  font-family: "adobe-caslon-pro", Georgia, 'Times New Roman', Times, serif;
+  text-transform: uppercase;
+}
+.category-lookbook .lookbook .title p {
+  font-size: 1.35em;
+}
 .safari .main-slider .slider li {
   background-attachment: scroll;
 }
