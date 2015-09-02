@@ -363,7 +363,7 @@ function btk_after_login_redirect_to_checkout(){
     }
 }
 add_filter('woocommerce_login_redirect', 'btk_after_login_redirect_to_checkout');
-add_filter('woocommerce_register_redirect', 'btk_after_login_redirect_to_checkout');
+add_filter('woocommerce_registration_redirect', 'btk_after_login_redirect_to_checkout');
 
 /**
  * Validate the extra register fields.
