@@ -37,7 +37,7 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
 
 <div class="tabbar">
 
-  <a class="tab active" data-pane="shipping-pane" href="#"><?php _e('Shipping Address', 'btk'); ?></a>
+  <a class="tab" data-pane="shipping-pane" href="#"><?php _e('Shipping Address', 'btk'); ?></a>
   
   <a class="tab" data-pane="delivery-pane" href="#"><?php _e('Delivery Fees', 'btk'); ?></a>
   
@@ -55,7 +55,7 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
 	<?php if ( sizeof( $checkout->checkout_fields ) > 0 ) : ?>
 
 			<?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
-  <div class="tabpane active" id="shipping-pane">
+  <div class="tabpane" id="shipping-pane">
 			
 				  <div class="col-1">
 					<?php do_action( 'woocommerce_checkout_shipping' ); ?>
@@ -65,7 +65,31 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
 	  	</div>
 	</div>
 	<div class="tabpane" id="delivery-pane">
-	
+	  <div class="delivery_options" style="display: block;">
+        <h3>Delivery Fees</h3>
+			
+			  <div class="col-2">
+				<p class="cust-form-row" id="delivery_fees_subtotal"><span class="fake-label">Delivery fees:</span><span class="value"></span></p>
+				<p class="cust-form-row" id="delivery_time_estimate"><span class="fake-label">Delivery by:</span><span class="value"></span></p>
+			   <p class="cust-form-row">
+			   <input class="input-checkbox" type="checkbox" name="rush_it" />
+			   <label for="rush_it"> Rush it for an extra $75.00</label>
+			   
+			   </p>
+			   <p class="cust-form-row">
+			    <input class="input-checkbox" type="checkbox" name="use_local_pickup" />
+			    <label for="use_local_pickup"> I want to pick it up, do not charge me delivery.</label>
+			   
+			   </p>
+			   <p class="learn-more">Want to learn more about how the fees are calculated? <a href="/about-shipping">Click here</a>.</p>
+				
+				<div class="clear"></div>
+			
+				<p class="form-row form-row " id="shipping_email_field"><input type="text" class="input-text " name="shipping_email" id="shipping_email" placeholder="" value=""></p>
+			</div>
+			
+		</div>
+		
 		<div>
 		<a href="#" class="tabnext"><?php _e('save & continue', 'btk'); ?></a>
 		</div>
@@ -73,14 +97,18 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
     </div>
     <div class="tabpane" id="payment-pane">
   
-	  	  <div class="col-2">
+	  	  
+		    
+        <div class="col-2">
+					<?php do_action( 'woocommerce_checkout_billing' ); ?>
+				</div>
+				
+				<div class="col-2">
 			    <input type="text" name="coupon_code" class="input-text lower" placeholder="<?php _e( 'Promo Code', 'btk' ); ?>" id="coupon_code" value="" />
 			
 			    <input type="submit" class="button lower right" name="apply_coupon" value="<?php _e( 'Apply', 'btk' ); ?>" />
 		    </div>
-        <div class="col-2">
-					<?php do_action( 'woocommerce_checkout_billing' ); ?>
-				</div>
+		    
 		    <div>
 		        <a href="#" class="tabnext"><?php _e('save & continue', 'btk'); ?></a>
 		    </div>

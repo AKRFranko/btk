@@ -20,6 +20,21 @@
   width:~"calc(25% - .4em)";
 }
 
+.tab[data-invalids]:after{
+  content:attr(data-invalids);
+  background:red;
+  color:#fff;
+  display:inline-block;
+  padding:.1em;
+  width:1.5em;
+  height:1.5em;
+  margin-left:.5em;
+  font-size:.8em;
+  border-radius:50%;
+  text-align:center;
+  border-color:red;
+}
+
 .tabbar .tab.active{
   color:#000;
   border-bottom-color:#000;

@@ -341,8 +341,11 @@ function btk_edb_lookbook_slider(){
 function btk_product_pdf_link( $productID, $fileName){
     $pdf = get_attached_media('application/pdf',$productID);
     if(!empty($pdf)){
-      $pdflink = $pdf[0]['guid']; 
-      return '<a target="_blank" href="'.$pdflink.'" download="'.$fileName.'.pdf" class="upper pr-pdf">download PDF</a>';
+      $pdf = array_shift(array_values($pdf));
+      
+      $pdflink = $pdf->guid; 
+      
+      return '<a target="_blank" href="'.$pdflink.'" download="'.sanitize_file_name($fileName . '.pdf').'" class="upper pr-pdf">download PDF</a>';
     }
   	return '';
 }

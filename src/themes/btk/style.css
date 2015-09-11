@@ -2254,6 +2254,16 @@ form.wpcf7-form.sent {
     margin-bottom: 18px;
   }
 }
+.delivery_options .form-row {
+  padding: .5em 0;
+}
+.delivery_options .learn-more {
+  margin: 0;
+  text-align: right;
+}
+.delivery_options .learn-more a {
+  font-weight: bold;
+}
 @media (min-width: 768px) and (max-width: 991px) {
   .woocommerce ul.products li.product .product-desc {
     padding: 15px;
@@ -2497,6 +2507,9 @@ body.splash-on > * {
 #splash-page button:last-of-type {
   top: calc(50% + 3em);
 }
+#splash-page .icon-chevron-lite-right-white {
+  display: none;
+}
 @media all and (orientation: landscape) {
   #splash-page:after {
     top: 10%;
@@ -2647,6 +2660,20 @@ body.splash-on > * {
   text-align: center;
   transition: all .1s linear;
   width: calc(25% - .4em);
+}
+.tab[data-invalids]:after {
+  content: attr(data-invalids);
+  background: red;
+  color: #fff;
+  display: inline-block;
+  padding: .1em;
+  width: 1.5em;
+  height: 1.5em;
+  margin-left: .5em;
+  font-size: .8em;
+  border-radius: 50%;
+  text-align: center;
+  border-color: red;
 }
 .tabbar .tab.active {
   color: #000;
@@ -3067,7 +3094,7 @@ Sliders
 .edb-slider .slide-text {
   font-family: "pragmatica-web-condensed", 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 400;
-  font-size: 4.4em;
+  font-size: 3em;
   line-height: 1.1;
   text-transform: uppercase;
   letter-spacing: 0.05em;
