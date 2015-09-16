@@ -3,6 +3,16 @@
      var getShippingCost = function(total) {
          return total > 499 ? 0 : 75;
      };
+
+     var storeOptions = {
+         namespace: 'edb-checkout',
+         storages: ['local', 'cookie', 'session', 'memory'],
+         expireDays: 365
+     }
+
+
+     var store = new window.Basil(storeOptions);
+
      var $ = jQuery;
      var $cart = $('.page-cart');
      var timeout;
@@ -32,6 +42,7 @@
                  lastTotal = subtotal;
                  $totl.text('$' + subtotal.toFixed(2));
                  $estm.text('$' + getShippingCost(subtotal).toFixed(2));
+                 store.set('cart_estimated_shipping_cost', getShippingCost(subtotal));
              }
 
              timeout = setTimeout(calcTotals, 200);

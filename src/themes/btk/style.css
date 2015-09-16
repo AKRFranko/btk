@@ -2641,9 +2641,9 @@ body.splash-on > * {
   }
 }
 .tabbar {
-  font-size: 1.1em;
+  font-size: 1em;
   display: block;
-  width: calc(98%);
+  width: calc(100% - 2em);
   text-align: center;
   margin-left: 1em;
   margin-right: 1em;
@@ -2686,6 +2686,51 @@ body.splash-on > * {
   display: block;
   padding-left: 1em;
 }
+.summary-bar {
+  display: block;
+  width: calc(100% - 2em);
+  margin: 0 1em;
+  margin-bottom: 1em;
+  text-align: left;
+  white-space: nowrap;
+}
+.summary-bar h3 {
+  font-size: 1em;
+  font-family: 'Theinhardt', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  color: #999;
+  margin: 0 0 .75em 0;
+  padding: .25em;
+  padding-bottom: .25em;
+  border-bottom: 1px solid #999;
+}
+.summary-bar > div {
+  display: inline-block;
+  width: calc(25% - 1em);
+  vertical-align: top;
+  margin: .5em;
+  padding: 0;
+  overflow: hidden;
+  text-align: left;
+  background: #eee;
+}
+.summary-bar > div > div {
+  margin: 0;
+  padding: 0 .5em;
+  height: auto;
+  line-height: 1.1;
+}
+.summary-bar > div > div:first-of-type {
+  margin-top: .5em;
+}
+.summary-bar > div > div:last-of-type {
+  margin-bottom: .5em;
+}
+.summary-bar span {
+  font-family: "adobe-caslon-pro", Georgia, 'Times New Roman', Times, serif;
+  font-weight: normal;
+  color: #000000;
+}
 a.tabnext {
   display: inline-block;
   float: right;
@@ -2715,6 +2760,11 @@ body.page .page-title,
 body.woocommerce-page .term-description,
 body.page .term-description {
   display: none;
+}
+.temp-paypal {
+  display: block;
+  margin: 1em;
+  text-align: center;
 }
 .container {
   max-width: 970px;

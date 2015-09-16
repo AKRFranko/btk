@@ -1,7 +1,7 @@
 .tabbar{
-  font-size:1.1em;
+  font-size:1em;
   display:block;
-  width:calc(100% - 2em);
+  width:~"calc(100% - 2em)";
   text-align:center;
   margin-left:1em;
   margin-right:1em;
@@ -45,6 +45,49 @@
 .tabpane.active{
   display:block;
   padding-left:1em;
+}
+.summary-bar{
+  display:block;
+  width:~"calc(100% - 2em)";
+  margin:0 1em;
+  margin-bottom:1em;
+  text-align:left;
+  white-space:nowrap;
+}
+.summary-bar h3{
+  font-size:1em;
+  font-family:@fontfamily; font-weight:normal; color:#999; 
+  margin:0 0 .75em 0;
+  padding:.25em;
+  padding-bottom:.25em;
+  border-bottom:1px solid #999;
+  // display:none;
+}
+.summary-bar > div {
+    display: inline-block;
+    width: ~"calc(25% - 1em)";
+    vertical-align: top;
+    margin: .5em;
+    padding:0;
+    overflow:hidden;
+    text-align:left;
+    background:#eee;
+}
+.summary-bar > div > div{
+  margin:0;
+  padding:0 .5em;
+  height:auto;
+  line-height:1.1;
+}
+.summary-bar > div > div:first-of-type{
+  margin-top:.5em;
+}
+.summary-bar > div > div:last-of-type{
+  margin-bottom:.5em;
+}
+.summary-bar span{
+  font-family:@altfontfamily; font-weight:normal; color:@black; 
+  
 }
 a.tabnext{
   display:inline-block;

@@ -53,6 +53,7 @@ do_action( 'woocommerce_before_cart' ); ?>
   <div class="cart-totals estimation">
     <p><?php _e('Estimated shipping cost', 'btk'); ?></p>
     <span class="estimated-amount">---</span> 
+    
   </div>
 	<div class="cart-buttons">
 	<span class="alignright">

@@ -7,17 +7,23 @@
 
 
     var store = new window.Basil(storeOptions);
-
+    var tabbar = $('.tabbar');
+    var currentTab = null;
     var activateTab = function(tab) {
         var $tab = $(tab);
         var $others = $(tab).siblings('.tab').not($tab);
         var paneSelector = $tab.data('pane');
-        var $pane = $('#' + paneSelector);
-        var $otherPanes = $('.tabpane').not($pane);
-        $others.add($otherPanes).removeClass('active');
-        $tab.add($pane).addClass('active');
-        var index = $tab.index();
-        store.set('last_checkout_tab', index + 1);
+        if (currentTab !== paneSelector) {
+            var $pane = $('#' + paneSelector);
+            var $otherPanes = $('.tabpane').not($pane);
+            $others.add($otherPanes).removeClass('active');
+            $tab.add($pane).addClass('active');
+            var index = $tab.index();
+            store.set('last_checkout_tab', index + 1);
+            tabbar.trigger('tab-changed', currentTab, paneSelector);
+            currentTab = paneSelector;
+        }
+
     }
     var findTabTarget = function(pane) {
         return $('.tabbar .tab').filter(function() {
@@ -56,6 +62,12 @@
     $('.tabnext').on('click', function(event) {
         event.preventDefault();
         $('.tab.active').next().click();
+    });
+
+    $('.tabto').on('click', function(event) {
+        event.preventDefault();
+        var $target = findTabTarget($(this).data('pane'));
+        $target.click();
     });
 
     $(function() {

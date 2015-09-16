@@ -1,25 +1,24 @@
 {
-  "name": "buteek",
-  "version": "0.0.0",
-  "authors": [
-    "akrfranko <franko@akr.club>"
-  ],
-  "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "bootstrap": "3.3.2",
-    "css_browser_selector": "https://github.com/isarmstrong/css_browser_selector.git",
-    "modernizr": "~2.8.3",
-    "basil.js": "~0.4.0",
-    "fontawesome": "~4.3.0",
-    "edb.icon.loader.js": "./src/bower/edb-icons/",
-    "edb.slider.js": "./src/bower/edb-slider/",
-    "masonry": "~3.3.1"
-  }
+    "name": "buteek",
+    "version": "0.0.0",
+    "authors": [
+        "akrfranko <franko@akr.club>"
+    ],
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "bootstrap": "3.3.2",
+        "css_browser_selector": "https://github.com/isarmstrong/css_browser_selector.git",
+        "modernizr": "~2.8.3",
+        "basil.js": "~0.4.0",
+        "fontawesome": "~4.3.0",
+        "edb.icon.loader.js": "./src/bower/edb-icons/",
+        "edb.slider.js": "./src/bower/edb-slider/"
+    }
 }

@@ -60,17 +60,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<span class="alignright"><?php wc_cart_totals_fee_html( $fee ); ?></span>
 		</div>
 		<?php endforeach; ?>
-
+		
+    <div style="display:none">
 		<?php if ( WC()->cart->needs_shipping() && WC()->cart->show_shipping() ) : ?>
-
+      
 			<?php do_action( 'woocommerce_review_order_before_shipping' ); ?>
 
 			<?php wc_cart_totals_shipping_html(); ?>
 
 			<?php do_action( 'woocommerce_review_order_after_shipping' ); ?>
-
+      
+      
 		<?php endif; ?>
-
+    </div>
+    
+     <p class="temp-shipping-total">
+			   <span class="shipping_method_total_label">Shipping</label>
+			   <span class="shipping_method_total_value">0</span>
+      </p>
+    
 		<?php if ( WC()->cart->tax_display_cart === 'excl' ) : ?>
 			<?php if ( get_option( 'woocommerce_tax_total_display' ) === 'itemized' ) : ?>
 				<?php foreach ( WC()->cart->get_tax_totals() as $code => $tax ) : ?>

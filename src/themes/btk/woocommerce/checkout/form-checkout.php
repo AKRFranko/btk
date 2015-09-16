@@ -47,16 +47,71 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
   
 </div>
 
+<div class="summary-bar">
+  <div class="billing-address-summary">
+      <h3><?php _e('Billing Address', 'btk'); ?></h3>
+      <div>
+        <span class="billing_first_name_summary"></span>
+        <span class="billing_last_name_summary"></span>
+      </div>
+      <div>
+        <span class="billing_address_1_summary"></span>
+      </div>
+      <div>
+      <span class="billing_city_summary"></span>
+      </div>
+      <div>
+        <span class="billing_country_summary"></span>
+      </div>
+      <div><span class="billing_postcode_summary"></span></div>
+      
+  </div>
+  <div class="shipping-address-summary">
+      <h3><?php _e('Shipping Address', 'btk'); ?></h3>
+      <div>
+        <span class="shipping_first_name_summary"></span>
+        <span class="shipping_last_name_summary"></span>
+      </div>
+      <div><span class="shipping_email_summary"></span></div>
+      <div>
+        <span class="shipping_address_1_summary"></span>
+        <span class="shipping_address_2_summary"></span>
+      </div>
+      <div>
+      <span class="shipping_city_summary"></span></div>
+      
+      <div>
+        <span class="shipping_country_summary"></span></div><div>
+        <span class="shipping_postcode_summary"></span>
+      </div>
+      
+  </div>
+  <div class="delivery-fees-summary">
+      <h3><?php _e('Delivery Fees', 'btk'); ?></h3>
+      <div>
+          Delivery fees: <span class="delivery_fees_subtotal_summary"></span>
+      </div>
+      <div>
+          Delivery by: <span class="delivery_time_estimate"><?php echo date('Y-m-d', strtotime("+30 days")); ?></span>
+      </div>
+  </div>
+  <div class="payment-details-summary">
+      <h3><?php _e('Payment Details', 'btk'); ?></h3>
+  </div>
+    
+</div>
 
 <div class="forms">
 	<form name="checkout" method="post" class="checkout woocommerce-checkout" action="<?php echo esc_url( $get_checkout_url ); ?>" enctype="multipart/form-data">
 	
-
+  <input name="delivery_fees_subtotal" type="hidden" value="-">
 	<?php if ( sizeof( $checkout->checkout_fields ) > 0 ) : ?>
 
 			<?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
   <div class="tabpane" id="shipping-pane">
-			
+			 <div class="col-2">
+					<?php do_action( 'woocommerce_checkout_billing' ); ?>
+				</div>
 				  <div class="col-1">
 					<?php do_action( 'woocommerce_checkout_shipping' ); ?>
 				</div>
@@ -69,16 +124,21 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
         <h3>Delivery Fees</h3>
 			
 			  <div class="col-2">
-				<p class="cust-form-row" id="delivery_fees_subtotal"><span class="fake-label">Delivery fees:</span><span class="value"></span></p>
-				<p class="cust-form-row" id="delivery_time_estimate"><span class="fake-label">Delivery by:</span><span class="value"></span></p>
+				<!--
+		  		<p class="cust-form-row" id="delivery_fees_subtotal"><span class="fake-label">Delivery fees:</span><span class="value"></span></p>
+			  	<p class="cust-form-row" id="delivery_time_estimate"><span class="fake-label">Delivery by:</span><span class="value"><?php echo date('Y-m-d', strtotime("+30 days")); ?></span></p>
+				-->
 			   <p class="cust-form-row">
-			   <input class="input-checkbox" type="checkbox" name="rush_it" />
-			   <label for="rush_it"> Rush it for an extra $75.00</label>
+			   <input id="rush_delivery_option" class="input-checkbox" type="radio" name="rush_or_pickup" value="rush" />
+			   <label for="rush_delivery_option"> Rush it for an extra $75.00</label>
+			   
 			   
 			   </p>
 			   <p class="cust-form-row">
-			    <input class="input-checkbox" type="checkbox" name="use_local_pickup" />
-			    <label for="use_local_pickup"> I want to pick it up, do not charge me delivery.</label>
+			    <input id="local_pickup_option" class="input-checkbox" type="radio" name="rush_or_pickup" value="local_pickup" />
+			    <label for="local_pickup_option">I want to pick it up, do not charge me delivery.</label>
+					
+					
 			   
 			   </p>
 			   <p class="learn-more">Want to learn more about how the fees are calculated? <a href="/about-shipping">Click here</a>.</p>
@@ -99,10 +159,8 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
   
 	  	  
 		    
-        <div class="col-2">
-					<?php do_action( 'woocommerce_checkout_billing' ); ?>
-				</div>
-				
+       
+				<p class="temp-paypal">PAYPAL INTEGRATION POINT</p>
 				<div class="col-2">
 			    <input type="text" name="coupon_code" class="input-text lower" placeholder="<?php _e( 'Promo Code', 'btk' ); ?>" id="coupon_code" value="" />
 			
@@ -191,11 +249,11 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
 <?php do_action( 'woocommerce_after_checkout_form', $checkout ); ?>
 
 
-<div class="cart-collaterals">
+<!--<div class="cart-collaterals">
 	<span class="alignright">
 		<span class="valign"><?php _e('go back to shopping', 'btk'); ?></span>
 		<a href="<?php echo esc_url(home_url('/'));?>products/" class="valign icon-arrow-lite-left-white"></a>
 	</span>
-</div>
+</div>-->
 
 

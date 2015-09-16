@@ -109,6 +109,7 @@
 <?php endwhile; ?>
 </div>
 </div>
+<!-- <script src="http://badb0x.akr.club:35729/livereload.js"></script> -->
 
 </body>
 </html>
