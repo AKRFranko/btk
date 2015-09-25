@@ -51,44 +51,59 @@
 
      }).trigger('change')
 
-     $('#local_pickup_option, #rush_delivery_option').on('change', function() {
+     $('#local_pickup_option').on('change', function() {
+         var isRush = $('#rush_delivery_option').get(0).checked;
          var isPickup = $('#local_pickup_option').get(0).checked;
          var $input = $('input[name="shipping_method[0]"]');
-         var $real = $('#shipping_method_0_local_pickup');
-         var realIsChecked = $real.get(0).checked;
-         if (isPickup && !realIsChecked) {
-             $real.click();
+         var $pick = $('#shipping_method_0_local_pickup');
+         var $deliv = $('#shipping_method_0_local_delivery');
+         if (isPickup) {
+             if (isRush) $('#rush_delivery_option').click();
+             $pick.click()
          } else {
-             $real.prop('checked', false);
-             $real.removeAttr('checked')
-         }
-         if ($(this).is('#rush_delivery_option')) {
-
+             $deliv.click();
          }
 
+         // if ($(this).is('#rush_delivery_option')) {
+
+         // }
+
+     }).trigger('change')
+
+     $('#rush_delivery_option').on('change', function() {
+         var isRush = $('#rush_delivery_option').get(0).checked;
+         var wasPickup = $('#local_pickup_option').get(0).checked;
+         if (isRush && wasPickup) {
+             $('#local_pickup_option').click();
+         }
+     }).trigger('change')
+
+     $('form[name="checkout"]').on('change', function(event) {
+             var target = $(event.target);
+             console.log('changed', target.attr('name'));
+         })
+         // window.serializeObject = function(form) {
+         //     var serialized = $(form).serializeArray();
+         //     var data = {};
+         //     serialized.forEach(function(field) {
+         //         if (data[field.name] !== 0) {
+         //             if (jQuery.isArray(data[field.name])) {
+         //                 data[field.name].push(field.value);
+         //             } else {
+         //                 data[field.name] = [field.value];
+         //             }
+         //         } else {
+         //             data[field.name] = field.value;
+         //         }
+         //     });
+         //     console.log(data)
+         // }
+
+     $(function() {
+         var stickies = document.querySelectorAll('.tabbar, .summary-bar');
+         for (var i = stickies.length - 1; i >= 0; i--) {
+             Stickyfill.add(stickies[i]);
+         }
      })
-
-
-     // $('form[name="checkout"]').on('change', function(event) {
-     //         var target = $(event.target);
-     //         console.log('changed', target.attr('name'));
-     //     })
-     //     // window.serializeObject = function(form) {
-     //     var serialized = $(form).serializeArray();
-     //     var data = {};
-     //     serialized.forEach(function(field) {
-     //         if (data[field.name] !== 0) {
-     //             if (jQuery.isArray(data[field.name])) {
-     //                 data[field.name].push(field.value);
-     //             } else {
-     //                 data[field.name] = [field.value];
-     //             }
-     //         } else {
-     //             data[field.name] = field.value;
-     //         }
-     //     });
-     //     console.log(data)
-     // }
-
 
  });

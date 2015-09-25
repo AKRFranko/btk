@@ -108,3 +108,29 @@ a.tabnext:after{
   margin-top:-.5em;
   margin-left:1em;
 }
+
+.tabbar{
+  position: -webkit-sticky;
+    position: sticky;
+    
+      z-index:2;
+}
+
+.tabbar{
+  top:96px;
+  background:#fff;
+}
+
+
+.tabbar:before,
+.tabbar:after
+{    content: '';
+    display: table;
+}
+// .tabbar:after{
+//   content:'';
+//   display: block;
+//   width: 100%;
+//   height: 1em;
+//   background:rgba(255,255,255,0.5);
+// }

@@ -299,17 +299,51 @@ function custom_override_checkout_fields($fields) {
 	$fields['billing']['billing_first_name']['placeholder'] = 'first name';
 	$fields['billing']['billing_last_name']['placeholder'] = 'last name';
 	$fields['billing']['billing_email']['placeholder'] = 'email address';
-	$fields['shipping']['shipping_first_name']['placeholder'] = 'first name';
-	$fields['shipping']['shipping_last_name']['placeholder'] = 'last name';
-	$fields['shipping']['shipping_email']['placeholder'] = 'email address';
+// 	$fields['shipping']['shipping_first_name']['placeholder'] = 'first name';
+// 	$fields['shipping']['shipping_last_name']['placeholder'] = 'last name';
+// 	$fields['shipping']['shipping_email']['placeholder'] = 'email address';
 	unset($fields['billing']['billing_company']);
 	unset($fields['billing']['billing_address_2']);
-	unset($fields['billing']['billing_email']);
+// 	unset($fields['billing']['billing_email']);
 	unset($fields['billing']['billing_phone']);
 	unset($fields['order']['order_comments']);
 	return $fields;
 }
 add_filter('woocommerce_checkout_fields', 'custom_override_checkout_fields');
+
+function btk_split_shipping_label( $label ){
+  $striped = strip_tags($label);
+    $amount =  preg_replace( '/^.+\:/', "", $striped );
+    $striped = preg_replace('/\\:.+$/','', $striped);
+    $striped = preg_replace('/\\(.+$/','', $striped);
+    if(!$amount){
+      $amount = 'free';
+    }
+    if($amount == $label){
+      $amount = 'free';
+    }
+    return array( 'label'=> $striped, 'value' => $amount );
+}
+
+function btk_custom_shipping_label( $label ) {
+    $label = btk_split_shipping_label($label);
+    return '</tr><tr><td>'.$label['label'] . '</td><td><span class="amount">' . $label['value'] . '</span></td>';
+}
+
+function btk_custom_shipping_total( $label, $method, $chosen ) {
+    $label = btk_split_shipping_label($label);
+    
+    if($method == $chosen){
+      return ''.$label['label'] . '</td><td><span class="amount">' . $label['value'] . '</span></td>';  
+    }
+}
+
+//add_filter( 'woocommerce_cart_shipping_method_full_label' , 'btk_custom_shipping_label' );
+
+
+
+//add_filter( 'woocommerce_cart_needs_shipping', '__return_true' );
+//add_filter( 'woocommerce_ship_to_different_address_checked', '__return_true' );
 
 
 /**
