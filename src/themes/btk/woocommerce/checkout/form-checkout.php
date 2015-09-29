@@ -27,9 +27,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <div class="summary-bar">
 
-  <div class="billing-address-summary">
+  <div class="billing-address-summary summary-box">
   
-      <h3><?php _e('Billing Address', 'btk'); ?></h3>
+      <h3><?php _e('Shipping Address', 'btk'); ?></h3>
       
       <div>
         <span class="billing_first_name_summary"></span>
@@ -48,7 +48,7 @@ if ( ! defined( 'ABSPATH' ) ) {
       <div><span class="billing_postcode_summary"></span></div>
       
   </div>
-  <div class="shipping-address-summary">
+  <div class="shipping-address-summary summary-box">
       <h3><?php _e('Shipping Address', 'btk'); ?></h3>
       <div>
         <span class="shipping_first_name_summary"></span>
@@ -68,7 +68,7 @@ if ( ! defined( 'ABSPATH' ) ) {
       </div>
       
   </div>
-  <div class="delivery-fees-summary">
+  <div class="delivery-fees-summary summary-box">
       <h3><?php _e('Delivery Fees', 'btk'); ?></h3>
       <div>
           Delivery fees: <span class="delivery_fees_subtotal_summary"></span>
@@ -77,10 +77,23 @@ if ( ! defined( 'ABSPATH' ) ) {
           Delivery by: <span class="delivery_time_estimate"><?php echo date('Y-m-d', strtotime("+30 days")); ?></span>
       </div>
   </div>
-  <div class="payment-details-summary">
+  <div class="payment-details-summary summary-box">
       <h3><?php _e('Payment Details', 'btk'); ?></h3>
+      <div>
+          Credit Card: <span class="paypal_pro-card-number_summary"></span>
+      </div>
+      <div>
+          Expiry: <span class="paypal_pro-card-expiry"></span>
+      </div>
+      <!--<div>
+          CVC: <span class="paypal_pro-card-cvc"></span>
+      </div>-->
   </div>
-    
+  <div class="order-review-summary summary-box">
+    <h3><?php _e('Total', 'btk'); ?></h3>
+    <div class="big-cart-total"></div>
+  </div>
+  
 </div><!-- end summary-bar -->
 
 <?php

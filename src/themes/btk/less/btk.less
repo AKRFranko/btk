@@ -233,7 +233,7 @@ Sliders
   font-weight:bold;
   a { font-size:1.25em; vertical-align:middle; }
   > span { color:@black; text-shadow:none; font-weight:normal; }
-  
+  margin-top:-3.75em;
 }
 .edb-slider .slide-text {
 	font-family:@sliderfontfamily;
@@ -426,10 +426,20 @@ Content
 
 .page-order-samples {
 	#content {
-		input[type='submit'] { padding:0.75em 1.8em; background-position:center center; }
+		input[type='submit'] { 
+		  padding:0.75em 1.8em; background-position:center center; 
+		  
+		}
 	}
 }
 
+form.wpcf7-form input[type="submit"] {
+    font-family: inherit;
+    font-size: 1em;
+    letter-spacing: .2em;
+    padding: .5em 1.5em;
+    text-transform:uppercase;
+}
 
 .home {
 	.main-collection, .main-news, .main-article {
@@ -548,13 +558,13 @@ Footer
   /* PASTILLE */
   .slide.active:nth-child(2):after{
     
-  content: 'Bam!';
+  content: '50%';
   position: absolute;
   top: 10%;
   right: 10%;
   width: 6rem;
   height: 6rem;
-  background-color: hotpink;
+  background-color: #FB90C5;
   z-index: 9999;
   border-radius: 50%;
   text-align: center;
@@ -563,7 +573,7 @@ Footer
   color: #fff;
   font-size: 2em;
   box-shadow: 0 0 .1em rgba(0,0,0,0.3);
-  border: 2px solid #fff;
+  border: 0;
 
   }
   
@@ -622,6 +632,30 @@ Footer
 	    .product-title{text-align:center;}
 	  }
 	}
+	
+	.big-cart-total {
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+fieldset#paypal_pro-cc-form {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+fieldset#paypal_pro-cc-form input{
+  border-color:#ddd;
+  // border-bottom:1px solid #000000;
+}
+
+div.half{
+  display: inline-block;
+    width: 50%;
+    float: left;
+    vertical-align: top
+}
 /*
 ==========================================================================
 Media Queries and Devices
@@ -814,7 +848,7 @@ Media Queries and Devices
   }
 	.home .main-article,
 	.woocommerce ul.products li.product {
-		display:inline-block; width:~"calc(33% - " (20px/3) ~")";
+		display:inline-block; width:~"calc( 33%  - " (20px/3) ~")";
 		margin:(20px/3); vertical-align:top; clear:none;
 	}
 	.woocommerce ul.products li.product {

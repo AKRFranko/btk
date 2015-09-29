@@ -20,35 +20,55 @@
   transition:all 1s ease-out;
 
 }
+#toast form{
+  
+  position:static;
+}
 #toast .page{
   display:block;
   width:750px;
   height:100%;
+  padding:1em;
   margin-left:auto;
   margin-right:auto;
   text-align:center;
 }
-#toast .image{
-  display:inline-block;
-  width:40%;
-  min-height:80%;
-  margin-top:2em;
+// #toast .image{
+//   display:inline-block;
+//   width:40%;
+//   min-height:80%;
+//   margin-top:2em;
   
-  margin-right:1em;
-  text-align:center;
-  position:relative;
-  background-position:center;
-  background-size:cover;
-  background-repeat:no-repeat;
+//   margin-right:1em;
+//   text-align:center;
+//   position:relative;
+//   background-position:center;
+//   background-size:cover;
+//   background-repeat:no-repeat;
+// }
+#toast .image {
+    display: inline-block;
+    width: ~"calc(50% - 1em)";
+    min-height: ~"calc(100% - 2em)";
+    max-height: ~"calc(100% - 2em)";
+    margin-top: 1em;
+    margin-right: 0;
+    text-align: center;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
 }
-
 #toast .content{
   display:inline-block;
-  max-width:50%;
+  max-width:49%;
   margin-top:1em;
+  padding:0 1em;
 }
 #toast .image,#toast .content{
   vertical-align:top;
+  height:100%;
 }
 #toast .title,
 #toast .body{
@@ -57,7 +77,11 @@
   text-align:left;
 }
 #toast .page input[type="submit"]{
-  float:right;
+  // float:right;
+  position: absolute;
+    top: 100%;
+    left:50%;
+    margin-top: -3.25em;
 }
 #toast .page p{
   margin-bottom:1em;

@@ -63,6 +63,14 @@
   border-bottom:1px solid #999;
   // display:none;
 }
+
+.summary-box{
+  opacity:1;
+  transition:opacity 0.2s ease-in-out;
+}
+.summary-box.not-shown{
+  opacity:0;
+}
 .summary-bar > div {
     display: inline-block;
     width: ~"calc(25% - 1em)";

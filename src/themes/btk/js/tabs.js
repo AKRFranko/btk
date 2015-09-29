@@ -20,7 +20,7 @@
             $tab.add($pane).addClass('active');
             var index = $tab.index();
             store.set('last_checkout_tab', index + 1);
-            tabbar.trigger('tab-changed', currentTab, paneSelector);
+            tabbar.trigger('tab-changed', [currentTab, paneSelector]);
             currentTab = paneSelector;
         }
 

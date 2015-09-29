@@ -128,6 +128,7 @@ global $current_user;
 											}
 										}
 									?>
+									  <li><a href="/shop" title="Shop Around">all</a></li>
 									</ul>
 								</div>
 							</div>

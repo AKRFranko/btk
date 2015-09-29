@@ -327,14 +327,13 @@ function btk_split_shipping_label( $label ){
 
 function btk_custom_shipping_label( $label ) {
     $label = btk_split_shipping_label($label);
-    return '</tr><tr><td>'.$label['label'] . '</td><td><span class="amount">' . $label['value'] . '</span></td>';
+    return '</tr><tr><td>'.$label['label'] . '</td><td><span class="delivery-amount amount">' . $label['value'] . '</span></td>';
 }
 
 function btk_custom_shipping_total( $label, $method, $chosen ) {
     $label = btk_split_shipping_label($label);
-    
     if($method == $chosen){
-      return ''.$label['label'] . '</td><td><span class="amount">' . $label['value'] . '</span></td>';  
+      return ''.$label['label'] . '</td><td><span class="delivery-amount amount">' . $label['value'] . '</span></td>';  
     }
 }
 
