@@ -14,11 +14,11 @@ get_header(); ?>
 	<div class="edb-slider lookbook-slider">
 			<?php btk_edb_lookbook_slider();?>
 			<div class="controls">
-				<a class="prev" href="#"><span class="icon-arrow-lite-left-black"></span></a>
+				<a class="prev" href="#"><span class="icon-arrow-lite-left-white"></span></a>
 					<span class="index"> - </span>
 					<span class="separator"> | </span>
 					<span class="total"> - </span>
-				<a class="next" href="#"><span class="icon-arrow-lite-right-black"></span></a>
+				<a class="next" href="#"><span class="icon-arrow-lite-right-white"></span></a>
 
 			</div>
 		</div>

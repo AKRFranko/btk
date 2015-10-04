@@ -1566,12 +1566,8 @@ form.wpcf7-form.sent {
 }
 .woocommerce .product .product-color-choice ul li a.clicked,
 .woocommerce .product .product-color-choice ul li a:hover {
-  -webkit-transform: scale(1.1);
-      -ms-transform: scale(1.1);
-          transform: scale(1.1);
-  -webkit-transform-origin: center;
-      -ms-transform-origin: center;
-          transform-origin: center;
+  transform: scale(1.1);
+  transform-origin: center;
 }
 .woocommerce .product .product-summary {
   float: none;
@@ -2316,12 +2312,8 @@ form.wpcf7-form.sent {
     padding: 0px;
   }
   .woocommerce .product #user-product-settings .product-color-choice .instock {
-    -webkit-transform: rotate(-45deg);
-        -ms-transform: rotate(-45deg);
-            transform: rotate(-45deg);
-    -webkit-transform-origin: center;
-        -ms-transform-origin: center;
-            transform-origin: center;
+    transform: rotate(-45deg);
+    transform-origin: center;
     top: 50%;
     left: 50%;
     margin: -2em;
@@ -2437,8 +2429,7 @@ body.splash-on > * {
 /* slides */
 #splash-page .splash-image {
   z-index: 300;
-  -webkit-animation: splashcycler 12s infinite;
-          animation: splashcycler 12s infinite;
+  animation: splashcycler 12s infinite;
   opacity: 0;
   background-size: cover;
   background-position: center;
@@ -2453,20 +2444,6 @@ body.splash-on > * {
   height: 100%;
 }
 /* slide animation */
-@-webkit-keyframes splashcycler {
-  0% {
-    opacity: 1;
-  }
-  33% {
-    opacity: 1;
-  }
-  35% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
-}
 @keyframes splashcycler {
   0% {
     opacity: 1;
@@ -2483,16 +2460,13 @@ body.splash-on > * {
 }
 /* slide offsets (relative to splashcycler duration)*/
 #splash-page .splash-image:nth-child(1) {
-  -webkit-animation-delay: 0s;
-          animation-delay: 0s;
+  animation-delay: 0s;
 }
 #splash-page .splash-image:nth-child(2) {
-  -webkit-animation-delay: 4s;
-          animation-delay: 4s;
+  animation-delay: 4s;
 }
 #splash-page .splash-image:nth-child(3) {
-  -webkit-animation-delay: 8s;
-          animation-delay: 8s;
+  animation-delay: 8s;
 }
 #splash-page button {
   position: absolute;
@@ -2506,9 +2480,7 @@ body.splash-on > * {
   border-radius: 0;
   text-align: center;
   transition: all 0.1s ease-in-out;
-  -webkit-transform-origin: center;
-      -ms-transform-origin: center;
-          transform-origin: center;
+  transform-origin: center;
   z-index: 500;
   white-space: nowrap;
   line-height: 1.2;
@@ -2963,9 +2935,7 @@ Header
   margin: 0 5px 0 15px;
 }
 #header-box header nav .badge {
-  -webkit-transform: scale(0.6) translateY(-0.5em);
-      -ms-transform: scale(0.6) translateY(-0.5em);
-          transform: scale(0.6) translateY(-0.5em);
+  transform: scale(0.6) translateY(-0.5em);
   font-family: monospace;
 }
 #header-box header nav.nav-hamburger {
@@ -3236,8 +3206,11 @@ Sliders
 }
 .lookbook-slider .slide-text {
   top: 100%;
-  margin-top: 4em;
-  font-size: 1.35em;
+  width: 50%;
+  margin-top: 50px;
+  font-size: 2em;
+  margin-left: -2em;
+  text-align: left;
   font-family: "adobe-caslon-pro", Georgia, 'Times New Roman', Times, serif;
   text-transform: lowercase;
   color: #000;
@@ -3247,21 +3220,19 @@ Sliders
   display: block;
   position: absolute;
   top: 100%;
-  margin-top: 8em;
-  width: 100%;
-  text-align: center;
+  margin-top: 50px;
+  width: calc(50% - 1em);
+  margin-left: 50%;
+  text-align: right;
 }
 .lookbook-slider .slide-html .disp-cat,
 .lookbook-slider .slide-html .disp-name,
-.lookbook-slider .slide-html .disp-price {
+.lookbook-slider .slide-html .price {
   display: inline-block;
-  min-width: 120px;
+  min-width: 40%;
 }
 .lookbook-slider .slide-html .disp-cat:before {
   content: '_ ';
-}
-.lookbook-slider .slide-html .price {
-  color: #666;
 }
 .lookbook-slider .slide-html .disp-cat:after,
 .lookbook-slider .slide-html .disp-name:after {
@@ -3270,29 +3241,20 @@ Sliders
 .lookbook-slider .slide-html .disp-name {
   text-transform: uppercase;
   font-weight: bold;
+  letter-spacing: .1em;
 }
-.lookbook-slider .controls {
-  top: 100%;
-  bottom: 0;
-  padding-top: 2em;
-  margin-top: 0;
-}
-.lookbook-slider .controls a {
-  font-size: 1.25em;
-  vertical-align: middle;
+.lookbook-slider .slide-html .price {
+  text-align: right;
+  min-width: 20%;
 }
 .lookbook-slider .controls .index,
 .lookbook-slider .controls .separator,
 .lookbook-slider .controls .total {
-  color: #000000;
-  text-shadow: none;
-  font-weight: normal;
+  color: #fff;
 }
 .lookbook-detail {
-  width: 20em;
-  left: 50%;
+  width: 100%;
   position: relative;
-  margin-left: -10em;
 }
 .lookbook-detail li {
   text-align: left;
@@ -3662,9 +3624,7 @@ Footer
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-transform: translate(0, 0);
-      -ms-transform: translate(0, 0);
-          transform: translate(0, 0);
+  transform: translate(0, 0);
   width: 19px !important;
   height: 19px !important;
   font-size: 1.5em !important;
@@ -3778,14 +3738,10 @@ Footer
   margin: 1.5em;
   box-shadow: 0 0 3em rgba(0, 0, 0, 0.3);
   transition: all 0.2s ease-in;
-  -webkit-transform: scale(0) rotate(360deg);
-      -ms-transform: scale(0) rotate(360deg);
-          transform: scale(0) rotate(360deg);
+  transform: scale(0) rotate(360deg);
 }
 .btk-form-success.show {
-  -webkit-transform: scale(1) rotate(360deg);
-      -ms-transform: scale(1) rotate(360deg);
-          transform: scale(1) rotate(360deg);
+  transform: scale(1) rotate(360deg);
 }
 #content article .entry-content .btk-form-success img,
 .btk-form-success img {
@@ -4097,31 +4053,19 @@ Media Queries and Devices
 /* HACK */
 @media (min-width: 2000px) {
   body {
-    -webkit-transform: scale(2);
-        -ms-transform: scale(2);
-            transform: scale(2);
-    -webkit-transform-origin: top;
-        -ms-transform-origin: top;
-            transform-origin: top;
+    transform: scale(2);
+    transform-origin: top;
   }
 }
 @media (min-width: 3000px) {
   body {
-    -webkit-transform: scale(3);
-        -ms-transform: scale(3);
-            transform: scale(3);
-    -webkit-transform-origin: top;
-        -ms-transform-origin: top;
-            transform-origin: top;
+    transform: scale(3);
+    transform-origin: top;
   }
 }
 @media (min-width: 4000px) {
   body {
-    -webkit-transform: scale(4);
-        -ms-transform: scale(4);
-            transform: scale(4);
-    -webkit-transform-origin: top;
-        -ms-transform-origin: top;
-            transform-origin: top;
+    transform: scale(4);
+    transform-origin: top;
   }
 }
