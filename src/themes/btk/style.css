@@ -1569,6 +1569,9 @@ form.wpcf7-form.sent {
   transform: scale(1.1);
   transform-origin: center;
 }
+.woocommerce .product .product-color-choice ul li a.clicked img {
+  border-color: #000;
+}
 .woocommerce .product .product-summary {
   float: none;
   width: initial;
@@ -2239,19 +2242,14 @@ form.wpcf7-form.sent {
   }
   .woocommerce .product #user-product-settings .product-color-choice {
     width: 50%;
+    margin: 0;
+    padding: 0;
   }
   .woocommerce .product #user-product-settings .product-color-choice ul li {
     width: calc( 100% / 4 );
   }
-  .woocommerce .product #user-product-settings .product-add {
-    position: absolute;
-    width: 50%;
-    top: 15px;
-    left: 50%;
-  }
-  .woocommerce .product #user-product-settings .product-add .qty-text,
-  .woocommerce .product #user-product-settings .product-add .product-color {
-    margin-bottom: 18px;
+  .woocommerce .product #user-product-settings .product-color-choice ul li.na {
+    display: none;
   }
 }
 .delivery_options .form-row {
@@ -2287,70 +2285,6 @@ form.wpcf7-form.sent {
   .ie11 .woocommerce .product .edb-slider .controls,
   .NaN .woocommerce .product .edb-slider .controls {
     padding-top: 60px;
-  }
-  .woocommerce .product #user-product-settings {
-    position: absolute;
-    top: 0px;
-    width: calc(100% - 750px);
-    left: 750px;
-    margin: 0;
-  }
-  .woocommerce .product #user-product-settings .controls {
-    bottom: -4em;
-  }
-  .woocommerce .product #user-product-settings .product-color-choice,
-  .woocommerce .product #user-product-settings .product-add {
-    border: 0;
-  }
-  .woocommerce .product #user-product-settings .product-color-choice {
-    width: 100%;
-  }
-  .woocommerce .product #user-product-settings .product-color-choice ul li {
-    width: calc( 100% / 4 );
-  }
-  .woocommerce .product #user-product-settings .product-color-choice ul li a {
-    padding: 0px;
-  }
-  .woocommerce .product #user-product-settings .product-color-choice .instock {
-    transform: rotate(-45deg);
-    transform-origin: center;
-    top: 50%;
-    left: 50%;
-    margin: -2em;
-  }
-  .woocommerce .product #user-product-settings p.center {
-    margin: 0;
-    padding: 0;
-  }
-  .woocommerce .product #user-product-settings .product-add {
-    position: absolute;
-    width: 100%;
-    top: 180px;
-    left: 0;
-  }
-  .woocommerce .product #user-product-settings .product-add .qty-text,
-  .woocommerce .product #user-product-settings .product-add .product-color {
-    margin: 0;
-    padding: 0;
-  }
-  .woocommerce .product #user-product-settings .product-add .product-color {
-    margin-top: 1em;
-  }
-  .woocommerce .product #user-product-settings .product-add .qty-text {
-    margin-top: 1.5em;
-  }
-  .woocommerce .product #user-product-settings .product-add .qty {
-    margin-top: .25em;
-  }
-  .woocommerce .product #user-product-settings .product-add p.right {
-    text-align: left;
-  }
-  .woocommerce .product #user-product-settings .product-add p.right span {
-    margin-top: 1.5em;
-  }
-  .woocommerce .product #user-product-settings .product-add p.right button {
-    margin-top: .5em;
-    float: right;
   }
 }
 .icon-arrow-lite-left-white,
@@ -3804,6 +3738,58 @@ div.half {
   width: 50%;
   float: left;
   vertical-align: top;
+}
+.product-split {
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+}
+.product-information,
+#user-product-settings {
+  white-space: normal;
+  max-width: 50%;
+  overflow: hidden;
+  vertical-align: top;
+  display: inline-block;
+}
+#user-product-settings .product-color-choice {
+  width: 100%!important;
+}
+#user-product-settings .product-add {
+  position: relative;
+}
+.product-information {
+  display: inline-block;
+  width: calc(50% - 1em);
+  padding: 0 1em 4em 1em;
+  border-right: 1px solid #000;
+  margin-right: -1px;
+}
+.product-information h2 {
+  font-size: 1.5em;
+}
+.product-information .sharing {
+  display: block;
+  width: 100%;
+  text-align: left;
+  float: none;
+}
+.product-information a.fa,
+.product-information span.fa {
+  color: #999;
+  font-size: 1.5em;
+}
+.product-information span.fa a {
+  display: none !important;
+}
+.product-information .tech {
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  padding: 0;
+}
+.product-information p.pdf-button a {
+  border: 1px solid #999;
+  padding: .2em .5em;
 }
 /*
 ==========================================================================

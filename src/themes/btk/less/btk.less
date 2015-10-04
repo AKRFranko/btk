@@ -31,6 +31,8 @@ body.woocommerce-page, body.page{
   text-align:center;
 }
 
+
+
 .container{
   max-width:970px;
   
@@ -662,6 +664,62 @@ div.half{
     width: 50%;
     float: left;
     vertical-align: top
+}
+.product-split{
+display:block;
+width:100%;
+white-space:nowrap;
+  
+}
+
+.product-information,
+#user-product-settings{
+  white-space:normal;  
+  max-width:50%;
+  overflow:hidden;
+  vertical-align:top;
+  display:inline-block;
+}
+#user-product-settings{
+  .product-color-choice{
+    width:100%!important;
+  }
+  .product-add{
+    position:relative;
+  }
+}
+.product-information{
+  display:inline-block;
+  width:~"calc(50% - 1em)";
+  padding:0 1em 4em 1em;
+  border-right:1px solid #000;
+  margin-right:-1px;
+  
+  h2{
+    font-size:1.5em;
+  }
+  .sharing{
+    display:block;
+    width:100%;
+    text-align:left;
+    float:none;
+  }
+  a.fa,span.fa{
+    color:#999;
+    font-size:1.5em;
+  }
+  span.fa a{
+    display:none !important;
+  }
+  .tech{
+    border-top:1px solid #000;
+    border-bottom:1px solid #000;
+    padding:0;
+  }
+  p.pdf-button a {
+    border: 1px solid #999;
+    padding: .2em .5em;
+  }
 }
 /*
 ==========================================================================
