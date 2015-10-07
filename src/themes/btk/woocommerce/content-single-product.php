@@ -106,8 +106,22 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 	?>
 	<div id="user-product-settings">
 	<div class="product-color-choice">
+	<h2 class="product-title repeat"><?php the_title(); ?></h2>
+		<p class="product-price repeat">_ <?php echo $product->get_price_html(); ?>
+		<span class="sharing repeat">
+			<a href="https://www.facebook.com/sharer.php?u=<?php echo get_permalink(); ?>" class="fa fa-facebook-square" title="<?php _e('Share to facebook', 'btk'); ?>" target="_blank">
+			</a>
+			<a href="https://twitter.com/share?text=<?php echo rawurlencode(get_the_title() . ' on element de base'); ?>&amp;url=<?php echo get_permalink(); ?>&amp;via=elementdebase" class="fa fa-twitter-square" title="<?php _e('Share to twitter', 'btk'); ?>" target="_blank"></a>
+			<span class="fa fa-pinterest-square" title="<?php _e('Share to pinterest', 'btk'); ?>">
+				<a href="//fr.pinterest.com/pin/create/button/?url=<?php echo get_permalink(); ?>&amp;media=<?php echo $pin_image; ?>&amp;description=<?php echo rawurlencode(get_the_title()); ?>" data-pin-do="buttonPin" data-pin-config="none">
+					<img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" alt="pinterest" /></a>
+				<script type="text/javascript" async defer src="//assets.pinterest.com/js/pinit.js"></script>
+			</span>
+		</span>
+	  </p>
+		
 		<p>
-		  <?php _e('select color', 'btk'); ?> <b class="colorname"></b>
+		  <?php _e('select a color', 'btk'); ?><!-- <b class="colorname"></b>-->
 		</p>
 		<ul>
 		<?php
