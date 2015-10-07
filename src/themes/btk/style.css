@@ -2287,6 +2287,9 @@ form.wpcf7-form.sent {
   .edb-slider {
     min-height: 400px;
   }
+  .repeat {
+    display: none;
+  }
   .woocommerce .product #user-product-settings {
     position: absolute;
     top: 0;
@@ -2306,6 +2309,9 @@ form.wpcf7-form.sent {
     font-weight: bold;
     padding-bottom: .75em;
     border-bottom: 1px solid #000;
+  }
+  .woocommerce .product #user-product-settings .repeat {
+    display: block;
   }
   .woocommerce .product #user-product-settings span.sharing.repeat {
     position: absolute;
