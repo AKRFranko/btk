@@ -251,7 +251,7 @@ form.wpcf7-form.sent{
 				  display:inline-block; 
   				width:100%;
   				height:100%; 
-  				padding:0 6px 12px;
+  				padding:0 4px 8px;
 		  		cursor:pointer; 
 			  	background-color:transparent; 
 				  margin:0;
@@ -652,7 +652,7 @@ form.wpcf7-form.sent{
 	    margin:0;
 	    padding:0;
 	    ul li{
-	  	  width: ~"calc( 100% / 4 )";
+	  	  width: ~"calc( 100% / 6 )";
 	    }
 	    ul li.na{
 	      display:none;
@@ -685,15 +685,15 @@ form.wpcf7-form.sent{
 @media (min-width: 768px) and (max-width: 991px) {
 	.woocommerce ul.products li.product .product-desc { padding:15px; }
 	.woocommerce .product .product-color-choice ul li a{
-	  padding:0 8px 15px; 
+	  //padding:0 8px 15px; 
 	}
 }
 @media (min-width: 992px) {
 	.woocommerce ul.products li.product .product-desc,
-	.woocommerce .product .product-images .controls { padding:20px; }
+	.woocommerce .product .product-images .controls { padding:15px; }
 	
 	.woocommerce .product .product-color-choice ul li a{ 
-	  padding:0 10px 20px; 
+	  //padding:0 10px 20px; 
 	  
 	}
 
@@ -702,6 +702,77 @@ form.wpcf7-form.sent{
 		.woocommerce .product .edb-slider .controls { padding-top:60px; }
 	}
 	
+.woocommerce .product #user-product-settings {
+    position: absolute;
+    top: 3em;
+    width: calc(100% - 750px);
+    height:460px;
+    left: 750px;
+     .product-color-choice{
+	    width:50%;
+	    margin:0;
+	    padding:0;
+	    ul li{
+	  	  width: ~"calc( 100% / 4 )";
+	    }
+	    ul li.na{
+	      display:none;
+	    }
+	  }
+	  .right{
+	    vertical-align:bottom;
+	    margin:0;
+	  }
+}
+.woocommerce .product .product-add {
+    padding: 10px 10px 10px 0;
+    border-bottom: 3px solid #000000;
+}
+.woocommerce .product-color {
+    padding: 6px 0 13px 0;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+.woocommerce .product .product-information{
+  position:static;
+  width:100%;
+  min-width:100%;
+  padding:0 0 2em 0;
+  white-space:nowrap;
+  border:0;
+  border-top:1px solid #000;
+  .product-price{display:none}
+  .product-title {
+    font-size: 1.5em;
+    display: inline-block;
+    width: 10em;
+    margin-top:1em;
+    vertical-align:top;
+   }
+   .sharing{
+     position:absolute;
+     top:0;
+     right:0;
+   }
+   .desc{
+     display: inline-block;
+     padding-top:1em;
+    width: ~"calc(100% - 14em)";
+    white-space:normal;
+   }
+   .tech{
+     text-align:left;
+     border:0;
+     border-top:1px solid #000;
+     margin:0;
+   }
+   .pdf-button{
+     text-align:right;
+     margin-bottom: 1em;
+    padding: 0 1em 1em 0;
+    border-bottom: 1px solid #000;
+   }
+}
 // 	.woocommerce .product #user-product-settings{
 // 	  position:absolute;
 // 	  top:0px;

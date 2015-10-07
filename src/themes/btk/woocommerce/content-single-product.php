@@ -71,7 +71,7 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 	</div>
 
 
-  <div class="product-split">
+  
 	<div class="product-information">
 		<h2 class="product-title upper"><?php the_title(); ?></h2>
 		<p class="product-price valign">_ <?php echo $product->get_price_html(); ?></p>
@@ -106,7 +106,7 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 	?>
 	<div id="user-product-settings">
 	<div class="product-color-choice">
-		<p class="center">
+		<p>
 		  <?php _e('select color', 'btk'); ?> <b class="colorname"></b>
 		</p>
 		<ul>
@@ -160,7 +160,8 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 		?>
 	</div>
   </div><!-- #user-product-settings -->
-  </div>
+  
+  
   <?php if(false): ?>
 	<div class="product-summary">
 		<h2 class="product-title upper"><?php the_title(); ?></h2>
