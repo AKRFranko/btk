@@ -162,7 +162,7 @@ form.wpcf7-form.sent{
 			
 			.product-desc {
 				.post-titles(); padding:12px;
-				.product-title { display:block; font-size:1.35em; font-family:@altfontfamily; line-height:1em; }
+				.product-title { text-transform:uppercase;display:block; font-size:1.35em; font-family:@altfontfamily; line-height:1em; }
 				.product-price { font-size:1.15em; }
 				> a { margin-bottom:5px; }
 			}
@@ -235,9 +235,25 @@ form.wpcf7-form.sent{
 		// 	l
 			.in-stock { position:absolute; bottom:50px; left:15px; z-index:5; }
 		}
-
+    .product-variation-availability-delay{
+          border-bottom: 1px solid #000;
+    
+    margin: 0;
+    padding: 1em 0;
+    margin-top: -1em;
+    }
+    .quantity,.qty-text{
+      padding:1em 0;
+      
+    }
 		.product-color-choice {
 			margin-bottom:20px; padding-bottom:10px; text-align:left; .imgborder();
+			
+			ul{
+			  width:calc(100% + 2px);
+			  margin-right:-2px;
+			  
+			}
 			ul li {
 				display:inline-block; margin:0 0 10px 0;
 				vertical-align:top;
@@ -245,16 +261,17 @@ form.wpcf7-form.sent{
 				height:4em;
 				
 				border:none;
-				margin:0;
+				margin:-4px 4px 4px -4px;
 				a { 
 				  position:relative;
 				  display:inline-block; 
   				width:100%;
   				height:100%; 
-  				padding:0 4px 8px;
+  				padding:2px;
+  				padding-right:4px;
 		  		cursor:pointer; 
 			  	background-color:transparent; 
-				  margin:0;
+				  margin:-2px;
 				  border:0;
 					&.na{display:none; }
 					img{
@@ -347,7 +364,7 @@ form.wpcf7-form.sent{
 					&:hover { background-color:@gray; }
 				}
 			}
-			.qty-text { padding:6px 0;  }
+			.qty-text { padding:1em 0; border-bottom:1px solid #000; }
 		}
 		
 		// Hack to make it look more like in PSD designs because we have not failed, the data has. 
@@ -418,7 +435,11 @@ form.wpcf7-form.sent{
 // 	.recently-viewed .edb-slider .slide + .slide{
 // 	  margin-let:50%;
 // 	}
-	
+	#recently-viewed{
+	  margin-top:1em;
+	  padding-top:.5em;
+	  border-top:2px solid #000;
+	}
 
 
 	.quantity {
@@ -429,10 +450,13 @@ form.wpcf7-form.sent{
 		.qty { width:2.1em; text-align:right; color:@black; }
 	}
 	.product-color {
-		padding:6px 0; 
+		padding: .25em 0 1em;
+    border-bottom: 1px solid #000;
+    line-height: 2;
+    margin: 0;
 		a { padding:0.35em 2.65em; cursor:pointer; }
 		span { padding-top:10px; }
-		span + span { padding:0.35em 2.65em; }
+		span + span { padding:0.35em 2.65em;margin-top:.5em;margin-bottom:-.5em; }
 	}
 	
 
@@ -655,7 +679,8 @@ form.wpcf7-form.sent{
 	  .product-color-choice{
 	    width:50%;
 	    margin:0;
-	    padding:0;
+	    padding:0 0 0 1em;
+	 
 	    ul li{
 	  	  width: ~"calc( 100% / 6 )";
 	    }
@@ -671,6 +696,15 @@ form.wpcf7-form.sent{
 	   // .qty-text,.product-color{
 	   //   margin-bottom:18px;
 	   // }
+	   padding:20px 0 0 15px;
+	  }
+	  .product-button-wrap{
+	        text-align: right;
+	        margin-top:-1em;
+    display: block;
+    float: left;
+    width: 100%;
+    span{vertical-align:middle;}
 	  }
 	}
 	
@@ -686,6 +720,18 @@ form.wpcf7-form.sent{
   font-weight:bold;
 }
 
+
+.woocommerce .product .product-information{
+  .product-title{
+    text-transform:uppercase;
+    margin:0;
+    line-height:1.3;
+  }
+  .product-price{
+    font-weight:bold;
+    margin-top:-.25em;
+  }
+}
 
 @media (min-width: 768px) and (max-width: 991px) {
 	.woocommerce ul.products li.product .product-desc { padding:15px; }
@@ -772,6 +818,8 @@ form.wpcf7-form.sent{
     border-top: 1px solid #000;
     border-bottom: 1px solid #000;
 }
+
+
 .woocommerce .product .product-information{
   
   width:100%;
@@ -780,13 +828,14 @@ form.wpcf7-form.sent{
   white-space:nowrap;
   border:0;
   border-top:1px solid #000;
-  .product-price{display:none}
-  .product-title {
-    font-size: 1.5em;
+  .product-price{display:none;}
+  h2.product-title {
+    font-size: 2em;
     display: inline-block;
     width: 10em;
-    margin-top:1em;
+    
     vertical-align:top;
+    text-transform:uppercase;
    }
    .sharing{
      position:absolute;
@@ -807,9 +856,9 @@ form.wpcf7-form.sent{
    }
    .pdf-button{
      text-align:right;
-     margin-bottom: 1em;
+     margin-bottom: 4em;
     padding: 0 1em 1em 0;
-    border-bottom: 1px solid #000;
+    // border-bottom: 1px solid #000;
    }
 }
 // 	.woocommerce .product #user-product-settings{

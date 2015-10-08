@@ -70,15 +70,16 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 	<?php } ?>
 	</div>
 
-
   
+   
 	<div class="product-information">
-		<h2 class="product-title upper"><?php the_title(); ?></h2>
-		<p class="product-price valign">_ <?php echo $product->get_price_html(); ?></p>
+	
+		<h2 class="product-title"><?php the_title(); ?></h2>
 		
-		
-		
+		<p class="product-price">_ <?php echo $product->get_price_html(); ?></p>
+
 		<p class="desc"><?php echo get_the_content(); ?></p>
+
 		<p class="sharing alignright">
 			<a href="https://www.facebook.com/sharer.php?u=<?php echo get_permalink(); ?>" class="fa fa-facebook-square" title="<?php _e('Share to facebook', 'btk'); ?>" target="_blank">
 			</a>
@@ -89,12 +90,15 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 				<script type="text/javascript" async defer src="//assets.pinterest.com/js/pinit.js"></script>
 			</span>
 		</p>
+
 		<p class="tech"><?php echo btk_product_technical_drawing(); ?></p>
+
 		<p class="pdf-button">
 		  <?php echo btk_product_pdf_link( get_the_ID(), $post->post_name ); ?>
 		
 			<!-- <a href="" class="pr-rev"><?php _e('Customer reviews', 'btk'); ?></a> -->
 		</p>
+
 	</div>
 
 
@@ -104,6 +108,7 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 			$attributes = $product->get_variation_attributes();
 			$selected_attributes = $product->get_variation_default_attributes();
 	?>
+	
 	<div id="user-product-settings">
 	<div class="product-color-choice">
 	<h2 class="product-title repeat"><?php the_title(); ?></h2>
@@ -175,36 +180,7 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 	</div>
   </div><!-- #user-product-settings -->
   
-  
-  <?php if(false): ?>
-	<div class="product-summary">
-		<h2 class="product-title upper"><?php the_title(); ?></h2>
-		<p class="product-price valign">_ <?php echo $product->get_price_html(); ?></p>
-		<p class="sharing alignright">
-			<a href="https://www.facebook.com/sharer.php?u=<?php echo get_permalink(); ?>" class="fa fa-facebook-square" title="<?php _e('Share to facebook', 'btk'); ?>" target="_blank">
-			</a>
-			<a href="https://twitter.com/share?text=<?php echo rawurlencode(get_the_title() . ' on element de base'); ?>&amp;url=<?php echo get_permalink(); ?>&amp;via=elementdebase" class="fa fa-twitter-square" title="<?php _e('Share to twitter', 'btk'); ?>" target="_blank"></a>
-			<span class="fa fa-pinterest-square" title="<?php _e('Share to pinterest', 'btk'); ?>">
-				<a href="//fr.pinterest.com/pin/create/button/?url=<?php echo get_permalink(); ?>&amp;media=<?php echo $pin_image; ?>&amp;description=<?php echo rawurlencode(get_the_title()); ?>" data-pin-do="buttonPin" data-pin-config="none">
-					<img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" alt="pinterest" /></a>
-				<script type="text/javascript" async defer src="//assets.pinterest.com/js/pinit.js"></script>
-			</span>
-		</p>
-	</div>
-
-
-	<div class="product-description clearfix">
-		<p class="desc"><?php echo get_the_content(); ?></p>
-		
-		<p class="tech"><?php echo btk_product_technical_drawing(); ?></p>
-		<p class="right">
-		  <?php echo btk_product_pdf_link( get_the_ID(), $post->post_name ); ?>
-		
-			<!-- <a href="" class="pr-rev"><?php _e('Customer reviews', 'btk'); ?></a> -->
-		</p>
-	</div>
-	<?php endif; ?>
-
+ 
 
 	<?php //comments_template( 'single-product-reviews.php' ); ?>
 

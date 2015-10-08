@@ -78,7 +78,7 @@ foreach ($terms as $term) {
       <p class="product-variation-availability-delay"></p>
       
       <p class="product-color clearfix">
-        <?php if(empty($term_name)){ $term_name = 'select a color'; }; ?>
+        <?php if(empty($term_name)){ $term_name = 'color'; }; ?>
 				<span class="valign"><?php echo $term_name; ?></span>
 				<span class="alignright" style="background-color:<?php echo $term_desc; ?>">&nbsp;</span>
 			</p>
@@ -92,10 +92,11 @@ foreach ($terms as $term) {
       </p>
 			
       
-			<p class="right">
-				<span class="valign"><?php echo $product->single_add_to_cart_text(); ?></span>
-				<button type="submit" class="valign icon-arrow-lite-right-white"></button>
-			</p>
+			
+			<div class="product-button-wrap">
+			  <span><?php echo $product->single_add_to_cart_text(); ?></span><button type="submit" class="icon-arrow-lite-right-white"></button>
+			</div>
+			
 
 			<?php do_action( 'woocommerce_after_single_variation' ); ?>
 		</div>

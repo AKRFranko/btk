@@ -29,6 +29,11 @@
 
     }
 
+    // Listen for orientation changes
+    window.addEventListener("orientationchange", function() {
+        // Announce the new orientation number
+        $(window).trigger('resize');
+    }, false);
 
     $('.toggle-register').on('click', function(e) {
         e.preventDefault();

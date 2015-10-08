@@ -451,3 +451,19 @@ function btk_category_transient_flusher() {
 add_action('edit_category', 'btk_category_transient_flusher');
 add_action('save_post', 'btk_category_transient_flusher');
 
+/*
+
+Micro Templates
+
+*/
+/*
+function btk_single_product_title_tag(){
+  global $post, $product, $woocommerce;
+  ?><h2 class="product-title upper"><?php the_title(); ?></h2><?php
+}
+
+function btk_single_product_price_tag(){
+  global $post, $product, $woocommerce;
+  ?><p class="product-price">_ <?php echo $product->get_price_html(); ?></p><?php
+}
+*/
