@@ -676,9 +676,9 @@ div.half{
   display:inline-block;
 }
 #user-product-settings{
-  .product-color-choice{
-    width:100%!important;
-  }
+  // .product-color-choice{
+  //   width:100%!important;
+  // }
   .product-add{
     position:relative;
   }
@@ -769,7 +769,7 @@ Media Queries and Devices
 	.navbar-nav>li>a { padding-top:10px; padding-bottom:10px; }
 	.collapse.in { display:block !important; }
   
-}
+} 
 
 
 @media (min-width: 992px) {
@@ -792,7 +792,7 @@ Media Queries and Devices
       top: .8em;
       left: 110px;
       width: ~"calc( 100% - 106px)";
-      
+      text-align:right;
     }
     ul#menu-hamburger{
       white-space:nowrap;
@@ -802,7 +802,9 @@ Media Queries and Devices
       width:auto;
       padding:.5em 2em;
       font:inherit;
-     
+      &:last-of-type{
+        padding-right:0;
+      }
       
     }
     div.woo-categories{
