@@ -1563,8 +1563,8 @@ form.wpcf7-form.sent {
   display: inline-block;
   width: 100%;
   height: 100%;
-  padding: 2px;
-  padding-right: 4px;
+  padding: 3px;
+  padding-right: 8px;
   cursor: pointer;
   background-color: transparent;
   margin: -2px;
