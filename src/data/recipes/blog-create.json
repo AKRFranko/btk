@@ -294,17 +294,7 @@
                     "post_category": "$cat_carousel"
                 }
             },
-            "$news_02": {
-                "args": {
-                    "file": "./src/data/text/news-2.txt"
-                },
-                "opts": {
-                    "post_title": "new arrival",
-                    "post_type": "post",
-                    "post_status": "publish",
-                    "post_category": "$cat_carousel"
-                }
-            },
+
             "$news_01": {
                 "opts": {
                     "post_title": "spring 2015",
@@ -544,7 +534,7 @@
                     "post_name": "contact-us",
                     "post_type": "page",
                     "post_status": "publish",
-                    "post_content": "<p class='opening-hours'>Open Monday To Friday from 5am to 9pm.</p><p class='showroom-address'>1449 St-Alexandre<br/>Montreal<br/>H3A 2G6<br/>T. 514-555-5555</p><div class='showroom-map'><a href='https://www.google.com/maps/dir//1449+St-Alexandre,+Montreal,+Quebec/'><img src='http://maps.googleapis.com/maps/api/staticmap?center=1449+St-Alexandre,+Montreal,+Quebec&zoom=13&scale=false&size=400x400&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:red%7Clabel:1%7C1449+St-Alexandre,+Montreal,+Quebec' alt='Google Map of 1449 St-Alexandre, Montreal, Quebec'></a></div><div class='contact-form'>\n[contact-form-7 id='$contact_form' title='Contact US']</div>"
+                    "post_content": "<p class='opening-hours'>Open Monday To Friday from 5am to 9pm.</p><p class='showroom-address'>1449 St-Alexandre<br/>Montreal<br/>H3A 2G6<br/>T. 514-555-5555</p><div class='showroom-map'><a href='https://www.google.com/maps/dir//1449+St-Alexandre,+Montreal,+Quebec/'>get directions</a></div><div class='contact-form'> [contact-form-7 id='14' title='Contact US']</div><div class='btk-form-success'><a class='close' href='#'>close</a><h3>Alright!</h3><p>Your order is sent, Donec pulvinar non mauris iaculis congue. Maecenas volutpat mattis varius. Mauris at erat commodo, viverra dolor vel, lobortis velit. Aliquam vitae dolor cursus, sollicitudin dui et, euismod dui. Pellentesque dapibus mattis velit, vel commodo nisi finibus ac. Pellentesque id sollicitudin leo.</p><img src='https://placekitten.com/g/200/300'></div>"
                 }
             },
             "$toast_page": {
@@ -553,7 +543,7 @@
                     "post_name": "contest-toast",
                     "post_type": "page",
                     "post_status": "publish",
-                    "post_content": "[contact-form-7 id='$toast_form' title='Contest']"
+                    "post_content": "Enter for a chance to win this amazing stack of cussions and this beautiful ottoman![contact-form-7 id='12' title='Contest']<div class='btk-form-success inplace'><h3>Alright!</h3><p>Your order is sent, Donec pulvinar non mauris iaculis congue. Maecenas volutpat mattis varius. Mauris at erat commodo, viverra dolor vel, lobortis velit. Aliquam vitae dolor cursus, sollicitudin dui et, euismod dui. Pellentesque dapibus mattis velit, vel commodo nisi finibus ac. Pellentesque id sollicitudin leo.</p></div>"
                 }
             },
             "$delivery_page": {
@@ -662,12 +652,6 @@
                     }
                 }, {
                     "args": {
-                        "id": "$news_02",
-                        "key": "_subtitle",
-                        "value": "discover"
-                    }
-                }, {
-                    "args": {
                         "id": "$news_03",
                         "key": "_subtitle",
                         "value": "learn more"
@@ -701,6 +685,30 @@
                         "id": "$news_08",
                         "key": "_subtitle",
                         "value": "buy this"
+                    }
+                }, {
+                    "args": {
+                        "id": "$lookbook_1",
+                        "key": "_links_to",
+                        "value": "http://development.elementdebase.com/lookbook"
+                    }
+                }, {
+                    "args": {
+                        "id": "$lookbook_2",
+                        "key": "_links_to",
+                        "value": "http://development.elementdebase.com/lookbook"
+                    }
+                }, {
+                    "args": {
+                        "id": "$lookbook_3",
+                        "key": "_links_to",
+                        "value": "http://development.elementdebase.com/lookbook"
+                    }
+                }, {
+                    "args": {
+                        "id": "$lookbook_4",
+                        "key": "_links_to",
+                        "value": "http://development.elementdebase.com/lookbook"
                     }
                 }
             ]
@@ -774,18 +782,6 @@
                 }
             }, {
                 "args": {
-                    "id": "$news_02",
-                    "taxonomy": "post_tag",
-                    "term": "sectionals"
-                }
-            }, {
-                "args": {
-                    "id": "$news_02",
-                    "taxonomy": "post_tag",
-                    "term": "headboards"
-                }
-            }, {
-                "args": {
                     "id": "$news_01",
                     "taxonomy": "post_tag",
                     "term": "sofas"
@@ -837,11 +833,6 @@
                 "args": {
                     "menu": "$hamburger_menu",
                     "post": "$products_page"
-                }
-            }, {
-                "args": {
-                    "menu": "$hamburger_menu",
-                    "post": "$lookbook_page"
                 }
             }, {
                 "args": {
@@ -926,12 +917,20 @@
             }, {
                 "args": {
                     "menu": "$footer_alt_menu",
-                    "post": "$lookbook_page"
+                    "post": "$environment_page"
+                }
+            }],
+            "add-custom": [{
+                "args": {
+                    "menu": "$footer_menu",
+                    "title": "lookbook",
+                    "link": "/category/lookbook"
                 }
             }, {
                 "args": {
-                    "menu": "$footer_alt_menu",
-                    "post": "$environment_page"
+                    "menu": "$hamburger_menu",
+                    "title": "lookbook",
+                    "link": "/category/lookbook"
                 }
             }]
         }
@@ -1005,14 +1004,6 @@
                 }
             }, {
                 "args": {
-                    "file": "./src/data/media/carousel-images/2.jpg"
-                },
-                "opts": {
-                    "post_id": "$news_02",
-                    "featured_image": true
-                }
-            }, {
-                "args": {
                     "file": "./src/data/media/carousel-images/3.jpg"
                 },
                 "opts": {
@@ -1034,20 +1025,6 @@
                 "opts": {
                     "post_id": "$news_05",
                     "featured_image": true
-                }
-            }, {
-                "args": {
-                    "file": "./src/data/media/horizontal-images/1.jpg"
-                },
-                "opts": {
-                    "post_id": "$news_01"
-                }
-            }, {
-                "args": {
-                    "file": "./src/data/media/horizontal-images/2.jpg"
-                },
-                "opts": {
-                    "post_id": "$news_02"
                 }
             }, {
                 "args": {

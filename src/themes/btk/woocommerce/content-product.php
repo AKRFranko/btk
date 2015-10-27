@@ -53,15 +53,21 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 			do_action( 'woocommerce_before_shop_loop_item_title' );
 		?>
 
-		<?php if ( $product->is_in_stock() ) { ?>
-		<span class="in-stock"><?php _e('in stock', 'btk'); ?></span>
-		<?php } ?>
+	
 
 	</a>
 
 	<div class="product-desc lower">
 		<a href="<?php the_permalink(); ?>">
-			<span class="product-title upper"><?php the_title(); ?> <span data-text="<?php _e('shop', 'btk' ); ?>" class="shopnow"></span></span>
+				<?php if ( $product->is_in_stock() ) { ?>
+		      <span class="product-title upper"><?php the_title(); ?> <span data-text="in stock" class="shopnow"></span></span>
+		    <?php } ?>
+		    <?php if ( !$product->is_in_stock() ) { ?>
+		      <span class="product-title upper"><?php the_title(); ?> <span data-text="in stock" class="shopnow"></span></span>
+		    <?php } ?>
+		      
+
+			
 			<span class="product-price">_ <?php echo $product->get_price_html(); ?></span>
 		</a>
 		

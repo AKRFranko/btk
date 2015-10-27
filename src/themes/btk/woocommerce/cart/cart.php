@@ -25,7 +25,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 		<?php wc_get_template( 'cart/cart-contents.php' ); ?>
 
-		<input type="submit" class="button lower" name="update_cart" value="<?php _e( 'Update Cart', 'btk' ); ?>" />
+
 
 		<?php do_action( 'woocommerce_cart_actions' ); ?>
 
@@ -47,15 +47,46 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 
   <div class="cart-totals subtotal">
-    <p><?php _e('Cart subtotal<span>(excluding tax + shipping)</span>', 'btk'); ?></p>
-    <?php echo WC()->cart->get_cart_subtotal(); ?>
-  </div>
-  <div class="cart-totals estimation">
-    <p><?php _e('Estimated shipping cost', 'btk'); ?></p>
-    <span class="estimated-amount">---</span> 
+    <p><?php _e('Total', 'btk'); ?>&nbsp;<?php echo WC()->cart->get_cart_subtotal(); ?></p>
     
   </div>
+  <div class="cart-totals estimation">
+    <p><?php _e('estimated shipping cost', 'btk'); ?>&nbsp;<span class="estimated-amount">---</span> </p>
+    
+  </div>
+  <div class="cart-totals availability">
+  <?php 
+    $current_time = time();
+    $latest_delay = $current_time;
+    foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+        $stock_delay = strtotime(get_post_meta($cart_item['variation_id'],'_stock_backorder_delay',true));
+        if($stock_delay > $latest_delay){
+          $latest_delay = $stock_delay;
+        }
+    };
+    
+    if($latest_delay !== $current_time){
+      echo "<p>" . btk_time_elapsed($latest_delay)."</p>";  
+    }
+    
+    ?>
+    
+  <?php
+    
+        //       $stock_qty = get_post_meta($cart_item['variation_id'],'_stock',true);
+				    //   $stock_delay = get_post_meta($cart_item['variation_id'],'_stock_backorder_delay',true);
+				    //   $stock_avail = $stock_qty > 0 ? '' : btk_time_elapsed( strtotime($stock_delay));
+						  // echo  "$stock_avail";
+				    ?>
+  </div>
+  <div class="cart-totals message">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pellentesque vulputate venenatis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec ut lacinia ligula. Aenean vel velit molestie, dapibus tortor eget, dignissim nibh.</p>
+  </div>
 	<div class="cart-buttons">
+	<span class="alignleft">
+		<span class="valign"><?php _e('continue shopping', 'btk'); ?></span>
+		<a href="<?php echo esc_url(home_url('/'));?>shop/" class="valign icon-arrow-lite-left-white"></a>
+	</span>
 	<span class="alignright">
 		<span class="valign"><?php _e('check out', 'btk'); ?></span>
 		  <?php 
@@ -63,10 +94,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 		  ?>
 		  <a href="<?php echo $checkouturl; ?>" class="valign icon-arrow-lite-right-white"></a>
 	</span>
-	<span class="alignright">
-		<span class="valign"><?php _e('continue shopping', 'btk'); ?></span>
-		<a href="<?php echo esc_url(home_url('/'));?>products/" class="valign icon-arrow-lite-left-white"></a>
-	</span>
+
   </div>
 </div>
 

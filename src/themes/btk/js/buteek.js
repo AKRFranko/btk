@@ -246,7 +246,7 @@
                 $('.single_variation_wrap .variation_id').val($(this).attr('data-variation-id'));
                 var avail = $(this).attr('data-variation-availability-delay');
                 if (avail) {
-                    avail = "backorder " + avail;
+                    avail = "" + avail;
                 } else {
                     avail = 'in stock';
                 }

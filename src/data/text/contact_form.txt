@@ -1,13 +1,1 @@
-<p>Your Name (required)<br />
-    [text* your-name] </p>
-
-<p>Your Email (required)<br />
-    [email* your-email] </p>
-
-<p>Subject<br />
-    [text your-subject] </p>
-
-<p>Your Message<br />
-    [textarea your-message] </p>
-
-<p>[submit "Send"]</p>
+<h3>Write To Us</h3><p>[text* your-name placeholder 'your name'] </p> <p>[email* your-email placeholder 'your email'] </p> <p>[text your-subject placeholder 'subject'] </p> <p>Your Message<br/><br /> 	[textarea your-message] </p> <p>[submit 'Send']</p>

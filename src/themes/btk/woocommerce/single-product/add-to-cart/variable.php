@@ -75,7 +75,7 @@ foreach ($terms as $term) {
 			<input type="hidden" name="add-to-cart" value="<?php echo $product->id; ?>" />
 			<input type="hidden" name="product_id" value="<?php echo esc_attr( $post->ID ); ?>" />
 			<input type="hidden" name="variation_id" class="variation_id" value="<?php echo $default_variation_id; ?>" />
-      <p class="product-variation-availability-delay"></p>
+      
       
       <p class="product-color clearfix">
         <?php if(empty($term_name)){ $term_name = 'color'; }; ?>
@@ -90,7 +90,7 @@ foreach ($terms as $term) {
       <p class="price-text">
     
       </p>
-			
+			<p class="product-variation-availability-delay"><?php _e('availability'); ?></p>
       
 			
 			<div class="product-button-wrap">

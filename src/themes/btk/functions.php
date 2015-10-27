@@ -23,6 +23,30 @@ add_action('init', 'btk_session_start', 1);
 add_action('wp_logout', 'btk_session_end');
 add_action('wp_login', 'btk_session_end');
 
+function btk_time_elapsed($ptime) {
+    $etime = $ptime - time();
+
+    if ($etime < 1) {
+        return '0 seconds';
+    }
+
+    $a = array(12 * 30 * 24 * 60 * 60 => 'year',
+        30 * 24 * 60 * 60 => 'month',
+        24 * 60 * 60 * 7 => 'week',
+        24 * 60 * 60 => 'day',
+        60 * 60 => 'hour',
+        60 => 'min',
+        1 => 'sec'
+    );
+
+    foreach ($a as $secs => $text) {
+        $d = $etime / $secs;
+        if ($d >= 1) {
+            $r = round($d);
+            return $r . ' ' . $text . ($r > 1 ? 's' : '');
+        }
+    }
+}
 /**
  * This theme supports woocommerce (and voila! one less anoying admin notification box!)
  */
@@ -302,10 +326,11 @@ function custom_override_checkout_fields($fields) {
 // 	$fields['shipping']['shipping_first_name']['placeholder'] = 'first name';
 // 	$fields['shipping']['shipping_last_name']['placeholder'] = 'last name';
 // 	$fields['shipping']['shipping_email']['placeholder'] = 'email address';
-	unset($fields['billing']['billing_company']);
-	unset($fields['billing']['billing_address_2']);
+ 	unset($fields['billing']['billing_country']);
+ 	unset($fields['billing']['billing_address']);
+// 	unset($fields['billing']['billing_address_2']);
 // 	unset($fields['billing']['billing_email']);
-	unset($fields['billing']['billing_phone']);
+// 	unset($fields['billing']['billing_phone']);
 	unset($fields['order']['order_comments']);
 	return $fields;
 }
@@ -743,6 +768,7 @@ function btk_lookbook_shortcode( $atts ) {
 	return $html."</ul>";
 }
 add_shortcode( 'lookbook', 'btk_lookbook_shortcode' );
+
 
 
 

@@ -57,6 +57,13 @@
             }
         }, {
             "args": {
+                "plugin": "woocommerce-gateway-paypal-pro"
+            },
+            "opts": {
+                "activate": true
+            }
+        }, {
+            "args": {
                 "plugin": "wp-maintenance-mode"
             },
             "opts": {

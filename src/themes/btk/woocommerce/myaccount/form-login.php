@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  
  
 <div class="customer-login <?php echo $_SESSION['redirect_to'] ?>">
-	<h2><?php _e('Returning customers<br />please sign in', 'btk'); ?></h2>
+	<h2><?php _e('LOG INTO YOUR ACCOUNT', 'btk'); ?></h2>
 
 	<form method="post" class="login">
 
@@ -38,16 +38,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php do_action( 'woocommerce_login_form' ); ?>
 
 		<p class="clearfix">
-			<a class="alignright" href="<?php echo esc_url( wc_lostpassword_url() ); ?>"><?php _e('> Click here to recover lost password', 'btk'); ?></a>
+			<a class="alignright" href="<?php echo esc_url( wc_lostpassword_url() ); ?>"><?php _e('forgot your password', 'btk'); ?></a>
 			<input name="rememberme" type="checkbox" id="rememberme" value="forever" class="hide" checked="checked" />
 			<label for="rememberme" class="regular hide"><?php _e( 'Remember me', 'btk' ); ?></label>
 		</p>
-		<p class="clearfix">
-			<a class="alignright toggle-register" href="#"><?php _e('> I want to signup for a new account.', 'btk'); ?></a>
-		</p>
+		
 		<p class="alignright submit">
 			<?php wp_nonce_field( 'woocommerce-login' ); ?>
-			<span class="valign"><?php _e('login', 'btk'); ?></span>
+			<span class="valign"><?php _e('continue', 'btk'); ?></span>
 			<input class="valign icon-arrow-lite-right-white" type="submit" name="login" value="<?php _e( 'Login', 'btk' ); ?>" />
 		</p>
 
@@ -115,7 +113,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 </div>
 <?php if($_SESSION['redirect_to'] == 'checkout'){ ?>
 	  <div class="checkout-as-guest">
-	    <a href="<?php echo esc_url( home_url('/') ) . 'checkout/?guest=true' ?>">Checkout as guest.</a>
+	  <h2><?php _e("I'm new here", 'btk'); ?></h2>
+	    <p>
+	      <a href="<?php echo esc_url( home_url('/') ) . 'checkout/?guest=true' ?>">checkout as guest</a>
+	    </p>
+	    <p class="note">Continue as guest user and you may create an account after palcing your order.</p>
+	    <p class="bigor">OR</p>
+			<p><a class="toggle-register" href="#"><?php _e('sign up now', 'btk'); ?></a></p>
+		
 	  </div>
 	<?php }; ?>
 

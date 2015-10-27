@@ -294,7 +294,7 @@ setMockdata = function(post_varname) {
         args: {
             id: "" + post_varname,
             key: "_stock_backorder_delay",
-            value: "+30 days"
+            value: "+15 days"
         }
     });
     recipe.post.meta.update.push({
@@ -447,14 +447,14 @@ importMedia = function(data) {
             });
         });
     }
-
-    image_varnames.map(function(image_varname) {
-        recipe['eval'].push({
-            "args": {
-                "php": "update_post_meta( " + data.varname + ", '_product_image_gallery', '" + image_varname + "' );"
-            }
-        });
+    recipe['eval'].push({
+        "args": {
+            "php": "update_post_meta( " + data.varname + ", '_product_image_gallery', '" + image_varnames.join(",") + "' );"
+        }
     });
+    // image_varnames.map(function(image_varname) {
+
+    // });
 
     if (tech.length) {
         var tech_varname = genMediaVar(data.varname) + "_tech";

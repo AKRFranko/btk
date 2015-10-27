@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<?php else : ?>
 
-		<h3><?php _e( 'Billing Details', 'woocommerce' ); ?></h3>
+		<h3><?php _e( 'Billing Address', 'woocommerce' ); ?></h3>
 
 	<?php endif; ?>
 
@@ -67,4 +67,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php do_action( 'woocommerce_after_checkout_registration_form', $checkout ); ?>
 
 	<?php endif; ?>
+	<p class="form-row checkboxes"><input type="checkbox"> also use this as my shipping addresss</p>
+	<p class="form-row checkboxes"><input type="checkbox"> no shipping, will pickup at warehouse</p>
 </div>

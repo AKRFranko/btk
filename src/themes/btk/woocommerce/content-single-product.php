@@ -57,6 +57,7 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 
 		<?php } else { ?>
 		<div class="edb-slider">
+		<!-- single -->
 			<?php btk_edb_single_product_slider();?>
 			<div class="controls">
 				<a class="prev" href="#"><span class="icon-arrow-lite-left-black"></span></a>
@@ -144,7 +145,7 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 				$galleryImageSRC = wp_get_attachment_image_src($galleryImageID, 'large')[0];
 				$stock_qty = get_post_meta($variation_id,'_stock',true);
 				$stock_delay = get_post_meta($variation_id,'_stock_backorder_delay',true);
-				$stock_avail = $stock_qty > 0 ? '' : date('Y-m-d', strtotime($stock_delay));
+				$stock_avail = $stock_qty > 0 ? '' : btk_time_elapsed( strtotime($stock_delay));
 				$stock_msg = $stock_qty > 0 ? 'in stock' : '';
 				$stock_class = $stock_qty > 0 ? 'instock' : '';
 				$src = get_bloginfo('template_directory'). "/img/textures/$color.jpg";

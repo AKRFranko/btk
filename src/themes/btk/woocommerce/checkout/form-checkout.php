@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <div class="tabbar">
 
-  <a class="tab" data-pane="shipping-pane" href="#"><?php _e('Shipping Address', 'btk'); ?></a>
+  <a class="tab" data-pane="shipping-pane" href="#"><?php _e('Address', 'btk'); ?></a>
   
   <a class="tab" data-pane="delivery-pane" href="#"><?php _e('Delivery Fees', 'btk'); ?></a>
   
@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
   <div class="billing-address-summary summary-box">
   
-      <h3><?php _e('Shipping Address', 'btk'); ?></h3>
+      <h3><?php _e('Billing Address', 'btk'); ?></h3>
       
       <div>
         <span class="billing_first_name_summary"></span>
@@ -68,6 +68,7 @@ if ( ! defined( 'ABSPATH' ) ) {
       </div>
       
   </div>
+  
   <div class="delivery-fees-summary summary-box">
       <h3><?php _e('Delivery Fees', 'btk'); ?></h3>
       <div>
