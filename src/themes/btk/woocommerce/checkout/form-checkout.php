@@ -357,7 +357,7 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
       		      	  postal code, country<br>
       		      	</div>
       		      	
-      		      	<div class="action"><a class="tab" data-pane="shipping-pane" href="#"><?php _e('edit', 'btk'); ?></a></div>
+      		      	<div class="action"><a class="tabto" data-pane="shipping-pane" href="#"><?php _e('edit', 'btk'); ?></a></div>
                 </div>
                 <div class="review-block">
     		      	  <div class="label">Payment:</div>
@@ -366,7 +366,7 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
       		      	  XXXX XXXX XXXX 1234<br>
       		      	</div>
       		      	
-      		      	<div class="action"><a class="tab" data-pane="payment-pane" href="#"><?php _e('edit', 'btk'); ?></a></div>
+      		      	<div class="action"><a class="tabto" data-pane="payment-pane" href="#"><?php _e('edit', 'btk'); ?></a></div>
                 </div>
                 <div class="review-block">
                   <h3><?php _e('Final Checklist'); ?></h3>
