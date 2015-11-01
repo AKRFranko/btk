@@ -49,7 +49,7 @@ form.wpcf7-form.sent{
 		input{border:0;}
 	}
 	input{
-	  border-bottom:0px!important;
+	  //border-bottom:0px!important;
 	  border-radius:0px;
 	}
 	.customer-login, .customer-register, .lost_reset_password,
@@ -547,6 +547,7 @@ form.wpcf7-form.sent{
 		  position:absolute;
 		  left:0;
 		}
+		
 		.product-name{
 		  margin-top:4.5em;
 		  line-height:1.1em;
@@ -556,6 +557,7 @@ form.wpcf7-form.sent{
 		  
 		  display:inline-block;
 		}
+		
 		.product-price *{
 		  font-family:@altfontfamily;
 		}
@@ -575,7 +577,22 @@ form.wpcf7-form.sent{
 		}
 		
 	}
-
+	.half .cart-contents .cart_item .product-name{
+		  margin-top:0;
+		  margin-left:~"calc(100px + 1em)";
+		}
+		.half .cart-contents .cart_item{
+		  height:7em;
+		  
+		}
+		.half .cart-contents .cart_item:last-of-type{
+		  border-bottom:0;
+		}
+		.half .cart-contents{
+		  border-top:1px solid #000;
+		  padding-top:1em;
+		}
+	
 	.cart-collaterals {
 		// padding:0 15px 30px;
 		a {
@@ -611,6 +628,9 @@ form.wpcf7-form.sent{
 		     min-height:3em;
 		   span{display:inline-block;margin-bottom:1em;}
 		 }
+		 .calculated-shipping p{
+		   padding-top:1em;
+		 }
 .cart-totals.message a{
 		   color:inherit;
 		   background:none;
@@ -629,6 +649,9 @@ form.wpcf7-form.sent{
 
 // checkout
 	.checkout {
+	  .hide-next-child + p{
+	    display:none;
+	  }
 		// margin-bottom:0 !important;
 		h3 { margin:0 0 15px; }
 		label { font-weight:normal; }
@@ -644,11 +667,11 @@ form.wpcf7-form.sent{
 		}
     .form-row.checkboxes {
       line-height: 1.5;
-      input[type="checkbox"],input[type="radio"]{
+      input[type="checkbox"]{
         margin:1px;
         display:inline-block;
         line-height:1.1;
-        border:1px solid #999!important;
+        
       }
     }
 		#billing_country_field, #billing_state_field { padding-bottom:3px; border-bottom:1px solid @black; }
@@ -676,7 +699,7 @@ form.wpcf7-form.sent{
 		position:absolute; top:280px; padding:15px; width:100%;
 		p { margin:0 !important; padding:0; }
 		h3 { margin:0 0 8px; font-size:1.25em; }
-		input { font-size:0.95em; border-bottom:1px solid @black; }
+		input { font-size:0.95em;  }
 		input.input-text { width:73%; }
 		.button {
 			position:absolute; right:15px; top:35px; font-weight:normal; width:22%;
@@ -700,7 +723,7 @@ form.wpcf7-form.sent{
 			.terms { text-align:left; }
 			input[type='submit'] {
 				padding:0.75em 2em; font-size:1.4em;
-				background-position:center center; border-bottom:none;
+				background-position:center center; 
 				&:hover { background-color:@gray; }
 			}
 		}

@@ -141,7 +141,7 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
     	    <div class="delivery_options" style="display: block;">
             <h3><?php _e('Choose Your Delivery Options', 'btk'); ?></h3>
             
-    			  <!-- BEGIN DELIVERY FEES -->
+    			  <!-- BEGIN DELIVERY FEES  -->
     			  
     			  <?php do_action( 'woocommerce_before_cart_table' ); ?>
 
@@ -217,20 +217,71 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
         <div class="tabpane" id="payment-pane">
       
     	  	  <!-- ppl -->
-    				<div class="col-2">
-    			    <input type="text" name="coupon_code" class="input-text lower" placeholder="<?php _e( 'Promo Code', 'btk' ); ?>" id="coupon_code" value="" />
-    			
-    			    <!--<input type="submit" class="button lower right" name="apply_coupon" value="<?php _e( 'Apply', 'btk' ); ?>" />-->
+    				
+    		    <div class="half" style="padding-right:1em">
+      		    <h3><?php _e('Payment Details', 'btk'); ?></h3>
+      		    <div id="paypal-payment-gateway"  class="col-2">
+      
+      	        
+      	        <?php $gateway = new WC_Gateway_Paypal_Pro(); ?>
+      	        <div class="hide-next-child"></div>
+      			    <?php $gateway->payment_fields(); ?>
+                <input id="payment_method_<?php echo $gateway->id; ?>" type="hidden" class="input-radio" name="payment_method" value="<?php echo esc_attr( $gateway->id ); ?>" data-order_button_text="<?php echo esc_attr( $gateway->order_button_text ); ?>" />
+      
+              </div>
+              <br />
+              <br />
+              <h3><?php _e('Have a promo code?', 'btk'); ?></h3>
+              <div class="col-2">
+      			    <input type="text" name="coupon_code" class="input-text lower" placeholder="<?php _e( 'Promo Code', 'btk' ); ?>" id="coupon_code" value="" />
+      			    <!--<input type="submit" class="button lower right" name="apply_coupon" value="<?php _e( 'Apply', 'btk' ); ?>" />-->
+      		    </div>
+    		    </div>
+    		    <div class="half" style="padding-left:1em">
+    		      <h3><?php _e('Order Summary', 'btk'); ?></h3>
+    		      
+    		      <table>
+    		        <tr>
+    		          <td>Subtotal</td><td><?php wc_cart_totals_subtotal_html(); ?></td>
+    		        </tr>
+    		        <tr>
+    		          <td>Shipping & Handling</td><td><?php wc_cart_totals_fee_html('shipping'); ?></td>
+    		        </tr>
+    		        <tr>
+    		          <td>Taxes</td><td><?php wc_cart_totals_taxes_total_html(); ?></td>
+    		        </tr>
+    		        <tr>
+    		          <td>Total</td><td><?php wc_cart_totals_order_total_html(); ?></td>
+    		        </tr>
+    		      </table>
+    		      
+    		      
+    		      		  <?php do_action( 'woocommerce_before_cart_table' ); ?>
+
+
+
+	<div class="cart-contents lower">
+	<h3><?php _e('Cart'); ?></h3>
+    <?php do_action( 'woocommerce_before_cart_contents' ); ?>
+		<?php wc_get_template( 'cart/cart-review-contents.php' ); ?>
+
+
+
+		
+		<?php do_action( 'woocommerce_after_cart_contents' ); ?>
+	</div>
+
+
+
+
+
+
+<?php do_action( 'woocommerce_after_cart_table' ); ?>
     		    </div>
     		    
-            <div id="paypal-payment-gateway"  class="col-2">
-    
-    	
-    	        <?php $gateway = new WC_Gateway_Paypal_Pro(); ?>
-    			    <?php $gateway->payment_fields(); ?>
-              <input id="payment_method_<?php echo $gateway->id; ?>" type="hidden" class="input-radio" name="payment_method" value="<?php echo esc_attr( $gateway->id ); ?>" data-order_button_text="<?php echo esc_attr( $gateway->order_button_text ); ?>" />
-    
-            </div>				
+    		    
+            
+            
     			
     
     
