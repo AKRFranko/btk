@@ -139,13 +139,52 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
     	
     	<div class="tabpane" id="delivery-pane">
     	    <div class="delivery_options" style="display: block;">
-            <h3>Delivery Fees</h3>
-    			
-    			  <div class="col-2">
+            <h3><?php _e('Choose Your Delivery Options', 'btk'); ?></h3>
+            
+    			  <!-- BEGIN DELIVERY FEES -->
+    			  
+    			  <?php do_action( 'woocommerce_before_cart_table' ); ?>
+
+<?php do_action( 'woocommerce_before_cart_contents' ); ?>
+
+	<div class="cart-contents lower">
+
+		<?php wc_get_template( 'cart/cart-delivery-contents.php' ); ?>
+
+
+
+		<?php do_action( 'woocommerce_cart_actions' ); ?>
+
+		<?php wp_nonce_field( 'woocommerce-cart' ); ?>
+
+		<?php do_action( 'woocommerce_after_cart_contents' ); ?>
+	</div>
+	<div class="cart-collaterals lower">
+	
+	 <div class="cart-totals calculated-shipping">
+    <p><?php _e('total delivery', 'btk'); ?>&nbsp;<span class="calculated-amount">---</span> </p>
+    
+    </div>
+    <div class="cart-totals message">
+      <p><?php _e("Based on your selection, the final delivery fees will adjust automatically. Shipping items individuallu may add shipping fees. For more information on how delivery fees are calculated ",'btk'); ?><a class="clickhere" href="/about-shipping">click here</a>. </p>
+  </div>
+  
+	</div>
+	
+
+
+
+
+
+
+<?php do_action( 'woocommerce_after_cart_table' ); ?>
+  <!-- END DELIVERY FEES -->
+  
+    			 <!-- <div class="col-2">
     				<!--
     		  		<p class="cust-form-row" id="delivery_fees_subtotal"><span class="fake-label">Delivery fees:</span><span class="value"></span></p>
     			  	<p class="cust-form-row" id="delivery_time_estimate"><span class="fake-label">Delivery by:</span><span class="value"><?php echo date('Y-m-d', strtotime("+30 days")); ?></span></p>
-    				-->
+    				
     			   <p class="cust-form-row">
     			   <input id="rush_delivery_option" class="input-checkbox" type="checkbox" name="rush_or_pickup" value="rush" />
     			   <label for="rush_delivery_option"> Rush it for an extra $75.00</label>
@@ -163,8 +202,9 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
     				
     				<div class="clear"></div>
     			
-    				<!--<p class="form-row form-row " id="shipping_email_field"><input type="text" class="input-text " name="shipping_email" id="shipping_email" placeholder="" value=""></p>-->
+    				<p class="form-row form-row " id="shipping_email_field"><input type="text" class="input-text " name="shipping_email" id="shipping_email" placeholder="" value=""></p>
     		  	</div>
+    		  	-->
     			
       		</div>
     		

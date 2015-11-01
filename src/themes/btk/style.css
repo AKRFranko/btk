@@ -1891,7 +1891,7 @@ form.wpcf7-form.sent {
 .woocommerce .cart-contents .cart_item {
   position: relative;
   height: 12em;
-  padding: 15px 15px 30px 35%;
+  padding: 15px 15px 30px 30%;
   border-bottom: 1px solid #000;
 }
 .woocommerce .cart-contents .product-thumbnail {
@@ -1945,6 +1945,20 @@ form.wpcf7-form.sent {
 .woocommerce .cart-contents .product-price * {
   font-family: "adobe-caslon-pro", Georgia, 'Times New Roman', Times, serif;
 }
+.woocommerce .cart-contents .page-checkout .cart_item {
+  padding-left: 25%;
+}
+.woocommerce .cart-contents .product-shipping-options {
+  width: 75%;
+  margin-left: .3em;
+  display: inline-block;
+}
+.woocommerce .cart-contents .product-shipping-options label {
+  white-space: nowrap;
+}
+.woocommerce .cart-contents .product-shipping-options label input {
+  margin-right: .5em;
+}
 .woocommerce .cart-collaterals a {
   margin-left: 10px;
   padding: 0.3em 1.3em;
@@ -1982,6 +1996,17 @@ form.wpcf7-form.sent {
 .woocommerce .cart-collaterals .cart-buttons span {
   display: inline-block;
   margin-bottom: 1em;
+}
+.woocommerce .cart-collaterals .cart-totals.message a {
+  color: inherit;
+  background: none;
+  border: 0;
+  font: inherit;
+  font-weight: bold;
+  box-shadow: none;
+  display: inline;
+  padding: 0;
+  margin: 0;
 }
 .woocommerce .checkout h3 {
   margin: 0 0 15px;

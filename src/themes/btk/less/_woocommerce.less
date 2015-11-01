@@ -521,7 +521,7 @@ form.wpcf7-form.sent{
 			  margin-left:-3.5em;
 			}
 		}
-		.cart_item { position:relative;height:12em;padding:15px 15px 30px 35%; border-bottom:1px solid #000; }
+		.cart_item { position:relative;height:12em;padding:15px 15px 30px 30%; border-bottom:1px solid #000; }
 		
 		.product-thumbnail {
 			width:100px;
@@ -559,6 +559,20 @@ form.wpcf7-form.sent{
 		.product-price *{
 		  font-family:@altfontfamily;
 		}
+		.page-checkout .cart_item{
+		  padding-left:25%;
+		}
+		.product-shipping-options{
+		  width:75%;
+		  margin-left:.3em;
+		  display:inline-block;
+		  label{
+		    white-space:nowrap;
+		    input{
+		      margin-right:.5em;
+		    }
+		  }
+		}
 		
 	}
 
@@ -572,6 +586,7 @@ form.wpcf7-form.sent{
 			margin:45px 0 1.5em !important; font-size:1.2em;
 			span { display:block; font-size:0.7em; }
 		}
+		
 		span + span {  margin-bottom:10px; }
 		// .amount { float:right; clear:none; margin-top:45px; padding:5px 10px 6px; }
 		// .cart-totals p:first-child{
@@ -596,6 +611,17 @@ form.wpcf7-form.sent{
 		     min-height:3em;
 		   span{display:inline-block;margin-bottom:1em;}
 		 }
+.cart-totals.message a{
+		   color:inherit;
+		   background:none;
+		   border:0;
+		   font:inherit;
+		   font-weight:bold;
+		   box-shadow:none;
+		   display:inline;
+		   padding:0;margin:0;
+		}		 
+		 
 	}
 	
 
