@@ -296,7 +296,9 @@
             // }
         });
 
-
+        setTimeout(function() {
+            $('.woocommerce-message').fadeOut();
+        }, 5000)
 
 
     })
