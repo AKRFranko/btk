@@ -75,6 +75,7 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 		    <?php _e('qty', 'btk'); ?>: <?php echo $cart_item['quantity']; ?>
 		    </span>
 			</div>
+			</div>
 			
 		
 		<?php

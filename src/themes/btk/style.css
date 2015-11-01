@@ -1959,6 +1959,9 @@ form.wpcf7-form.sent {
 .woocommerce .cart-contents .product-shipping-options label input {
   margin-right: .5em;
 }
+.woocommerce .half .cart-contents .cart_item {
+  width: 100%;
+}
 .woocommerce .half .cart-contents .cart_item .product-name {
   margin-top: 0;
   margin-left: calc(100px + 1em);
