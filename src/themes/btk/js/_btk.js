@@ -301,6 +301,9 @@
 
 
     })
+    setTimeout(function() {
+        $('.woocommerce-message').fadeOut();
+    }, 5000)
 })(jQuery);; jQuery(function() {
 
      var getShippingCost = function(total) {
