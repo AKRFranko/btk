@@ -296,10 +296,11 @@
             // }
         });
 
-        setTimeout(function() {
-            $('.woocommerce-message').fadeOut();
-        }, 5000)
+
 
 
     })
+    setTimeout(function() {
+        $('.woocommerce-message').fadeOut();
+    }, 5000)
 })(jQuery);
