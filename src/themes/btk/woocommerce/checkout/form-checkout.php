@@ -10,6 +10,8 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+global $current_user;
+      get_currentuserinfo();
 
 ?>
 <div class="tabbar">
@@ -218,7 +220,7 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
       
     	  	  <!-- ppl -->
     				
-    		    <div class="half" style="padding-right:1em">
+    		    <div class="half">
       		    <h3><?php _e('Payment Details', 'btk'); ?></h3>
       		    <div id="paypal-payment-gateway"  class="col-2">
       
@@ -294,15 +296,112 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
 
 
         <div class="tabpane" id="review-pane">
-        
-            <?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
-        
-        		<div id="order_review" class="woocommerce-checkout-review-order">
-        			<?php do_action( 'woocommerce_checkout_order_review' ); ?>
-        		</div>
-        
-        		<?php do_action( 'woocommerce_checkout_after_order_review' ); ?>
-        
+          
+            <div class="half">
+            
+            
+            <table>
+                <tr>
+    		          <th>Order Total</th><th><?php wc_cart_totals_order_total_html(); ?></th>
+    		        </tr>
+    		        <tr>
+    		          <td>Subtotal</td><td><?php wc_cart_totals_subtotal_html(); ?></td>
+    		        </tr>
+    		        <tr>
+    		          <td>Promo Code</td><td>-$0</td>
+    		        </tr>
+    		        <tr>
+    		          <td>Shipping & Handling</td><td><?php wc_cart_totals_fee_html('shipping'); ?></td>
+    		        </tr>
+    		        <tr>
+    		          <td>Taxes</td><td><?php wc_cart_totals_taxes_total_html(); ?></td>
+    		        </tr>
+    		        
+    		      </table>
+    		      <br /><br />
+    		      	<div class="cart-contents lower">
+	<h3><?php _e('Cart'); ?></h3>
+    <?php do_action( 'woocommerce_before_cart_contents' ); ?>
+		<?php wc_get_template( 'cart/cart-review-contents.php' ); ?>
+
+
+
+		
+		<?php do_action( 'woocommerce_after_cart_contents' ); ?>
+	</div>
+
+
+
+
+
+
+<?php do_action( 'woocommerce_after_cart_table' ); ?>
+    		    </div><!-- end half 1 -->
+    		    
+    		    <div class="half">
+    		      
+    		      	<?php if ( is_user_logged_in() ) : ?>
+    		      	<div class="review-block">
+    		      	  <div class="label">Signed In:</div>
+      		      	<div class="value"><?php echo $current_user->user_nicename; ?></div>
+      		      	<div class="action"><a href="<?php echo wp_logout_url( home_url('/') ); ?>"><?php _e('sign out', 'btk'); ?></a></div>
+      		      </div>
+                <?php endif; ?>
+                
+                <div class="review-block">
+    		      	  <div class="label">Delivered To:</div>
+      		      	<div class="value">
+      		      	  Shipping user name<br>
+      		      	  Shipping user street<br>
+      		      	  City, Province<br>
+      		      	  postal code, country<br>
+      		      	</div>
+      		      	
+      		      	<div class="action"><a class="tab" data-pane="shipping-pane" href="#"><?php _e('edit', 'btk'); ?></a></div>
+                </div>
+                <div class="review-block">
+    		      	  <div class="label">Payment:</div>
+      		      	<div class="value">
+      		      	  Visa<br>
+      		      	  XXXX XXXX XXXX 1234<br>
+      		      	</div>
+      		      	
+      		      	<div class="action"><a class="tab" data-pane="payment-pane" href="#"><?php _e('edit', 'btk'); ?></a></div>
+                </div>
+                <div class="review-block">
+                  <h3><?php _e('Final Checklist'); ?></h3>
+    		      	  <label><input type="checkbox" name="final_checklist_fits"> <?php _e('I made sure the item fits.', 'btk'); ?></label>
+    		      	  <label><input type="checkbox" name="final_checklist_noinclude"> <?php _e('The delivery does not include...', 'btk'); ?></label>
+    		      	  <label><input type="checkbox" name="final_checklist_variation"> <?php _e('I am aware that there can be slight variation in the colors of the swatches and the dinal product due to dye lot difference.', 'btk'); ?></label>
+                </div>
+    		    </div>
+    		    
+
+           <!---- -->
+           
+            
+            <div id="payment" class="woocommerce-checkout-payment">
+            
+            	<div class="form-row place-order">
+            
+            		<noscript><?php _e( 'Since your browser does not support JavaScript, or it is disabled, please ensure you click the <em>Update Totals</em> button before placing your order. You may be charged more than the amount stated above if you fail to do so.', 'woocommerce' ); ?><br/><input type="submit" class="button alt" name="woocommerce_checkout_update_totals" value="<?php esc_attr_e( 'Update totals', 'woocommerce' ); ?>" /></noscript>
+            
+            		<?php wp_nonce_field( 'woocommerce-process_checkout' ); ?>
+            
+            		<?php do_action( 'woocommerce_review_order_before_submit' ); ?>
+            
+            		<?php echo apply_filters( 'woocommerce_order_button_html', '<input type="submit" class="button alt" name="woocommerce_checkout_place_order" id="place_order" value="' . esc_attr( $order_button_text ) . '" data-value="' . esc_attr( $order_button_text ) . '" />' ); ?>
+            
+            		
+            
+            		<?php do_action( 'woocommerce_review_order_after_submit' ); ?>
+            
+            	</div>
+            
+            	
+            </div>
+
+
         	
         </div>
 <?php endif; ?>

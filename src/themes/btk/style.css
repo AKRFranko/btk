@@ -1959,6 +1959,12 @@ form.wpcf7-form.sent {
 .woocommerce .cart-contents .product-shipping-options label input {
   margin-right: .5em;
 }
+.woocommerce .half:nth-of-type(odd) {
+  padding-right: 1em;
+}
+.woocommerce .half:nth-of-type(even) {
+  padding-left: 1em;
+}
 .woocommerce .half .cart-contents .cart_item {
   width: 100%;
 }
@@ -1969,12 +1975,33 @@ form.wpcf7-form.sent {
 .woocommerce .half .cart-contents .cart_item {
   height: 7em;
 }
-.woocommerce .half .cart-contents .cart_item:last-of-type {
-  border-bottom: 0;
-}
 .woocommerce .half .cart-contents {
   border-top: 1px solid #000;
   padding-top: 1em;
+}
+.woocommerce .review-block {
+  border-bottom: 1px solid #000;
+  margin-bottom: 1em;
+}
+.woocommerce .review-block * {
+  vertical-align: top;
+}
+.woocommerce .review-block .label {
+  display: inline-block;
+  font: inherit;
+  font-weight: inherit;
+  font-family: "adobe-caslon-pro", Georgia, 'Times New Roman', Times, serif;
+  font-size: 1.5em;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+  margin-right: 2em;
+}
+.woocommerce .review-block .value {
+  display: inline-block;
+}
+.woocommerce .review-block .action {
+  text-align: right;
 }
 .woocommerce .cart-collaterals a {
   margin-left: 10px;

@@ -577,7 +577,12 @@ form.wpcf7-form.sent{
 		}
 		
 	}
-	
+	.half:nth-of-type(odd){
+	  padding-right:1em;
+	}
+	.half:nth-of-type(even){
+	  padding-left:1em;
+	}
 	.half .cart-contents .cart_item{
 	  width:100%;
 	}
@@ -593,6 +598,31 @@ form.wpcf7-form.sent{
 		.half .cart-contents{
 		  border-top:1px solid #000;
 		  padding-top:1em;
+		}
+		.review-block{
+		  border-bottom:1px solid #000;
+		  margin-bottom:1em;
+		  *{
+		    vertical-align:top;
+		  }
+		  .label{
+		    
+		    
+		    display:inline-block;
+		    font:inherit;
+		    font-weight:inherit;
+		    font-family:@altfontfamily;
+		    font-size:1.5em;
+		    color:inherit;
+		    margin:0;padding:0;
+		    margin-right:2em;
+		  }
+		  .value{
+		    display:inline-block;
+		  }
+		  .action{
+		    text-align:right;
+		  }
 		}
 	
 	.cart-collaterals {
