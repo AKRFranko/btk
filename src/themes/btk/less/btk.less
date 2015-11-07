@@ -68,7 +68,7 @@ Overridez
 .wpcf7-form { position:relative; padding-top:20px; }
 div.wpcf7-response-output {
 	position:absolute; top:0; left:0; width:100%; margin:0; border:none; color:@white;
-	&:before { font-family:FontAwesome; display:inline-block; top:0.9em; color:@white; }
+	&:before { font-family:FontAwesome; display:inline-block; top:1em; color:@white; }
 }
 div.wpcf7-validation-errors {
 	background-color:#d9534f;
@@ -127,7 +127,7 @@ Header
 
 		nav {
 			&.nav-header {
-				font-size:0.9em;
+				font-size:1em;
 				ul li { display:inline-block; margin-left:15px; }
 				.menu-header-container { display:inline-block; }
 				.language { margin:0 5px 0 15px; }
@@ -192,26 +192,28 @@ Header
 					padding-top:10px;
 					p { margin:0; line-height:0em; }
 					p.submit { position:absolute; bottom:110px; right:15px; }
-					.lost-password { padding-top:5px; font-size:0.9em; }
+					.lost-password { padding-top:5px; font-size:1em; }
 				}
-				input { border-color:@black; color:@black; background:#999; }
+				// input { border-color:@black; color:@black; }
 				input[type='text'],
 				input[type='password'],
 				input[type='email'] { 
-				  padding:2px .5em; font-size:0.9rem; 
-				  margin-bottom:.5em;
-				  // background:transparent;
-				  border:0;
-				  border-radius:0;
+				  // padding:2px .5em; font-size:0.9rem; 
+				  // margin-bottom:.5em;
+				  // // background:transparent;
+				  // border:0;
+				  // border-radius:0;
 				  // border-bottom:2px solid #fff;
+				  margin-bottom:.5em;
+				  color:#242021;
 				}
 				input[type='submit'] {
 					padding:0.75em 1.8em; background-color:@gray;
 					background-position:center center; text-indent:-9999px;
 				}
-				::-webkit-input-placeholder { color:@white; }
-				::-moz-placeholder { color:@white; }
-				:-ms-input-placeholder { color:@white; }
+				// ::-webkit-input-placeholder { color:@white; }
+				// ::-moz-placeholder { color:@white; }
+				// :-ms-input-placeholder { color:@white; }
 			}
 			.register-form form { padding-top:5px; }
 
@@ -477,7 +479,7 @@ form.wpcf7-form input[type="submit"] {
 		.title {
 			.post-titles(); padding:12px; margin-bottom:0;
 			h2 { margin:0 0 5px; font-size:1.35em; }
-			p { padding-right:25px; font-size:0.9em; }
+			p { padding-right:25px; font-size:1em; }
 			.subtitle { display:block; font-style:italic; margin-bottom:2px; font-size:0.8em; }
 		}
 	}
@@ -559,8 +561,8 @@ Footer
 // Shopnow Incentives
 .shopnow{
 			  font-family:@altfontfamily;
-        font-size:.5em;
-        font-weight:bold;
+        font-size:.75em;
+        font-weight:normal;
         text-transform:lowercase;
 			}
 			
@@ -664,7 +666,7 @@ Footer
 	.big-cart-total {
     font-weight: bold;
     text-align: center;
-    font-size: 1.5em;
+    font-size: 1.2em;
 }
 
 fieldset#paypal_pro-cc-form {

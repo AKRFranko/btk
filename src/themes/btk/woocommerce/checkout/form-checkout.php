@@ -31,7 +31,7 @@ global $current_user;
 
   <div class="billing-address-summary summary-box">
   
-      <h3><?php _e('Billing Address', 'btk'); ?></h3>
+      <h3><?php _e('Billing Address', 'btk'); ?><a href="#" class="toggle-box"><i class="fa fa-caret-down"></i><i class="fa fa-caret-right"></i></a></h3>
       
       <div>
         <span class="billing_first_name_summary"></span>
@@ -48,10 +48,8 @@ global $current_user;
         <span class="billing_country_summary"></span>
       </div>
       <div><span class="billing_postcode_summary"></span></div>
-      
-  </div>
-  <div class="shipping-address-summary summary-box">
-      <h3><?php _e('Shipping Address', 'btk'); ?></h3>
+
+ <h3><?php _e('Shipping Address', 'btk'); ?></h3>
       <div>
         <span class="shipping_first_name_summary"></span>
         <span class="shipping_last_name_summary"></span>
@@ -67,21 +65,21 @@ global $current_user;
       <div>
         <span class="shipping_country_summary"></span></div><div>
         <span class="shipping_postcode_summary"></span>
-      </div>
+      </div>     
       
+     
   </div>
+
   
   <div class="delivery-fees-summary summary-box">
-      <h3><?php _e('Delivery Fees', 'btk'); ?></h3>
+      <h3><?php _e('Delivery Fees', 'btk'); ?><a href="#" class="toggle-box"><i class="fa fa-caret-down"></i><i class="fa fa-caret-right"></i></a></h3>
       <div>
           Delivery fees: <span class="delivery_fees_subtotal_summary"></span>
       </div>
-      <div>
-          Delivery by: <span class="delivery_time_estimate"><?php echo date('Y-m-d', strtotime("+30 days")); ?></span>
-      </div>
+      
   </div>
   <div class="payment-details-summary summary-box">
-      <h3><?php _e('Payment Details', 'btk'); ?></h3>
+      <h3><?php _e('Payment Details', 'btk'); ?><a href="#" class="toggle-box"><i class="fa fa-caret-down"></i><i class="fa fa-caret-right"></i></a></h3>
       <div>
           Credit Card: <span class="paypal_pro-card-number_summary"></span>
       </div>
@@ -93,8 +91,8 @@ global $current_user;
       </div>-->
   </div>
   <div class="order-review-summary summary-box">
-    <h3><?php _e('Total', 'btk'); ?></h3>
-    <div class="big-cart-total"></div>
+    <h3><?php _e('Total', 'btk'); ?><a href="#" class="toggle-box"><i class="fa fa-caret-down"></i><i class="fa fa-caret-right"></i></a></h3>
+    <div class="big-cart-total"><?php wc_cart_totals_order_total_html(); ?></div>
   </div>
   
 </div><!-- end summary-bar -->
@@ -234,7 +232,7 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
               <br />
               <br />
               <h3><?php _e('Have a promo code?', 'btk'); ?></h3>
-              <div class="col-2">
+              <div class="col-2 coupon-form">
       			    <input type="text" name="coupon_code" class="input-text lower" placeholder="<?php _e( 'Promo Code', 'btk' ); ?>" id="coupon_code" value="" />
       			    <!--<input type="submit" class="button lower right" name="apply_coupon" value="<?php _e( 'Apply', 'btk' ); ?>" />-->
       		    </div>
@@ -299,7 +297,7 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
           
             <div class="half">
             
-            
+            <h3>Total</h3>
             <table>
                 <tr>
     		          <th>Order Total</th><th><?php wc_cart_totals_order_total_html(); ?></th>
@@ -318,7 +316,7 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
     		        </tr>
     		        
     		      </table>
-    		      <br /><br />
+    		      
     		      	<div class="cart-contents lower">
 	<h3><?php _e('Cart'); ?></h3>
     <?php do_action( 'woocommerce_before_cart_contents' ); ?>
@@ -349,7 +347,7 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
                 <?php endif; ?>
                 
                 <div class="review-block">
-    		      	  <div class="label">Delivered To:</div>
+    		      	  <h3 class="label">Delivered To:</h3>
       		      	<div class="value">
       		      	  Shipping user name<br>
       		      	  Shipping user street<br>
@@ -360,7 +358,7 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
       		      	<div class="action"><a class="tabto" data-pane="shipping-pane" href="#"><?php _e('edit', 'btk'); ?></a></div>
                 </div>
                 <div class="review-block">
-    		      	  <div class="label">Payment:</div>
+    		      	  <h3 class="label">Payment:</h3>
       		      	<div class="value">
       		      	  Visa<br>
       		      	  XXXX XXXX XXXX 1234<br>

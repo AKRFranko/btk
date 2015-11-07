@@ -20,6 +20,7 @@ form.wpcf7-form.invalid,
 form.wpcf7-form.sent{
     padding-top: 3em;
 }
+
 .page-cart .entry-title,
 .page-my-account .entry-title{
   display:none;
@@ -27,6 +28,7 @@ form.wpcf7-form.sent{
 .product-color-choice-option .instock{display:block;position: absolute;
     top: 0;
   left: 0;
+  padding-left:5px;
   font-weight: normal;
   font-size: x-small;
   color: #fff;
@@ -50,11 +52,11 @@ form.wpcf7-form.sent{
 	}
 	input{
 	  //border-bottom:0px!important;
-	  border-radius:0px;
+	  //border-radius:0px;
 	}
 	.customer-login, .customer-register, .lost_reset_password,
 	#edit-account, #edit-address, form.billing-shipping-edit {
-		input[type="submit"] { padding:1em 3em; background-position:center center; text-indent:-9999px; }
+		input[type="submit"] { padding:.75em 2.15em; background-position:center center; text-indent:-9999px; }
 	}
 	.customer-register.off{
 	  display:none;
@@ -116,7 +118,7 @@ form.wpcf7-form.sent{
 		p {
 			margin:0 0 1.5em !important; padding:0;
 			&.form-row-first, &.form-row-last { float:none; width:100%; }
-			&#billing_state_field, &#shipping_state_field { padding-bottom:1px; border-bottom:2px solid @black; }
+			&#billing_state_field, &#shipping_state_field { padding-bottom:1px; }
 			#billing_state, #shipping_state { margin-left:-6px; }
 			strong {
 				display:inline-block; padding:3px 0; width:100%;
@@ -320,6 +322,9 @@ form.wpcf7-form.sent{
 					  max-height:100%;
   					border:2px solid #fff;
 				  }
+				  .instock{
+				    padding-left:8px;
+				  }
 				  &.clicked, &:hover{
 				    transform:scale(1.1);
 				    transform-origin:center;
@@ -508,7 +513,7 @@ form.wpcf7-form.sent{
 			border:1px solid @black; border-radius:0; font-weight:normal;
 		}
 		a.remove {
-			margin:-5px -5px 0 0; color:@black !important; font-weight:300;
+			margin:0px -5px 0 0; color:@black !important; font-weight:300;
 			font-size:20px; line-height:0.7em;
 			&:hover { background:transparent; }
 			&:before{
@@ -521,7 +526,7 @@ form.wpcf7-form.sent{
 			  margin-left:-3.5em;
 			}
 		}
-		.cart_item { position:relative;height:12em;padding:15px 15px 30px 30%; border-bottom:1px solid #000; }
+		.cart_item { position:relative;height:10em;padding:15px 15px 15px 30%; border-bottom:1px solid #000; }
 		
 		.product-thumbnail {
 			width:100px;
@@ -569,6 +574,7 @@ form.wpcf7-form.sent{
 		  margin-left:.3em;
 		  display:inline-block;
 		  label{
+		    width:100%;
 		    white-space:nowrap;
 		    input{
 		      margin-right:.5em;
@@ -606,14 +612,9 @@ form.wpcf7-form.sent{
 		    vertical-align:top;
 		  }
 		  .label{
-		    
-		    
+		    color:#000;
+		    font-weight:normal;
 		    display:inline-block;
-		    font:inherit;
-		    font-weight:inherit;
-		    font-family:@altfontfamily;
-		    font-size:1.5em;
-		    color:inherit;
 		    margin:0;padding:0;
 		    margin-right:2em;
 		  }
@@ -623,6 +624,10 @@ form.wpcf7-form.sent{
 		  .action{
 		    text-align:right;
 		  }
+		}
+		
+		#paypal-payment-gateway, .coupon-form{
+		  width:80%;
 		}
 	
 	.cart-collaterals {
@@ -678,7 +683,11 @@ form.wpcf7-form.sent{
 	
 
 
-
+h3{
+  text-transform:uppercase;
+  font-size:1.2em;
+  line-height:1.3em;
+}
 // checkout
 	.checkout {
 	  .hide-next-child + p{
@@ -687,7 +696,7 @@ form.wpcf7-form.sent{
 		// margin-bottom:0 !important;
 		h3 { margin:0 0 15px; }
 		label { font-weight:normal; }
-		input { text-transform:lowercase; font-size:0.95em; }
+		input { text-transform:lowercase; }
 		p {
 			&.form-row {
 				margin:0 0 8px !important; padding:0;
@@ -698,6 +707,11 @@ form.wpcf7-form.sent{
 			.select2-chosen { font-size:0.95em; }
 		}
     .form-row.checkboxes {
+      label{
+        display:block;
+        width:100%;
+        line-height:1;
+      }
       line-height: 1.5;
       input[type="checkbox"]{
         margin:1px;
@@ -706,7 +720,7 @@ form.wpcf7-form.sent{
         
       }
     }
-		#billing_country_field, #billing_state_field { padding-bottom:3px; border-bottom:1px solid @black; }
+		#billing_country_field, #billing_state_field { padding-bottom:3px;}
 		#billing_state_field { padding-top:2px; }
 		.col2-set {
 			margin-bottom:25px; padding:0 15px 95px; .imgborder();
@@ -731,7 +745,7 @@ form.wpcf7-form.sent{
 		position:absolute; top:280px; padding:15px; width:100%;
 		p { margin:0 !important; padding:0; }
 		h3 { margin:0 0 8px; font-size:1.25em; }
-		input { font-size:0.95em;  }
+		input {  }
 		input.input-text { width:73%; }
 		.button {
 			position:absolute; right:15px; top:35px; font-weight:normal; width:22%;
@@ -749,7 +763,7 @@ form.wpcf7-form.sent{
 				padding:0;
 				span { margin-right:5px; }
 				label { display:inline-block; }
-				#place_order { float:none; }
+			
 			}
 			
 			.terms { text-align:left; }
@@ -919,6 +933,7 @@ form.wpcf7-form.sent{
 .delivery_options .form-row{
   padding:.5em 0;
 }
+
 .delivery_options .learn-more{
   margin:0;
   text-align:right;
@@ -926,6 +941,9 @@ form.wpcf7-form.sent{
 .delivery_options .learn-more a{
   font-weight:bold;
 }
+.delivery_options .cart-contents .cart_item{
+		  height:12em;
+		}
 .product-color-choice{
   width:100%;
 }
@@ -942,6 +960,26 @@ form.wpcf7-form.sent{
   }
 }
 
+.woocommerce .woocommerce-checkout #payment input[type='submit'],
+.woocommerce	#place_order{ 
+				  float:none; 
+				  margin-right:-2em;
+				  width:auto;
+				    background: #000;
+    font-family: @fontfamily;
+    font-weight: normal;
+    font-size: 15px;
+    border-radius:0;
+    padding:.5em 1em;
+				}
+				
+@media all and (max-width:768px){
+  .woocommerce #payment #place_order, .woocommerce-page #payment #place_order{
+    float:right;
+    width:auto;
+    min-width:4em;
+  }
+}
 @media (min-width: 768px) and (max-width: 991px) {
 	.woocommerce ul.products li.product .product-desc { padding:15px; }
 	.woocommerce .product .product-color-choice ul li a{
@@ -975,7 +1013,19 @@ form.wpcf7-form.sent{
     margin-right:1em;
   }
   button{margin:40px 0 0 0;}
+  
 }
+.woocommerce .cart-contents .cart_item{
+  height:6em;
+}
+.woocommerce .delivery_options .cart_item{
+  height:9em;
+}
+.woocommerce .cart-contents .product-name{
+   margin-top:0;
+   margin-left:180px;
+   
+  }
 
 	
 .woocommerce .product #user-product-settings {

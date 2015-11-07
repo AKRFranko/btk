@@ -32,18 +32,43 @@ a:focus { outline:none; }
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 	a:link, a:visited, a:active, a:hover { color:inherit; font-size:inherit; font-family:inherit; }
 }
+select{
+  border-radius:.2em;
+  padding: .25em .75em;
+  border-color:#ddd;
+}
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-	width:100%; 
-	
-background-color: #E8EAE8;
+.input-text,
+body input[type="text"],
+body input[type="email"]
+body input[type="number"],
+body input[type="tel"],
+body input[type="password"] {
+-webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  
+	  width:100%; 
+	  font-size:1em;
+    background-color: #E8EAE8;
     border: 1px solid #ddd;
     border-radius: .2em;
     color: #242021;
-    padding: .2em .5em;
+    padding: .25em .75em;
+    box-shadow:none;
+    
 }
+
+.input-text,
+body input[type="text"][disabled],
+body input[type="email"][disabled]
+body input[type="number"][disabled],
+body input[type="tel"][disabled],
+body input[type="password"][disabled] {
+  background-color:#efefef;
+  
+}
+
 
 input[type='submit'], .button {
 	margin-left:10px; padding:0.3em 1.3em; color:@white; background-color:@black;

@@ -61,7 +61,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <div class="customer-register off  <?php echo $_SESSION['redirect_to'] ?>">
 
-	<h2><?php _e('New customers sign up for<br />shopping and exclusive offers', 'btk'); ?></h2>
+	<h2><?php _e('New customer sign up', 'btk'); ?></h2>
 
 	<form method="post" class="register">
 

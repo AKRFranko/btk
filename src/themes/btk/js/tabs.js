@@ -11,6 +11,7 @@
     var currentTab = null;
     var activateTab = function(tab) {
         var $tab = $(tab);
+
         var $others = $(tab).siblings('.tab').not($tab);
         var paneSelector = $tab.data('pane');
         if (currentTab !== paneSelector) {
@@ -22,16 +23,22 @@
             store.set('last_checkout_tab', index + 1);
             tabbar.trigger('tab-changed', [currentTab, paneSelector]);
             currentTab = paneSelector;
+
         }
 
     }
+    $(document).on('click', '.summary-box .toggle-box', function() {
+        var $tog = $(this);
+        var $sum = $(this).parents('.summary-box');
+        $sum.toggleClass('closed');
+    })
     var findTabTarget = function(pane) {
         return $('.tabbar .tab').filter(function() {
             return $(this).data('pane') == pane;
         });
     }
     var highlightTabsWithErrors = function() {
-
+        return false;
         $('.tabpane').each(function() {
             var errors = $(this).find('.woocommerce-invalid');
             var $tab = findTabTarget($(this).attr('id'));

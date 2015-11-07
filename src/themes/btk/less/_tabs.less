@@ -52,6 +52,7 @@
   margin:0 1em;
   margin-bottom:1em;
   text-align:left;
+  font-family:@altfontfamily;
   white-space:nowrap;
 }
 .summary-bar h3{
@@ -60,8 +61,26 @@
   margin:0 0 .75em 0;
   padding:.25em;
   padding-bottom:.25em;
+  padding-right:2.5em;
   border-bottom:1px solid #999;
+  position:relative;
   // display:none;
+}
+.summary-box .toggle-box{
+  position:absolute;
+  top:.25em;right:.5em;
+}
+.summary-box h3 .fa-caret-down{
+  display:inline-block;
+}
+.summary-box h3 .fa-caret-right{
+  display:none;
+}
+.summary-box.closed h3 .fa-caret-right{
+  display:inline-block;
+}
+.summary-box.closed h3 .fa-caret-down{
+  display:none;
 }
 
 .summary-box{
@@ -71,6 +90,23 @@
 .summary-box.not-shown{
   opacity:0;
 }
+.summary-box > *{
+  transition:all .2s ease-in-out;
+}
+.summary-box.closed > div,
+.summary-box.closed > div:first-of-type,
+.summary-box.closed > div:last-of-type{
+  height:0;
+  margin-top:0;
+  padding-top:0;
+  margin-bottom:0;
+  padding-bottom:0;
+  overflow:hidden;
+}
+.summary-box.closed h3{
+  margin-bottom:0;
+}
+
 .summary-bar > div {
     display: inline-block;
     width: ~"calc(25% - 1em)";
@@ -100,20 +136,28 @@
 a.tabnext{
   display:inline-block;
   float:right;
+  margin-top:1em;
   margin-bottom:1em;
-  margin-right:.5em;
+  margin-right:6.5em;
   padding:.2em .5em;
-  
+  position:relative;
 }
 a.tabnext:after{
-  content:'>';
-  background:#000;
+  
+  content:'';
+  background-color:#000;
+  background-position:center;
+  background-size:contain;
+  background-image: url('data:image/png;base64,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');
+  	background-repeat: no-repeat;
+  position:absolute;
+  top:0;
   color:#fff;
   display:inline-block;width:2em;
   text-align:center;
   height:2em;
   width:6em;
-  margin-top:-.5em;
+  margin-top:-.15em;
   margin-left:1em;
 }
 
@@ -125,7 +169,7 @@ a.tabnext:after{
 }
 
 .tabbar{
-  top:96px;
+  top:92px;
   background:#fff;
 }
 

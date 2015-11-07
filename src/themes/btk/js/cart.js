@@ -17,6 +17,63 @@
      var $cart = $('.page-cart');
      var timeout;
      var lastTotal = 0;
+
+     $(function() {
+             if ($('.woocommerce-billing-fields').length) {
+                 var billingFields = $('[name^=billing_]');
+                 var shippingFields = $('[name^=shipping_]');
+                 billingFields.each(function() {
+                     var $bf = $(this);
+                     var sfname = $bf.attr('name').replace('billing', 'shipping');
+                     var $sf = $('[name=' + sfname + ']');
+                     if ($sf.length) {
+                         $bf.on('focusout change', function() {
+                             if ($('#same-address-checkbox').is(':checked')) {
+
+                                 $sf.attr('disabled', true);
+                                 $sf.val($bf.val()).trigger('change');
+                             } else {
+                                 $sf.attr('disabled', false);
+                                 $sf.val('').trigger('change');
+                             }
+                         });
+                     }
+                 });
+                 $('#same-address-checkbox').on('click', function() {
+                     billingFields.each(function() {
+                         $(this).trigger('change');
+                     })
+                 })
+                 $('#no-shipping-checkbox').on('click', function() {
+                     shippingFields.each(function() {
+                         $(this).val('').trigger('change').attr('disabled', true);
+                     })
+                 });
+             }
+         })
+         // var copyBillingShippingFields = function() {
+         //     var billingFields = $('[name^=billing_]');
+         //     billingFields.each(function() {
+         //         var bf = $(this);
+         //         var sfname = bf.attr('name').replace('billing', 'shipping');
+         //         var sf = $('[name=' + sfname + ']');
+         //         sf.val(bf.val());
+         //     })
+         // }
+         // var clearShippingFields = function() {
+         //     var shippingFields = $('[name^=billing_]');
+         //     shippingFields.each(function() {
+         //         $(this).val('');
+         //     })
+         // }
+         // $('#same-address-checkbox').on('change', function() {
+         //     if ($(this).is(':checked')) {
+         //         copyBillingShippingFields()
+         //     } else {
+         //         clearShippingFields();
+         //     }
+         // }).trigger('change');
+
      if ($cart.length) {
          var $totl = $cart.find('.cart-totals.subtotal .amount');
          var $estm = $cart.find('.cart-totals.estimation .estimated-amount');

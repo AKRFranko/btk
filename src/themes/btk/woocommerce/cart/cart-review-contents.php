@@ -66,7 +66,7 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
             <?php
               $stock_qty = get_post_meta($cart_item['variation_id'],'_stock',true);
 				      $stock_delay = get_post_meta($cart_item['variation_id'],'_stock_backorder_delay',true);
-				      $stock_avail = $stock_qty > 0 ? '' : btk_time_elapsed( strtotime($stock_delay));
+				      $stock_avail = $stock_qty > 0 ? '1 week' : btk_time_elapsed( strtotime($stock_delay));
 						  echo  "$stock_avail";
 				    ?>
 		    </span>  

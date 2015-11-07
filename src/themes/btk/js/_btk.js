@@ -323,6 +323,63 @@
      var $cart = $('.page-cart');
      var timeout;
      var lastTotal = 0;
+
+     $(function() {
+             if ($('.woocommerce-billing-fields').length) {
+                 var billingFields = $('[name^=billing_]');
+                 var shippingFields = $('[name^=shipping_]');
+                 billingFields.each(function() {
+                     var $bf = $(this);
+                     var sfname = $bf.attr('name').replace('billing', 'shipping');
+                     var $sf = $('[name=' + sfname + ']');
+                     if ($sf.length) {
+                         $bf.on('focusout change', function() {
+                             if ($('#same-address-checkbox').is(':checked')) {
+
+                                 $sf.attr('disabled', true);
+                                 $sf.val($bf.val()).trigger('change');
+                             } else {
+                                 $sf.attr('disabled', false);
+                                 $sf.val('').trigger('change');
+                             }
+                         });
+                     }
+                 });
+                 $('#same-address-checkbox').on('click', function() {
+                     billingFields.each(function() {
+                         $(this).trigger('change');
+                     })
+                 })
+                 $('#no-shipping-checkbox').on('click', function() {
+                     shippingFields.each(function() {
+                         $(this).val('').trigger('change').attr('disabled', true);
+                     })
+                 });
+             }
+         })
+         // var copyBillingShippingFields = function() {
+         //     var billingFields = $('[name^=billing_]');
+         //     billingFields.each(function() {
+         //         var bf = $(this);
+         //         var sfname = bf.attr('name').replace('billing', 'shipping');
+         //         var sf = $('[name=' + sfname + ']');
+         //         sf.val(bf.val());
+         //     })
+         // }
+         // var clearShippingFields = function() {
+         //     var shippingFields = $('[name^=billing_]');
+         //     shippingFields.each(function() {
+         //         $(this).val('');
+         //     })
+         // }
+         // $('#same-address-checkbox').on('change', function() {
+         //     if ($(this).is(':checked')) {
+         //         copyBillingShippingFields()
+         //     } else {
+         //         clearShippingFields();
+         //     }
+         // }).trigger('change');
+
      if ($cart.length) {
          var $totl = $cart.find('.cart-totals.subtotal .amount');
          var $estm = $cart.find('.cart-totals.estimation .estimated-amount');
@@ -393,7 +450,7 @@
             if (name == 'paypal_pro-card-number') {
                 val = '...' + val.replace(/\s/g, '').slice(-4);
             }
-            if (val) $fld.text(val);
+            $fld.text(val);
             sumBar.trigger('updated', {
                 name: name,
                 value: val
@@ -407,16 +464,20 @@
     $('.tabbar').on('tab-changed', function(event, from, to) {
         //console.log('tab changed from', from, 'to', to)
         $('.summary-box.not-shown').removeClass('not-shown');
+        $('.summary-box').removeClass('closed');
         if (to == 'review-pane') {
-            var total = $('.order-total .amount').text();
-            $('.big-cart-total').text(total);
-
+            // var total = $('.order-total .amount').text();
+            // $('.big-cart-total').text(total);
+            $('.summary-box:last-of-type').siblings().addClass('closed');
         } else if (to == 'delivery-pane') {
-            $('.summary-box:gt(' + 2 + ')').addClass('not-shown');
-        } else if (to == 'payment-pane') {
-            $('.summary-box:gt(' + 3 + ')').addClass('not-shown');
-        } else {
             $('.summary-box:gt(' + 1 + ')').addClass('not-shown');
+            $('.summary-box:lt(' + 1 + ')').addClass('closed');
+        } else if (to == 'payment-pane') {
+            $('.summary-box:gt(' + 2 + ')').addClass('not-shown');
+            $('.summary-box:lt(' + 2 + ')').addClass('closed');
+        } else {
+            $('.summary-box:first').siblings().addClass('not-shown');
+
         }
         $('html,body').animate({
             scrollTop: 0
@@ -452,7 +513,7 @@
             } else {
                 $('.delivery_fees_subtotal_summary').text('$0.00');
             }
-        }, 10);
+        }, 500);
         // if ($(this).is('#rush_delivery_option')) {
 
         // }
@@ -469,7 +530,7 @@
 
     $('form[name="checkout"]').on('change', function(event) {
             var target = $(event.target);
-            console.log('changed', target.attr('name'));
+            //console.log('changed', target.attr('name'));
         })
         // window.serializeObject = function(form) {
         //     var serialized = $(form).serializeArray();
@@ -489,6 +550,9 @@
         // }
 
     $(function() {
+        $('.woocommerce-invalid').removeClass('woocommerce-invalid');
+        $('.woocommerce-validated').removeClass('woocommerce-validated');
+        $('#shipping_country,#billing_country').val('CA').attr('disabled', true);
         var stickies = document.querySelectorAll('.tabbar, .summary-bar');
         for (var i = stickies.length - 1; i >= 0; i--) {
             Stickyfill.add(stickies[i]);
@@ -805,6 +869,7 @@
     var currentTab = null;
     var activateTab = function(tab) {
         var $tab = $(tab);
+
         var $others = $(tab).siblings('.tab').not($tab);
         var paneSelector = $tab.data('pane');
         if (currentTab !== paneSelector) {
@@ -816,16 +881,22 @@
             store.set('last_checkout_tab', index + 1);
             tabbar.trigger('tab-changed', [currentTab, paneSelector]);
             currentTab = paneSelector;
+
         }
 
     }
+    $(document).on('click', '.summary-box .toggle-box', function() {
+        var $tog = $(this);
+        var $sum = $(this).parents('.summary-box');
+        $sum.toggleClass('closed');
+    })
     var findTabTarget = function(pane) {
         return $('.tabbar .tab').filter(function() {
             return $(this).data('pane') == pane;
         });
     }
     var highlightTabsWithErrors = function() {
-
+        return false;
         $('.tabpane').each(function() {
             var errors = $(this).find('.woocommerce-invalid');
             var $tab = findTabTarget($(this).attr('id'));

@@ -28,7 +28,7 @@ jQuery(function() {
             if (name == 'paypal_pro-card-number') {
                 val = '...' + val.replace(/\s/g, '').slice(-4);
             }
-            if (val) $fld.text(val);
+            $fld.text(val);
             sumBar.trigger('updated', {
                 name: name,
                 value: val
@@ -42,16 +42,20 @@ jQuery(function() {
     $('.tabbar').on('tab-changed', function(event, from, to) {
         //console.log('tab changed from', from, 'to', to)
         $('.summary-box.not-shown').removeClass('not-shown');
+        $('.summary-box').removeClass('closed');
         if (to == 'review-pane') {
-            var total = $('.order-total .amount').text();
-            $('.big-cart-total').text(total);
-
+            // var total = $('.order-total .amount').text();
+            // $('.big-cart-total').text(total);
+            $('.summary-box:last-of-type').siblings().addClass('closed');
         } else if (to == 'delivery-pane') {
-            $('.summary-box:gt(' + 2 + ')').addClass('not-shown');
-        } else if (to == 'payment-pane') {
-            $('.summary-box:gt(' + 3 + ')').addClass('not-shown');
-        } else {
             $('.summary-box:gt(' + 1 + ')').addClass('not-shown');
+            $('.summary-box:lt(' + 1 + ')').addClass('closed');
+        } else if (to == 'payment-pane') {
+            $('.summary-box:gt(' + 2 + ')').addClass('not-shown');
+            $('.summary-box:lt(' + 2 + ')').addClass('closed');
+        } else {
+            $('.summary-box:first').siblings().addClass('not-shown');
+
         }
         $('html,body').animate({
             scrollTop: 0
@@ -87,7 +91,7 @@ jQuery(function() {
             } else {
                 $('.delivery_fees_subtotal_summary').text('$0.00');
             }
-        }, 10);
+        }, 500);
         // if ($(this).is('#rush_delivery_option')) {
 
         // }
@@ -104,7 +108,7 @@ jQuery(function() {
 
     $('form[name="checkout"]').on('change', function(event) {
             var target = $(event.target);
-            console.log('changed', target.attr('name'));
+            //console.log('changed', target.attr('name'));
         })
         // window.serializeObject = function(form) {
         //     var serialized = $(form).serializeArray();
@@ -124,6 +128,9 @@ jQuery(function() {
         // }
 
     $(function() {
+        $('.woocommerce-invalid').removeClass('woocommerce-invalid');
+        $('.woocommerce-validated').removeClass('woocommerce-validated');
+        $('#shipping_country,#billing_country').val('CA').attr('disabled', true);
         var stickies = document.querySelectorAll('.tabbar, .summary-bar');
         for (var i = stickies.length - 1; i >= 0; i--) {
             Stickyfill.add(stickies[i]);

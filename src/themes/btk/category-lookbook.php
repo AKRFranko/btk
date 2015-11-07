@@ -20,11 +20,13 @@ get_header(); ?>
 
 			<div class="lookbook">
 			  <div class="attachment-thumbnail-wrapper">
+			  <a href="/lookbook">
 				<?php
 					if ( has_post_thumbnail() ) {
 						echo get_the_post_thumbnail();
 					}
 				?>
+				</a>
 				</div>
 				<div class="title">
           <?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>

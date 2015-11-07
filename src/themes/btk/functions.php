@@ -320,14 +320,18 @@ add_action('template_redirect', 'woo_redirect');
  * Overriding some checkout fields
  */
 function custom_override_checkout_fields($fields) {
+  
 	$fields['billing']['billing_first_name']['placeholder'] = 'first name';
 	$fields['billing']['billing_last_name']['placeholder'] = 'last name';
 	$fields['billing']['billing_email']['placeholder'] = 'email address';
+	//$fields['billing']['billing_postcode']['default'] = '';
 // 	$fields['shipping']['shipping_first_name']['placeholder'] = 'first name';
 // 	$fields['shipping']['shipping_last_name']['placeholder'] = 'last name';
 // 	$fields['shipping']['shipping_email']['placeholder'] = 'email address';
- 	unset($fields['billing']['billing_country']);
- 	unset($fields['billing']['billing_address']);
+  
+ 	// $fields['billing']['billing_country']['disabled'] = true;
+ 	// $fields['shipping']['shipping_country']['disableds'] = true;
+ 	//unset($fields['billing']['billing_address']);
 // 	unset($fields['billing']['billing_address_2']);
 // 	unset($fields['billing']['billing_email']);
 // 	unset($fields['billing']['billing_phone']);
