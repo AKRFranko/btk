@@ -80,7 +80,9 @@ foreach ($terms as $term) {
       <p class="product-color clearfix">
         <?php if(empty($term_name)){ $term_name = 'color'; }; ?>
 				<span class="valign"><?php echo $term_name; ?></span>
+        			
 				<span class="alignright" style="background-color:<?php echo $term_desc; ?>">&nbsp;</span>
+				<a class="material-info-trigger" href="#">i</a>	
 			</p>
 			<?php woocommerce_quantity_input(); ?>
 			<p class="qty-text">

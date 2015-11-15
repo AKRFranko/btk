@@ -239,6 +239,7 @@
 
                 $(this).addClass('clicked');
                 $('input[name^="attribute_"]').val($(this).attr('title'));
+                $('.material-info-trigger').data('material', $(this).attr('title')).css('display', 'inline-block');
                 $('.product-color span').first().text($(this).attr('title'));
                 $('.product-color-choice .colorname').text($(this).attr('title'));
                 $('.product-color span').last().css(bgfg);

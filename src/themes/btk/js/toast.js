@@ -44,12 +44,13 @@
         } else if ($("#toast .invalid").length) {
             showToast();
         } else if (store.get('lastToastClosed')) {
-            //hideToast();
+            hideToast();
         } else {
             showToast();
         }
         toastInterval = setTimeout(checkToast, 1000);
-    }
+    };
+
     $(function() {
         // if (store.get('lastToastSent') != $('#toast').data('toast')) {
         //     checkToast()

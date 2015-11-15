@@ -499,9 +499,26 @@ form.wpcf7-form.sent{
     line-height: 2;
     margin: 0;
 		a { padding:0.35em 2.65em; cursor:pointer; }
+		
 		span { padding-top:10px; }
 		span + span { padding:0.35em 2.65em;margin-top:.5em;margin-bottom:-.5em; }
 	}
+	a.material-info-trigger{
+	  
+	  border:1px solid;
+	  border-radius:50%;
+  font-family:@fontfamily;
+	    padding: 0!important;
+    
+    display:none;
+    width: 1.5em;
+    height: 1.5em;
+    position: absolute;
+    top: .95em;
+    right: 7em;
+    text-align: center;
+    line-height: 1.5;
+	  }
 	
 
 
@@ -879,6 +896,8 @@ h3{
   width:80%;
   display:inline-block;
 }
+
+
 @media (max-width: 767px) {
 	.woocommerce #payment #place_order { width:initial; margin-bottom:0; }
 	
@@ -890,6 +909,7 @@ h3{
 	.woocommerce .customer-details > div { float:left; width:50%; }
 	.woocommerce .product #user-product-settings{
 	  position:relative;
+	  
 	  .product-color-choice,
 	  .product-add{
 	    border:0;
