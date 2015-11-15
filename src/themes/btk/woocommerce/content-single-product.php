@@ -180,7 +180,10 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 		?>
 	</div>
   </div><!-- #user-product-settings -->
+  <div class="staff-pick">
+    <p>lorem ipsum dolor.</p>
   
+  </div>
  
 
 	<?php //comments_template( 'single-product-reviews.php' ); ?>

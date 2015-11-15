@@ -159,14 +159,26 @@
         $overlay.removeClass('opened');
     }
 
+    $overlay.on('click', function(e) {
+
+        if ($(e.target).parents('.materials-card').length > 0) {
+            return true;
+        } else {
+            window.btk.hideMaterialInfo();
+        }
+
+    });
+
     $overlay.on('click', '.materials-close', function(e) {
         e.preventDefault();
         window.btk.hideMaterialInfo();
+
+
     });
 
     $(document.body).on('click', '.material-info-trigger', function(e) {
         var material = $(this).data('material');
-        console.log($(this))
+
         window.btk.showMaterialInfo(material);
     });
 
