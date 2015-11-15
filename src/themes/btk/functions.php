@@ -773,6 +773,19 @@ function btk_lookbook_shortcode( $atts ) {
 }
 add_shortcode( 'lookbook', 'btk_lookbook_shortcode' );
 
+function btk_get_price_html( $price ){
+  // global $woocommerce;
+  global $product;
+  $vari = $product->get_available_variations();
+  $vari_id = $vari[0]['variation_id'];
+  $vario = new WC_Product_Variation( $vari_id );
+  
+  if($price) return $price;
+  return '$' . get_post_meta($vari_id, '_regular_price', true);
+};
+add_filter( 'woocommerce_get_price_html', 'btk_get_price_html' );
+
+
 
 
 

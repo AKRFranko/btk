@@ -995,7 +995,7 @@
         } else if ($("#toast .invalid").length) {
             showToast();
         } else if (store.get('lastToastClosed')) {
-            hideToast();
+            //hideToast();
         } else {
             showToast();
         }

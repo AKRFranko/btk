@@ -69,6 +69,7 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 
 			
 			<span class="product-price">_ <?php echo $product->get_price_html(); ?></span>
+			
 		</a>
 		
 		<?php the_excerpt(); ?>

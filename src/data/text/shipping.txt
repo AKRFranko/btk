@@ -1,5 +1,26 @@
-Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.
-
-Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas. Dramatically maintain clicks-and-mortar solutions without functional solutions.
-
-Completely synergize resource sucking relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate resource-leveling customer service for state of the art customer service.
+<h1>Delivery made simple</h1>
+<ol>
+<li>
+  <h3>Identify your shipping zone.</h3>
+  <p>(Most canadian urban centers will fall in <b>zone 1</b>)</p>
+  <p><label>Enter your postal code: <input type="text" name="postal_code"></label></p>
+  <p>Your zone: <b>Zone 1</b></p>
+</li>
+<li>
+  <h3>Find your shipping rate on orders of furniture and accessories.</h3>
+  <table>
+    <tr><th></th><th>Zone 1</th><th>Zone 2</th><th>Zone 3</th></tr>
+    <tr><th>Order below $500.00</th><td>Flat fee $65</td><td>Flat fee $150</td><td>Flat fee $200</td></tr>
+    <tr><th>Order above $500.00</th><td>FREE</td><td>Flat fee $100</td><td>Flat fee $350</td></tr>
+  </table>
+</li>
+<li>
+  <h3>Find your shipping rate on orders of accessories only.</h3>
+  <table>
+    <tr><th></th><th>Zone 1</th><th>Zone 2</th><th>Zone 3</th></tr>
+    <tr><th>Order below $50.00</th><td>Flat fee $15</td><td>Flat fee $15</td><td>Flat fee $15</td></tr>
+    <tr><th>Order above $50.00</th><td>FREE</td><td>FREE</td><td>FREE</td></tr>
+  </table>
+</li>
+</ol>
+<h4>Voila!</h4>

@@ -1008,7 +1008,8 @@ select {
 }
 .input-text,
 body input[type="text"],
-body input[type="email"] body input[type="number"],
+body input[type="email"],
+body input[type="number"],
 body input[type="tel"],
 body input[type="password"] {
   -webkit-appearance: none;
@@ -1571,12 +1572,8 @@ form.wpcf7-form.sent {
 }
 .woocommerce .product .product-color-choice ul li a.clicked,
 .woocommerce .product .product-color-choice ul li a:hover {
-  -webkit-transform: scale(1.1);
-      -ms-transform: scale(1.1);
-          transform: scale(1.1);
-  -webkit-transform-origin: center;
-      -ms-transform-origin: center;
-          transform-origin: center;
+  transform: scale(1.1);
+  transform-origin: center;
 }
 .woocommerce .product .product-color-choice ul li a.clicked img {
   border-color: #000;
@@ -2671,8 +2668,7 @@ body.splash-on > * {
 /* slides */
 #splash-page .splash-image {
   z-index: 300;
-  -webkit-animation: splashcycler 12s infinite;
-          animation: splashcycler 12s infinite;
+  animation: splashcycler 12s infinite;
   opacity: 0;
   background-size: cover;
   background-position: center;
@@ -2687,20 +2683,6 @@ body.splash-on > * {
   height: 100%;
 }
 /* slide animation */
-@-webkit-keyframes splashcycler {
-  0% {
-    opacity: 1;
-  }
-  33% {
-    opacity: 1;
-  }
-  34% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
-}
 @keyframes splashcycler {
   0% {
     opacity: 1;
@@ -2717,16 +2699,13 @@ body.splash-on > * {
 }
 /* slide offsets (relative to splashcycler duration)*/
 #splash-page .splash-image:nth-child(1) {
-  -webkit-animation-delay: 0s;
-          animation-delay: 0s;
+  animation-delay: 0s;
 }
 #splash-page .splash-image:nth-child(2) {
-  -webkit-animation-delay: 4s;
-          animation-delay: 4s;
+  animation-delay: 4s;
 }
 #splash-page .splash-image:nth-child(3) {
-  -webkit-animation-delay: 8s;
-          animation-delay: 8s;
+  animation-delay: 8s;
 }
 #splash-page button {
   position: absolute;
@@ -2740,9 +2719,7 @@ body.splash-on > * {
   border-radius: 0;
   text-align: center;
   transition: all 0.1s ease-in-out;
-  -webkit-transform-origin: center;
-      -ms-transform-origin: center;
-          transform-origin: center;
+  transform-origin: center;
   z-index: 500;
   white-space: nowrap;
   line-height: 1.2;
@@ -2785,7 +2762,8 @@ body.splash-on > * {
   top: 100vh;
   display: block;
   width: 100%;
-  height: 50vh;
+  height: 55vh ;
+  box-sizing: border-box;
   min-height: 50vh;
   max-height: 50vh;
   line-height: 1.3;
@@ -2796,8 +2774,17 @@ body.splash-on > * {
   z-index: 99999999;
   transition: all 0.2s ease-in;
 }
+#toast:after {
+  content: '';
+  background: #fff;
+  width: 100%;
+  height: 100px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
 #toast.show {
-  margin-top: -50vh;
+  margin-top: -55vh;
   opacity: 1;
   transition: all 1s ease-out;
 }
@@ -2807,7 +2794,8 @@ body.splash-on > * {
 #toast .page {
   display: block;
   width: 750px;
-  height: 100%;
+  box-sizing: border-box;
+  height: calc(98%);
   padding: 1em;
   margin-left: auto;
   margin-right: auto;
@@ -2820,6 +2808,7 @@ body.splash-on > * {
   max-height: calc(100% - 2em);
   margin-top: 1em;
   margin-right: 0;
+  margin-bottom: 1em;
   text-align: center;
   position: relative;
   background-position: center;
@@ -2847,7 +2836,7 @@ body.splash-on > * {
   position: absolute;
   top: 100%;
   left: 50%;
-  margin-top: -3.25em;
+  margin-top: -6.25em;
 }
 #toast .page p {
   margin-bottom: 1em;
@@ -2894,7 +2883,7 @@ body.splash-on > * {
     min-height: 100vh;
   }
   #toast .image {
-    width: calc(100% - 1em);
+    width: calc(100% - 2em);
     min-height: 30vh;
     max-height: 30vh;
     margin-top: 4em;
@@ -2902,6 +2891,7 @@ body.splash-on > * {
   }
   #toast .content {
     width: calc(100% - 2em);
+    min-width: calc(100% - 2em);
     margin-left: 1em;
     margin-right: 1em;
   }
@@ -3261,9 +3251,7 @@ Header
   margin: 0 5px 0 15px;
 }
 #header-box header nav .badge {
-  -webkit-transform: scale(0.6) translateY(-0.5em);
-      -ms-transform: scale(0.6) translateY(-0.5em);
-          transform: scale(0.6) translateY(-0.5em);
+  transform: scale(0.6) translateY(-0.5em);
   font-family: monospace;
 }
 #header-box header nav.nav-hamburger {
@@ -3931,9 +3919,7 @@ Footer
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-transform: translate(0, 0);
-      -ms-transform: translate(0, 0);
-          transform: translate(0, 0);
+  transform: translate(0, 0);
   width: 19px !important;
   height: 19px !important;
   font-size: 1.5em !important;
@@ -4047,14 +4033,10 @@ Footer
   margin: 1.5em;
   box-shadow: 0 0 3em rgba(0, 0, 0, 0.3);
   transition: all 0.2s ease-in;
-  -webkit-transform: scale(0) rotate(360deg);
-      -ms-transform: scale(0) rotate(360deg);
-          transform: scale(0) rotate(360deg);
+  transform: scale(0) rotate(360deg);
 }
 .btk-form-success.show {
-  -webkit-transform: scale(1) rotate(360deg);
-      -ms-transform: scale(1) rotate(360deg);
-          transform: scale(1) rotate(360deg);
+  transform: scale(1) rotate(360deg);
 }
 #content article .entry-content .btk-form-success img,
 .btk-form-success img {
@@ -4401,6 +4383,7 @@ Media Queries and Devices
   padding: 12px;
   font-family: "adobe-caslon-pro", Georgia, 'Times New Roman', Times, serif;
   text-transform: uppercase;
+  font-size: 20.25px;
 }
 .category-lookbook .lookbook .title p {
   font-size: 1.35em;
@@ -4415,31 +4398,19 @@ Media Queries and Devices
 /* HACK */
 @media (min-width: 2000px) {
   body {
-    -webkit-transform: scale(2);
-        -ms-transform: scale(2);
-            transform: scale(2);
-    -webkit-transform-origin: top;
-        -ms-transform-origin: top;
-            transform-origin: top;
+    transform: scale(2);
+    transform-origin: top;
   }
 }
 @media (min-width: 3000px) {
   body {
-    -webkit-transform: scale(3);
-        -ms-transform: scale(3);
-            transform: scale(3);
-    -webkit-transform-origin: top;
-        -ms-transform-origin: top;
-            transform-origin: top;
+    transform: scale(3);
+    transform-origin: top;
   }
 }
 @media (min-width: 4000px) {
   body {
-    -webkit-transform: scale(4);
-        -ms-transform: scale(4);
-            transform: scale(4);
-    -webkit-transform-origin: top;
-        -ms-transform-origin: top;
-            transform-origin: top;
+    transform: scale(4);
+    transform-origin: top;
   }
 }
