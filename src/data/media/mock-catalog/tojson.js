@@ -490,7 +490,7 @@ createPost = function(data) {
             post_title: data.name,
             post_type: 'product',
             post_status: 'publish',
-            post_excerpt: randomText(),
+            post_excerpt: null,
             post_name: data.slug
         }
     };

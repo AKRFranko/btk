@@ -13,15 +13,16 @@
 	</div><!-- main content -->
 
 
-
+				
+<div id="back-to-top" class="lower center">
+					<a href="#top"><?php _e('Back to top', 'btk'); ?></a>
+				</div>
 	<!-- footer -->
 	<div id="footer-box">
+	
 		<div class="container">
 			<div class="row">
 
-				<div id="back-to-top" class="lower center">
-					<a href="#top"><?php _e('Back to top', 'btk'); ?></a>
-				</div>
 
 				<footer id="colophon" class="site-footer lower clearfix" role="contentinfo">
 					<div class="col-xs-6">

@@ -1,26 +1,46 @@
-{      
- 
-  	"term": {
-  		  "list": {
-          "$_categories": {
-            "args": { "taxonomy": "product_cat" }, 
-            "opts": { "format": "json", "field": "term_id",  "quiet": true } 
-          }
+{
+
+    "term": {
+        "list": {
+            "$_categories": {
+                "args": {
+                    "taxonomy": "product_cat"
+                },
+                "opts": {
+                    "format": "json",
+                    "field": "term_id",
+                    "quiet": true
+                }
+            }
         }
     },
     "post": {
-      "list": {
-        "$_products": {
-          "opts": { "post_type": "product", "format": "ids"}
-        },
-        "$_variations": {
-         "opts": { "post_type": "product_variation", "format": "ids"} 
+        "list": {
+            "$_products": {
+                "opts": {
+                    "post_type": "product",
+                    "format": "ids"
+                }
+            },
+            "$_variations": {
+                "opts": {
+                    "post_type": "product_variation",
+                    "format": "ids"
+                }
+            }
         }
-      }
     },
-    "eval": [
-      { "args": { "php": "foreach( $_categories as \\$catid ){ wp_delete_term( \\$catid, 'product_cat'); }"} },
-      { "args": { "php": "foreach( explode( ' ', '$_products' ) as \\$prodid){ wp_delete_post(\\$prodid, true); }"} },
-      { "args": { "php": "foreach( explode( ' ', '$_variations' ) as \\$prodid){ wp_delete_post(\\$prodid, true); }"} }
-    ]
+    "eval": [{
+        "args": {
+            "php": "foreach( $_categories as \\$catid ){ wp_delete_term( \\$catid, 'product_cat'); }"
+        }
+    }, {
+        "args": {
+            "php": "foreach( explode( ' ', '$_products' ) as \\$prodid){ wp_delete_post(\\$prodid, true); }"
+        }
+    }, {
+        "args": {
+            "php": "foreach( explode( ' ', '$_variations' ) as \\$prodid){ wp_delete_post(\\$prodid, true); }"
+        }
+    }]
 }

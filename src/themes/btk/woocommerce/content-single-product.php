@@ -79,7 +79,7 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 		
 		<p class="product-price">_ <?php echo $product->get_price_html(); ?></p>
 
-		<p class="desc"><?php echo get_the_content(); ?></p>
+		
 
 		<p class="sharing alignright">
 			<a href="https://www.facebook.com/sharer.php?u=<?php echo get_permalink(); ?>" class="fa fa-facebook-square" title="<?php _e('Share to facebook', 'btk'); ?>" target="_blank">
@@ -91,14 +91,20 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 				<script type="text/javascript" async defer src="//assets.pinterest.com/js/pinit.js"></script>
 			</span>
 		</p>
-
-		<p class="tech"><?php echo btk_product_technical_drawing(); ?></p>
-
+		
+		<div class="desc">
+		  <h3>Description</h3>
+		  <p><?php echo get_the_content(); ?></p>
+		</div>
+		
 		<p class="pdf-button">
 		  <?php echo btk_product_pdf_link( get_the_ID(), $post->post_name ); ?>
-		
 			<!-- <a href="" class="pr-rev"><?php _e('Customer reviews', 'btk'); ?></a> -->
 		</p>
+
+		
+
+		
 
 	</div>
 
@@ -180,9 +186,74 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 		?>
 	</div>
   </div><!-- #user-product-settings -->
-  <div class="staff-pick">
-    <p>lorem ipsum dolor.</p>
+  <div class="tech">
+    <div class="tech-image"><?php echo btk_product_technical_drawing(); ?></div>
+    <div class="tech-video">
+    <a class="yt-thumb" href="https://www.youtube.com/embed/_qogwJT4QxI">
+      <img src="https://img.youtube.com/vi/_qogwJT4QxI/mqdefault.jpg">
+    </a>
+    </div>
+  </div>
+  <div class="designer-info dual-box">
+    <div class="designer-text">
+      <h3>Designer</h3>
+      <p>A light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat.</p>
+    </div>
+    <div class="designer-icon">
+      <div class="circle">
+      <img src="/wp-content/themes/btk/img/kalle-lasn.jpg">
+      </div>
+    </div>
+  </div>
+  <div class="minute-details dual-box">
+    <div class="assembly-text">
+      <h3>Assembly Instructions</h3>
+      <a class="yt-thumb" href="https://www.youtube.com/embed/_qogwJT4QxI">
+        <img src="https://img.youtube.com/vi/_qogwJT4QxI/mqdefault.jpg">
+      </a>
+      
+    </div>
+    <div class="parts-list">
+    <h3>Materials and Dimensions</h3>
+    <p>A light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat.</p>
+    </div>
+  </div>
+  <div class="delivery-info dual-box">
+    <div class="delivery-text">
+      <h3>SHIPPING AND RETURN</h3>
+      <p>A light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat.</p>
+    </div>
+    <div class="delivery-icon">
+      <div class="circle"><i class="fa fa-truck"></i></div>
+    </div>
   
+  </div>
+  <div class="product-diagram">
+    <div class="diagram-image" style="background-image:url(/wp-content/themes/btk/img/diagram.jpg)"></div>
+  </div>
+ 
+  <div class="staff-picks dual-box">
+    <div class="staff-text">
+    <h3>WHY HEATHER LOVES THIS MODEL</h3>
+      <p>A light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat.</p>
+    </div>
+    <div class="staff-icon">
+    <div class="circle"><i class="fa fa-heart"></i></div>
+    </div>
+  
+  </div>
+  
+  <div class="other-videos">
+      <a class="yt-thumb" href="https://www.youtube.com/embed/_qogwJT4QxI">
+        <img src="https://img.youtube.com/vi/_qogwJT4QxI/mqdefault.jpg">
+      </a>
+      <a class="yt-thumb" href="https://www.youtube.com/embed/_qogwJT4QxI">
+        <img src="https://img.youtube.com/vi/_qogwJT4QxI/mqdefault.jpg">
+      </a>
+      <a class="yt-thumb" href="https://www.youtube.com/embed/_qogwJT4QxI">
+        <img src="https://img.youtube.com/vi/_qogwJT4QxI/mqdefault.jpg">
+      </a>
+     
   </div>
  
 
