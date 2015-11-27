@@ -20,7 +20,10 @@ form.wpcf7-form.invalid,
 form.wpcf7-form.sent{
     padding-top: 3em;
 }
-
+form{
+  border-radius:0 !important;
+}
+.page-checkout .entry-title,
 .page-cart .entry-title,
 .page-my-account .entry-title{
   display:none;
@@ -399,7 +402,7 @@ form.wpcf7-form.sent{
 					a { margin-right:10px; font-size:1.3em; }
 					input { border:none; background:transparent; font-size:1.5em; }
 					input + a { margin:0 0 0 10px; }
-					.qty { width:2em; text-align:right; }
+					.qty { width:4em; text-align:center; }
 				}
 				button {
 					float:none; margin:20px 0 20px 10px; .buttons();
@@ -472,6 +475,7 @@ form.wpcf7-form.sent{
 		}
 	}
 	
+	
 // 	.recently-viewed .edb-slider .slide{
 // 	  width:50%;
 // 	  height:50%;
@@ -481,7 +485,7 @@ form.wpcf7-form.sent{
 // 	}
 	#recently-viewed{
 	 // margin-top:1em;
-	  padding:92px 0;
+	  padding:@headerheight 0;
 	  border-top:1px solid #000;
 	}
 
@@ -551,10 +555,10 @@ form.wpcf7-form.sent{
 		}
 		.product-quantity {
 			position:relative; padding-top:25px; 
-			width:3em;
+			width:5em;
 			text-align:right;
 			margin-right:.5em;
-			input{width:3em;}
+			input{width:4em;text-align:left;padding-right:0;}
 			p { margin:0 !important; padding:6px 0; }
 		}
 		.quantity { position:absolute; bottom:-3px; right:0; }
@@ -586,6 +590,7 @@ form.wpcf7-form.sent{
 		.page-checkout .cart_item{
 		  padding-left:25%;
 		}
+		
 		.product-shipping-options{
 		  width:75%;
 		  margin-left:.3em;
@@ -790,7 +795,7 @@ h3{
 			input[type='submit'] {
 				padding:0.75em 2em; font-size:1.4em;
 				background-position:center center; 
-				&:hover { background-color:@gray; }
+				&:hover { background-color:red; }
 			}
 		}
 	}
@@ -831,7 +836,7 @@ h3{
 	.woocommerce-message {
 	      z-index: 999999;
 
-		background-color:#5cb85c;
+		background-color:rgb(0,140,130);
 		&:before { content:'\f058'; }
 	}
 
@@ -988,7 +993,9 @@ h3{
   padding-top:1em;
   margin-top:2em;
   padding-bottom:1em;
-  padding-right:92px;
+  padding-right:60px;
+  margin-left:-1em;
+  padding-left:1em;
 }
 .woocommerce .product .product-information .pdf-button{
   margin-bottom:1em;
@@ -997,7 +1004,8 @@ h3{
   white-space:nowrap;
   padding:0;
     text-align: center;
-    padding: 92px 0;
+    padding: @headerheight 0;
+    padding-left:1em;
     border-top: 1px solid #000;
     margin-top: 1em;
     // border-bottom: 1px solid #000;
@@ -1009,20 +1017,29 @@ h3{
       min-height:1px;
       vertical-align:middle;
     }
-    .tech-video iframe{
-      width:70%;
-      border:0;
-    }
+    // .tech-video iframe{
+    //   width:~"calc(100% -2em)";
+    //   border:0;
+    // }
     .tech-image{
-      outline:1px solid #eee;
+      width:~"calc(50% - 2em)";
+      min-width:~"calc(50% - 2em)";
+      // outline:1px solid #ccc;
+      margin-right:2em;
+      // img{padding:.5em;}
     }
 }
+
 .dual-box {
   white-space:nowrap;
-    padding: calc(92px - 1em) 0;
-    width:100%;
+    padding: ~"calc(117px - 1em) 0";
+    
+    width:~"calc(100% - 1em)";
     text-align: center;
     border-top: 1px solid #000;
+}
+.tech,.dual-box{
+  padding-left:1em;
 }
 .dual-box > div{
   text-align:left;
@@ -1034,7 +1051,7 @@ h3{
       vertical-align:top;
 }
 .dual-box > div > p{
-  padding-right:92px;
+  padding-right:60px;
 }
 .dual-box > div > h3{
   margin-top:0;
@@ -1065,7 +1082,7 @@ h3{
   position:relative;
   border-top:1px solid #000;
   .diagram-image{
-    margin:92px 0;
+    margin:@headerheight 0;
     position:absolute;
     top:0;left:0;
     width:100%;
@@ -1078,7 +1095,7 @@ h3{
 .yt-thumb{
   position:relative;
   display:inline-block;
-  width:70%;
+  width:~"calc(100% -2em)";
 }
 .yt-thumb:after{
     content:'';
@@ -1109,7 +1126,7 @@ h3{
 .other-videos{
   border-top:1px solid #000;
   white-space:nowrap;
-    padding: calc(92px - 1em) 0;
+    padding: ~"calc(117px - 1em) 0";
     width:100%;
 }
 .other-videos .yt-thumb{
@@ -1361,11 +1378,11 @@ h3{
     border: 0;
     white-space: normal;
     margin: 0;
-    padding:92px 0;
+    padding:@headerheight 0;
     
     p{
       line-height:1.2;
-      width:~"calc( 100% - 92px)";
+      width:~"calc( 100% - 117px)";
     }
    }
    
@@ -1381,9 +1398,9 @@ h3{
      
      text-align:left;
      margin-bottom: 0;
-     margin-top:~"calc(1em - 92px)";
+     margin-top:~"calc(1em - 117px)";
      
-    padding: 0 1em 92px 0;
+    padding: 0 1em @headerheight 0;
     
     // border-bottom: 1px solid #000;
    }

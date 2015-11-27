@@ -371,6 +371,7 @@ function btk_edb_single_product_slider() {
 function btk_product_technical_drawing(){
   $imageID = get_post_meta( get_the_ID(), '_product_technical_drawing', true );
   $src = wp_get_attachment_image_src($imageID, 'large')[0];
+  $src ='/wp-content/themes/btk/img/wireframe1.jpg';
   $title = get_the_title();
   if( !empty($src)){
     return "<img alt=\"$title technical drawing\" src=\"$src\" />";  

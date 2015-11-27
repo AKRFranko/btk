@@ -13219,7 +13219,9 @@ EDBSlider.Slide = function(data, index) {
         $(it.el).append(content);
     };
     if (data.shopnow) {
-        var $shopnow = $('<span>').addClass('shopnow').attr('data-text', data.shopnow);
+        var $shopnow = $('<span>').addClass('shopnow').text(data.shopnow);
+        var $chevron = $('<span>').addClass('icon-chevron-lite-right-white');
+        $shopnow.append($chevron);
         $(link).find('.slide-text').append($shopnow);
     }
     return it;
@@ -13250,7 +13252,7 @@ EDBSlider.Slide.prototype = {
 EDBSlider.prototype = {
 
     adjustHeight: function(minus) {
-        console.log('adjust')
+        console.log('adjust', minus)
         var winHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
         if (isNaN(minus)) minus = $(minus).outerHeight();
         $(this.el).css({

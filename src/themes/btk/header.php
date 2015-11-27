@@ -100,7 +100,7 @@ global $current_user;
 								</a>
 							</div>
 
-							<div>
+							<div class="wrapper">
 	    						<div class="collapse navbar-collapse" id="nav-hamburger">
 								<?php wp_nav_menu(array('menu' => 'hamburger')); ?>
 								</div>
@@ -204,7 +204,7 @@ global $current_user;
 
 							<!-- close menu -->
 							<p class="back-home">
-								<span class="valign"><?php _e('Back home', 'btk'); ?></span>
+								<span class="valign"><?php _e('Back', 'btk'); ?></span>
 								<a class="buttons valign icon-arrow-lite-left-white"></a>
 							</p>
 						</div>
@@ -226,7 +226,7 @@ global $current_user;
 						endwhile;
 					?>
 						<p class="confirmation-back-home">
-							<span class="valign"><?php _e('Back home', 'btk'); ?></span>
+							<span class="valign"><?php _e('Back', 'btk'); ?></span>
 							<a href="<?php echo esc_url(home_url('/')); ?>" class="buttons valign icon-arrow-lite-left-white"></a>
 						</p>
 					</div>

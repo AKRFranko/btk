@@ -6643,6 +6643,8 @@ button.close {
     font-size: 1.5em;
 }
 
+.edb-slider .slide-text .shopnow {}
+
 .edb-slider .controls {
     position: absolute;
     z-index: 100;

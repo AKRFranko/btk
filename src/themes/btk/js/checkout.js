@@ -73,6 +73,10 @@ jQuery(function() {
 
     }).trigger('change')
 
+    // $('#same-address-checkbox').on('click', function(e) {
+    //     if ($(this).is(':checked')) $(this).removeAttr('checked');
+    // });
+
     $('#local_pickup_option').on('change', function() {
         var isRush = $('#rush_delivery_option').get(0).checked;
         var isPickup = $('#local_pickup_option').get(0).checked;
