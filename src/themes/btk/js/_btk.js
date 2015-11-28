@@ -1,5 +1,8 @@
 /* DO NOT EDIT, THIS FILE IS GENERATED */
 (function($) {
+
+    // ecb slider 10second auto home 
+
     window.btk = {
         handleFormSuccess: function(formName) {
             $('.wpcf7-mail-sent-ok').remove();
@@ -197,7 +200,21 @@
         });
 
 
-
+        if ($('body').is('.home')) {
+            console.log('ishome')
+            var autoSlides;
+            var clicknext = function() {
+                console.log('clicking')
+                $('.edb-slider .next').click();
+                autoSlides = setTimeout(clicknext, 10000);
+            };
+            $('.edb-slider').on('mouseenter touchstart', function() {
+                console.log('clearing')
+                clearTimeout(autoSlides);
+            }).on('mouseleave', function() {
+                autoSlides = setTimeout(clicknext, 10000);
+            }).trigger('mouseleave')
+        }
         // product reviews
         $('.product .pr-rev').click(function(e) {
             e.preventDefault();
@@ -318,6 +335,7 @@
 
 
     })
+
     setTimeout(function() {
         $('.woocommerce-message').fadeOut();
     }, 5000)
