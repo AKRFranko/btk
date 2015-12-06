@@ -660,7 +660,7 @@
 	})
 })(jQuery);(function($) {
     var materials = {
-        'aluminium': {
+        '001': {
             image: '/wp-content/themes/btk/img/textures/aluminium.jpg',
             fabric: 'fabric',
             composition: [
@@ -670,7 +670,7 @@
                 '10% viscose'
             ]
         },
-        'argon': {
+        '002': {
             image: '/wp-content/themes/btk/img/textures/argon.jpg',
             fabric: 'fabric',
             composition: [
@@ -681,7 +681,7 @@
             ]
 
         },
-        'concrete': {
+        '003': {
             image: '/wp-content/themes/btk/img/textures/concrete.jpg',
             fabric: 'fabric',
             composition: [
@@ -691,7 +691,7 @@
                 '10% viscose'
             ]
         },
-        'emerald': {
+        '004': {
             image: '/wp-content/themes/btk/img/textures/emerald.jpg',
             fabric: 'fabric',
             composition: [
@@ -701,7 +701,7 @@
                 '10% viscose'
             ]
         },
-        'noise': {
+        '005': {
             image: '/wp-content/themes/btk/img/textures/noise.jpg',
             fabric: 'fabric',
             composition: [
@@ -711,7 +711,7 @@
                 '10% viscose'
             ]
         },
-        'orange': {
+        '006': {
             image: '/wp-content/themes/btk/img/textures/orange.jpg',
             fabric: 'fabric',
             composition: [
@@ -721,7 +721,7 @@
                 '10% viscose'
             ]
         },
-        'purple': {
+        '007': {
             image: '/wp-content/themes/btk/img/textures/purple.jpg',
             fabric: 'fabric',
             composition: [
@@ -731,7 +731,7 @@
                 '10% viscose'
             ]
         },
-        'sky': {
+        '008': {
             image: '/wp-content/themes/btk/img/textures/sky.jpg',
             fabric: 'fabric',
             composition: [
@@ -741,7 +741,7 @@
                 '10% viscose'
             ]
         },
-        'steel': {
+        '009': {
             image: '/wp-content/themes/btk/img/textures/steel.jpg',
             fabric: 'fabric',
             composition: [
@@ -751,7 +751,7 @@
                 '10% viscose'
             ]
         },
-        'teal': {
+        '010': {
             image: '/wp-content/themes/btk/img/textures/teal.jpg',
             fabric: 'fabric',
             composition: [
@@ -761,7 +761,7 @@
                 '10% viscose'
             ]
         },
-        'wine': {
+        '011': {
             image: '/wp-content/themes/btk/img/textures/wine.jpg',
             fabric: 'fabric',
             composition: [
@@ -771,7 +771,7 @@
                 '10% viscose'
             ]
         },
-        'yolk': {
+        '012': {
             image: '/wp-content/themes/btk/img/textures/yolk.jpg',
             fabric: 'fabric',
             composition: [

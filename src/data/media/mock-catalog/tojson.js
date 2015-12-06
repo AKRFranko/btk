@@ -36,25 +36,25 @@ sku_tree = {
 };
 
 
-var dummy_texts = [
-    "It disrupted water mains and communication lines and opened a fissure into which the small town of Libertad sank.",
-    "Wintjiya came from an area north-west or north-east of Walungurru (the Pintupi-language name for Kintore, Northern Territory).",
-    "England in the early 7th century was ruled almost entirely by the Anglo-Saxon peoples who had come to Britain from northwestern Europe, starting in the early 5th century.",
-    "He married Eormenhild of Kent; no date is recorded for the marriage and there is no record of any children in the earliest sources, though Coenred, who was king of Mercia from 704 to 709, is recorded in John of Worcester's 12th century chronicle as Wulfhere's son.",
-    "Parliament, opposed to the growth of absolutism that was occurring in other European countries, as well as to the loss of legal supremacy for the Church of England, saw their opposition as a way to preserve what they regarded as traditional English liberties.",
-    "The initiative of starting the battle was with the Castilian side.",
-    "106 and 107 stand on the site of Tackley's Inn; built around 1295, it was the first piece of property that Adam de Brome acquired when he began to found the college in 1324.",
-    "After 1085, the annals are in various contemporary hands."
-];
-var randomText = function() {
-    var t = dummy_texts.shift();
-    dummy_texts.push(t);
-    return t;
-};
+// var dummy_texts = [
+//     "It disrupted water mains and communication lines and opened a fissure into which the small town of Libertad sank.",
+//     "Wintjiya came from an area north-west or north-east of Walungurru (the Pintupi-language name for Kintore, Northern Territory).",
+//     "England in the early 7th century was ruled almost entirely by the Anglo-Saxon peoples who had come to Britain from northwestern Europe, starting in the early 5th century.",
+//     "He married Eormenhild of Kent; no date is recorded for the marriage and there is no record of any children in the earliest sources, though Coenred, who was king of Mercia from 704 to 709, is recorded in John of Worcester's 12th century chronicle as Wulfhere's son.",
+//     "Parliament, opposed to the growth of absolutism that was occurring in other European countries, as well as to the loss of legal supremacy for the Church of England, saw their opposition as a way to preserve what they regarded as traditional English liberties.",
+//     "The initiative of starting the battle was with the Castilian side.",
+//     "106 and 107 stand on the site of Tackley's Inn; built around 1295, it was the first piece of property that Adam de Brome acquired when he began to found the college in 1324.",
+//     "After 1085, the annals are in various contemporary hands."
+// ];
+// var randomText = function() {
+//     var t = dummy_texts.shift();
+//     dummy_texts.push(t);
+//     return t;
+// };
 
 
 materials = ["aluminium", "argon", "concrete", "emerald", "noise", "orange", "purple", "sky", "steel", "teal", "wine", "yolk"];
-
+materialNums = ['000', '001', '002', '003', '004', '005', '006', '007', '008', '009', '010', '011', '012', '013', '014'];
 variant_cats = ["sofas", "sectionals", "sofa-beds"];
 
 recipe = {
@@ -89,14 +89,16 @@ getSKU = function(data, variant) {
     sku = [sku_tree[data.cat], sub].join('-');
     // pnm = indexes[sku]  ?  (++indexes[sku]) : (indexes[sku] = 1);
     // full = sku + pad( pnm , 3);
-    pnm = adler32.sum(new Buffer(data.name + (variant ? ' ' + variant : '')));
-    full = sku + '-' + pnm.toString(32);
+    //pnm = adler32.sum(new Buffer(data.name + (variant ? ' ' + variant : '')));
+    // var midx = materials.indexOf(variant);
+    full = sku + '-' + variant;
     return full.toUpperCase();
 };
 
 getPaths = function(cat, base) {
     var category_paths, hasSub, sub, _i, _len, _ref;
-    if (base === null) {
+
+    if (!base) {
         base = process.argv[process.argv.length - 1];
     }
     hasSub = cat_tree[cat].length > 0;
@@ -120,6 +122,7 @@ getPaths = function(cat, base) {
     }
     return category_paths.reduce(function(paths, path) {
         var names;
+
         names = fs.readdirSync(path.path);
         names = names.filter(function(f) {
             return !/^\./.test(f);
@@ -173,7 +176,7 @@ readTree = function() {
             product.price = Math.floor(Math.random() * 300 + 5) + '.00';
         }
         if (product.hasVariants) {
-            product.variants = materials;
+            product.variants = materialNums;
         }
         return product;
     });
@@ -188,7 +191,7 @@ getCatVar = function(cat, sub) {
 
 createTerm = function(term, parent) {
     var slugname, varname;
-    if (parent === null) {
+    if (!parent) {
         parent = null;
     }
     slugname = parent ? parent + "-" + term : "" + term;
@@ -222,7 +225,7 @@ enableVariations = function(post_varname) {
             value: JSON.stringify({
                 edb_material: {
                     name: "edb_material",
-                    value: materials.join('|'),
+                    value: materialNums.join('|'),
                     is_visible: 1,
                     is_variation: 1,
                     taxonomy: 1
@@ -428,12 +431,12 @@ importMedia = function(data) {
         };
     });
     if (data.hasVariants) {
-        var mat_names = [].concat(materials);
+        var mat_names = [].concat(materialNums);
         mats.map(function(path) {
             var sub_varname = genMediaVar(data.varname);
             var mat_name = mat_names.shift();
 
-            recipe.media["import"][sub_varname + '_image'] = {
+            recipe.media["import"][sub_varname] = {
                 args: {
                     file: path
                 },
@@ -449,7 +452,7 @@ importMedia = function(data) {
             // });
             recipe["eval"].push({
                 args: {
-                    "php": "set_post_thumbnail( " + sub_varname + ",  " + sub_varname + "_image );"
+                    "php": "set_post_thumbnail( " + data.varname + "_" + mat_name + ',' + sub_varname + ");"
                 }
             });
         });
@@ -497,13 +500,12 @@ createPost = function(data) {
             post_title: data.name,
             post_type: 'product',
             post_status: 'publish',
-            post_excerpt: null,
             post_name: data.slug
         }
     };
     if (data.hasVariants) {
         enableVariations(data.varname);
-        bindTerms(data.varname, materials);
+        bindTerms(data.varname, materialNums);
         return data.variants.forEach(function(variant) {
             enableVisibility(data.varname + "_" + variant);
             setMaterial(data.varname + "_" + variant, variant);
