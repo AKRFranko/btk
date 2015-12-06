@@ -447,11 +447,11 @@ importMedia = function(data) {
             //         "php": "update_post_meta( " + data.varname + ", '_product_variation_image_" + mat_name + "', '" + sub_varname + "' );"
             //     }
             // });
-            // recipe["eval"].push({
-            //     args: {
-            //         "php": "set_post_thumbnail( " + sub_varname + ",  " + sub_varname + "_image );"
-            //     }
-            // });
+            recipe["eval"].push({
+                args: {
+                    "php": "set_post_thumbnail( " + sub_varname + ",  " + sub_varname + "_image );"
+                }
+            });
         });
     }
     recipe['eval'].push({
