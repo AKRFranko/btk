@@ -119,8 +119,9 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 
 					foreach ( $terms as $term ) {
 						if ( ! in_array( $term->slug, $options ) ) { continue; }
-
+            
 						$variation = 0;
+						
 						foreach ($available_variations as $color) {
 							if ( $color['attributes']['attribute_' . $name] == $term->slug ) {
 								$variation = $color['variation_id'];

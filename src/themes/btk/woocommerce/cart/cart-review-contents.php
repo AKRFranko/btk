@@ -75,6 +75,10 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 		    <?php _e('qty', 'btk'); ?>: <?php echo $cart_item['quantity']; ?>
 		    </span>
 			</div>
+			<div class="cart-item-buttons">
+        <a class="cart-item-remove" href="#">remove</a>
+        <a class="cart-item-edit" href="<?php echo esc_url(home_url('/')); ?>cart?guest=<?php echo $_GET['guest'] ?>">edit</a>
+      </div>
 			</div>
 			
 		

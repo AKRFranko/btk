@@ -23,6 +23,7 @@ add_action('init', 'btk_session_start', 1);
 add_action('wp_logout', 'btk_session_end');
 add_action('wp_login', 'btk_session_end');
 
+
 function btk_time_elapsed($ptime) {
     $etime = $ptime - time();
 
@@ -300,8 +301,7 @@ add_filter('show_admin_bar', '__return_false');
  * Redirect if not logged in on checkout page
  */
 function woo_redirect() {
-  
-	if (!is_user_logged_in() && is_checkout() && !$_REQUEST['guest']) {
+  if (!is_user_logged_in() && is_checkout() && !$_REQUEST['guest']) {
 	  $_SESSION['redirect_to'] = 'checkout';
 		wp_redirect(home_url() . '/my-account');
 		exit;
@@ -484,6 +484,7 @@ function btk_save_extra_register_fields( $customer_id ) {
 	}
 }
 add_action( 'woocommerce_created_customer', 'btk_save_extra_register_fields' );
+
 
 
 

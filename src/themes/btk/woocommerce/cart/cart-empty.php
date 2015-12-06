@@ -22,7 +22,7 @@ wc_print_notices();
 <div class="cart-collaterals">
 	<span>
 		<span class="valign"><?php _e( 'Return To Shop', 'btk' ) ?></span>
-		<a class="valign icon-arrow-lite-left-white" href="<?php echo apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ); ?>"></a>
+		<a class="valign icon-arrow-lite-left-white" href="<?php echo apply_filters( 'woocommerce_return_to_shop_redirect', home_url('/')); ?>"></a>
 	</span>
 </div>
 

@@ -33,7 +33,7 @@ sku_tree = {
     "3-seater": "3ST",
     "left-facing": "LFT",
     "right-facing": "RGT"
-}
+};
 
 
 var dummy_texts = [
@@ -50,7 +50,9 @@ var randomText = function() {
     var t = dummy_texts.shift();
     dummy_texts.push(t);
     return t;
-}
+};
+
+
 materials = ["aluminium", "argon", "concrete", "emerald", "noise", "orange", "purple", "sky", "steel", "teal", "wine", "yolk"];
 
 variant_cats = ["sofas", "sectionals", "sofa-beds"];
@@ -78,23 +80,23 @@ pad = function(n, width, z) {
     z = z || '0';
     n = n + '';
     return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
-}
+};
 
-indexes = {}
+indexes = {};
 
 getSKU = function(data, variant) {
     sub = data.sub ? sku_tree[data.sub] : 'ZZZ';
-    sku = [sku_tree[data.cat], sub].join('-')
-        // pnm = indexes[sku]  ?  (++indexes[sku]) : (indexes[sku] = 1);
-        // full = sku + pad( pnm , 3);
-    pnm = adler32.sum(new Buffer(data.name + (variant ? ' ' + variant : '')))
+    sku = [sku_tree[data.cat], sub].join('-');
+    // pnm = indexes[sku]  ?  (++indexes[sku]) : (indexes[sku] = 1);
+    // full = sku + pad( pnm , 3);
+    pnm = adler32.sum(new Buffer(data.name + (variant ? ' ' + variant : '')));
     full = sku + '-' + pnm.toString(32);
     return full.toUpperCase();
-}
+};
 
 getPaths = function(cat, base) {
     var category_paths, hasSub, sub, _i, _len, _ref;
-    if (base == null) {
+    if (base === null) {
         base = process.argv[process.argv.length - 1];
     }
     hasSub = cat_tree[cat].length > 0;
@@ -120,7 +122,7 @@ getPaths = function(cat, base) {
         var names;
         names = fs.readdirSync(path.path);
         names = names.filter(function(f) {
-            return !/^\./.test(f)
+            return !/^\./.test(f);
         });
         return paths.concat(names.map(function(name) {
             return {
@@ -136,7 +138,7 @@ genMediaVar = function(post_varname) {
     var index = genMediaVar.index ? genMediaVar.index : 0;
     genMediaVar.index = index + 1;
     return post_varname + "_media_" + index;
-}
+};
 
 readTree = function() {
     var product_paths, products;
@@ -155,12 +157,12 @@ readTree = function() {
         try {
             fs.realpathSync(descpath);
         } catch (E) {
-            descpath = null
+            descpath = null;
         }
         try {
             fs.realpathSync(pricepath);
         } catch (E) {
-            pricepath = null
+            pricepath = null;
         }
         if (descpath) {
             product.description = descpath;
@@ -186,7 +188,7 @@ getCatVar = function(cat, sub) {
 
 createTerm = function(term, parent) {
     var slugname, varname;
-    if (parent == null) {
+    if (parent === null) {
         parent = null;
     }
     slugname = parent ? parent + "-" + term : "" + term;
@@ -209,7 +211,7 @@ createTerm = function(term, parent) {
             "php": "update_woocommerce_term_meta( " + varname + ", 'order', '" + cat_idx + "' );"
         }
     });
-    return recipe.term.create[varname] = term;
+    return (recipe.term.create[varname] = term);
 };
 
 enableVariations = function(post_varname) {
@@ -247,8 +249,8 @@ enableFeaturedImage = function(post_varname, imageid) {
             key: "_product_image_gallery",
             value: "" + imageid
         }
-    })
-}
+    });
+};
 
 
 enableVisibility = function(post_varname) {
@@ -328,7 +330,7 @@ setProductData = function(post_varname, key, value) {
             key: key,
             value: value
         }
-    })
+    });
 };
 
 setSKU = function(post_varname, data, variant) {
@@ -353,12 +355,12 @@ bindTerms = function(post_varname, variants) {
 };
 var readFolderImages = function(folder) {
     var files = fs.readdirSync(folder).filter(function(f) {
-        return /(jpg|png|gif|jpeg)/.test(f)
-    })
+        return /(jpg|png|gif|jpeg)/.test(f);
+    });
     return files.map(function(f) {
-        return folder + "/" + f
-    })
-}
+        return folder + "/" + f;
+    });
+};
 
 importMedia = function(data) {
     var all, angles, featured, scenes, tech, mats, image_varnames, mat_varnames;
@@ -383,7 +385,7 @@ importMedia = function(data) {
     // tech = [data.path + "/images/tech/01.jpg", data.path + "/images/tech/02.jpg"];
     try {
         var features = readFolderImages(data.path + "/images/listing");
-        featured = names.shift()
+        featured = names.shift();
     } catch (E) {
         featured = angles.shift();
     }
@@ -431,7 +433,7 @@ importMedia = function(data) {
             var sub_varname = genMediaVar(data.varname);
             var mat_name = mat_names.shift();
 
-            recipe.media["import"][sub_varname] = {
+            recipe.media["import"][sub_varname + '_image'] = {
                 args: {
                     file: path
                 },
@@ -440,11 +442,16 @@ importMedia = function(data) {
                     featured_image: true
                 }
             };
-            recipe["eval"].push({
-                args: {
-                    "php": "update_post_meta( " + data.varname + ", '_product_variation_image_" + mat_name + "', '" + sub_varname + "' );"
-                }
-            });
+            // recipe["eval"].push({
+            //     args: {
+            //         "php": "update_post_meta( " + data.varname + ", '_product_variation_image_" + mat_name + "', '" + sub_varname + "' );"
+            //     }
+            // });
+            // recipe["eval"].push({
+            //     args: {
+            //         "php": "set_post_thumbnail( " + sub_varname + ",  " + sub_varname + "_image );"
+            //     }
+            // });
         });
     }
     recipe['eval'].push({

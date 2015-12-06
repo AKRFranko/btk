@@ -40,11 +40,17 @@
                      }
                  });
                  $('#same-address-checkbox').on('click', function() {
+                     if ($('#no-shipping-checkbox').is(':checked')) {
+                         $('#no-shipping-checkbox').prop('checked', false);
+                     }
                      billingFields.each(function() {
                          $(this).trigger('change');
                      })
                  })
                  $('#no-shipping-checkbox').on('click', function() {
+                     if ($('#same-address-checkbox').is(':checked')) {
+                         $('#same-address-checkbox').prop('checked', false);
+                     }
                      shippingFields.each(function() {
                          $(this).val('').trigger('change').attr('disabled', true);
                      })

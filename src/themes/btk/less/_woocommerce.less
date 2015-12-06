@@ -705,7 +705,49 @@ form{
 		}		 
 		 
 	}
-	
+
+.cart-item-buttons {
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: right;
+    height:100%;
+}
+.cart-item-buttons a{
+  display:block;
+  font-family:@altfontfamily;
+  font-weight:300;
+  font-size:15px;
+  position:absolute;
+}
+
+.cart-item-buttons .cart-item-remove{
+  position: absolute;
+    top: 0;
+    right: 0;
+    white-space: nowrap;
+  
+}
+.cart-item-buttons .cart-item-remove:after{
+  display:inline-block;
+  content:'×';
+  font-size:20px;
+  margin-left:.5em;
+  vertical-align: text-top;
+}
+
+.cart-item-buttons .cart-item-edit{
+  
+  right:0;
+  font-family:@fontfamily;
+
+  font-size:15px;
+  
+      position: absolute;
+    top: 100%;
+    margin-top: -1.5em;
+}
+
 
 
 h3{

@@ -37,7 +37,6 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 			<div class="product-thumbnail">
 				<?php
 					$thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
-
 					if ( ! $_product->is_visible() )
 						echo $thumbnail;
 					else

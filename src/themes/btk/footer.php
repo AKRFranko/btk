@@ -111,6 +111,10 @@
 </div>
 </div>
 <!-- <script src="http://badb0x.akr.club:35729/livereload.js"></script> -->
+<!--
 
+<?php //print_r( get_included_files() ) ?>
+
+-->
 </body>
 </html>

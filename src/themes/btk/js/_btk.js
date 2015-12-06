@@ -381,11 +381,17 @@
                      }
                  });
                  $('#same-address-checkbox').on('click', function() {
+                     if ($('#no-shipping-checkbox').is(':checked')) {
+                         $('#no-shipping-checkbox').prop('checked', false);
+                     }
                      billingFields.each(function() {
                          $(this).trigger('change');
                      })
                  })
                  $('#no-shipping-checkbox').on('click', function() {
+                     if ($('#same-address-checkbox').is(':checked')) {
+                         $('#same-address-checkbox').prop('checked', false);
+                     }
                      shippingFields.each(function() {
                          $(this).val('').trigger('change').attr('disabled', true);
                      })
@@ -497,38 +503,38 @@
         }
     });
     $('.tabbar').on('tab-changed', function(event, from, to) {
-        //console.log('tab changed from', from, 'to', to)
-        $('.summary-box.not-shown').removeClass('not-shown');
-        $('.summary-box').removeClass('closed');
-        if (to == 'review-pane') {
-            // var total = $('.order-total .amount').text();
-            // $('.big-cart-total').text(total);
-            $('.summary-box:last-of-type').siblings().addClass('closed');
-        } else if (to == 'delivery-pane') {
-            $('.summary-box:gt(' + 1 + ')').addClass('not-shown');
-            $('.summary-box:lt(' + 1 + ')').addClass('closed');
-        } else if (to == 'payment-pane') {
-            $('.summary-box:gt(' + 2 + ')').addClass('not-shown');
-            $('.summary-box:lt(' + 2 + ')').addClass('closed');
-        } else {
-            $('.summary-box:first').siblings().addClass('not-shown');
+            //console.log('tab changed from', from, 'to', to)
+            $('.summary-box.not-shown').removeClass('not-shown');
+            $('.summary-box').removeClass('closed');
+            if (to == 'review-pane') {
+                // var total = $('.order-total .amount').text();
+                // $('.big-cart-total').text(total);
+                $('.summary-box:last-of-type').siblings().addClass('closed');
+            } else if (to == 'delivery-pane') {
+                $('.summary-box:gt(' + 1 + ')').addClass('not-shown');
+                $('.summary-box:lt(' + 1 + ')').addClass('closed');
+            } else if (to == 'payment-pane') {
+                $('.summary-box:gt(' + 2 + ')').addClass('not-shown');
+                $('.summary-box:lt(' + 2 + ')').addClass('closed');
+            } else {
+                $('.summary-box:first').siblings().addClass('not-shown');
 
-        }
-        $('html,body').animate({
-            scrollTop: 0
-        }, 333);
+            }
+            $('html,body').animate({
+                scrollTop: 0
+            }, 333);
 
-    })
-    $('#ship-to-different-address-checkbox').on('change', function() {
-        if ($(this).is(':checked')) {
-            $('.shipping-address-summary').show()
-            $('.billing-address-summary').hide()
-        } else {
-            $('.shipping-address-summary').hide()
-            $('.billing-address-summary').show()
-        }
+        })
+        // $('#ship-to-different-address-checkbox').on('change', function() {
+        //     if ($(this).is(':checked')) {
+        //         $('.shipping-address-summary').show()
+        //         $('.billing-address-summary').hide()
+        //     } else {
+        //         $('.shipping-address-summary').hide()
+        //         $('.billing-address-summary').show()
+        //     }
 
-    }).trigger('change')
+    // }).trigger('change')
 
     // $('#same-address-checkbox').on('click', function(e) {
     //     if ($(this).is(':checked')) $(this).removeAttr('checked');

@@ -83,7 +83,13 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 				<label><input type="radio" name="item_shipping_method[<?php echo $cart_item['variation_id']; ?>]"><?php _e('Self pick up. No delivery', 'btk'); ?></label>
 			</div>
 			
-
+      <div class="cart-item-buttons">
+      	<?php
+					echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="cart-item-remove" title="remove">%s</a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ), __( 'remove', 'btk' ) ), $cart_item_key );
+				?>
+        
+        <a class="cart-item-edit" href="<?php echo esc_url(home_url('/')); ?>cart?guest=<?php echo $_GET['guest'] ?>">edit</a>
+      </div>
 			
 
 			<?php

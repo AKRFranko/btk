@@ -138,9 +138,7 @@ $attachment_ids = $product->get_gallery_attachment_ids();
 		<ul>
 		<?php
 			$count = 0;
-			
-
-			foreach ( $attributes['edb_material'] as $color ){
+foreach ( $attributes['edb_material'] as $color ){
 				foreach( $available_variations as $variation){
           if($variation['attributes']['attribute_edb_material'] === $color){
             $variation_id = $variation['variation_id'];
@@ -148,7 +146,10 @@ $attachment_ids = $product->get_gallery_attachment_ids();
         };
 				$current = $_REQUEST[ 'attribute_edb_material' ] === $color ? 'current' : '';
 				$galleryImageID = get_post_meta( get_the_ID(), "_product_variation_image_$color", true );
-				$galleryImageSRC = wp_get_attachment_image_src($galleryImageID, 'large')[0];
+				$galleryImageSRC = wp_get_attachment_image_src(get_post_thumbnail_id($variation_id), 'large')[0];
+				if(empty($galleryImageSRC)){
+				  $galleryImageSRC = wp_get_attachment_image_src($galleryImageID, 'large')[0];
+				}
 				$stock_qty = get_post_meta($variation_id,'_stock',true);
 				$stock_delay = get_post_meta($variation_id,'_stock_backorder_delay',true);
 				$stock_avail = $stock_qty > 0 ? '1 week' : btk_time_elapsed( strtotime($stock_delay));
