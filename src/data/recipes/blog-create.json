@@ -1159,6 +1159,30 @@
                     "post_id": "$lookbook_1",
                     "featured_image": true
                 }
+            }, {
+                "args": {
+                    "file": "./src/data/media/page-images/aboutfaq.jpg"
+                },
+                "opts": {
+                    "post_id": "$about_page",
+                    "featured_image": true
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/page-images/ordersamples.jpg"
+                },
+                "opts": {
+                    "post_id": "$samples_page",
+                    "featured_image": true
+                }
+            }, {
+                "args": {
+                    "file": "./src/data/media/page-images/contactus.jpg"
+                },
+                "opts": {
+                    "post_id": "$contact_page",
+                    "featured_image": true
+                }
             }
         ]
     },

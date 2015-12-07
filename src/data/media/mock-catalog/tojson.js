@@ -435,26 +435,28 @@ importMedia = function(data) {
         mats.map(function(path) {
             var sub_varname = genMediaVar(data.varname);
             var mat_name = mat_names.shift();
+            if (mat_name) {
+                recipe.media["import"][sub_varname] = {
+                    args: {
+                        file: path
+                    },
+                    opts: {
+                        post_id: sub_varname,
+                        featured_image: true
+                    }
+                };
+                // recipe["eval"].push({
+                //     args: {
+                //         "php": "update_post_meta( " + data.varname + ", '_product_variation_image_" + mat_name + "', '" + sub_varname + "' );"
+                //     }
+                // });
+                recipe["eval"].push({
+                    args: {
+                        "php": "set_post_thumbnail( " + data.varname + "_" + mat_name + ',' + sub_varname + ");"
+                    }
+                });
+            }
 
-            recipe.media["import"][sub_varname] = {
-                args: {
-                    file: path
-                },
-                opts: {
-                    post_id: sub_varname,
-                    featured_image: true
-                }
-            };
-            // recipe["eval"].push({
-            //     args: {
-            //         "php": "update_post_meta( " + data.varname + ", '_product_variation_image_" + mat_name + "', '" + sub_varname + "' );"
-            //     }
-            // });
-            recipe["eval"].push({
-                args: {
-                    "php": "set_post_thumbnail( " + data.varname + "_" + mat_name + ',' + sub_varname + ");"
-                }
-            });
         });
     }
     recipe['eval'].push({

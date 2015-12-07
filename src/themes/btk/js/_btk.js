@@ -661,6 +661,7 @@
 })(jQuery);(function($) {
     var materials = {
         '001': {
+            name: 'color1',
             image: '/wp-content/themes/btk/img/textures/aluminium.jpg',
             fabric: 'fabric',
             composition: [
@@ -671,6 +672,7 @@
             ]
         },
         '002': {
+            name: 'color2',
             image: '/wp-content/themes/btk/img/textures/argon.jpg',
             fabric: 'fabric',
             composition: [
@@ -682,6 +684,7 @@
 
         },
         '003': {
+            name: 'color3',
             image: '/wp-content/themes/btk/img/textures/concrete.jpg',
             fabric: 'fabric',
             composition: [
@@ -692,6 +695,7 @@
             ]
         },
         '004': {
+            name: 'color4',
             image: '/wp-content/themes/btk/img/textures/emerald.jpg',
             fabric: 'fabric',
             composition: [
@@ -702,6 +706,7 @@
             ]
         },
         '005': {
+            name: 'color5',
             image: '/wp-content/themes/btk/img/textures/noise.jpg',
             fabric: 'fabric',
             composition: [
@@ -712,6 +717,7 @@
             ]
         },
         '006': {
+            name: 'color6',
             image: '/wp-content/themes/btk/img/textures/orange.jpg',
             fabric: 'fabric',
             composition: [
@@ -722,6 +728,7 @@
             ]
         },
         '007': {
+            name: 'color7',
             image: '/wp-content/themes/btk/img/textures/purple.jpg',
             fabric: 'fabric',
             composition: [
@@ -732,6 +739,7 @@
             ]
         },
         '008': {
+            name: 'color8',
             image: '/wp-content/themes/btk/img/textures/sky.jpg',
             fabric: 'fabric',
             composition: [
@@ -742,6 +750,7 @@
             ]
         },
         '009': {
+            name: 'color9',
             image: '/wp-content/themes/btk/img/textures/steel.jpg',
             fabric: 'fabric',
             composition: [
@@ -752,6 +761,7 @@
             ]
         },
         '010': {
+            name: 'color10',
             image: '/wp-content/themes/btk/img/textures/teal.jpg',
             fabric: 'fabric',
             composition: [
@@ -762,6 +772,7 @@
             ]
         },
         '011': {
+            name: 'color11',
             image: '/wp-content/themes/btk/img/textures/wine.jpg',
             fabric: 'fabric',
             composition: [
@@ -772,6 +783,7 @@
             ]
         },
         '012': {
+            name: 'color12',
             image: '/wp-content/themes/btk/img/textures/yolk.jpg',
             fabric: 'fabric',
             composition: [
@@ -794,7 +806,7 @@
         $image.css('background-image', 'url("' + materials[name].image + '")');
         // var $img = $('<img>').attr('src', materials[name].image).appendTo($image);
         var $content = $('<div>').addClass('materials-content');
-        var html = '<h1>' + [materials[name].fabric, name, index].join(' ') + '</h1>';
+        var html = '<h1>' + [materials[name].fabric, materials[name].name, index].join(' ') + '</h1>';
         html += '<h3>Compositon</h3><ul>';
         materials[name].composition.forEach(function(line) {
             html += '<li>' + line + '</li>';
@@ -843,6 +855,8 @@
     });
 
     $(document.body).append($overlay);
+
+    window.btk.materials = materials;
 
 })(jQuery);;/**
  * navigation.js
