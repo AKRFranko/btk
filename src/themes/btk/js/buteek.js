@@ -341,8 +341,10 @@
             $('.known-zone').text('zone 1');
         } else if (/^m/.test(val)) {
             $('.known-zone').text('zone 2');
-        } else {
+        } else if (val) {
             $('.known-zone').text('zone 3');
+        } else {
+            $('.known-zone').text('');
         }
 
     });
