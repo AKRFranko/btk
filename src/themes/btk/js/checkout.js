@@ -130,11 +130,28 @@ jQuery(function() {
         //     });
         //     console.log(data)
         // }
-
+    $('input[name=coupon_code]').on('change', function() {
+        var val = $(this).val();
+        var data = {
+            action: 'woocommerce_apply_coupon',
+            security: wc_checkout_params.apply_coupon_nonce,
+            coupon_code: val
+        }
+        jQuery.ajax({
+            type: 'POST',
+            url: wc_checkout_params.ajax_url,
+            data: data,
+            success: function(e) {
+                window.btk.updateOrder(function() {
+                    console.log(arguments)
+                });
+            }
+        })
+    })
     $(function() {
         $('.woocommerce-invalid').removeClass('woocommerce-invalid');
         $('.woocommerce-validated').removeClass('woocommerce-validated');
-        $('#shipping_country,#billing_country').val('CA').attr('disabled', true);
+        $('#shipping_country,#billing_country').val('CA').attr('readonly', true);
         var stickies = document.querySelectorAll('.tabbar, .summary-bar');
         for (var i = stickies.length - 1; i >= 0; i--) {
             Stickyfill.add(stickies[i]);

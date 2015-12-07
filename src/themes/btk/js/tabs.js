@@ -66,9 +66,65 @@
         activateTab(this)
     });
 
+    window.btk.updateOrder = function(callback) {
+        var data = {
+            action: 'woocommerce_update_order_review',
+            security: wc_checkout_params.update_order_review_nonce,
+            post_data: $('form.checkout').serialize()
+        }
+        jQuery.ajax({
+            type: 'POST',
+            url: wc_checkout_params.ajax_url,
+            data: data,
+            success: function(e) {
+                if (e.fragments) {
+                    Object.keys(e.fragments).forEach(function(sel) {
+                        $(sel).replaceWith(e.fragments[sel]);
+                        console.log($(sel))
+                    });
+                }
+                callback(null, e);
+                console.log('success');
+            },
+            error: function(e) {
+                callback(e);
+                console.log('error', e);
+            }
+        })
+
+    }
+    var tabbing = false;
     $('.tabnext').on('click', function(event) {
         event.preventDefault();
-        $('.tab.active').next().click();
+        if (tabbing) return;
+        tabbing = true;
+        window.btk.updateOrder(function(error, data) {
+            if (!error) {
+                $('.tab.active').next().click();
+            }
+            tabbing = false;
+        });
+        // var data = {
+        //     action: 'woocommerce_update_order_review',
+        //     security: wc_checkout_params.update_order_review_nonce,
+        //     post_data: $('form.checkout').serialize()
+        // }
+        // jQuery.ajax({
+        //     type: 'POST',
+        //     url: wc_checkout_params.ajax_url,
+        //     data: data,
+        //     success: function() {
+        //         console.log('success')
+        //         $('.tab.active').next().click();
+        //     },
+        //     complete: function() {
+        //         tabbing = false;
+        //     },
+        //     error: function() {
+        //         console.log('error', arguments);
+        //     }
+        // })
+
     });
 
     $('.tabto').on('click', function(event) {

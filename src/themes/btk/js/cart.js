@@ -1,5 +1,14 @@
  jQuery(function() {
 
+     var requestAnimFrame = (function() {
+         return window.requestAnimationFrame ||
+             window.webkitRequestAnimationFrame ||
+             window.mozRequestAnimationFrame ||
+             function(callback) {
+                 window.setTimeout(callback, 1000 / 60);
+             };
+     })();
+
      var getShippingCost = function(total) {
          return total > 499 ? 0 : 75;
      };
@@ -30,12 +39,14 @@
                          $bf.on('focusout change', function() {
                              if ($('#same-address-checkbox').is(':checked')) {
 
-                                 $sf.attr('disabled', true);
                                  $sf.val($bf.val()).trigger('change');
+                                 $sf.attr('readonly', true);
                              } else {
-                                 $sf.attr('disabled', false);
+
+                                 $sf.attr('readonly', false);
                                  $sf.val('').trigger('change');
                              }
+
                          });
                      }
                  });
@@ -51,9 +62,18 @@
                      if ($('#same-address-checkbox').is(':checked')) {
                          $('#same-address-checkbox').prop('checked', false);
                      }
-                     shippingFields.each(function() {
-                         $(this).val('').trigger('change').attr('disabled', true);
-                     })
+                     if ($(this).is(':checked')) {
+                         shippingFields.each(function() {
+                             $(this).val('').attr('readonly', true).trigger('change');
+
+                         });
+                     } else {
+                         shippingFields.each(function() {
+                             $(this).val('').attr('readonly', false).trigger('change');
+
+                         });
+                     }
+
                  });
              }
          })
@@ -108,14 +128,14 @@
                  store.set('cart_estimated_shipping_cost', getShippingCost(subtotal));
              }
 
-             timeout = setTimeout(calcTotals, 200);
+             timeout = requestAnimFrame(calcTotals);
          }
 
          // $items.each(function() {
          //     console.log($(this).data('json'))
          //     $(this).data('cost', 1 * $(this).find('.product-price').text().trim().replace('$', ''));
          // });
-         timeout = setTimeout(calcTotals, 200);
+         timeout = requestAnimFrame(calcTotals);
 
 
      }

@@ -232,28 +232,19 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
               <br />
               <br />
               <h3><?php _e('Have a promo code?', 'btk'); ?></h3>
+              	
               <div class="col-2 coupon-form">
       			    <input type="text" name="coupon_code" class="input-text lower" placeholder="<?php _e( 'Promo Code', 'btk' ); ?>" id="coupon_code" value="" />
-      			    <!--<input type="submit" class="button lower right" name="apply_coupon" value="<?php _e( 'Apply', 'btk' ); ?>" />-->
+      			   <!-- <input type="hidden" name="apply_coupon" value="apply"/>-->
+      			    <?php do_action( 'woocommerce_cart_coupon' ); ?>
       		    </div>
     		    </div>
     		    <div class="half" style="padding-left:1em">
     		      <h3><?php _e('Order Summary', 'btk'); ?></h3>
-    		      
-    		      <table>
-    		        <tr>
-    		          <td>Subtotal</td><td><?php wc_cart_totals_subtotal_html(); ?></td>
-    		        </tr>
-    		        <tr>
-    		          <td>Shipping & Handling</td><td><?php wc_cart_totals_fee_html('shipping'); ?></td>
-    		        </tr>
-    		        <tr>
-    		          <td>Taxes</td><td><?php wc_cart_totals_taxes_total_html(); ?></td>
-    		        </tr>
-    		        <tr>
-    		          <td>Total</td><td><?php wc_cart_totals_order_total_html(); ?></td>
-    		        </tr>
-    		      </table>
+    		      <?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
+            	<?php do_action( 'woocommerce_checkout_order_review' ); ?>
+            	<?php do_action( 'woocommerce_checkout_after_order_review' ); ?>
+    		    
     		      
     		      
     		      		  <?php do_action( 'woocommerce_before_cart_table' ); ?>
@@ -298,6 +289,10 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
             <div class="half">
             
             <h3>Total</h3>
+            <?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
+            	<?php do_action( 'woocommerce_checkout_order_review' ); ?>
+            	<?php do_action( 'woocommerce_checkout_after_order_review' ); ?>
+            <?php if(false): ?>
             <table>
                 <tr>
     		          <th>Order Total</th><th><?php wc_cart_totals_order_total_html(); ?></th>
@@ -305,9 +300,16 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
     		        <tr>
     		          <td>Subtotal</td><td><?php wc_cart_totals_subtotal_html(); ?></td>
     		        </tr>
-    		        <tr>
+    		        
+    		        <?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
+			<tr class="cart-discount coupon-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
+				<td><?php wc_cart_totals_coupon_label( $coupon ); ?></td>
+				<td><?php wc_cart_totals_coupon_html( $coupon ); ?></td>
+			</tr>
+		<?php endforeach; ?>
+    		        <!--<tr>
     		          <td>Promo Code</td><td>-$0</td>
-    		        </tr>
+    		        </tr>-->
     		        <tr>
     		          <td>Shipping & Handling</td><td><?php wc_cart_totals_fee_html('shipping'); ?></td>
     		        </tr>
@@ -316,6 +318,7 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
     		        </tr>
     		        
     		      </table>
+    		      <?php endif; ?>
     		      
     		      	<div class="cart-contents lower">
 	<h3><?php _e('Cart'); ?></h3>
@@ -340,7 +343,7 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
     		      
     		      	<?php if ( is_user_logged_in() ) : ?>
     		      	<div class="review-block">
-    		      	  <div class="label">Signed In:</div>
+    		      	  <h3 class="label">Signed In:</h3>
       		      	<div class="value"><?php echo $current_user->user_nicename; ?></div>
       		      	<div class="action"><a href="<?php echo wp_logout_url( home_url('/') ); ?>"><?php _e('sign out', 'btk'); ?></a></div>
       		      </div>
@@ -349,10 +352,12 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
                 <div class="review-block">
     		      	  <h3 class="label">Delivered To:</h3>
       		      	<div class="value">
-      		      	  Shipping user name<br>
-      		      	  Shipping user street<br>
-      		      	  City, Province<br>
-      		      	  postal code, country<br>
+      		      	  
+      		      	  <?php echo WC()->customer->shipping_address_1; ?><br>
+      		      	  <?php echo WC()->customer->shipping_address_2; ?><br>
+      		      	  <?php echo WC()->customer->shipping_city; ?>,<?php echo WC()->customer->shipping_state; ?><br>
+      		      	  <?php echo WC()->customer->shipping_postcode; ?>,<?php echo WC()->customer->shipping_country; ?><br>
+      		      	  
       		      	</div>
       		      	
       		      	<div class="action"><a class="tabto" data-pane="shipping-pane" href="#"><?php _e('edit', 'btk'); ?></a></div>

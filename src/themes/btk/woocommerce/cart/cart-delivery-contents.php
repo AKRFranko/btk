@@ -16,6 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <?php
+$cart_item_count = WC()->cart->cart_contents_count;
 foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 	$_product     = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 	$product_id   = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
@@ -58,12 +59,13 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 				</span>
 				<br />
 				<span class="material">
-			    <?php echo $cart_item['variation']['attribute_edb_material']; ?>
+			    <?php echo btk_material_name($cart_item['variation']['attribute_edb_material']); ?>
 			 </span>
 			 <br />
 			
         <span class="availability">
             <?php
+              // var_dump($cart_item);
               $stock_qty = get_post_meta($cart_item['variation_id'],'_stock',true);
 				      $stock_delay = get_post_meta($cart_item['variation_id'],'_stock_backorder_delay',true);
 				      $stock_avail = $stock_qty > 0 ? '1 week' : btk_time_elapsed( strtotime($stock_delay));
@@ -77,8 +79,10 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 			</div>
 			
 			<div class="product-shipping-options">
+			  <?php if($cart_item_count > 1): ?>
 				<label><input checked type="radio" name="item_shipping_method[<?php echo $cart_item['variation_id']; ?>]"><?php _e('Ship item when complete order is ready', 'btk'); ?></label>
 				<label><input type="radio" name="item_shipping_method[<?php echo $cart_item['variation_id']; ?>]"><?php _e('Ship item as soon as it\'s ready', 'btk'); ?></label>
+				<?php endif; ?>
 				<label><input type="radio" name="item_shipping_method[<?php echo $cart_item['variation_id']; ?>]"><?php _e('Rush it for an extra $75.00. Item will leave the warehouse in 24 hours.', 'btk'); ?></label>
 				<label><input type="radio" name="item_shipping_method[<?php echo $cart_item['variation_id']; ?>]"><?php _e('Self pick up. No delivery', 'btk'); ?></label>
 			</div>

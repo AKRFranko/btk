@@ -316,6 +316,15 @@ function woo_redirect() {
 }
 add_action('template_redirect', 'woo_redirect');
 
+function add_featured_image_body_class( $classes ) {    
+global $post;
+    if ( isset ( $post->ID ) && get_the_post_thumbnail($post->ID)) {
+          $classes[] = 'has-featured-image';
+ }
+          return $classes;
+}
+add_filter( 'body_class', 'add_featured_image_body_class' );
+
 function btk_material_name( $number ){
   $names = array(
     '001' => 'color1',
@@ -346,8 +355,8 @@ function custom_override_checkout_fields($fields) {
 // 	$fields['shipping']['shipping_last_name']['placeholder'] = 'last name';
 // 	$fields['shipping']['shipping_email']['placeholder'] = 'email address';
   
- 	// $fields['billing']['billing_country']['disabled'] = true;
- 	// $fields['shipping']['shipping_country']['disableds'] = true;
+ 	// $fields['billing']['billing_country']['required'] = false;
+ 	// $fields['shipping']['shipping_country']['required'] = false;
  	//unset($fields['billing']['billing_address']);
 // 	unset($fields['billing']['billing_address_2']);
 // 	unset($fields['billing']['billing_email']);

@@ -1,6 +1,6 @@
 (function($) {
 
-    // ecb slider 10second auto home 
+
 
     window.btk = {
         handleFormSuccess: function(formName) {
@@ -335,6 +335,17 @@
 
     })
 
+    $(document).on('keyup', '.delivery-list input[name=postal_code]', function(event) {
+        var val = $('.delivery-list input[name=postal_code]').val();
+        if (/^h/.test(val)) {
+            $('.known-zone').text('zone 1');
+        } else if (/^m/.test(val)) {
+            $('.known-zone').text('zone 2');
+        } else {
+            $('.known-zone').text('zone 3');
+        }
+
+    });
     setTimeout(function() {
         $('.woocommerce-message').fadeOut();
     }, 5000)

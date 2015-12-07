@@ -1,7 +1,7 @@
 /* DO NOT EDIT, THIS FILE IS GENERATED */
 (function($) {
 
-    // ecb slider 10second auto home 
+
 
     window.btk = {
         handleFormSuccess: function(formName) {
@@ -336,10 +336,30 @@
 
     })
 
+    $(document).on('keyup', '.delivery-list input[name=postal_code]', function(event) {
+        var val = $('.delivery-list input[name=postal_code]').val();
+        if (/^h/.test(val)) {
+            $('.known-zone').text('zone 1');
+        } else if (/^m/.test(val)) {
+            $('.known-zone').text('zone 2');
+        } else {
+            $('.known-zone').text('zone 3');
+        }
+
+    });
     setTimeout(function() {
         $('.woocommerce-message').fadeOut();
     }, 5000)
 })(jQuery);; jQuery(function() {
+
+     var requestAnimFrame = (function() {
+         return window.requestAnimationFrame ||
+             window.webkitRequestAnimationFrame ||
+             window.mozRequestAnimationFrame ||
+             function(callback) {
+                 window.setTimeout(callback, 1000 / 60);
+             };
+     })();
 
      var getShippingCost = function(total) {
          return total > 499 ? 0 : 75;
@@ -371,12 +391,14 @@
                          $bf.on('focusout change', function() {
                              if ($('#same-address-checkbox').is(':checked')) {
 
-                                 $sf.attr('disabled', true);
                                  $sf.val($bf.val()).trigger('change');
+                                 $sf.attr('readonly', true);
                              } else {
-                                 $sf.attr('disabled', false);
+
+                                 $sf.attr('readonly', false);
                                  $sf.val('').trigger('change');
                              }
+
                          });
                      }
                  });
@@ -392,9 +414,18 @@
                      if ($('#same-address-checkbox').is(':checked')) {
                          $('#same-address-checkbox').prop('checked', false);
                      }
-                     shippingFields.each(function() {
-                         $(this).val('').trigger('change').attr('disabled', true);
-                     })
+                     if ($(this).is(':checked')) {
+                         shippingFields.each(function() {
+                             $(this).val('').attr('readonly', true).trigger('change');
+
+                         });
+                     } else {
+                         shippingFields.each(function() {
+                             $(this).val('').attr('readonly', false).trigger('change');
+
+                         });
+                     }
+
                  });
              }
          })
@@ -449,14 +480,14 @@
                  store.set('cart_estimated_shipping_cost', getShippingCost(subtotal));
              }
 
-             timeout = setTimeout(calcTotals, 200);
+             timeout = requestAnimFrame(calcTotals);
          }
 
          // $items.each(function() {
          //     console.log($(this).data('json'))
          //     $(this).data('cost', 1 * $(this).find('.product-price').text().trim().replace('$', ''));
          // });
-         timeout = setTimeout(calcTotals, 200);
+         timeout = requestAnimFrame(calcTotals);
 
 
      }
@@ -593,11 +624,28 @@
         //     });
         //     console.log(data)
         // }
-
+    $('input[name=coupon_code]').on('change', function() {
+        var val = $(this).val();
+        var data = {
+            action: 'woocommerce_apply_coupon',
+            security: wc_checkout_params.apply_coupon_nonce,
+            coupon_code: val
+        }
+        jQuery.ajax({
+            type: 'POST',
+            url: wc_checkout_params.ajax_url,
+            data: data,
+            success: function(e) {
+                window.btk.updateOrder(function() {
+                    console.log(arguments)
+                });
+            }
+        })
+    })
     $(function() {
         $('.woocommerce-invalid').removeClass('woocommerce-invalid');
         $('.woocommerce-validated').removeClass('woocommerce-validated');
-        $('#shipping_country,#billing_country').val('CA').attr('disabled', true);
+        $('#shipping_country,#billing_country').val('CA').attr('readonly', true);
         var stickies = document.querySelectorAll('.tabbar, .summary-bar');
         for (var i = stickies.length - 1; i >= 0; i--) {
             Stickyfill.add(stickies[i]);
@@ -1169,9 +1217,65 @@
         activateTab(this)
     });
 
+    window.btk.updateOrder = function(callback) {
+        var data = {
+            action: 'woocommerce_update_order_review',
+            security: wc_checkout_params.update_order_review_nonce,
+            post_data: $('form.checkout').serialize()
+        }
+        jQuery.ajax({
+            type: 'POST',
+            url: wc_checkout_params.ajax_url,
+            data: data,
+            success: function(e) {
+                if (e.fragments) {
+                    Object.keys(e.fragments).forEach(function(sel) {
+                        $(sel).replaceWith(e.fragments[sel]);
+                        console.log($(sel))
+                    });
+                }
+                callback(null, e);
+                console.log('success');
+            },
+            error: function(e) {
+                callback(e);
+                console.log('error', e);
+            }
+        })
+
+    }
+    var tabbing = false;
     $('.tabnext').on('click', function(event) {
         event.preventDefault();
-        $('.tab.active').next().click();
+        if (tabbing) return;
+        tabbing = true;
+        window.btk.updateOrder(function(error, data) {
+            if (!error) {
+                $('.tab.active').next().click();
+            }
+            tabbing = false;
+        });
+        // var data = {
+        //     action: 'woocommerce_update_order_review',
+        //     security: wc_checkout_params.update_order_review_nonce,
+        //     post_data: $('form.checkout').serialize()
+        // }
+        // jQuery.ajax({
+        //     type: 'POST',
+        //     url: wc_checkout_params.ajax_url,
+        //     data: data,
+        //     success: function() {
+        //         console.log('success')
+        //         $('.tab.active').next().click();
+        //     },
+        //     complete: function() {
+        //         tabbing = false;
+        //     },
+        //     error: function() {
+        //         console.log('error', arguments);
+        //     }
+        // })
+
     });
 
     $('.tabto').on('click', function(event) {

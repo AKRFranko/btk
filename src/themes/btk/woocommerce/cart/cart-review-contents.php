@@ -76,7 +76,9 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 		    </span>
 			</div>
 			<div class="cart-item-buttons">
-        <a class="cart-item-remove" href="#">remove</a>
+        <?php
+					echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="cart-item-remove" title="remove">%s</a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ), __( 'remove', 'btk' ) ), $cart_item_key );
+				?>
         <a class="cart-item-edit" href="<?php echo esc_url(home_url('/')); ?>cart?guest=<?php echo $_GET['guest'] ?>">edit</a>
       </div>
 			</div>
