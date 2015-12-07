@@ -53,8 +53,8 @@ sku_tree = {
 // };
 
 
-materials = ["aluminium", "argon", "concrete", "emerald", "noise", "orange", "purple", "sky", "steel", "teal", "wine", "yolk"];
-materialNums = ['000', '001', '002', '003', '004', '005', '006', '007', '008', '009', '010', '011', '012', '013', '014'];
+//materials = ["aluminium", "argon", "concrete", "emerald", "noise", "orange", "purple", "sky", "steel", "teal", "wine", "yolk"];
+materialNums = ['001', '002', '003', '004', '005', '006', '007', '008', '009', '010', '011', '012'];
 variant_cats = ["sofas", "sectionals", "sofa-beds"];
 
 recipe = {

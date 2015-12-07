@@ -316,6 +316,23 @@ function woo_redirect() {
 }
 add_action('template_redirect', 'woo_redirect');
 
+function btk_material_name( $number ){
+  $names = array(
+    '001' => 'color1',
+    '002' => 'color2',
+    '003' => 'color3',
+    '004' => 'color4',
+    '005' => 'color5',
+    '006' => 'color6',
+    '007' => 'color7',
+    '008' => 'color8',
+    '009' => 'color9',
+    '010' => 'color10',
+    '011' => 'color11',
+    '012' => 'color12'
+  );
+  return $names[$number];
+}
 /**
  * Overriding some checkout fields
  */

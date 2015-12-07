@@ -156,7 +156,7 @@ foreach ( $attributes['edb_material'] as $color ){
 				$stock_msg = $stock_qty > 0 ? 'in stock' : '';
 				$stock_class = $stock_qty > 0 ? 'instock' : '';
 				$src = get_bloginfo('template_directory'). "/img/textures/$color.jpg";
-				$html = '<li><a href="#" data-variation-availability-delay="'.$stock_avail.'" data-variation-image="'.$galleryImageSRC.'" data-variation="'.sanitize_title($color).'" data-variation-attribute="attribute_edb_material" data-variation-id="'.$variation_id.'" title="'.sanitize_title($color).'" class="product-color-choice-option edb-material-'.sanitize_title($color).'">';
+				$html = '<li><a href="#" data-variation-availability-delay="'.$stock_avail.'" data-variation-image="'.$galleryImageSRC.'" data-variation="'.sanitize_title($color).'" data-variation-attribute="attribute_edb_material" data-variation-id="'.$variation_id.'" title="'.sanitize_title(btk_material_name($color)).'" class="product-color-choice-option edb-material-'.sanitize_title($color).'">';
 				$html .= '<img class=\"material\" src="'.$src.'">';
 				$html .= "<b class=\"$stock_class\">$stock_msg</b>";
 				$html .= '</a></li>';
