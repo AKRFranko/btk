@@ -342,6 +342,23 @@ function btk_material_name( $number ){
   );
   return $names[$number];
 }
+
+add_filter('add_to_cart_fragments', 'woocommerce_header_add_to_cart_fragment');
+
+function woocommerce_header_add_to_cart_fragment( $fragments ) {
+  global $woocommerce;
+
+  ob_start();
+
+  ?>
+  <span id="cart-item-counter" class="semi-bold"><?php echo $woocommerce->cart->cart_contents_count; ?></span>
+  <?php
+
+  $fragments['span#cart-item-counter'] = ob_get_clean();
+
+  return $fragments;
+
+}
 /**
  * Overriding some checkout fields
  */

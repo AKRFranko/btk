@@ -63,7 +63,11 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 				</span>
 				<br />
 				<span class="material">
-			    <?php echo $cart_item['variation']['attribute_edb_material']; ?>
+				  <?php 
+				    $attributes = $_product->get_variation_attributes(); 
+				    $variationID = $attributes['attribute_edb_material'];
+				    echo btk_material_name($variationID);
+				  ?>
 			 </span>
 			 <br />
 			
@@ -91,7 +95,7 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 				// 		), $_product, false );
 				// 	}
 
-				// 	echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key );
+					echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key );
 				?>
 		
 				<input type="number" class="qty" name="cart[<?php echo $cart_item_key; ?>][qty]" value="<?php echo $cart_item['quantity']; ?>">
@@ -133,4 +137,4 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 }
 
 ?>
-
+				<input type="submit" class="button" name="update_cart" value="<?php esc_attr_e( 'Update Cart', 'woocommerce' ); ?>" />

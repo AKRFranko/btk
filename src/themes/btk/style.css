@@ -1579,8 +1579,12 @@ div#payment-pane .place-order {
 }
 .woocommerce .product .product-color-choice ul li a.clicked,
 .woocommerce .product .product-color-choice ul li a:hover {
-  transform: scale(1.1);
-  transform-origin: center;
+  -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-transform-origin: center;
+      -ms-transform-origin: center;
+          transform-origin: center;
 }
 .woocommerce .product .product-color-choice ul li a.clicked img {
   border-color: #000;
@@ -2926,7 +2930,8 @@ body.splash-on > * {
 /* slides */
 #splash-page .splash-image {
   z-index: 300;
-  animation: splashcycler 12s infinite;
+  -webkit-animation: splashcycler 12s infinite;
+          animation: splashcycler 12s infinite;
   opacity: 0;
   background-size: cover;
   background-position: center;
@@ -2941,6 +2946,20 @@ body.splash-on > * {
   height: 100%;
 }
 /* slide animation */
+@-webkit-keyframes splashcycler {
+  0% {
+    opacity: 1;
+  }
+  33% {
+    opacity: 1;
+  }
+  34% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 @keyframes splashcycler {
   0% {
     opacity: 1;
@@ -2957,13 +2976,16 @@ body.splash-on > * {
 }
 /* slide offsets (relative to splashcycler duration)*/
 #splash-page .splash-image:nth-child(1) {
-  animation-delay: 0s;
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
 }
 #splash-page .splash-image:nth-child(2) {
-  animation-delay: 4s;
+  -webkit-animation-delay: 4s;
+          animation-delay: 4s;
 }
 #splash-page .splash-image:nth-child(3) {
-  animation-delay: 8s;
+  -webkit-animation-delay: 8s;
+          animation-delay: 8s;
 }
 #splash-page button {
   position: absolute;
@@ -2977,7 +2999,9 @@ body.splash-on > * {
   border-radius: 0;
   text-align: center;
   transition: all 0.1s ease-in-out;
-  transform-origin: center;
+  -webkit-transform-origin: center;
+      -ms-transform-origin: center;
+          transform-origin: center;
   z-index: 500;
   white-space: nowrap;
   line-height: 1.2;
@@ -3252,7 +3276,9 @@ body.splash-on > * {
   display: none;
 }
 .summary-box.closed .fa-caret-down {
-  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+          transform: rotate(180deg);
 }
 .summary-box {
   opacity: 1;
@@ -3620,7 +3646,9 @@ Header
   margin: 0 5px 0 15px;
 }
 #header-box header nav .badge {
-  transform: scale(0.6) translateY(-0.5em);
+  -webkit-transform: scale(0.6) translateY(-0.5em);
+      -ms-transform: scale(0.6) translateY(-0.5em);
+          transform: scale(0.6) translateY(-0.5em);
   font-family: monospace;
 }
 #header-box header nav.nav-hamburger {
@@ -4443,7 +4471,9 @@ Footer
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transform: translate(0, 0);
+  -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+          transform: translate(0, 0);
   width: 19px !important;
   height: 19px !important;
   font-size: 1.5em !important;
@@ -4559,10 +4589,14 @@ Footer
   margin: 1.5em;
   box-shadow: 0 0 3em rgba(0, 0, 0, 0.3);
   transition: all 0.2s ease-in;
-  transform: scale(0) rotate(360deg);
+  -webkit-transform: scale(0) rotate(360deg);
+      -ms-transform: scale(0) rotate(360deg);
+          transform: scale(0) rotate(360deg);
 }
 .btk-form-success.show {
-  transform: scale(1) rotate(360deg);
+  -webkit-transform: scale(1) rotate(360deg);
+      -ms-transform: scale(1) rotate(360deg);
+          transform: scale(1) rotate(360deg);
 }
 #content article .entry-content .btk-form-success img,
 .btk-form-success img {
@@ -4919,19 +4953,31 @@ Media Queries and Devices
 /* HACK */
 @media (min-width: 2000px) {
   body {
-    transform: scale(2);
-    transform-origin: top;
+    -webkit-transform: scale(2);
+        -ms-transform: scale(2);
+            transform: scale(2);
+    -webkit-transform-origin: top;
+        -ms-transform-origin: top;
+            transform-origin: top;
   }
 }
 @media (min-width: 3000px) {
   body {
-    transform: scale(3);
-    transform-origin: top;
+    -webkit-transform: scale(3);
+        -ms-transform: scale(3);
+            transform: scale(3);
+    -webkit-transform-origin: top;
+        -ms-transform-origin: top;
+            transform-origin: top;
   }
 }
 @media (min-width: 4000px) {
   body {
-    transform: scale(4);
-    transform-origin: top;
+    -webkit-transform: scale(4);
+        -ms-transform: scale(4);
+            transform: scale(4);
+    -webkit-transform-origin: top;
+        -ms-transform-origin: top;
+            transform-origin: top;
   }
 }

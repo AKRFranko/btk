@@ -86,7 +86,7 @@ global $current_user;
 									<li><a href="<?php echo esc_url(home_url('/')); ?>cart"><?php _e('Cart', 'btk'); ?></a></li>
 								</ul>
 							</div>
-							<?php if ( WC()->cart->get_cart_contents_count() > 0 ) { echo '<span class="semi-bold">' . WC()->cart->get_cart_contents_count() . '</span>'; } ?>
+							<?php if ( WC()->cart->get_cart_contents_count() > 0 ) { echo '<span id="cart-item-counter" class="semi-bold">' . WC()->cart->get_cart_contents_count() . '</span>'; } ?>
 							<a class="language" href="<?php echo esc_url(home_url('/')); ?>">fr</a>
 						</nav>
 						<?php } ?>

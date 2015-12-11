@@ -20,6 +20,7 @@
      }
 
 
+
      var store = new window.Basil(storeOptions);
 
      var $ = jQuery;
@@ -27,6 +28,18 @@
      var timeout;
      var lastTotal = 0;
 
+     var debounceUpdate;
+     $(function() {
+         var upd_cart_btn = $("input[name=update_cart]");
+         upd_cart_btn.hide();
+         $(".qty").on("change", function() {
+             clearTimeout(debounceUpdate);
+             debounceUpdate = setTimeout(function() {
+                 upd_cart_btn.trigger("click");
+             }, 100)
+
+         });
+     });
      $(function() {
              if ($('.woocommerce-billing-fields').length) {
                  var billingFields = $('[name^=billing_]');
@@ -106,15 +119,17 @@
          var $items = $('.cart_item');
          var calcTotals = function() {
 
-             clearTimeout(timeout);
+             // clearTimeout(timeout);
              var subtotal = 0;
              var $items = $('.cart_item');
+             var qties = 0;
              if ($items.length) {
                  $items.each(function() {
                      var $item = $(this);
                      var $amnt = $item.find('.product-price .amount');
                      var $qty = $(this).find('input.qty');
                      var qty = $qty.val();
+                     qties += (1 * qty);
                      var cost = 1 * $(this).data('json').price;
                      var amnt = cost * qty;
                      subtotal += amnt;
@@ -127,7 +142,7 @@
                  $estm.text('$' + getShippingCost(subtotal).toFixed(2));
                  store.set('cart_estimated_shipping_cost', getShippingCost(subtotal));
              }
-
+             // $('#cart-item-counter').text(qties);
              timeout = requestAnimFrame(calcTotals);
          }
 

@@ -58,7 +58,11 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 				</span>
 				<br />
 				<span class="material">
-			    <?php echo $cart_item['variation']['attribute_edb_material']; ?>
+			    <?php 
+				    $attributes = $_product->get_variation_attributes(); 
+				    $variationID = $attributes['attribute_edb_material'];
+				    echo btk_material_name($variationID);
+				  ?>
 			 </span>
 			 <br />
 			
