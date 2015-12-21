@@ -67,6 +67,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php do_action( 'woocommerce_after_checkout_registration_form', $checkout ); ?>
 
 	<?php endif; ?>
+	
+
 	<p class="form-row checkboxes toggle-checkboxes"><label><input id="same-address-checkbox" name="shipping-pickup-checkbox" type="checkbox"> <?php _e('also use this as my shipping addresss', 'btk'); ?></label></p>
 	<p class="form-row checkboxes toggle-checkboxes"><label><input id="no-shipping-checkbox" name="shipping-pickup-checkbox" type="checkbox"> <?php _e('no shipping, will pickup at warehouse','btk'); ?></label></p>
+	<div class="shipping_method_hook"><input type="hidden" name="shipping_method[0]" value="local_pickup"></div> 
+	
 </div>

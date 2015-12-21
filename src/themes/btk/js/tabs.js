@@ -70,14 +70,18 @@
         var data = {
             action: 'woocommerce_update_order_review',
             security: wc_checkout_params.update_order_review_nonce,
-            post_data: $('form.checkout').serialize()
-        }
+            post_data: $('form.checkout').serialize(),
+            shipping_method: [ $('input[name^=shipping_method]').val() ]
+            
+        };
         jQuery.ajax({
             type: 'POST',
             url: wc_checkout_params.ajax_url,
             data: data,
             success: function(e) {
+              
                 if (e.fragments) {
+                  console.log(Object.keys(e.fragments));
                     Object.keys(e.fragments).forEach(function(sel) {
                         $(sel).replaceWith(e.fragments[sel]);
                         console.log($(sel))

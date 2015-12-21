@@ -396,6 +396,258 @@ function btk_get_category_classes(){
 
 }
  
+function btk_cart_item_html( $cart_item_key, $cart_item, $region ){
+     global $woocommerce;
+     //var_dump($woocommerce->session->chosen_shipping_methods);
+     $cart_item_product = apply_filters('woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+     $cart_item_product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
+     $cart_item_product_name = apply_filters( 'woocommerce_cart_item_name', $cart_item_product->get_title(), $cart_item, $cart_item_key );
+     $cart_item_product_categories = wp_get_post_terms( $cart_item_product->id, 'product_cat' );
+     $cart_item_product_category = $cart_item_product_categories[count($cart_item_product_categories) - 1]->name;
+     $cart_item_product_price = apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $cart_item_product ), $cart_item, $cart_item_key );
+ 
+     // var_dump($cart_item_product_price_total);
+     $cart_item_variation_id = $cart_item_product->get_variation_id();
+     
+     $cart_item_variation_image = apply_filters( 'woocommerce_cart_item_thumbnail', $cart_item_product->get_image(), $cart_item, $cart_item_key );
+     $product_attributes = $cart_item_product->get_variation_attributes();
+     $cart_item_edb_material_id = $product_attributes['attribute_edb_material'];
+     $cart_item_edb_material_name = btk_material_name($cart_item_edb_material_id);
+   
+     $cart_item_product_permalink = $cart_item_product->get_permalink( $cart_item ); 
+     
+     $cart_item_stock_qty = get_post_meta( $cart_item_variation_id );
+     $cart_item_stock_backorder_delay = get_post_meta( $cart_item_variation_id,'_stock_backorder_delay',true);
+   
+   
+     $quantity_wanted = $cart_item['quantity'];
+     
+     $main_shipping_method = $woocommerce->session->chosen_shipping_methods[0];
+      
+     $cart_item_shipping_method = $cart_item['edb_shipping'];// ? $cart_item['edb_shipping'] : 
+     if(is_null($cart_item_shipping_method)){
+       $cart_item_shipping_method = $main_shipping_method == 'local_pickup' ? 'self_pickup' : 'ship_bundle_1';
+     }
+     
+     $cart_item_product_price_total = '$' . sprintf( "%.2f", $quantity_wanted * $cart_item_product->price);
+ 
+     $edb_earliest_availability = __('1 week', 'btk' );
+     $product_availability_date_string = $quantity_wanted <= $cart_item_stock_qty ? $edb_earliest_availability : btk_time_elapsed( strtotime($cart_item_stock_backorder_delay) );
+     
+     $btk_cart_item_json_data = array(
+       'item_price'    => $cart_item_product->price,
+       'item_category' => $cart_item_product_category,
+       'qty_in_stock'  => $cart_item_stock_qty,
+       'qty_wanted'    => $quantity_wanted
+     );
+     $btk_cart_item_json = json_encode($btk_cart_item_json_data);
+     ?>
+       <div data-json="<?php echo htmlentities($btk_cart_item_json, ENT_QUOTES, 'UTF-8'); ?>" class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'btk-cart-item', $cart_item, $cart_item_key ) ); ?>">
+         
+         <div class="btk-cart-item-image">
+           <?php 
+             printf( '<a title="%s" href="%s">%s</a>', $cart_item_product_name, $cart_item_product_permalink, $cart_item_variation_image );
+           ?>
+         </div>
+         
+         <div class="btk-cart-item-meta">
+           <div class="line">
+           <span class="btk-cart-item-name"><?php
+               printf( '<a title="%s" href="%s">%s</a>', $cart_item_product_name, $cart_item_product_permalink, $cart_item_product_name );
+           ?></span>
+           </div>
+           <div class="line">
+           <span class="btk-cart-item-category"><?php
+               echo $cart_item_product_category;
+           ?></span>
+           
+           <span class="btk-cart-item-material"><?php
+               echo $cart_item_edb_material_name;
+           ?></span>
+           </div>
+           <div class="line">
+           <span class="btk-cart-item-availability"><?php
+               echo $product_availability_date_string;
+           ?></span>
+           </div>
+           
+         </div>
+         
+         <div class="btk-cart-item-options">
+           <?php if($region == 'cart'){ ?>
+           <div class="btk-cart-item-qty-select">
+             <input type="number" class="btk-cart-item-qty-select-input qty" min="1" step="1" name="cart[<?php echo $cart_item_key; ?>][qty]" value="<?php echo $quantity_wanted; ?>">
+             <span class="btk-cart-item-qty-select-price-total"><?php echo $cart_item_product_price_total; ?></span>
+             <small class="btk-cart-item-qty-select-notice"></small>
+           </div>
+           <?php } ?>
+           <?php if($region == 'delivery'){ ?>
+           
+           <div class="btk-cart-item-shipping">
+             <label class="btk-cart-item-shipping-checkbox btk-self-pickup">
+               <input type="radio" name="cart[<?php echo $cart_item_key ?>][edb_shipping]" value="self_pickup" <?php echo $cart_item_shipping_method == 'self_pickup' ? 'checked="checked"' : '' ?>>
+             </label>
+             <label class="btk-cart-item-shipping-checkbox btk-ship-ready">
+               <input type="radio" name="cart[<?php echo $cart_item_key ?>][edb_shipping]" value="ship_ready" <?php echo $cart_item_shipping_method == 'ship_ready' ? 'checked="checked"' : '' ?>>
+             </label>
+             <label class="btk-cart-item-shipping-checkbox btk-ship-bundle-1">
+               <input type="radio" name="cart[<?php echo $cart_item_key ?>][edb_shipping]" value="ship_bundle_1" <?php echo $cart_item_shipping_method == 'ship_bundle_1' ? 'checked="checked"' : '' ?>>
+             </label>
+             <label class="btk-cart-item-shipping-checkbox btk-ship-bundle-2">
+               <input type="radio" name="cart[<?php echo $cart_item_key ?>][edb_shipping]" value="ship_bundle_2" <?php echo $cart_item_shipping_method == 'ship_bundle_2' ? 'checked="checked"' : '' ?>>
+             </label>
+             <label class="btk-cart-item-shipping-checkbox btk-ship-bundle-3">
+               <input type="radio" name="cart[<?php echo $cart_item_key ?>][edb_shipping]" value="ship_bundle_3" <?php echo $cart_item_shipping_method == 'ship_bundle_3' ? 'checked="checked"' : '' ?>>
+             </label>
+           </div>
+           <?php } ?>
+         </div>
+         
+         <div class="btk-cart-item-actions">
+           <div class="btk-cart-item-remove">
+             <a href="#">remove&nbsp;&nbsp;&times;</a>
+           </div>
+           <?php if($region != 'cart'){ ?>
+           <div class="btk-cart-item-edit">
+             <a href="#">edit</a>
+           </div>
+           <?php } ?>
+         </div>
+         
+         
+     </div>
+   
+ <?php
+}
+function btk_cart_row( $cart_item_key, $cart_item){
+  
+  
+  
+  $_product     = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+  $product_id   = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
+  $categories = wp_get_post_terms( $_product->id, 'product_cat' );
+  $category = $categories[count($categories) - 1];
+  
+  $variationID = $_product->get_variation_id();
+  $stock_qty = get_post_meta($variationID,'_stock',true);
+  // var_dump($stock_qty);
+  $stock_delay = get_post_meta($variationID,'_stock_backorder_delay',true);
+  $stock_wanted = $cart_item['quantity'];
+  $stock_avail = $stock_wanted <= $stock_qty ? '1 week' : btk_time_elapsed( strtotime($stock_delay));
+  $json_data = json_encode( array( "in_stock" => $stock_qty, "stock_wanted" => $stock_wanted, "price"=>$_product->price, "category"=>$category->slug  ));
+  if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
+    ?>
+  
+  <div data-json="<?php echo htmlentities($json_data, ENT_QUOTES, 'UTF-8'); ?>" class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
+
+    <?php if ( ! is_checkout() ) { ?>
+    <div class="product-remove alignright">
+      <?php
+        echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="remove" title="%s">&times;</a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ), __( 'Remove this item', 'btk' ) ), $cart_item_key );
+      ?>
+    </div>
+    <?php } ?>
+
+    <div class="product-thumbnail">
+      <?php
+        $thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
+        if ( ! $_product->is_visible() )
+          echo $thumbnail;
+        else
+          printf( '<a href="%s">%s</a>', $_product->get_permalink( $cart_item ), $thumbnail );
+      ?>
+    </div>
+
+    <div class="product-name">
+      <?php
+        
+        if ( ! $_product->is_visible() )
+          echo apply_filters( 'woocommerce_cart_item_name', $_product->get_title(), $cart_item, $cart_item_key ) . '&nbsp;';
+        else
+          echo apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s </a>', $_product->get_permalink( $cart_item ), $_product->get_title() ), $cart_item, $cart_item_key );
+          
+          
+             // Backorder notification
+  //           if ( $_product->backorders_require_notification() && $_product->is_on_backorder( $cart_item['quantity'] ) )
+  //             echo '<p class="backorder_notification">' . __( 'Available on backorder', 'btk' ) . '</p>';
+      // 
+      ?>
+      <span class="category">
+        <?php echo $category->name; ?>
+      </span>
+      <br />
+      <span class="material">
+        <?php 
+          $attributes = $_product->get_variation_attributes(); 
+          $variationID = $attributes['attribute_edb_material'];
+          echo btk_material_name($variationID);
+        ?>
+     </span>
+     <br />
+    
+      <span class="availability">
+          <?php
+           
+            echo  "$stock_avail";
+          ?>
+      </span>  
+    </div>
+    
+    <div class="product-quantity">
+      
+      <?php
+      //   if ( $_product->is_sold_individually() ) {
+      //     $product_quantity = sprintf( '1 <input type="hidden" name="cart[%s][qty]" value="1" />', $cart_item_key );
+      //   } else {
+      //     $product_quantity = woocommerce_quantity_input( array(
+      //       'input_name'  => "cart[{$cart_item_key}][qty]",
+      //       'input_value' => $cart_item['quantity'],
+      //       'max_value'   => $_product->backorders_allowed() ? '' : $_product->get_stock_quantity(),
+      //       'min_value'   => '0'
+      //     ), $_product, false );
+      //   }
+        
+        //echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key );
+        
+      ?>
+      
+      <input type="number" class="qty" min="1" step="1" name="cart[<?php echo $cart_item_key; ?>][qty]" value="<?php echo $cart_item['quantity']; ?>">
+    </div>
+    <div class="product-price">
+      <?php
+        echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
+      ?>
+    </div>
+
+    
+
+    <?php
+      if ( ! empty($cart_item['variation_id']) ) {
+        foreach ( $cart_item['variation'] as $name => $value ) {
+          if ( '' === $value )
+            continue;
+
+          $taxonomy = wc_attribute_taxonomy_name( str_replace( 'attribute_pa_', '', urldecode( $name ) ) );
+
+          // If this is a term slug, get the term's nice name and description
+          if ( taxonomy_exists( $taxonomy ) ) {
+            $term = get_term_by( 'slug', $value, $taxonomy );
+            if ( ! is_wp_error( $term ) && $term && $term->name ) {
+    ?>
+    <div class="product-color">
+      <span class="valign"><?php echo $term->name; ?></span>
+      <a class="alignright" style="background-color: <?php echo $term->description; ?>">&nbsp;</a>
+    </div>
+    <?php
+            }
+          }
+        }
+      }
+    ?>
+  </div>
+    <?php
+  }
+}
 
 
 /**

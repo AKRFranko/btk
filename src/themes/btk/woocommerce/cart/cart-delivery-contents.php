@@ -14,8 +14,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 ?>
+<div class="btk-cart-option-headers">
+  
+  <div><?php _e('pick up.', 'btk'); ?></div><div><?php _e('Ship Ind.', 'btk'); ?></div><div><?php _e('Bundle 1', 'btk'); ?></div><div><?php _e('Bundle 2', 'btk'); ?></div><div><?php _e('Bundle 3', 'btk'); ?></div>
+</div>
+<div class="btk-cart-items">
+<?php
+
+foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+  
+  echo btk_cart_item_html( $cart_item_key, $cart_item, 'delivery' );
+}
+?>
+</div>
 
 <?php
+if(false){
 $cart_item_count = WC()->cart->cart_contents_count;
 foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 	$_product     = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
@@ -23,6 +37,7 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 	$categories = wp_get_post_terms( $_product->id, 'product_cat' );
 	$category = $categories[count($categories) - 1];
   $json_data = json_encode( array( "price"=>$_product->price, "category"=>$category->slug  ));
+  
 	if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
 		?>
 		<div data-json="<?php echo htmlentities($json_data, ENT_QUOTES, 'UTF-8'); ?>" class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
@@ -57,7 +72,7 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 				<span class="category">
 				  <?php echo $category->name; ?>
 				</span>
-				<br />
+				
 				<span class="material">
 			    <?php 
 				    $attributes = $_product->get_variation_attributes(); 
@@ -69,26 +84,37 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 			
         <span class="availability">
             <?php
-              // var_dump($cart_item);
-              $stock_qty = get_post_meta($cart_item['variation_id'],'_stock',true);
-				      $stock_delay = get_post_meta($cart_item['variation_id'],'_stock_backorder_delay',true);
-				      $stock_avail = $stock_qty > 0 ? '1 week' : btk_time_elapsed( strtotime($stock_delay));
+              $variationID = $_product->get_variation_id();
+              $stock_qty = get_post_meta($variationID,'_stock',true);
+              // var_dump($stock_qty);
+				      $stock_delay = get_post_meta($variationID,'_stock_backorder_delay',true);
+				      $stock_wanted = $cart_item['quantity'];
+				      $stock_avail = $stock_wanted <= $stock_qty ? '1 week' : btk_time_elapsed( strtotime($stock_delay));
 						  echo  "$stock_avail";
 				    ?>
 		    </span>  
-		    <br />
+		    
 		    <span class="selected-quantity">
 		    <?php _e('qty', 'btk'); ?>: <?php echo $cart_item['quantity']; ?>
 		    </span>
 			</div>
 			
 			<div class="product-shipping-options">
+			  
 			  <?php if($cart_item_count > 1): ?>
-				<label><input checked type="radio" name="item_shipping_method[<?php echo $cart_item['variation_id']; ?>]"><?php _e('Ship item when complete order is ready', 'btk'); ?></label>
-				<label><input type="radio" name="item_shipping_method[<?php echo $cart_item['variation_id']; ?>]"><?php _e('Ship item as soon as it\'s ready', 'btk'); ?></label>
+        <?php 
+         $chosen_methods = WC()->session->get( 'chosen_shipping_methods' );
+ $chosen_shipping = $chosen_methods[0]; 
+// var_dump($chosen_shipping); 
+ ?>
+				<!--<label><input type="radio" name="item_shipping_method[<?php echo $cart_item['variation_id']; ?>]" value="ship_all"><?php _e('Ship item when complete order is ready', 'btk'); ?></label>-->
+				<label><input type="radio"  name="item_shipping_method[<?php echo $cart_item['variation_id']; ?>]" value="dont_ship_it"></label>
+				
+				
+				<label><input type="radio" name="item_shipping_method[<?php echo $cart_item['variation_id']; ?>]" value="ship_when_ready"><?php _e('Ship item as soon as it\'s ready', 'btk'); ?></label>
 				<?php endif; ?>
-				<label><input type="radio" name="item_shipping_method[<?php echo $cart_item['variation_id']; ?>]"><?php _e('Rush it for an extra $75.00. Item will leave the warehouse in 24 hours.', 'btk'); ?></label>
-				<label><input type="radio" name="item_shipping_method[<?php echo $cart_item['variation_id']; ?>]"><?php _e('Self pick up. No delivery', 'btk'); ?></label>
+				<!--<label><input type="radio" name="item_shipping_method[<?php echo $cart_item['variation_id']; ?>]" value="ship_it_rush"><?php _e('Rush it for an extra $75.00. Item will leave the warehouse in 24 hours.', 'btk'); ?></label>-->
+				
 			</div>
 			
       <div class="cart-item-buttons">
@@ -127,6 +153,6 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 		<?php
 	}
 }
-
+}
 ?>
 

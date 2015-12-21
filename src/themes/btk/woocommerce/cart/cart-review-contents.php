@@ -67,10 +67,13 @@ foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 			 <br />
 			
         <span class="availability">
-            <?php
-              $stock_qty = get_post_meta($cart_item['variation_id'],'_stock',true);
-				      $stock_delay = get_post_meta($cart_item['variation_id'],'_stock_backorder_delay',true);
-				      $stock_avail = $stock_qty > 0 ? '1 week' : btk_time_elapsed( strtotime($stock_delay));
+           <?php
+              $variationID = $_product->get_variation_id();
+              $stock_qty = get_post_meta($variationID,'_stock',true);
+              // var_dump($stock_qty);
+				      $stock_delay = get_post_meta($variationID,'_stock_backorder_delay',true);
+				      $stock_wanted = $cart_item['quantity'];
+				      $stock_avail = $stock_wanted <= $stock_qty ? '1 week' : btk_time_elapsed( strtotime($stock_delay));
 						  echo  "$stock_avail";
 				    ?>
 		    </span>  

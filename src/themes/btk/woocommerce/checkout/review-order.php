@@ -27,11 +27,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<td><?php wc_cart_totals_coupon_html( $coupon ); ?></td>
 			</tr>
 		<?php endforeach; ?>
-    		        <!--<tr>
-    		          <td>Promo Code</td><td>-$0</td>
-    		        </tr>-->
+    		        
     		        <tr>
-    		          <td>Shipping & Handling</td><td><?php wc_cart_totals_fee_html('shipping'); ?></td>
+    		          <?php $shipping_total = WC()->cart->shipping_total; ?>
+    		          <td>Shipping & Handling</td><td><?php echo wc_price($shipping_total)?></td>
     		        </tr>
     		        <tr>
     		          <td>Taxes</td><td><?php wc_cart_totals_taxes_total_html(); ?></td>

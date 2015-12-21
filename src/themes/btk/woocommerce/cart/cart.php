@@ -15,7 +15,7 @@ wc_print_notices();
 
 do_action( 'woocommerce_before_cart' ); ?>
 
-<form action="<?php echo esc_url( WC()->cart->get_cart_url() ); ?>" method="post">
+<form id="cartForm" action="<?php echo esc_url( WC()->cart->get_cart_url() ); ?>" method="post">
 
 <?php do_action( 'woocommerce_before_cart_table' ); ?>
 
@@ -59,7 +59,14 @@ do_action( 'woocommerce_before_cart' ); ?>
     $current_time = time();
     $latest_delay = $current_time;
     foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+      
         $stock_delay = strtotime(get_post_meta($cart_item['variation_id'],'_stock_backorder_delay',true));
+        $stock_qty = get_post_meta($cart_item['variation_id'],'_stock',true);
+				$stock_wanted = $cart_item['quantity'];
+				if( $stock_wanted <= $stock_qty ){
+				  $stock_delay = 0;
+				}
+
         if($stock_delay > $latest_delay){
           $latest_delay = $stock_delay;
         }
@@ -67,6 +74,8 @@ do_action( 'woocommerce_before_cart' ); ?>
     
     if($latest_delay !== $current_time){
       echo "<p>" . btk_time_elapsed($latest_delay)."</p>";  
+    }else{
+      echo "<p>1 Week</p>";
     }
     
     ?>
@@ -85,19 +94,19 @@ do_action( 'woocommerce_before_cart' ); ?>
 	<div class="cart-buttons">
 	<span class="alignleft">
 		<span class="valign"><?php _e('continue shopping', 'btk'); ?></span>
-		<a href="<?php echo esc_url(home_url('/'));?>" class="valign icon-arrow-lite-left-white"></a>
+		<a href="<?php echo esc_url(home_url('/'));?>" class="valign icon-arrow-lite-left-white btk-cart-back-button"></a>
 	</span>
 	<span class="alignright">
 		<span class="valign"><?php _e('check out', 'btk'); ?></span>
 		  <?php 
 		    $checkouturl = esc_url( home_url('/') ) . 'checkout/?guest='.$_GET['guest']; 
 		  ?>
-		  <a href="<?php echo $checkouturl; ?>" class="valign icon-arrow-lite-right-white"></a>
+		  <a href="<?php echo $checkouturl; ?>" class="valign icon-arrow-lite-right-white btk-cart-checkout-button"></a>
 	</span>
 
   </div>
 </div>
 
-<?php do_action( 'woocommerce_after_cart' ); ?>
+<?php //do_action( 'woocommerce_after_cart' ); ?>
 
 

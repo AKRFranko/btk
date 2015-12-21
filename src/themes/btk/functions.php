@@ -359,6 +359,31 @@ function woocommerce_header_add_to_cart_fragment( $fragments ) {
   return $fragments;
 
 }
+
+add_filter('woocommerce_update_order_review_fragments', 'btk_update_order_review');
+
+function btk_update_order_review( $fragments ) {
+  global $woocommerce;
+
+  ob_start();
+
+  ?><div class="cart-contents"><?php
+  wc_get_template( 'cart/cart-delivery-contents.php' ); 
+  ?></div><?php
+  
+
+  $fragments['div#delivery-pane .cart-contents'] = ob_get_clean();
+
+  return $fragments;
+
+}
+
+// function btk_split_products_by_availability( $data ){
+//   echo json_encode($data);
+//   return $data;
+  
+// }
+// add_filter('woocommerce_cart_shipping_packages', 'btk_split_products_by_availability');
 /**
  * Overriding some checkout fields
  */
@@ -772,6 +797,20 @@ function btk_custom_excerpt_length( $length ) {
 }
 add_filter( 'excerpt_length', 'btk_custom_excerpt_length', 140 );
 
+add_action( 'woocommerce_after_cart_table', 'btk_after_cart' );
+function btk_after_cart() {
+    echo '<script>
+    jQuery(document).ready(function($) {
+        var upd_cart_btn = $(".update-cart-button").hide();
+        var checkout_btn = $(".cart-checkout-button");
+        checkout_btn.on("click",function( e ){
+          e.preventDefault();
+          upd_cart_btn.trigger("click");
+        });
+
+    });
+    </script>';
+}
 /**
  * Link for read more
  **/
@@ -820,6 +859,7 @@ add_shortcode( 'lookbook', 'btk_lookbook_shortcode' );
 function btk_get_price_html( $price ){
   // global $woocommerce;
   global $product;
+  
   if($price) return $price;
   
   $vari = $product->get_available_variations();
@@ -831,6 +871,147 @@ function btk_get_price_html( $price ){
 add_filter( 'woocommerce_get_price_html', 'btk_get_price_html' );
 
 
+//Store the custom field
+add_filter( 'woocommerce_add_cart_item_data', 'btk_add_cart_item_data', 10, 2 );
+function btk_add_cart_item_data( $cart_item_meta, $product_id ) {
+  global $woocommerce;
+  $cart_item_meta['edb_shipping'] = null;
+  return $cart_item_meta; 
+}
+
+
+
+//Get it from the session and add it to the cart variable
+function get_cart_items_from_session( $item, $values, $key ) {
+    $post_array = array();
+    parse_str( $_POST['post_data'], $post_array );
+    if ( array_key_exists( 'edb_shipping', $values ) ){
+      $item[ 'edb_shipping' ] = $values['edb_shipping'];
+    }
+    
+    if(array_key_exists('edb_shipping', $post_array['cart'][$key] ) ){
+      $item[ 'edb_shipping' ]  = $post_array['cart'][$key]['edb_shipping'];
+    }
+    return $item;
+}
+add_filter( 'woocommerce_get_cart_item_from_session', 'get_cart_items_from_session', 1, 3 );
+
+function bulky_woocommerce_cart_shipping_packages( $packages ) {
+    // Reset the packages
+    $packages = array();
+  
+    // Bulky items
+    $pickup_items   = array();
+    $ready_items = array();
+    $bundle_1_items = array();
+    $bundle_2_items = array();
+    $bundle_3_items = array();
+    
+    // Sort bulky from regular
+    foreach ( WC()->cart->get_cart() as $item_key => $item ) {
+      
+        if( $item['edb_shipping'] == 'self_pickup'){
+          $pickup_items[] = $item;
+        }
+        else if( $item['edb_shipping'] == 'ship_ready'){
+          $ready_items[] = $item;
+        }
+        else if( $item['edb_shipping'] == 'ship_bundle_1'){
+          $bundle_1_items[] = $item;
+        }
+        else if( $item['edb_shipping'] == 'ship_bundle_2'){
+          $bundle_2_items[] = $item;
+        }
+        else if( $item['edb_shipping'] == 'ship_bundle_3'){
+          $bundle_3_items[] = $item;
+        }
+    }
+    
+    // Put inside packages5
+    if ( $pickup_items ) {
+        $packages[] = array(
+            'ship_via'        => array('local_pickup'),
+            'contents'        => $pickup_items,
+            'contents_cost'   => array_sum( wp_list_pluck( $pickup_items, 'line_total' ) ),
+            'applied_coupons' => WC()->cart->applied_coupons,
+            'destination'     => array(
+                'country'   => WC()->customer->get_shipping_country(),
+                'state'     => WC()->customer->get_shipping_state(),
+                'postcode'  => WC()->customer->get_shipping_postcode(),
+                'city'      => WC()->customer->get_shipping_city(),
+                'address'   => WC()->customer->get_shipping_address(),
+                'address_2' => WC()->customer->get_shipping_address_2()
+            )
+        );
+    }
+    if ( $ready_items ) {
+        $packages[] = array(
+            'ship_via'       => array('edb_shipping'),
+            'contents'        => $ready_items,
+            'contents_cost'   => array_sum( wp_list_pluck( $ready_items, 'line_total' ) ),
+            'applied_coupons' => WC()->cart->applied_coupons,
+            'destination'     => array(
+                'country'   => WC()->customer->get_shipping_country(),
+                'state'     => WC()->customer->get_shipping_state(),
+                'postcode'  => WC()->customer->get_shipping_postcode(),
+                'city'      => WC()->customer->get_shipping_city(),
+                'address'   => WC()->customer->get_shipping_address(),
+                'address_2' => WC()->customer->get_shipping_address_2()
+            )
+        );
+    }    
+    if ( $bundle_1_items ) {
+        $packages[] = array(
+            'ship_via'       => array('edb_shipping'),
+            'contents'        => $bundle_1_items,
+            'contents_cost'   => array_sum( wp_list_pluck( $bundle_1_items, 'line_total' ) ),
+            'applied_coupons' => WC()->cart->applied_coupons,
+            'destination'     => array(
+                'country'   => WC()->customer->get_shipping_country(),
+                'state'     => WC()->customer->get_shipping_state(),
+                'postcode'  => WC()->customer->get_shipping_postcode(),
+                'city'      => WC()->customer->get_shipping_city(),
+                'address'   => WC()->customer->get_shipping_address(),
+                'address_2' => WC()->customer->get_shipping_address_2()
+            )
+        );
+    } 
+    if ( $bundle_2_items ) {
+        $packages[] = array(
+            'ship_via'       => array('edb_shipping'),
+            'contents'        => $bundle_2_items,
+            'contents_cost'   => array_sum( wp_list_pluck( $bundle_2_items, 'line_total' ) ),
+            'applied_coupons' => WC()->cart->applied_coupons,
+            'destination'     => array(
+                'country'   => WC()->customer->get_shipping_country(),
+                'state'     => WC()->customer->get_shipping_state(),
+                'postcode'  => WC()->customer->get_shipping_postcode(),
+                'city'      => WC()->customer->get_shipping_city(),
+                'address'   => WC()->customer->get_shipping_address(),
+                'address_2' => WC()->customer->get_shipping_address_2()
+            )
+        );
+    }   
+    if ( $bundle_3_items ) {
+        $packages[] = array(
+            'ship_via'       => array('edb_shipping'),
+            'contents'        => $bundle_3_items,
+            'contents_cost'   => array_sum( wp_list_pluck( $bundle_3_items, 'line_total' ) ),
+            'applied_coupons' => WC()->cart->applied_coupons,
+            'destination'     => array(
+                'country'   => WC()->customer->get_shipping_country(),
+                'state'     => WC()->customer->get_shipping_state(),
+                'postcode'  => WC()->customer->get_shipping_postcode(),
+                'city'      => WC()->customer->get_shipping_city(),
+                'address'   => WC()->customer->get_shipping_address(),
+                'address_2' => WC()->customer->get_shipping_address_2()
+            )
+        );
+    }    
+    
+    return $packages;
+}
+add_filter( 'woocommerce_cart_shipping_packages', 'bulky_woocommerce_cart_shipping_packages' );
 
 
 
@@ -848,6 +1029,11 @@ require get_template_directory() . '/inc/template-tags.php';
  * Custom functions that act independently of the theme templates.
  */
 require get_template_directory() . '/inc/extras.php';
+
+/**
+ * Custom functions that act independently of the theme templates.
+ */
+require get_template_directory() . '/inc/shipping_method.php';
 
 /**
  * Customizer additions.

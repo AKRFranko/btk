@@ -12,110 +12,18 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-if( $chosen_method == 'local_delivery'){
-  echo '<td>Delivery</td><td>$75</td>';
-}else{
-  echo '<td>Pickup</td><td>Free</td>';
-}
-if(!is_ajax()){
-foreach ( $available_methods as $method ) : ?>
- <input style="display:none" type="radio" name="shipping_method[<?php echo $index; ?>]" data-index="<?php echo $index; ?>" id="shipping_method_<?php echo $index; ?>_<?php echo sanitize_title( $method->id ); ?>" value="<?php echo esc_attr( $method->id ); ?>" <?php checked( $method->id, $chosen_method ); ?> class="shipping_method" />
-<?php endforeach; 
-}
+// $shipcost = 0;
+// var_dump($index);
+
+// foreach ( $available_methods as $method ){
+//   $label = $method->label;
+//   $cost  = intval($method->cost);
+//   if($cost > 0){
+//     $shipcost += $cost;
+//     var_dump($shipcost);
+//     echo "";
+//   }
+// }
+// echo "<h1>".wc_price( $shipcost )."</h1>";
 return;
 ?>
-
-<div class="shipping clearfix">
-	<span class="alignleft">
-	<?php
-		if ( $show_package_details ) {
-			//printf( __( 'Shipping #%d', 'btk' ), $index + 1 );
-		} else {
-		  
-			//_e( 'Shipping', 'btk' );
-		}
-	?>
-	</span>
-	<td>
-	
-		<?php if ( ! empty( $available_methods ) ) : ?>
-      
-			<?php if ( 1 === count( $available_methods ) ) :
-				$method = current( $available_methods );
-
-				echo '<span class="alignright">' . wp_kses_post( wc_cart_totals_shipping_method_label( $method ) ) . '</span>'; ?>
-				<input type="hidden" name="shipping_method[<?php echo $index; ?>]" data-index="<?php echo $index; ?>" id="shipping_method_<?php echo $index; ?>" value="<?php echo esc_attr( $method->id ); ?>" class="shipping_method" />
-
-			<?php elseif ( get_option( 'woocommerce_shipping_method_format' ) === 'select' ) : ?>
-
-				<select name="shipping_method[<?php echo $index; ?>]" data-index="<?php echo $index; ?>" id="shipping_method_<?php echo $index; ?>" class="shipping_method">
-					<?php foreach ( $available_methods as $method ) : ?>
-						<option value="<?php echo esc_attr( $method->id ); ?>" <?php selected( $method->id, $chosen_method ); ?>><?php echo wp_kses_post( wc_cart_totals_shipping_method_label( $method ) ); ?></option>
-					<?php endforeach; ?>
-				</select>
-
-			<?php else : ?>
-        
-			
-					<?php foreach ( $available_methods as $method ) : ?>
-							<input type="radio" name="shipping_method[<?php echo $index; ?>]" data-index="<?php echo $index; ?>" id="shipping_method_<?php echo $index; ?>_<?php echo sanitize_title( $method->id ); ?>" value="<?php echo esc_attr( $method->id ); ?>" <?php checked( $method->id, $chosen_method ); ?> class="shipping_method" />
-					      <?php echo btk_custom_shipping_total( $method, $method->id, $chosen_method ); ?>
-						<!-- <?php echo wp_kses_post( wc_cart_totals_shipping_method_label( $method ) ); ?>-->
-					<?php endforeach; ?>
-				
-
-
-
-			<?php endif; ?>
-
-		<?php elseif ( ! WC()->customer->get_shipping_state() || ! WC()->customer->get_shipping_postcode() ) : ?>
-
-			<?php if ( is_cart() && get_option( 'woocommerce_enable_shipping_calc' ) === 'yes' ) : ?>
-
-				<p><?php _e( 'Please use the shipping calculator to see available shipping methods.', 'btk' ); ?></p>
-
-			<?php elseif ( is_cart() ) : ?>
-
-				<p><?php _e( 'Please continue to the checkout and enter your full address to see if there are any available shipping methods.', 'btk' ); ?></p>
-
-			<?php else : ?>
-
-				<p><?php _e( 'Please fill in your details to see available shipping methods.', 'btk' ); ?></p>
-
-			<?php endif; ?>
-
-		<?php else : ?>
-
-			<?php if ( is_cart() ) : ?>
-
-				<?php echo apply_filters( 'woocommerce_cart_no_shipping_available_html',
-					'<p>' . __( 'There are no shipping methods available. Please double check your address, or contact us if you need any help.', 'btk' ) . '</p>'
-				); ?>
-
-			<?php else : ?>
-
-				<?php echo apply_filters( 'woocommerce_no_shipping_available_html',
-					'<p>' . __( 'There are no shipping methods available. Please double check your address, or contact us if you need any help.', 'btk' ) . '</p>'
-				); ?>
-
-			<?php endif; ?>
-
-		<?php endif; ?>
-
-		<?php if ( $show_package_details ) : ?>
-			<?php
-				foreach ( $package['contents'] as $item_id => $values ) {
-					if ( $values['data']->needs_shipping() ) {
-						$product_names[] = $values['data']->get_title() . ' &times;' . $values['quantity'];
-					}
-				}
-
-				echo '<p class="woocommerce-shipping-contents"><small>' . __( 'Shipping', 'btk' ) . ': ' . implode( ', ', $product_names ) . '</small></p>';
-			?>
-		<?php endif; ?>
-
-		<?php if ( is_cart() ) : ?>
-			<?php //woocommerce_shipping_calculator(); ?>
-		<?php endif; ?>
-	</td>
-</div>

@@ -1,6 +1,36 @@
 jQuery(function() {
     // $('input,select,textarea').trigger('change');
-    if (!$('body').is('.page-checkout')) return false;
+    if (!jQuery('body').is('.page-checkout')){ return false; }
+
+
+    var onUpdateShippingSuccess = function( response ){
+      console.log('shipping-method-update-success', response );
+      jQuery(document).trigger('shipping-method-update-success', [ response ]);
+    };
+    
+    var onUpdateShippingError = function( error ){
+      console.log('shipping-method-update-error', error );
+      jQuery(document).trigger('shipping-method-update-error', [ error ]);
+    };
+    
+    var updateShipping = function( method ) {
+      var data = {
+        action: 'woocommerce_update_order_review',
+        security: wc_checkout_params.update_order_review_nonce,
+        shipping_method: [ method ]
+      }
+      jQuery.ajax({
+        type: 'POST',
+        url: wc_checkout_params.ajax_url,
+        data: data,
+        success: onUpdateShippingSuccess,
+        error: onUpdateShippingError
+      });
+    };
+ 
+ 
+
+
 
     var storeOptions = {
         namespace: 'edb-checkout',
@@ -77,38 +107,50 @@ jQuery(function() {
     //     if ($(this).is(':checked')) $(this).removeAttr('checked');
     // });
 
-    $('#local_pickup_option').on('change', function() {
-        var isRush = $('#rush_delivery_option').get(0).checked;
-        var isPickup = $('#local_pickup_option').get(0).checked;
-        var $input = $('input[name="shipping_method[0]"]');
-        var $pick = $('#shipping_method_0_local_pickup');
-        var $deliv = $('#shipping_method_0_local_delivery');
-        if (isPickup) {
-            if (isRush) $('#rush_delivery_option').click();
-            $pick.click()
-        } else {
-            $deliv.click();
-        }
-        setTimeout(function() {
-            if ($deliv.is(':checked')) {
-                $('.delivery_fees_subtotal_summary').text('$75.00');
-            } else {
-                $('.delivery_fees_subtotal_summary').text('$0.00');
-            }
-        }, 500);
-        // if ($(this).is('#rush_delivery_option')) {
+    // $('#no-shipping-checkbox').on('change', function() {
+    //     if ($(this).is(':checked')) {
+    //         $('#shipping_method_0_local_pickup').get(0).checked = true;
+    //         $('#shipping_method_0_local_delivery').get(0).checked = false;
 
-        // }
+    //     } else {
+    //         $('#shipping_method_0_local_pickup').get(0).checked = false;
+    //         $('#shipping_method_0_local_delivery').get(0).checked = true;
+    //         // $('#shipping_method_0_local_delivery').click();//
+    //     }
+    // }).trigger('change');
 
-    }).trigger('change')
+    // $('#local_pickup_option').on('change', function() {
+    //     var isRush = $('#rush_delivery_option').get(0).checked;
+    //     var isPickup = $('#local_pickup_option').get(0).checked;
+    //     var $input = $('input[name="shipping_method[0]"]');
+    //     var $pick = $('#shipping_method_0_local_pickup');
+    //     var $deliv = $('#shipping_method_0_local_delivery');
+    //     if (isPickup) {
+    //         if (isRush) $('#rush_delivery_option').click();
+    //         $pick.click()
+    //     } else {
+    //         $deliv.click();
+    //     }
+    //     setTimeout(function() {
+    //         if ($deliv.is(':checked')) {
+    //             $('.delivery_fees_subtotal_summary').text('$65.00');
+    //         } else {
+    //             $('.delivery_fees_subtotal_summary').text('$0.00');
+    //         }
+    //     }, 500);
+    //     // if ($(this).is('#rush_delivery_option')) {
 
-    $('#rush_delivery_option').on('change', function() {
-        var isRush = $('#rush_delivery_option').get(0).checked;
-        var wasPickup = $('#local_pickup_option').get(0).checked;
-        if (isRush && wasPickup) {
-            $('#local_pickup_option').click();
-        }
-    }).trigger('change')
+    //     // }
+
+    // }).trigger('change')
+
+    // $('#rush_delivery_option').on('change', function() {
+    //     var isRush = $('#rush_delivery_option').get(0).checked;
+    //     var wasPickup = $('#local_pickup_option').get(0).checked;
+    //     if (isRush && wasPickup) {
+    //         $('#local_pickup_option').click();
+    //     }
+    // }).trigger('change')
 
     $('form[name="checkout"]').on('change', function(event) {
             var target = $(event.target);
@@ -156,6 +198,69 @@ jQuery(function() {
         for (var i = stickies.length - 1; i >= 0; i--) {
             Stickyfill.add(stickies[i]);
         }
+
+        if ($('.woocommerce-billing-fields').length) {
+            var billingFields = $('[name^=billing_]');
+            var shippingFields = $('[name^=shipping_]');
+            billingFields.each(function() {
+                var $bf = $(this);
+                var sfname = $bf.attr('name').replace('billing', 'shipping');
+                var $sf = $('[name=' + sfname + ']');
+                if ($sf.length) {
+                    $bf.on('focusout change', function() {
+                        if ($('#same-address-checkbox').is(':checked')) {
+
+                            $sf.val($bf.val()).trigger('change');
+                            $sf.attr('readonly', true);
+                        } else {
+
+                            $sf.attr('readonly', false);
+                            $sf.val('').trigger('change');
+                        }
+
+                    });
+                }
+            });
+
+        }
+
+        $(document).on('btk-shipping-method-change', function(event, data) {
+            $('input[name="shipping_method[0]"]').val(data);
+            // updateShipping( data );
+        });
+        
+        $('#same-address-checkbox').on('click', function() {
+            if ($('#no-shipping-checkbox').is(':checked')) {
+                $('#no-shipping-checkbox').prop('checked', false);
+            }
+            billingFields.each(function() {
+                $(this).trigger('change');
+            })
+        })
+
+        $('#no-shipping-checkbox').on('click', function() {
+            if ($('#same-address-checkbox').is(':checked')) {
+                $('#same-address-checkbox').prop('checked', false);
+            }
+
+            if ($(this).is(':checked')) {
+                shippingFields.each(function() {
+                    $(this).val('').attr('readonly', true).trigger('change');
+
+                });
+            } else {
+                shippingFields.each(function() {
+                    $(this).val('').attr('readonly', false).trigger('change');
+
+                });
+            }
+
+        });
+
+        $('#same-address-checkbox, #no-shipping-checkbox').on('click', function() {
+            var method = $('#no-shipping-checkbox').is(':checked') ? 'local_pickup' : 'local_delivery';
+            $(document).trigger('btk-shipping-method-change', [method]);
+        })
     })
 
 });

@@ -66,8 +66,7 @@ global $current_user;
         <span class="shipping_country_summary"></span></div><div>
         <span class="shipping_postcode_summary"></span>
       </div>     
-      
-     
+
   </div>
 
   
@@ -114,7 +113,7 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
 <div class="forms">
 
 
-<form name="checkout" method="post" class="checkout woocommerce-checkout" action="<?php echo esc_url( $get_checkout_url ); ?>" enctype="multipart/form-data">
+<form id="checkoutForm" name="checkout" method="post" class="checkout woocommerce-checkout" action="<?php echo esc_url( $get_checkout_url ); ?>" enctype="multipart/form-data">
 	
   <input name="delivery_fees_subtotal" type="hidden" value="-">
   
@@ -131,6 +130,9 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
     				<div class="col-1">
     					<?php do_action( 'woocommerce_checkout_shipping' ); ?>
     				</div>
+    				
+    				<?php wp_nonce_field( 'woocommerce-cart' ); ?>
+    				
     				
     				<div>
     	  	    <a href="#" class="tabnext"><?php _e('save & continue', 'btk'); ?></a>
@@ -155,14 +157,20 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
 
 		<?php do_action( 'woocommerce_cart_actions' ); ?>
 
-		<?php wp_nonce_field( 'woocommerce-cart' ); ?>
+		<?php //wp_nonce_field( 'woocommerce-cart' ); ?>
 
 		<?php do_action( 'woocommerce_after_cart_contents' ); ?>
 	</div>
 	<div class="cart-collaterals lower">
 	
 	 <div class="cart-totals calculated-shipping">
-    <p><?php _e('total delivery', 'btk'); ?>&nbsp;<span class="calculated-amount">---</span> </p>
+
+     <?php $shipping_total = WC()->cart->shipping_total; ?>
+     <p><?php _e('total delivery', 'btk'); ?>: <?php echo wc_price($shipping_total)?></p>
+
+   
+	   
+    <!--<p><?php _e('total delivery', 'btk'); ?>&nbsp;<span class="calculated-amount"></span> </p>-->
     
     </div>
     <div class="cart-totals message">
@@ -311,7 +319,7 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
     		          <td>Promo Code</td><td>-$0</td>
     		        </tr>-->
     		        <tr>
-    		          <td>Shipping & Handling</td><td><?php wc_cart_totals_fee_html('shipping'); ?></td>
+    		          <td>Shipping & Handling</td><td><?php wc_cart_totals_shipping_html(); ?></td>
     		        </tr>
     		        <tr>
     		          <td>Taxes</td><td><?php wc_cart_totals_taxes_total_html(); ?></td>
@@ -408,6 +416,9 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
         	
         </div>
 <?php endif; ?>
+
+			
+
 
 </form>
 </div>
