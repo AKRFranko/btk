@@ -1087,6 +1087,9 @@ Base Styles Responsive Design
 /*
  Towards Launch Cleanup
 */
+.coupon-selfserve a {
+  display: none;
+}
 .btk-cart-items {
   display: block;
   float: left;

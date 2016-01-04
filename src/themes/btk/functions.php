@@ -297,21 +297,68 @@ function add_slug_body_class($classes) {
 add_filter('body_class', 'add_slug_body_class');
 add_filter('show_admin_bar', '__return_false');
 
+add_filter('woocommerce_review_order_before_submit', 'needs_payment_now');
+function needs_payment_now( $order ){
+  write_log($order);
+  return $order;
+}
+// function additional_validation($fields){
+//     // bypass all error returned
+//     $fields['payment_method'] = null;
+//     write_log( $fields );
+//     // wc_clear_notices();
+//     return $fields;
+// }
+
 /**
  * Redirect if not logged in on checkout page
  */
 function woo_redirect() {
-  if (!is_user_logged_in() && is_checkout() && !$_REQUEST['guest']) {
-	  $_SESSION['redirect_to'] = 'checkout';
-		wp_redirect(home_url() . '/my-account');
-		exit;
-	};
-	if($_REQUEST['guest']){
-	  $_SESSION['redirect_to'] = null;  
-	}
-	if(is_user_logged_in() && is_account_page()){
-	    $_SESSION['redirect_to'] = null;  
-	};
+  write_log( json_encode(array(
+      'logged_in?'=> is_user_logged_in(),
+      'is_checkout?'=> is_checkout(),
+      'is_cart?='=> is_cart(),
+      '!$_REQUEST[guest]'=>!$_REQUEST['guest'],
+    )) 
+    );
+  // if( is_cart() ){
+  //   if(!is_user_logged_in() && !$_REQUEST['guest'] ){
+  //     wp_redirect(home_url() . '/my-account');
+  //   }
+  // }
+  if( is_checkout() ){
+    if(!is_user_logged_in() && !$_REQUEST['guest'] ){
+      wp_redirect(home_url() . '/my-account');
+    }
+    
+  }
+  
+  
+  
+//   if (!is_user_logged_in() && is_checkout() && !$_REQUEST['guest']) {
+// 	  $_SESSION['redirect_to'] = 'checkout';
+// 		wp_redirect(home_url() . '/my-account');
+// 		exit;
+// 	}else if($_REQUEST['guest']){
+// 	 /// $_SESSION['redirect_to'] = null;  
+// 	}
+// 	if(is_user_logged_in() && is_account_page()){
+// 	    $_SESSION['redirect_to'] = null;  
+// 	};
+// 	if( $_REQUEST['guest'] ){
+// 	  $_SESSION['edb_guest_checkout']=true;
+// 	}
+// 	if( isset($_GET['step']) ){
+// 	  $step = $_GET['step'];
+// 	  $guest = $_REQUEST['guest'];
+// 	  $isGuest =  $guest == 'true' ? true : false;
+	  
+// 	  if( $isGuest ){
+// 	    if( $step == 'shipping'){
+// 	      wp_redirect( home_url('/') . "checkout?guest=$guest&step=delivery");
+// 	    }else if( $step == '')
+// 	  }
+// 	}
 	
 }
 add_action('template_redirect', 'woo_redirect');
@@ -360,9 +407,9 @@ function woocommerce_header_add_to_cart_fragment( $fragments ) {
 
 }
 
-add_filter('woocommerce_update_order_review_fragments', 'btk_update_order_review');
+add_filter('woocommerce_update_order_review_fragments', 'btk_update_order_review_cart_items');
 
-function btk_update_order_review( $fragments ) {
+function btk_update_order_review_cart_items( $fragments ) {
   global $woocommerce;
 
   ob_start();
@@ -377,7 +424,10 @@ function btk_update_order_review( $fragments ) {
   return $fragments;
 
 }
-
+add_filter( 'woocommerce_add_error', function( $message ) {
+    
+    return strip_tags($message);
+});
 // function btk_split_products_by_availability( $data ){
 //   echo json_encode($data);
 //   return $data;
@@ -879,19 +929,30 @@ function btk_add_cart_item_data( $cart_item_meta, $product_id ) {
   return $cart_item_meta; 
 }
 
+if (!function_exists('write_log')) {
+    function write_log ( $log )  {
+        if ( true === WP_DEBUG ) {
+            if ( is_array( $log ) || is_object( $log ) ) {
+                error_log( print_r( $log, true ) );
+            } else {
+                error_log( $log );
+            }
+        }
+    }
+}
+
 
 
 //Get it from the session and add it to the cart variable
 function get_cart_items_from_session( $item, $values, $key ) {
-    $post_array = array();
-    parse_str( $_POST['post_data'], $post_array );
+    // $post_array = array();
+    // parse_str( $_POST['post_data'], $post_array );
+    
     if ( array_key_exists( 'edb_shipping', $values ) ){
       $item[ 'edb_shipping' ] = $values['edb_shipping'];
     }
     
-    if(array_key_exists('edb_shipping', $post_array['cart'][$key] ) ){
-      $item[ 'edb_shipping' ]  = $post_array['cart'][$key]['edb_shipping'];
-    }
+    
     return $item;
 }
 add_filter( 'woocommerce_get_cart_item_from_session', 'get_cart_items_from_session', 1, 3 );
@@ -899,7 +960,10 @@ add_filter( 'woocommerce_get_cart_item_from_session', 'get_cart_items_from_sessi
 function bulky_woocommerce_cart_shipping_packages( $packages ) {
     // Reset the packages
     $packages = array();
-  
+    $post_array = array();
+    parse_str( $_POST['post_data'], $post_array );
+    
+    // write_log( json_encode($post_array));
     // Bulky items
     $pickup_items   = array();
     $ready_items = array();
@@ -909,7 +973,9 @@ function bulky_woocommerce_cart_shipping_packages( $packages ) {
     
     // Sort bulky from regular
     foreach ( WC()->cart->get_cart() as $item_key => $item ) {
-      
+      if( !is_null($post_array['cart'][$key]) && array_key_exists('edb_shipping', $post_array['cart'][$key] ) ){
+        $item[ 'edb_shipping' ]  = $post_array['cart'][$key]['edb_shipping'];
+      }
         if( $item['edb_shipping'] == 'self_pickup'){
           $pickup_items[] = $item;
         }
@@ -927,8 +993,14 @@ function bulky_woocommerce_cart_shipping_packages( $packages ) {
         }
     }
     
+    
+    
     // Put inside packages5
-    if ( $pickup_items ) {
+    if ( count($pickup_items) > 0 ) {
+        if(!WC()->cart->has_discount('selfserve')){
+          WC()->cart->add_discount('selfserve');
+        }
+        
         $packages[] = array(
             'ship_via'        => array('local_pickup'),
             'contents'        => $pickup_items,
@@ -943,8 +1015,10 @@ function bulky_woocommerce_cart_shipping_packages( $packages ) {
                 'address_2' => WC()->customer->get_shipping_address_2()
             )
         );
+    }else{
+      WC()->cart->remove_coupon('selfserve');  
     }
-    if ( $ready_items ) {
+    if ( count($ready_items) > 0 ) {
         $packages[] = array(
             'ship_via'       => array('edb_shipping'),
             'contents'        => $ready_items,
@@ -960,7 +1034,7 @@ function bulky_woocommerce_cart_shipping_packages( $packages ) {
             )
         );
     }    
-    if ( $bundle_1_items ) {
+    if ( count($bundle_1_items) > 0 ) {
         $packages[] = array(
             'ship_via'       => array('edb_shipping'),
             'contents'        => $bundle_1_items,
@@ -976,7 +1050,7 @@ function bulky_woocommerce_cart_shipping_packages( $packages ) {
             )
         );
     } 
-    if ( $bundle_2_items ) {
+    if ( count($bundle_2_items) > 0 ) {
         $packages[] = array(
             'ship_via'       => array('edb_shipping'),
             'contents'        => $bundle_2_items,
@@ -992,7 +1066,7 @@ function bulky_woocommerce_cart_shipping_packages( $packages ) {
             )
         );
     }   
-    if ( $bundle_3_items ) {
+    if ( count($bundle_3_items) > 0 ) {
         $packages[] = array(
             'ship_via'       => array('edb_shipping'),
             'contents'        => $bundle_3_items,
@@ -1007,12 +1081,13 @@ function bulky_woocommerce_cart_shipping_packages( $packages ) {
                 'address_2' => WC()->customer->get_shipping_address_2()
             )
         );
-    }    
+    } 
+    
+    
     
     return $packages;
 }
 add_filter( 'woocommerce_cart_shipping_packages', 'bulky_woocommerce_cart_shipping_packages' );
-
 
 
 /**

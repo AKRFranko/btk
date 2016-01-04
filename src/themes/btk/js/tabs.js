@@ -67,32 +67,32 @@
     });
 
     window.btk.updateOrder = function(callback) {
+        
         var data = {
             action: 'woocommerce_update_order_review',
             security: wc_checkout_params.update_order_review_nonce,
-            post_data: $('form.checkout').serialize(),
-            shipping_method: [ $('input[name^=shipping_method]').val() ]
-            
+            post_data: $('#checkoutForm').serialize(),
+            shipping_method: [ 'edb_shipping' ]
         };
+        
         jQuery.ajax({
             type: 'POST',
-            url: wc_checkout_params.ajax_url,
-            data: data,
+            url: wc_checkout_params.checkout_url,
+            data: $('form.checkout').serialize(),
             success: function(e) {
               
                 if (e.fragments) {
-                  console.log(Object.keys(e.fragments));
+                  console.log('FRAGMENTS', Object.keys(e.fragments));
                     Object.keys(e.fragments).forEach(function(sel) {
                         $(sel).replaceWith(e.fragments[sel]);
-                        console.log($(sel))
                     });
                 }
                 callback(null, e);
-                console.log('success');
+                // console.log('success');
             },
             error: function(e) {
                 callback(e);
-                console.log('error', e);
+                // console.log('error', e);
             }
         })
 
@@ -100,14 +100,16 @@
     var tabbing = false;
     $('.tabnext').on('click', function(event) {
         event.preventDefault();
-        if (tabbing) return;
-        tabbing = true;
-        window.btk.updateOrder(function(error, data) {
-            if (!error) {
-                $('.tab.active').next().click();
-            }
-            tabbing = false;
-        });
+        return $('#checkoutForm').submit();
+        // if (tabbing) return;
+        // tabbing = true;
+        // window.btk.updateOrder(function(error, data) {
+        //     if (!error) {
+        //         $('.tab.active').next().click();
+        //     }
+            
+        //     tabbing = false;
+        // });
         // var data = {
         //     action: 'woocommerce_update_order_review',
         //     security: wc_checkout_params.update_order_review_nonce,
@@ -146,9 +148,9 @@
 
     })
 
-    setInterval(function() {
+    // setInterval(function() {
 
-        highlightTabsWithErrors()
-    }, 100)
+    //     highlightTabsWithErrors()
+    // }, 100)
 
 })(jQuery)

@@ -135,6 +135,7 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
     				
     				
     				<div>
+    				  <!--<button type="submit"><?php _e('save & continue', 'btk'); ?></button>-->
     	  	    <a href="#" class="tabnext"><?php _e('save & continue', 'btk'); ?></a>
     	  	  </div>
     	</div>

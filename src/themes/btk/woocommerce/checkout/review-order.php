@@ -23,8 +23,13 @@ if ( ! defined( 'ABSPATH' ) ) {
     		        
     		        <?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
 			<tr class="cart-discount coupon-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
-				<td><?php wc_cart_totals_coupon_label( $coupon ); ?></td>
-				<td><?php wc_cart_totals_coupon_html( $coupon ); ?></td>
+			  <?php if( $code == 'selfserve'){ ?>
+			    <td>self serve discount</td><td><?php wc_cart_totals_coupon_html( $coupon ); ?></td>
+			  <?php }else{ ?>
+			    <td><?php wc_cart_totals_coupon_label( $coupon ); ?></td>
+          <td><?php wc_cart_totals_coupon_html( $coupon ); ?></td>
+			  <?php } ?>
+				
 			</tr>
 		<?php endforeach; ?>
     		        

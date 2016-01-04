@@ -1,0 +1,264 @@
+array(6) {
+  ["ship_via"]=>
+  array(1) {
+    [0]=>
+    string(12) "edb_shipping"
+  }
+  ["contents"]=>
+  array(1) {
+    [0]=>
+    array(11) {
+      ["edb_shipping"]=>
+      string(13) "ship_bundle_1"
+      ["product_id"]=>
+      int(105)
+      ["variation_id"]=>
+      int(107)
+      ["variation"]=>
+      array(0) {
+      }
+      ["quantity"]=>
+      int(1)
+      ["line_total"]=>
+      float(332.5)
+      ["line_tax"]=>
+      float(16.625)
+      ["line_subtotal"]=>
+      float(350)
+      ["line_subtotal_tax"]=>
+      float(17.5)
+      ["line_tax_data"]=>
+      array(2) {
+        ["total"]=>
+        array(1) {
+          [1]=>
+          float(16.625)
+        }
+        ["subtotal"]=>
+        array(1) {
+          [1]=>
+          float(17.5)
+        }
+      }
+      ["data"]=>
+      object(WC_Product_Variation)#84 (18) {
+        ["variation_id"]=>
+        int(107)
+        ["parent"]=>
+        object(WC_Product_Variable)#80 (9) {
+          ["children"]=>
+          NULL
+          ["total_stock"]=>
+          NULL
+          ["prices_array":"WC_Product_Variable":private]=>
+          NULL
+          ["id"]=>
+          int(105)
+          ["post"]=>
+          object(WP_Post)#83 (24) {
+            ["ID"]=>
+            int(105)
+            ["post_author"]=>
+            string(1) "1"
+            ["post_date"]=>
+            string(19) "2015-12-07 01:00:58"
+            ["post_date_gmt"]=>
+            string(19) "2015-12-07 01:00:58"
+            ["post_content"]=>
+            string(132) "﻿A light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat."
+            ["post_title"]=>
+            string(5) "court"
+            ["post_excerpt"]=>
+            string(0) ""
+            ["post_status"]=>
+            string(7) "publish"
+            ["comment_status"]=>
+            string(4) "open"
+            ["ping_status"]=>
+            string(6) "closed"
+            ["post_password"]=>
+            string(0) ""
+            ["post_name"]=>
+            string(5) "court"
+            ["to_ping"]=>
+            string(0) ""
+            ["pinged"]=>
+            string(0) ""
+            ["post_modified"]=>
+            string(19) "2015-12-22 14:29:09"
+            ["post_modified_gmt"]=>
+            string(19) "2015-12-22 14:29:09"
+            ["post_content_filtered"]=>
+            string(0) ""
+            ["post_parent"]=>
+            int(0)
+            ["guid"]=>
+            string(37) "http://badb0x.akr.club/product/court/"
+            ["menu_order"]=>
+            int(0)
+            ["post_type"]=>
+            string(7) "product"
+            ["post_mime_type"]=>
+            string(0) ""
+            ["comment_count"]=>
+            string(1) "0"
+            ["filter"]=>
+            string(3) "raw"
+          }
+          ["product_type"]=>
+          string(8) "variable"
+          ["shipping_class":protected]=>
+          string(0) ""
+          ["shipping_class_id":protected]=>
+          int(0)
+          ["tax_status"]=>
+          string(7) "taxable"
+        }
+        ["variation_shipping_class"]=>
+        string(9) "furniture"
+        ["variation_shipping_class_id"]=>
+        bool(false)
+        ["variation_has_sku"]=>
+        bool(true)
+        ["variation_has_length"]=>
+        bool(true)
+        ["variation_has_width"]=>
+        bool(true)
+        ["variation_has_height"]=>
+        bool(true)
+        ["variation_has_weight"]=>
+        bool(true)
+        ["variation_has_tax_class"]=>
+        bool(true)
+        ["variation_has_downloadable_files"]=>
+        bool(true)
+        ["variation_level_meta_data":protected]=>
+        array(11) {
+          ["downloadable"]=>
+          string(2) "no"
+          ["virtual"]=>
+          string(2) "no"
+          ["manage_stock"]=>
+          string(2) "no"
+          ["sale_price_dates_from"]=>
+          string(0) ""
+          ["sale_price_dates_to"]=>
+          string(0) ""
+          ["price"]=>
+          string(0) ""
+          ["regular_price"]=>
+          string(0) ""
+          ["sale_price"]=>
+          string(0) ""
+          ["stock"]=>
+          int(0)
+          ["stock_status"]=>
+          string(7) "instock"
+          ["downloadable_files"]=>
+          array(0) {
+          }
+        }
+        ["variation_inherited_meta_data":protected]=>
+        array(7) {
+          ["tax_class"]=>
+          string(0) ""
+          ["backorders"]=>
+          string(2) "no"
+          ["sku"]=>
+          string(0) ""
+          ["weight"]=>
+          string(0) ""
+          ["length"]=>
+          string(0) ""
+          ["width"]=>
+          string(0) ""
+          ["height"]=>
+          string(0) ""
+        }
+        ["id"]=>
+        int(105)
+        ["post"]=>
+        object(WP_Post)#83 (24) {
+          ["ID"]=>
+          int(105)
+          ["post_author"]=>
+          string(1) "1"
+          ["post_date"]=>
+          string(19) "2015-12-07 01:00:58"
+          ["post_date_gmt"]=>
+          string(19) "2015-12-07 01:00:58"
+          ["post_content"]=>
+          string(132) "﻿A light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat."
+          ["post_title"]=>
+          string(5) "court"
+          ["post_excerpt"]=>
+          string(0) ""
+          ["post_status"]=>
+          string(7) "publish"
+          ["comment_status"]=>
+          string(4) "open"
+          ["ping_status"]=>
+          string(6) "closed"
+          ["post_password"]=>
+          string(0) ""
+          ["post_name"]=>
+          string(5) "court"
+          ["to_ping"]=>
+          string(0) ""
+          ["pinged"]=>
+          string(0) ""
+          ["post_modified"]=>
+          string(19) "2015-12-22 14:29:09"
+          ["post_modified_gmt"]=>
+          string(19) "2015-12-22 14:29:09"
+          ["post_content_filtered"]=>
+          string(0) ""
+          ["post_parent"]=>
+          int(0)
+          ["guid"]=>
+          string(37) "http://badb0x.akr.club/product/court/"
+          ["menu_order"]=>
+          int(0)
+          ["post_type"]=>
+          string(7) "product"
+          ["post_mime_type"]=>
+          string(0) ""
+          ["comment_count"]=>
+          string(1) "0"
+          ["filter"]=>
+          string(3) "raw"
+        }
+        ["product_type"]=>
+        string(9) "variation"
+        ["shipping_class":protected]=>
+        string(9) "furniture"
+        ["shipping_class_id":protected]=>
+        int(0)
+      }
+    }
+  }
+  ["contents_cost"]=>
+  float(332.5)
+  ["applied_coupons"]=>
+  array(0) {
+  }
+  ["destination"]=>
+  array(6) {
+    ["country"]=>
+    string(2) "CA"
+    ["state"]=>
+    string(0) ""
+    ["postcode"]=>
+    string(7) "FRA NKO"
+    ["city"]=>
+    string(0) ""
+    ["address"]=>
+    string(0) ""
+    ["address_2"]=>
+    string(0) ""
+  }
+  ["rates"]=>
+  array(0) {
+  }
+}
+{"result":"success","messages":"","reload":"false","fragments":{".woocommerce-checkout-review-order-table":"\n \n            <table class=\"woocommerce-checkout-review-order-table\">\n                <tr>\n    \t\t          <th>Order Total<\/th><th><strong><span class=\"amount\">&#36;349.13<\/span><\/strong> <\/th>\n    \t\t        <\/tr>\n    \t\t        <tr>\n    \t\t          <td>Subtotal<\/td><td><span class=\"amount\">&#36;350.00<\/span><\/td>\n    \t\t        <\/tr>\n    \t\t        \n    \t\t            \t\t        \n    \t\t        <tr>\n    \t\t              \t\t          <td>Shipping & Handling<\/td><td><span class=\"amount\">&#36;0.00<\/span><\/td>\n    \t\t        <\/tr>\n    \t\t        <tr>\n    \t\t          <td>Taxes<\/td><td><span class=\"amount\">&#36;16.63<\/span><\/td>\n    \t\t        <\/tr>\n    \t\t        \n    \t\t      <\/table>\n",".woocommerce-checkout-payment":"\n\n<div id=\"payment\" class=\"woocommerce-checkout-payment\">\n\t<!--\t<ul class=\"payment_methods methods\">\n\t\t\n<div class=\"payment_box payment_method_paypal\">\n\t    \n\t\t\t<p>Pay via PayPal; you can pay with your credit card if you don&#8217;t have a PayPal account.<\/p>\n<\/div>\n\n<div class=\"payment_box payment_method_paypal_pro\">\n\t    \n\t\t\t<p>Pay with your credit card via PayPal Website Payments Pro. TEST\/SANDBOX MODE ENABLED. In test mode, you can use the card number 4007000000027 with any CVC and a valid expiration date.  Note that you will get a faster processing result if you use a card from your developer's account.<\/p>\t\t<fieldset id=\"paypal_pro-cc-form\">\n\t\t\t\t\t\t<p class=\"form-row form-row-wide\">\n\t\t\t\t<label for=\"paypal_pro-card-number\">Card Number <span class=\"required\">*<\/span><\/label>\n\t\t\t\t<input id=\"paypal_pro-card-number\" class=\"input-text wc-credit-card-form-card-number\" type=\"text\" maxlength=\"20\" autocomplete=\"off\" placeholder=\"\u2022\u2022\u2022\u2022 \u2022\u2022\u2022\u2022 \u2022\u2022\u2022\u2022 \u2022\u2022\u2022\u2022\" name=\"paypal_pro-card-number\" \/>\n\t\t\t<\/p><p class=\"form-row form-row-first\">\n\t\t\t\t<label for=\"paypal_pro-card-expiry\">Expiry (MM\/YY) <span class=\"required\">*<\/span><\/label>\n\t\t\t\t<input id=\"paypal_pro-card-expiry\" class=\"input-text wc-credit-card-form-card-expiry\" type=\"text\" autocomplete=\"off\" placeholder=\"MM \/ YY\" name=\"paypal_pro-card-expiry\" \/>\n\t\t\t<\/p><p class=\"form-row form-row-last\">\n\t\t\t\t<label for=\"paypal_pro-card-cvc\">Card Code <span class=\"required\">*<\/span><\/label>\n\t\t\t\t<input id=\"paypal_pro-card-cvc\" class=\"input-text wc-credit-card-form-card-cvc\" type=\"text\" autocomplete=\"off\" placeholder=\"CVC\" name=\"paypal_pro-card-cvc\" \/>\n\t\t\t<\/p>\t\t\t\t\t\t<div class=\"clear\"><\/div>\n\t\t<\/fieldset>\n\t\t<\/div>\n\t<\/ul>-->\n\t\t<div class=\"form-row place-order\">\n\n\t\t<noscript>Since your browser does not support JavaScript, or it is disabled, please ensure you click the <em>Update Totals<\/em> button before placing your order. You may be charged more than the amount stated above if you fail to do so.<br\/><input type=\"submit\" class=\"button alt\" name=\"woocommerce_checkout_update_totals\" value=\"Update totals\" \/><\/noscript>\n\n\t\t<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"740f170878\" \/><input type=\"hidden\" name=\"_wp_http_referer\" value=\"\/wp-admin\/admin-ajax.php\" \/>\n\t\t\n\t\t<input type=\"submit\" class=\"button alt\" name=\"woocommerce_checkout_place_order\" id=\"place_order\" value=\"Place order\" data-value=\"Place order\" \/>\n\t\t\n\t\t\n\t<\/div>\n\n\t<div class=\"clear\"><\/div>\n<\/div>\n\n","div#delivery-pane .cart-contents":"<div class=\"cart-contents\"><div class=\"btk-cart-option-headers\">\n  \n  <div>pick up.<\/div><div>Ship Ind.<\/div><div>Bundle 1<\/div><div>Bundle 2<\/div><div>Bundle 3<\/div>\n<\/div>\n<div class=\"btk-cart-items\">\n       <div data-json=\"{&quot;item_price&quot;:&quot;350.00&quot;,&quot;item_category&quot;:&quot;2-seater&quot;,&quot;qty_in_stock&quot;:{&quot;_visibility&quot;:[&quot;visible&quot;],&quot;attribute_edb_material&quot;:[&quot;002&quot;],&quot;_stock_status&quot;:[&quot;instock&quot;],&quot;_stock_backorder_delay&quot;:[&quot;+15 days&quot;],&quot;_stock&quot;:[&quot;2.000000&quot;],&quot;_manage_stock&quot;:[&quot;yes&quot;],&quot;_backorders&quot;:[&quot;yes&quot;],&quot;_price&quot;:[&quot;350.00&quot;],&quot;_regular_price&quot;:[&quot;350.00&quot;],&quot;_sku&quot;:[&quot;SOF-2ST-002&quot;],&quot;_thumbnail_id&quot;:[&quot;256&quot;],&quot;_virtual&quot;:[&quot;no&quot;],&quot;_downloadable&quot;:[&quot;no&quot;],&quot;_weight&quot;:[&quot;&quot;],&quot;_length&quot;:[&quot;&quot;],&quot;_width&quot;:[&quot;&quot;],&quot;_height&quot;:[&quot;&quot;],&quot;_sale_price&quot;:[&quot;&quot;],&quot;_sale_price_dates_from&quot;:[&quot;&quot;],&quot;_sale_price_dates_to&quot;:[&quot;&quot;],&quot;_download_limit&quot;:[&quot;&quot;],&quot;_download_expiry&quot;:[&quot;&quot;],&quot;_downloadable_files&quot;:[&quot;&quot;],&quot;_variation_description&quot;:[&quot;&quot;]},&quot;qty_wanted&quot;:1}\" class=\"btk-cart-item\">\n         \n         <div class=\"btk-cart-item-image\">\n           <a title=\"court\" href=\"http:\/\/badb0x.akr.club\/product\/court\/\"><img width=\"640\" height=\"380\" src=\"http:\/\/badb0x.akr.club\/wp-content\/uploads\/2015\/12\/parc_mat_002-900x534.jpg\" class=\"attachment-shop_thumbnail wp-post-image\" alt=\"\" \/><\/a>         <\/div>\n         \n         <div class=\"btk-cart-item-meta\">\n           <div class=\"line\">\n           <span class=\"btk-cart-item-name\"><a title=\"court\" href=\"http:\/\/badb0x.akr.club\/product\/court\/\">court<\/a><\/span>\n           <span class=\"btk-cart-item-category\">2-seater<\/span>\n           <\/div>\n           <div class=\"line\">\n           <span class=\"btk-cart-item-quantity\">1 &times;<\/span>\n           <span class=\"btk-cart-item-material\">color2<\/span>\n           <\/div>\n           <div class=\"line\">\n           <span class=\"btk-cart-item-availability\">1 week<\/span>\n           <\/div>\n           \n         <\/div>\n         \n         <div class=\"btk-cart-item-options\">\n                                 \n           <div class=\"btk-cart-item-shipping\">\n             <label class=\"btk-cart-item-shipping-checkbox btk-self-pickup\">\n               <input type=\"radio\" name=\"cart[3ca123f24fcb802c2c82ebcdcb93f9c4][edb_shipping]\" value=\"self_pickup\" >\n             <\/label>\n             <label class=\"btk-cart-item-shipping-checkbox btk-ship-ready\">\n               <input type=\"radio\" name=\"cart[3ca123f24fcb802c2c82ebcdcb93f9c4][edb_shipping]\" value=\"ship_ready\" >\n             <\/label>\n             <label class=\"btk-cart-item-shipping-checkbox btk-ship-bundle-1\">\n               <input type=\"radio\" name=\"cart[3ca123f24fcb802c2c82ebcdcb93f9c4][edb_shipping]\" value=\"ship_bundle_1\" checked=\"checked\">\n             <\/label>\n             <label class=\"btk-cart-item-shipping-checkbox btk-ship-bundle-2\">\n               <input type=\"radio\" name=\"cart[3ca123f24fcb802c2c82ebcdcb93f9c4][edb_shipping]\" value=\"ship_bundle_2\" >\n             <\/label>\n             <label class=\"btk-cart-item-shipping-checkbox btk-ship-bundle-3\">\n               <input type=\"radio\" name=\"cart[3ca123f24fcb802c2c82ebcdcb93f9c4][edb_shipping]\" value=\"ship_bundle_3\" >\n             <\/label>\n           <\/div>\n                    <\/div>\n         \n         <div class=\"btk-cart-item-actions\">\n           <div class=\"btk-cart-item-remove\">\n             <a href=\"http:\/\/badb0x.akr.club\/cart\/?remove_item=3ca123f24fcb802c2c82ebcdcb93f9c4&#038;_wpnonce=16683e731f\" title=\"Remove this item\">remove&nbsp;&nbsp;&times;<\/a>             \n           <\/div>\n                      <div class=\"btk-cart-item-edit\">\n             <!--<a href=\"#\">edit<\/a>-->\n             <a href=\"http:\/\/badb0x.akr.club\/cart?guest=\">edit<\/a>\n           <\/div>\n                    <\/div>\n         \n         \n     <\/div>\n   \n <\/div>\n\n\n<\/div>"}}

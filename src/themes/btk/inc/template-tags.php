@@ -419,7 +419,7 @@ function btk_cart_item_html( $cart_item_key, $cart_item, $region ){
      $cart_item_stock_qty = get_post_meta( $cart_item_variation_id );
      $cart_item_stock_backorder_delay = get_post_meta( $cart_item_variation_id,'_stock_backorder_delay',true);
    
-   
+     
      $quantity_wanted = $cart_item['quantity'];
      
      $main_shipping_method = $woocommerce->session->chosen_shipping_methods[0];
@@ -430,8 +430,9 @@ function btk_cart_item_html( $cart_item_key, $cart_item, $region ){
      }
      
      $cart_item_product_price_total = '$' . sprintf( "%.2f", $quantity_wanted * $cart_item_product->price);
- 
+  
      $edb_earliest_availability = __('1 week', 'btk' );
+     
      $product_availability_date_string = $quantity_wanted <= $cart_item_stock_qty ? $edb_earliest_availability : btk_time_elapsed( strtotime($cart_item_stock_backorder_delay) );
      
      $btk_cart_item_json_data = array(
@@ -455,12 +456,14 @@ function btk_cart_item_html( $cart_item_key, $cart_item, $region ){
            <span class="btk-cart-item-name"><?php
                printf( '<a title="%s" href="%s">%s</a>', $cart_item_product_name, $cart_item_product_permalink, $cart_item_product_name );
            ?></span>
-           </div>
-           <div class="line">
            <span class="btk-cart-item-category"><?php
                echo $cart_item_product_category;
            ?></span>
-           
+           </div>
+           <div class="line">
+           <span class="btk-cart-item-quantity"><?php
+                echo $quantity_wanted;
+           ?> &times;</span>
            <span class="btk-cart-item-material"><?php
                echo $cart_item_edb_material_name;
            ?></span>
@@ -497,19 +500,24 @@ function btk_cart_item_html( $cart_item_key, $cart_item, $region ){
                <input type="radio" name="cart[<?php echo $cart_item_key ?>][edb_shipping]" value="ship_bundle_2" <?php echo $cart_item_shipping_method == 'ship_bundle_2' ? 'checked="checked"' : '' ?>>
              </label>
              <label class="btk-cart-item-shipping-checkbox btk-ship-bundle-3">
-               <input type="radio" name="cart[<?php echo $cart_item_key ?>][edb_shipping]" value="ship_bundle_3" <?php echo $cart_item_shipping_method == 'ship_bundle_3' ? 'checked="checked"' : '' ?>>
+               <input type="radio" name="cart[<?php echo $cart_item_key ?>][edb_shipping]" value="ship_bundle_3" <?php echo $cart_item_shipping_method == 'ship_bundle_2' ? 'checked="checked"' : '' ?>>
              </label>
+             
            </div>
            <?php } ?>
          </div>
          
          <div class="btk-cart-item-actions">
            <div class="btk-cart-item-remove">
-             <a href="#">remove&nbsp;&nbsp;&times;</a>
+             <?php
+               echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" title="%s">remove&nbsp;&nbsp;&times;</a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ), __( 'Remove this item', 'btk' ) ), $cart_item_key );
+             ?>
+             
            </div>
            <?php if($region != 'cart'){ ?>
            <div class="btk-cart-item-edit">
-             <a href="#">edit</a>
+             <!--<a href="#">edit</a>-->
+             <a href="<?php echo esc_url(home_url('/')); ?>cart?guest=<?php echo $_REQUEST['guest'] ?>">edit</a>
            </div>
            <?php } ?>
          </div>
@@ -519,7 +527,7 @@ function btk_cart_item_html( $cart_item_key, $cart_item, $region ){
    
  <?php
 }
-function btk_cart_row( $cart_item_key, $cart_item){
+/*function btk_cart_row( $cart_item_key, $cart_item){
   
   
   
@@ -649,7 +657,7 @@ function btk_cart_row( $cart_item_key, $cart_item){
   }
 }
 
-
+*/
 /**
  * Recently viewed products
  **/
