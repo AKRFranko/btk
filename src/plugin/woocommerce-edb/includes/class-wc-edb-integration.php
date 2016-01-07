@@ -9,6 +9,12 @@
 
 if ( ! class_exists( 'WC_Edb_Integration' ) ) :
 
+function js_log( $thing ){
+  echo "<script>";
+  echo "console.log(".json_encode( $thing ).")";
+  echo "</script>";
+}
+
 class WC_Edb_Integration extends WC_Integration {
 
   /**
@@ -38,6 +44,11 @@ class WC_Edb_Integration extends WC_Integration {
     
     add_action( 'wp_enqueue_scripts', array( $this, 'custom_cart_script') );
     
+    
+    
+    
+    // add_action('woocommerce_checkout_process', array( $this, 'process_checkout') );
+    
     // add_action( 'wp_ajax_nopriv_update_cart_item_quantities', array($this, 'update_cart_item_quantities'));
     // add_action( 'wp_ajax_post_update_cart_item_quantities', array($this, 'update_cart_item_quantities'));
     // add_action('woocommerce_before_cart_contents', array($this,'before_cart_contents'));
@@ -45,21 +56,16 @@ class WC_Edb_Integration extends WC_Integration {
 
   }
   
-  // public function cart_updated( $a){
+ 
+  
+  
+  // public function process_checkout(){
     
-  //   if ( ! isset( $_POST['edb_cart_update'] ) || ! wp_verify_nonce( $_POST['edb_cart_update'], 'edb_cart_update' ) ) {
-      
-  //   } else {
-     
-  //     if(!empty($_POST['cart'])){
-  //       foreach($_POST['cart'] as $cart_item_key => $cart_item ){
-  //         WC()->cart->set_quantity($cart_item_key,$cart_item['quantity']);
-  //       }
-  //     }
-     
-  //   }  
-    
-    
+  //   if( !$_POST['current_panel'] || $_POST['current_panel'] !== '#place-order-panel'){
+  //     wc_add_notice( __('Please Review You Order '), 'error' );
+  //   }
+  // }
+
   // }
   // public function before_cart_contents(){
   //   wp_nonce_field('edb_cart_update','edb_cart_update');

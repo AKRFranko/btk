@@ -68,23 +68,23 @@ if ( ! defined( 'ABSPATH' ) ) {
       ?>
     </div>
     <div class="cart-item-availability">
+      <?php 
+      echo $product_qty;
+      ?>
+      &times;
       <?php
         echo $product_edb_availability;
       ?>
     </div>
   </div>
   <div class="cart-item-options">
-    <ul class="shipping-methods">
-      <?php foreach ( $available_methods as $method ) : ?>
-        
-        <li>
-          <input type="radio" name="shipping_method[<?php echo $index; ?>]" data-index="<?php echo $index; ?>" id="shipping_method_<?php echo $index; ?>_<?php echo sanitize_title( $method->id ); ?>" value="<?php echo esc_attr( $method->id ); ?>" <?php checked( $method->id, $chosen_method ); ?> class="shipping_method" />
-          
-          <label for="shipping_method_<?php echo $index; ?>_<?php echo sanitize_title( $method->id ); ?>"><?php echo wp_kses_post( wc_cart_totals_shipping_method_label( $method ) ); ?></label>
-        </li>
-      <?php endforeach; ?>
-    </ul>
+  <?php foreach ( $available_methods as $method ) : ?>
+    <div class="shipping-method-choice">
+      <input type="radio" name="shipping_method[<?php echo $index; ?>]" data-index="<?php echo $index; ?>" id="shipping_method_<?php echo $index; ?>_<?php echo sanitize_title( $method->id ); ?>" value="<?php echo esc_attr( $method->id ); ?>" <?php checked( $method->id, $chosen_method ); ?> class="shipping_method" />
+    </div>
+  <?php endforeach; ?>
   </div>
+  
   <div class="cart-item-actions">
     <div class="cart-item-remove">
       <?php

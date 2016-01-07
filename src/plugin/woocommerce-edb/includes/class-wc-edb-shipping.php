@@ -276,7 +276,10 @@ class WC_Edb_Shipping_Method extends WC_Shipping_Method{
     foreach( WC()->cart->get_cart() as $item_key => $item ){
       $product   = $item['data'];
       $stock_qty = $product->get_stock_quantity();
-      $wants_qty = $item['quantity'];
+      if($stock_qty < 0){
+        $stock_qty = 0;
+      }
+      $wants_qty = abs($item['quantity']);
       if( $stock_qty > 0 && $wants_qty > $stock_qty ){
         
         $available_items = $this->get_available_items( $item, $wants_qty, $stock_qty );

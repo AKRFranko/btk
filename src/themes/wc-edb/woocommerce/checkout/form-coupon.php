@@ -11,6 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
+return;
 if ( ! WC()->cart->coupons_enabled() ) {
 	return;
 }

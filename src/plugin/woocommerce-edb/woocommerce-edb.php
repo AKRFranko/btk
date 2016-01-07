@@ -79,6 +79,7 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
                     'plugins_loaded'
                 ));
                 
+                
                 // indicates we are running the admin
                 if (is_admin()) {
                     // ...
@@ -134,8 +135,39 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
                 add_filter('woocommerce_process_product_meta', array( $this, 'process_custom_product_fields'));
                 // combine that with overrides for html output
                 add_filter('woocommerce_get_availability', array( $this, 'get_product_availability' ), 1, 2 );
+                add_filter('woocommerce_checkout_fields', array( $this, 'checkout_fields'));
+                // dammed ajax fragments 
+                // add_filter('woocommerce_update_order_review_fragments', array( $this, 'update_order_review_fragments' ));
+                
+                
                 
             }
+            
+           public function checkout_fields($fields) {
+             write_log('FIELD OVERRIDE');
+             $fields['billing']['billing_first_name']['placeholder'] = 'first name';
+             $fields['billing']['billing_last_name']['placeholder'] = 'last name';
+             $fields['billing']['billing_email']['placeholder'] = 'email address';
+             $fields['shipping']['shipping_first_name']['placeholder'] = 'first name';
+             $fields['shipping']['shipping_last_name']['placeholder'] = 'last name';
+             $fields['shipping']['shipping_email']['placeholder'] = 'email address';
+             //$fields['billing']['billing_postcode']['default'] = '';
+           //   $fields['shipping']['shipping_first_name']['placeholder'] = 'first name';
+           //   $fields['shipping']['shipping_last_name']['placeholder'] = 'last name';
+           //   $fields['shipping']['shipping_email']['placeholder'] = 'email address';
+             
+              // $fields['billing']['billing_country']['required'] = false;
+              // $fields['shipping']['shipping_country']['required'] = false;
+              //unset($fields['billing']['billing_address']);
+           //   unset($fields['billing']['billing_address_2']);
+           //   unset($fields['billing']['billing_email']);
+           //   unset($fields['billing']['billing_phone']);
+             unset($fields['order']['order_comments']);
+             return $fields;
+           }
+            // public function update_order_review_fragments( $array ){
+            //   return $a;
+            // }
             
             public function get_package_availability( $package_product, $is_backorder){
               $now = strtotime(date(DATE_RFC2822));
@@ -154,6 +186,9 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
               $product_id = $_product->variation_id;
               $qty_in_stock = $_product->get_total_stock();
               $qty_in_cart  = 0;
+              if($qty_in_stock < 0){
+                $qty_in_stock = 0;
+              }
               $html = '';
               $edb_backorder_delay = get_post_meta( $post_id, '_edb_backorder_delay', true);
               $edb_available_delay = get_post_meta( $post_id, '_edb_available_delay', true);
@@ -165,7 +200,7 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
               }
               if( $qty_in_stock == 0 ){
                 $delay_in_words = time_elapsed(strtotime( $edb_backorder_delay, $now ));
-                $availability['availability'] = $delay_in_words;
+                $availability['availability'] = "$qty_in_cart &times; <i>$delay_in_words</i>";
               }else{
                 write_log(
                   array(
@@ -179,11 +214,11 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
                   $backorder_delay_in_words = time_elapsed(strtotime( $edb_backorder_delay, $now ));
                   $available_delay_in_words = time_elapsed(strtotime( $edb_available_delay, $now ));
                   $backorder_qty = $qty_in_cart - $qty_in_stock;
-                  $availability['availability'] = "$backorder_qty &times; $available_delay_in_words, $qty_in_stock &times; $backorder_delay_in_words";
+                  $availability['availability'] = "$backorder_qty &times; <i>$available_delay_in_words</i>, $qty_in_stock &times; <i>$backorder_delay_in_words</i>";
                 }else{
                   
                   $delay_in_words = time_elapsed(strtotime( $edb_available_delay, $now ));
-                  $availability['availability'] = $delay_in_words;
+                  $availability['availability'] = "$qty_in_cart &times; <i>$delay_in_words</i>";
                 }
               }
               

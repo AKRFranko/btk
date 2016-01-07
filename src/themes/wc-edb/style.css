@@ -936,7 +936,7 @@ object {
   overflow:hidden;
   padding-top:1em;
   padding-bottom:1em;
-  border-top:1px solid #000;
+  border-bottom:1px solid #000;
 }
 .cart_item div{
   display:inline-block;
@@ -954,9 +954,10 @@ object {
   width:100%;
 }
 
-.cart-item-options{
+div.cart-item-options{
   padding-top:.75em;
   width:calc(60% - 5em);
+  white-space:nowrap;
   
 }
 .cart-item-actions{
@@ -969,3 +970,142 @@ object {
   width:auto;
   height:4em;
 }
+.shipping-method-choices{
+  display:block;
+  white-space:nowrap;
+  width:calc( 60% - 5em);
+  padding-left:40%;
+  margin-left:.5em;
+  
+}
+.shipping-method-choices > div{
+  display:inline-block;
+  width:5em;
+  white-space:normal;
+  /*margin-right:-1px;*/
+  border-right:1px solid #eee;
+  padding:.5em;
+  vertical-align: top;
+  height: 4em;
+}
+.shipping-method-choice{
+  display:inline-block;
+  width:5em;
+  margin-right:-1px;
+  border-right:1px solid #eee;
+  white-space:normal;
+  padding: 1em .5em;
+  vertical-align: top;
+  height: 4em;
+  text-align:center;
+}
+
+#checkout-panel-tabs,#checkout-panel-summaries{
+  display:block;
+  width:100%;
+  white-space:nowrap;
+}
+#checkout-panel-tabs, #checkout-panel-tabs *,
+#checkout-panel-summaries, #checkout-panel-summaries *{
+  box-sizing:border-box;
+  color:#000;
+  
+}
+
+#checkout-panel-tabs a,#checkout-panel-summaries .summary{
+  display:inline-block;
+  width:25%;
+  white-space:normal;
+  text-align:center;
+}
+#checkout-panel-tabs a{
+  color:#999;
+  text-decoration:none;
+  border-bottom:3px solid #ccc;
+  transition:all .2s ease-in-out;
+  outline:0;
+}
+
+#checkout-panel-tabs a.active{
+  color:#000;
+  border-bottom:3px solid #008c82;
+}
+
+#checkout-panel-summaries .summary{
+  height:5em;
+  text-align:left;
+  width:calc(25% - 1em);
+  margin:.5em;
+  background:#008c82;
+}
+form.checkout, form.checkout > div{
+  overflow:hidden;
+  max-width:100vw;
+}
+.woocommerce-checkout #payment div.payment_box input.input-text,
+.input-text,
+.woocommerce-checkout #payment input,
+form.checkout input{
+  background:#E8EAE8;
+  border:1px solid #ddd;
+  border-radius:0;
+  font-size:15px;
+  padding:.25em;
+  line-height:1.2;
+}
+form.checkout h1{
+  font-size:22px;
+  text-transform:uppercase;
+  font-weight:normal;
+}
+fieldset{
+  display:block;
+  margin:0;
+  padding:0;
+  border:0;
+}
+fieldset.checkout-panel{
+  position:fixed;
+  transition:all .2s ease-in-out;
+  opacity:0;
+  display:none;
+}
+
+fieldset.checkout-panel.active{
+  position:relative;
+  display:block;
+  opacity:1;
+}
+
+#checkout-panel-summaries .summary.active{
+  color:Red;
+}
+/* damned overlay */
+.blockOverlay{
+  position:fixed!important;
+  top:0!important;
+  left:0!important;
+  height:100vh!important;
+  width:100vw!important;
+}
+
+.woocommerce .blockUI.blockOverlay:before,.woocommerce .loader:before{
+  display:none;
+}
+/* damned paypal pro */
+.woocommerce-checkout #payment div.payment_box:before{display:none;}
+.woocommerce-checkout #payment div.payment_box, .woocommerce-checkout #payment,.woocommerce-checkout #payment *{
+  background:none;
+  margin:0;
+  padding:0;
+}
+
+.woocommerce-checkout #payment div.payment_box > p:first-of-type{
+  display:none;
+}
+.woocommerce form .form-row label, .woocommerce-page form .form-row label{
+  display:none;
+}
+
+
+

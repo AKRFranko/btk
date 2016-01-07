@@ -28,11 +28,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 			}
 		?>
 
-		<h3 id="ship-to-different-address">
-			<label for="ship-to-different-address-checkbox" class="checkbox"><?php _e( 'Ship to a different address?', 'woocommerce' ); ?></label>
-			<input id="ship-to-different-address-checkbox" class="input-checkbox" <?php checked( $ship_to_different_address, 1 ); ?> type="checkbox" name="ship_to_different_address" value="1" />
-		</h3>
-
+		
+		
+    <h1><?php _e( 'Shipping Address', 'wc-edb' ); ?></h1>
+    
 		<div class="shipping_address">
 
 			<?php do_action( 'woocommerce_before_checkout_shipping_form', $checkout ); ?>
