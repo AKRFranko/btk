@@ -277,7 +277,7 @@ module.exports = function(grunt) {
     });
 
 
-    grunt.registerTask('build', ['clean', 'bower_concat', 'less', 'autoprefixer', 'concat', 'uglify', 'phplint', 'copy']);
+    grunt.registerTask('build', ['clean', 'bower_concat', 'less', 'autoprefixer', 'concat',  'phplint', 'copy']);
     //grunt.registerTask('build_theme', [ 'clean:theme', 'bower_concat:theme' , 'less:theme', 'concat:theme',  'uglify:theme', 'copy:theme' ] );
 
 

@@ -21,6 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
   $product_attributes = $package_product->get_variation_attributes();
   $product_edb_material = $product_attributes['attribute_edb_material'];
   // $product_thumbnail_url = wp_get_attachment_url($package_product->get_image_id());
+  
   $product_edb_availability =$package_contents[0]['edb_availability'];
   if(empty($product_edb_availability)){
     $product_edb_availability = '1 week';
@@ -80,7 +81,7 @@ if ( ! defined( 'ABSPATH' ) ) {
   <div class="cart-item-options">
   <?php foreach ( $available_methods as $method ) : ?>
     <div class="shipping-method-choice">
-      <input type="radio" name="shipping_method[<?php echo $index; ?>]" data-index="<?php echo $index; ?>" id="shipping_method_<?php echo $index; ?>_<?php echo sanitize_title( $method->id ); ?>" value="<?php echo esc_attr( $method->id ); ?>" <?php checked( $method->id, $chosen_method ); ?> class="shipping_method" />
+      <input type="radio" name="shipping_method[<?php echo $index; ?>]" data-index="<?php echo $index; ?>" id="shipping_method_<?php echo $index; ?>_<?php echo sanitize_title( $method->id ); ?>" value="<?php echo esc_attr( $method->id ); ?>" <?php checked( $method->id, $chosen_method ); ?> class="shipping_method update_totals_on_change" />
     </div>
   <?php endforeach; ?>
   </div>
@@ -99,6 +100,7 @@ if ( ! defined( 'ABSPATH' ) ) {
       ?>
     </div>
   </div>
+  
 
 </div>
 

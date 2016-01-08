@@ -397,6 +397,7 @@ function btk_get_category_classes(){
 }
  
 function btk_cart_item_html( $cart_item_key, $cart_item, $region ){
+  return;
      global $woocommerce;
      //var_dump($woocommerce->session->chosen_shipping_methods);
      $cart_item_product = apply_filters('woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );

@@ -53,9 +53,24 @@ class WC_Edb_Integration extends WC_Integration {
     // add_action( 'wp_ajax_post_update_cart_item_quantities', array($this, 'update_cart_item_quantities'));
     // add_action('woocommerce_before_cart_contents', array($this,'before_cart_contents'));
     // add_action('woocommerce_cart_updated', array($this,'cart_updated') );
+    
+    // add_filter( 'woocommerce_checkout_fields' , array( $this, 'custom_override_checkout_fields' ));
+    
+    
 
   }
   
+  
+  public function custom_override_checkout_fields( $fields ) {
+  
+      // $fields['shipping']['custom_field'] = array(
+      //     'label' => 'Custom field',
+      //     'required' => 1,
+      //     'class' => array ('address-field', 'update_totals_on_change' )
+      // );
+  
+      // return $fields;
+  } 
  
   
   

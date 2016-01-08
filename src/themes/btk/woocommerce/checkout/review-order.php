@@ -10,129 +10,42 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+global $WC_Edb;
 ?>
 
- 
-            <table class="woocommerce-checkout-review-order-table">
-                <tr>
-    		          <th>Order Total</th><th><?php wc_cart_totals_order_total_html(); ?></th>
-    		        </tr>
-    		        <tr>
-    		          <td>Subtotal</td><td><?php wc_cart_totals_subtotal_html(); ?></td>
-    		        </tr>
-    		        
-    		        <?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
-			<tr class="cart-discount coupon-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
-			  <?php if( $code == 'selfserve'){ ?>
-			    <td>self serve discount</td><td><?php wc_cart_totals_coupon_html( $coupon ); ?></td>
-			  <?php }else{ ?>
-			    <td><?php wc_cart_totals_coupon_label( $coupon ); ?></td>
-          <td><?php wc_cart_totals_coupon_html( $coupon ); ?></td>
-			  <?php } ?>
-				
-			</tr>
-		<?php endforeach; ?>
-    		        
-    		        <tr>
-    		          <?php $shipping_total = WC()->cart->shipping_total; ?>
-    		          <td>Shipping & Handling</td><td><?php echo wc_price($shipping_total)?></td>
-    		        </tr>
-    		        <tr>
-    		          <td>Taxes</td><td><?php wc_cart_totals_taxes_total_html(); ?></td>
-    		        </tr>
-    		        
-    		      </table>
-<?php if(false): ?>
-<!--
-<table class="shop_table woocommerce-checkout-review-order-table">
-	<thead>
-		<tr>
-			<th class="product-name"><?php _e( 'Product', 'woocommerce' ); ?></th>
-			<th class="product-total"><?php _e( 'Total', 'woocommerce' ); ?></th>
-		</tr>
-	</thead>
-	<tbody>
-		<?php
-			do_action( 'woocommerce_review_order_before_cart_contents' );
-
-			foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
-				$_product     = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
-
-				if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
-					?>
-					<tr class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
-						<td class="product-name">
-							<?php echo apply_filters( 'woocommerce_cart_item_name', $_product->get_title(), $cart_item, $cart_item_key ) . '&nbsp;'; ?>
-							<?php echo apply_filters( 'woocommerce_checkout_cart_item_quantity', ' <strong class="product-quantity">' . sprintf( '&times; %s', $cart_item['quantity'] ) . '</strong>', $cart_item, $cart_item_key ); ?>
-							<?php echo WC()->cart->get_item_data( $cart_item ); ?>
-						</td>
-						<td class="product-total">
-							<?php echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); ?>
-						</td>
-					</tr>
-					<?php
-				}
-			}
-
-			do_action( 'woocommerce_review_order_after_cart_contents' );
-		?>
-	</tbody>
-	<tfoot>
-
-		<tr class="cart-subtotal">
-			<th><?php _e( 'Subtotal', 'woocommerce' ); ?></th>
-			<td><?php wc_cart_totals_subtotal_html(); ?></td>
-		</tr>
-    
-		<?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
-			<tr class="cart-discount coupon-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
-				<th><?php wc_cart_totals_coupon_label( $coupon ); ?></th>
-				<td><?php wc_cart_totals_coupon_html( $coupon ); ?></td>
-			</tr>
-		<?php endforeach; ?>
-
-		<?php if ( WC()->cart->needs_shipping() && WC()->cart->show_shipping() ) : ?>
-
-			<?php do_action( 'woocommerce_review_order_before_shipping' ); ?>
+<fieldset id="shipping-packages-panel" class="checkout-panel woocommerce-checkout-review-order-table">
+  <h1>CHOOSE YOUR DELIVERY OPTIONS</h1>
+<div class="shipping-method-choices">
+   <div>Self pickup</div>
+   <div>Ship ready</div>
+   <div>Bundle 1</div>
+   <div>Bundle 2</div>
+   <div>Bundle 3</div>
+</div>
+	  <div class="shipping-review">
+      <?php if ( WC()->cart->needs_shipping() && WC()->cart->show_shipping() ) : ?> 
+        <?php do_action( 'woocommerce_review_order_before_shipping' ); ?>
+        <?php wc_cart_totals_shipping_html(); ?>
+        <?php do_action( 'woocommerce_review_order_after_shipping' ); ?>
+      <?php endif; ?>
       
-			<?php wc_cart_totals_shipping_html(); ?>
+      <div class="shipping-review-total">
+        <span class="label"><?php _e('total delivery', 'wc-edb'); ?></span>
+        <span class="value"><?php echo WC()->cart->get_cart_shipping_total(); ?></span>
+      </div>
       
-			<?php do_action( 'woocommerce_review_order_after_shipping' ); ?>
+      <div class="shipping-review-notice">
+        <p>based on your selection, the final delivery fees will adjust automatically. shipping items individuallu may add shipping fees. for more information on how delivery fees are calculated click here.</p>
+      </div>
+      
+    </div><!-- shipping-review -->
+  
+</fieldset><!-- .woocommerce-checkout-review-order-table -->
+  
 
-		<?php endif; ?>
 
-		<?php foreach ( WC()->cart->get_fees() as $fee ) : ?>
-			<tr class="fee">
-				<th><?php echo esc_html( $fee->name ); ?></th>
-				<td><?php wc_cart_totals_fee_html( $fee ); ?></td>
-			</tr>
-		<?php endforeach; ?>
 
-		<?php if ( wc_tax_enabled() && WC()->cart->tax_display_cart === 'excl' ) : ?>
-			<?php if ( get_option( 'woocommerce_tax_total_display' ) === 'itemized' ) : ?>
-				<?php foreach ( WC()->cart->get_tax_totals() as $code => $tax ) : ?>
-					<tr class="tax-rate tax-rate-<?php echo sanitize_title( $code ); ?>">
-						<th><?php echo esc_html( $tax->label ); ?></th>
-						<td><?php echo wp_kses_post( $tax->formatted_amount ); ?></td>
-					</tr>
-				<?php endforeach; ?>
-			<?php else : ?>
-				<tr class="tax-total">
-					<th><?php echo esc_html( WC()->countries->tax_or_vat() ); ?></th>
-					<td><?php wc_cart_totals_taxes_total_html(); ?></td>
-				</tr>
-			<?php endif; ?>
-		<?php endif; ?>
 
-		<?php do_action( 'woocommerce_review_order_before_order_total' ); ?>
 
-		<tr class="order-total">
-			<th><?php _e( 'Total', 'woocommerce' ); ?></th>
-			<td><?php wc_cart_totals_order_total_html(); ?></td>
-		</tr>
 
-		<?php do_action( 'woocommerce_review_order_after_order_total' ); ?>
 
-	</tfoot>
-</table>
-<?php endif; ?>

@@ -122,13 +122,20 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
                 }
                 if( class_exists('WC_Shipping_Method')){
                   include_once 'includes/class-wc-edb-shipping.php';
-                  $GLOBALS['WC_Edb_Shipping_Method_Self_Pickup'] = new WC_Edb_Shipping_Method_Self_Pickup( __FILE__ );
-                  $GLOBALS['WC_Edb_Shipping_Method_Ship_Ready'] = new WC_Edb_Shipping_Method_Ship_Ready( __FILE__ );
-                  $GLOBALS['WC_Edb_Shipping_Method_Ship_Bundle_1'] = new WC_Edb_Shipping_Method_Ship_Bundle_1( __FILE__ );
-                  $GLOBALS['WC_Edb_Shipping_Method_Ship_Bundle_2'] = new WC_Edb_Shipping_Method_Ship_Bundle_2( __FILE__ );
-                  $GLOBALS['WC_Edb_Shipping_Method_Ship_Bundle_3'] = new WC_Edb_Shipping_Method_Ship_Bundle_3( __FILE__ );
+                  $GLOBALS['WC_Edb_Shipping_Method'] = new WC_Edb_Shipping_Method();
+                  // $GLOBALS['WC_Edb_Shipping_Method_Self_Pickup'] = new WC_Edb_Shipping_Method_Self_Pickup( __FILE__ );
+                  // $GLOBALS['WC_Edb_Shipping_Method_Ship_Ready'] = new WC_Edb_Shipping_Method_Ship_Ready( __FILE__ );
+                  // $GLOBALS['WC_Edb_Shipping_Method_Ship_Bundle_1'] = new WC_Edb_Shipping_Method_Ship_Bundle_1( __FILE__ );
+                  // $GLOBALS['WC_Edb_Shipping_Method_Ship_Bundle_2'] = new WC_Edb_Shipping_Method_Ship_Bundle_2( __FILE__ );
+                  // $GLOBALS['WC_Edb_Shipping_Method_Ship_Bundle_3'] = new WC_Edb_Shipping_Method_Ship_Bundle_3( __FILE__ );
                   
                   add_filter('woocommerce_shipping_methods', array( $this, 'add_shipping_method' ) );
+                  
+                  add_filter( 'woocommerce_cart_shipping_method_full_label' , array( $GLOBALS['WC_Edb_Shipping_Method'], 'cart_shipping_method_full_label' ));
+                  add_filter( 'woocommerce_add_cart_item_data', array( $GLOBALS['WC_Edb_Shipping_Method'], 'add_cart_item_custom_data' ) , 10, 2 );
+                  add_filter( 'woocommerce_get_cart_item_from_session', array($GLOBALS['WC_Edb_Shipping_Method'], 'get_cart_items_from_session'), 1, 3 );
+                  add_action('woocommerce_cart_shipping_packages', array( $GLOBALS['WC_Edb_Shipping_Method'], 'cart_shipping_packages'), 10, 1);
+                  add_action('template_redirect',array( $GLOBALS['WC_Edb_Shipping_Method'], 'persist_chosen_shipping_methods' ));
                 }
                 // custom fields for products
                 add_filter('woocommerce_product_options_general_product_data', array( $this, 'add_custom_product_fields'));
@@ -136,15 +143,31 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
                 // combine that with overrides for html output
                 add_filter('woocommerce_get_availability', array( $this, 'get_product_availability' ), 1, 2 );
                 add_filter('woocommerce_checkout_fields', array( $this, 'checkout_fields'));
+                add_action('woocommerce_review_order_before_shipping', array( $this, 'sync_shipping_update') );
+                add_action('woocommerce_before_calculate_totals', array( $this,'before_calculate_totals'));
                 // dammed ajax fragments 
-                // add_filter('woocommerce_update_order_review_fragments', array( $this, 'update_order_review_fragments' ));
+                // add_filter('woocommerce_update_order_review_fragments', array( $this, 'sync_shipping_update' ));
                 
                 
                 
             }
             
+            public function before_calculate_totals( $data ){
+              // write_log('before_calculate_totals');
+              // write_log($data);
+              // write_log(WC()->session->set('shipping_method_counts', array() ));
+              // WC()->cart->reset();
+            }
+            public function sync_shipping_update( ){
+              // write_log('SYNC SHIPPING');
+              
+              // WC()->cart->calculate_totals();
+              
+            }
+            
            public function checkout_fields($fields) {
-             write_log('FIELD OVERRIDE');
+            // write_log('FIELD OVERRIDE');
+             
              $fields['billing']['billing_first_name']['placeholder'] = 'first name';
              $fields['billing']['billing_last_name']['placeholder'] = 'last name';
              $fields['billing']['billing_email']['placeholder'] = 'email address';
@@ -202,14 +225,14 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
                 $delay_in_words = time_elapsed(strtotime( $edb_backorder_delay, $now ));
                 $availability['availability'] = "$qty_in_cart &times; <i>$delay_in_words</i>";
               }else{
-                write_log(
-                  array(
-                    'in_stock' => $qty_in_stock,
-                    'in_cart'=> $qty_in_cart,
-                    'edb_backorder_delay' => $edb_backorder_delay,
-                    'edb_available_delay' => $edb_available_delay
-                  )
-                );
+                // write_log(
+                //   array(
+                //     'in_stock' => $qty_in_stock,
+                //     'in_cart'=> $qty_in_cart,
+                //     'edb_backorder_delay' => $edb_backorder_delay,
+                //     'edb_available_delay' => $edb_available_delay
+                //   )
+                // );
                 if( $qty_in_stock < $qty_in_cart){
                   $backorder_delay_in_words = time_elapsed(strtotime( $edb_backorder_delay, $now ));
                   $available_delay_in_words = time_elapsed(strtotime( $edb_available_delay, $now ));
@@ -274,11 +297,12 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
              * Add a new shipping method to WooCommerce.
              */
             public function add_shipping_method( $methods ) {
-              $methods[] = 'WC_Edb_Shipping_Method_Self_Pickup';
-              $methods[] = 'WC_Edb_Shipping_Method_Ship_Ready';
-              $methods[] = 'WC_Edb_Shipping_Method_Ship_Bundle_1';
-              $methods[] = 'WC_Edb_Shipping_Method_Ship_Bundle_2';
-              $methods[] = 'WC_Edb_Shipping_Method_Ship_Bundle_3';
+              $methods[] = 'WC_Edb_Shipping_Method';
+              // $methods[] = 'WC_Edb_Shipping_Method_Self_Pickup';
+              // $methods[] = 'WC_Edb_Shipping_Method_Ship_Ready';
+              // $methods[] = 'WC_Edb_Shipping_Method_Ship_Bundle_1';
+              // $methods[] = 'WC_Edb_Shipping_Method_Ship_Bundle_2';
+              // $methods[] = 'WC_Edb_Shipping_Method_Ship_Bundle_3';
               return $methods;
             }
         }

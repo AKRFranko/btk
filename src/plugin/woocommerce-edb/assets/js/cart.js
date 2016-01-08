@@ -11,12 +11,14 @@ jQuery( function( $ ) {
         $( 'select.shipping_method, input[name^=shipping_method][type=radio]:checked, input[name^=shipping_method][type=hidden]' ).each( function() {
           qs += '&shipping_method['+$( this ).data( 'index' )+']=' + $( this ).val();
         });
-        settings.data = qs;
+        
+        settings.data = qs+'&calc_shipping=1&calc_shipping_postcode=h2h 2h2';
     }
   });
   $(document).ajaxSuccess( function( event, request, settings, data){
     if(/update_order_review/.test(settings.url)){
       $('.cart-costs-repeat').html( $('.cart-costs').html() );
+      $('.cart-review-items-repeat').html( $('.cart-review-items').html() );
     }
     console.log(data)
   });
@@ -62,6 +64,8 @@ jQuery( function( $ ) {
     
   }
   
+  
+  
   var debounce = function( fn, time ){
     clearTimeout(fn.debounceTimeout);
     fn.debounceTimeout = setTimeout( fn, time );
@@ -93,21 +97,21 @@ jQuery( function( $ ) {
   
   });
   
-  $(window).on('load', function(){
-    
-    var hash = window.location.hash;
-    var activeHash = $('#checkout-panel-tabs a.active').attr('href');
-    if(activeHash != hash){
-      $('#checkout-panel-tabs a[href='+hash+']').click();  
-    }
-    
-  })
+  
   $( document ).ready( function(){
-    var panelInput = $('#currentPanel');
-    if(panelInput.length === 0){
-      panelInput = $('<input>').attr({ id: 'currentPanel',type: 'hidden', name: 'current_panel' }).appendTo('form.checkout');
+    if($('form.checkout').length){
+      var hash = window.location.hash;
+      var activeHash = $('#checkout-panel-tabs a.active').attr('href');
+      if(activeHash != hash){
+        $('#checkout-panel-tabs a[href='+hash+']').click();  
+      }  
+      var panelInput = $('#currentPanel');
+      if(panelInput.length === 0){
+        panelInput = $('<input>').attr({ id: 'currentPanel',type: 'hidden', name: 'current_panel' }).appendTo('form.checkout');
+      }
+      panelInput.val( window.location.hash );
     }
-    panelInput.val( window.location.hash );
+    
   });
   
   $(document).on('click', '#checkout-panel-tabs a', function( e ){

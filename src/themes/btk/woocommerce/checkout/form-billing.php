@@ -16,11 +16,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="woocommerce-billing-fields">
 	<?php if ( WC()->cart->ship_to_billing_address_only() && WC()->cart->needs_shipping() ) : ?>
 
-		<h3><?php _e( 'Billing &amp; Shipping', 'woocommerce' ); ?></h3>
+		<h1><?php _e( 'Billing Address', 'wc-edb' ); ?></h1>
 
 	<?php else : ?>
 
-		<h3><?php _e( 'Billing Address', 'woocommerce' ); ?></h3>
+		<h1><?php _e( 'Billing Address', 'wc-edb' ); ?></h1>
 
 	<?php endif; ?>
 
@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php endforeach; ?>
 
 	<?php do_action('woocommerce_after_checkout_billing_form', $checkout ); ?>
-	
+<!--
 	<?php if ( ! is_user_logged_in() && $checkout->enable_signup ) : ?>
 
 		<?php if ( $checkout->enable_guest_checkout ) : ?>
@@ -67,10 +67,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php do_action( 'woocommerce_after_checkout_registration_form', $checkout ); ?>
 
 	<?php endif; ?>
-	
-
-	<p class="form-row checkboxes toggle-checkboxes"><label><input id="same-address-checkbox" name="shipping-pickup-checkbox" type="checkbox"> <?php _e('also use this as my shipping addresss', 'btk'); ?></label></p>
-	<p class="form-row checkboxes toggle-checkboxes"><label><input id="no-shipping-checkbox" name="shipping-pickup-checkbox" type="checkbox"> <?php _e('no shipping, will pickup at warehouse','btk'); ?></label></p>
-	<div class="shipping_method_hook"><input type="hidden" name="shipping_method[0]" value="local_pickup"></div> 
+-->	
+	<label for="ship-to-different-address-checkbox">Also use this as my shipping address</label>
+	<input id="ship-to-different-address-checkbox" class="input-checkbox" <?php checked( true, 1 ); ?> type="checkbox" name="ship_to_different_address" value="1" />
 	
 </div>

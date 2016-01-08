@@ -187,6 +187,9 @@ global $WC_Edb;
       <div class="cart-costs-repeat">
     
       </div>
+      <div class="cart-review-items-repeat">
+        
+      </div>
     
     </div>
     
