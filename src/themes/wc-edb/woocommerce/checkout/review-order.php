@@ -23,13 +23,16 @@ global $WC_Edb;
 </div>
 	  <div class="shipping-review">
       <?php if ( WC()->cart->needs_shipping() && WC()->cart->show_shipping() ) : ?> 
+        
         <?php do_action( 'woocommerce_review_order_before_shipping' ); ?>
         <?php wc_cart_totals_shipping_html(); ?>
         <?php do_action( 'woocommerce_review_order_after_shipping' ); ?>
+        
       <?php endif; ?>
       
       <div class="shipping-review-total">
         <span class="label"><?php _e('total delivery', 'wc-edb'); ?></span>
+        
         <span class="value"><?php echo WC()->cart->get_cart_shipping_total(); ?></span>
       </div>
       

@@ -79,11 +79,14 @@ if ( ! defined( 'ABSPATH' ) ) {
     </div>
   </div>
   <div class="cart-item-options">
-  <?php foreach ( $available_methods as $method ) : ?>
+    
+
+  <?php foreach ( $available_methods as $method ) { ?>
     <div class="shipping-method-choice">
       <input type="radio" name="shipping_method[<?php echo $index; ?>]" data-index="<?php echo $index; ?>" id="shipping_method_<?php echo $index; ?>_<?php echo sanitize_title( $method->id ); ?>" value="<?php echo esc_attr( $method->id ); ?>" <?php checked( $method->id, $chosen_method ); ?> class="shipping_method update_totals_on_change" />
     </div>
-  <?php endforeach; ?>
+  <?php }; ?>
+    
   </div>
   
   <div class="cart-item-actions">

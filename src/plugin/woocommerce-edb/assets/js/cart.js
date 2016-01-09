@@ -8,19 +8,19 @@ jQuery( function( $ ) {
     if(settings.url == '/cart/?wc-ajax=update_shipping_method' || settings.url == '/checkout/?wc-ajax=update_order_review'){
         var qs = settings.data;
         
-        $( 'select.shipping_method, input[name^=shipping_method][type=radio]:checked, input[name^=shipping_method][type=hidden]' ).each( function() {
-          qs += '&shipping_method['+$( this ).data( 'index' )+']=' + $( this ).val();
-        });
-        
-        settings.data = qs+'&calc_shipping=1&calc_shipping_postcode=h2h 2h2';
+        settings.data = qs+'&'+$( 'select.shipping_method, input[name^=shipping_method][type=radio]:checked, input[name^=shipping_method][type=hidden]' ).serialize();
     }
   });
   $(document).ajaxSuccess( function( event, request, settings, data){
     if(/update_order_review/.test(settings.url)){
       $('.cart-costs-repeat').html( $('.cart-costs').html() );
       $('.cart-review-items-repeat').html( $('.cart-review-items').html() );
+      
+      var $review = data.fragments['.woocommerce-checkout-review-order-table'];
+      console.log(  $($review).find('.cart_item') );
+      
     }
-    console.log(data)
+    // console.log(request);
   });
   
  
@@ -164,6 +164,10 @@ jQuery( function( $ ) {
     $('.credit-card-type').text( getCreditCardType( $(this).val() ) );
     $('.credit-card-number').text( getCreditCardNumberString( $(this).val() ) );
   });
+  // $(document).on('change','.edb_shipping', function(){
+    // console.log( $('.edb_shipping').serialize() );
+    // $(document.body).trigger('update_checkout');
+  // });
   
   $(function(){
     $('.woocommerce form .form-row label').each(function(){
