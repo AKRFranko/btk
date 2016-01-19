@@ -1,0 +1,194 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+ 
+ .edb-material-picker,.edb-material-picker .edb-material-choices{
+   display:block;
+   width:100%;
+   margin:0;
+   padding:0;
+ }
+ .edb-material-picker .edb-material-choices label{
+   position:relative;
+   display:inline-block;
+   vertical-align:top;
+   width:calc( 90% / 6);
+   height:0;
+   padding-bottom:calc( 90% / 6);
+   margin:calc(5% / 6);
+ }
+ .edb-material-picker .edb-material-choices label input{
+   opacity:0;
+   position:absolute;
+   top:0;left:0;
+   width:100%;
+   height:100%;
+ }
+ 
+ .edb-material-picker .edb-material-choices .edb-material-choice-square{
+   display:block;
+   position:absolute;
+   top:2px;left:2px;
+   width:calc(100% - 4px);
+   height:calc(100% - 4px);
+   background-size:cover;
+   background-position:center;
+   background-repeat:no-repeat;
+ }
+ 
+ .edb-material-picker .edb-material-choices .active-choice{
+   background:#000;
+ }
+ 
+ .edb-slideshow,.edb-slideshow .edb-slideshow-images{
+   display:block;
+   width:100%;
+   margin:0;
+   padding:0;
+ }
+ 
+ .edb-slideshow{
+   overflow:hidden;
+ }
+ .edb-slideshow .edb-slideshow-images{
+   position:relative;
+   height:460px;
+   display:block;
+ }
+ .edb-slideshow .edb-slideshow-buttons{
+   height:45px;
+   display:block;
+   width:100%;
+   text-align:center;
+   
+ }
+ 
+.edb-slideshow .edb-slideshow-image-container{
+  position:absolute;
+  display:block;
+  top:0;left:0;
+  width:100%;
+  height:100%;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  overflow:hidden;
+  margin-left:-100%;
+  transition:margin .3s ease-in-out;
+}
+/*.edb-slideshow.to-right .edb-slideshow-image-container.active-slide + .edb-slideshow-image-container,*/
+/*.edb-slideshow .edb-slideshow-image-container.active-slide + .edb-slideshow-image-container{*/
+/*  margin-left:100%;*/
+/*  transition:none;*/
+/*}*/
+
+/*.edb-slideshow .edb-slideshow-image-container:first-of-type{*/
+/*  margin-left:100%;*/
+/*  display:none;*/
+/*}*/
+.edb-slideshow .edb-slideshow-image-container.active-slide,
+.edb-slideshow.to-left .edb-slideshow-image-container.active-slide,
+.edb-slideshow.to-right .edb-slideshow-image-container.active-slide{
+  margin-left:0;
+  display:block;
+}
+
+.edb-slideshow .edb-material-variation-image{
+  display:none;
+}
+
+.edb-slideshow .edb-slideshow-image-container img{
+  opacity:0;
+  position:absolute;
+  top:0;left:0;
+  width:100%;
+  height:100%;
+}
+ 
+.edb-slideshow.at-last .edb-slideshow-image-container:first-of-type{
+   margin-left:100%;
+ }
+ .edb-slideshow.at-last .edb-slideshow-image-container:first-of-type + .edb-slideshow-image-container{
+   display:none;
+ }
+ 
+.edb-slideshow .edb-slideshow-image-container.active-slide + .edb-slideshow-image-container{
+  margin-left:100%;
+}
+
+.edb-slideshow .edb-slideshow-image-container.active-slide + .edb-slideshow-image-container + .edb-slideshow-image-container{
+  display:none;
+}
+
+
+ 
+ /* Checkout */
+ 
+.checkout-panel-tabs, .checkout-panel-summaries,.checkout-panel{
+  display:block;
+  width:100%;
+  margin:0;
+  padding:0;
+}
+ 
+.checkout-panel{
+  display:none;
+}
+.checkout-panel.active{
+  display:block;
+}
+ 
+.woocommerce-shipping-fields{
+  display:none;
+}
+ 
+ 
+.qty-widget{
+  display:inline-block;
+  padding-left:2em;
+  padding-right:2em;
+  position:relative;
+  height:inherit;
+  line-height:inherit;
+  white-space:nowrap;
+  color:inherit;
+  font:inherit;
+}
+.qty-widget .qty-minus,
+.qty-widget .qty-plus,
+.qty-widget .qty-val{
+  display:inline-block;
+  vertical-align:middle;
+  text-align:center;
+}
+.qty-widget .qty-minus,
+.qty-widget .qty-plus{
+  display:inline-block;
+  width:1.2em;
+  height:1.2em;
+  background:#000;
+  color:#fff;
+  font-weight:bold;
+  text-decoration:none;
+  line-height:1;
+  padding:.1em;
+  border-radius:50%;
+  
+}
+.qty-widget .qty-val{
+  padding:0 .8em;
+  font-size:1.5em;
+  margin:-.25em 0;
+}
+.qty-widget .qty-minus{
+  margin-left:-1em;
+}
+.qty-widget .qty-plus{
+  margin-right:-1em;
+}
+ 
+ 
+ 
+ 
+ 

@@ -1,0 +1,263 @@
+<?php
+/**
+ * _s functions and definitions.
+ *
+ * @link https://developer.wordpress.org/themes/basics/theme-functions/
+ *
+ * @package _s
+ */
+
+if ( ! function_exists( '_s_setup' ) ) :
+/**
+ * Sets up theme defaults and registers support for various WordPress features.
+ *
+ * Note that this function is hooked into the after_setup_theme hook, which
+ * runs before the init hook. The init hook is too late for some features, such
+ * as indicating support for post thumbnails.
+ */
+function _s_setup() {
+	/*
+	 * Make theme available for translation.
+	 * Translations can be filed in the /languages/ directory.
+	 * If you're building a theme based on _s, use a find and replace
+	 * to change '_s' to the name of your theme in all the template files.
+	 */
+	load_theme_textdomain( '_s', get_template_directory() . '/languages' );
+
+	// Add default posts and comments RSS feed links to head.
+	add_theme_support( 'automatic-feed-links' );
+
+	/*
+	 * Let WordPress manage the document title.
+	 * By adding theme support, we declare that this theme does not use a
+	 * hard-coded <title> tag in the document head, and expect WordPress to
+	 * provide it for us.
+	 */
+	add_theme_support( 'title-tag' );
+
+	/*
+	 * Enable support for Post Thumbnails on posts and pages.
+	 *
+	 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
+	 */
+	add_theme_support( 'post-thumbnails' );
+
+	// This theme uses wp_nav_menu() in one location.
+	register_nav_menus( array(
+		'primary' => esc_html__( 'Primary', '_s' ),
+	) );
+
+	/*
+	 * Switch default core markup for search form, comment form, and comments
+	 * to output valid HTML5.
+	 */
+	add_theme_support( 'html5', array(
+		'search-form',
+		'comment-form',
+		'comment-list',
+		'gallery',
+		'caption',
+	) );
+
+	/*
+	 * Enable support for Post Formats.
+	 * See https://developer.wordpress.org/themes/functionality/post-formats/
+	 */
+	add_theme_support( 'post-formats', array(
+		'aside',
+		'image',
+		'video',
+		'quote',
+		'link',
+	) );
+
+	// Set up the WordPress core custom background feature.
+	add_theme_support( 'custom-background', apply_filters( '_s_custom_background_args', array(
+		'default-color' => 'ffffff',
+		'default-image' => '',
+	) ) );
+}
+endif;
+add_action( 'after_setup_theme', '_s_setup' );
+
+add_action( 'after_setup_theme', 'woocommerce_support' );
+function woocommerce_support() {
+    add_theme_support( 'woocommerce' );
+}
+/**
+ * Set the content width in pixels, based on the theme's design and stylesheet.
+ *
+ * Priority 0 to make it available to lower priority callbacks.
+ *
+ * @global int $content_width
+ */
+function _s_content_width() {
+	$GLOBALS['content_width'] = apply_filters( '_s_content_width', 640 );
+}
+add_action( 'after_setup_theme', '_s_content_width', 0 );
+
+/**
+ * Register widget area.
+ *
+ * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
+ */
+function _s_widgets_init() {
+	register_sidebar( array(
+		'name'          => esc_html__( 'Sidebar', '_s' ),
+		'id'            => 'sidebar-1',
+		'description'   => '',
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+}
+add_action( 'widgets_init', '_s_widgets_init' );
+
+/**
+ * Enqueue scripts and styles.
+ */
+function _s_scripts() {
+	wp_enqueue_style( '_s-style', get_stylesheet_uri() );
+
+	wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
+
+	wp_enqueue_script( '_s-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
+
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
+	}
+}
+add_action( 'wp_enqueue_scripts', '_s_scripts' );
+
+add_action( 'init', 'edb_theme_remove_wc_breadcrumbs' );
+function edb_theme_remove_wc_breadcrumbs() {
+    remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
+}
+function custom_excerpt_length( $length ) {
+  return 20;
+}
+add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
+function new_excerpt_more( $more ) {
+  return '... more';
+}
+add_filter('excerpt_more', 'new_excerpt_more');
+
+
+add_filter( 'woocommerce_enqueue_styles', 'edb_dequeue_woocommerce_styles' );
+function edb_dequeue_woocommerce_styles( $enqueue_styles ) {
+  // unset( $enqueue_styles['woocommerce-general'] );  // Remove the gloss
+  unset( $enqueue_styles['woocommerce-layout'] );    // Remove the layout
+  unset( $enqueue_styles['woocommerce-smallscreen'] );  // Remove the smallscreen optimisation
+  return $enqueue_styles;
+}
+
+add_filter('woocommerce_update_order_review_fragments', 'edb_add_checkout_tabs_and_summary_fragments');
+function edb_add_checkout_tabs_and_summary_fragments( $fragments ){
+  
+  ob_start();
+  get_template_part('woocommerce/checkout/form', 'summaries');
+  $fragments['.checkout-tabs-and-summaries'] = ob_get_clean();
+  
+  return $fragments;
+}
+
+// Or just remove them all in one line
+add_filter( 'woocommerce_enqueue_styles', '__return_false' );
+
+function btk_edb_slider($query, $attach = null, $blankTargets = false) {
+  $slider_query = new WP_Query($query);
+  $data = array();
+  echo "<div class='slides'>";
+  while ($slider_query->have_posts()) {
+    $slider_query->the_post();
+    if (has_post_thumbnail()) {
+      $src = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full')[0];
+      ?>
+      <div class="slide" style="background-image:url('<?php echo esc_attr($src); ?>')">
+        <img src="<?php echo esc_attr($src); ?>">
+        <a class="slide-clickable" href="<?php echo get_permalink( $slider_query->post->ID );?>">
+        <div class="slide-title">
+          <?php the_title(); ?>
+        </div>
+        <div class="slide-subtitle">
+          <?php the_subtitle(); ?>
+        </div>
+        </a>
+        <div class="slide-badge">
+          <span class="line-1">line 1</span>
+          <span class="line-2">line 2</span>
+          <span class="line-3">line 3</span>
+        </div>
+      </div>
+      <?php
+      // $src = wp_get_attachment_image_src(get_post_thumbnail_id(), 'large');
+      // $title = get_the_title();
+      // $shopnow = get_post_meta($slider_query->post->ID, '_subtitle');
+      // $content = apply_filters( 'the_content', get_the_content() );
+      // $href = get_permalink( $slider_query->post->ID );
+      // array_push($data, array("src" => $src[0], "text" => $title, "shopnow" => $shopnow, "url" => $href, "html" => $content, "_blank" => $blankTargets  ));
+    }
+  }
+  echo "</div>";
+  echo "<div class='slide-controls'>";
+  ?>
+  <a class="slide-prev" href="#">&lt;</a>
+  <span class="slide-current">1</span>
+  <span class="slide-separator"></span>
+  <span class="slide-total"><?php echo $slider_query->post_count;?></span>
+  <a class="slide-next" href="#">&gt;</a>
+  <?php
+  echo "</div>";
+  // if ($attach) {
+  //   foreach ( $attach as $attachment_id ) {
+  //     $src   = wp_get_attachment_image_src( $attachment_id, 'large');
+  //     $title = esc_attr( get_the_title( $attachment_id ) );
+  //     $href  = get_permalink();
+  //     array_push($data, array("src" => $src[0], "text" => $title, "url" => $href, "_blank" => $blankTargets ));
+  //   }
+  // }
+  
+}
+
+function btk_edb_lookbook_slider(){
+  $query = array( 'post_type' => 'post', 'post_per_page' => '5', 'category_name' => 'lookbook' );
+  btk_edb_slider( $query, null, true );
+}
+
+function btk_product_pdf_link( $productID, $fileName){
+    $pdf = get_attached_media('application/pdf',$productID);
+    if(!empty($pdf)){
+      $pdf = array_shift(array_values($pdf));
+      
+      $pdflink = $pdf->guid; 
+      
+      return '<a target="_blank" href="'.$pdflink.'" download="'.sanitize_file_name($fileName . '.pdf').'" class="upper pr-pdf">download PDF</a>';
+    }
+    return '';
+}
+
+/**
+ * Implement the Custom Header feature.
+ */
+require get_template_directory() . '/inc/custom-header.php';
+
+/**
+ * Custom template tags for this theme.
+ */
+require get_template_directory() . '/inc/template-tags.php';
+
+/**
+ * Custom functions that act independently of the theme templates.
+ */
+require get_template_directory() . '/inc/extras.php';
+
+/**
+ * Customizer additions.
+ */
+require get_template_directory() . '/inc/customizer.php';
+
+/**
+ * Load Jetpack compatibility file.
+ */
+require get_template_directory() . '/inc/jetpack.php';

@@ -60,6 +60,10 @@ class WC_Edb_Integration extends WC_Integration {
 
   }
   
+  $plugin->loader->add_action('wp_print_scripts', $plugin, 'dequeue_script' );
+  public function dequeue_scripts(){
+    wp_dequeue_script( 'wc-cart-new');
+  }
   
   public function custom_override_checkout_fields( $fields ) {
   
@@ -94,11 +98,11 @@ class WC_Edb_Integration extends WC_Integration {
   public function custom_cart_script() {
             // wp_dequeue_script( 'wc-cart' );
             
-            $plugin_dir = plugins_url().'/woocommerce-edb';
+            #$plugin_dir = plugins_url().'/woocommerce-edb';
             
-            wp_enqueue_script( 'wc-cart-new', $plugin_dir . '/assets/js/cart.js', array( 'jquery' ) );
-            wp_localize_script( 'wc-cart-new','edb_cart_ajax', array(
-              'ajax_url' => admin_url('admin-ajax.php')));
+            #wp_enqueue_script( 'wc-cart-new', $plugin_dir . '/assets/js/cart.js', array( 'jquery' ) );
+            #wp_localize_script( 'wc-cart-new','edb_cart_ajax', array(
+            #  'ajax_url' => admin_url('admin-ajax.php')));
             
                
          }

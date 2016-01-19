@@ -134,10 +134,12 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
                   add_filter( 'woocommerce_cart_shipping_method_full_label' , array( $GLOBALS['WC_Edb_Shipping_Method'], 'cart_shipping_method_full_label' ));
                   add_filter( 'woocommerce_add_cart_item_data', array( $GLOBALS['WC_Edb_Shipping_Method'], 'add_cart_item_custom_data' ) , 10, 2 );
                   add_filter( 'woocommerce_get_cart_item_from_session', array($GLOBALS['WC_Edb_Shipping_Method'], 'get_cart_items_from_session'), 1, 3 );
-                  add_action('woocommerce_cart_shipping_packages', array( $GLOBALS['WC_Edb_Shipping_Method'], 'cart_shipping_packages'), 10, 1);
-                  // add_action( 'woocommerce_checkout_update_order_review', array( $GLOBALS['WC_Edb_Shipping_Method'], 'before_order_review'), 10, 0 );
+                  add_action( 'woocommerce_cart_shipping_packages', array( $GLOBALS['WC_Edb_Shipping_Method'], 'cart_shipping_packages'), 10, 1);
                   add_action( 'woocommerce_review_order_before_shipping', array( $GLOBALS['WC_Edb_Shipping_Method'], 'review_order_before_shipping'), 10, 0 );
-                  add_action( 'woocommerce_review_order_after_shipping', array( $GLOBALS['WC_Edb_Shipping_Method'], 'review_order_after_shipping'), 10, 0 ); 
+                  add_action( 'woocommerce_review_order_after_shipping', array( $GLOBALS['WC_Edb_Shipping_Method'], 'review_order_after_shipping'), 10, 0 );
+                  // add_action( 'woocommerce_before_calculate_totals', array( $GLOBALS['WC_Edb_Shipping_Method'], 'before_calculate_totals'), 10, 1 ); 
+                  
+                
                   add_action('template_redirect',array( $GLOBALS['WC_Edb_Shipping_Method'], 'persist_chosen_shipping_methods' ));
                 }
                 // custom fields for products
@@ -203,6 +205,13 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
               $now = strtotime(date(DATE_RFC2822));
               $edb_backorder_delay = get_post_meta( $package_product->post->ID, '_edb_backorder_delay', true);
               $edb_available_delay = get_post_meta( $package_product->post->ID, '_edb_available_delay', true);
+              if(empty($edb_available_delay)){
+                $edb_available_delay = '+7 days';
+              }
+              if(empty($edb_backorder_delay)){
+                
+                $edb_backorder_delay = '+7 days';
+              }
               if( $is_backorder ){
                 return trim(time_elapsed(strtotime( $edb_backorder_delay, $now )));
               }else{
@@ -222,38 +231,49 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
               $html = '';
               $edb_backorder_delay = get_post_meta( $post_id, '_edb_backorder_delay', true);
               $edb_available_delay = get_post_meta( $post_id, '_edb_available_delay', true);
-              
+              if(empty($edb_available_delay)){
+                $edb_available_delay = '+7 days';
+              }
+              if(empty($edb_backorder_delay)){
+                
+                $edb_backorder_delay = '+7 days';
+              }
               foreach( WC()->cart->cart_contents as $cart_item ){
                 if( $cart_item['variation_id'] == $product_id ){
                   $qty_in_cart += $cart_item['quantity'];
                 }
               }
               if( $qty_in_stock == 0 ){
-                $delay_in_words = time_elapsed(strtotime( $edb_backorder_delay, $now ));
-                $availability['availability'] = "$qty_in_cart &times; <i>$delay_in_words</i>";
+                $availability['availability'] = $this->availability_html($qty_in_cart,$edb_backorder_delay );
               }else{
-                // write_log(
-                //   array(
-                //     'in_stock' => $qty_in_stock,
-                //     'in_cart'=> $qty_in_cart,
-                //     'edb_backorder_delay' => $edb_backorder_delay,
-                //     'edb_available_delay' => $edb_available_delay
-                //   )
-                // );
+                
                 if( $qty_in_stock < $qty_in_cart){
                   $backorder_delay_in_words = time_elapsed(strtotime( $edb_backorder_delay, $now ));
                   $available_delay_in_words = time_elapsed(strtotime( $edb_available_delay, $now ));
                   $backorder_qty = $qty_in_cart - $qty_in_stock;
-                  $availability['availability'] = "$backorder_qty &times; <i>$available_delay_in_words</i>, $qty_in_stock &times; <i>$backorder_delay_in_words</i>";
+                  $availabilities = array(
+                    $this->availability_html($backorder_qty,$edb_available_delay ),
+                    $this->availability_html($qty_in_stock,$edb_backorder_delay )
+                  );
+                  $char = is_cart() || is_checkout() ? ', ' : ' ~ ';
+                  $availability['availability'] = implode( $char, $availabilities );
                 }else{
-                  
-                  $delay_in_words = time_elapsed(strtotime( $edb_available_delay, $now ));
-                  $availability['availability'] = "$qty_in_cart &times; <i>$delay_in_words</i>";
+                  $availability['availability'] = $this->availability_html($qty_in_cart,$edb_available_delay );
                 }
               }
               
               return $availability;
               
+            }
+            
+            public function availability_html( $qty, $delay, $symbol = '@' ){
+              $now = strtotime(date(DATE_RFC2822));
+              $delay_in_words = time_elapsed( strtotime( $delay, $now ) );
+              if( !is_cart() && !is_checkout()){
+                return $delay_in_words;
+              }else{
+                return "<span class='quantity'>$qty</span> <span class='symbol'>$symbol</span> <i>$delay_in_words</i>";
+              }
             }
             
             /* receive custom product fields */

@@ -1,0 +1,324 @@
+<?php
+
+/**
+ * The file that defines the core plugin class
+ *
+ * A class definition that includes attributes and functions used across both the
+ * public-facing side of the site and the admin area.
+ *
+ * @link       http://akr.club
+ * @since      1.0.0
+ *
+ * @package    Edb
+ * @subpackage Edb/includes
+ */
+
+/**
+ * The core plugin class.
+ *
+ * This is used to define internationalization, admin-specific hooks, and
+ * public-facing site hooks.
+ *
+ * Also maintains the unique identifier of this plugin as well as the current
+ * version of the plugin.
+ *
+ * @since      1.0.0
+ * @package    Edb
+ * @subpackage Edb/includes
+ * @author     Franko <franko@akr.club>
+ */
+class Edb {
+
+	/**
+	 * The loader that's responsible for maintaining and registering all hooks that power
+	 * the plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   protected
+	 * @var      Edb_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 */
+	protected $loader;
+
+	/**
+	 * The unique identifier of this plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   protected
+	 * @var      string    $plugin_name    The string used to uniquely identify this plugin.
+	 */
+	protected $plugin_name;
+
+	/**
+	 * The current version of the plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   protected
+	 * @var      string    $version    The current version of the plugin.
+	 */
+	protected $version;
+
+	/**
+	 * Define the core functionality of the plugin.
+	 *
+	 * Set the plugin name and the plugin version that can be used throughout the plugin.
+	 * Load the dependencies, define the locale, and set the hooks for the admin area and
+	 * the public-facing side of the site.
+	 *
+	 * @since    1.0.0
+	 */
+	public function __construct() {
+
+		$this->plugin_name = 'edb';
+		$this->version = '1.0.0';
+
+		$this->load_dependencies();
+		$this->set_locale();
+		
+		$this->define_admin_hooks();
+		$this->define_public_hooks();
+		
+		$this->loader->add_action('plugins_loaded', $this, 'load_shipping');
+		
+		
+    $this->loader->add_filter('woocommerce_shipping_methods', $this, 'register_shipping_methods');
+    $this->loader->add_filter( 'woocommerce_integrations', $this, 'register_integration' );
+    
+    $this->loader->add_action('wp_enqueue_scripts', $this, 'dequeue_scripts', 9999 );
+    
+
+	}
+	public function dequeue_scripts(){
+	 // write_log('DEQ');
+	  wp_deregister_script('wc-cart-new');
+    wp_dequeue_script( 'wc-cart-new', '/srv/http/wordpress/wp-content/plugins/woocommerce-edb/assets/js/cart.js');
+  }
+
+	/**
+	 * Load the required dependencies for this plugin.
+	 *
+	 * Include the following files that make up the plugin:
+	 *
+	 * - Edb_Loader. Orchestrates the hooks of the plugin.
+	 * - Edb_i18n. Defines internationalization functionality.
+	 * - Edb_Admin. Defines all hooks for the admin area.
+	 * - Edb_Public. Defines all hooks for the public side of the site.
+	 *
+	 * Create an instance of the loader which will be used to register the hooks
+	 * with WordPress.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function load_dependencies() {
+
+		/**
+		 * The class responsible for orchestrating the actions and filters of the
+		 * core plugin.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-edb-loader.php';
+
+		/**
+		 * The class responsible for defining internationalization functionality
+		 * of the plugin.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-edb-i18n.php';
+
+		/**
+		 * The class responsible for defining all actions that occur in the admin area.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-edb-admin.php';
+
+		/**
+		 * The class responsible for defining all actions that occur in the public-facing
+		 * side of the site.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-edb-public.php';
+		
+		/**
+		 * The class responsible for keeping sanity when rendering products in custom ways.
+		 * 
+		 */
+		 
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-edb-product-decorator.php';
+		
+		
+
+		$this->loader = new Edb_Loader();
+
+	}
+
+	/**
+	 * Define the locale for this plugin for internationalization.
+	 *
+	 * Uses the Edb_i18n class in order to set the domain and to register the hook
+	 * with WordPress.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function set_locale() {
+
+		$plugin_i18n = new Edb_i18n();
+
+		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
+		
+
+	}
+	/**
+   * Add a new integration to WooCommerce.
+   */
+  public function register_integration( $integrations ) {
+    
+    $integrations[] = 'Edb_Wc_Integration';
+    return $integrations;
+  }
+  
+  
+	public function register_shipping_methods( $methods ){
+	 
+	 if(!array_key_exists('Edb_Shipping_Method_Self_Pickup', $methods)){
+	   write_log('register_shipping_methods');
+	  $methods[] = 'Edb_Shipping_Method_Self_Pickup';
+    $methods[] = 'Edb_Shipping_Method_Ship_Ready';
+    $methods[] = 'Edb_Shipping_Method_Ship_Bundle_1';
+    $methods[] = 'Edb_Shipping_Method_Ship_Bundle_2';
+    $methods[] = 'Edb_Shipping_Method_Ship_Bundle_3';
+	 }else{
+	   write_log('ignored register_shipping_methods');
+	 }
+   return $methods;
+	}
+	
+	
+	
+	public function load_shipping(){
+    write_log('load_shipping');
+    
+    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-edb-shipping.php';
+    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-edb-wc-integration.php';
+    
+    $GLOBALS['Edb_Shipping_Method'] = new Edb_Shipping_Method();
+    $GLOBALS['Edb_Shipping_Method_Self_Pickup'] = new Edb_Shipping_Method_Self_Pickup( __FILE__ );
+    $GLOBALS['Edb_Shipping_Method_Ship_Ready'] = new Edb_Shipping_Method_Ship_Ready( __FILE__ );
+    $GLOBALS['Edb_Shipping_Method_Ship_Bundle_1'] = new Edb_Shipping_Method_Ship_Bundle_1( __FILE__ );
+    $GLOBALS['Edb_Shipping_Method_Ship_Bundle_2'] = new Edb_Shipping_Method_Ship_Bundle_2( __FILE__ );
+    $GLOBALS['Edb_Shipping_Method_Ship_Bundle_3'] = new Edb_Shipping_Method_Ship_Bundle_3( __FILE__ );
+    
+    add_filter( 'woocommerce_cart_shipping_method_full_label' ,array( $GLOBALS['Edb_Shipping_Method'], 'cart_shipping_method_full_label') );
+    add_filter( 'woocommerce_add_cart_item_data',  array($GLOBALS['Edb_Shipping_Method'], 'add_cart_item_custom_data'  ), 10, 2 );
+    add_filter( 'woocommerce_get_cart_item_from_session', array($GLOBALS['Edb_Shipping_Method'], 'get_cart_items_from_session'), 1, 3 );
+    
+    add_action( 'woocommerce_cart_shipping_packages',  array($GLOBALS['Edb_Shipping_Method'], 'cart_shipping_packages'), 10, 1);
+    add_action( 'woocommerce_cart_calculate_fees',  array($GLOBALS['Edb_Shipping_Method'], 'calculate_fees'), 10, 1);
+    add_action( 'woocommerce_review_order_before_shipping',  array($GLOBALS['Edb_Shipping_Method'], 'review_order_before_shipping'), 10, 0 );
+    add_action( 'woocommerce_review_order_after_shipping',  array($GLOBALS['Edb_Shipping_Method'], 'review_order_after_shipping'), 10, 0 );
+    
+    add_action('woocommerce_cart_needs_shipping', array($GLOBALS['Edb_Shipping_Method'], 'cart_needs_shipping'), 10, 1 );
+    
+    add_action('template_redirect', array($GLOBALS['Edb_Shipping_Method'], 'persist_chosen_shipping_methods') );
+    
+    
+    
+    
+    
+	  
+	}
+
+	/**
+	 * Register all of the hooks related to the admin area functionality
+	 * of the plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function define_admin_hooks() {
+
+		$plugin_admin = new Edb_Admin( $this->get_plugin_name(), $this->get_version() );
+
+		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
+		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+
+    
+    
+    
+    $this->loader->add_action( 'init', $plugin_admin, 'register_custom_post_types');
+    $this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'add_material_meta_boxes');
+    $this->loader->add_action( 'save_post', $plugin_admin, 'save_material_meta_boxes', 10, 2);
+    $this->loader->add_action( 'wp_insert_post', $plugin_admin, 'ignore_duplicate_material_description', 10, 3);
+    
+    $this->loader->add_action( 'woocommerce_product_options_general_product_data', $plugin_admin, 'product_settings_fields', 10, 3 );
+    $this->loader->add_action( 'woocommerce_product_after_variable_attributes', $plugin_admin, 'variation_settings_fields', 10, 3 );
+    $this->loader->add_action('show_user_profile', $plugin_admin, 'user_settings_fields', 10, 1);
+    $this->loader->add_action('edit_user_profile', $plugin_admin, 'user_settings_fields', 10, 1);
+    
+    $this->loader->add_action( 'woocommerce_process_product_meta', $plugin_admin, 'save_product_settings_fields', 10, 1 );
+    $this->loader->add_action( 'woocommerce_save_product_variation', $plugin_admin, 'save_variation_settings_fields', 10 , 1 );
+    $this->loader->add_action('personal_options_update', $plugin_admin, 'save_user_settings_fields', 10, 1);
+    $this->loader->add_action('edit_user_profile_update', $plugin_admin, 'save_user_settings_fields', 10, 1);
+    
+
+
+	}
+
+	/**
+	 * Register all of the hooks related to the public-facing functionality
+	 * of the plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function define_public_hooks() {
+
+		$plugin_public = new Edb_Public( $this->get_plugin_name(), $this->get_version() );
+
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		
+		// availability html;
+		$this->loader->add_filter('woocommerce_get_availability', $plugin_public, 'get_product_availability_html', 1, 2 );
+  
+  
+    
+	}
+  
+	/**
+	 * Run the loader to execute all of the hooks with WordPress.
+	 *
+	 * @since    1.0.0
+	 */
+	public function run() {
+		$this->loader->run();
+	}
+
+	/**
+	 * The name of the plugin used to uniquely identify it within the context of
+	 * WordPress and to define internationalization functionality.
+	 *
+	 * @since     1.0.0
+	 * @return    string    The name of the plugin.
+	 */
+	public function get_plugin_name() {
+		return $this->plugin_name;
+	}
+
+	/**
+	 * The reference to the class that orchestrates the hooks with the plugin.
+	 *
+	 * @since     1.0.0
+	 * @return    Edb_Loader    Orchestrates the hooks of the plugin.
+	 */
+	public function get_loader() {
+		return $this->loader;
+	}
+
+	/**
+	 * Retrieve the version number of the plugin.
+	 *
+	 * @since     1.0.0
+	 * @return    string    The version number of the plugin.
+	 */
+	public function get_version() {
+		return $this->version;
+	}
+
+}

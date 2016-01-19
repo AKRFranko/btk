@@ -12,53 +12,10 @@ if (!function_exists('write_log')) {
     }
 }
 class WC_Edb_Shipping_Method extends WC_Shipping_Method{
-  /**
-   * Init your settings
-   *
-   * @access public
-   * @return void
-   */
-  // function init_form_field(){
-  //     $form_fields = array();
-  //     $shipping_classes  = WC()->shipping->get_shipping_classes();
-  //     foreach($shipping_classes as $shipping_class ){
-  //       $form_fields[$shipping_class] = array(
-  //           'title' => "$shipping_class minimum",
-  //           'type' => 'text',
-  //           'description' => 'minimum amount for shipping calculations',
-  //           'default'=> 0
-  //       );
-  //     }
-  //     $this->form_fields = $form_fields;
-  // }
-  // function admin_options() {
-  // }
-  // public function __construct() {
-  //   $this->id                 = 'edb_shipping'; // Id for your shipping method. Should be uunique.
-  //   $this->rate_label         = 'edb shipping';
-  //   $this->method_title       = __( 'EDB shipping' );  // Title shown in admin
-  //   $this->method_description = __( 'A custom shipping module.' ); // Description shown in admin
-
-  //   $this->enabled            = "yes"; // This can be added as an setting but for this example its forced enabled
-  //   $this->title              = "EDB Shipping"; // This can be added as an setting but for this example its forced.
-  //   $this->init();
-  // }
+ 
   
   function init() {
-    // Load the settings API
-    
-    // $this->init_form_fields(); // This is part of the settings API. Override the method to add your own settings
-    // $this->init_settings(); // This is part of the settings API. Loads settings you previously init.
-    
-    // $shipping_classes  =WC()->shipping->get_shipping_classes();
-    // $edb_settings=WC()->integrations->integrations['wc-edb']->settings;
-    
-      
-    
-    
-    
-      
-    
+ 
       $this->rates_table = array(
         'furniture' => array( 
           'min' => 500,
@@ -90,54 +47,61 @@ class WC_Edb_Shipping_Method extends WC_Shipping_Method{
     
     
     
-    write_log('shipping init '.$this->id);
-    // write_log(WC()->shipping->reset_shipping());
-    
-    
-    
-    
-    
+    // write_log('shipping init '.$this->id);
+
   }
   
+  // public function before_calculate_totals( $cart ){
+  //   write_log('before_calculate_totals');
+  //   write_log($cart);
+  //   return $cart;
+  // }
+  
   public function review_order_after_shipping(  ){
-    write_log( 'review after shipping');
+    global $WC_Edb_Shipping_Method;
+    
+    // write_log( 'review after shipping');
+    $rates = $WC_Edb_Shipping_Method->rates;
+    if(isset($rates['edb_self_pickup'])){
+      
+      if(isset($rates['edb_self_pickup']['item_count']) && $rates['edb_self_pickup']['item_count'] > 0){
+        if(!WC()->cart->has_discount('selfserve')){
+          WC()->cart->add_discount( 'selfserve');
+          write_log('ADD 5% DISCOUNT');  
+          
+        }
+      }else{
+        if(WC()->cart->has_discount('selfserve')){
+          WC()->cart->remove_coupons( 'selfserve');
+          write_log('REMOVED 5% DISCOUNT');  
+        }
+      }
+      wc_clear_notices();
+    }
+    write_log('------------------------------------------'.time().'------------------------------------------------');
+    write_log('');
 
   }
   public function review_order_before_shipping(  ){
       global $WC_Edb_Shipping_Method;
-      write_log( 'review before shipping');
+      // write_log( 'review before shipping');
       
       $customer = WC()->session->customer;
       $customer['calculated_shipping'] = 0;
       
       WC()->session->set('customer', $customer );
-      $packs = WC()->shipping->packages;
-      $pcount = count($packs);
-      $epcount = count($WC_Edb_Shipping_Method->packages);
       
-      if( $pcount != $epcount){
-        write_log('WRONG COUNT');
-        
-        foreach($WC_Edb_Shipping_Method->packages as $k=> $p){
-          if(!array_key_exists(  $k, $packs )){
-            write_log('MISSING K: '.$k);
-            write_log(array_key_exists($k, $WC_Edb_Shipping_Method->packages));
-            write_log($WC_Edb_Shipping_Method->rates[$WC_Edb_Shipping_Method->packages[$k]['edb_shipping']]);
-            $WC_Edb_Shipping_Method->packages[$k]['rates'] = $WC_Edb_Shipping_Method->rates[ $WC_Edb_Shipping_Method->packages[$k]['edb_shipping'] ];
-          }
-        }
-        WC()->shipping->calculate_shipping( $WC_Edb_Shipping_Method->packages );
-      }
       write_log('CART TOTAL: '.WC()->cart->shipping_total );
+      write_log('');
       WC()->cart->calculate_totals();
     
   }
   
   //Store the custom field
-  // add_filter( 'woocommerce_add_cart_item_data', 'add_cart_item_custom_data_vase', 10, 2 );
+  
   function add_cart_item_custom_data( $cart_item_meta, $product_id ) {
     global $woocommerce;
-    write_log('add_cart_item_custom_data');
+    // write_log('add_cart_item_custom_data');
     $cart_item_meta['edb_shipping'] = 'edb_self_pickup';
     return $cart_item_meta; 
   }
@@ -145,7 +109,7 @@ class WC_Edb_Shipping_Method extends WC_Shipping_Method{
   //Get it from the session and add it to the cart variable
   function get_cart_items_from_session( $item, $values, $key ) {
       if ( array_key_exists( 'edb_shipping', $values ) ){
-        write_log('get_cart_items_from_session ('.$key.') :  '.json_encode( $values ));
+        // write_log('get_cart_items_from_session ('.$key.') :  '.json_encode( $values ));
         $item[ 'edb_shipping' ] = $values['edb_shipping'];
       }
       
@@ -183,11 +147,8 @@ class WC_Edb_Shipping_Method extends WC_Shipping_Method{
     // write_log('# calcualte shipping'. $this->id );
     if( $this->id == 'edb_self_pickup'){
       write_log('');
-      write_log('');  
-      write_log('');  
-      write_log('begin calculating shippings');
-      
     }
+    write_log('');
     write_log( '###########['.$this->id. ']##############');
     
     $packages = $this->cart_shipping_packages();
@@ -199,10 +160,19 @@ class WC_Edb_Shipping_Method extends WC_Shipping_Method{
         $edb_shipping = 'edb_self_pickup';
       }
       if(empty($bundles[$edb_shipping])){
+        $newitems = array();
+        foreach( $package_data['contents'] as $item ){
+          $item['package_key'] = $package_key;
+          $newitems[]=$item;
+        }
+        $package_data['contents']=$newitems;
         $bundles[$edb_shipping] = $package_data;
+        
       }else{
         foreach($package_data['contents'] as $item ){
+          $item['package_key'] = $package_key;
           $bundles[$package_data['edb_shipping']]['contents'][] = $item;
+        
         }
       }
     }
@@ -212,29 +182,36 @@ class WC_Edb_Shipping_Method extends WC_Shipping_Method{
       if( $method == $this->id){
         // write_log( 'had rate:' . json_encode( $this->rates ));
         if( empty( $bundle) ){
-            write_log("Bundle $method is empty.");
+            write_log("NUM ITEMS: 0");
             $rate = array(
                   'id' => $method,
                   'label' => $method,
                   'cost' => 0
                 );
         }else{
-          write_log("Bundle $method has ".count($bundle['contents'])." items.");
+          // write_log("Bundle $method has ".count($bundle['contents'])." items.");
+          $num = count($bundle['contents']);
+          write_log("NUM ITEMS: $num");
           $rate = $this->calculate_shipping_for_bundle( $bundle );  
           
         } 
-        write_log( "added rate: ".$rate['cost']);
+        // write_log( "Add: ".$rate['cost']);
         $this->add_rate( $rate ); 
         $WC_Edb_Shipping_Method->rates[$this->id]=$rate;
+        if(isset($bundle['contents'])){
+          $WC_Edb_Shipping_Method->rates[$this->id]['item_count']=count($bundle['contents']);  
+        }
+        
       }
     }
     
-    if( $this->id == 'edb_ship_bundle_3'){
-      write_log('done calculating shippings for '.count($this->packages).' packages');
-      write_log('-------');  
-    }
+    // if( $this->id == 'edb_ship_bundle_3'){
+    //   write_log(count($this->packages).' packages calculated.');
+    //   write_log('');  
+    // }
     
   }
+  
   public function get_shipping_class_from_items( $items ){
     if( !empty( $items['data'] ) ){
       $items =array($items);
@@ -255,7 +232,7 @@ class WC_Edb_Shipping_Method extends WC_Shipping_Method{
     if($postcode[0] == 'h'){
       return 'zone-1';
     }
-    if($postcode[2] == 'm'){
+    if($postcode[0] == 'm'){
       return 'zone-2';
     }
     return 'zone-3';
@@ -266,20 +243,24 @@ class WC_Edb_Shipping_Method extends WC_Shipping_Method{
     // write_log( $items );
     if(count($items) == 0){ return 0;} 
     $postcode = WC()->customer->get_shipping_postcode();
+    
     if(!empty($postcode)){
+      write_log('USING POSTCODE: '.$postcode );
       $zone = $this->get_zone_from_postal_code($postcode);
     }else{
+      write_log('USING NO POSTCODE!!!' );
       $zone = 'zone-3';  
     }
-    // write_log('zone: '.$zone);
+    write_log('FOUND ZONE: '.$zone);
     $items_total_cost = array_sum( wp_list_pluck( $items, 'line_total' ) );
-    // write_log('items_total_cost: '.$items_total_cost );
+    
     
     $table = $this->rates_table[$shipping_class];
     $min = $table['min'];
     $criteria = $items_total_cost > $min ? 'above' : 'below';
     // write_log('is_above_minimum: '.($items_total_cost > $min ? 'yes' : 'no') );
-    // write_log('table_Rate: '.$table[$criteria][$zone]);
+    write_log('SHIPPING CLASS USED: '. $shipping_class);
+    write_log('TABLE RATE SAYS: '.$table[$criteria][$zone]);
     return $table[$criteria][$zone];
   }
   
@@ -305,6 +286,7 @@ class WC_Edb_Shipping_Method extends WC_Shipping_Method{
     
     return $newitem;
   }
+  
   public function get_backorder_items( $item, $wants, $have ){
     global $WC_Edb;
     $newitem = $item;
@@ -328,6 +310,7 @@ class WC_Edb_Shipping_Method extends WC_Shipping_Method{
     return $newitem;
     
   }
+  
   public function create_package( $items, $shipping_method , $cart_item_key ){
   
     $items['edb_shipping'] = $shipping_method;
@@ -350,33 +333,11 @@ class WC_Edb_Shipping_Method extends WC_Shipping_Method{
   }
   
   
-  // public function remove_shipping_package(){
-  //   write_log('remove_shipping_package');
-  //   $package_to_remove = 
-  //   $chosen_shipping_methods = WC()->session->get('chosen_shipping_methods');
-  //   if(!empty($chosen_shipping_methods) && isset($chosen_shipping_methods[]))
-  //   write_log($_REQUEST);
-  // }
+  
   public function get_product_availability_date( $product ){
     global $WC_Edb;
     $stock_qty = $product->get_stock_quantity();
     return $WC_Edb->get_package_availability( $product, $stock_qty == 0);
-    // $shipping_class = $product->get_shipping_class(); 
-    // $stock_qty = $product->get_stock_quantity();
-    // if($stock_qty >= 0){
-    //   if($shipping_class == 'furniture'){
-    //     return '2weeks';
-    //   }else{
-    //     return '1weeks';
-    //   }
-    // }else{
-    //   if($shipping_class == 'furniture'){
-    //     return '4weeks';
-    //   }else{
-    //     return '2weeks';
-    //   }
-    // }
-    // return 'now';
   }
   /**
    * calculate_shipping function.
@@ -386,29 +347,21 @@ class WC_Edb_Shipping_Method extends WC_Shipping_Method{
    * @return void
    */
   public function split_items_by_availability( $items ){
-    $bundles = array();
+    $split = array();
     foreach( $items as $item ){
       $product = $item['data'];
-      $date    = $this->get_product_availability_date( $product );
-      if(!isset($bundles[$date])){
-        $bundles[$date] = array();
+      // $date    = $this->get_product_availability_date( $product );
+      $date = $item['edb_availability'];
+      if(!isset($split[$date])){
+        $split[$date] = array();
       }
-      $bundles[$date][]=$item;
+      $split[$date][]=$item;
     }
-    return $bundles;
+    return $split;
   }
   
   public function persist_chosen_shipping_methods(){
     
-      // write_log('persist_chosen_shipping_methods');
-      // write_log(array(
-      //             'ajax' => is_ajax() ,
-      //             'checkout' => is_checkout(),
-      //             'REQ'=> json_encode( $_REQUEST ),
-      //             'SESS'=> json_encode( WC()->session->get('chosen_shipping_methods') )
-      //           ));
-      // //$_REQUEST['shipping_method'] = WC()->session->get('chosen_shipping_methods');
-      
       $_SESSION['edb_shipping'] = WC()->session->get('chosen_shipping_methods'); 
 
     
@@ -433,13 +386,13 @@ class WC_Edb_Shipping_Method extends WC_Shipping_Method{
       $shipping_methods = $_REQUEST['shipping_method'];
     }else if(!empty($shipping_methods)){
       // write_log('took shipping methods from session');
-     # write_log('request had');
-    #  write_log($_REQUEST);
+      # write_log('request had');
+     #  write_log($_REQUEST);
     }
     
     
     
-    // write_log( $shipping_methods );
+    
     $packages = array();
     
     foreach( WC()->cart->get_cart() as $item_key => $item ){
@@ -477,24 +430,11 @@ class WC_Edb_Shipping_Method extends WC_Shipping_Method{
     foreach( $packages as $k => $p){
       $counts[$k] = 5;
     }
-    // write_log(WC()->session->get('shipping_method_counts'));
+    
     WC()->session->set('chosen_shipping_methods',$shipping_methods);
     
     $this->packages = $packages;
-    // write_log( '');
-    // write_log( 'NUM PACKAGES: '. count($packages) );
-    // try{
-    //   $rt = wp_list_pluck($packages, 'rates');
-    // }catch(Exception $e){
-    //   $rt = null;
-      
-    // }
-    // if(empty($rt)){
-    //   write_log(  'no rates' );
-    // }else{
-    // write_log(  'rates: ' . json_encode($rt) ); 
-    // }
-    // write_log( '');
+    
     return $packages;
   }
   
@@ -535,36 +475,33 @@ class WC_Edb_Shipping_Method_Ship_Ready extends WC_Edb_Shipping_Method{
   }
  
   public function calculate_shipping_for_bundle( $bundle ){
-      $total = 0;
-      // $shipments = $this->split_items_by_availability( $bundle['contents'] );
-      
+      $split = array();
       foreach( $bundle['contents'] as $item ){
-        $items = array( $item );
-        $shipping_class = $this->get_shipping_class_from_items( $items );
-        $total=$this->get_shipping_class_items_cost( $shipping_class, $items );
+        $pk = $item['package_key'];
+        write_log($item['package_key']);
+        if(!isset($split[$pk])){
+          $split[$pk] = array();
+        }
+        $split[$pk][] = $item;
       }
-      // foreach( $shipments as $date => $package ){
-      //
-      //   $total+=$this->get_shipping_class_items_cost( $shipping_class, $package );
-      //   write_log( "$date: " . $total . " $shippin_class");
-      // }
+      $total = 0;
+      $rates = wp_list_pluck(WC()->shipping->packages, 'rates');
+      foreach( $split as $pk => $items ){
+        $shipping_class = $this->get_shipping_class_from_items( $items  );
+        $sub = $this->get_shipping_class_items_cost( $shipping_class, $items );  
+        $total += $sub;
+      }
+      
       $rate = array(
         'id' => $this->id,
-        'label' => 'ship when ready',
-        'cost' =>$total
+        'label' => 'ship when ready 2',
+        'cost' =>$total/count(array_keys( $split ))
       );
       
       return $rate;
-      // $this->add_rate( $rate );
+      
   }
   
-  // public function calculate_shipping( $package ) {
-  //   write_log('CALC SHIP READY');
-    
-  //   $shipments = 
- 
-    
-  // }
 } 
 class WC_Edb_Shipping_Method_Ship_Bundle_1 extends WC_Edb_Shipping_Method{
   public function __construct() {
@@ -580,6 +517,11 @@ class WC_Edb_Shipping_Method_Ship_Bundle_1 extends WC_Edb_Shipping_Method{
   
   public function calculate_shipping_for_bundle( $bundle ){
       
+      // $split = array();
+      // foreach($bundle['contents'] as $item ){
+      //   $sclass = $this->get_shipping_class_from_items( $item );
+        
+      // }
       $shipping_class = $this->get_shipping_class_from_items( $bundle['contents'] );
       $total = $this->get_shipping_class_items_cost( $shipping_class, $bundle['contents'] );
       

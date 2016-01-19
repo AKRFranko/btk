@@ -2,25 +2,19 @@
 jQuery( function( $ ) {
   
   
-  
   $(document).ajaxSend( function( event, request ,settings ){
-    
     if(settings.url == '/cart/?wc-ajax=update_shipping_method' || settings.url == '/checkout/?wc-ajax=update_order_review'){
         var qs = settings.data;
         
         settings.data = qs+'&'+$( 'select.shipping_method, input[name^=shipping_method][type=radio]:checked, input[name^=shipping_method][type=hidden]' ).serialize();
     }
   });
+  
   $(document).ajaxSuccess( function( event, request, settings, data){
     if(/update_order_review/.test(settings.url)){
       $('.cart-costs-repeat').html( $('.cart-costs').html() );
       $('.cart-review-items-repeat').html( $('.cart-review-items').html() );
-      
-      var $review = data.fragments['.woocommerce-checkout-review-order-table'];
-      console.log(  $($review).find('.cart_item') );
-      
     }
-    // console.log(request);
   });
   
  
@@ -164,19 +158,13 @@ jQuery( function( $ ) {
     $('.credit-card-type').text( getCreditCardType( $(this).val() ) );
     $('.credit-card-number').text( getCreditCardNumberString( $(this).val() ) );
   });
-  // $(document).on('change','.edb_shipping', function(){
-    // console.log( $('.edb_shipping').serialize() );
-    // $(document.body).trigger('update_checkout');
-  // });
+  $(document).on('change','input[name=billing_postcode],[name=shipping_postcode]', function(){
+    
+    $(document.body).trigger('update_checkout');
+  });
   
   $(function(){
-    $('.woocommerce form .form-row label').each(function(){
-      var $label = $( this );
-      var $input = $label.next('input,select');
-      if($input.length){
-        $input.attr('placeholder', $label.text() );
-      }
-    })
+   
   })
   
 });
