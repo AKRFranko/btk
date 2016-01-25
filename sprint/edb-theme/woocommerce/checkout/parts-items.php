@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <?php
-  do_action( 'woocommerce_review_order_before_cart_contents' );
+  // do_action( 'woocommerce_review_order_before_cart_contents' );
 
   foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
     $_product     = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
@@ -39,14 +39,16 @@ if ( ! defined( 'ABSPATH' ) ) {
           </div>
           <div class="cart-item-category">
             <?php
-              echo $_product->get_categories();
+              echo strip_tags($_product->get_categories());
             ?>
           </div>
           <div class="cart-item-availability">
             <?php
+              edb_checkout_item_availability( $cart_item_key, $cart_item );
               echo '';# $WC_Edb->get_product_availability( array('availability'=>array()), $_product )['availability'];
             ?>
           </div>
+          
         </div>
         <div class="cart-item-actions">
           <div class="cart-item-remove">
@@ -63,5 +65,5 @@ if ( ! defined( 'ABSPATH' ) ) {
     }
   }
 
-  do_action( 'woocommerce_review_order_after_cart_contents' );
+  // do_action( 'woocommerce_review_order_after_cart_contents' );
 ?>

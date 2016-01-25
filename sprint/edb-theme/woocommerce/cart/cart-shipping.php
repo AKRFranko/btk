@@ -72,20 +72,19 @@ if ( ! defined( 'ABSPATH' ) ) {
     </div>
     <div class="cart-item-availability">
       <?php 
-      echo $product_qty;
+        edb_shipping_item_availability($package_contents[0]);
+      // echo "$product_qty @ $product_edb_availability";
       ?>
-      &times;
-      <?php
-        echo $product_edb_availability;
-      ?>
+       
     </div>
   </div>
   <div class="cart-item-options">
     
   
   <?php foreach ( $available_methods as $method_name => $method ) { ?>
-    
+     
     <div class="shipping-method-choice <?php edb_shipping_method_disabled($method_name); ?>">
+    
       <label><input type="radio" name="shipping_method[<?php echo $index; ?>]" data-index="<?php echo $index; ?>" id="shipping_method_<?php echo $index; ?>_<?php echo sanitize_title( $method->id ); ?>" value="<?php echo esc_attr( $method->id ); ?>" <?php checked( $method->id, $chosen_method ); ?> class="shipping_method update_totals_on_change" /></label>
     </div>
   <?php }; ?>
@@ -145,7 +144,8 @@ if ( ! defined( 'ABSPATH' ) ) {
             <?php foreach ( $available_methods as $method ) : ?>
               
               <li>
-                <!--<?php var_dump( $index ); ?>-->
+                
+
                 <input type="radio" name="shipping_method[<?php echo $index; ?>]" data-index="<?php echo $index; ?>" id="shipping_method_<?php echo $index; ?>_<?php echo sanitize_title( $method->id ); ?>" value="<?php echo esc_attr( $method->id ); ?>" <?php checked( $method->id, $chosen_method ); ?> class="shipping_method" />
                 
                 <label for="shipping_method_<?php echo $index; ?>_<?php echo sanitize_title( $method->id ); ?>"><?php echo wp_kses_post( wc_cart_totals_shipping_method_label( $method ) ); ?></label>
@@ -205,6 +205,7 @@ if ( ! defined( 'ABSPATH' ) ) {
       <?php endif; ?>
   
       <?php if ( is_cart() ) : ?>
+      
         <?php woocommerce_shipping_calculator(); ?>
       <?php endif; ?>
     </td>

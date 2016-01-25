@@ -99,11 +99,52 @@ class Edb_Public {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/edb-public.js', array( 'jquery' ), $this->version, false );
 
 	}
+	public function check_redirect_state( $returnto ){
+	  if(isset($_POST['return_to']) && $_POST['return_to'] == 'checkout'){
+	    return home_url( '/checkout/' );
+	  }
+	}
+	public function maybe_login_user_before_checkout(){
+	 // write_log('maybe_login_user_before_checkout');
+	 // write_log('is_checkout? '.(is_checkout() ? 'true' : 'false'));
+	 // write_log('is_cart()? '.(is_cart() ? 'true' : 'false'));
+	 // write_log('is_user_logged_in?'.(is_user_logged_in() ? 'true' : 'false'));
+	  
+	  
+	 // write_log('session?'.( WC()->session->get('edb_user_checkout_as_guest') ? 'true' : 'false' ));
+	  if(isset($_REQUEST['guest'])){
+	    $requests_guest = $_REQUEST['guest'] == 'yes' ? ( is_user_logged_in() ? false : true ) : false;  
+	    WC()->session->set('edb_user_checkout_as_guest', $requests_guest );
+	  }
+	  
+	  if(is_account_page()){
+      $return_to_checkout = isset($_REQUEST['return_to']) && $_REQUEST['return_to'] == 'checkout';
+      if($return_to_checkout){
+        if( is_user_logged_in() || WC()->session->get('edb_user_checkout_as_guest') ){
+          // write_log('REDIRECTING: checkout');
+          wp_redirect( home_url( '/checkout/' ) );
+          exit();
+        }
+      }
+      
+	  }
+
+	  if( is_checkout() ){
+	    if( is_user_logged_in() || WC()->session->get('edb_user_checkout_as_guest') ){
+	      return;
+	    }else{
+	      wp_redirect( home_url( '/my-account/?return_to=checkout' ) );  
+	      exit();
+	    }
+	  }
+
+	}
 	
 	public function get_shipping_delays( $product ){
 	  $this->get_decorated_product( $product );
-	  $product_id = $product->ID;
+	  $product_id = $product->id;
 	  if(empty($product_id)){
+	    write_log($product);
 	    $product_id = $product->parent->id;
 	  }
 	  

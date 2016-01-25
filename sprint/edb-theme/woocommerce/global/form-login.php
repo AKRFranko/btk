@@ -19,7 +19,7 @@ if ( is_user_logged_in() ) {
 <form method="post" class="login" <?php if ( $hidden ) echo 'style="display:none;"'; ?>>
 
 	<?php do_action( 'woocommerce_login_form_start' ); ?>
-
+  <h1>qwerqwer qwer qwer </h1>
 	<?php if ( $message ) echo wpautop( wptexturize( $message ) ); ?>
 
 	<p class="form-row form-row-first">
@@ -45,6 +45,7 @@ if ( is_user_logged_in() ) {
 	<p class="lost_password">
 		<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Lost your password?', 'woocommerce' ); ?></a>
 	</p>
+  
 
 	<div class="clear"></div>
 

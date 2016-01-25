@@ -6,6 +6,14 @@
  */
 ( function() {
   
+  
+  
+  /*
+ 
+
+  */
+  
+  
   var $ = jQuery;
   $(document).on('click','.toggle', function(){
     var $nav = $(this).parents('nav');
@@ -35,7 +43,8 @@
   
   $(document).on('click','.burger', function(e){
     e.preventDefault();
-    $('#shop-nav,#overlay, #cat-nav, #masthead').toggleClass('on');
+    $('#shop-nav,#overlay, #masthead').toggleClass('on');
+    $('#cat-nav').removeClass('on');
     if(!$('#masthead').hasClass('on')){
      $('#sign-in-menu.on, #sign-in-menu .on, #shop-nav.on, #cat-nav.on').removeClass('on');
     }
@@ -60,8 +69,46 @@
   });
   
   
+  $(document).ajaxComplete( function(){
+    setTimeout( function(){
+      // console.log('REMOVE ERROR');
+      $('.woocommerce-error, .woocommerce-message').addClass('hide');
+    }, 10000);
+  })
+  
+  $(document).on('click', '.toggle-login-type', function( e ){
+    e.preventDefault();
+    $('form.login, form.register').toggleClass('on');
+  });
+  
+  
+  // $.event.special.swipe.settings.threshold = 0.02;
+  // $.event.special.swipe.settings.sensitivity = 12;
+  // $(document).on('movestart', '.home-slider, .edb-slideshow-images', function(e) {
+  //     // If the movestart is heading off in an upwards or downwards
+  //     // direction, prevent it so that the browser scrolls normally.
+  //     if ((e.distX > e.distY && e.distX < -e.distY) || (e.distX < e.distY && e.distX > -e.distY)) {
+  //         e.preventDefault();
+  //     }
+  // });
+  
+  // $(document).on('swipeleft', '.home-slider, .edb-slideshow-images', function(e, dir) {
+  //     e.preventDefault();
+     
+  //     // it.cycle(1);
+  //     console.log(event.type)
+  // });
+  // $(document).on('swiperight', '.home-slider, .edb-slideshow-images', function(e, dir) {
+  //     e.preventDefault()
+  //     // it.cycle(-1);
+  //     console.log(event.type)
+  // });
   
   $(function(){
+    // setTimeout( function(){
+    //   // console.log('REMOVE ERROR');
+    //   $('.woocommerce-error, .woocommerce-message').addClass('hide');
+    // }, 5000);
     if($('.home-slider').length){
       var $slider = $('.home-slider');
       var $current = $slider.find('.slide-current');
@@ -75,6 +122,7 @@
       $next.on('click', function( e ){
         e.preventDefault();
         pageSelector.cycle(1);
+        
         $current.text( pageSelector.active + 1);
       });
       $prev.on('click', function(e){

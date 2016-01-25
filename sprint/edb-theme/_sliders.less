@@ -1,0 +1,177 @@
+
+/* home slider */
+.home-slider{
+  .left-floating-block;
+  height:100%;
+  min-height:calc(~"100vh - @{mast-height}");
+  max-height:calc(~"100vh - @{mast-height}");
+}
+.home-slider .slides,
+.home-slider .slide{
+  .left-floating-block;
+  height:100%;
+  min-height:calc(~"100vh - @{mast-height}");
+  max-height:calc(~"100vh - @{mast-height}");
+}
+.home-slider .slide{
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+.slide-clickable {
+    .left-floating-block;
+    padding:0 1em;
+    position: absolute;
+    top: 40%;
+    text-decoration:none;
+    text-align:center;
+    user-select:none;
+}
+.slide-clickable:focus{
+  outline:0;
+}
+.slide-title,.slide-subtitle{
+  .left-floating-block;
+  color:#fff;
+  white-space:normal;
+  text-align:center;
+  letter-spacing:0.05em;
+  
+}
+.slide-subtitle{
+  width:auto;
+  float:none;
+}
+.slide-title{
+  position:relative;
+  font-family:@sans-font;
+  font-size:45px;
+  text-transform:uppercase;
+  
+  padding-top: 1em;
+  padding-bottom: 0.5em;
+}
+.slide-subtitle{
+  font-family:@serif-font;
+  font-size:22.5px;
+  padding-top:.5em;
+  text-transform:lowercase;
+}
+.slide-subtitle:after{
+  content:'';
+  background:data-uri('data:image/svg+xml;charset=US-ASCII,<%3Fxml%20version%3D"1.0"%20encoding%3D"iso-8859-1"%3F>%0D%0A<%21--%20Generator%3A%20Adobe%20Illustrator%2018.1.1%2C%20SVG%20Export%20Plug-In%20.%20SVG%20Version%3A%206.00%20Build%200%29%20%20-->%0D%0A<svg%20version%3D"1.1"%20id%3D"Capa_1"%20xmlns%3D"http%3A//www.w3.org/2000/svg"%20xmlns%3Axlink%3D"http%3A//www.w3.org/1999/xlink"%20x%3D"0px"%20y%3D"0px"%0D%0A%09%20viewBox%3D"0%200%20223.413%20223.413"%20style%3D"enable-background%3Anew%200%200%20223.413%20223.413%3B"%20xml%3Aspace%3D"preserve"><style%20type%3D"text/css">circle%2C%20ellipse%2C%20line%2C%20path%2C%20polygon%2C%20polyline%2C%20rect%2C%20text%20%7B%20fill%3A%20white%20%21important%3B%20%7D</style>%0D%0A<g>%0D%0A%09<g>%0D%0A%09%09<g>%0D%0A%09%09%09<polygon%20style%3D"fill%3A%23010002%3B"%20points%3D"57.179%2C223.413%2051.224%2C217.276%20159.925%2C111.71%2051.224%2C6.127%2057.179%2C0%20172.189%2C111.71%20%09%09%09%0D%0A%09%09%09%09"/>%0D%0A%09%09</g>%0D%0A%09</g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A</svg>');
+  display: inline-block;
+  width: 1em;
+  height: .6em;
+  background-position:left center ;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.edb-slideshow-images{
+  .left-floating-block;
+}
+.slide-controls,.edb-slideshow-buttons{
+  .left-floating-block;
+  text-align:center;
+  position:absolute;
+  top:100%;
+  margin-top:-3em;
+}
+.edb-slideshow-buttons{
+  line-height:45px;
+}
+.edb-slideshow{
+  min-height:505px;
+}
+
+.edb-slideshow-separator,.edb-slideshow-next,.edb-slideshow-prev,
+.slide-prev,.slide-next,.slide-current,.slide-separator,.slide-total{
+  display:inline-block;
+  color:#fff;
+}
+.edb-slideshow-separator,.edb-slideshow-next,.edb-slideshow-prev{
+  color:#000;
+}
+
+.slide-prev:after,.slide-next:after{
+  content:'';
+  background:data-uri('data:image/svg+xml;charset=US-ASCII,<%3Fxml%20version%3D"1.0"%20encoding%3D"iso-8859-1"%3F>%0D%0A<%21--%20Generator%3A%20Adobe%20Illustrator%2018.1.1%2C%20SVG%20Export%20Plug-In%20.%20SVG%20Version%3A%206.00%20Build%200%29%20%20-->%0D%0A<svg%20version%3D"1.1"%20id%3D"Capa_1"%20xmlns%3D"http%3A//www.w3.org/2000/svg"%20xmlns%3Axlink%3D"http%3A//www.w3.org/1999/xlink"%20x%3D"0px"%20y%3D"0px"%0D%0A%09%20viewBox%3D"0%200%20196.665%20196.665"%20style%3D"enable-background%3Anew%200%200%20196.665%20196.665%3B"%20xml%3Aspace%3D"preserve"><style%20type%3D"text/css">circle%2C%20ellipse%2C%20line%2C%20path%2C%20polygon%2C%20polyline%2C%20rect%2C%20text%20%7B%20fill%3A%20white%20%21important%3B%20%7D</style>%0D%0A<g>%0D%0A%09<g>%0D%0A%09%09<polygon%20style%3D"fill%3A%23010002%3B"%20points%3D"196.665%2C94.72%2013.836%2C94.72%2069.419%2C39.137%2064.308%2C34.026%200%2C98.331%2064.308%2C162.639%20%0D%0A%09%09%0969.419%2C157.536%2013.832%2C101.942%20196.665%2C101.942%20%09%09"/>%0D%0A%09</g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A</svg>');
+  .full-background-image;
+}
+
+.edb-slideshow-next:after,.edb-slideshow-prev:after{
+  content:'';
+  background:data-uri('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22iso-8859-1%22%3F%3E%0D%0A%3C%21--%20Generator%3A%20Adobe%20Illustrator%2018.1.1%2C%20SVG%20Export%20Plug-In%20.%20SVG%20Version%3A%206.00%20Build%200%29%20%20--%3E%0D%0A%3Csvg%20version%3D%221.1%22%20id%3D%22Capa_1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20x%3D%220px%22%20y%3D%220px%22%0D%0A%09%20viewBox%3D%220%200%20227.096%20227.096%22%20style%3D%22enable-background%3Anew%200%200%20227.096%20227.096%3B%22%20xml%3Aspace%3D%22preserve%22%3E%3Cstyle%20type%3D%22text/css%22%3Ecircle%2C%20ellipse%2C%20line%2C%20path%2C%20polygon%2C%20polyline%2C%20rect%2C%20text%20%7B%20fill%3A%20black%20%21important%3B%20%7D%3C/style%3E%0D%0A%3Cg%3E%0D%0A%09%3Cg%3E%0D%0A%09%09%3Cpolygon%20style%3D%22fill%3A%23010002%3B%22%20points%3D%22152.835%2C39.285%20146.933%2C45.183%20211.113%2C109.373%200%2C109.373%200%2C117.723%20211.124%2C117.723%20%0D%0A%09%09%09146.933%2C181.902%20152.835%2C187.811%20227.096%2C113.55%20%09%09%22/%3E%0D%0A%09%3C/g%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3C/svg%3E%0D%0A');
+  .full-background-image;
+}
+
+.slide-next:after,.edb-slideshow-prev:after{
+  transform:rotate(180deg);
+}
+.slide-current,.slide-total,.slide-separator{
+  height:2em;
+  line-height:2;
+  vertical-align:middle;
+}
+.slide-separator{
+  background:#fff;
+  width:1px;
+  height:1em;
+}
+.slide-current,.slide-total{
+  padding:0 .25em;
+}
+.slide-prev,.slide-next,
+.slide-prev:focus,.slide-next:focus{
+  outline:0;
+}
+.slide-prev,.slide-next,.edb-slideshow-next,.edb-slideshow-prev{
+  position:relative;
+  padding:0 1em;
+  text-decoration:none;
+  color:#fff!important;
+  font-weight:bold;
+  width:5em;
+  height:1.3em;
+  line-height:2;
+  margin-bottom:-0.25em;
+  color:transparent;
+  text-indent:100px;
+  overflow:hidden;
+}
+.slide-badge{
+  display:none;
+}
+.slides{
+  overflow:hidden;
+  white-space:nowrap;
+}
+.slides .slide{
+  .absolute-fill;
+  margin-left:-100%;
+  overflow:hidden;
+  transition:all .2s ease-in;
+}
+
+.slides .slide.active{
+  margin-left:0;
+}
+
+.slides .slide.active + .slide{
+  margin-left:100%;
+}
+.slides .slide.active + .slide + .slide{
+  display:none;
+}
+.home-slider.at-last .slide:first-of-type{
+  margin-left:100%;
+}
+.home-slider.at-last .slide:first-of-type + .slide{
+  display:none;
+}
+
+
+.home-slider .slide img{
+  .absolute-fill;
+  opacity:0;
+}

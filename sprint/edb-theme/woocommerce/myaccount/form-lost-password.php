@@ -14,9 +14,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <?php wc_print_notices(); ?>
-
+<div id="account-boxes" class="box half">
 <form method="post" class="lost_reset_password">
-
+  
+  <h2><?php _e('Password reset'); ?></h2>
+  
 	<?php if( 'lost_password' == $args['form'] ) : ?>
 
 		<p><?php echo apply_filters( 'woocommerce_lost_password_message', __( 'Lost your password? Please enter your username or email address. You will receive a link to create a new password via email.', 'woocommerce' ) ); ?></p>
@@ -53,3 +55,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php wp_nonce_field( $args['form'] ); ?>
 
 </form>
+</div>

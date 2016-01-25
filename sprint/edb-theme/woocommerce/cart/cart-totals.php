@@ -17,13 +17,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php do_action( 'woocommerce_before_cart_totals' ); ?>
 
   <?php if( is_cart() ){ ?>
+  <?php 
+    $calculated = '--';
+    
+    if(!empty(WC()->customer->get_shipping_postcode()) ){
+      $calculated = WC()->cart->get_cart_shipping_total() . " <small>(using: ".WC()->customer->get_shipping_postcode().")</small>";
+    }
+    ?>
     <p class="total-line cart-subtotal"><span class="label"><?php _e( 'Total', 'edb' ); ?></span><span class="value"><?php wc_cart_totals_subtotal_html(); ?></span></p>
-    <p class="total-line cart-shipping"><span class="label"><?php _e( 'Estimated Shipping cost', 'edb' ); ?></span><span class="value"><?php echo WC()->cart->get_cart_shipping_total(); ?></span></p>
+    
+    <p class="total-line cart-shipping"><span class="label"><?php _e( 'Estimated Shipping cost', 'edb' ); ?></span><span class="value"><?php echo $calculated; ?></span></p>
     <p class="total-line cart-delay"><span class="label"><?php _e('Estimated delay', 'edb'); ?></span><span class="value">1 week</span></p>
+    <?php woocommerce_shipping_calculator(); ?>
     <p class="total-line cart-message">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. ut pellentesque vulputate venenatis. vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; donec ut lacinia ligula. aenean vel velit molestie, dapibus tortor eget, dignissim nibh.
     </p>
-    <div class="shipping-calculator-hidden"><?php woocommerce_shipping_calculator(); ?></div>
+    
+    
   <?php }else{ ?>
 	
 <!--

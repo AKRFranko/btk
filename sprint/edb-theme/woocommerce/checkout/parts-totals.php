@@ -4,7 +4,9 @@ if ( ! defined( 'ABSPATH' ) ) {
   exit;
 }
 ?>
-<?php do_action( 'woocommerce_review_order_before_order_total' ); ?>
+<?php 
+//do_action( 'woocommerce_review_order_before_order_total' ); 
+?>
 <div class="cart-total cost-line">
   <span class="label"><?php _e('Order Total', 'wc-edb'); ?></span>
   <span class="value"><?php wc_cart_totals_order_total_html(); ?></span>

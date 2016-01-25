@@ -14,6 +14,7 @@ global $WC_Edb;
 ?>
 
 <fieldset id="shipping-packages-panel" class="checkout-panel woocommerce-checkout-review-order-table <?php edb_panel_active('#shipping-packages-panel') ?>">
+  <h1><?php _e('Choose your delivery options', 'edb'); ?></h1>
     <?php $edb_shipping_methods = array(
       'edb_self_pickup' => "I will pick up.",
       'edb_ship_ready' => "Ship when ready",
@@ -23,6 +24,7 @@ global $WC_Edb;
     ); ?>
     <div class="shipping-method-choices">
       <?php foreach($edb_shipping_methods as $method_name => $label ){ ?>
+      
         <div class="<?php edb_shipping_method_disabled($method_name); ?>">
           <?php echo $label; ?>
         </div>

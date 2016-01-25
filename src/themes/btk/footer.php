@@ -30,7 +30,6 @@
 							<?php wp_nav_menu( array( 'menu' => 'footer' ) ); ?>
 						</nav><!-- #site-navigation -->
 					</div>
-
 					<div class="col-xs-6">
 						<nav class="nav-footer valign" role="navigation">
 							<?php wp_nav_menu( array( 'menu' => 'footer2' ) ); ?>

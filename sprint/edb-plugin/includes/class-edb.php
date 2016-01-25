@@ -218,7 +218,7 @@ class Edb {
     add_action('template_redirect', array($GLOBALS['Edb_Shipping_Method'], 'persist_chosen_shipping_methods') );
     
     
-    
+    add_action('woocommerce_before_cart', array($GLOBALS['Edb_Shipping_Method'], 'check_shipping_postcode') );
     
     
 	  
@@ -255,7 +255,7 @@ class Edb {
     $this->loader->add_action( 'woocommerce_save_product_variation', $plugin_admin, 'save_variation_settings_fields', 10 , 1 );
     $this->loader->add_action('personal_options_update', $plugin_admin, 'save_user_settings_fields', 10, 1);
     $this->loader->add_action('edit_user_profile_update', $plugin_admin, 'save_user_settings_fields', 10, 1);
-    
+
 
 
 	}
@@ -277,8 +277,9 @@ class Edb {
 		// availability html;
 		$this->loader->add_filter('woocommerce_get_availability', $plugin_public, 'get_product_availability_html', 1, 2 );
   
-  
-    
+    $this->loader->add_action('template_redirect', $plugin_public, 'maybe_login_user_before_checkout' );
+    $this->loader->add_action('woocommerce_login_redirect', $plugin_public, 'check_redirect_state'  );
+    $this->loader->add_action('woocommerce_registration_redirect', $plugin_public, 'check_redirect_state'  );
 	}
   
 	/**

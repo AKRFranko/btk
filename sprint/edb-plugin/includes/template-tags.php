@@ -92,17 +92,65 @@ function edb_cart_item_material( $cart_item_key, $cart_item ){
 function edb_cart_item_category( $cart_item_key, $cart_item ){
   $product_id = $cart_item['product_id'];
   $variation_id = $cart_item['variation_id'];
+  
   $decorated = edb_decorated_product( $variation_id );
   echo $decorated->category;
 }
+function edb_checkout_item_availability( $cart_item_key, $cart_item  ){
+  $product_id = $cart_item['product_id'];
+  $variation_id = $cart_item['variation_id'];
+  $decorated = edb_decorated_product( $variation_id );
+  $delays = $decorated->shipping_delays[$variation_id];
+  
+  $now = strtotime(date(DATE_RFC2822));
+  $min = trim(time_elapsed(strtotime( $delays['available'], $now )));
+  $max = trim(time_elapsed(strtotime( $delays['backorder'], $now )));
+  $available_stock = $decorated->variation_object->get_total_stock();
+  $wanted_stock = abs($cart_item['quantity']);
+  if($available_stock <= 0 ){
+    echo "$wanted_stock @ $max";
+  }else if($wanted_stock <= $available_stock ){
+    echo "$wanted_stock @ $min";
+  }else{
+    $backorder_stock = $wanted_stock - $available_stock;
+    echo "$available_stock @ $min, $backorder_stock @ $max";  
+  }
+  
+  
+}
+function edb_shipping_item_availability( $package ){
+  $product_id = $package['product_id'];
+  $variation_id = $package['variation_id'];
+  $decorated = edb_decorated_product( $variation_id );
+  $delays = $decorated->shipping_delays[$variation_id];
+  $availability = $package['edb_availability'];
+  $now = strtotime(date(DATE_RFC2822));
+  $max = trim(time_elapsed(strtotime( $availability, $now )));
+  $available_stock = $decorated->variation_object->get_total_stock();
+  echo $package['quantity'] . " @ $max"; 
+}
+
 function edb_cart_item_availability( $cart_item_key, $cart_item ){
   $product_id = $cart_item['product_id'];
   $variation_id = $cart_item['variation_id'];
   $decorated = edb_decorated_product( $variation_id );
   $delays = $decorated->shipping_delays[$variation_id];
-  $min = $delays['available'];
-  $max = $delays['backorder'];
+  $now = strtotime(date(DATE_RFC2822));
+  
+  $min = trim(time_elapsed(strtotime( $delays['available'], $now )));
+  $max = trim(time_elapsed(strtotime( $delays['backorder'], $now )));;
   echo "$min ~ $max";
+}
+
+function edb_get_user_wants_guest_checkout(){
+  $stored = WC()->session->get('edb_user_checkout_as_guest');
+  if(empty($stored) || $stored == false){
+    return false;
+  }
+  if(isset($_REQUEST) && empty($_REQUEST['guest'] ) ){
+    return false;
+  }
+  return true;
 }
 
 function edb_panel_active( $panelId ){
@@ -136,6 +184,7 @@ function edb_shipping_method_disabled( $method_name ){
   $package_ids = array_keys($packages);
   $package_count = count($package_ids);
   $bundle_methods = array('edb_ship_ready','edb_ship_bundle_2','edb_ship_bundle_3');
+  // write_log('edb_shipping_method_disabled. ' . $bundle_methods );
   $disabled = '';
   if( $package_count < 3 && in_array($method_name, $bundle_methods ) ){
     $disabled = ' disabled';

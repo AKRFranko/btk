@@ -56,17 +56,17 @@ window.requestAnimFrame = (function(){
       }
       var $previous = this.$pages.eq( current );
       var $target = this.$pages.eq( this.active );
-      this.deactivate( current );
-      $target.addClass( this.activeClass );
-      this.$el.trigger('activated-page', [ $target ] );
-      this.$el.trigger('selected-page-changed', [ $target, $previous ]);
-    },
-    cycle: function( dir ){
       var it = this;
       requestAnimFrame( function(){
-        it.activate( it.active + dir );  
+        it.deactivate( current );
+        $target.addClass( it.activeClass );
+        it.$el.trigger('activated-page', [ $target ] );
+        it.$el.trigger('selected-page-changed', [ $target, $previous ]); 
       });
       
+    },
+    cycle: function( dir ){
+      this.activate( this.active + dir );  
     }
   }
   
@@ -96,7 +96,7 @@ window.requestAnimFrame = (function(){
     });
   }
   var restoreSummaryToggles = function( ){
-    console.log('restoreSummaryToggles', summaryStates );
+    // console.log('restoreSummaryToggles', summaryStates );
     var i =0;
     while( i < 4){
       if(summaryStates[i]){
@@ -139,6 +139,7 @@ window.requestAnimFrame = (function(){
         $('#coupon_code').val('');
         $( '.woocommerce-error, .woocommerce-message' ).remove();
         $form.before( $html );
+        // console.log('update because apply coupon');
         $( document.body ).trigger( 'update_checkout', { update_shipping_method: false } );
       }); 
   }
@@ -204,7 +205,7 @@ window.requestAnimFrame = (function(){
     var $cart   = $('form.cart');
     var value   = $choice.val();
     var varid   = $choice.data('variation-id');
-    console.log( $image );
+    // console.log( $image );
     $picker.find('.active-choice').removeClass('active-choice');
     $label.addClass('active-choice');
     $cart.find('input[name=variation_id]').val(varid);
@@ -325,6 +326,7 @@ window.requestAnimFrame = (function(){
       $diffAddr.prop('checked', false );
       $('.woocommerce-shipping-fields').hide().trigger('update-shipping-fields', [ false ]);
     }
+    // console.log('update beaause do not ship')
     $(document.body).trigger('update_checkout');
     
     
@@ -350,6 +352,7 @@ window.requestAnimFrame = (function(){
   // Highjack Woocommerce Ajax Updates
   $(document).ajaxSend( function( event, request, settings ){
     var wcAjax = parseWCAjaxSettings( settings );
+    
     if(wcAjax ){
       if(wcAjax == 'update_shipping_method' || wcAjax == 'update_order_review'){
         saveSummaryToggles();
@@ -379,11 +382,11 @@ window.requestAnimFrame = (function(){
     var currentPanel = $('#currentPanel').val();
     if(e.keyCode === 13 && currentPanel !== '#place-order-panel'){
       e.preventDefault();
+      // console.log('update bwecause key enter');
       $(document.body).trigger('update_checkout');
     }
   })
   
-  // watch for quantity/coupon code changes and update cart
   
   $(document).on('change focusout', '.cart-item-quantity-input input', function( e ){
     var time = e.type =='focusout' ? 1200 : 3000;
@@ -398,12 +401,11 @@ window.requestAnimFrame = (function(){
   //   debounce( applyCoupon, 2000 );
   // });
   
-  // watch for cc info changes
-  $(document).on('keyup focusout','#paypal_pro-card-number', function( e ){
-    debounce( copyCreditCardInfo, 500 );
-  } );
+  
+  // 
 
   $(document).on('change','input[name=billing_postcode],[name=shipping_postcode]', function(){
+    // console.log('updaeting chefkout because input[name=billing_postcode],[name=shipping_postcode] changed');
       $(document.body).trigger('update_checkout');
   });
   
@@ -435,6 +437,7 @@ window.requestAnimFrame = (function(){
     var targetIndex = activeIndex+1;
     if(targetIndex >= $panels.length) return;
     $('#currentPanel').val( '#' + $panels.eq(targetIndex).attr('id') );
+    // console.log('update checkout because save on continues')
     $(document.body).trigger('update_checkout');
   });
  
@@ -471,6 +474,7 @@ window.requestAnimFrame = (function(){
 
 
   $(document).on('click', '.qty-plus, .qty-minus', function( e ){
+    e.preventDefault();
     var $widget = $(this).parents('.qty-widget');
     var $input = $widget.find('input');
     
@@ -502,6 +506,10 @@ window.requestAnimFrame = (function(){
     
     $('#checkout-panel-tabs a[href='+$(this).data('panel')+']').click();
     
+  });
+  
+  $(document).on('change','.shipping-calculator-form .value input', function(){
+    $('button[name=calc_shipping').click();
   });
   // When document is ready....
   $(function(){

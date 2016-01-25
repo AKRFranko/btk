@@ -1,0 +1,337 @@
+/*
+Theme Name: edb
+Theme URI: http://underscores.me/
+Author: Automattic
+Author URI: http://automattic.com/
+Description: Hi. I'm a starter theme called <code>_s</code>, or <em>underscores</em>, if you like. I'm a theme meant for hacking so don't use me as a <em>Parent Theme</em>. Instead try turning me into the next, most awesome, WordPress theme out there. That's what I'm here for.
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: _s
+Tags:
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+
+_s is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc.
+Underscores is distributed under the terms of the GNU GPL v2 or later.
+
+Normalizing styles have been helped along thanks to the fine work of
+Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
+*/
+@import "_variables";
+@import "_s";
+
+@import "_site";
+@import "_products";
+@import "_posts";
+
+@import "_cart_checkout";
+
+@import "_sliders";
+
+
+@media  (max-width: 320px) and (max-width: 768px){
+  .slide-clickable{
+    top:3em;
+  }
+}
+@media (max-width: 991px){
+  
+  #masthead.on{
+    background:transparent;
+    
+  }
+  #masthead.on #logo{
+    /*TODO: put white logo*/
+  }
+  #masthead.on #site-nav a{
+    color:#fff;
+  }
+  /*#site-nav a,*/
+  #shop-nav a,#cat-nav a{
+    font-size:18px;
+  }
+  #shop-nav{
+    position:absolute;
+    background:transparent;
+    padding:0;
+    margin:0;
+    top:6em;
+    width:50%;
+    left:0;
+    text-align:left;
+    padding:2em 1em;
+    display:none;
+    z-index:2222;
+  }
+  #shop-nav.on{
+    display:block;
+  }
+  #shop-nav a{
+    display:block;
+    text-align:left;
+    color:#fff;
+    padding:0;
+    line-height:2;
+    margin-left:1em;
+  }
+  #shop-nav a:first-of-type{
+    margin-left:1em;
+  }
+  #cat-nav{
+    background:transparent;
+  }
+  #cat-nav.on{
+    
+    width:50%;
+    height:calc(~" 100vh - @mast-height ");
+    padding:2em 0;
+    left:50%;
+    z-index:3333;
+  }
+  #cat-nav > ul{
+    width:100%;
+    
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+  .listing-post,
+  .listing-product{
+   
+    width:calc(~"100% / 2");
+    padding:.8em;
+   
+  }
+  .listing-post:nth-of-type(even),
+  .listing-product:nth-of-type(even){
+    padding-left:.4em;
+  }
+  .listing-post:nth-of-type(odd),
+  .listing-product:nth-of-type(odd){
+    padding-right:.4em;
+  }
+  .listing-product-name{
+    padding:.25em .6em 0 .6em;
+  }
+  .product-price{
+    /*color:Red;*/
+  }
+  .product-sub-section > div.product-sidekick{
+    padding:0 2em;
+    color:#fff;
+  }
+  .product-sub-sections{
+    margin-top: 4.5em;
+    padding:0 1em;
+  }
+}
+
+@media (min-width: 992px){
+  #site-nav a:last-of-type, .burger{
+    display:none;
+  }
+  #page{
+    max-width:970px;
+    margin:0 auto;
+  }
+  #shop-nav{
+    top:4.5em;
+  }
+  
+  .slide-clickable{
+    margin-top:-3em;
+  }
+  
+  .listing-post,
+  .listing-product{
+    width:calc(~"100% / 3");
+    padding:.3em;
+    overflow:hidden;
+  }
+  .listing-post:nth-of-type(3n+1),
+  .listing-product:nth-of-type(3n+1){
+    padding-left:0;
+    padding-right:.6em;
+  }
+  .listing-post:nth-of-type(3n+3),
+  .listing-product:nth-of-type(3n+3){
+  padding-right:0;
+  padding-left:.6em;
+    
+  }
+  .listing-product-name{
+    padding:.25em .7em 0 .7em;
+  }
+
+  .product-slideshow{
+    display:inline-block;
+    width:750px;
+    display:block;
+    float:left;
+  }
+  .product-info{
+    border-top:1px solid #000;
+    padding:0;
+    
+  }
+  .product-name{
+    margin-top:.5em;
+    margin-bottom:-.25em;
+    line-height:1.5;
+  }
+  .product-description{
+    width:100%;
+    padding:@mast-height 0;
+    margin:0;
+  }
+  .product-sidekick > div{
+    width:970px;
+    margin:@mast-height auto;
+    padding:0 1em;
+  }
+  
+  .product-info,.product-menu{
+    display:block;
+    float:left;
+    width:calc(~"100% - 765px");
+    margin:0 -1em 0 1em;
+  }
+  .product-menu{
+    position:absolute;
+    top:4.5em;
+    padding-top:.5em;
+    /*font-size:22px;*/
+    left:750px;
+    border-top:1px solid #000;
+  }
+  .product-menu .product-selected-material{
+    margin-top:0.5em;
+    padding-top:0.5em;
+  }
+  .product-share{
+    margin:0;
+    position:absolute;
+    top:1em;
+    right:0;
+    text-align:right;
+  }
+  .product-price{
+    margin-bottom:0;
+  }
+  .product-menu:before{
+    display:none;
+  }
+  .product-menu .edb-material-picker .edb-material-choices label{
+    
+    width:calc(~" 90% / 4");
+    height:0;
+    padding-bottom:calc(~" 82% / 4");
+    margin:calc(~"5% / 4");
+  }
+  
+  .product-price{
+    /*color:blue;*/
+  }
+}
+
+
+@media (min-width:320px) and (max-width:500px){
+  .edb-slideshow{
+    min-height:calc(~"100vh - @{mast-height}");
+  }
+  .product-slideshow{
+    min-height:auto;
+    height:auto;
+  }
+  .edb-slideshow .edb-slideshow-images{
+    @diff:(@mast-height + 45px);
+    max-height:calc(~"100vh - @{diff}");
+  }
+  .edb-slideshow .edb-slideshow-image-container{
+    background-color:#e9e9e9;
+    background-size:contain;
+  }
+  .product-sections{
+    margin-top:0;
+  }
+  .product-info,.product-description,.product-menu{
+    .left-floating-block;
+    width:100%;
+  }
+  .product-share{
+    margin-bottom:2em;
+  }
+  .product-menu{
+    top:0;
+    border-top:1px solid #000;
+    margin-top:1em;
+    padding-top:1em;
+  }
+  .product-menu form > div{
+    padding-left:1em!important;
+    padding-right:1em!important;
+  }
+  .product-sub-section{
+    padding:2em 0;
+  }
+  .product-sub-section > div:not(.product-sidekick){
+    .left-floating-block;
+  }
+  .product-sidekick{
+    margin-top:-2em;
+    margin-bottom:-2em;
+  }
+  .round-image-wrapper{
+    margin:1em;
+    
+  }
+  
+  .product-sub-section .section-title,h1,h2{
+    .left-floating-block;
+    line-height:1.3;
+    white-space:normal;
+    margin-bottom:1em;
+  }
+  .product-sub-section{
+    div.product-technical-image{
+      .left-floating-block;
+      margin:0;
+      padding:0;
+      width:100%:;
+    }
+    div.product-introduction-video,div.product-technical-image{
+      margin:-2em 0;
+    }
+    div.product-introduction-video{
+      margin-bottom:-2.5em;
+    }
+    .product-introduction-video, .product-instruction-video{
+        .left-floating-block;
+        
+        height:auto;
+      }
+      
+      div.product-instruction-video{
+        margin-bottom:2em;
+        margin-top:1em;
+      }
+      .product-introduction-video:after, .product-instruction-video:after{
+        padding-top:70%;
+        margin:1em 0;
+      }
+    .product-introduction-video .yt-thumb, .product-instruction-video .yt-thumb {
+      top:0;
+      left:0;
+      width:100%;
+      margin-top:3em;
+      padding-bottom: calc(~" 100% * 0.5625");
+    }
+  }
+    
+}
+
+
+

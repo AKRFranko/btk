@@ -12,6 +12,7 @@
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
+  <script src="//cdn.jsdelivr.net/fingerprintjs2/<VERSION>/fingerprint2.min.js"></script>
   <script src="//use.typekit.net/osv5fru.js"></script>
   <script>try{Typekit.load();}catch(e){}</script>
   

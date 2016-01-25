@@ -1,0 +1,67 @@
+@serif-font: "adobe-caslon-pro", Georgia, 'Times New Roman', Times, serif;
+@sans-font: "pragmatica-web-condensed", 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+
+@mast-height: 117px;
+
+@font-size-1: 22px;
+@font-size-2: 20px;
+@font-size-3: 18px;
+@font-size-3: 15px;
+
+.title-display-1{
+  color:red;
+}
+
+.absolute-fill{
+  box-sizing:border-box;
+  position:absolute;
+  display:block;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+}
+
+.left-floating-block{
+  box-sizing:border-box;
+  position:relative;
+  display:block;
+  float:left;
+  width:100%;
+  margin:0;
+}
+
+.right-floating-block{
+  box-sizing:border-box;
+  position:relative;
+  display:block;
+  float:right;
+  width:100%;
+}
+
+
+.full-background-image(@sizing:contain){
+  box-sizing:border-box;
+  .absolute-fill;
+  background-size: @sizing;
+  background-repeat: no-repeat;
+  background-position:center;
+}
+
+
+.centered-block{
+  box-sizing:border-box;
+  position:relative;
+  display:block;
+  width:100%;
+  margin:0 auto;
+}
+
+.clear {
+  .left-floating-block;
+  height: 1px;
+}
+
+
+

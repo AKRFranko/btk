@@ -22,7 +22,10 @@ global $WC_Edb;
 <div id="payment" class="woocommerce-checkout-payment">
   
   <fieldset id="payment-info-panel" class="checkout-panel <?php edb_panel_active('#payment-info-panel') ?>">
-    
+      <?php 
+        do_action( 'woocommerce_review_order_before_cart_contents' ); 
+        do_action( 'woocommerce_review_order_before_order_total' ); 
+      ?>
     
     
       <div class="boxes">
@@ -93,8 +96,10 @@ global $WC_Edb;
     
     </div>
     </div><div class="box half">
+    
     <div class="cart-address-review">
       <h1>DELIVERED TO</h1>
+      <?php if(!empty(WC()->customer->shipping_address_1)){ ?>
       <p>
         <?php echo WC()->customer->shipping_address_1;  ?>,<?php echo WC()->customer->shipping_address_2;  ?>
       <br>
@@ -105,14 +110,25 @@ global $WC_Edb;
         <?php echo WC()->customer->shipping_postcode;  ?>
       </p>
       <a href="#" class="panel-link" data-panel="#address-info-panel">edit</a>
+      <?php }else{ ?>
+        <div class="warning"><a href="#" class="panel-link" data-panel="#address-info-panel">please click here to fill in your address information.</a></div>
+      <?php } ?>
     </div>
+    
     
     <div class="cart-payment">
       <h1>Payment</h1>
+      <?php if(!empty(WC()->session->get('edb_payment_info_card_number'))){ ?>
       <p class="credit-card-type"><?php echo WC()->session->get('edb_payment_info_card_number'); ?></p>
       <p class="credit-card-number"><?php echo WC()->session->get('edb_payment_info_card_expiry'); ?></p>
       <a href="#" class="panel-link" data-panel="#payment-info-panel">edit</a>
+      <?php }else{ ?>
+        <div class="warning"><a href="#" class="panel-link" data-panel="#payment-info-panel">please click here to fill in your payment information.</a></div>
+      <?php }; ?>
+      
     </div>
+    
+    <?php do_action( 'woocommerce_review_order_after_cart_contents' ); ?>
     
     <div class="cart-final-checklist">
 

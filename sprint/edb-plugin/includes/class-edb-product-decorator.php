@@ -112,6 +112,10 @@ class Edb_Product_Decorator {
     }
     
     $this->price = $this->product_object->get_price();
+    if(empty($this->price)){
+      $variation = $factory->get_product($this->variations[0]);
+      $this->price = $variation->get_price();
+    }
     
    
     // end get all materials and their descriptions
@@ -143,7 +147,12 @@ class Edb_Product_Decorator {
     
     $avail_default = get_post_meta( $this->product_id, '_edb_available_delay', true);
     $backo_default = get_post_meta( $this->product_id, '_edb_backorder_delay', true);
-    
+    if(empty($avail_default)){
+      $avail_default = '+7 days';
+    }
+    if(empty($backo_default)){
+      $backo_default = '+14 days';
+    }
     foreach( $this->variations as $variation_id){
       $avail = get_post_meta( $this->product_id, '_edb_variation_available_delay', true);
       $backo = get_post_meta( $this->product_id, '_edb_variation_backorder_delay', true);
@@ -247,9 +256,10 @@ class Edb_Product_Decorator {
 
     foreach( $variation_ids as $variation_id ){
       
-      $image_id = get_post_thumbnail_id( $variation_id );
+      
       
       $edb_material = get_post_meta($variation_id, 'attribute_edb_material', true );
+      $image_id = get_post_thumbnail_id( $variation_id );
       $variation_images[$edb_material] = wp_get_attachment_image_src( $image_id, 'full')[0];
       if(empty($variation_images[$edb_material])){
         $variation_images[$edb_material] = $this->images['featured'];
