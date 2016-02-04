@@ -41,12 +41,35 @@ global $WC_Edb;
         <?php do_action( 'woocommerce_review_order_after_shipping' ); ?>
         
       <?php endif; ?>
-      
+      <?php 
+        $do_not_ship = WC()->session->get('do_not_ship');
+        if(!isset($do_not_ship) || !$do_not_ship){
+      ?>
       <div class="shipping-review-total">
         <span class="label"><?php _e('total delivery', 'wc-edb'); ?></span>
         
-        <span class="value"><?php echo WC()->cart->get_cart_shipping_total(); ?></span>
-      </div>
+        <span class="value"><?php edb_cart_shipping_total();?></span>
+      </div>  
+      <?php  }; ?>
+      
+      <?php
+        $fees = WC()->cart->get_fees();
+        if(!empty($fees)){
+          foreach($fees as $fee){
+            if($fee->id == 'self-pickup-discount'){
+            ?>
+            <div class="shipping-review-total">
+              <span class="label">Self pickup discount</span>
+              <span class="value"><?php echo wc_price($fee->amount); ?></span>
+            </div>
+            
+            <?php
+ 
+          }
+        }
+      }
+      ?>
+      
       
       <div class="shipping-review-notice">
         <p>based on your selection, the final delivery fees will adjust automatically. shipping items individuallu may add shipping fees. for more information on how delivery fees are calculated click here.</p>

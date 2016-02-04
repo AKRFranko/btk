@@ -67,6 +67,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     <div class="cart-item-category">
       <?php
           edb_package_item_category( $index, $package['contents'][0] );
+          echo $total;
       ?>
       
     </div>

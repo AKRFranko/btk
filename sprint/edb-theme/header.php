@@ -12,12 +12,12 @@
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-  <script src="//cdn.jsdelivr.net/fingerprintjs2/<VERSION>/fingerprint2.min.js"></script>
+  <script src="//cdn.jsdelivr.net/fingerprintjs2/1.1.0/fingerprint2.min.js"></script>
   <script src="//use.typekit.net/osv5fru.js"></script>
   <script>try{Typekit.load();}catch(e){}</script>
   
 <meta charset="<?php bloginfo( 'charset' ); ?>">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#ffffff">
 <meta name="msapplication-TileColor" content="#ffffff">
 <link rel="profile" href="http://gmpg.org/xfn/11">

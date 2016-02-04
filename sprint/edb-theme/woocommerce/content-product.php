@@ -42,12 +42,13 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] ) {
 	$classes[] = 'last';
 }
 $classes[] = 'listing-product';
+
 ?>
-<div <?php post_class( $classes ); ?>>
+<article class="article">
 
 	<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
   
-	<a href="<?php the_permalink(); ?>">
+	<a class="article-link" href="<?php the_permalink(); ?>">
     
     
     
@@ -77,13 +78,18 @@ $classes[] = 'listing-product';
 			 */
 			//do_action( 'woocommerce_after_shop_loop_item_title' );
 		?>
-		<div class="listing-product-image">
+		<div class="article-image">
       <img src="<?php echo $edb_product->images['featured']; ?>">
     </div>
+    <span class="article-info">
+      <h2 class="article-title"><?php echo $edb_product->title;?></h2>
+      <p class="article-subtitle"><?php echo wc_price($edb_product->price);?></p>
+      <span class="article-body">
+        <?php echo $edb_product->description;?>    
+      </span>
+    </span>
     
-    <div class="listing-product-name"><?php echo $edb_product->title;?></div>
-    <div class="listing-product-price">$<?php echo $edb_product->price;?></div>
-    <div class="listing-product-description"><?php echo $edb_product->description;?></div>
+    
 	</a>
   
 	<?php
@@ -97,4 +103,4 @@ $classes[] = 'listing-product';
 
 	?>
 
-</div>
+</article>

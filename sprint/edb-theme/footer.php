@@ -23,5 +23,8 @@
 
 <?php wp_footer(); ?>
 <div id="overlay"></div>
+<div id="splash" data-id="welcome">
+  
+</div>
 </body>
 </html>

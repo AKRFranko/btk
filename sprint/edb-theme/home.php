@@ -13,13 +13,14 @@
 get_header();?>
 
   <div id="primary" class="content-area">
+    <!-- main slider -->
+    <div class="home-slider">
+      <?php btk_edb_slider('category_name=carousel&posts_per_page=5');?>
+      
+    </div>
     <main id="main" class="site-main lower" role="main">
 
-      <!-- main slider -->
-      <div class="home-slider">
-        <?php btk_edb_slider('category_name=carousel&posts_per_page=5');?>
-        
-      </div>
+      
 
 
 
@@ -34,11 +35,11 @@ $my_query = new WP_Query(array(
 ?>
     <?php if ($my_query->have_posts()): ?>
     <?php /* Start the Loop */?>
-    <div class="listing-posts">
+  
       <?php while ($my_query->have_posts()): $my_query->the_post();?>
-      <div class="listing-post">
-          <a href="<?php echo get_permalink();?>">
-            <span class="listing-post-image">
+      <article class="article">    
+          <a class="article-link" href="<?php echo get_permalink();?>">
+            <span class="article-image">
             <?php if (has_post_thumbnail()): ?>
               <?php
                 $hires = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
@@ -47,20 +48,20 @@ $my_query = new WP_Query(array(
               ?>
             <?php ;endif;?>
             </span>
-            <span class="listing-post-info">
-            <h2 class="listing-post-title">
+            <span class="article-info">
+            <h2 class="article-title">
               <?php the_title();?>
             </h2>
-            <p class="listing-post-subtitle">
+            <p class="article-subtitle">
               <?php the_subtitle();?>
             </p>
-            <span class="listing-post-body">
+            <span class="article-body">
               <?php the_excerpt(); ?>
             </span>
           </a>
-        </div>
+      </article>  
       <?php endwhile;?>
-      </div>
+      
       <?php //the_posts_navigation();?>
     <?php else: ?>
       <?php get_template_part('content', 'none');?>

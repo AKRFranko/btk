@@ -188,7 +188,11 @@
 .qty-widget .qty-plus{
   margin-right:-1em;
 }
- 
+.option-checkbox{
+  display:block;
+  float:left;
+  width:100%;
+}
  .shipping-calculator-form {
  display:block !important;
  }

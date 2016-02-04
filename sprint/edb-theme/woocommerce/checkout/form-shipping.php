@@ -11,22 +11,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-$needs_shipping = WC()->cart->needs_shipping_address() === true;
+$needs_shipping = WC()->cart->needs_shipping_address() === true && WC()->session->get('ship_to_different_address');
+$ship_to_same_address = WC()->session->get( 'ship_to_same_address' );
+$do_not_ship = WC()->session->get('do_not_ship');
+
 ?>
-<div class="woocommerce-shipping-fields" style="<?php echo $needs_shipping ? 'display:block' : 'display:none'; ?>">
-	<?php if ( $needs_shipping ) : ?>
+<div class="woocommerce-shipping-fields" >
+	<?php if ( !$do_not_ship ) : ?>
 
 		<?php
-			if ( empty( $_POST ) ) {
+		// 	if ( empty( $_POST ) ) {
 
-				$ship_to_different_address = get_option( 'woocommerce_ship_to_destination' ) === 'shipping' ? 1 : 0;
-				$ship_to_different_address = apply_filters( 'woocommerce_ship_to_different_address_checked', $ship_to_different_address );
+		// 		$ship_to_different_address = get_option( 'woocommerce_ship_to_destination' ) === 'shipping' ? 1 : 0;
+		// 		$ship_to_different_address = apply_filters( 'woocommerce_ship_to_different_address_checked', $ship_to_different_address );
 
-			} else {
+		// 	} else {
 
-				$ship_to_different_address = $checkout->get_value( 'ship_to_different_address' );
+		// 		$ship_to_different_address = $checkout->get_value( 'ship_to_different_address' );
 
-			}
+		// 	}
 		?>
 
 		<div class="shipping_address">
@@ -36,7 +39,7 @@ $needs_shipping = WC()->cart->needs_shipping_address() === true;
 			<?php do_action( 'woocommerce_before_checkout_shipping_form', $checkout ); ?>
 
 			<?php foreach ( $checkout->checkout_fields['shipping'] as $key => $field ) : ?>
-
+        <?php if($ship_to_same_address){ $field['custom_attributes'] = array('readonly'=>'readonly'); } ?>
 				<?php woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); ?>
 
 			<?php endforeach; ?>
@@ -46,7 +49,7 @@ $needs_shipping = WC()->cart->needs_shipping_address() === true;
 		</div>
 
 	<?php endif; ?>
-
+  <!-- 
 	<?php do_action( 'woocommerce_before_order_notes', $checkout ); ?>
 
 	<?php if ( false && apply_filters( 'woocommerce_enable_order_notes_field', get_option( 'woocommerce_enable_order_comments', 'yes' ) === 'yes' ) ) : ?>
@@ -66,4 +69,5 @@ $needs_shipping = WC()->cart->needs_shipping_address() === true;
 	<?php endif; ?>
 
 	<?php do_action( 'woocommerce_after_order_notes', $checkout ); ?>
+	-->
 </div>

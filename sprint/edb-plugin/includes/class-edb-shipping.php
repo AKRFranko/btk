@@ -25,6 +25,16 @@ function time_elapsed($ptime) {
     }
 }
 
+function startsWith($haystack, $needle) {
+    // search backwards starting from haystack length characters from the end
+    return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== FALSE;
+}
+function endsWith($haystack, $needle) {
+    // search forward starting from end minus needle length characters
+    return $needle === "" || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== FALSE);
+}
+
+
 // class Edb_Vip_Coupon extends WC_Coupon{
 //   function __construct( $level ){
     
@@ -33,7 +43,7 @@ function time_elapsed($ptime) {
 
 class Edb_Shipping_Method extends WC_Shipping_Method{
  
-  public $shipping_debug = true;
+  public $shipping_debug = false;
   
   public $rates_table = array(
      'furniture' => array( 
@@ -78,13 +88,34 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     
     if($this->shipping_debug) write_log('shipping init '.$this->id);
     
-    
+    $status_options = get_option( 'woocommerce_status_options', array() );
+    $status_options['shipping_debug_mode'] = 1;
+    update_option('woocommerce_status_options',$status_options);
   }
   
+  
+  public function get_checkout_value( $value, $input ){
+    write_log('get_checkout_value: '.$input);
+    $cust = WC()->session->customer;
+    if(isset($cust[$input])){
+      return $cust[$input];
+    }
+    
+    write_log('CART NEEDS SHIIPNIG: ' . $value );
+    return $value;
+    
+  }
+
   public function cart_needs_shipping( $needs_shipping ){
     // $customer = WC()->session->customer;
     
     // $customer['calculated_shipping'] = 0;
+    // $customer = WC()->session->customer;
+    
+    // $customer['calculated_shipping'] = 0;
+    
+    // WC()->session->set('customer', $customer );
+    // write_log(WC()->customer);
     return true;
   }
   
@@ -175,9 +206,8 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     global $Edb_Shipping_Method;
     return $Edb_Shipping_Method->level_discounts_table[$level];
   }
-
-  public function calculate_fees( $cart ){
-    if($this->shipping_debug) write_log('**********************CALC FEES**********');
+  
+  public function calculate_user_level_discount_fees($cart){
     $designerDiscounts = $this->get_user_level_discounts();
     $saleItemsTotal = 0;
     $regularItemsTotal = 0;
@@ -210,69 +240,152 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     return $cart;
   }
   
+  public function calculate_self_pickup_discount_fees($cart){
+    global $Edb_Shipping_Method;
+    write_log('calculate_self_pickup_discount_fees');
+    $packages = $Edb_Shipping_Method->packages;
+    $totals = 0;
+    foreach($packages as $package ){
+      if(!empty($package['edb_shipping']) && $package['edb_shipping'] == 'edb_self_pickup'){
+        $line_total = $package['contents'][0]['line_total'];
+        write_log($package['edb_shipping'] . ' line total: ' . $package['contents'][0]['line_total']);
+        $totals += $line_total;
+      }
+    }
+    if($totals > 0){
+      $rebate = (5 * $totals)/100;  
+      WC()->cart->add_fee('self pickup discount', -1 * $rebate );
+    }
+    
+    
+    return $cart;
+  }
+
+  public function calculate_fees( $cart ){
+    // if($this->shipping_debug) write_log('**********************CALC FEES**********');
+    $this->calculate_user_level_discount_fees( $cart );
+    $this->calculate_self_pickup_discount_fees( $cart );
+    
+   
+  }
+  
   public function review_order_after_shipping(  ){
     global $Edb_Shipping_Method;
     
-    // if($this->shipping_debug) write_log( 'review after shipping');
+    if($this->shipping_debug) write_log( 'review after shipping');
     
+  
+  
     
-    $rates = $Edb_Shipping_Method->rates;
-    if(isset($rates['edb_self_pickup'])){
-      
-      if(isset($rates['edb_self_pickup']['item_count']) && $rates['edb_self_pickup']['item_count'] > 0){
-        if(!WC()->cart->has_discount('selfserve')){
-          WC()->cart->add_discount( 'selfserve');
-          if($this->shipping_debug) write_log('ADD 5% DISCOUNT');  
-          
-        }
-      }else{
-        if(WC()->cart->has_discount('selfserve')){
-          WC()->cart->remove_coupons( 'selfserve');
-          if($this->shipping_debug) write_log('REMOVED 5% DISCOUNT');  
-        }
-      }
-      wc_clear_notices();
-    }
     if($this->shipping_debug) write_log('------------------------------------------'.time().'------------------------------------------------');
+    if($this->shipping_debug) write_log('');
+    if($this->shipping_debug) write_log('');
+    if($this->shipping_debug) write_log('');
+    if($this->shipping_debug) write_log('');
+    if($this->shipping_debug) write_log('');
+    if($this->shipping_debug) write_log('');
     if($this->shipping_debug) write_log('');
     
   }
   
+  // public function review_order_before_submit( $order ){
+  //   write_log('review_order_before_submit');
+  //   write_log( $order );
+  // }
+  
+  public function fix_credit_card_fields( $default_fields, $this_id ){
+    foreach( $default_fields as $field => $html){
+      $value = WC()->session->get('edb_paypal_pro_'.str_replace('-field', '', $field ) );
+      if(isset($value)){
+        $dom = new DOMDocument();
+        @$dom->loadHTML($html);
+        $x = new DOMXPath($dom);
+        
+        foreach($x->query("//input") as $node)
+        {   
+            $node->setAttribute("value",$value);
+            if($field == 'card-number-field'){
+              $node->setAttribute("placeholder", '**** **** **** ****');
+            }
+        }
+        $newHtml = $dom->saveHtml();
+        $default_fields[$field] = $newHtml;  
+      }
+    }
+    return $default_fields;
+  }
+  
+  public function order_status_completed( $order_id ){
+    write_log('woocommerce_order_status_completed');
+    if(WC() && WC()->session){
+      WC()->session->set('edb_paypal_pro_card-number', null );
+      WC()->session->set('edb_paypal_pro_card-expiry', null );
+      WC()->session->set('edb_paypal_pro_card-cvc', null );
+      WC()->session->set('edb_payment_info_card_expiry', null );
+      WC()->session->set('edb_payment_info_card_number', null );
+      WC()->session->set('edb_payment_info_card_number', null );
+      WC()->session->set('ship_to_same_address', 1 );
+      WC()->session->set('do_not_ship', false );  
+    }
+    
+    
+  }
+  // public function can_coupon_apply_to_product( $valid, $product, $inst, $values){
+  //   // write_log( $inst );
+  //   return $valid;
+  // }
+  
   public function check_shipping_postcode(){
-    write_log('check_shipping_postcode');
+    
+    // write_log('check_shipping_postcode');
     // WC()->cart->calculate_totals();
+    // write_log($_POST);
     if(isset($_POST['calc_shipping_postcode'])){
           WC()->customer->shipping_postcode = $_POST['calc_shipping_postcode'] ;
           WC()->customer->set_shipping_postcode( $_POST['calc_shipping_postcode'] );
     }
     WC()->cart->calculate_totals();
     return WC()->customer->get_shipping_postcode();
+    
 
   }
+  
+
+  
   public function review_order_before_shipping(  ){
-      
+      if($this->shipping_debug) write_log( 'review before shipping');
+      // write_log(WC()->shipping);
+      WC()->shipping->reset_shipping();
       global $Edb_Shipping_Method;
       if(!empty($_POST)){
         if(isset($_POST['post_data'])){
           $data = array();
           $cc_changed = false;
           parse_str( $_POST['post_data'], $data );
+          
             if( $data['current_panel'] && is_checkout() ){
               WC()->session->set('edb_active_panel', $data['current_panel'] );
             }  
-            if( $data['paypal_pro-card-number']){
+            if( isset($data['paypal_pro-card-number'])){
               $old = WC()->session->get('edb_payment_info_card_number');
-              
               $fuzzed = substr($data['paypal_pro-card-number'], 0, 4) . str_repeat('*', strlen($data['paypal_pro-card-number']) - 8) . substr($data['paypal_pro-card-number'], -4);
               if(!empty($old) && $old !== $fuzzed){
                 $cc_changed = true;
               }
               WC()->session->set('edb_payment_info_card_number',  $fuzzed );
+              //write_log('ORDER');
+              WC()->session->set('edb_paypal_pro_card-number',  $data['paypal_pro-card-number'] );
+
+              
             }
-            if( $data['paypal_pro-card-expiry'] ){
+            if( isset($data['paypal_pro-card-expiry']) ){
               WC()->session->set('edb_payment_info_card_expiry', $data['paypal_pro-card-expiry'] );
+              WC()->session->set('edb_paypal_pro_card-expiry',  $data['paypal_pro-card-expiry'] );
             }else if($cc_changed){
               WC()->session->set('edb_payment_info_card_expiry', null );
+            }
+            if( isset($data['paypal_pro-card-cvc'])){
+              WC()->session->set('edb_paypal_pro_card-cvc',  $data['paypal_pro-card-cvc'] );
             }
         }
         
@@ -280,18 +393,166 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
       }
       
       $customer = WC()->session->customer;
-      
+
       $customer['calculated_shipping'] = 0;
       
       WC()->session->set('customer', $customer );
       
-      
-      
+
+      WC()->cart->calculate_totals();   
       if($this->shipping_debug) write_log('CART TOTAL: '.WC()->cart->shipping_total );
       if($this->shipping_debug) write_log('');
-      WC()->cart->calculate_totals();
+           
+    
     
   }
+  
+  function created_customer( $customer_id ) {
+    //write_log('created_customer');
+    if ( isset( $_POST['billing_first_name'] ) ) {
+      // WordPress default first name field.
+      update_user_meta( $customer_id, 'first_name', sanitize_text_field( $_POST['billing_first_name'] ) );
+  
+      // WooCommerce billing first name.
+      update_user_meta( $customer_id, 'billing_first_name', sanitize_text_field( $_POST['billing_first_name'] ) );
+    }
+  
+    if ( isset( $_POST['billing_last_name'] ) ) {
+      // WordPress default last name field.
+      update_user_meta( $customer_id, 'last_name', sanitize_text_field( $_POST['billing_last_name'] ) );
+  
+      // WooCommerce billing last name.
+      update_user_meta( $customer_id, 'billing_last_name', sanitize_text_field( $_POST['billing_last_name'] ) );
+    }
+  
+    if ( isset( $_POST['billing_city'] ) ) {
+      // WooCommerce billing city
+      update_user_meta( $customer_id, 'billing_city', sanitize_text_field( $_POST['billing_city'] ) );
+    }
+  }
+  
+  function copy_billing_fields_to_shipping( $data ){
+    //write_log('copy_billing_fields_to_shipping');
+    
+    $current_user = wp_get_current_user();
+    $customer_id = $current_user->ID;
+    $customer = WC()->session->get('customer');
+    foreach( $data as $field => $value ){
+      if( startsWith(  $field, 'billing') ){
+        $shipping_field = str_replace('billing', 'shipping', $field );
+        //write_log('copy '.$field.' to '. $shipping_field);
+        $value = sanitize_text_field( $value );
+        update_user_meta( $customer_id, $shipping_field, $value );
+        WC()->customer->__set( $shipping_field, $value);
+        WC()->customer->__set( $field, $value);
+        $customer[$shipping_field] = $value;
+        $customer[$field]  = $value;
+      }
+    }
+    WC()->session->set('customer', $customer );
+  }
+  function clear_shipping_fields( $data ){
+    //write_log('clear_shipping_fields');
+    // write_log(WC()->customer);
+    $current_user = wp_get_current_user();
+    $customer_id = $current_user->ID;
+    $customer = WC()->session->get('customer');
+    $woocommerce_shipping_fields = array( 'shipping_first_name','shipping_last_name', 'shipping_company',  'shipping_country', 'shipping_address_1','shipping_address_2','shipping_city','shipping_state','shipping_postcode');
+    foreach($woocommerce_shipping_fields as $field  ){
+        update_user_meta( $customer_id , $field, null );
+        WC()->customer->__set( $field, null);
+        
+    } 
+  // WC()->session->set('customer', $customer ); 
+  }
+  
+  
+  function checkout_update_order_review( $postdata ){
+    //write_log('checkout_update_order_review');
+    $data = array();
+    parse_str( $postdata, $data );
+    $current_user = wp_get_current_user();
+    $customer_id = $current_user->ID;
+    // $customer = WC()->session->get('customer');
+    $wordpress_fields = array(
+      'first_name' => 'billing_first_name',
+      'last_name' => 'billing_last_name' 
+    );
+    // write_log( "customer id: $customer_id");
+    $woocommerce_billing_fields = array( 'billing_first_name','billing_last_name', 'billing_company', 'billing_email', 'billing_phone', 'billing_country', 'billing_address_1','billing_address_2','billing_city','billing_state','billing_postcode');
+    $woocommerce_shipping_fields = array( 'shipping_first_name','shipping_last_name', 'shipping_company',  'shipping_country', 'shipping_address_1','shipping_address_2','shipping_city','shipping_state','shipping_postcode');
+    
+    foreach($wordpress_fields as $field => $equivalent){
+      if(isset($data[$equivalent])){
+        update_user_meta( $customer_id , $field, sanitize_text_field( $data[$equivalent]) );  
+      }
+      
+    }
+    foreach($woocommerce_billing_fields as $field ){
+      if(isset($data[$field])){
+        update_user_meta( $customer_id , $field, sanitize_text_field( $data[$field]) );
+        WC()->checkout->posted[$field] = sanitize_text_field( $data[$field]) ;
+        // $customer[$field] = $data[$field];
+        WC()->customer->__set( $field, $data[$field]);
+      }
+    }
+    foreach($woocommerce_shipping_fields as $field ){
+      if(isset($data[$field])){
+        update_user_meta( $customer_id , $field, sanitize_text_field( $data[$field]) );
+        WC()->checkout->posted[$field] = sanitize_text_field( $data[$field]) ;
+        
+        WC()->customer->__set( $field, $data[$field]);
+        // $customer[$field] = $data[$field];
+      }
+    }
+    
+    if(isset($data['do_not_ship'])){
+      //write_log('SETTING NO SHIP');
+      WC()->session->set('do_not_ship', 1);
+      
+    }else{
+      //write_log('SETTING YES SHIP');
+      WC()->session->set('do_not_ship', 0);  
+      
+    }
+    
+    // write_log("needs shipping address?: ".(WC()->cart->needs_shipping_address()  ? 'true' : 'false'));
+    // $ship_not_same_address = $data['ship_to_same_address'];
+    if(isset($data['ship_to_same_address'])){
+      if(WC()->session->get('ship_to_same_address')  !== 1){
+        //write_log('CHANGED A');
+      }
+      WC()->session->set('ship_to_same_address', 1);
+      //write_log('SHIPPING TO SAME');
+      $this->copy_billing_fields_to_shipping( $data );
+        
+    }else{
+      $was = WC()->session->get('ship_to_same_address');
+      if($was === 1){
+        //write_log('CHANGED B');
+        $this->clear_shipping_fields( $data );
+      }else{
+       //write_log('ELSE?');
+       
+      }
+      
+      //write_log('SHIPPING TO DIFF');
+      
+      WC()->session->set('ship_to_same_address', false);
+      
+      WC()->customer->save_data();
+      // write_log(WC()->session->customer);
+    }
+    
+    
+    // WC()->session->set('customer', $customer );
+    // write_log(WC()->customer);
+    // write_log();
+    // WC()->session->set('customer', WC()->customer );
+    //WC()->customer->save_data();
+      // write_log(json_encode(WC()->customer));
+  }
+  
   
   //Store the custom field
   
@@ -307,7 +568,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   //Get it from the session and add it to the cart variable
   function get_cart_items_from_session( $item, $values, $key ) {
       if($this->shipping_debug) write_log('get_cart_items_from_session');
-      write_log( $values );
+      // write_log( $values );
       if ( array_key_exists( 'edb_shipping', $values ) ){
         // if($this->shipping_debug) write_log('get_cart_items_from_session ('.$key.') :  '.json_encode( $values ));
         $item[ 'edb_shipping' ] = $values['edb_shipping'];
@@ -334,6 +595,10 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     $label = str_ireplace( '(Free)', '', $label );
      return trim($label);
   }
+  
+  public function free_price_html(  ){
+    return '$0.00';
+  }
  
   /**
    * calculate_shipping function.
@@ -344,10 +609,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
    */
   public function calculate_shipping( $package=array() ) {
     global $Edb_Shipping_Method;
-    // if($this->shipping_debug) write_log('# calcualte shipping'. $this->id );
-    // $customer = WC()->session->customer;
-    
-    // $customer['calculated_shipping'] = 0;
+    // if($this->shipping_debug) write_log('# calculate shipping '. $this->id );
     
     
     if( $this->id == 'edb_self_pickup'){
@@ -417,9 +679,11 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
       WC()->session->set('_edb_cart_current_shipping_rates', $Edb_Shipping_Method->rates );
       if($this->shipping_debug) write_log(count($this->packages).' packages calculated.');
       if($this->shipping_debug) write_log('');  
+      // write_log('calculated shipping: ');
+      // write_log($Edb_Shipping_Method->rates);
     }
     
-    write_log('calculated shipping');
+    
     
     
   }
@@ -578,14 +842,17 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   }
   
   public function persist_chosen_shipping_methods(){
-    
+    // write_log('persist_chosen_shipping_methods. is cart? '. (is_cart() ? 'yes' : 'no'));
+    // write_log( 'persist_chosen_shipping_methods' );
+    // write_log( $_POST );
+    // write_log( WC()->session->customer );
     if(is_cart()){
-      
-      
-      //$_SESSION['edb_shipping'] = array();
+      $_SESSION['edb_shipping'] = array();
+      // write_log('setting chosen shiping to emtpy array()');
       WC()->session->set('chosen_shipping_methods', array() );
     }else{
-      //$_SESSION['edb_shipping']= WC()->session->get('chosen_shipping_methods'); 
+      // write_log(WC()->session->get('chosen_shipping_methods'));
+      $_SESSION['edb_shipping']= WC()->session->get('chosen_shipping_methods'); 
     }
        
       
@@ -597,20 +864,24 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     $counted_names = '';
     
     
-    foreach( $items as $item ){
-      $counted_names .= $items['product_id']. '@' . $items['quantity'];
-    }
+    // foreach( $items as $item ){
+      $counted_names = $items['product_id']. '@' . $items['quantity'];
+    // }
     return  md5( $type . $counted_names. $key );
   }
 
   public function verify_do_not_ship(){
-   
+    
+    
+    
     if(!empty($_POST) && isset($_POST['post_data'])){
       $data = array();
       parse_str($_POST['post_data'], $data );
       
       if(isset($data['current_panel']) && $data['current_panel'] == '#address-info-panel' ){
+        
         if(isset($data['do_not_ship']) && $data['do_not_ship']){
+          // write_log('defaulting to self pickup');
           $sessionMethods = WC()->session->get('chosen_shipping_methods');
           
           $overrideMethods = array();
@@ -620,10 +891,13 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
             }
             if($this->shipping_debug) write_log('setting shipping method overrides for no ship.');
             // WC()->session->set('previous_shipping_methods', $sessionMethods );
-            WC()->session->set('do_not_ship', true );
+            // WC()->session->set('do_not_ship', true );
+            // write_log('setting to overriedes');
+            // write_log($overrideMethods);
             WC()->session->set('chosen_shipping_methods', $overrideMethods );
           }
         }else{
+          // write_log('defaulting to ship bundle 1');
           $sessionMethods = WC()->session->get('chosen_shipping_methods');
           $overrideMethods = array();
           if(!empty($sessionMethods)){
@@ -635,8 +909,10 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
               }
             }
           }
-          write_log('VERIFY DO NOT SHIP', json_encode($overrideMethods));
-          WC()->session->set('do_not_ship', false );
+          // write_log('VERIFY DO NOT SHIP', json_encode($overrideMethods));
+          // write_log('setting to overriedes 2');
+          // write_log($overrideMethods);
+          // WC()->session->set('do_not_ship', false );
           WC()->session->set('chosen_shipping_methods', $overrideMethods );
           
         }
@@ -645,20 +921,40 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   }
   public function cart_shipping_packages( $packages = array() ){
     global $Edb;
-    if($this->shipping_debug) write_log('CART_SHIPPING_PACKAGES');
-    $this->verify_do_not_ship();
     
-    $shipping_methods = WC()->session->get('chosen_shipping_methods');
-    if(empty($shipping_methods) && !empty($_REQUEST['shipping_method'])){
-      if($this->shipping_debug) write_log('took shipping methods from request');
-      $shipping_methods = $_REQUEST['shipping_method'];
-    }else if(!empty($shipping_methods)){
-      write_log('took shipping methods from session');
-      write_log($shipping_methods);
+    
+    
+    if($this->shipping_debug) write_log('CART_SHIPPING_PACKAGES');
+    if(is_cart()){
+      // write_log('IS CART');  
+      $sessionMethods = WC()->session->get('chosen_shipping_methods');
+      if(!empty($sessionMethods)){
+        foreach($sessionMethods as $key => $method  ){
+          $sessionMethods[$key] = 'edb_ship_bundle_1';
+        }  
+      }
       
+      WC()->session->set('chosen_shipping_methods', $sessionMethods );
+    }else{
+      
+      $this->verify_do_not_ship();  
+    }
+    
+    if(empty(WC()->session->get('chosen_shipping_methods'))){
+      if(isset($_REQUEST['shipping_method'])){
+        WC()->session->set('chosen_shipping_methods', $_REQUEST['shipping_method'] );
+      }else if($_SESSION['edb_shipping']){
+        WC()->session->set('chosen_shipping_methods', $_SESSION['edb_shipping'] );
+      }
       
     }
     
+    
+    $shipping_methods = WC()->session->get('chosen_shipping_methods');
+    
+    //write_log('took shipping methods from session');
+    //  write_log($shipping_methods);
+      
     
     
     
@@ -703,11 +999,17 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     foreach( $packages as $k => $p){
       $counts[$k] = 5;
     }
-    
-    // WC()->session->set('chosen_shipping_methods',$shipping_methods);
-    
+    // write_log('setting:');
+    // write_log($shipping_methods);
+    WC()->session->set('chosen_shipping_methods',$shipping_methods);
     $this->packages = $packages;
     
+    $customer = WC()->session->customer;
+    
+    $customer['calculated_shipping'] = 0;
+    
+    WC()->session->set('customer', $customer );
+    if($this->shipping_debug) write_log('END CART_SHIPPING_PACKAGES');
     return $packages;
   }
   

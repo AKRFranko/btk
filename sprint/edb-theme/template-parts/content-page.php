@@ -38,7 +38,7 @@
       <header class="entry-header text-header">
         <div class="titles">
         <?php
-        if(!is_cart() && !is_checkout()){
+        if(!is_cart() && !is_checkout() &&!is_page('my-account')){
           
         
         if ( is_single() ) {

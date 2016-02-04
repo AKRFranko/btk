@@ -20,14 +20,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
   <div class="cart-discount cost-line coupon-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
-    <span class="label"><?php wc_cart_totals_coupon_label( $coupon ); ?></span>
-    <span class="value"><?php wc_cart_totals_coupon_html( $coupon ); ?></span>
+    
+    <?php if($code !== 'selfserve'){ ?>
+      <span class="label"><?php wc_cart_totals_coupon_label( $coupon ); ?></span>
+      <span class="value"><?php wc_cart_totals_coupon_html( $coupon ); ?></span>
+    <?php }else{ ?>
+      <span class="label">Self serve discount</span>
+      <span class="value">-<?php echo wc_price(WC()->cart->get_coupon_discount_amount('selfserve',WC()->cart->display_cart_ex_tax )); ?></span>
+    <?php };?>
   </div>
 <?php endforeach; ?>
 
 <div class="cart-shipping-total cost-line">
   <span class="label"><?php _e('Shipping', 'wc-edb'); ?></span>
-  <span class="value"><?php echo WC()->cart->get_cart_shipping_total(); ?></span>
+  <span class="value"><?php edb_cart_shipping_total();?></span>
 </div>
 
 

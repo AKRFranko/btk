@@ -19,14 +19,16 @@ if ( ! defined( 'ABSPATH' ) ) {
   <?php if( is_cart() ){ ?>
   <?php 
     $calculated = '--';
-    
+    $estimated_label = __( 'Estimated Shipping cost', 'edb' );
     if(!empty(WC()->customer->get_shipping_postcode()) ){
-      $calculated = WC()->cart->get_cart_shipping_total() . " <small>(using: ".WC()->customer->get_shipping_postcode().")</small>";
+      $calculated = WC()->cart->get_cart_shipping_total();
+      $estimated_label = __( 'Estimated Shipping cost for <b class="postcode">'.strtoupper(WC()->customer->get_shipping_postcode()).'</b>', 'edb' );
     }
+    
     ?>
     <p class="total-line cart-subtotal"><span class="label"><?php _e( 'Total', 'edb' ); ?></span><span class="value"><?php wc_cart_totals_subtotal_html(); ?></span></p>
     
-    <p class="total-line cart-shipping"><span class="label"><?php _e( 'Estimated Shipping cost', 'edb' ); ?></span><span class="value"><?php echo $calculated; ?></span></p>
+    <p class="total-line cart-shipping"><span class="label"><?php echo $estimated_label ?></span><span class="value"><?php echo $calculated; ?></span></p>
     <p class="total-line cart-delay"><span class="label"><?php _e('Estimated delay', 'edb'); ?></span><span class="value">1 week</span></p>
     <?php woocommerce_shipping_calculator(); ?>
     <p class="total-line cart-message">

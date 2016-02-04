@@ -20,21 +20,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php do_action( 'woocommerce_before_checkout_billing_form', $checkout ); ?>
 
 	<?php foreach ( $checkout->checkout_fields['billing'] as $key => $field ) : ?>
-
+    
 		<?php woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); ?>
 
 	<?php endforeach; ?>
   
   <?php
-    
-    if ( empty( $_POST ) ) {
-      $ship_to_different_address = get_option( 'woocommerce_ship_to_destination' ) === 'shipping' ? 1 : 0;
-      $ship_to_different_address = apply_filters( 'woocommerce_ship_to_different_address_checked', $ship_to_different_address );
-      $do_not_ship = WC()->session->get('do_not_ship');
-    } else {
-      $ship_to_different_address = $checkout->get_value( 'ship_to_different_address' );
-      $do_not_ship = $_POST['do_not_ship'];
-    }
+    $ship_to_same_address = WC()->session->get( 'ship_to_same_address' );
+    $do_not_ship = WC()->session->get('do_not_ship');
     
   ?>
   
@@ -47,18 +40,19 @@ if ( ! defined( 'ABSPATH' ) ) {
   </label>
   
 
-  <label class="option-checkbox" for="ship-to-different-address-option">
+  <label class="option-checkbox" for="ship-to-same-address-option">
     
     <div id="ship-to-different-address">
-      <input id="ship-to-different-address-option" class="input-checkbox" <?php checked( $ship_to_different_address, 1 ); ?> type="checkbox" name="ship_to_different_address" value="1" />  
+      <input id="ship-to-same-address-option" class="input-checkbox" <?php checked( $ship_to_same_address, 1 ); ?> type="checkbox" name="ship_to_same_address" value="1" >
+      <input id="ship-to-different-address-option" class="input-checkbox" type="hidden" name="ship_to_different_address" value="<?php echo $ship_to_same_address == 1 ? 0 : 1; ?>" />  
     </div>
-    <?php _e('Ship to a different address', 'edb'); ?>
+    <?php _e('Ship to same address', 'edb'); ?>
   </label>
   
 
 	<?php do_action('woocommerce_after_checkout_billing_form', $checkout ); ?>
 
-
+  <!--<input type="hidden" name="createaccount" value="1" />-->
 
 <!--
 	<?php if ( ! is_user_logged_in() && $checkout->enable_signup ) : ?>
@@ -80,7 +74,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<p><?php _e( 'Create an account by entering the information below. If you are a returning customer please login at the top of the page.', 'woocommerce' ); ?></p>
 
 				<?php foreach ( $checkout->checkout_fields['account'] as $key => $field ) : ?>
-
+            
 					<?php woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); ?>
 
 				<?php endforeach; ?>

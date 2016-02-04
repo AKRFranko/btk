@@ -1,3 +1,8 @@
+.woocommerce-cart .entry-header,
+.woocommerce-account .entry-header,
+.woocommerce-checkout .entry-header{
+  display:none;
+}
 form.checkout.woocommerce-checkout {
     .left-floating-block;
     // padding: 0 1em;
@@ -10,6 +15,7 @@ form.checkout h3{
 }
 
 #cartForm {
+  
     .left-floating-block;
     // padding: 0 1em;
     
@@ -62,6 +68,7 @@ form.checkout h3{
   text-align:right;
   padding-right:1em;
 }
+
 
 .woocommerce .checkout-button, .woocommerce .button.alt,
 .woocommerce .checkout-button:hover, .woocommerce .button.alt:hover, 
@@ -339,6 +346,14 @@ CHECKOUT
 .summary-data-line .label,
 .summary-data-line .value{
   width:50%;
+}
+#checkout-panel-summaries .summary:nth-of-type(2){
+  .summary-data-line .label{
+    width:70%;
+  }
+  .summary-data-line .value{
+    width:30%;
+  }
 }
 .cart-payment{
   width:100%;

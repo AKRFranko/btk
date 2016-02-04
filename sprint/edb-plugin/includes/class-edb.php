@@ -177,14 +177,14 @@ class Edb {
 	public function register_shipping_methods( $methods ){
 	 
 	 if(!array_key_exists('Edb_Shipping_Method_Self_Pickup', $methods)){
-	   write_log('register_shipping_methods');
+	   //write_log('register_shipping_methods');
 	  $methods[] = 'Edb_Shipping_Method_Self_Pickup';
     $methods[] = 'Edb_Shipping_Method_Ship_Ready';
     $methods[] = 'Edb_Shipping_Method_Ship_Bundle_1';
     $methods[] = 'Edb_Shipping_Method_Ship_Bundle_2';
     $methods[] = 'Edb_Shipping_Method_Ship_Bundle_3';
 	 }else{
-	   write_log('ignored register_shipping_methods');
+	   //write_log('ignored register_shipping_methods');
 	 }
    return $methods;
 	}
@@ -192,7 +192,7 @@ class Edb {
 	
 	
 	public function load_shipping(){
-    write_log('load_shipping');
+    // write_log('load_shipping');
     
     require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-edb-shipping.php';
     require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-edb-wc-integration.php';
@@ -217,9 +217,28 @@ class Edb {
     
     add_action('template_redirect', array($GLOBALS['Edb_Shipping_Method'], 'persist_chosen_shipping_methods') );
     
+    add_filter('woocommerce_free_price_html', array($GLOBALS['Edb_Shipping_Method'],'free_price_html'));
+    add_filter('woocommerce_free_sale_price_html', array($GLOBALS['Edb_Shipping_Method'],'free_price_html'));
+    add_filter('woocommerce_variable_free_price_html', array($GLOBALS['Edb_Shipping_Method'],'free_price_html'));
+    add_filter('woocommerce_variation_free_price_html', array($GLOBALS['Edb_Shipping_Method'],'free_price_html'));
     
-    add_action('woocommerce_before_cart', array($GLOBALS['Edb_Shipping_Method'], 'check_shipping_postcode') );
+    add_filter('woocommerce_checkout_get_value',array($GLOBALS['Edb_Shipping_Method'],'get_checkout_value'), 10, 2);
     
+    add_filter('woocommerce_credit_card_form_fields',array($GLOBALS['Edb_Shipping_Method'],'fix_credit_card_fields'), 10, 2);
+    
+    
+    add_action( 'woocommerce_checkout_update_order_review',  array($GLOBALS['Edb_Shipping_Method'], 'checkout_update_order_review') );
+    add_action( 'woocommerce_created_customer', array($GLOBALS['Edb_Shipping_Method'],'created_customer') );
+    add_action( 'woocommerce_order_status_completed', array($GLOBALS['Edb_Shipping_Method'],'order_status_completed') );
+    
+    // add_action( 'woocommerce_review_order_before_submit',  array($GLOBALS['Edb_Shipping_Method'], 'review_order_before_submit') );
+    
+    // add_action( 'woocommerce_before_checkout_billing_form', array($GLOBALS['Edb_Shipping_Method'],'before_checkout_billing_form') );
+    
+    // add_action( 'woocommerce_checkout_update_order_meta',  array($GLOBALS['Edb_Shipping_Method'], 'checkout_update_order_meta'), 10, 2 );
+    
+    
+    // add_filter('woocommerce_coupon_is_valid_for_product', array($GLOBALS['Edb_Shipping_Method'], 'can_coupon_apply_to_product') , 10, 4 );
     
 	  
 	}

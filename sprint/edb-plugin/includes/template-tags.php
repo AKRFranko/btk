@@ -96,6 +96,12 @@ function edb_cart_item_category( $cart_item_key, $cart_item ){
   $decorated = edb_decorated_product( $variation_id );
   echo $decorated->category;
 }
+function edb_checkout_item_material( $cart_item_key, $cart_item ){
+  $product_id = $cart_item['product_id'];
+  $variation_id = $cart_item['variation_id'];
+  $decorated = edb_decorated_product( $variation_id );
+  return $decorated->material;
+}
 function edb_checkout_item_availability( $cart_item_key, $cart_item  ){
   $product_id = $cart_item['product_id'];
   $variation_id = $cart_item['variation_id'];
@@ -140,6 +146,21 @@ function edb_cart_item_availability( $cart_item_key, $cart_item ){
   $min = trim(time_elapsed(strtotime( $delays['available'], $now )));
   $max = trim(time_elapsed(strtotime( $delays['backorder'], $now )));;
   echo "$min ~ $max";
+}
+function edb_get_category_url( $category ){
+  $prod_cat_args = array(
+    'taxonomy'     => 'product_cat', //woocommerce
+    'orderby'      => 'name',
+    'empty'        => 0
+  );
+  $woo_categories = get_categories( $prod_cat_args );
+  foreach($woo_categories as $woocat){
+    
+    if($woocat->name == $category ){
+      return get_term_link( (int)$woocat->term_id, 'product_cat' );
+    }
+  }
+  return null;
 }
 
 function edb_get_user_wants_guest_checkout(){
@@ -201,19 +222,39 @@ function edb_product_slideshow( $product_id ){
   $decorated = edb_decorated_product( $product_id );
   $slide_images = $decorated->images['slideshow'];
   $variation_images = $decorated->images['material_variations'];
-  echo '<div class="edb-slideshow">';
-  echo '<div class="edb-slideshow-images">';
+  $html = '<div class="edb-slider">';
+  $html .= '<div class="edb-slides">';
   foreach($slide_images as $index => $src){
-    echo '<div class="edb-slideshow-image-container'.($index == 0 ? ' active-slide' : '').'" style="background-image:url('.esc_attr($src).');">';
-    echo '<img class="edb-slideshow-image" src="'.$src.'">';
-    echo '</div>';
+    $active = $index == 0 ? ' active' : '';
+    $style = "background-image:url('".esc_attr($src)."');";
+    $img = "<img src='$src'>";
+    $html .= '<div class="edb-slide'.$active.'">';
+    $html .= '<div class="backdrop" style="'.$style.'">'.$img.'</div>';
+    $html .= '</div>';
   }
-  echo '</div>';
-  echo '<div class="edb-slideshow-buttons"><a href="#" class="edb-slideshow-prev">&lt; prev</a><span class="edb-slideshow-separator">|</span><a href="#" class="edb-slideshow-next">next &gt;</a></div>';
-  foreach($variation_images as $material => $src ){
-    echo "<div data-material=\"$material\" class=\"edb-material-variation-image\" style=\"background-image:url('".$src."');\"></div>";
-  }
-  echo '</div>';
+  $html .= '</div>';
+  $html .='<div class="controls">';
+  $html .= '<a href="#" class="prev">&lt;</a>';
+  $html .= '<span class="indicator current">1</span>';
+  $html .= '<span class="separator"></span>';
+  $html .= '<span class="indicator last">'.count($slide_images).'</span>';
+  $html .= '<a href="#" class="next">&gt;</a>';
+  $html .= '</div>';
+  $html .= '</div>';
+  echo $html;
+  // echo '<div class="edb-slideshow">';
+  // echo '<div class="edb-slideshow-images">';
+  // foreach($slide_images as $index => $src){
+  //   echo '<div class="edb-slideshow-image-container'.($index == 0 ? ' active-slide' : '').'" style="background-image:url('.esc_attr($src).');">';
+  //   echo '<img class="edb-slideshow-image" src="'.$src.'">';
+  //   echo '</div>';
+  // }
+  // echo '</div>';
+  // echo '<div class="edb-slideshow-buttons"><a href="#" class="edb-slideshow-prev">&lt; prev</a><span class="edb-slideshow-separator">|</span><a href="#" class="edb-slideshow-next">next &gt;</a></div>';
+  // foreach($variation_images as $material => $src ){
+  //   echo "<div data-material=\"$material\" class=\"edb-material-variation-image\" style=\"background-image:url('".$src."');\"></div>";
+  // }
+  // echo '</div>';
   
 }
 
@@ -245,18 +286,21 @@ function edb_product_tech_image( $product_id ){
 }
 
 function edb_checkout_billing_address_summary(){
-  $first_name = WC()->session->get('billing_first_name');
-  $last_name = WC()->session->get('billing_last_name');
+  
+  
+  $customer = WC()->session->customer;
+  $first_name = $customer['billing_first_name'];
+  $last_name = $customer['billing_last_name'];
+  
   $name = "$first_name";
   if(!empty($last_name)){
-    $name .= " $lastname";
+    $name .= " $last_name";
   }
-  $customer = WC()->customer;
   $lines = array_filter(array(
     $name,
-    array_filter( array( $customer->address_1, $customer->address_2 ) ),
-    array_filter( array( $customer->city, $customer->state ) ),
-    $customer->postcode
+    array_filter( array( $customer['billing_address_1'], $customer['billing_address_2'] ) ),
+    array_filter( array( $customer['billing_city'], $customer['billing_state'] ) ),
+    $customer['billing_postcode']
   ));
   foreach($lines as $line){
     if(is_array($line)){
@@ -266,17 +310,81 @@ function edb_checkout_billing_address_summary(){
   }
 }
 function edb_checkout_shipping_address_summary(){
-  $customer = WC()->customer;
+  $customer = WC()->session->customer;
+  $first_name = $customer['shipping_first_name'];
+  $last_name = $customer['shipping_last_name'];
+  
+  $name = "$first_name";
+  if(!empty($last_name)){
+    $name .= " $last_name";
+  }
   $lines = array_filter(array(
-    array_filter( array( $customer->shipping_address_1, $customer->shipping_address_2 ) ),
-    array_filter( array( $customer->shipping_city, $customer->shipping_state ) ),
-    $customer->shipping_postcode
+    $name,
+    array_filter( array( $customer['shipping_address_1'], $customer['shipping_address_2'] ) ),
+    array_filter( array( $customer['shipping_city'], $customer['shipping_state'] ) ),
+    $customer['shipping_postcode']
   ));
   foreach($lines as $line){
     if(is_array($line)){
       $line = implode($line, ', ');
     }
     echo "<div class='summary-data-line'>$line</div>";
+  }
+}
+function edb_get_shipping_method_name( $label ){
+  $names = array(
+    'edb_self_pickup'=> 'Self pickup',
+    'edb_ship_ready'=> 'Ship when ready',
+    'edb_ship_bundle_1'=> 'Ship as bundle',
+    'edb_ship_bundle_2'=> 'Ship as bundle (2)',
+    'edb_ship_bundle_3'=> 'Ship as bundle (3)',
+  );
+  if(array_key_exists($label, $names )){
+    return $names[$label];
+  }
+  return $label;
+}
+
+function edb_cart_shipping_total(){
+  $ship_total = WC()->cart->get_cart_shipping_total();
+  if($ship_total == 'Free!'){
+    $ship_total = '$0.00';
+  }
+  echo $ship_total;
+}
+function edb_checkout_delivery_fees_summary(){
+  $shipping_rates = WC()->session->get('_edb_cart_current_shipping_rates'); 
+  if(!empty($shipping_rates)){
+    foreach($shipping_rates as $name => $rate){
+      if($name !== 'edb_self_pickup' && !empty($rate['item_count']) && $rate['item_count'] > 0 ){
+      ?>
+      <div class="summary-data-line">
+        
+        <span class="label"><?php echo edb_get_shipping_method_name($rate['label']); ?></span>
+        <span class="value"><?php echo wc_price($rate['cost']); ?></span>
+      </div>
+      <?php  
+      }
+    }
+    
+    if(array_key_exists('edb_self_pickup',$shipping_rates)){
+      $rate = $shipping_rates['edb_self_pickup'];
+      if(!empty($rate['item_count']) && $rate['item_count'] > 0){
+        $fees = WC()->cart->get_fees();
+        foreach( $fees as $fee){
+          if($fee->id == 'self-pickup-discount'){
+            ?>
+            <div class="summary-data-line">
+              
+              <span class="label">Self pickup discount</span>
+              <span class="value"><?php echo wc_price($fee->amount); ?></span>
+            </div>
+            <?php
+          }
+        }
+      }
+    
+    }
   }
 }
 

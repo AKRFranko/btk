@@ -26,6 +26,7 @@ window.requestAnimFrame = (function(){
     if(this.$active.length === 0 ){
       this.activate( 0 );
     }
+    $(el).data('pageSelector', this );
   }
   
   PageSelector.prototype = {
@@ -185,6 +186,7 @@ window.requestAnimFrame = (function(){
         activeClass: 'active-slide'
     });
     
+   
     $prevButton.on('click', function( e ){
       e.preventDefault();
       pageSelector.cycle( -1 );
@@ -234,7 +236,6 @@ window.requestAnimFrame = (function(){
   }
   
   var readCheckoutTabFromWindow = function(){
-    
       var hash = window.location.hash;
       if(hash){
         var activeHash = $('#checkout-panel-tabs a.active').attr('href');
@@ -289,30 +290,6 @@ window.requestAnimFrame = (function(){
     $(this).toggleClass('on');
   }
     
-  // var updateQueryStringShippingAddress = function( qs ){
-  //   if(!window.userSuppliedShippingAddress) return qs;
-  //   var parts = qs.split('&');
-  //   var res = [];
-  //   var replacements = {
-  //     's_country': 'shipping_country',
-  //     's_state': 'shipping_state',
-  //     's_postcode':'shipping_postcode',
-  //     's_city': 'shipping_city',
-  //     's_address': 'shipping_address',
-  //     's_address_2': 'shipping_address_2'
-  //   };
-  //   var newParts = parts.map(function( part ){
-  //     var kv = part.split('=');
-  //     var key= kv[0];
-  //     var value= kv[1];
-  //     if(replacements[key]){
-  //       var newValue = $('input[name='+replacements[key]+']').val();
-  //       value = newValue;
-  //     }
-  //     return [key,value].join('=');
-  //   });
-  //   return newParts.join('&');
-  // }
   
   var setDoNotShip = function( checked ){
     var $diffAddr  = $('#ship-to-different-address input');
@@ -436,9 +413,12 @@ window.requestAnimFrame = (function(){
     });
     var targetIndex = activeIndex+1;
     if(targetIndex >= $panels.length) return;
-    $('#currentPanel').val( '#' + $panels.eq(targetIndex).attr('id') );
+    
     // console.log('update checkout because save on continues')
     $(document.body).trigger('update_checkout');
+    $(document.body).one('updated_checkout', function(){
+      $('#currentPanel').val( '#' + $panels.eq(targetIndex).attr('id') );
+    })
   });
  
   // Shipping & Billing
@@ -527,7 +507,7 @@ window.requestAnimFrame = (function(){
     $('#do-not-ship input, #ship-to-different-address input').trigger('change');
     
     
-    
+    $(document.body).on('updated_checkout', fixFormPlaceholders );
     
   });
   window.EdbPageSelector = PageSelector;

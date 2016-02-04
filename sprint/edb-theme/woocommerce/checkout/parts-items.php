@@ -9,7 +9,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
   foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
     $_product     = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
-
     if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
       ?>
       <div class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
@@ -30,11 +29,8 @@ if ( ! defined( 'ABSPATH' ) ) {
           </div>  
           <div class="cart-item-material">
             <?php
-              // Meta data
-              //echo WC()->cart->get_item_data( $cart_item );
-            ?>
-            <?php
-              echo $cart_item['variation']['attribute_edb_material'];
+              edb_checkout_item_material( $cart_item_key, $cart_item );
+              
             ?>
           </div>
           <div class="cart-item-category">

@@ -1,86 +1,232 @@
+
+ main{
+   display:block;
+   float:left;
+   width:100%;
+ }
+ main > article{
+   display:block;
+   float:left;
+   width:100%;
+   box-sizing:border-box;
+   
+ }
+main > article {
+   height:100vh;
+   /*background:red;*/
+   overflow:hidden;
+ }
+ main > article > header{
+   width:100%;
+   height:100%;
+   
+ }
+ 
+ .article-link{
+   position:relative;
+   display:block;
+   float:left;
+   width:100%;
+   height:100%;
+   text-decoration:none;
+   color:inherit;
+ }
+ .article-image{
+   position:relative;
+   display:block;
+   height:50%;
+   
+   overflow:hidden;
+   /*outline:1px solid lime;*/
+ }
+ .article-info{
+   position:relative;
+   box-sizing:border-box;
+   display:block;
+   height:50%;
+   padding:.5em 3em 0 1em;
+ }
+ .article-info:after{
+   content:'';
+   .icon-chevron-lite-right-black;
+  
+   background-size:contain;
+   background-repeat:no-repeat;
+   background-position:center;
+   display:block;
+   position:absolute;
+   width:2em;
+   height:2em;
+   top:50%;
+   left:100%;
+   margin-left:-2em;
+   margin-top:-1em;
+ }
+ .article-image img{
+   position:absolute;
+   top:0;left:0;
+   min-width: 100%;
+   min-height: 100%;
+ }
+ .article-info h2.article-title{
+   display:block;
+   margin:0;
+   padding:.1em 0;
+   line-height:1.2em;
+   max-height:2.4em;
+   overflow:hidden;
+   text-overflow:ellipsis;
+   font-family:'adobe-caslon-pro', Georgia, 'Times New Roman', Times, serif;
+   font-size:20.25px;
+   font-weight:normal;
+   text-transform:uppercase;
+   
+ }
+ .article-info p.article-subtitle{
+   margin:0;padding:0;
+   font-family:'pragmatica-web-condensed', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+   font-size:16.2px;
+   font-weight:normal;
+   text-transform:lowercase;
+ }
+ .article-info p.article-subtitle:before{
+   content: '_ ';
+ }
+ .article-info .article-body{
+   display:block;
+   padding-top:1em;
+ }
+ 
+ @media all and (max-width:760px){
+   *{
+     /*outline:1px solid red;*/
+   }
+   
+ }
+ 
+ @media all and (min-width:760px) and (max-width:900px){
+   .archive, .home{
+      main > article{
+        width:50%;
+        height:calc(~"50vh - 117px");
+        margin-top:.5em;
+      }
+       main > article:nth-of-type(odd){
+        padding-right:.25em;
+      }
+       main > article:nth-of-type(even){
+        padding-left:.25em;
+      } 
+   }
+    
+ }
+ 
+ @media all and (min-width:900px){
+   .archive, .home{
+      main > article{
+        width:calc(~"100% / 3");
+        height:50vh;
+        padding:0 .5em;
+      }
+      main > article:nth-of-type(3n){
+        padding-right:0;
+      }
+      main > article:nth-of-type(3n-2){
+        padding-left:0;
+      }
+      main > article:nth-of-type(3n-1){
+        /*background:blue;*/
+        padding-left:.25em;
+        padding-right:.25em;
+      }  
+   }
+   
+ }
+ 
+
 /* posts */
 
-.listing-posts{
-  display:block;
-  float:left;
-  width:100%;
-  clear:both;
+// .listing-posts{
+//   display:block;
+//   float:left;
+//   width:100%;
+//   clear:both;
   
-}
-.listing-post{
-  .left-floating-block;
-  height:50%;
-  font:inherit;
-}
-.listing-post a{
-  .left-floating-block;
-  font:inherit;
-  text-decoration:none;
-  color:#000;
+// }
+// .listing-post{
+//   .left-floating-block;
+//   height:50%;
+//   font:inherit;
+// }
+// .listing-post a{
+//   .left-floating-block;
+//   font:inherit;
+//   text-decoration:none;
+//   color:#000;
   
-}
-.listing-product a:after,
-.listing-post a:after{
-  content:'';
+// }
+// .listing-product a:after,
+// .listing-post a:after{
+//   content:'';
   
-  background:data-uri('data:image/svg+xml;charset=US-ASCII,<%3Fxml%20version%3D"1.0"%20encoding%3D"iso-8859-1"%3F>%0D%0A<%21--%20Generator%3A%20Adobe%20Illustrator%2018.1.1%2C%20SVG%20Export%20Plug-In%20.%20SVG%20Version%3A%206.00%20Build%200%29%20%20-->%0D%0A<svg%20version%3D"1.1"%20id%3D"Capa_1"%20xmlns%3D"http%3A//www.w3.org/2000/svg"%20xmlns%3Axlink%3D"http%3A//www.w3.org/1999/xlink"%20x%3D"0px"%20y%3D"0px"%0D%0A%09%20viewBox%3D"0%200%20223.413%20223.413"%20style%3D"enable-background%3Anew%200%200%20223.413%20223.413%3B"%20xml%3Aspace%3D"preserve"><style%20type%3D"text/css">circle%2C%20ellipse%2C%20line%2C%20path%2C%20polygon%2C%20polyline%2C%20rect%2C%20text%20%7B%20fill%3A%20black%20%21important%3B%20%7D</style>%0D%0A<g>%0D%0A%09<g>%0D%0A%09%09<g>%0D%0A%09%09%09<polygon%20style%3D"fill%3A%23010002%3B"%20points%3D"57.179%2C223.413%2051.224%2C217.276%20159.925%2C111.71%2051.224%2C6.127%2057.179%2C0%20172.189%2C111.71%20%09%09%09%0D%0A%09%09%09%09"/>%0D%0A%09%09</g>%0D%0A%09</g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A</svg>%0D%0A');
-  background-position: right center;
-  display: block;
-  width: 1.6em;
-  height: 50%;
-  position: absolute;
-  top: 50%;
-  right: 0.2em;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-.listing-posts .listing-post-image,.listing-posts .listing-post-info{
-  position:relative;
+//   background:data-uri('data:image/svg+xml;charset=US-ASCII,<%3Fxml%20version%3D"1.0"%20encoding%3D"iso-8859-1"%3F>%0D%0A<%21--%20Generator%3A%20Adobe%20Illustrator%2018.1.1%2C%20SVG%20Export%20Plug-In%20.%20SVG%20Version%3A%206.00%20Build%200%29%20%20-->%0D%0A<svg%20version%3D"1.1"%20id%3D"Capa_1"%20xmlns%3D"http%3A//www.w3.org/2000/svg"%20xmlns%3Axlink%3D"http%3A//www.w3.org/1999/xlink"%20x%3D"0px"%20y%3D"0px"%0D%0A%09%20viewBox%3D"0%200%20223.413%20223.413"%20style%3D"enable-background%3Anew%200%200%20223.413%20223.413%3B"%20xml%3Aspace%3D"preserve"><style%20type%3D"text/css">circle%2C%20ellipse%2C%20line%2C%20path%2C%20polygon%2C%20polyline%2C%20rect%2C%20text%20%7B%20fill%3A%20black%20%21important%3B%20%7D</style>%0D%0A<g>%0D%0A%09<g>%0D%0A%09%09<g>%0D%0A%09%09%09<polygon%20style%3D"fill%3A%23010002%3B"%20points%3D"57.179%2C223.413%2051.224%2C217.276%20159.925%2C111.71%2051.224%2C6.127%2057.179%2C0%20172.189%2C111.71%20%09%09%09%0D%0A%09%09%09%09"/>%0D%0A%09%09</g>%0D%0A%09</g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A<g>%0D%0A</g>%0D%0A</svg>%0D%0A');
+//   background-position: right center;
+//   display: block;
+//   width: 1.6em;
+//   height: 50%;
+//   position: absolute;
+//   top: 50%;
+//   right: 0.2em;
+//   background-repeat: no-repeat;
+//   background-size: contain;
+// }
+// .listing-posts .listing-post-image,.listing-posts .listing-post-info{
+//   position:relative;
   
-  display:block;
-  float:left;
-  width:100%;
-  /*height:0;*/
-  /*padding-top:50%;*/
-  overflow:hidden;
-}
+//   display:block;
+//   float:left;
+//   width:100%;
+//   /*height:0;*/
+//   /*padding-top:50%;*/
+//   overflow:hidden;
+// }
 
 
 
-.listing-posts .listing-post-info{
-  padding:0 1em;
-}
-.listing-posts .listing-post-image img{
-  /*position:absolute;*/
-  top:0;left:0;
-  width:100%;
-  min-height:60%;
-  margin:0;padding:0;
-}
-.listing-posts .listing-post-title,
-.listing-posts .listing-post-subtitle,
-.listing-posts .listing-post-body{
-  display:block;
-  width:100%;
-  float:left;
-}
-.listing-posts .listing-post-title{
-  text-decoration:none;
+// .listing-posts .listing-post-info{
+//   padding:0 1em;
+// }
+// .listing-posts .listing-post-image img{
+//   /*position:absolute;*/
+//   top:0;left:0;
+//   width:100%;
+//   min-height:60%;
+//   margin:0;padding:0;
+// }
+// .listing-posts .listing-post-title,
+// .listing-posts .listing-post-subtitle,
+// .listing-posts .listing-post-body{
+//   display:block;
+//   width:100%;
+//   float:left;
+// }
+// .listing-posts .listing-post-title{
+//   text-decoration:none;
   
-  font-size: 20px;
-  line-height: 1.1;
-  margin: .5em 0;
+//   font-size: 20px;
+//   line-height: 1.1;
+//   margin: .5em 0;
   
-}
-.listing-posts .listing-post-subtitle{
-  margin:-.75em 0;
-  font-style:italic;
-}
-.listing-posts .listing-post-subtitle:before{
-  content:'_ ';
-}
-.listing-posts .listing-post-body{
-  margin-top:1em;
-  padding-right:4em;
-  margin-bottom:2em;
-}
+// }
+// .listing-posts .listing-post-subtitle{
+//   margin:-.75em 0;
+//   font-style:italic;
+// }
+// .listing-posts .listing-post-subtitle:before{
+//   content:'_ ';
+// }
+// .listing-posts .listing-post-body{
+//   margin-top:1em;
+//   padding-right:4em;
+//   margin-bottom:2em;
+// }

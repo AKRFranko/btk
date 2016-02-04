@@ -250,7 +250,8 @@ class Edb_Product_Decorator {
     }
    
     if(empty($this->images['technical'])){
-      $this->images['technical'] = "https://placeholdit.imgix.net/~text?txtsize=33&txt=technical%20image%20missing&w=440&h=300";
+      $this->images['technical'] = get_bloginfo('template_directory')."/missing.png";
+      
     }
     $variation_ids = $this->variations;
 

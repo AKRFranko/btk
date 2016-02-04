@@ -122,11 +122,13 @@ function _s_scripts() {
 
 	
 	
-	wp_enqueue_script( '_s_jquery_event_move', get_template_directory_uri() . '/js/jquery.event.move.js', array('jquery'), '20120207', true );
+// 	wp_enqueue_script( '_s_jquery_event_move', get_template_directory_uri() . '/js/jquery.event.move.js', array('jquery'), '20120207', true );
 	
-	wp_enqueue_script( '_s_jquery_event_swipe', get_template_directory_uri() . '/js/jquery.event.swipe.js', array('jquery','_s_jquery_event_move'), '20120208', true );
+// 	wp_enqueue_script( '_s_jquery_event_swipe', get_template_directory_uri() . '/js/jquery.event.swipe.js', array('jquery','_s_jquery_event_move'), '20120208', true );
 	
-  wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array('jquery','_s_jquery_event_swipe'), '20120206', true );
+	wp_enqueue_script( '_s_hammer', get_template_directory_uri() . '/js/hammer.min.js', array(), '20120208', true );
+	
+  wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array('jquery','_s_hammer'), '20120206', true );
   
 	wp_enqueue_script( '_s-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
 
@@ -149,29 +151,85 @@ function new_excerpt_more( $more ) {
 }
 add_filter('excerpt_more', 'new_excerpt_more');
 
-
-add_filter( 'woocommerce_enqueue_styles', 'edb_dequeue_woocommerce_styles' );
-function edb_dequeue_woocommerce_styles( $enqueue_styles ) {
-  // unset( $enqueue_styles['woocommerce-general'] );  // Remove the gloss
-  unset( $enqueue_styles['woocommerce-layout'] );    // Remove the layout
-  unset( $enqueue_styles['woocommerce-smallscreen'] );  // Remove the smallscreen optimisation
-  return $enqueue_styles;
-}
+// // remove speciific woocommerce stylsheets...
+// add_filter( 'woocommerce_enqueue_styles', 'edb_dequeue_woocommerce_styles' );
+// function edb_dequeue_woocommerce_styles( $enqueue_styles ) {
+//   // unset( $enqueue_styles['woocommerce-general'] );  // Remove the gloss
+//   unset( $enqueue_styles['woocommerce-layout'] );    // Remove the layout
+//   unset( $enqueue_styles['woocommerce-smallscreen'] );  // Remove the smallscreen optimisation
+//   return $enqueue_styles;
+// }
+// Or just remove them all in one line
+add_filter( 'woocommerce_enqueue_styles', '__return_false' );
 
 add_filter('woocommerce_update_order_review_fragments', 'edb_add_checkout_tabs_and_summary_fragments');
+
 function edb_add_checkout_tabs_and_summary_fragments( $fragments ){
+  
+  
+  
+  ob_start();
+  do_action('woocommerce_checkout_billing');
+  $fragments['.woocommerce-billing-fields'] = ob_get_clean();
+  
+  ob_start();
+  do_action('woocommerce_checkout_shipping');
+  $fragments['.woocommerce-shipping-fields'] = ob_get_clean();
+  
+  
   
   ob_start();
   get_template_part('woocommerce/checkout/form', 'summaries');
   $fragments['.checkout-tabs-and-summaries'] = ob_get_clean();
-  
   return $fragments;
 }
 
-// Or just remove them all in one line
-add_filter( 'woocommerce_enqueue_styles', '__return_false' );
 
 function btk_edb_slider($query, $attach = null, $blankTargets = false) {
+  $slider_query = new WP_Query($query);
+  $data = array();
+  echo "<div class='edb-slider'>";
+  echo "<div class='edb-slides'>";
+  $active = ' active';
+  while ($slider_query->have_posts()) {
+    $slider_query->the_post();
+    if (has_post_thumbnail()) {
+      $src = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full')[0];
+      ?><div class="edb-slide<?php echo $active; ?>">
+        
+          <div class="backdrop" style="background-image:url('<?php echo esc_attr($src); ?>')">
+            <img src="<?php echo esc_attr($src); ?>">
+          </div>
+          
+          <div class="titles">
+            <a href="<?php echo get_permalink( $slider_query->post->ID );?>">
+              <h2><?php the_title(); ?></h2>
+              <h3><?php the_subtitle(); ?></h3>
+            </a>
+          </div>
+
+          <div class="badge">
+            <span class="line-1">line 1</span>
+            <span class="line-2">line 2</span>
+            <span class="line-3">line 3</span>
+          </div>
+        
+      </div><?php
+      $active = '';
+    }
+  }
+  echo "</div>";
+  echo "<div class='controls'>";
+  ?>
+  <a class="prev" href="#">&lt;</a>
+  <span class="indicator current">1</span>
+  <span class="separator"></span>
+  <span class="indicator last"><?php echo $slider_query->post_count;?></span>
+  <a class="next" href="#">&gt;</a>
+  <?php
+  echo "</div>";
+  echo "</div>";
+  if(false){
   $slider_query = new WP_Query($query);
   $data = array();
   echo "<div class='slides'>";
@@ -197,12 +255,6 @@ function btk_edb_slider($query, $attach = null, $blankTargets = false) {
         </div>
       </div>
       <?php
-      // $src = wp_get_attachment_image_src(get_post_thumbnail_id(), 'large');
-      // $title = get_the_title();
-      // $shopnow = get_post_meta($slider_query->post->ID, '_subtitle');
-      // $content = apply_filters( 'the_content', get_the_content() );
-      // $href = get_permalink( $slider_query->post->ID );
-      // array_push($data, array("src" => $src[0], "text" => $title, "shopnow" => $shopnow, "url" => $href, "html" => $content, "_blank" => $blankTargets  ));
     }
   }
   echo "</div>";
@@ -215,14 +267,7 @@ function btk_edb_slider($query, $attach = null, $blankTargets = false) {
   <a class="slide-next" href="#">&gt;</a>
   <?php
   echo "</div>";
-  // if ($attach) {
-  //   foreach ( $attach as $attachment_id ) {
-  //     $src   = wp_get_attachment_image_src( $attachment_id, 'large');
-  //     $title = esc_attr( get_the_title( $attachment_id ) );
-  //     $href  = get_permalink();
-  //     array_push($data, array("src" => $src[0], "text" => $title, "url" => $href, "_blank" => $blankTargets ));
-  //   }
-  // }
+  }
   
 }
 
