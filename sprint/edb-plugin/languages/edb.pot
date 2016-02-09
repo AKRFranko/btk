@@ -1,0 +1,100 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the edb package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: edb\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-02-04 12:09-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: admin/class-edb-admin.php:173 admin/class-edb-admin.php:236
+msgid "Min shipping delay when item is <b>in stock</b>"
+msgstr ""
+
+#: admin/class-edb-admin.php:175 admin/class-edb-admin.php:238
+msgid "ex: +7 days"
+msgstr ""
+
+#: admin/class-edb-admin.php:183
+msgid "Min shipping delay when item is <b>backorder</b>"
+msgstr ""
+
+#: admin/class-edb-admin.php:185 admin/class-edb-admin.php:251
+msgid "ex: +14 days"
+msgstr ""
+
+#: admin/class-edb-admin.php:194
+msgid "Image to use as technical detail."
+msgstr ""
+
+#: admin/class-edb-admin.php:202 admin/class-edb-admin.php:210
+msgid "URL of youtube video for product introduction"
+msgstr ""
+
+#: admin/class-edb-admin.php:249
+msgid "Min shipping delay  when item is <b>backorder</b>"
+msgstr ""
+
+#: admin/class-edb-admin.php:331
+msgid "Material ID"
+msgstr ""
+
+#: includes/class-edb-shipping.php:1021
+msgid "EDB Self Pickup"
+msgstr ""
+
+#: includes/class-edb-shipping.php:1022 includes/class-edb-shipping.php:1045
+#: includes/class-edb-shipping.php:1086 includes/class-edb-shipping.php:1120
+#: includes/class-edb-shipping.php:1150
+msgid "A custom shipping module."
+msgstr ""
+
+#: includes/class-edb-shipping.php:1044
+msgid "EDB Ship Ready"
+msgstr ""
+
+#: includes/class-edb-shipping.php:1085
+msgid "EDB Ship Bundle 1"
+msgstr ""
+
+#: includes/class-edb-shipping.php:1119
+msgid "EDB Ship Bundle 2"
+msgstr ""
+
+#: includes/class-edb-shipping.php:1149
+msgid "EDB Ship Bundle 3"
+msgstr ""
+
+#: includes/class-edb-wc-integration.php:23
+msgid "EDB Integration"
+msgstr ""
+
+#: includes/class-edb-wc-integration.php:24
+msgid "An integratino demo to show you how easy it is to extend WooCommerce."
+msgstr ""
+
+#: includes/class-edb-wc-integration.php:185
+msgid "Looks like you made a mistake with the "
+msgstr ""
+
+#: includes/template-tags.php:396
+msgid "Credit Card"
+msgstr ""
+
+#: includes/template-tags.php:400
+msgid "Expiry"
+msgstr ""
+
+#: includes/template-tags.php:411
+msgid "Quantity"
+msgstr ""

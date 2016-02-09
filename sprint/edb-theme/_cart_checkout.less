@@ -34,8 +34,13 @@ form.checkout h3{
 .cart-collaterals .total-line{
   .left-floating-block;
   line-height:1.4;
-  
+  min-height:1.6em;
   text-align:center;
+}
+#calc_shipping_postcode{
+  width:6em;
+  line-height:2.1!important;
+  padding-left:.5em;
 }
 .cart-item-remove a{
   white-space:nowrap;
@@ -56,7 +61,19 @@ form.checkout h3{
 }
 .cart-collaterals .total-line .value{
   text-align:left;
+  
 }
+
+
+.cart-collaterals .total-line .value button{
+  height: 2.3em;
+  margin: 0;
+  padding: 0 .5em;
+  vertical-align: bottom;
+  margin-left: -.3em;
+  
+}
+
 .cart-collaterals .total-line.cart-message{
   .left-floating-block;
   width:calc(~"100% - 2em");
@@ -76,6 +93,7 @@ form.checkout h3{
 .woocommerce #payment #place_order,
 .woocommerce #payment #place_order:hover,
 .woocommerce #payment #place_order:active,
+.pdf-download-button,
 button,button:hover,button:active, input[type="submit"]{
   outline:none;
   display:inline-block;

@@ -39,14 +39,15 @@ $my_query = new WP_Query(array(
       <?php while ($my_query->have_posts()): $my_query->the_post();?>
       <article class="article">    
           <a class="article-link" href="<?php echo get_permalink();?>">
-            <span class="article-image">
             <?php if (has_post_thumbnail()): ?>
               <?php
                 $hires = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
                 $lores = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
-                echo '<img src="' . $lores[0] . '" data-hires-image="' . $hires[0] . '" alt="' . get_the_title() . '">';
+                
               ?>
             <?php ;endif;?>
+            <span class="article-image" style="background-image:url('<?php echo $hires[0]; ?>');">
+              <?php echo '<img src="' . $lores[0] . '" data-hires-image="' . $hires[0] . '" alt="' . get_the_title() . '">'; ?>
             </span>
             <span class="article-info">
             <h2 class="article-title">

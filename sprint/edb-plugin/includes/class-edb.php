@@ -276,7 +276,9 @@ class Edb {
     $this->loader->add_action('edit_user_profile_update', $plugin_admin, 'save_user_settings_fields', 10, 1);
 
 
-
+    $this->loader->add_action( 'wp_ajax_edb_guess_shipping_zone', $plugin_admin,'edb_ajax_guess_shipping_zone' );
+    $this->loader->add_action( 'wp_ajax_nopriv_edb_guess_shipping_zone', $plugin_admin,'edb_ajax_guess_shipping_zone' );
+    
 	}
 
 	/**

@@ -8,13 +8,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 //do_action( 'woocommerce_review_order_before_order_total' ); 
 ?>
 <div class="cart-total cost-line">
-  <span class="label"><?php _e('Order Total', 'wc-edb'); ?></span>
+  <span class="label"><?php _e('Order Total', 'edb'); ?></span>
   <span class="value"><?php wc_cart_totals_order_total_html(); ?></span>
 </div>
 <?php do_action( 'woocommerce_review_order_after_order_total' ); ?>
 
 <div class="cart-subtotal cost-line">
-  <span class="label"><?php _e( 'Subtotal', 'wc-edb' ); ?></span>
+  <span class="label"><?php _e( 'Subtotal', 'edb' ); ?></span>
   <span class="value"><?php wc_cart_totals_subtotal_html(); ?></span>
 </div>
 
@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php endforeach; ?>
 
 <div class="cart-shipping-total cost-line">
-  <span class="label"><?php _e('Shipping', 'wc-edb'); ?></span>
+  <span class="label"><?php _e('Shipping', 'edb'); ?></span>
   <span class="value"><?php edb_cart_shipping_total();?></span>
 </div>
 

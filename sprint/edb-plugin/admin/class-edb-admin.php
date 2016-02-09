@@ -100,6 +100,17 @@ class Edb_Admin {
 
 	}
 	
+	public function edb_ajax_guess_shipping_zone(){
+	  global $Edb_Shipping_Method;
+	  if(!empty($_POST['data'])){
+	    $answer = $Edb_Shipping_Method->get_zone_from_postal_code( $_POST['data'] );
+	    wp_send_json( array( 'postcode' => $_POST['data'], 'zone'=> $answer) );
+      
+	  }
+	  
+	 
+	}
+	
 	public function user_settings_fields( $user ){
 	  $levels = array('vip','vvip','vvvip','vvvvip');
 	  $current_status = absint(get_user_meta($user->ID, '_edb_user_is_designer', true ));
@@ -199,7 +210,7 @@ class Edb_Admin {
     woocommerce_wp_text_input(
      array(
        'id' => '_edb_introduction_video' ,
-       'label' => __('URL of youtube video for product introduction', 'edb'),
+       'label' => __('ID of youtube video for product introduction', 'edb'),
        'desc_tip' => true,
        'value' => isset( $edb_introduction_video ) && !empty( $edb_introduction_video ) ? $edb_introduction_video : null
        )
@@ -207,7 +218,7 @@ class Edb_Admin {
     woocommerce_wp_text_input(
      array(
        'id' => '_edb_instruction_video' ,
-       'label' => __('URL of youtube video for product introduction', 'edb'),
+       'label' => __('ID of youtube video for product introduction', 'edb'),
        'desc_tip' => true,
        'value' => isset( $edb_instruction_video ) && !empty( $edb_instruction_video ) ? $edb_instruction_video : null
        )

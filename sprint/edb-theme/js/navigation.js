@@ -13,7 +13,7 @@
 
   */
   
-  
+  window.viewportUnitsBuggyfill.init();
   var $ = jQuery;
   $(document).on('click','.toggle', function(){
     var $nav = $(this).parents('nav');
@@ -69,9 +69,12 @@
   });
   
   
-  $(document).ajaxComplete( function(){
+  $(document).ajaxComplete( function( event, res ){
     setTimeout( function(){
       // console.log('REMOVE ERROR');
+      if(res.mailSent){
+        $('.wpcf7-form').html('<h1>Thank you!</h1><p>We\'ll get back to you shortly.');
+      }
       $('.woocommerce-error, .woocommerce-message').addClass('hide');
     }, 10000);
   })
@@ -81,6 +84,33 @@
     $('form.login, form.register').toggleClass('on');
   });
   
+  
+  $(document).on('click', '.edb-material-choice-square', function( e ){
+    console.log(e)
+    var $choice  = $(this);
+    var $input = $choice.find('input');
+    var name = $input.data('name');
+    var preview = $input.data('preview');
+    
+    var $originSlide = $('.edb-slide.active');
+    var originSrc   = $originSlide.find('img').attr('src');
+    var $slider = $('.edb-slider');
+    $('.product-selected-material .label').text('color: '+name);
+    $originSlide.find('.backdrop').css({ 'background-image': 'url('+preview+')' });
+    var index = $slider.find('.controls .current').text();
+    $slider.find('.controls .current').text( name ).css('width','auto');
+    $slider.find('.controls .last, .controls .separator').hide();
+    $slider.one('cycled', function(){
+      $originSlide.find('.backdrop').css({
+        'background-image': 'url('+originSrc+')'
+      });
+      $slider.find('.controls .last, .controls .separator').show();
+      $slider.find('.controls .current').css('width','2em')
+    })
+    
+    // console.log(name)
+    
+  })
   
   
   
@@ -155,5 +185,24 @@
     }
     
   })
+
+  $(document).on('click', '#check-postcode', getShippingZone );
+  $(document).on('change', 'postal_code', function(){
+    var postcode = $('input[name=postal_code]').val();
+    if(!val){
+     $('.known-zone').text( '-'); 
+    }
+  } );
+  function getShippingZone( ){
+    var postcode = $('input[name=postal_code]').val();
+    if(postcode){
+      jQuery.post("/wp-admin/admin-ajax.php", { 'action' : 'edb_guess_shipping_zone', 'data':postcode}, function( res ){
+        $('.known-zone').text( res.zone );
+      });  
+    }
+    
+  }
+  
+
 
 } )();

@@ -12,7 +12,8 @@
    
  }
 main > article {
-   height:100vh;
+  height:100%;
+  // min-height:100vh;
    /*background:red;*/
    overflow:hidden;
  }
@@ -35,8 +36,11 @@ main > article {
    position:relative;
    display:block;
    height:50%;
-   
+  // background:Red;
    overflow:hidden;
+   background-position:center;
+   background-size:cover;
+   background-repeat:no-repeat;
    /*outline:1px solid lime;*/
  }
  .article-info{
@@ -66,7 +70,10 @@ main > article {
    position:absolute;
    top:0;left:0;
    min-width: 100%;
-   min-height: 100%;
+   min-height:100%;
+   opacity:0;
+  // height:100%;
+   
  }
  .article-info h2.article-title{
    display:block;
@@ -98,6 +105,20 @@ main > article {
  }
  
  @media all and (max-width:760px){
+   .archive, .home{
+      main > article{
+        
+        height:calc(~"100vh - 117px");
+        
+      }
+      .article-info{
+        padding:.5em 6em 0 1em;
+      }
+      .article-info:after{
+        margin-left:-4em;
+      }
+     
+   }
    *{
      /*outline:1px solid red;*/
    }
@@ -108,14 +129,16 @@ main > article {
    .archive, .home{
       main > article{
         width:50%;
-        height:calc(~"50vh - 117px");
-        margin-top:.5em;
+        
+        // height:calc(~"50vh - 117px");
+        height:50vh;
+        margin-top:.7em;
       }
        main > article:nth-of-type(odd){
-        padding-right:.25em;
+        padding-right:calc(~"1em / 3");
       }
        main > article:nth-of-type(even){
-        padding-left:.25em;
+        padding-left:calc(~"1em / 3");
       } 
    }
     
@@ -127,6 +150,7 @@ main > article {
         width:calc(~"100% / 3");
         height:50vh;
         padding:0 .5em;
+        margin-top:.75em;
       }
       main > article:nth-of-type(3n){
         padding-right:0;
@@ -135,7 +159,7 @@ main > article {
         padding-left:0;
       }
       main > article:nth-of-type(3n-1){
-        /*background:blue;*/
+        
         padding-left:.25em;
         padding-right:.25em;
       }  

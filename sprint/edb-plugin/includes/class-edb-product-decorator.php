@@ -97,8 +97,25 @@ class Edb_Product_Decorator {
     $this->init_materials();
     // organize images for slideshow and custom edb stuff
     $this->init_images();
+    // organize images for slideshow and custom edb stuff
+    $this->init_videos();
     // get all shipping dates
     $this->init_shipping();
+    
+    $args = array( 'post_mime_type' => 'application/pdf', 'post_type' => 'attachment', 'numberposts' => -1, 'post_status' => null, 'post_parent' => $this->post_id );
+    $attachments = get_posts($args);
+    if(!empty($attachments)){
+      $pdf = $attachments[0]->guid;
+      $this->pdf_url = $pdf;
+    }else{
+      $this->pdf_url = null;
+    }
+    if ($attachments) {
+      foreach ( $attachments as $attachment ) {
+        echo apply_filters( 'the_title' , $attachment->post_title );
+        the_attachment_link( $attachment->ID , false );
+      }
+    }
 
     if( isset($this->variation_id) && !empty($this->variation_id) ){
       $material = get_post_meta($this->variation_id, 'attribute_edb_material', true );
@@ -130,10 +147,10 @@ class Edb_Product_Decorator {
     
     $this->category = implode(', ', $categories);
     
-    $this->videos = array(
-      'introduction' => get_post_meta( $this->post_id, '_edb_introduction_video', true ),
-      'instruction' => get_post_meta( $this->post_id, '_edb_instruction_video', true )
-    );
+    // $this->videos = array(
+    //   'introduction' => get_post_meta( $this->post_id, '_edb_introduction_video', true ),
+    //   'instruction' => get_post_meta( $this->post_id, '_edb_instruction_video', true )
+    // );
     $this->json = $this->get_json_object();
     
     
@@ -230,16 +247,54 @@ class Edb_Product_Decorator {
    
   }
   
+  private function init_videos(){
+   $intro_id = get_post_meta( $this->post_id, '_edb_introduction_video', true );
+   $instu_id = get_post_meta( $this->post_id, '_edb_instruction_video', true );
+   // $other_ids = get_post_meta( $this->post_id, '_edb_other_video', true );
+   $missing = get_bloginfo('template_directory')."/vmissing.png";
+   $this->videos = array(
+     'introduction'=>array('youtube_id' => null, 'video_link' => '#', 'image_src'=> $missing),
+     'instruction'=>array('youtube_id' => null, 'video_link' => '#', 'image_src'=> $missing)
+    );
+   if(!empty($intro_id)){
+     $src = 'http://img.youtube.com/vi/'.$intro_id.'/maxresdefault.jpg';
+     $link = 'http://www.youtube.com/watch?v='.$intro_id;
+     $this->videos['introduction'] = array( 'youtube_id' => $intro_id, 'image_src' => $src, 'video_link' => $link );
+   }
+   if(!empty($instu_id)){
+     $src = 'http://img.youtube.com/vi/'.$instu_id.'/maxresdefault.jpg';
+     $link = 'http://www.youtube.com/watch?v='.$instu_id;
+     $this->videos['instruction'] = array( 'youtube_id' => $instu_id, 'image_src' => $src, 'video_link' => $link );
+   }
+   
+   
+  }
   
   private function init_images(){
-    $attachment_images  = get_attached_media( 'image', $this->post_id );
+    
+    $gallery_images = get_post_meta( $this->post_id, '_product_image_gallery', true);
     $featured_image_id  = get_post_thumbnail_id( $this->post_id );
-    $technical_image_id = get_post_meta( $this->post_id, '_edb_technical_image');
+    $technical_image_id = get_post_meta( $this->post_id, '_edb_technical_image', true );
     $slideshow_images   = array();
     $variation_images   = array();
     
-    
+    if(!empty($gallery_images)){
+      $ids = explode(',',$gallery_images);
+      $attachment_images = get_posts(
+          array(
+              'include' => $ids, 
+              'post_status' => 'inherit', 
+              'post_type' => 'attachment', 
+              'post_mime_type' => 'image', 
+              'order' => 'menu_order ID', 
+              'orderby' => 'post__in', //required to order results based on order specified the "include" param
+          )
+      );
+    }else{
+      $attachment_images  = get_attached_media( 'image', $this->post_id );  
+    }
     foreach( $attachment_images as $image){
+      
       if( $image->ID == $technical_image_id ){
         $this->images['technical'] = wp_get_attachment_image_src( $image->ID, 'full')[0];
       }else if( $image->ID == $featured_image_id ){
@@ -247,6 +302,9 @@ class Edb_Product_Decorator {
       }else{
         $slideshow_images[] = wp_get_attachment_image_src( $image->ID, 'full')[0];
       }
+    }
+    if(empty($this->images['featured'])){
+      $this->images['featured'] = wp_get_attachment_image_src( $featured_image_id, 'full')[0];
     }
    
     if(empty($this->images['technical'])){
@@ -271,7 +329,11 @@ class Edb_Product_Decorator {
     }
     
     ksort($variation_images);
-    array_unshift( $slideshow_images , $this->images['featured'] );
+    
+    array_unshift( $slideshow_images , $this->images['featured'] );  
+    
+    
+    // array_unshift( $slideshow_images , $this->images['technical'] );  
     
     $this->images['material_variations'] = $variation_images;
     $this->images['slideshow'] = $slideshow_images;

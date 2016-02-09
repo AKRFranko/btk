@@ -5,7 +5,7 @@ body{
   font-size:@font-size-3;
   min-width:100vw;
   max-width:100vw;
-  
+  overflow-x:hidden;  
   line-height:1.3;
   color:#000;
   text-transform:lowercase;
@@ -28,6 +28,9 @@ h1,h2,h3,h4,h5,h6,p,a{
   /*-webkit-transform: translate(0, 0);*/
   /*    -ms-transform: translate(0, 0);*/
   /*        transform: translate(0, 0);*/
+}
+.btk-form-success {
+    display: none;
 }
 body{
   color:#242021;
@@ -98,7 +101,7 @@ div{
   top:.5em;
   right:.75em;
 }
-#site-nav a,#shop-nav a,#cat-nav a,#sign-in-menu a{
+#site-nav a,#site-nav .list,#shop-nav a,#cat-nav a,#sign-in-menu a{
   display:inline-block;
   padding:0 .5em;
   font-family:@sans-font;
@@ -110,6 +113,11 @@ div{
   text-transform:lowercase;
   outline:none;
   
+}
+#site-nav .list a{
+  display:inline;
+  margin:0;
+  padding:0;
 }
 #site-nav a:last-of-type{
   padding-right:0;
@@ -179,7 +187,7 @@ div{
   margin-left:2em;
   height:0;
   overflow:hidden;
-  transition:height .2s ease-in;
+  transition:height .1s ease-out;
 }
 #cat-nav .toggle.on + ul.subnav{
   height:8em;
@@ -188,14 +196,22 @@ div{
   
 }
 #cat-nav .toggle:after{
-  content: '►';
-  opacity:.5;
-  margin-left:.2em;
+  content: '';
+  .icon-chevron-lite-right-white;
+  opacity: 1;
+  margin-left: .2em;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-size: .75em;
+  line-height: inherit;
+  margin-top: .25em;
+  margin-bottom: -.25em;
+  transition:transform .2s ease-out;
+  transform-origin:center;
 }
 #cat-nav .toggle.on:after{
-  content: '▼';
-  opacity:.5;
-  margin-left:.2em;
+  transform:rotate(90deg);
 }
 
 #sign-in-menu{
@@ -243,7 +259,7 @@ div{
   background:rgba(0,0,0,0.9);
   width:100vw;
   height:100vh;
-  z-index:1;
+  z-index:10;
   display:none;
   opacity:0;
   transition:all .2s ease-in;
@@ -301,6 +317,7 @@ input[type="email"],
 input[type="password"],
 .woocommerce-checkout #payment input,
 textarea,
+
 select,.select2-container > a.select2-choice{
   box-shadow:none!important;
   background:#E8EAE8!important;
@@ -311,6 +328,9 @@ select,.select2-container > a.select2-choice{
   font-size:inherit!important;
   font:inherit!important;
   // padding:.25em .75em;
+}
+textarea{
+  height:10em;
 }
 .select2-container * {
   border-color:#ddd!important;
@@ -338,7 +358,12 @@ select,.select2-container > a.select2-choice{
   background:data-uri('data:image/svg+xml;charset=US-ASCII,<%3Fxml%20version%3D"1.0"%20encoding%3D"utf-8"%3F>%0D%0A<%21--%20Generator%3A%20Adobe%20Illustrator%2016.0.1%2C%20SVG%20Export%20Plug-In%20.%20SVG%20Version%3A%206.00%20Build%200%29%20%20-->%0D%0A<%21DOCTYPE%20svg%20PUBLIC%20"-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN"%20"http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd">%0D%0A<svg%20version%3D"1.1"%20id%3D"Untitled-2"%20xmlns%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg"%20xmlns%3Axlink%3D"http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink"%20x%3D"0px"%20y%3D"0px"%0D%0A%09%20width%3D"18px"%20height%3D"12px"%20viewBox%3D"0%200%2018%2012"%20enable-background%3D"new%200%200%2018%2012"%20xml%3Aspace%3D"preserve">%0D%0A<path%20fill%3D"none"%20d%3D"z"%2F>%0D%0A<g%20id%3D"Layer_x25_201"%20style%3D"fill%3A%23FFFFFF%3B">%0D%0A%09<rect%20width%3D"18"%20height%3D"2"%2F>%0D%0A%09<rect%20y%3D"5"%20width%3D"18"%20height%3D"2"%2F>%0D%0A%09<rect%20y%3D"10"%20width%3D"18"%20height%3D"2"%2F>%0D%0A<%2Fg>%0D%0A<path%20fill%3D"none"%20d%3D"z"%2F>%0D%0A<%2Fsvg>');
 }
 
-
+#site-nav{
+ a.wpglobus-selector-link img, 
+ a.wpglobus-selector-link .name, a.wpglobus-selector-link.wpglobus-current-language {
+     display: none!important;
+ } 
+}
 
 .section-title{
   font-size:18px;

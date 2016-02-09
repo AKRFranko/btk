@@ -1,19 +1,19 @@
 /*
 Theme Name: edb
-Theme URI: http://underscores.me/
-Author: Automattic
-Author URI: http://automattic.com/
-Description: Hi. I'm a starter theme called <code>_s</code>, or <em>underscores</em>, if you like. I'm a theme meant for hacking so don't use me as a <em>Parent Theme</em>. Instead try turning me into the next, most awesome, WordPress theme out there. That's what I'm here for.
+Theme URI: http://elementdebase.com/
+Author: Franko
+Author URI: http://akr.club/
+Description: EDB Theme
 Version: 1.0.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: _s
+Text Domain: edb
 Tags:
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 
-_s is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc.
+edb is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc.
 Underscores is distributed under the terms of the GNU GPL v2 or later.
 
 Normalizing styles have been helped along thanks to the fine work of
@@ -63,6 +63,10 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 }
 .icon-chevron-lite-right-white {
   background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22iso-8859-1%22%3F%3E%0D%0A%3C%21--%20Generator%3A%20Adobe%20Illustrator%2018.1.1%2C%20SVG%20Export%20Plug-In%20.%20SVG%20Version%3A%206.00%20Build%200%29%20%20--%3E%0D%0A%3Csvg%20version%3D%221.1%22%20id%3D%22Capa_1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20x%3D%220px%22%20y%3D%220px%22%0D%0A%09%20viewBox%3D%220%200%20223.413%20223.413%22%20style%3D%22enable-background%3Anew%200%200%20223.413%20223.413%3B%22%20xml%3Aspace%3D%22preserve%22%3E%3Cstyle%20type%3D%22text/css%22%3Ecircle%2C%20ellipse%2C%20line%2C%20path%2C%20polygon%2C%20polyline%2C%20rect%2C%20text%20%7B%20fill%3A%20white%20%21important%3B%20%7D%3C/style%3E%0D%0A%3Cg%3E%0D%0A%09%3Cg%3E%0D%0A%09%09%3Cg%3E%0D%0A%09%09%09%3Cpolygon%20style%3D%22fill%3A%23010002%3B%22%20points%3D%2257.179%2C223.413%2051.224%2C217.276%20159.925%2C111.71%2051.224%2C6.127%2057.179%2C0%20172.189%2C111.71%20%09%09%09%0D%0A%09%09%09%09%22/%3E%0D%0A%09%09%3C/g%3E%0D%0A%09%3C/g%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3C/svg%3E%0D%0A');
+  background-repeat: no-repeat;
+}
+.icon-video-play {
+  background-image: url('data:image/svg+xml,<%3Fxml%20version%3D"1.0"%20encoding%3D"iso-8859-1"%3F>%0D%0A<%21--%20Generator%3A%20Adobe%20Illustrator%2018.0.0%2C%20SVG%20Export%20Plug-In%20.%20SVG%20Version%3A%206.00%20Build%200%29%20%20-->%0D%0A<%21DOCTYPE%20svg%20PUBLIC%20"-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN"%20"http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd">%0D%0A<svg%20version%3D"1.1"%20id%3D"Capa_1"%20xmlns%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg"%20xmlns%3Axlink%3D"http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink"%20x%3D"0px"%20y%3D"0px"%0D%0A%09%20viewBox%3D"0%200%20350%20350"%20style%3D"enable-background%3Anew%200%200%20350%20350%3B"%20xml%3Aspace%3D"preserve">%0D%0A<path%20d%3D"M175%2C0C78.343%2C0%2C0%2C78.343%2C0%2C175c0%2C96.656%2C78.343%2C175%2C175%2C175c96.656%2C0%2C175-78.344%2C175-175C350%2C78.343%2C271.656%2C0%2C175%2C0z%0D%0A%09%20M258.738%2C189.05l-104.386%2C71.812c-2.904%2C1.989-6.284%2C3.006-9.673%2C3.006c-2.728%2C0-5.436-0.648-7.93-1.951%0D%0A%09c-5.605-2.965-9.125-8.777-9.125-15.103V103.188c0-6.326%2C3.52-12.139%2C9.125-15.104c5.605-2.94%2C12.377-2.535%2C17.603%2C1.055%0D%0A%09l104.386%2C71.811c4.619%2C3.18%2C7.387%2C8.441%2C7.387%2C14.05C266.125%2C180.609%2C263.358%2C185.87%2C258.738%2C189.05z"%2F>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<%2Fsvg>%0D%0A');
   background-repeat: no-repeat;
 }
 .icon-chevron-lite-right-black {
@@ -892,6 +896,7 @@ body {
   font-size: 15px;
   min-width: 100vw;
   max-width: 100vw;
+  overflow-x: hidden;
   line-height: 1.3;
   color: #000;
   text-transform: lowercase;
@@ -925,6 +930,9 @@ a {
   /*-webkit-transform: translate(0, 0);*/
   /*    -ms-transform: translate(0, 0);*/
   /*        transform: translate(0, 0);*/
+}
+.btk-form-success {
+  display: none;
 }
 body {
   color: #242021;
@@ -998,6 +1006,7 @@ div {
   right: .75em;
 }
 #site-nav a,
+#site-nav .list,
 #shop-nav a,
 #cat-nav a,
 #sign-in-menu a {
@@ -1011,6 +1020,11 @@ div {
   text-decoration: none;
   text-transform: lowercase;
   outline: none;
+}
+#site-nav .list a {
+  display: inline;
+  margin: 0;
+  padding: 0;
 }
 #site-nav a:last-of-type {
   padding-right: 0;
@@ -1078,21 +1092,30 @@ div {
   margin-left: 2em;
   height: 0;
   overflow: hidden;
-  transition: height 0.2s ease-in;
+  transition: height 0.1s ease-out;
 }
 #cat-nav .toggle.on + ul.subnav {
   height: 8em;
   /*overflow:auto;*/
 }
 #cat-nav .toggle:after {
-  content: '►';
-  opacity: .5;
+  content: '';
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22iso-8859-1%22%3F%3E%0D%0A%3C%21--%20Generator%3A%20Adobe%20Illustrator%2018.1.1%2C%20SVG%20Export%20Plug-In%20.%20SVG%20Version%3A%206.00%20Build%200%29%20%20--%3E%0D%0A%3Csvg%20version%3D%221.1%22%20id%3D%22Capa_1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20x%3D%220px%22%20y%3D%220px%22%0D%0A%09%20viewBox%3D%220%200%20223.413%20223.413%22%20style%3D%22enable-background%3Anew%200%200%20223.413%20223.413%3B%22%20xml%3Aspace%3D%22preserve%22%3E%3Cstyle%20type%3D%22text/css%22%3Ecircle%2C%20ellipse%2C%20line%2C%20path%2C%20polygon%2C%20polyline%2C%20rect%2C%20text%20%7B%20fill%3A%20white%20%21important%3B%20%7D%3C/style%3E%0D%0A%3Cg%3E%0D%0A%09%3Cg%3E%0D%0A%09%09%3Cg%3E%0D%0A%09%09%09%3Cpolygon%20style%3D%22fill%3A%23010002%3B%22%20points%3D%2257.179%2C223.413%2051.224%2C217.276%20159.925%2C111.71%2051.224%2C6.127%2057.179%2C0%20172.189%2C111.71%20%09%09%09%0D%0A%09%09%09%09%22/%3E%0D%0A%09%09%3C/g%3E%0D%0A%09%3C/g%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3C/svg%3E%0D%0A');
+  background-repeat: no-repeat;
+  opacity: 1;
   margin-left: .2em;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-size: .75em;
+  line-height: inherit;
+  margin-top: .25em;
+  margin-bottom: -0.25em;
+  transition: transform 0.2s ease-out;
+  transform-origin: center;
 }
 #cat-nav .toggle.on:after {
-  content: '▼';
-  opacity: .5;
-  margin-left: .2em;
+  transform: rotate(90deg);
 }
 #sign-in-menu {
   color: #fff;
@@ -1145,7 +1168,7 @@ div {
   background: rgba(0, 0, 0, 0.9);
   width: 100vw;
   height: 100vh;
-  z-index: 1;
+  z-index: 10;
   display: none;
   opacity: 0;
   transition: all 0.2s ease-in;
@@ -1243,6 +1266,9 @@ select,
   font-size: inherit!important;
   font: inherit!important;
 }
+textarea {
+  height: 10em;
+}
 .select2-container * {
   border-color: #ddd!important;
 }
@@ -1265,6 +1291,11 @@ select,
 }
 #masthead.on .burger {
   background: url('data:image/svg+xml;charset=US-ASCII,<%3Fxml%20version%3D"1.0"%20encoding%3D"utf-8"%3F>%0D%0A<%21--%20Generator%3A%20Adobe%20Illustrator%2016.0.1%2C%20SVG%20Export%20Plug-In%20.%20SVG%20Version%3A%206.00%20Build%200%29%20%20-->%0D%0A<%21DOCTYPE%20svg%20PUBLIC%20"-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN"%20"http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd">%0D%0A<svg%20version%3D"1.1"%20id%3D"Untitled-2"%20xmlns%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg"%20xmlns%3Axlink%3D"http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink"%20x%3D"0px"%20y%3D"0px"%0D%0A%09%20width%3D"18px"%20height%3D"12px"%20viewBox%3D"0%200%2018%2012"%20enable-background%3D"new%200%200%2018%2012"%20xml%3Aspace%3D"preserve">%0D%0A<path%20fill%3D"none"%20d%3D"z"%2F>%0D%0A<g%20id%3D"Layer_x25_201"%20style%3D"fill%3A%23FFFFFF%3B">%0D%0A%09<rect%20width%3D"18"%20height%3D"2"%2F>%0D%0A%09<rect%20y%3D"5"%20width%3D"18"%20height%3D"2"%2F>%0D%0A%09<rect%20y%3D"10"%20width%3D"18"%20height%3D"2"%2F>%0D%0A<%2Fg>%0D%0A<path%20fill%3D"none"%20d%3D"z"%2F>%0D%0A<%2Fsvg>');
+}
+#site-nav a.wpglobus-selector-link img,
+#site-nav a.wpglobus-selector-link .name,
+#site-nav a.wpglobus-selector-link.wpglobus-current-language {
+  display: none!important;
 }
 .section-title {
   font-size: 18px;
@@ -1525,7 +1556,7 @@ main,
   /*margin-bottom:@mast-height;*/
   /*min-height:100vh;*/
 }
-.products,
+/* product page */
 .product-sections {
   display: block;
   position: relative;
@@ -1593,6 +1624,9 @@ main,
   padding-top: .25em;
   padding-bottom: 0em;
   float: left;
+}
+.product-menu .product-quantity-input .qty-widget {
+  margin-left: -0.5em;
 }
 .product-menu .product-selected-material {
   border-top: 0;
@@ -1711,6 +1745,9 @@ main,
   padding: 0 1em 0 1em;
   float: left;
 }
+.product-sub-section > div.product-technical-image {
+  height: 320px;
+}
 .product-sub-section > div:nth-of-type(even) {
   padding-right: 1em;
   margin-right: 1em;
@@ -1736,10 +1773,10 @@ main,
 .round-image-wrapper {
   display: inline-block;
   position: relative;
-  width: 80%;
+  width: 60%;
   height: 0;
-  margin: -2em 10% 10% 10%;
-  padding-top: 80%;
+  margin: 0 20% 20% 20%;
+  padding-top: 60%;
   border-radius: 50%;
   overflow: hidden;
   background: #eee;
@@ -1747,6 +1784,7 @@ main,
 .product-introduction-video,
 .product-instruction-video,
 .product-designer-image,
+.product-technical-image,
 .product-shipping-return-image,
 .product-review-image {
   text-align: center;
@@ -1762,6 +1800,13 @@ main,
   min-height: 100%;
   min-width: 100%;
 }
+.product-technical-image img {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 .product-sub-section p {
   padding-right: 2em;
 }
@@ -1772,8 +1817,8 @@ main,
 .product-review-image .section-title {
   text-align: left;
 }
-.product-introduction-video .yt-thumb,
-.product-instruction-video .yt-thumb {
+.product-introduction-video .youtube_video_link,
+.product-instruction-video .youtube_video_link {
   position: absolute;
   display: inline-block;
   height: 0;
@@ -1782,6 +1827,7 @@ main,
   left: 10%;
   margin-top: 10%;
   padding-bottom: calc( 80% * 0.5625);
+  overflow: hidden;
 }
 .product-introduction-video:after,
 .product-instruction-video:after {
@@ -1793,17 +1839,46 @@ main,
   height: 0;
   padding-top: 50%;
 }
-.product-instruction-video .yt-thumb {
+.product-instruction-video .youtube_video_link {
   left: 1em;
   margin-top: 2em;
 }
-.product-introduction-video .yt-thumb img,
-.product-instruction-video .yt-thumb img {
+.product-introduction-video .youtube_video_link {
+  margin-top: calc(50% - 160px);
+}
+.product-introduction-video .youtube_video_link img,
+.product-instruction-video .youtube_video_link img {
   position: absolute;
   top: 0;
   left: 0;
   min-width: 100%;
   min-height: 100%;
+}
+.section-title + .youtube_video_link {
+  margin-top: 0;
+}
+.youtube_video_link {
+  z-index: 1;
+}
+.youtube_video_link:after {
+  background-image: url('data:image/svg+xml,<%3Fxml%20version%3D"1.0"%20encoding%3D"iso-8859-1"%3F>%0D%0A<%21--%20Generator%3A%20Adobe%20Illustrator%2018.0.0%2C%20SVG%20Export%20Plug-In%20.%20SVG%20Version%3A%206.00%20Build%200%29%20%20-->%0D%0A<%21DOCTYPE%20svg%20PUBLIC%20"-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN"%20"http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd">%0D%0A<svg%20version%3D"1.1"%20id%3D"Capa_1"%20xmlns%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg"%20xmlns%3Axlink%3D"http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink"%20x%3D"0px"%20y%3D"0px"%0D%0A%09%20viewBox%3D"0%200%20350%20350"%20style%3D"enable-background%3Anew%200%200%20350%20350%3B"%20xml%3Aspace%3D"preserve">%0D%0A<path%20d%3D"M175%2C0C78.343%2C0%2C0%2C78.343%2C0%2C175c0%2C96.656%2C78.343%2C175%2C175%2C175c96.656%2C0%2C175-78.344%2C175-175C350%2C78.343%2C271.656%2C0%2C175%2C0z%0D%0A%09%20M258.738%2C189.05l-104.386%2C71.812c-2.904%2C1.989-6.284%2C3.006-9.673%2C3.006c-2.728%2C0-5.436-0.648-7.93-1.951%0D%0A%09c-5.605-2.965-9.125-8.777-9.125-15.103V103.188c0-6.326%2C3.52-12.139%2C9.125-15.104c5.605-2.94%2C12.377-2.535%2C17.603%2C1.055%0D%0A%09l104.386%2C71.811c4.619%2C3.18%2C7.387%2C8.441%2C7.387%2C14.05C266.125%2C180.609%2C263.358%2C185.87%2C258.738%2C189.05z"%2F>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<g>%0D%0A<%2Fg>%0D%0A<%2Fsvg>%0D%0A');
+  background-repeat: no-repeat;
+  background-size: contain;
+  backgroud-position: center;
+  content: '';
+  display: inline-block;
+  top: 50%;
+  left: 50%;
+  width: 3em;
+  height: 3em;
+  margin-left: -1.5em;
+  margin-top: -1.5em;
+  position: absolute;
+  opacity: 0.5;
+}
+.youtube_video_link:hover:after,
+.youtube_video_link:active:after {
+  opacity: 1;
 }
 main {
   display: block;
@@ -1817,7 +1892,7 @@ main > article {
   box-sizing: border-box;
 }
 main > article {
-  height: 100vh;
+  height: 100%;
   /*background:red;*/
   overflow: hidden;
 }
@@ -1839,6 +1914,9 @@ main > article > header {
   display: block;
   height: 50%;
   overflow: hidden;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   /*outline:1px solid lime;*/
 }
 .article-info {
@@ -1869,6 +1947,7 @@ main > article > header {
   left: 0;
   min-width: 100%;
   min-height: 100%;
+  opacity: 0;
 }
 .article-info h2.article-title {
   display: block;
@@ -1899,6 +1978,18 @@ main > article > header {
   padding-top: 1em;
 }
 @media all and (max-width: 760px) {
+  .archive main > article,
+  .home main > article {
+    height: calc(100vh - 117px);
+  }
+  .archive .article-info,
+  .home .article-info {
+    padding: .5em 6em 0 1em;
+  }
+  .archive .article-info:after,
+  .home .article-info:after {
+    margin-left: -4em;
+  }
   * {
     /*outline:1px solid red;*/
   }
@@ -1907,16 +1998,16 @@ main > article > header {
   .archive main > article,
   .home main > article {
     width: 50%;
-    height: calc(50vh - 117px);
-    margin-top: .5em;
+    height: 50vh;
+    margin-top: .7em;
   }
   .archive main > article:nth-of-type(odd),
   .home main > article:nth-of-type(odd) {
-    padding-right: .25em;
+    padding-right: calc(1em / 3);
   }
   .archive main > article:nth-of-type(even),
   .home main > article:nth-of-type(even) {
-    padding-left: .25em;
+    padding-left: calc(1em / 3);
   }
 }
 @media all and (min-width: 900px) {
@@ -1925,6 +2016,7 @@ main > article > header {
     width: calc(100% / 3);
     height: 50vh;
     padding: 0 .5em;
+    margin-top: .75em;
   }
   .archive main > article:nth-of-type(3n),
   .home main > article:nth-of-type(3n) {
@@ -1936,7 +2028,6 @@ main > article > header {
   }
   .archive main > article:nth-of-type(3n-1),
   .home main > article:nth-of-type(3n-1) {
-    /*background:blue;*/
     padding-left: .25em;
     padding-right: .25em;
   }
@@ -1991,7 +2082,13 @@ form.checkout h3 {
   width: 100%;
   margin: 0;
   line-height: 1.4;
+  min-height: 1.6em;
   text-align: center;
+}
+#calc_shipping_postcode {
+  width: 6em;
+  line-height: 2.1!important;
+  padding-left: .5em;
 }
 .cart-item-remove a {
   white-space: nowrap;
@@ -2016,6 +2113,13 @@ form.checkout h3 {
 }
 .cart-collaterals .total-line .value {
   text-align: left;
+}
+.cart-collaterals .total-line .value button {
+  height: 2.3em;
+  margin: 0;
+  padding: 0 .5em;
+  vertical-align: bottom;
+  margin-left: -0.3em;
 }
 .cart-collaterals .total-line.cart-message {
   box-sizing: border-box;
@@ -2043,6 +2147,7 @@ form.checkout h3 {
 .woocommerce #payment #place_order,
 .woocommerce #payment #place_order:hover,
 .woocommerce #payment #place_order:active,
+.pdf-download-button,
 button,
 button:hover,
 button:active,
@@ -2614,6 +2719,168 @@ fieldset#paypal_pro-cc-form {
   height: 100%;
   background: rgba(0, 0, 0, 0.03);
 }
+#splash .edb-slider,
+#splash .edb-slides {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+#splash .edb-slide .backdrop {
+  min-height: 100vh;
+  max-height: 100vh;
+  height: 100vh;
+  top: 0;
+}
+#splash .edb-slider {
+  z-index: 0;
+}
+#splash a.language-selection {
+  display: block;
+  width: 50%;
+  height: 60px;
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  text-align: center;
+  z-index: 10;
+  font-family: "pragmatica-web-condensed", 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 45px;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: #fff;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+}
+#splash a.language-selection:first-of-type {
+  margin-top: -1em;
+}
+#splash a.language-selection:last-of-type {
+  margin-top: 1em;
+}
+.toast {
+  display: block;
+  position: fixed;
+  width: 100vh;
+  height: 100vh;
+  transition: all 0.2s cubic-bezier(0.93, 0.01, 0.92, 0.86);
+  left: 0;
+  width: 100vw;
+  top: 117px;
+  height: calc(100vh - 117px);
+  background: #fff;
+  color: #000;
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  box-sizing: border-box;
+  padding: 1em 2em;
+}
+.toast.horizontal {
+  width: 50vw;
+}
+.toast.vertical {
+  height: 50vh;
+}
+.toast.horizontal,
+.toast.horizontal.left {
+  margin-left: 100vw;
+}
+.toast.horizontal.right {
+  margin-left: 50vw;
+}
+.toast.vertical.top {
+  margin-top: calc(-50vh - 117px);
+}
+.toast.vertical,
+.toast.vertical.bottom {
+  margin-top: 100vh;
+}
+.toast.active {
+  margin: 0;
+}
+.toast.vertical.active,
+.toast.vertical.bottom.active {
+  margin-top: calc(50vh - 117px);
+}
+.toast.vertical.top.active {
+  margin-top: 0;
+}
+.toast.fullbleed {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  padding-top: 117px;
+  top: 0;
+  background: #000;
+  color: #fff;
+}
+.toast.fullbleed:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: .75em;
+  left: .5em;
+  background-color: transparent;
+  background-image: url('data:image/svg+xml,<%3Fxml%20version%3D"1.0"%20encoding%3D"UTF-8"%20standalone%3D"no"%3F>%0A<svg%0A%20%20%20xmlns%3Adc%3D"http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2F"%0A%20%20%20xmlns%3Acc%3D"http%3A%2F%2Fcreativecommons.org%2Fns%23"%0A%20%20%20xmlns%3Ardf%3D"http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23"%0A%20%20%20xmlns%3Asvg%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg"%0A%20%20%20xmlns%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg"%0A%20%20%20viewBox%3D"0%200%20495.06668%20490.44"%0A%20%20%20height%3D"490.44"%0A%20%20%20width%3D"495.06668"%0A%20%20%20xml%3Aspace%3D"preserve"%0A%20%20%20id%3D"svg2"%0A%20%20%20version%3D"1.1"><metadata%0A%20%20%20%20%20id%3D"metadata8"><rdf%3ARDF><cc%3AWork%0A%20%20%20%20%20%20%20%20%20rdf%3Aabout%3D""><dc%3Aformat>image%2Fsvg%2Bxml<%2Fdc%3Aformat><dc%3Atype%0A%20%20%20%20%20%20%20%20%20%20%20rdf%3Aresource%3D"http%3A%2F%2Fpurl.org%2Fdc%2Fdcmitype%2FStillImage"%20%2F><%2Fcc%3AWork><%2Frdf%3ARDF><%2Fmetadata><defs%0A%20%20%20%20%20id%3D"defs6"><clipPath%0A%20%20%20%20%20%20%20id%3D"clipPath20"%0A%20%20%20%20%20%20%20clipPathUnits%3D"userSpaceOnUse"><path%0A%20%20%20%20%20%20%20%20%20id%3D"path18"%0A%20%20%20%20%20%20%20%20%20d%3D"M%200%2C0%20H%203712.99%20V%203678%20H%200%20Z"%20%2F><%2FclipPath><%2Fdefs><g%0A%20%20%20%20%20transform%3D"matrix%281.3333333%2C0%2C0%2C-1.3333333%2C0%2C490.44%29"%0A%20%20%20%20%20id%3D"g10"><g%0A%20%20%20%20%20%20%20transform%3D"scale%280.1%29"%0A%20%20%20%20%20%20%20id%3D"g12"><g%0A%20%20%20%20%20%20%20%20%20id%3D"g14"><g%0A%20%20%20%20%20%20%20%20%20%20%20clip-path%3D"url%28%23clipPath20%29"%0A%20%20%20%20%20%20%20%20%20%20%20id%3D"g16"><path%0A%20%20%20%20%20%20%20%20%20%20%20%20%20id%3D"path22"%0A%20%20%20%20%20%20%20%20%20%20%20%20%20style%3D"fill%3A%23ffffff%3Bfill-opacity%3A1%3Bfill-rule%3Anonzero%3Bstroke%3Anone"%0A%20%20%20%20%20%20%20%20%20%20%20%20%20d%3D"M%20877.711%2C413.59%20C%20843.238%2C358.441%20755.93%2C225.172%20558.328%2C225.172%20c%20-193%2C0%20-284.91%2C128.668%20-303.289%2C278.027%20h%20797.291%20c%200%2C18.379%202.3%2C48.242%202.3%2C66.633%200%2C335.457%20-167.732%2C576.718%20-516.974%2C576.718%20C%20232.07%2C1146.55%200%2C921.359%200%2C583.621%200%2C229.77%20220.574%2C0%20544.547%2C0%20863.918%2C0%201010.97%2C199.91%201059.23%2C275.73%20Z%20M%20537.656%2C937.461%20c%20147.051%2C0%20250.442%2C-96.512%20257.332%2C-238.973%20h%20-533.05%20c%206.89%2C130.981%20126.367%2C238.973%20275.718%2C238.973%20M%201762.31%2C0%20c%20147.05%2C0%20252.74%2C57.4492%20321.67%2C142.469%20V%2027.5703%20h%20261.93%20V%201589.98%20h%20-261.93%20v%20-588.2%20c%20-59.74%2C78.13%20-179.22%2C147.05%20-321.67%2C147.05%20-296.4%2C0%20-484.81%2C-238.939%20-484.81%2C-578.998%20C%201277.5%2C241.262%201470.5%2C0%201762.31%2C0%20m%20333.16%2C574.43%20c%200%2C-211.399%20-112.6%2C-346.961%20-278.02%2C-346.961%20-167.73%2C0%20-278.02%2C130.972%20-278.02%2C346.961%200%2C220.558%20110.29%2C349.238%20278.02%2C349.238%20165.42%2C0%20278.02%2C-137.867%20278.02%2C-349.238%20M%203228.18%2C0%20c%20291.81%2C0%20484.81%2C241.262%20484.81%2C569.832%200%2C340.059%20-188.41%2C578.998%20-484.81%2C578.998%20-142.46%2C0%20-261.93%2C-68.92%20-321.68%2C-147.05%20v%20588.2%20H%202644.57%20V%2027.5703%20H%202906.5%20V%20142.469%20C%202975.44%2C57.4492%203081.13%2C0%203228.18%2C0%20m%20-333.16%2C574.43%20c%200%2C211.371%20112.59%2C349.238%20278.02%2C349.238%20167.72%2C0%20278.01%2C-128.68%20278.01%2C-349.238%200%2C-215.989%20-110.29%2C-346.961%20-278.01%2C-346.961%20-165.43%2C0%20-278.02%2C135.562%20-278.02%2C346.961"%20%2F><path%0A%20%20%20%20%20%20%20%20%20%20%20%20%20id%3D"path24"%0A%20%20%20%20%20%20%20%20%20%20%20%20%20style%3D"fill%3A%23ffffff%3Bfill-opacity%3A1%3Bfill-rule%3Anonzero%3Bstroke%3Anone"%0A%20%20%20%20%20%20%20%20%20%20%20%20%20d%3D"m%20144.262%2C2585.94%20c%2053.519%2C0%2091.55%2C41.13%2091.55%2C110.14%200%2C70.76%20-40.242%2C110.56%20-92.882%2C110.56%20-38.028%2C0%20-60.1448%2C-21.23%20-67.6644%2C-35.82%20v%20121.19%20H%2038.5508%20v%20-300.76%20h%2036.7148%20v%2030.96%20c%207.5196%2C-14.16%2029.1874%2C-36.27%2068.9964%2C-36.27%20m%20-72.5393%2C111.02%20c%200%2C53.07%2028.3123%2C79.61%2064.5823%2C79.61%2037.148%2C0%2061.918%2C-28.3%2061.918%2C-79.61%200%2C-50.42%20-23.004%2C-80.05%20-61.039%2C-80.05%20-36.711%2C0%20-65.4613%2C26.53%20-65.4613%2C80.05%20M%20462.711%2C2613.8%20h%20-4.867%20c%20-12.832%2C0%20-18.133%2C4.44%20-18.133%2C19.03%20v%20107.04%20c%200%2C52.62%20-30.961%2C66.33%20-78.731%2C66.33%20-46.878%2C0%20-87.128%2C-22.99%20-86.25%2C-70.32%20l%2034.942%2C-3.97%20c%200%2C25.2%2011.949%2C44.22%2049.98%2C44.22%2037.16%2C0%2044.668%2C-14.59%2044.668%2C-36.71%20v%20-5.76%20c%200%2C-8.83%20-4.418%2C-10.61%20-17.687%2C-12.82%20l%20-35.383%2C-6.19%20c%20-30.52%2C-5.31%20-54.84%2C-12.39%20-69%2C-28.31%20-7.957%2C-8.85%20-12.816%2C-20.79%20-12.816%2C-37.59%200%2C-42.46%2030.07%2C-63.25%2072.968%2C-63.25%2040.25%2C0%2057.063%2C18.14%2063.692%2C29.19%20h%200.449%20c%201.316%2C-17.24%209.727%2C-28.31%2035.383%2C-28.31%209.285%2C0%2016.355%2C0.89%2020.785%2C1.78%20z%20m%20-58.391%2C45.12%20c%200%2C-32.72%20-25.648%2C-44.67%20-53.07%2C-44.67%20-25.211%2C0%20-43.789%2C12.82%20-43.789%2C36.71%200%2C25.66%2023.441%2C30.97%2049.98%2C36.26%2034.063%2C7.08%2043.352%2C8.86%2046.879%2C10.19%20z%20m%20250.782%2C114.55%20c%20-13.711%2C15.93%20-41.571%2C33.17%20-80.489%2C33.17%20-38.929%2C0%20-80.504%2C-19.02%20-80.504%2C-64.12%200%2C-37.16%2030.071%2C-51.75%2066.344%2C-58.82%20l%2028.75%2C-5.76%20c%2021.227%2C-3.98%2036.711%2C-8.4%2036.711%2C-28.31%200%2C-21.23%20-19.465%2C-33.17%20-48.215%2C-33.17%20-28.75%2C0%20-52.625%2C15.05%20-68.551%2C35.82%20l%20-23.882%2C-24.76%20c%2016.804%2C-21.68%2049.976%2C-41.58%2090.226%2C-41.58%2050.422%2C0%2088.008%2C23.89%2088.008%2C66.8%200%2C36.71%20-26.969%2C50.86%20-60.59%2C57.94%20l%20-24.316%2C4.85%20c%20-31.41%2C6.63%20-47.332%2C11.95%20-47.332%2C31.86%200%2C18.56%2018.129%2C28.74%2041.582%2C28.74%2022.984%2C0%2043.34%2C-9.74%2058.379%2C-26.54%20z%20M%20864.75%2C2653.62%20c%20-7.52%2C-12.39%20-26.098%2C-35.83%20-62.809%2C-35.83%20-46.437%2C0%20-65.902%2C35.83%20-66.781%2C70.32%20h%20157.453%20v%207.97%20c%200%2C62.79%20-31.402%2C110.56%20-94.648%2C110.56%20-57.945%2C0%20-99.961%2C-44.66%20-99.961%2C-109.23%200%2C-70.34%2040.25%2C-111.47%20100.398%2C-111.47%2057.5%2C0%2084.918%2C36.27%2092.883%2C48.65%20z%20m%20-66.785%2C123.4%20c%2033.168%2C0%2053.519%2C-22.56%2056.605%2C-59.71%20H%20736.484%20c%203.981%2C36.71%2029.192%2C59.71%2061.481%2C59.71"%20%2F><path%0A%20%20%20%20%20%20%20%20%20%20%20%20%20id%3D"path26"%0A%20%20%20%20%20%20%20%20%20%20%20%20%20style%3D"fill%3A%23ffffff%3Bfill-opacity%3A1%3Bfill-rule%3Anonzero%3Bstroke%3Anone"%0A%20%20%20%20%20%20%20%20%20%20%20%20%20d%3D"m%20115.957%2C2979.09%20c%2039.809%2C0%2061.481%2C22.11%2069%2C36.27%20v%20-30.96%20h%2036.707%20v%20300.75%20h%20-36.707%20v%20-121.18%20c%20-7.519%2C14.59%20-29.641%2C35.82%20-67.672%2C35.82%20-52.6405%2C0%20-92.8788%2C-39.8%20-92.8788%2C-110.57%200%2C-69%2038.0313%2C-110.13%2091.5508%2C-110.13%20m%2072.539%2C111.01%20c%200%2C-53.51%20-28.75%2C-80.05%20-65.461%2C-80.05%20-38.0389%2C0%20-61.0389%2C29.63%20-61.0389%2C80.05%200%2C51.31%2024.7656%2C79.62%2061.9179%2C79.62%2036.274%2C0%2064.582%2C-26.54%2064.582%2C-79.62%20m%20251.211%2C-43.34%20c%20-7.523%2C-12.38%20-26.094%2C-35.83%20-62.805%2C-35.83%20-46.437%2C0%20-65.894%2C35.83%20-66.785%2C70.33%20h%20157.457%20v%207.96%20c%200%2C62.8%20-31.398%2C110.57%20-94.648%2C110.57%20-57.942%2C0%20-99.961%2C-44.67%20-99.961%2C-109.24%200%2C-70.33%2040.25%2C-111.46%20100.398%2C-111.46%2057.5%2C0%2084.922%2C36.27%2092.883%2C48.65%20z%20m%20-66.781%2C123.4%20c%2033.168%2C0%2053.519%2C-22.56%2056.609%2C-59.71%20h%20-118.09%20c%203.981%2C36.71%2029.192%2C59.71%2061.481%2C59.71"%20%2F><path%0A%20%20%20%20%20%20%20%20%20%20%20%20%20id%3D"path28"%0A%20%20%20%20%20%20%20%20%20%20%20%20%20style%3D"fill%3A%23ffffff%3Bfill-opacity%3A1%3Bfill-rule%3Anonzero%3Bstroke%3Anone"%0A%20%20%20%20%20%20%20%20%20%20%20%20%20d%3D"m%20132.766%2C3678.3%20-30.524%2C-56.61%20h%2032.289%20l%2045.114%2C56.61%20z%20m%2058.379%2C-238.39%20c%20-7.524%2C-12.39%20-26.09%2C-35.84%20-62.805%2C-35.84%20-46.4338%2C0%20-65.8986%2C35.84%20-66.7892%2C70.33%20H%20219.016%20v%207.97%20c%200%2C62.8%20-31.414%2C110.57%20-94.657%2C110.57%20-57.9371%2C0%20-99.9528%2C-44.67%20-99.9528%2C-109.25%200%2C-70.32%2040.2461%2C-111.45%20100.3948%2C-111.45%2057.5%2C0%2084.922%2C36.26%2092.879%2C48.65%20z%20m%20-66.786%2C123.39%20c%2033.176%2C0%2053.512%2C-22.55%2056.614%2C-59.7%20H%2062.8828%20c%203.9766%2C36.71%2029.1875%2C59.7%2061.4762%2C59.7%20m%20182.661%2C115%20h%20-36.708%20v%20-300.76%20h%2036.708%20z%20m%20159.66%2C0%20-30.52%2C-56.61%20h%2032.293%20l%2045.109%2C56.61%20z%20m%2058.382%2C-238.39%20c%20-7.519%2C-12.39%20-26.101%2C-35.84%20-62.812%2C-35.84%20-46.438%2C0%20-65.898%2C35.84%20-66.777%2C70.33%20h%20157.449%20v%207.97%20c%200%2C62.8%20-31.399%2C110.57%20-94.652%2C110.57%20-57.938%2C0%20-99.95%2C-44.67%20-99.95%2C-109.25%200%2C-70.32%2040.239%2C-111.45%20100.403%2C-111.45%2057.488%2C0%2084.922%2C36.26%2092.879%2C48.65%20z%20M%20458.27%2C3563.3%20c%2033.171%2C0%2053.523%2C-22.55%2056.625%2C-59.7%20H%20396.801%20c%203.98%2C36.71%2029.191%2C59.7%2061.469%2C59.7%20m%20275.542%2C-185.76%20h%2036.711%20v%20122.96%20c%200%2C34.06%2022.118%2C61.04%2050.418%2C61.04%2016.813%2C0%2030.52%2C-5.75%2037.598%2C-24.77%203.094%2C-8.85%204.863%2C-21.23%204.863%2C-38.92%20v%20-120.31%20h%2036.711%20v%20134.02%20c%200%2C15.92%20-1.773%2C28.3%20-4.859%2C38.48%20-9.293%2C30.07%20-32.289%2C43.34%20-61.039%2C43.34%20-34.942%2C0%20-59.711%2C-19.46%20-69.883%2C-39.81%20-8.84%2C26.54%20-29.629%2C39.81%20-60.152%2C39.81%20-28.305%2C0%20-53.961%2C-15.92%20-63.246%2C-36.27%20v%2030.96%20h%20-36.711%20v%20-210.53%20h%2036.711%20v%20122.96%20c%200%2C34.06%2022.117%2C61.04%2050.418%2C61.04%2016.812%2C0%2030.519%2C-5.75%2037.597%2C-24.77%203.094%2C-8.85%204.863%2C-21.23%204.863%2C-38.92%20z%20m%20382.138%2C62.37%20c%20-7.52%2C-12.39%20-26.1%2C-35.84%20-62.81%2C-35.84%20-46.44%2C0%20-65.898%2C35.84%20-66.777%2C70.33%20h%20157.447%20v%207.97%20c%200%2C62.8%20-31.4%2C110.57%20-94.65%2C110.57%20-57.937%2C0%20-99.945%2C-44.67%20-99.945%2C-109.25%200%2C-70.32%2040.238%2C-111.45%20100.395%2C-111.45%2057.49%2C0%2084.92%2C36.26%2092.88%2C48.65%20z%20m%20-66.79%2C123.39%20c%2033.18%2C0%2053.52%2C-22.55%2056.62%2C-59.7%20H%20987.691%20c%203.981%2C36.71%2029.189%2C59.7%2061.469%2C59.7%20m%20322.87%2C-53.51%20c%200%2C24.77%20-4.42%2C42.9%20-13.27%2C56.61%20-11.5%2C17.69%20-31.84%2C26.98%20-59.27%2C26.98%20-34.94%2C0%20-56.61%2C-16.81%20-67.67%2C-36.27%20v%2030.96%20h%20-36.71%20v%20-210.53%20h%2036.71%20v%20122.08%20c%200%2C33.17%2020.35%2C61.47%2055.73%2C61.47%2030.96%2C0%2047.77%2C-15.03%2047.77%2C-60.59%20v%20-122.96%20h%2036.71%20z%20m%2028.3%2C50.42%20h%2040.7%20V%203414.7%20c%200%2C-8.85%200.88%2C-15.48%202.65%2C-20.35%206.63%2C-17.69%2023.88%2C-22.11%2043.79%2C-22.11%2013.71%2C0%2026.09%2C1.77%2036.71%2C4.42%20v%2028.75%20c%20-7.08%2C-1.34%20-15.48%2C-2.66%20-24.33%2C-2.66%20-11.5%2C0%20-16.36%2C2.22%20-19.02%2C7.08%20-2.65%2C4.42%20-3.09%2C10.62%20-3.09%2C19.9%20v%20130.48%20h%2046.44%20v%2027.86%20h%20-46.44%20v%2084.04%20l%20-36.71%2C-7.96%20v%20-76.08%20h%20-40.7%20v%20-27.86"%20%2F><%2Fg><%2Fg><%2Fg><%2Fg><%2Fsvg>');
+  z-index: 10;
+  background-position: left top;
+  background-size: contain;
+  background-repeat: no-repeat;
+  text-indent: 200px;
+  width: 90px;
+  height: 72px;
+  overflow: hidden;
+}
+.toast .page {
+  display: block;
+  box-sizing: border-box;
+  padding-bottom: 2em;
+  width: 100%;
+  height: 100%;
+  float: left;
+  white-space: nowrap;
+}
+.toast .page * {
+  white-space: normal;
+}
+.toast .page .image,
+.toast .page .content {
+  display: block;
+  width: calc(50% - 1em);
+  height: 100%;
+  float: left;
+}
+.toast .close {
+  position: absolute;
+  top: .5em;
+  right: 1.5em;
+  z-index: 1;
+  text-indent: 1000em;
+  overflow: hidden;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22iso-8859-1%22%3F%3E%0D%0A%3C%21--%20Generator%3A%20Adobe%20Illustrator%2018.1.1%2C%20SVG%20Export%20Plug-In%20.%20SVG%20Version%3A%206.00%20Build%200%29%20%20--%3E%0D%0A%3Csvg%20version%3D%221.1%22%20id%3D%22Capa_1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%20x%3D%220px%22%20y%3D%220px%22%0D%0A%09%20viewBox%3D%220%200%20224.512%20224.512%22%20style%3D%22enable-background%3Anew%200%200%20224.512%20224.512%3B%22%20xml%3Aspace%3D%22preserve%22%3E%3Cstyle%20type%3D%22text/css%22%3Ecircle%2C%20ellipse%2C%20line%2C%20path%2C%20polygon%2C%20polyline%2C%20rect%2C%20text%20%7B%20fill%3A%20black%20%21important%3B%20%7D%3C/style%3E%0D%0A%3Cg%3E%0D%0A%09%3Cpolygon%20style%3D%22fill%3A%23010002%3B%22%20points%3D%22224.507%2C6.997%20217.521%2C0%20112.256%2C105.258%206.998%2C0%200.005%2C6.997%20105.263%2C112.254%20%0D%0A%09%090.005%2C217.512%206.998%2C224.512%20112.256%2C119.24%20217.521%2C224.512%20224.507%2C217.512%20119.249%2C112.254%20%09%22/%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3Cg%3E%0D%0A%3C/g%3E%0D%0A%3C/svg%3E%0D%0A');
+  background-repeat: no-repeat;
+  display: block;
+  width: 1.5em;
+  height: 1.5em;
+  background-size: 1em;
+  padding: .5em;
+  background-position: center;
+}
+.toast .page .image {
+  margin-right: .5em;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.toast .page .content {
+  margin-left: .5em;
+}
+.btk-form-success.inplace {
+  display: none;
+}
 .postcode {
   text-transform: uppercase!important;
 }
@@ -2711,6 +2978,9 @@ fieldset#paypal_pro-cc-form {
   #site-nav a:last-of-type,
   .burger {
     display: none;
+  }
+  #site-nav div.list a {
+    display: inline;
   }
   #page {
     max-width: 970px;

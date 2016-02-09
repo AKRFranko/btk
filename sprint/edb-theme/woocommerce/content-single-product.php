@@ -58,7 +58,8 @@ if ( ! defined( 'ABSPATH' ) ) {
     <div class="product-description">
       <h2 class="section-title"><?php _e('Description', 'edb'); ?></h2>
       <p><?php echo $edb_product->description; ?></p>
-      <button id="product-pdf-download" class="pdf-download-button">downlaod pdf</button>
+      <?php edb_product_pdf( $product_id ); ?>
+      <!--<button id="product-pdf-download" class="">downlaod pdf</button>-->
     </div>
     
     <div class="product-menu">
@@ -99,14 +100,21 @@ if ( ! defined( 'ABSPATH' ) ) {
   </div><!-- .product-sections -->
   <div class="product-sub-sections">
     <div class="product-sub-section">
+      
       <div class="product-technical-image">
-        <?php edb_product_tech_image( $product->id  ); ?>
+        <?php 
+          if(edb_has_tech_image( $product->id )){ 
+            edb_product_tech_image( $product->id  );
+          };
+        ?>
       </div>
       <div class="product-introduction-video">
-        <a class="yt-thumb" href="https://www.youtube.com/embed/_qogwJT4QxI">
-          <img src="https://img.youtube.com/vi/_qogwJT4QxI/mqdefault.jpg">
-        </a>
+        <?php edb_product_video_link( $product->id, 'introduction' ); ?>
+        <!--<a class="yt-thumb" href="https://www.youtube.com/embed/_qogwJT4QxI">-->
+        <!--  <img src="https://img.youtube.com/vi/_qogwJT4QxI/mqdefault.jpg">-->
+        <!--</a>-->
       </div>
+      
     </div>
     <div class="product-sub-section">
       <div class="product-designer-text">
@@ -123,9 +131,10 @@ if ( ! defined( 'ABSPATH' ) ) {
     <div class="product-sub-section">
       <div class="product-instruction-video">
         <h2 class="section-title"><?php _e('Assembly Instructions', 'edb'); ?></h2>
-        <a class="yt-thumb" href="https://www.youtube.com/embed/_qogwJT4QxI">
-          <img src="https://img.youtube.com/vi/_qogwJT4QxI/mqdefault.jpg">
-        </a>
+        <?php edb_product_video_link( $product->id, 'instruction' ); ?>
+        <!--<a class="yt-thumb" href="https://www.youtube.com/embed/_qogwJT4QxI">-->
+        <!--  <img src="https://img.youtube.com/vi/_qogwJT4QxI/mqdefault.jpg">-->
+        <!--</a>-->
       </div>
       <div class="product-detailed-information">
         <h2 class="section-title"><?php _e('Materials and Dimensions', 'edb'); ?></h2>

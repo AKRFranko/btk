@@ -54,7 +54,7 @@ global $WC_Edb;
      <?php if (WC()->cart->coupons_enabled() ) { ?>
        <div class="checkout-coupon">
          
-         <h1><?php _e('Do you have a promo code?', 'wc-edb'); ?></h1>
+         <h1><?php _e('Do you have a promo code?', 'edb'); ?></h1>
          <input type="text" name="coupon_code" placeholder="<?php esc_attr_e( 'promo code', 'woocommerce' ); ?>" id="coupon_code" value="" />
        </div>
      <?php }; ?>

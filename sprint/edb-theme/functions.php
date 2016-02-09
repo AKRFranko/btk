@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package _s
+ * @package edb
  */
 
 if ( ! function_exists( '_s_setup' ) ) :
@@ -20,9 +20,9 @@ function _s_setup() {
 	 * Make theme available for translation.
 	 * Translations can be filed in the /languages/ directory.
 	 * If you're building a theme based on _s, use a find and replace
-	 * to change '_s' to the name of your theme in all the template files.
+	 * to change 'edb' to the name of your theme in all the template files.
 	 */
-	load_theme_textdomain( '_s', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'edb', get_template_directory() . '/languages' );
 
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
@@ -44,7 +44,7 @@ function _s_setup() {
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
-		'primary' => esc_html__( 'Primary', '_s' ),
+		'primary' => esc_html__( 'Primary', 'edb' ),
 	) );
 
 	/*
@@ -103,7 +103,7 @@ add_action( 'after_setup_theme', '_s_content_width', 0 );
  */
 function _s_widgets_init() {
 	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', '_s' ),
+		'name'          => esc_html__( 'Sidebar', 'edb' ),
 		'id'            => 'sidebar-1',
 		'description'   => '',
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
@@ -111,6 +111,15 @@ function _s_widgets_init() {
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
 	) );
+	register_sidebar( array(
+    'name'          => esc_html__( 'Languages', 'edb' ),
+    'id'            => 'languages',
+    'description'   => '',
+    'before_widget' => '',
+    'after_widget'  => '',
+    'before_title'  => '',
+    'after_title'   => '',
+  ) );
 }
 add_action( 'widgets_init', '_s_widgets_init' );
 
@@ -126,9 +135,12 @@ function _s_scripts() {
 	
 // 	wp_enqueue_script( '_s_jquery_event_swipe', get_template_directory_uri() . '/js/jquery.event.swipe.js', array('jquery','_s_jquery_event_move'), '20120208', true );
 	
+	wp_enqueue_script( '_s-bugyfill', get_template_directory_uri() . '/js/viewport-units-buggyfill.js', array() , '20120206', true );
 	wp_enqueue_script( '_s_hammer', get_template_directory_uri() . '/js/hammer.min.js', array(), '20120208', true );
-	
+
   wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array('jquery','_s_hammer'), '20120206', true );
+  wp_enqueue_script( '_s-splash', get_template_directory_uri() . '/js/splash.js', array('jquery','_s_hammer'), '20120206', true );
+  wp_enqueue_script( '_s-toast', get_template_directory_uri() . '/js/toast.js', array('jquery','_s_hammer'), '20120206', true );
   
 	wp_enqueue_script( '_s-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
 
@@ -146,6 +158,13 @@ function custom_excerpt_length( $length ) {
   return 20;
 }
 add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
+
+
+add_filter( 'the_subtitle', 'translate_subtitle' );
+function translate_subtitle( $s ) {
+  return  WPGlobus_Core::text_filter( $s, WPGlobus::Config()->language );
+  
+}
 function new_excerpt_more( $more ) {
   return '... more';
 }
@@ -183,6 +202,8 @@ function edb_add_checkout_tabs_and_summary_fragments( $fragments ){
   $fragments['.checkout-tabs-and-summaries'] = ob_get_clean();
   return $fragments;
 }
+
+
 
 
 function btk_edb_slider($query, $attach = null, $blankTargets = false) {
@@ -229,45 +250,7 @@ function btk_edb_slider($query, $attach = null, $blankTargets = false) {
   <?php
   echo "</div>";
   echo "</div>";
-  if(false){
-  $slider_query = new WP_Query($query);
-  $data = array();
-  echo "<div class='slides'>";
-  while ($slider_query->have_posts()) {
-    $slider_query->the_post();
-    if (has_post_thumbnail()) {
-      $src = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full')[0];
-      ?>
-      <div class="slide" style="background-image:url('<?php echo esc_attr($src); ?>')">
-        <img src="<?php echo esc_attr($src); ?>">
-        <a class="slide-clickable" href="<?php echo get_permalink( $slider_query->post->ID );?>">
-        <div class="slide-title">
-          <?php the_title(); ?>
-        </div>
-        <div class="slide-subtitle">
-          <?php the_subtitle(); ?>
-        </div>
-        </a>
-        <div class="slide-badge">
-          <span class="line-1">line 1</span>
-          <span class="line-2">line 2</span>
-          <span class="line-3">line 3</span>
-        </div>
-      </div>
-      <?php
-    }
-  }
-  echo "</div>";
-  echo "<div class='slide-controls'>";
-  ?>
-  <a class="slide-prev" href="#">&lt;</a>
-  <span class="slide-current">1</span>
-  <span class="slide-separator"></span>
-  <span class="slide-total"><?php echo $slider_query->post_count;?></span>
-  <a class="slide-next" href="#">&gt;</a>
-  <?php
-  echo "</div>";
-  }
+ 
   
 }
 
@@ -288,6 +271,51 @@ function btk_product_pdf_link( $productID, $fileName){
     return '';
 }
 
+function get_ID_by_page_name($page_name) {
+   global $wpdb;
+   $page_name_id = $wpdb->get_var("SELECT ID FROM $wpdb->posts WHERE post_name = '".$page_name."' AND post_type = 'page'");
+   return $page_name_id;
+}
+
+function edb_splash_page(){
+  $the_slug = 'splash-page';
+  $args = array(
+    'name'        => $the_slug,
+    'post_type'   => 'page',
+    'post_status' => 'private',
+    'numberposts' => 1
+  );
+  $links = array(
+    'en' => array( 'url'=>home_url(), 'label' => __('Enter', 'edb') ),
+    'fr' => array( 'url'=>home_url().'/fr', 'label' => __('Entrez', 'edb') )
+   );
+  foreach($links as $lang => $link){
+    echo "<a class=\"language-selection\" href=\"".$link['url']."\">".$link['label']."</a>";
+  }
+   $found_posts = get_posts($args);
+   if(!empty($found_posts)){
+     $splash_post = $found_posts[0];
+     $images = get_post_gallery_images($splash_post);
+     if(!empty($images)){
+       echo "<div class='edb-slider' data-autocycle=\"on\">";
+       echo "<div class='edb-slides'>";
+       $active = ' active';
+       foreach( $images as $index => $image ){
+         echo "<div class='edb-slide$active'>";
+         if($index > 0) $active = '';
+         ?><div class="backdrop" style="background-image:url('<?php echo esc_attr($image); ?>')">
+           <img src="<?php echo esc_attr($image); ?>">
+         </div>
+         <?php
+         echo "</div>";
+       }
+       echo "</div>";
+       echo "</div>";
+     }
+   }
+   
+   
+}
 /**
  * Implement the Custom Header feature.
  */

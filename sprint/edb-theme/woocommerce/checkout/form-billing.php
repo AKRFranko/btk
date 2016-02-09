@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <div class="woocommerce-billing-fields">
   
-	<h1><?php _e( 'Billing Address', 'wc-edb' ); ?></h1>
+	<h1><?php _e( 'Billing Address', 'edb' ); ?></h1>
 
 	<?php do_action( 'woocommerce_before_checkout_billing_form', $checkout ); ?>
 

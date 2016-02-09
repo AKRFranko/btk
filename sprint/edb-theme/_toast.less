@@ -1,0 +1,145 @@
+.toast{
+  display:block;
+  position:fixed;
+  width:100vh;
+  height:100vh;
+  transition:all .2s cubic-bezier(.93,.01,.92,.86);
+  left:0;
+  width:100vw;
+  top:117px;
+  height:calc(~"100vh - 117px");
+  background:#fff;
+  color:#000;
+  box-shadow:0 0 1em rgba(0,0,0,0.2);
+  z-index:9999;
+  box-sizing:border-box;
+  padding:1em 2em;
+}
+
+
+.toast.horizontal{
+  width:50vw;
+}
+
+
+.toast.vertical{
+  height:50vh;
+}
+
+.toast.horizontal,
+.toast.horizontal.left{
+  margin-left:100vw;
+}
+
+
+.toast.horizontal.right{
+  margin-left:50vw;
+}
+
+
+.toast.vertical.top{
+  margin-top:calc(~"-50vh - 117px");
+}
+.toast.vertical,
+.toast.vertical.bottom{
+  margin-top:100vh;
+}
+
+.toast.active{
+  margin:0;
+  
+}
+.toast.vertical.active,
+.toast.vertical.bottom.active{
+  margin-top:calc(~"50vh - 117px");
+}
+.toast.vertical.top.active{
+  margin-top:-0;
+}
+
+.toast.fullbleed{
+  margin:0;
+  width:100vw;
+  height:100vh;
+  padding-top:117px;
+  top:0;
+  background:#000;
+  color:#fff;
+}
+.toast.fullbleed:before{
+  content:'';
+  display:block;
+  position:absolute;
+  top:.75em;
+  left:.5em;
+  background-color:transparent;
+  .white-logo-image();
+  z-index:10;
+  // background-image:url(https://development.elementdebase.com/wp-content/themes/btk/img/edb_small_square.png);
+  background-position:left top;
+  background-size:contain;
+  background-repeat:no-repeat;
+  text-indent:200px;
+  width:90px;
+  height:72px;
+  overflow:hidden;
+}
+
+.toast .page{
+  display: block;
+  box-sizing:border-box;
+  padding-bottom:2em;
+  width: 100%;
+  height: 100%;
+  float: left;
+  white-space:nowrap;
+}
+.toast .page *{
+  white-space:normal;
+}
+.toast .page .image,
+.toast .page .content{
+  
+  display:block;
+  width: calc(~"50% - 1em");
+  height: 100%;
+  float: left;
+}
+.toast .close{
+  position:absolute;
+  top:.5em;
+  right:1.5em;
+  z-index:1;
+  text-indent:1000em;
+  overflow:hidden;
+  .icon-close-lite-black();
+  display: block;
+  width: 1.5em;
+  height: 1.5em;
+  background-size: 1em;
+  padding: .5em;
+  background-position: center;
+}
+.toast .page .image{
+  margin-right:.5em;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.toast .page .content{
+  margin-left:.5em;
+}
+.btk-form-success.inplace{
+  display:none;
+}
+// .toast.fullbleed{
+//   opacity:0;
+//   transform:scale(0);
+//   transition:none;
+
+// }
+
+// .toast.fullbleed.active{
+//   opacity:1;
+//   transform:scale(1);
+// }

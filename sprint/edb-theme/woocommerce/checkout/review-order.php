@@ -46,7 +46,7 @@ global $WC_Edb;
         if(!isset($do_not_ship) || !$do_not_ship){
       ?>
       <div class="shipping-review-total">
-        <span class="label"><?php _e('total delivery', 'wc-edb'); ?></span>
+        <span class="label"><?php _e('total delivery', 'edb'); ?></span>
         
         <span class="value"><?php edb_cart_shipping_total();?></span>
       </div>  

@@ -41,12 +41,23 @@ function woocommerce_wp_image_select( $field ) {
     echo '</fieldset>'; 
 } 
 
+function edb_product_pdf( $product_id ){
+  $decorated = edb_decorated_product( $product_id );
+  if(!empty($decorated->pdf_url)){
+    $filename = urlencode($decorated->title).'.pdf';
+    echo '<a id="product-pdf-download" class="button pdf-download-button" href="'.$decorated->pdf_url.'" download="'.$filename.'">'.__('download pdf', 'edb').'</a>';  
+  }
+  
+
+}
 $edb_deco_cache = array();
+
 
 function edb_decorated_product( $product_id ){
   if(!isset($edb_deco_cache[$product_id])){
     $edb_deco_cache[$product_id] = new Edb_Product_Decorator( $product_id );
   }
+  
   return $edb_deco_cache[$product_id];
 }
 
@@ -217,6 +228,26 @@ function edb_shipping_method_disabled( $method_name ){
   echo $disabled;
 }
 
+function edb_product_video_link( $product_id, $type ){
+  $decorated = edb_decorated_product( $product_id );
+  $videos = $decorated->videos;
+  
+  $data = null;
+  if(!empty($videos)){
+    foreach($videos as $key => $video ){
+      if( $key == $type){
+        $data = $video;
+      }
+    }
+  }
+  
+  if(!empty($data)){
+    $link = $data['video_link'];
+    $src = $data['image_src'];
+    echo "<a class=\"youtube_video_link\" href=\"$link\" target=\"youtube\"><img src=\"$src\"></a>";
+  }
+
+}
 
 function edb_product_slideshow( $product_id ){
   $decorated = edb_decorated_product( $product_id );
@@ -266,10 +297,10 @@ function edb_product_material_picker( $product_id ){
   echo '<div class="edb-material-choices">';
   
   foreach($materials as $edb_material => $data ){
-    
+    $preview = $decorated->images['material_variations'][$edb_material];
     echo "<label for=\"edb-material-choice-$edb_material\">";
     echo "<div class=\"edb-material-choice-square\" style=\"background-image:url('".$data['image']."');\">";
-    echo "<input type='radio' id=\"edb-material-choice-$edb_material\" name=\"_edb_material_choice\" data-variation-id=\"".$data['variation_id']."\" value=\"$edb_material\">";
+    echo "<input type='radio' id=\"edb-material-choice-$edb_material\" name=\"_edb_material_choice\" data-variation-id=\"".$data['variation_id']."\" data-name=\"".$data['post']->post_title."\" data-preview=\"$preview\" value=\"$edb_material\">";
     echo "</div>";
     echo "</label>";
   }
@@ -278,6 +309,14 @@ function edb_product_material_picker( $product_id ){
   echo '</div>';
   
 }
+
+
+function edb_has_tech_image( $product_id ){
+  $decorated = edb_decorated_product( $product_id );
+  $image = $decorated->images['technical'];
+  return !(strpos($image, 'missing') !== false);
+}
+
 
 function edb_product_tech_image( $product_id ){
   $decorated = edb_decorated_product( $product_id );

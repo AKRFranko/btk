@@ -702,6 +702,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     return 'accessories'; 
   }
   
+  
   public function get_zone_from_postal_code( $postcode ){
     //if($this->shipping_debug) write_log("postcode: $postcode");
     $postcode = strtolower($postcode);
@@ -1018,8 +1019,8 @@ class Edb_Shipping_Method_Self_Pickup extends Edb_Shipping_Method{
   public function __construct() {
     $this->id                 = 'edb_self_pickup'; // Id for your shipping method. Should be uunique.
     $this->rate_label         = 'self serve';
-    $this->method_title       = __( 'EDB Self Pickup' );  // Title shown in admin
-    $this->method_description = __( 'A custom shipping module.' ); // Description shown in admin
+    $this->method_title       = __( 'EDB Self Pickup', 'edb' );  // Title shown in admin
+    $this->method_description = __( 'A custom shipping module.' , 'edb'); // Description shown in admin
 
     $this->enabled            = "yes"; // This can be added as an setting but for this example its forced enabled
     $this->title              = "EDB Ready Shipping"; // This can be added as an setting but for this example its forced.
@@ -1041,8 +1042,8 @@ class Edb_Shipping_Method_Ship_Ready extends Edb_Shipping_Method{
   public function __construct() {
     $this->id                 = 'edb_ship_ready'; // Id for your shipping method. Should be uunique.
     $this->rate_label         = 'ship when ready';
-    $this->method_title       = __( 'EDB Ship Ready' );  // Title shown in admin
-    $this->method_description = __( 'A custom shipping module.' ); // Description shown in admin
+    $this->method_title       = __( 'EDB Ship Ready', 'edb' );  // Title shown in admin
+    $this->method_description = __( 'A custom shipping module.', 'edb' ); // Description shown in admin
 
     $this->enabled            = "yes"; // This can be added as an setting but for this example its forced enabled
     $this->title              = "EDB Ready Shipping"; // This can be added as an setting but for this example its forced.
@@ -1082,8 +1083,8 @@ class Edb_Shipping_Method_Ship_Bundle_1 extends Edb_Shipping_Method{
   public function __construct() {
     $this->id                 = 'edb_ship_bundle_1'; // Id for your shipping method. Should be uunique.
     $this->rate_label         = 'bundle 1';
-    $this->method_title       = __( 'EDB Ship Bundle 1' );  // Title shown in admin
-    $this->method_description = __( 'A custom shipping module.' ); // Description shown in admin
+    $this->method_title       = __( 'EDB Ship Bundle 1', 'edb' );  // Title shown in admin
+    $this->method_description = __( 'A custom shipping module.', 'edb' ); // Description shown in admin
 
     $this->enabled            = "yes"; // This can be added as an setting but for this example its forced enabled
     $this->title              = "EDB Ready Shipping"; // This can be added as an setting but for this example its forced.
@@ -1116,8 +1117,8 @@ class Edb_Shipping_Method_Ship_Bundle_2 extends Edb_Shipping_Method_Ship_Bundle_
   public function __construct() {
     $this->id                 = 'edb_ship_bundle_2'; // Id for your shipping method. Should be uunique.
     $this->rate_label         = 'bundle 2';
-    $this->method_title       = __( 'EDB Ship Bundle 2' );  // Title shown in admin
-    $this->method_description = __( 'A custom shipping module.' ); // Description shown in admin
+    $this->method_title       = __( 'EDB Ship Bundle 2' , 'edb');  // Title shown in admin
+    $this->method_description = __( 'A custom shipping module.' , 'edb'); // Description shown in admin
 
     $this->enabled            = "yes"; // This can be added as an setting but for this example its forced enabled
     $this->title              = "EDB Ready Shipping"; // This can be added as an setting but for this example its forced.
@@ -1146,8 +1147,8 @@ class Edb_Shipping_Method_Ship_Bundle_3 extends Edb_Shipping_Method_Ship_Bundle_
   public function __construct() {
     $this->id                 = 'edb_ship_bundle_3'; // Id for your shipping method. Should be uunique.
     $this->rate_label         = 'bundle 3';
-    $this->method_title       = __( 'EDB Ship Bundle 3' );  // Title shown in admin
-    $this->method_description = __( 'A custom shipping module.' ); // Description shown in admin
+    $this->method_title       = __( 'EDB Ship Bundle 3', 'edb' );  // Title shown in admin
+    $this->method_description = __( 'A custom shipping module.' , 'edb'); // Description shown in admin
 
     $this->enabled            = "yes"; // This can be added as an setting but for this example its forced enabled
     $this->title              = "EDB Ready Shipping"; // This can be added as an setting but for this example its forced.
