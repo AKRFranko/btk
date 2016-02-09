@@ -1,0 +1,89 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+ .slide-fields{
+   display:inline-block;
+   box-sizing:border-box;
+   width:48%;margin:1%;
+   padding:1em 1em 1em 1em;
+   border:1px solid #ccc;
+   
+   position:relative;
+ }
+ 
+ /*.slide-fields:nth-of-type(1n+3){*/
+ /*  background:#ccc;*/
+ /*}*/
+
+ 
+ .slide-fields .slide-image{
+   display:inline-block;
+   min-width:7.5em;
+   min-height:5em;
+   max-width:7.5em;
+   max-height:5em;
+   width:7.5em;
+   height:5em;
+   overflow:hidden;
+   background:#eee;
+   vertical-align:top;
+   position:relative;
+ }
+ .slide-fields .slide-image img{
+   position:absolute;
+   top:0;
+   right:0;
+   bottom:0;
+   left:0;
+   max-width:100%;
+   max-height:100%;
+ }
+ .slide-fields .slide-name{
+   display:inline-block;
+   width:auto;
+   box-sizing:border-box;
+   padding:0 1em;
+   vertical-align:top;
+ }
+ .slide-fields .slide-name h1{
+   font-size:inherit;
+   font-weight:bold;
+   margin:0;padding:0;line-height:inherit;
+ }
+ .slide-fields .slide-actions{
+   
+ }
+ .slide-fields .slide-actions a,
+ .slide-fields .slide-actions button{
+   box-sizing:border-box;
+   display:inline-block;
+   border:0;
+   width:50%;
+   margin:0;
+   padding:.25em 1em;
+   text-decoration:underline;
+   color:#0073aa;
+   background:none;
+ }
+ .slide-fields .slide-actions a{
+   text-align:left;
+ }
+ .slide-fields .slide-actions button{
+   text-align:right;
+   color:red;
+ }
+ 
+ 
+ #save_lookbook_slide{
+   margin:1em;
+   background: #93a43e;
+   border:1px solid #727f30;
+   border-radius:.2em;
+   
+   padding:.5em 1em;
+   color: #fff;
+   -webkit-box-shadow: inset 0 1px 0 #b6c669;
+   box-shadow: inset 0 1px 0 #b6c669;
+   
+ }
