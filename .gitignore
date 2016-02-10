@@ -39,3 +39,4 @@ src/composer
 gdrivesync.sh
 
 .zip
+./dumps
