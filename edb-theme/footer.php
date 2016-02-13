@@ -27,10 +27,12 @@
 <!--  <h1>INFO TOAST</h1>-->
 <!--</div>-->
 
-
+<?php if(is_home()){ ?>
 <div id="splash" data-id="welcome" class="toast fullbleed">
   <?php edb_splash_page(); ?>
 </div>
+<?php }; ?>
+
 <div id="contest" class="toast vertical" data-id="contest-1">
   <?php $toastID = get_ID_by_page_name('contest-toast'); ?>
   
@@ -57,8 +59,12 @@
     
   <?php endwhile; ?>
   </div>
-  
-  
 </div>
+<?php if(is_product()){ ?>
+  <?php edb_material_toasts(); ?>
+<?php } ?>
+
+
+
 </body>
 </html>

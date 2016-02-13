@@ -303,7 +303,7 @@ window.requestAnimFrame = (function(){
       $diffAddr.prop('checked', false );
       $('.woocommerce-shipping-fields').hide().trigger('update-shipping-fields', [ false ]);
     }
-    // console.log('update beaause do not ship')
+    console.log('update beaause do not ship')
     $(document.body).trigger('update_checkout');
     
     
@@ -322,7 +322,60 @@ window.requestAnimFrame = (function(){
       $('.woocommerce-shipping-fields').hide().trigger('update-shipping-fields', [ false ]);
     }
   }
+  var panelValidators = {
+    'address-info-panel': function( $panel ){
+      var hasErrors = false;
+      $panel.find('.validate-required').each(function(){
+        
+        var $input =  $( this ).find('input,select,textarea');
+        var value = $input.val();
+        
+        if(!value){
+          hasErrors= true;
+          $input.addClass('missing')
+        }else{
+          $input.removeClass('missing')
+        }
+      })
+      return !hasErrors;
+    },
+    'payment-info-panel': function( $panel ){
+      var $required = $panel.find('#paypal_pro-card-number, #paypal_pro-card-expiry, #paypal_pro-card-cvc');
+      var hasErrors = false;
+      $required.each( function(){
+        var $input = $(this);
+        var value = $input.val();
+        if(!value){
+          hasErrors = true;
+          $input.addClass('missing');
+        }else{
+          $input.removeClass('missing');
+        }
+      })
+      return !hasErrors;
+    },
+    'place-order-panel': function( $panel ){
+      var checks = $panel.find('.checklist-checkbox');
+      var hasErrors = false;
+      checks.each(function(){
+        var $input = $(this).find('input');
+        if(!$input.is(':checked')){
+          $(this).addClass('missing')
+          hasErrors = true;
+        }else{
+          $(this).removeClass('missing')
+        }
+      })
+      return !hasErrors;
+    }
+  };
   
+  var validatePanel = function( panel ){
+    if(panelValidators[panel]){
+     return panelValidators[panel]($('#'+panel));
+    }
+    return true;
+  }
   
   // HANDLE EVENTS.  
     
@@ -349,7 +402,7 @@ window.requestAnimFrame = (function(){
     if(wcAjax && wcAjax == 'update_order_review'){
       // copyCartContents();
       restoreSummaryToggles();
-      
+      fixFormPlaceholders();
       changeCheckoutTab( $('#currentPanel').val() );
     }
   });
@@ -359,7 +412,7 @@ window.requestAnimFrame = (function(){
     var currentPanel = $('#currentPanel').val();
     if(e.keyCode === 13 && currentPanel !== '#place-order-panel'){
       e.preventDefault();
-      // console.log('update bwecause key enter');
+      console.log('update bwecause key enter');
       $(document.body).trigger('update_checkout');
     }
   })
@@ -382,7 +435,7 @@ window.requestAnimFrame = (function(){
   // 
 
   $(document).on('change','input[name=billing_postcode],[name=shipping_postcode]', function(){
-    // console.log('updaeting chefkout because input[name=billing_postcode],[name=shipping_postcode] changed');
+     console.log('updaeting chefkout because input[name=billing_postcode],[name=shipping_postcode] changed');
       $(document.body).trigger('update_checkout');
   });
   
@@ -403,6 +456,12 @@ window.requestAnimFrame = (function(){
     changeCheckoutTab( hash );
   });
   
+  $(document).on('click', '#place_order', function( e ){
+    if(!validatePanel('place-order-panel')){
+      e.preventDefault()
+    }
+  });
+  
   $(document).on('click', '.edb-save-and-continue', function( e ){
     var $panels =$('.checkout-panel');
     var activeIndex;
@@ -413,12 +472,16 @@ window.requestAnimFrame = (function(){
     });
     var targetIndex = activeIndex+1;
     if(targetIndex >= $panels.length) return;
+    if(validatePanel( $panels.filter('.active').attr('id') )){
+     console.log('update checkout because save on continues')
+      $(document.body).trigger('update_checkout');
+      $(document.body).one('updated_checkout', function(){
+        $('#currentPanel').val( '#' + $panels.eq(targetIndex).attr('id') );
+      })  
+    }else{
+      console.log('not valid');
+    }
     
-    // console.log('update checkout because save on continues')
-    $(document.body).trigger('update_checkout');
-    $(document.body).one('updated_checkout', function(){
-      $('#currentPanel').val( '#' + $panels.eq(targetIndex).attr('id') );
-    })
   });
  
   // Shipping & Billing

@@ -52,6 +52,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
   #masthead.on #site-nav a{
     color:#fff;
   }
+  
   /*#site-nav a,*/
   #shop-nav a,#cat-nav a{
     font-size:18px;
@@ -141,13 +142,22 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
     display:inline;
   }
   #page{
-    max-width:970px;
+    max-width:960px;
     margin:0 auto;
   }
   #shop-nav{
     top:4.5em;
   }
-  
+  #cat-nav.on{
+    height:auto;
+    background:rgba(0,0,0,0.75);
+  }
+  #masthead.on #logo{
+   .black-logo-image();
+  }
+  #overlay.on, #overlay{
+    display:none;
+  }
   .slide-clickable{
     margin-top:-3em;
   }
@@ -171,6 +181,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
   }
   .listing-product-name{
     padding:.25em .7em 0 .7em;
+    
   }
 
   .product-slideshow{
@@ -185,9 +196,14 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
     
   }
   .product-name{
-    margin-top:.5em;
-    margin-bottom:-.25em;
-    line-height:1.5;
+    margin-top: .5em;
+    margin-bottom: 0;
+    line-height: 1.1;
+    
+    width: calc( ~"100% - 3em");
+  }
+  .product-subname{
+    margin:0 0 .25em 0;
   }
   .product-description{
     width:100%;
@@ -208,7 +224,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
   }
   .product-menu{
     position:absolute;
-    top:4.5em;
+    top:8.5em;
     padding-top:.5em;
     /*font-size:22px;*/
     left:750px;
@@ -221,9 +237,10 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
   .product-share{
     margin:0;
     position:absolute;
-    top:1em;
+    top:6.5em;
     right:0;
     text-align:right;
+    
   }
   .product-price{
     margin-bottom:0;
@@ -242,6 +259,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
   .product-price{
     /*color:blue;*/
   }
+  
 }
 
 

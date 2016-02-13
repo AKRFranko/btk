@@ -1,0 +1,426 @@
+[
+  {
+    "option_name": "woocommerce_admin_notices",
+    "option_value": "a:0:{}"
+  },
+  {
+    "option_name": "woocommerce_allowed_countries",
+    "option_value": "all"
+  },
+  {
+    "option_name": "woocommerce_api_enabled",
+    "option_value": "yes"
+  },
+  {
+    "option_name": "woocommerce_calc_discounts_sequentially",
+    "option_value": "no"
+  },
+  {
+    "option_name": "woocommerce_calc_shipping",
+    "option_value": "yes"
+  },
+  {
+    "option_name": "woocommerce_calc_taxes",
+    "option_value": "yes"
+  },
+  {
+    "option_name": "woocommerce_cart_page_id",
+    "option_value": "5"
+  },
+  {
+    "option_name": "woocommerce_cart_redirect_after_add",
+    "option_value": "no"
+  },
+  {
+    "option_name": "woocommerce_category_archive_display",
+    "option_value": ""
+  },
+  {
+    "option_name": "woocommerce_checkout_order_received_endpoint",
+    "option_value": "order-received"
+  },
+  {
+    "option_name": "woocommerce_checkout_page_id",
+    "option_value": "6"
+  },
+  {
+    "option_name": "woocommerce_checkout_pay_endpoint",
+    "option_value": "order-pay"
+  },
+  {
+    "option_name": "woocommerce_cheque_settings",
+    "option_value": "a:4:{s:7:\"enabled\";s:2:\"no\";s:5:\"title\";s:14:\"Cheque Payment\";s:11:\"description\";s:102:\"Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.\";s:12:\"instructions\";s:102:\"Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.\";}"
+  },
+  {
+    "option_name": "woocommerce_currency",
+    "option_value": "CAD"
+  },
+  {
+    "option_name": "woocommerce_currency_pos",
+    "option_value": "left"
+  },
+  {
+    "option_name": "woocommerce_db_version",
+    "option_value": "2.4.11"
+  },
+  {
+    "option_name": "woocommerce_default_catalog_orderby",
+    "option_value": "menu_order"
+  },
+  {
+    "option_name": "woocommerce_default_country",
+    "option_value": "CA:QC"
+  },
+  {
+    "option_name": "woocommerce_default_customer_address",
+    "option_value": "geolocation"
+  },
+  {
+    "option_name": "woocommerce_default_gateway",
+    "option_value": ""
+  },
+  {
+    "option_name": "woocommerce_demo_store",
+    "option_value": "no"
+  },
+  {
+    "option_name": "woocommerce_demo_store_notice",
+    "option_value": "This is a demo store for testing purposes &mdash; no orders shall be fulfilled."
+  },
+  {
+    "option_name": "woocommerce_dimension_unit",
+    "option_value": "cm"
+  },
+  {
+    "option_name": "woocommerce_downloads_grant_access_after_payment",
+    "option_value": "yes"
+  },
+  {
+    "option_name": "woocommerce_downloads_require_login",
+    "option_value": "no"
+  },
+  {
+    "option_name": "woocommerce_edb_shipping_settings",
+    "option_value": "a:0:{}"
+  },
+  {
+    "option_name": "woocommerce_email_background_color",
+    "option_value": "#f5f5f5"
+  },
+  {
+    "option_name": "woocommerce_email_base_color",
+    "option_value": "#557da1"
+  },
+  {
+    "option_name": "woocommerce_email_body_background_color",
+    "option_value": "#fdfdfd"
+  },
+  {
+    "option_name": "woocommerce_email_footer_text",
+    "option_value": "edb - Powered by WooCommerce"
+  },
+  {
+    "option_name": "woocommerce_email_from_address",
+    "option_value": "franko@akr.club"
+  },
+  {
+    "option_name": "woocommerce_email_from_name",
+    "option_value": "edb"
+  },
+  {
+    "option_name": "woocommerce_email_header_image",
+    "option_value": ""
+  },
+  {
+    "option_name": "woocommerce_email_text_color",
+    "option_value": "#505050"
+  },
+  {
+    "option_name": "woocommerce_enable_ajax_add_to_cart",
+    "option_value": "yes"
+  },
+  {
+    "option_name": "woocommerce_enable_checkout_login_reminder",
+    "option_value": "yes"
+  },
+  {
+    "option_name": "woocommerce_enable_coupons",
+    "option_value": "yes"
+  },
+  {
+    "option_name": "woocommerce_enable_guest_checkout",
+    "option_value": "yes"
+  },
+  {
+    "option_name": "woocommerce_enable_lightbox",
+    "option_value": "no"
+  },
+  {
+    "option_name": "woocommerce_enable_myaccount_registration",
+    "option_value": "yes"
+  },
+  {
+    "option_name": "woocommerce_enable_review_rating",
+    "option_value": "yes"
+  },
+  {
+    "option_name": "woocommerce_enable_shipping_calc",
+    "option_value": "yes"
+  },
+  {
+    "option_name": "woocommerce_enable_signup_and_login_from_checkout",
+    "option_value": "yes"
+  },
+  {
+    "option_name": "woocommerce_file_download_method",
+    "option_value": "force"
+  },
+  {
+    "option_name": "woocommerce_flat_rate_reg_settings",
+    "option_value": "a:0:{}"
+  },
+  {
+    "option_name": "woocommerce_force_ssl_checkout",
+    "option_value": "yes"
+  },
+  {
+    "option_name": "woocommerce_free_shipping_settings",
+    "option_value": "a:6:{s:7:\"enabled\";s:2:\"no\";s:5:\"title\";s:13:\"Free Shipping\";s:12:\"availability\";s:3:\"all\";s:9:\"countries\";s:0:\"\";s:8:\"requires\";s:10:\"min_amount\";s:10:\"min_amount\";s:3:\"500\";}"
+  },
+  {
+    "option_name": "woocommerce_gateway_order",
+    "option_value": "a:6:{s:4:\"bacs\";i:0;s:6:\"cheque\";i:1;s:3:\"cod\";i:2;s:6:\"paypal\";i:3;s:10:\"paypal_pro\";i:4;s:18:\"paypal_pro_payflow\";i:5;}"
+  },
+  {
+    "option_name": "woocommerce_hide_out_of_stock_items",
+    "option_value": "no"
+  },
+  {
+    "option_name": "woocommerce_hold_stock_minutes",
+    "option_value": "60"
+  },
+  {
+    "option_name": "woocommerce_language_pack_version",
+    "option_value": "a:2:{i:0;s:6:\"2.4.11\";i:1;s:5:\"en_CA\";}"
+  },
+  {
+    "option_name": "woocommerce_local_delivery_settings",
+    "option_value": "a:7:{s:7:\"enabled\";s:2:\"no\";s:5:\"title\";s:14:\"Local Delivery\";s:4:\"type\";s:5:\"fixed\";s:3:\"fee\";s:2:\"65\";s:5:\"codes\";s:2:\"H*\";s:12:\"availability\";s:3:\"all\";s:9:\"countries\";s:0:\"\";}"
+  },
+  {
+    "option_name": "woocommerce_local_pickup_settings",
+    "option_value": "a:5:{s:7:\"enabled\";s:2:\"no\";s:5:\"title\";s:12:\"Local Pickup\";s:5:\"codes\";s:0:\"\";s:12:\"availability\";s:3:\"all\";s:9:\"countries\";s:0:\"\";}"
+  },
+  {
+    "option_name": "woocommerce_logout_endpoint",
+    "option_value": "customer-logout"
+  },
+  {
+    "option_name": "woocommerce_manage_stock",
+    "option_value": "yes"
+  },
+  {
+    "option_name": "woocommerce_meta_box_errors",
+    "option_value": "a:0:{}"
+  },
+  {
+    "option_name": "woocommerce_myaccount_add_payment_method_endpoint",
+    "option_value": "add-payment-method"
+  },
+  {
+    "option_name": "woocommerce_myaccount_edit_account_endpoint",
+    "option_value": "edit-account"
+  },
+  {
+    "option_name": "woocommerce_myaccount_edit_address_endpoint",
+    "option_value": "edit-address"
+  },
+  {
+    "option_name": "woocommerce_myaccount_lost_password_endpoint",
+    "option_value": "lost-password"
+  },
+  {
+    "option_name": "woocommerce_myaccount_page_id",
+    "option_value": "7"
+  },
+  {
+    "option_name": "woocommerce_myaccount_view_order_endpoint",
+    "option_value": "view-order"
+  },
+  {
+    "option_name": "woocommerce_notify_low_stock",
+    "option_value": "yes"
+  },
+  {
+    "option_name": "woocommerce_notify_low_stock_amount",
+    "option_value": "2"
+  },
+  {
+    "option_name": "woocommerce_notify_no_stock",
+    "option_value": "yes"
+  },
+  {
+    "option_name": "woocommerce_notify_no_stock_amount",
+    "option_value": "0"
+  },
+  {
+    "option_name": "woocommerce_paypal_pro_settings",
+    "option_value": "a:16:{s:7:\"enabled\";s:3:\"yes\";s:5:\"title\";s:20:\"Credit card (PayPal)\";s:11:\"description\";s:58:\"Pay with your credit card via PayPal Website Payments Pro.\";s:8:\"testmode\";s:3:\"yes\";s:12:\"api_username\";s:29:\"robots_api1.elementdebase.com\";s:12:\"api_password\";s:16:\"CE56M9PUQGZ6V4E2\";s:13:\"api_signature\";s:56:\"A4g1LBEUOmV-AtDPMiqGyTeQHVgKAThOo-2r4.dr5U4g.Zh1z6w10tJa\";s:24:\"paypal_pro_paymentaction\";s:4:\"sale\";s:15:\"enable_3dsecure\";s:2:\"no\";s:12:\"centinel_pid\";s:0:\"\";s:12:\"centinel_mid\";s:6:\"franko\";s:12:\"centinel_pwd\";s:19:\"Badass.Motherfucker\";s:15:\"liability_shift\";s:2:\"no\";s:10:\"send_items\";s:2:\"no\";s:15:\"soft_descriptor\";s:0:\"\";s:5:\"debug\";s:2:\"no\";}"
+  },
+  {
+    "option_name": "woocommerce_paypal_settings",
+    "option_value": "a:18:{s:7:\"enabled\";s:2:\"no\";s:5:\"title\";s:6:\"PayPal\";s:11:\"description\";s:85:\"Pay via PayPal; you can pay with your credit card if you don't have a PayPal account.\";s:5:\"email\";s:15:\"franko@akr.club\";s:8:\"testmode\";s:2:\"no\";s:5:\"debug\";s:2:\"no\";s:8:\"advanced\";s:0:\"\";s:14:\"receiver_email\";s:15:\"franko@akr.club\";s:14:\"identity_token\";s:0:\"\";s:14:\"invoice_prefix\";s:3:\"WC-\";s:13:\"send_shipping\";s:2:\"no\";s:16:\"address_override\";s:2:\"no\";s:13:\"paymentaction\";s:4:\"sale\";s:10:\"page_style\";s:0:\"\";s:11:\"api_details\";s:0:\"\";s:12:\"api_username\";s:0:\"\";s:12:\"api_password\";s:0:\"\";s:13:\"api_signature\";s:0:\"\";}"
+  },
+  {
+    "option_name": "woocommerce_permalinks",
+    "option_value": "a:4:{s:13:\"category_base\";s:0:\"\";s:8:\"tag_base\";s:0:\"\";s:14:\"attribute_base\";s:0:\"\";s:12:\"product_base\";s:8:\"/product\";}"
+  },
+  {
+    "option_name": "woocommerce_price_decimal_sep",
+    "option_value": "."
+  },
+  {
+    "option_name": "woocommerce_price_display_suffix",
+    "option_value": ""
+  },
+  {
+    "option_name": "woocommerce_price_num_decimals",
+    "option_value": "2"
+  },
+  {
+    "option_name": "woocommerce_price_thousand_sep",
+    "option_value": ","
+  },
+  {
+    "option_name": "woocommerce_prices_include_tax",
+    "option_value": "no"
+  },
+  {
+    "option_name": "woocommerce_product_category_slug",
+    "option_value": "products"
+  },
+  {
+    "option_name": "woocommerce_product_tag_slug",
+    "option_value": "showcase"
+  },
+  {
+    "option_name": "woocommerce_registration_generate_password",
+    "option_value": "no"
+  },
+  {
+    "option_name": "woocommerce_registration_generate_username",
+    "option_value": "yes"
+  },
+  {
+    "option_name": "woocommerce_review_rating_required",
+    "option_value": "yes"
+  },
+  {
+    "option_name": "woocommerce_review_rating_verification_label",
+    "option_value": "yes"
+  },
+  {
+    "option_name": "woocommerce_review_rating_verification_required",
+    "option_value": "no"
+  },
+  {
+    "option_name": "woocommerce_ship_to_countries",
+    "option_value": "all"
+  },
+  {
+    "option_name": "woocommerce_ship_to_destination",
+    "option_value": "billing"
+  },
+  {
+    "option_name": "woocommerce_shipping_cost_requires_address",
+    "option_value": "no"
+  },
+  {
+    "option_name": "woocommerce_shipping_method_format",
+    "option_value": ""
+  },
+  {
+    "option_name": "woocommerce_shipping_method_order",
+    "option_value": "a:10:{s:14:\"local_delivery\";i:0;s:13:\"free_shipping\";i:1;s:12:\"local_pickup\";i:2;s:9:\"flat_rate\";i:3;s:22:\"international_delivery\";i:4;s:15:\"edb_self_pickup\";i:5;s:14:\"edb_ship_ready\";i:6;s:17:\"edb_ship_bundle_1\";i:7;s:17:\"edb_ship_bundle_2\";i:8;s:17:\"edb_ship_bundle_3\";i:9;}"
+  },
+  {
+    "option_name": "woocommerce_shipping_method_selection_priority",
+    "option_value": "a:10:{s:14:\"local_delivery\";i:1;s:13:\"free_shipping\";i:2;s:12:\"local_pickup\";i:3;s:9:\"flat_rate\";i:1;s:22:\"international_delivery\";i:1;s:15:\"edb_self_pickup\";i:1;s:14:\"edb_ship_ready\";i:2;s:17:\"edb_ship_bundle_1\";i:3;s:17:\"edb_ship_bundle_2\";i:4;s:17:\"edb_ship_bundle_3\";i:5;}"
+  },
+  {
+    "option_name": "woocommerce_shipping_tax_class",
+    "option_value": ""
+  },
+  {
+    "option_name": "woocommerce_shop_page_display",
+    "option_value": ""
+  },
+  {
+    "option_name": "woocommerce_shop_page_id",
+    "option_value": "4"
+  },
+  {
+    "option_name": "woocommerce_specific_allowed_countries",
+    "option_value": "a:1:{i:0;s:2:\"CA\";}"
+  },
+  {
+    "option_name": "woocommerce_specific_ship_to_countries",
+    "option_value": "a:1:{i:0;s:2:\"CA\";}"
+  },
+  {
+    "option_name": "woocommerce_status_options",
+    "option_value": "a:1:{s:19:\"shipping_debug_mode\";i:1;}"
+  },
+  {
+    "option_name": "woocommerce_stock_email_recipient",
+    "option_value": "franko@akr.club"
+  },
+  {
+    "option_name": "woocommerce_stock_format",
+    "option_value": ""
+  },
+  {
+    "option_name": "woocommerce_tax_based_on",
+    "option_value": "shipping"
+  },
+  {
+    "option_name": "woocommerce_tax_classes",
+    "option_value": "Reduced Rate\r\nZero Rate"
+  },
+  {
+    "option_name": "woocommerce_tax_display_cart",
+    "option_value": "excl"
+  },
+  {
+    "option_name": "woocommerce_tax_display_shop",
+    "option_value": "excl"
+  },
+  {
+    "option_name": "woocommerce_tax_round_at_subtotal",
+    "option_value": "no"
+  },
+  {
+    "option_name": "woocommerce_tax_total_display",
+    "option_value": "itemized"
+  },
+  {
+    "option_name": "woocommerce_terms_page_id",
+    "option_value": ""
+  },
+  {
+    "option_name": "woocommerce_unforce_ssl_checkout",
+    "option_value": "no"
+  },
+  {
+    "option_name": "woocommerce_version",
+    "option_value": "2.4.11"
+  },
+  {
+    "option_name": "woocommerce_wc-edb_settings",
+    "option_value": "a:2:{s:9:\"furniture\";s:3:\"500\";s:11:\"accessories\";s:2:\"50\";}"
+  },
+  {
+    "option_name": "woocommerce_weight_unit",
+    "option_value": "kg"
+  }
+]

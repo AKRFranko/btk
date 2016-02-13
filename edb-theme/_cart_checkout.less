@@ -94,6 +94,7 @@ form.checkout h3{
 .woocommerce #payment #place_order:hover,
 .woocommerce #payment #place_order:active,
 .pdf-download-button,
+#order-samples-btn,
 button,button:hover,button:active, input[type="submit"]{
   outline:none;
   display:inline-block;
@@ -494,16 +495,18 @@ fieldset{
   width:100%;
   float:left;
   vertical-align:middle;
-  line-height:1.7;
+  line-height:1.2;
+  
 }
 .woocommerce-checkout #payment .checklist-checkbox input{
 line-height: 1.7!important;  
 height:1.5em;
+
 }
 .checklist-checkbox span {
 line-height:1.7;
 vertical-align: top;
-  
+padding-left:.5em;  
 }
 .woocommerce #payment .place-order{
   width:100%;
@@ -578,6 +581,17 @@ vertical-align: top;
   padding-left:.5em;
 }
 
+input.missing {
+    border-color: red!important;
+}
+select.missing {
+    border-color: red!important;
+}
+.woocommerce-checkout #payment input.missing,
+.woocommerce-checkout #payment .checklist-checkbox.missing,
+textarea.missing {
+    border-color: red!important;
+}
 
 /* damned overlay */
 .blockOverlay{
@@ -586,6 +600,9 @@ vertical-align: top;
   left:0!important;
   height:100vh!important;
   width:100vw!important;
+}
+.cart-item-availability{
+  white-space:nowrap;
 }
 
 .woocommerce .blockUI.blockOverlay:before,.woocommerce .loader:before{

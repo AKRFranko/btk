@@ -11,7 +11,7 @@ get_header(); ?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
-
+    
 		<?php
 		if ( have_posts() ) : ?>
 
@@ -38,7 +38,7 @@ get_header(); ?>
 				// // }
 				?>
 				<article class="article">
-				  
+				    
             <a class="article-link" href="<?php echo get_permalink();?>">
               <?php if (has_post_thumbnail()): ?>
                 <?php
@@ -62,6 +62,7 @@ get_header(); ?>
               <?php }; ?>
               
               <span class="article-body">
+                
                 <?php the_excerpt(); ?>
               </span>
             </a>

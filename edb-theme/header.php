@@ -12,7 +12,7 @@
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-  <script src="//cdn.jsdelivr.net/fingerprintjs2/1.1.0/fingerprint2.min.js"></script>
+  <!--<script src="//cdn.jsdelivr.net/fingerprintjs2/1.1.0/fingerprint2.min.js"></script>-->
   <script src="//use.typekit.net/osv5fru.js"></script>
   <script>try{Typekit.load();}catch(e){}</script>
   
@@ -171,15 +171,5 @@
   <!--
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'edb' ); ?></a>
 
-	<header id="masthead" class="site-header" role="banner">
-		<div class="site-branding">
-			
-    
-		</div>
-		<nav id="site-navigation" class="main-navigation" role="navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'edb' ); ?></button>
-			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
-		</nav>
-	</header>
 -->
 	<div id="content" class="site-content">

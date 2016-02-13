@@ -1,0 +1,34 @@
+[
+  {
+    "option_name": "wpglobus_option_language_names",
+    "option_value": "a:19:{s:2:\"en\";s:7:\"English\";s:2:\"ru\";s:14:\"Русский\";s:2:\"de\";s:7:\"Deutsch\";s:2:\"zh\";s:6:\"中文\";s:2:\"fi\";s:5:\"Suomi\";s:2:\"fr\";s:9:\"Français\";s:2:\"nl\";s:10:\"Nederlands\";s:2:\"sv\";s:7:\"Svenska\";s:2:\"it\";s:8:\"Italiano\";s:2:\"ro\";s:8:\"Română\";s:2:\"hu\";s:6:\"Magyar\";s:2:\"ja\";s:9:\"日本語\";s:2:\"es\";s:8:\"Español\";s:2:\"vi\";s:14:\"Tiếng Việt\";s:2:\"ar\";s:14:\"العربية\";s:2:\"pt\";s:10:\"Português\";s:2:\"br\";s:20:\"Português do Brazil\";s:2:\"pl\";s:6:\"Polski\";s:2:\"gl\";s:6:\"Galego\";}"
+  },
+  {
+    "option_name": "wpglobus_option_en_language_names",
+    "option_value": "a:19:{s:2:\"en\";s:7:\"English\";s:2:\"ru\";s:7:\"Russian\";s:2:\"de\";s:6:\"German\";s:2:\"zh\";s:7:\"Chinese\";s:2:\"fi\";s:7:\"Finnish\";s:2:\"fr\";s:6:\"French\";s:2:\"nl\";s:5:\"Dutch\";s:2:\"sv\";s:7:\"Swedish\";s:2:\"it\";s:7:\"Italian\";s:2:\"ro\";s:8:\"Romanian\";s:2:\"hu\";s:9:\"Hungarian\";s:2:\"ja\";s:8:\"Japanese\";s:2:\"es\";s:7:\"Spanish\";s:2:\"vi\";s:10:\"Vietnamese\";s:2:\"ar\";s:6:\"Arabic\";s:2:\"pt\";s:10:\"Portuguese\";s:2:\"br\";s:17:\"Portuguese Brazil\";s:2:\"pl\";s:6:\"Polish\";s:2:\"gl\";s:8:\"Galician\";}"
+  },
+  {
+    "option_name": "wpglobus_option_locale",
+    "option_value": "a:19:{s:2:\"en\";s:5:\"en_US\";s:2:\"ru\";s:5:\"ru_RU\";s:2:\"de\";s:5:\"de_DE\";s:2:\"zh\";s:5:\"zh_CN\";s:2:\"fi\";s:2:\"fi\";s:2:\"fr\";s:5:\"fr_FR\";s:2:\"nl\";s:5:\"nl_NL\";s:2:\"sv\";s:5:\"sv_SE\";s:2:\"it\";s:5:\"it_IT\";s:2:\"ro\";s:5:\"ro_RO\";s:2:\"hu\";s:5:\"hu_HU\";s:2:\"ja\";s:2:\"ja\";s:2:\"es\";s:5:\"es_ES\";s:2:\"vi\";s:2:\"vi\";s:2:\"ar\";s:2:\"ar\";s:2:\"pt\";s:5:\"pt_PT\";s:2:\"br\";s:5:\"pt_BR\";s:2:\"pl\";s:5:\"pl_PL\";s:2:\"gl\";s:5:\"gl_ES\";}"
+  },
+  {
+    "option_name": "wpglobus_option_flags",
+    "option_value": "a:19:{s:2:\"en\";s:6:\"us.png\";s:2:\"ru\";s:6:\"ru.png\";s:2:\"de\";s:6:\"de.png\";s:2:\"zh\";s:6:\"cn.png\";s:2:\"fi\";s:6:\"fi.png\";s:2:\"fr\";s:6:\"fr.png\";s:2:\"nl\";s:6:\"nl.png\";s:2:\"sv\";s:6:\"se.png\";s:2:\"it\";s:6:\"it.png\";s:2:\"ro\";s:6:\"ro.png\";s:2:\"hu\";s:6:\"hu.png\";s:2:\"ja\";s:6:\"jp.png\";s:2:\"es\";s:6:\"es.png\";s:2:\"vi\";s:6:\"vn.png\";s:2:\"ar\";s:8:\"arle.png\";s:2:\"pt\";s:6:\"pt.png\";s:2:\"br\";s:6:\"br.png\";s:2:\"pl\";s:6:\"pl.png\";s:2:\"gl\";s:10:\"galego.png\";}"
+  },
+  {
+    "option_name": "wpglobus_option_versioning",
+    "option_value": "a:1:{s:15:\"current_version\";s:5:\"1.4.2\";}"
+  },
+  {
+    "option_name": "widget_wpglobus",
+    "option_value": "a:2:{i:2;a:2:{s:4:\"type\";s:4:\"list\";s:5:\"title\";s:0:\"\";}s:12:\"_multiwidget\";i:1;}"
+  },
+  {
+    "option_name": "wpglobus_option",
+    "option_value": "a:8:{s:8:\"last_tab\";s:1:\"0\";s:17:\"enabled_languages\";a:2:{s:2:\"en\";s:1:\"1\";s:2:\"fr\";s:1:\"1\";}s:14:\"more_languages\";s:0:\"\";s:14:\"show_flag_name\";s:4:\"code\";s:12:\"use_nav_menu\";s:6:\"header\";s:22:\"selector_wp_list_pages\";a:1:{s:13:\"show_selector\";s:0:\"\";}s:10:\"css_editor\";s:36:\"                                    \";s:9:\"post_type\";a:6:{s:4:\"post\";s:1:\"1\";s:4:\"page\";s:1:\"1\";s:18:\"wpcf7_contact_form\";s:1:\"1\";s:8:\"lookbook\";s:1:\"1\";s:14:\"lookbook_slide\";s:1:\"1\";s:17:\"edb_material_desc\";s:1:\"1\";}}"
+  },
+  {
+    "option_name": "wpglobus_option-transients",
+    "option_value": "a:3:{s:14:\"changed_values\";a:2:{s:8:\"last_tab\";s:0:\"\";s:12:\"use_nav_menu\";s:3:\"all\";}s:9:\"last_save\";i:1454615797;s:13:\"last_compiler\";i:1454615797;}"
+  }
+]

@@ -49,7 +49,7 @@ class Edb_Product_Decorator {
   public $variation_object = null;
   public $product_object = null;
   public $post_object = null;
-  
+  public $stocks = array();
   public $variations = array();
   
   public $shipping_delays = null;
@@ -89,10 +89,15 @@ class Edb_Product_Decorator {
     $this->post_id =   $this->product_id;
     $this->post_object = get_post( $this->post_id );
     
-    $this->title = get_the_title($this->post_id);
+    $this->title = apply_filters('the_title', $this->post_object->post_title );
+    $this->subtitle = apply_filters('the_title', $this->product_object->subtitle );
     $this->description =  get_post_field('post_content', $this->post_id );
 
     $this->variations = $this->product_object->get_children();
+    $this->stocks = array();
+    foreach( $this->variations as $vid){
+      $this->stocks[$vid] = get_post_meta($vid, '_stock', true);
+    }
     // get all materials and their descriptions
     $this->init_materials();
     // organize images for slideshow and custom edb stuff
@@ -140,11 +145,11 @@ class Edb_Product_Decorator {
     
     $product_cat_terms = get_the_terms( $this->post_id, 'product_cat');
     $categories = array();
-    
+    // write_log($product_cat_terms);
     foreach( $product_cat_terms as $category ){
       $categories[]=$category->name;
     }
-    
+    // write_log( $categories );
     $this->category = implode(', ', $categories);
     
     // $this->videos = array(

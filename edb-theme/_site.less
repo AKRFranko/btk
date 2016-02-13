@@ -44,6 +44,23 @@ div{
   position:relative
 }
 
+.page-template-default:not(.woocommerce-page) .boxes{
+  margin-left:-1em;
+  width:calc(~"100% + 2em");
+  margin-right:-1em;
+  margin-botton:1em;
+  .half:nth-of-type(odd){
+    padding-right:.75em;
+  }
+  .half:nth-of-type(even){
+    padding-left:.75em;
+  }
+  .full{
+    min-height:100px;
+    width:100%;
+  }
+}
+
 #wpadminbar{
   margin-top:-46px;
 }
@@ -58,7 +75,7 @@ div{
 #masthead{
   position:fixed!important;
   display:block;
-  width:100%;
+  width:100vw;
   height:@mast-height;
   top:0;
   left:0;
@@ -87,6 +104,7 @@ div{
   width:90px;
   height:72px;
   overflow:hidden;
+  z-index:1;
 }
 #masthead.on #logo{
   .white-logo-image();
@@ -149,19 +167,22 @@ div{
 #cat-nav{
   display:block;
   width:100%;
-  background:rgba(0,0,0,0.9);
+  // background:rgba(0,0,0,0.9);
   color:#fff;
   position:absolute;
   top:6em;
+  // left:0;
   height:0;
   width:100%;
   overflow:hidden;
   padding:0;
+  
 }
 #cat-nav.on{
   width:100%;
   height:calc(~"100vh - @{mast-height} ");
   padding:2em;
+  
 }
 #cat-nav ul,#cat-nav li{
   display:block;
@@ -256,7 +277,7 @@ div{
   position:fixed;
   top:0;
   left:0;
-  background:rgba(0,0,0,0.9);
+  background:rgba(0,0,0,0.75);
   width:100vw;
   height:100vh;
   z-index:10;
@@ -309,6 +330,19 @@ div{
   width:100%:;
 }
 
+
+a.ifo-btn{
+  display: inline-block;
+  line-height: 1;
+  width: 1em;
+  height: 1em;
+  border: 1px solid #ccc;
+  text-decoration: none;
+  overflow: hidden;
+  text-align: center;
+  color: #999;
+  border-radius: .5em;
+}
 input[type="text"],
 input[type="tel"],
 input[type="url"],
@@ -428,10 +462,13 @@ main,.post,.primary,.product,
    .left-floating-block;
  } 
 }
+
 .entry-content{
   width:calc(~"100% - 2em");
   padding:2em;
 }
+
+
 .woocommerce-page .entry-content{
  
    width:calc(~"100% - 1em");
@@ -568,4 +605,12 @@ main,.post,.primary,.product,
 }
 #account-boxes h2{
   text-align:left;
+}
+
+
+#artsy-map{
+  min-height:100px;
+  background-image:url('./artsy-map.jpg');
+  background-repeat:no-repeat;
+  background-size:cover;
 }

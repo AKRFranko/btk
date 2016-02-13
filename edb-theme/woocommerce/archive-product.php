@@ -60,7 +60,54 @@ get_header( 'shop' ); ?>
 
 				<?php while ( have_posts() ) : the_post(); ?>
 
-					<?php wc_get_template_part( 'content', 'product' ); ?>
+					<?php 
+					# wc_get_template_part( 'content', 'product' ); 
+				  ?>
+					<article class="article">
+					  
+              
+              <a class="article-link" href="<?php echo get_permalink();?>">
+                <?php if (has_post_thumbnail()): ?>
+                  <?php
+                    global $product;
+                    $hires = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
+                    $lores = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
+                    
+                  ?>
+                <?php endif;?>
+                <?php 
+                  $stock = $product->get_total_stock();
+                  $stockclass='';
+                  if($stock > 0){
+                    $stockclass = ' instock';
+                  }
+                ?>
+                <span class="article-image<?php echo $stockclass ?>" style="background-image:url('<?php echo $hires[0]; ?>');">
+                  <?php echo '<img src="' . $lores[0] . '" data-hires-image="' . $hires[0] . '">'; ?>
+                </span>
+                
+                <span class="article-info">
+                <h2 class="article-title">
+                    <?php 
+                      echo apply_filters('the_title', $product->post->post_title );
+                    ?>
+                    <?php if(!empty($product->subtitle )){ echo "_"; } ?>
+                    <?php echo apply_filters('the_title', $product->subtitle ); ?>
+                </h2>
+                  <p class="article-subtitle">
+                    <?php 
+                      echo wc_price($product->price);
+                    ?>
+                  </p>  
+                
+                
+                <span class="article-body">
+                  
+                  <?php the_excerpt(); ?>
+                </span>
+              </a>
+            
+          </article>
 
 				<?php endwhile; // end of the loop. ?>
 

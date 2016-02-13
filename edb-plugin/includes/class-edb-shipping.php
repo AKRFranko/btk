@@ -44,6 +44,7 @@ function endsWith($haystack, $needle) {
 class Edb_Shipping_Method extends WC_Shipping_Method{
  
   public $shipping_debug = false;
+  public $cart_item_shipments = array(); 
   
   public $rates_table = array(
      'furniture' => array( 
@@ -793,7 +794,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   }
   
   public function create_package( $items, $shipping_method , $cart_item_key, $availability_type ){
-  
+    
     $items['edb_shipping'] = $shipping_method;
     return array(
       // 'ship_via' => array($shipping_method),
@@ -921,8 +922,9 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     }
   }
   public function cart_shipping_packages( $packages = array() ){
-    global $Edb;
-    
+    // global $Edb;
+    global $Edb_Shipping_Method;
+    $Edb_Shipping_Method->cart_item_shipments = array();
     
     
     if($this->shipping_debug) write_log('CART_SHIPPING_PACKAGES');
@@ -985,6 +987,11 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
         $shipping_method_2 = $shipping_methods[$packageID_2];
         $packages[$packageID_1]=$this->create_package($available_items, $shipping_method_1,$item_key,'available');
         $packages[$packageID_2]=$this->create_package($backorder_items,$shipping_method_2,$item_key,'backorder');
+        
+        if(!in_array($item_key, $Edb_Shipping_Method->cart_item_shipments)){
+          $Edb_Shipping_Method->cart_item_shipments[$item_key] = array();
+        }
+        $Edb_Shipping_Method->cart_item_shipments[$item_key] = array($shipping_method_1,$shipping_method_2);
       }else{
         $item['edb_availability'] = $this->get_package_availability( $item['data'], false);
         
@@ -994,12 +1001,17 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
         }
         $shipping_method = $shipping_methods[$packageID_1];
         $packages[$packageID_1]=$this->create_package($item,$shipping_method,$item_key,'available');
+        if(!in_array($item_key, $Edb_Shipping_Method->cart_item_shipments)){
+          $Edb_Shipping_Method->cart_item_shipments[$item_key] = array();
+        }
+        $Edb_Shipping_Method->cart_item_shipments[$item_key] = array($shipping_method);
       }
     }
     $counts = array();
     foreach( $packages as $k => $p){
       $counts[$k] = 5;
     }
+    
     // write_log('setting:');
     // write_log($shipping_methods);
     WC()->session->set('chosen_shipping_methods',$shipping_methods);

@@ -1,0 +1,44 @@
+[
+  {
+    "db_id": 53,
+    "type": "post_type",
+    "title": "products",
+    "link": "https://badb0x.akr.club/products/",
+    "position": 1
+  },
+  {
+    "db_id": 54,
+    "type": "post_type",
+    "title": "order samples",
+    "link": "https://badb0x.akr.club/order-samples/",
+    "position": 2
+  },
+  {
+    "db_id": 55,
+    "type": "post_type",
+    "title": "free delivery",
+    "link": "https://badb0x.akr.club/free-delivery/",
+    "position": 3
+  },
+  {
+    "db_id": 56,
+    "type": "post_type",
+    "title": "about / faq",
+    "link": "https://badb0x.akr.club/about/",
+    "position": 4
+  },
+  {
+    "db_id": 57,
+    "type": "post_type",
+    "title": "contact us",
+    "link": "https://badb0x.akr.club/contact-us/",
+    "position": 5
+  },
+  {
+    "db_id": 72,
+    "type": "custom",
+    "title": "lookbook",
+    "link": "/category/lookbook",
+    "position": 6
+  }
+]

@@ -8,12 +8,25 @@ if ( ! defined( 'ABSPATH' ) ) {
   // do_action( 'woocommerce_review_order_before_cart_contents' );
 
   foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+    // write_log("CART ITEM");
+    // write_log($cart_item);
     $_product     = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
     if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
       ?>
       <div class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
         <div class="cart-item-image">
           <?php
+            global $Edb_Shipping_Method;
+            
+            $shipments = $Edb_Shipping_Method->cart_item_shipments[$cart_item_key];  
+            $shipment_texts = array();
+            foreach($shipments as $sm){
+              if($sm=='edb_self_pickup'){
+                array_push( $shipment_texts, 'pickup');
+              }else{
+                array_push( $shipment_texts, 'ship');
+              }
+            }
             $thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
 
             if ( ! $_product->is_visible() ) {
@@ -41,7 +54,13 @@ if ( ! defined( 'ABSPATH' ) ) {
           <div class="cart-item-availability">
             <?php
               edb_checkout_item_availability( $cart_item_key, $cart_item );
-              echo '';# $WC_Edb->get_product_availability( array('availability'=>array()), $_product )['availability'];
+              
+              echo "<p>".$shipment_texts[0];
+              if(!empty($shipment_texts[1])){
+                echo " + " . $shipment_texts[1];
+              }
+              echo "</p>";
+              // echo implode(',',$shipments);# $WC_Edb->get_product_availability( array('availability'=>array()), $_product )['availability'];
             ?>
           </div>
           

@@ -125,8 +125,20 @@
 	 $(document).on('click', '.controls .next, .controls .prev', function(e){
 	   e.preventDefault();
 	   var $slider = $(this).closest('.edb-slider');
+	   //var kenburns  = $slider.data('kenburns');
+	   //if(kenburns){
+	   //  $slider.removeClass('kenburns')
+	   //}
 	   var dir = $(this).hasClass('next') ? 1 : 0;
 	   cycle( $slider, dir );
+	   //if(kenburns){
+	   //$slider.one('cycled', function(){
+	   //  setTimeout(function(){
+	   //   $slider.addClass('kenburns')  
+	   //  },1000)
+	     
+	   //});
+	   //}
 	 })
 	 
 	 $( document).on('cycled', '.edb-slider', function(){

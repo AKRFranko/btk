@@ -1,0 +1,26 @@
+[
+  {
+    "option_name": "loco-translate-use_msgfmt",
+    "option_value": "0"
+  },
+  {
+    "option_name": "loco-translate-which_msgfmt",
+    "option_value": ""
+  },
+  {
+    "option_name": "loco-translate-use_fuzzy",
+    "option_value": "1"
+  },
+  {
+    "option_name": "loco-translate-num_backups",
+    "option_value": "1"
+  },
+  {
+    "option_name": "loco-translate-gen_hash",
+    "option_value": "0"
+  },
+  {
+    "option_name": "loco-translate-enable_core",
+    "option_value": "0"
+  }
+]

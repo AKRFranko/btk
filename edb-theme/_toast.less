@@ -1,9 +1,15 @@
+#page{
+  transition:opacity .2s ease-out;
+}
+body.toast-cover #page{
+  opacity:0.2;
+}
 .toast{
   display:block;
   position:fixed;
   width:100vh;
   height:100vh;
-  transition:all .2s cubic-bezier(.93,.01,.92,.86);
+  transition:all .2s ease-out;
   left:0;
   width:100vw;
   top:117px;
@@ -14,6 +20,7 @@
   z-index:9999;
   box-sizing:border-box;
   padding:1em 2em;
+  // overflow:hidden;
 }
 
 
@@ -38,7 +45,7 @@
 
 
 .toast.vertical.top{
-  margin-top:calc(~"-50vh - 117px");
+  margin-top:calc(~"-50vh + -117px");
 }
 .toast.vertical,
 .toast.vertical.bottom{
@@ -66,6 +73,7 @@
   background:#000;
   color:#fff;
 }
+
 .toast.fullbleed:before{
   content:'';
   display:block;
@@ -129,6 +137,10 @@
 .toast .page .content{
   margin-left:.5em;
 }
+
+
+
+
 .btk-form-success.inplace{
   display:none;
 }

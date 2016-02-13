@@ -1,0 +1,37 @@
+[
+  {
+    "db_id": 66,
+    "type": "post_type",
+    "title": "about / faq",
+    "link": "https://badb0x.akr.club/about/",
+    "position": 1
+  },
+  {
+    "db_id": 67,
+    "type": "post_type",
+    "title": "in the press",
+    "link": "https://badb0x.akr.club/about-press/",
+    "position": 2
+  },
+  {
+    "db_id": 68,
+    "type": "post_type",
+    "title": "trade & designers",
+    "link": "https://badb0x.akr.club/about-trade/",
+    "position": 3
+  },
+  {
+    "db_id": 69,
+    "type": "post_type",
+    "title": "catalogs",
+    "link": "https://badb0x.akr.club/catalogs/",
+    "position": 4
+  },
+  {
+    "db_id": 70,
+    "type": "post_type",
+    "title": "environment",
+    "link": "https://badb0x.akr.club/about-environment/",
+    "position": 5
+  }
+]

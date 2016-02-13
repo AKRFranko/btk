@@ -331,19 +331,38 @@ class Edb_Admin {
 	 global $post;
 	 $edb_materials = $this->get_all_possible_materials();
 	 $material_options = array();
+	 $args = array(
+                          'meta_key' => '_edb_material',
+                          'meta_value'=> $edb_materials,
+                          'post_type' => 'edb_material_desc',
+                          'post_status' => 'publish',
+                          'posts_per_page' => -1
+                      );
+   $described_posts = get_posts($args);
+   $described_materials = array();
+   foreach($described_posts as $described){
+    $meta = get_post_meta($described->ID, '_edb_material', true );
+    $described_materials[] = $meta;
+   }
 	 foreach( $edb_materials as $material_id ){
-	   $material_options[$material_id] = __($material_id,'edb');
+	   if( !in_array( $material_id, $described_materials ) ){
+	      $material_options[$material_id] = __($material_id,'edb');  
+	   }
 	 }
 	 $selected_material = get_post_meta( $post->ID, '_edb_material' , true);
-	 
-	 woocommerce_wp_select(
-	   array(
-	     'id' => '_edb_material',
-	     'label'=> __('Material ID'),
-	     'options' => $material_options,
-	     'value' => $selected_material
-	   )
-	 );
+	 if(count($material_options) > 0){
+	  woocommerce_wp_select(
+       array(
+         'id' => '_edb_material',
+          'label'=> __('Material ID'),
+          'options' => $material_options,
+        'value' => $selected_material
+     )
+    );  
+	 }else{
+	   echo "<p>$selected_material</p>";
+	 }
+	 echo "<style>.edit-slug-box{display:none;}</style>";
 	 
 	 
 	}
@@ -371,12 +390,12 @@ class Edb_Admin {
 	
 	
 	public function ignore_duplicate_material_description( $post_id, $post , $update ){
-	  $duplicate = get_post_meta($post_id, '_edb_material_duplicate', true);
-	  if(!empty($duplicate)){
-      wp_delete_post( $post_id, true );
-	    exit;
-	  }
-	  
+	    $duplicate = get_post_meta($post_id, '_edb_material_duplicate', true);
+      if(!empty($duplicate)){
+        wp_delete_post( $post_id, true );
+        exit;
+      }  
+
 	}
 	
   public function add_material_meta_boxes(){
@@ -406,12 +425,15 @@ class Edb_Admin {
       'labels' => $labels,
       'has_archive' => true,
        'public' => true,
-      'supports' => array( 'title',  'thumbnail','page-attributes' ),
+      'supports' => array( 'title', 'excerpt', 'editor', 'thumbnail','page-attributes' ),
       'exclude_from_search' => true,
       'capability_type' => 'post',
       'rewrite' => array( 'slug' => 'materials' ),
       )
     );
+    add_post_type_support( 'edb_material_desc', 'subtitles' );
+    add_post_type_support( 'product', 'subtitles' );
+    
 	}
 	
 

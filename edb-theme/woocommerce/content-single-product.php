@@ -43,6 +43,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     <div class="product-info">
       
       <div class="product-name"><?php echo $edb_product->title; ?></div>
+      <div class="product-subname"><?php echo $edb_product->subtitle; ?></div>
       
       <div class="product-price">$<?php echo $edb_product->price; ?></div>
       
@@ -91,6 +92,7 @@ if ( ! defined( 'ABSPATH' ) ) {
           <?php endif; ?>
         
           <?php do_action( 'woocommerce_after_variations_form' ); ?>
+          <small>✓ = <?php _e('In Stock'); ?></small>
         </form>
         
         <?php do_action( 'woocommerce_after_add_to_cart_form' ); ?>

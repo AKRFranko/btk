@@ -74,11 +74,12 @@ function edb_package_item_name( $package_item_key, $package_item ){
 function edb_package_item_material( $package_item_key, $package_item ){
   $variation_id = $package_item['variation_id'];
   $decorated = edb_decorated_product( $variation_id );
-  echo $decorated->material;
+  echo edb_get_material_name($decorated->material);
 }
 function edb_package_item_category( $package_item_key, $package_item ){
   $variation_id = $package_item['variation_id'];
   $decorated = edb_decorated_product( $variation_id );
+  // write_log($decorated->category);
   echo $decorated->category;
 }
 
@@ -98,7 +99,7 @@ function edb_cart_item_material( $cart_item_key, $cart_item ){
   $product_id = $cart_item['product_id'];
   $variation_id = $cart_item['variation_id'];
   $decorated = edb_decorated_product( $variation_id );
-  echo $decorated->material;
+  echo edb_get_material_name($decorated->material);
 }
 function edb_cart_item_category( $cart_item_key, $cart_item ){
   $product_id = $cart_item['product_id'];
@@ -107,11 +108,28 @@ function edb_cart_item_category( $cart_item_key, $cart_item ){
   $decorated = edb_decorated_product( $variation_id );
   echo $decorated->category;
 }
+function edb_get_material_name( $material_no ){
+  $get_material_desc_args = array(
+    'meta_key' => '_edb_material',
+    'meta_value' => $material_no,
+    'post_type' => 'edb_material_desc',
+    'post_status'=> 'any',
+    'posts_per_page'=> 1
+  );
+  $dpost = get_posts($get_material_desc_args);
+  $name = apply_filters('the_title', $dpost[0]->post_title);
+  $subtitle = apply_filters('the_title', get_the_subtitle($dpost[0]->ID));
+  if(empty($subtitle)){
+    return $name;
+  }
+  return "$name, $subtitle";
+}
 function edb_checkout_item_material( $cart_item_key, $cart_item ){
   $product_id = $cart_item['product_id'];
   $variation_id = $cart_item['variation_id'];
   $decorated = edb_decorated_product( $variation_id );
-  return $decorated->material;
+  echo edb_get_material_name($decorated->material);
+  // return $decorated->material;
 }
 function edb_checkout_item_availability( $cart_item_key, $cart_item  ){
   $product_id = $cart_item['product_id'];
@@ -289,6 +307,59 @@ function edb_product_slideshow( $product_id ){
   
 }
 
+function edb_material_toasts(){
+    
+    $args= array(
+      'post_type' => 'edb_material_desc',
+      'post_status'=> 'publish',
+      'posts_per_page'=> -1
+    );
+    $posts = get_posts( $args );
+    $lang = WPGlobus::Config()->language;
+    $rules = '.material-description{ display:none }';
+    echo '<div id="material-toast" class="toast vertical top">';
+    echo '<a href="#" class="close">close</a>';
+    foreach( $posts as $post){
+      
+      $material = get_post_meta( $post->ID, '_edb_material' , true);
+      
+      $thumbid = get_post_thumbnail_id( $post->ID );
+      // $small= wp_get_attachment_image_src( $thumbid, 'thumbnail', true )[0];
+      $large = wp_get_attachment_image_src( $thumbid, 'full' )[0];
+      $title = apply_filters('the_title', $post->post_title );
+      $subtitle = apply_filters('the_title', get_the_subtitle($post->ID));
+      $excerpt = apply_filters('the_title', $post->post_excerpt );
+      $content = apply_filters('the_content',$post->post_content );
+      $composition = explode("\n",$excerpt);
+      $rules .= "\n#material-toast.material-$material #material-$material.material-description{ display:block; }";
+      ?>
+      
+        <div id="material-<?php echo $material; ?>" class="material-description boxes">
+          <div class="material-image box half" style="background-image:url('<?php echo $large; ?>')">
+            <img src="<?php echo $large; ?>">
+          </div>
+          <div class="material-info box half">
+            <h1 class="name"><?php echo $title ?></h1>
+            <h2 class="color"><?php echo $subtitle ?></h2>
+            <p class="description"><?php echo $content; ?></p>
+            <ul class="composition">
+            <?php if(!empty($composition)){ foreach($composition as $line ){ ?>
+              <li><?php echo $line ?></li>
+            <?php }; }; ?>
+            </ul>
+          </div>
+          <a id="order-samples-btn" class="button" href="<?php echo get_permalink( get_page_by_path( 'order-samples' ) ); ?>" target="_blank"><?php _e('order samples', 'edb')?></a>
+        </div>
+      
+      <?php
+      // write_log($material);
+      // write_log($small);
+      // write_log($large);
+    }
+    echo "</div>";
+    echo "<style type='text/css'>$rules</style>";
+}
+
 function edb_product_material_picker( $product_id ){
   $decorated = edb_decorated_product( $product_id );
   $materials = $decorated->materials;
@@ -297,10 +368,30 @@ function edb_product_material_picker( $product_id ){
   echo '<div class="edb-material-choices">';
   
   foreach($materials as $edb_material => $data ){
+    $stock_qty = $decorated->stocks[$data['variation_id']];
+    
+    if($stock_qty > 0){
+      $stock_status = __('In stock', 'edb');
+      $stock_class='in-stock';
+      
+    }else{
+      $stock_status = __('Backorder', 'edb');
+      $stock_class='backorder';
+      
+    }
+    
+    $delays = $decorated->shipping_delays[ ''.$data['variation_id'] ];
+    
+    $now = strtotime(date(DATE_RFC2822));
+    $min = trim(time_elapsed(strtotime( $delays['available'], $now )));
+    $max = trim(time_elapsed(strtotime( $delays['backorder'], $now )));
+    $name = esc_attr( apply_filters('the_title',$data['post']->post_title) . "  <b>".apply_filters('the_title', get_the_subtitle($data['post']->ID))."</b>");
+    $availability_date  = esc_attr(json_encode( array( 'stock' => $stock_qty, 'min' => $min, 'max' => $max ) ));
     $preview = $decorated->images['material_variations'][$edb_material];
     echo "<label for=\"edb-material-choice-$edb_material\">";
-    echo "<div class=\"edb-material-choice-square\" style=\"background-image:url('".$data['image']."');\">";
-    echo "<input type='radio' id=\"edb-material-choice-$edb_material\" name=\"_edb_material_choice\" data-variation-id=\"".$data['variation_id']."\" data-name=\"".$data['post']->post_title."\" data-preview=\"$preview\" value=\"$edb_material\">";
+    
+    echo "<div class=\"edb-material-choice-square $stock_class\" style=\"background-image:url('".$data['image']."');\">";
+    echo "<input type='radio' id=\"edb-material-choice-$edb_material\" name=\"_edb_material_choice\" data-shipping-delay=\"$availability_date\" data-variation-id=\"".$data['variation_id']."\" data-name=\"".$name."\" data-preview=\"$preview\" value=\"$edb_material\">";
     echo "</div>";
     echo "</label>";
   }
@@ -444,7 +535,7 @@ function edb_checkout_payment_summary(){
 
 function edb_add_to_cart_button( $product_id, $qty=1 ){
   // echo "<form class='edb-add-to-cart' method='post'>";
-  echo '<div class="product-selected-material"><span class="label">color</span><span class="value"></span></div>';
+  echo '<div class="product-selected-material"><span class="label">'.__('No color selected', 'edb').'</span><a href="#" id="show-material-toast" class="ifo-btn"><abbr title="info">i</abbr></a><span class="value"></span></div>';
   ?>
     <div class="product-quantity-input quantity">
       <label><?php _e('Quantity', 'edb'); ?></label>

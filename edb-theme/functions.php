@@ -135,7 +135,7 @@ function _s_scripts() {
 	
 // 	wp_enqueue_script( '_s_jquery_event_swipe', get_template_directory_uri() . '/js/jquery.event.swipe.js', array('jquery','_s_jquery_event_move'), '20120208', true );
 	
-	wp_enqueue_script( '_s-bugyfill', get_template_directory_uri() . '/js/viewport-units-buggyfill.js', array() , '20120206', true );
+// 	wp_enqueue_script( '_s-bugyfill', get_template_directory_uri() . '/js/viewport-units-buggyfill.js', array() , '20120206', true );
 	wp_enqueue_script( '_s_hammer', get_template_directory_uri() . '/js/hammer.min.js', array(), '20120208', true );
 
   wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array('jquery','_s_hammer'), '20120206', true );
@@ -209,7 +209,7 @@ function edb_add_checkout_tabs_and_summary_fragments( $fragments ){
 function btk_edb_slider($query, $attach = null, $blankTargets = false) {
   $slider_query = new WP_Query($query);
   $data = array();
-  echo "<div class='edb-slider'>";
+  echo "<div class='edb-slider' data-kenburns='1'>";
   echo "<div class='edb-slides'>";
   $active = ' active';
   while ($slider_query->have_posts()) {
@@ -300,6 +300,7 @@ function edb_splash_page(){
        echo "<div class='edb-slider' data-autocycle=\"on\">";
        echo "<div class='edb-slides'>";
        $active = ' active';
+       write_log($images);
        foreach( $images as $index => $image ){
          echo "<div class='edb-slide$active'>";
          if($index > 0) $active = '';

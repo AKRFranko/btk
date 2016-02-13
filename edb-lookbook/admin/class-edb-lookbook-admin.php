@@ -115,6 +115,7 @@ class Edb_Lookbook_Admin {
 	
   public function save_meta_boxes( $post_id ){
     global $post; 
+    
     if(!empty($post) && !empty($post->post_type)){
         if ($post->post_type == 'lookbook'){
              
@@ -165,20 +166,21 @@ class Edb_Lookbook_Admin {
      'orderby'     => 'title', 
      'order'       => 'ASC', 
      'post_type' => 'lookbook_slide',
-     'post_status' => 'any',
+     'post_status' => 'publish',
      'numberposts' => -1
     ));
     
     echo "<p><button id='add_lookbook_slide' type=\"submit\" name=\"add_slide\" value=\"1\">add slide</button></p>";
-    // write_log( $children );
-    // $this->lookbook_slide_fields( $post );    
-    // echo "<hr />";
+    
     foreach($children as $index => $slide ){
+      // write_log( "post: " .$post->ID . " slide: ". $slide->ID );
+      // write_log( get_edit_post_link( $slide->ID ) );
+      
       echo "<div class=\"slide-fields\">";
       echo "<div class='slide-image'>";
-      $name = empty($slide->post_title) ? "#$index" : $slide->post_title ;
+      $name  = empty($slide->post_title) ? "#$index" : $slide->post_title ;
       $thumb = get_the_post_thumbnail( $slide->ID, 'thumb' );
-      $edit = get_edit_post_link( $slide->ID );
+      $edit  = admin_url( 'post.php?post='.$slide->ID.'&post_type=lookbook_slide&action=edit' );
       echo $thumb;
       echo "</div>";
       echo "<div class='slide-name'>";

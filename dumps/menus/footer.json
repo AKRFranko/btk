@@ -1,0 +1,65 @@
+[
+  {
+    "db_id": 58,
+    "type": "post_type",
+    "title": "contact us",
+    "link": "https://badb0x.akr.club/contact-us/",
+    "position": 1
+  },
+  {
+    "db_id": 59,
+    "type": "post_type",
+    "title": "Shipping",
+    "link": "https://badb0x.akr.club/about-shipping/",
+    "position": 2
+  },
+  {
+    "db_id": 60,
+    "type": "post_type",
+    "title": "return & exchange",
+    "link": "https://badb0x.akr.club/about-exchange/",
+    "position": 3
+  },
+  {
+    "db_id": 61,
+    "type": "post_type",
+    "title": "privacy policy",
+    "link": "https://badb0x.akr.club/about-privacy/",
+    "position": 4
+  },
+  {
+    "db_id": 62,
+    "type": "post_type",
+    "title": "terms of use",
+    "link": "https://badb0x.akr.club/terms/",
+    "position": 5
+  },
+  {
+    "db_id": 63,
+    "type": "post_type",
+    "title": "reward program",
+    "link": "https://badb0x.akr.club/affiliate/",
+    "position": 6
+  },
+  {
+    "db_id": 64,
+    "type": "post_type",
+    "title": "my account",
+    "link": "https://badb0x.akr.club/my-account-2/",
+    "position": 7
+  },
+  {
+    "db_id": 65,
+    "type": "post_type",
+    "title": "sign up for emails",
+    "link": "https://badb0x.akr.club/emails/",
+    "position": 8
+  },
+  {
+    "db_id": 71,
+    "type": "custom",
+    "title": "lookbook",
+    "link": "/category/lookbook",
+    "position": 9
+  }
+]

@@ -3,6 +3,80 @@
   /*margin-bottom:@mast-height;*/
   /*min-height:100vh;*/
 }
+.edb-material-choice-square.in-stock:after {
+    content: '✓';
+    font-weight: bold;
+    font-family: monospace;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0,0,0,.2);
+    position: absolute;
+    bottom: 0.1em;
+    right: 0.25em;
+    line-height: 1;
+    font-size: .75em;
+}
+#material-toast:not(.active){
+  margin-top:-100vh;
+}
+
+/* material toasts */
+.material-description {
+    display: block;
+    float: left;
+    width: 100%;
+    position:relative;
+    overflow:hidden;
+    
+}
+#order-samples-btn{
+position: absolute;
+bottom: 0em;
+right: 0em;
+}
+
+.material-description .material-image {
+    height:460px;
+    background-size: cover;
+    background-position: center;
+    background-repeat:no-repeat;
+    
+}
+.material-description ul,
+.material-description li{
+  list-style-type:none;
+  margin:0;padding:0;
+}
+.material-description li{
+  font-family:@serif-font;
+  margin-right:calc(~"50% + 3em");
+  text-align:right;
+  margin-bottom:.5em;
+}
+.material-info{
+  padding:0 1em;
+  .name,.color{
+    font-size:21px;
+    margin:0;
+    padding:0;
+    width:50%;
+    display:inline-block;
+  }
+  .color{
+      font-size:15px;
+      font-weight:bold;
+  }
+  .description{
+    padding-right:5em;
+  }
+}
+
+
+#material-toast.active{
+  min-height:calc(~"460px + 3em");
+}
+
+
+
 // .products, 
 // .listing-product,.listing-product > a, .listing-product-name,.listing-product-price,.listing-product-image{
 //   display:block;
@@ -84,7 +158,7 @@
   padding:0;
 }
 .product-slideshow{
-  height:calc(~" 505px ");
+  height:calc(~" 460px + 3em ");
 }
 
 .product-info,.product-description,.product-menu{
@@ -180,9 +254,14 @@
   width:60%;
 }
 .product-menu .product-selected-material .value{
-  margin-left:calc(~"60% - 5em");
+  margin-left:calc(~"60% - 3em");
   background-size:cover;
-  width:5em;
+  width:3em;
+}
+a#show-material-toast {
+    position: absolute;
+    right: 4em;
+    top: 1em;
 }
 
 .product-menu .product-add-to-cart{
