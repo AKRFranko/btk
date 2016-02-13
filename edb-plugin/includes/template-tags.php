@@ -45,7 +45,7 @@ function edb_product_pdf( $product_id ){
   $decorated = edb_decorated_product( $product_id );
   if(!empty($decorated->pdf_url)){
     $filename = urlencode($decorated->title).'.pdf';
-    echo '<a id="product-pdf-download" class="button pdf-download-button" href="'.$decorated->pdf_url.'" download="'.$filename.'">'.__('download pdf', 'edb').'</a>';  
+    echo '<a id="product-pdf-download" class="button pdf-download-button" href="'.$decorated->pdf_url.'" target="_pdf" download="'.$filename.'">'.__('download pdf', 'edb').'</a>';  
   }
   
 
@@ -166,6 +166,7 @@ function edb_shipping_item_availability( $package ){
 }
 
 function edb_cart_item_availability( $cart_item_key, $cart_item ){
+  return edb_checkout_item_availability( $cart_item_key, $cart_item );
   $product_id = $cart_item['product_id'];
   $variation_id = $cart_item['variation_id'];
   $decorated = edb_decorated_product( $variation_id );
@@ -174,6 +175,7 @@ function edb_cart_item_availability( $cart_item_key, $cart_item ){
   
   $min = trim(time_elapsed(strtotime( $delays['available'], $now )));
   $max = trim(time_elapsed(strtotime( $delays['backorder'], $now )));;
+  //var_dump( $cart_item );
   echo "$min ~ $max";
 }
 function edb_get_category_url( $category ){

@@ -92,7 +92,7 @@ if ( ! defined( 'ABSPATH' ) ) {
           <?php endif; ?>
         
           <?php do_action( 'woocommerce_after_variations_form' ); ?>
-          <small>✓ = <?php _e('In Stock'); ?></small>
+          <small class="stocknote">= <?php _e('In Stock'); ?></small>
         </form>
         
         <?php do_action( 'woocommerce_after_add_to_cart_form' ); ?>

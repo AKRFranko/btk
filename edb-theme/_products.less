@@ -3,18 +3,33 @@
   /*margin-bottom:@mast-height;*/
   /*min-height:100vh;*/
 }
-.edb-material-choice-square.in-stock:after {
+.edb-material-choice-square.in-stock:after,
+.stocknote:before{
     content: '✓';
+    background: rgba(0, 0, 0, 0.2);
     font-weight: bold;
     font-family: monospace;
     color: #fff;
-    text-shadow: 1px 1px 2px rgba(0,0,0,.2);
+    text-shadow: 1px 1px 2px rgba(0,0,0,.3);
     position: absolute;
-    bottom: 0.1em;
+    bottom: 0.2em;
     right: 0.25em;
     line-height: 1;
-    font-size: .75em;
+    font-size: .75rem;
+    border-radius:50%;
+    display:inline-block;   
+    width: 1.3em;
+    height: 1.3em;
+    text-align: center;
+    padding-top: .25em;
 }
+.stocknote:before{
+  position:relative;
+  bottom:0;
+  right:0;
+  margin-right:.2em;
+}
+
 #material-toast:not(.active){
   margin-top:-100vh;
 }

@@ -95,6 +95,23 @@
 	   },10);
 	 }
 	 
+	 function setupProxyControls( slider ){
+	   
+	  var $slider = $( slider );
+	  var $slides = $slider.find('.edb-slides');
+	  var $prev = $('<a href="#">').addClass('proxy-control proxy-control-prev');
+	  var $next = $('<a href="#">').addClass('proxy-control proxy-control-next');
+	  $slides.after($prev)
+	  $slides.after($next)
+	  $prev.on('click', function(){
+	    $slider.find('.controls .prev').click()
+	  })
+	  $next.on('click', function(){
+      $slider.find('.controls .next').click()
+    })
+	  
+	 }
+	 
 	 function updateCount( slider ){
 	   var $slider = $( slider );
 	   var total = $slider.find('.edb-slide');
@@ -149,7 +166,10 @@
       $('.edb-slider').each(function(){
         updateCount( this );
         hammerDown( this );
+        setupProxyControls( this );
       });
+      
+      
    });
    
    $(document).ajaxSuccess(function(){

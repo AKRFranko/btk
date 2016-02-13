@@ -30,6 +30,7 @@
 class Edb_Product_Decorator {
   
   public $title = '';
+  public $subtitle = '';
   public $description = '';
   // public $availability = '';
   
@@ -57,7 +58,7 @@ class Edb_Product_Decorator {
   public function __construct( $product ) {
     $factory = new WC_Product_Factory();
     
-    
+    if(empty($product)) return;
     
     if(!is_object($product)){
       $product = $factory->get_product( $product );

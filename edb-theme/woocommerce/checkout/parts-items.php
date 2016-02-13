@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <?php
   // do_action( 'woocommerce_review_order_before_cart_contents' );
-
+  
   foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
     // write_log("CART ITEM");
     // write_log($cart_item);

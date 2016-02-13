@@ -70,10 +70,7 @@
 
   $(document).ajaxComplete(function(event, res) {
     setTimeout(function() {
-      // console.log('REMOVE ERROR');
-      if (res.mailSent) {
-        $('.wpcf7-form').html('<h1>Thank you!</h1><p>We\'ll get back to you shortly.');
-      }
+      
       $('.woocommerce-error, .woocommerce-message').addClass('hide');
     }, 10000);
   })
@@ -212,11 +209,25 @@
       });
 
     }
+    // if($('.wpcf7-form').length){
+    //   $('form.wpcf7-form').each( function(){
+    //     var $form = $(this);
+    //     $form.on('submit', function(e){
+    //       e.preventDefault();
+    //       console.log('default prevented')
+    //     })
+    //   })
+    // }
 
   })
 
-  $(document).ajaxComplete(function() {
+  $(document).ajaxComplete(function(event, res) {
     $('.address-field input.input-text').removeClass('input-text');
+    // console.log('REMOVE ERROR');
+    
+    if (res.responseJSON.mailSent) {
+      $('.wpcf7-form').html('<h1>Thank you!</h1><p>We\'ll get back to you shortly.');
+    }
   })
 
 

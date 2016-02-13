@@ -17,6 +17,7 @@
   ?>
     <div class="edb-slider">
       <h1 class="edb-slider-main-title"><?php the_title(); ?></h1>
+      <div class="edb-slider-main-text"><?php the_excerpt(); ?></div>
       <div class="edb-slides">
           <?php 
             $children = get_posts(array(
@@ -50,26 +51,28 @@
                 <ul class="features">
                   <?php foreach( $features as $feature){ ?>
                     <?php 
-                      $decorated = edb_decorated_product( $feature->variation_id ); 
-                      $catlink = edb_get_category_url($decorated->category);
+                      
+                      
+                      $decorated = edb_decorated_product( $feature->id );   
+                      if(!empty($decorated)){
+                        $catlink = edb_get_category_url($decorated->category);  
+                        
+                    
+                      
 
                     ?>
                     <li>
-                      <a class="title" href="<?php echo $decorated->url; ?>">
-                        <?php echo $decorated->title; ?>
-                      </a>
-                      
                       <a class="category" href="<?php echo $catlink ;?>">
                         <?php echo $decorated->category; ?>
-                      </a>
-                      
-                      <a class="price" href="<?php echo $decorated->url; ?>">
+                      </a><a class="title <?php echo empty($decorated->subtitle) ? 'large' : '';?>" href="<?php echo $decorated->url; ?>">
+                        <?php echo $decorated->title; ?>
+                      </a><?php if(!empty($decorated->subtitle)){?><a class="subtitle" href="<?php echo $decorated->url; ?>">
+                        <?php echo $decorated->subtitle; ?>
+                      </a><?php };?><a class="price" href="<?php echo $decorated->url; ?>">
                         <?php echo wc_price($decorated->price); ?>
                       </a>
-                      
-                      
                     </li>
-                  <?php } ?> 
+                  <?php } } ?> 
                 </ul>
 
               <?php }; ?>

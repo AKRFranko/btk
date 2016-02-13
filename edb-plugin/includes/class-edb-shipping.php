@@ -106,6 +106,11 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     return $value;
     
   }
+  
+  public function set_custom_fields_on_order( $order_id ){
+    write_log('set_custom_fields_on_order');
+    write_log(WC()->order);
+  }
 
   public function cart_needs_shipping( $needs_shipping ){
     // $customer = WC()->session->customer;

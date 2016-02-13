@@ -17,10 +17,12 @@ function edb_get_products_with_skus( $skus  ){
   if(!is_array($skus)){
     $skus = explode(',', $skus);
   }
+  
   $products = array();
   foreach($skus as $sku){
     $products[] = edb_find_product_by_sku( $sku );
   }
+  
   return $products;
 }
 ?>

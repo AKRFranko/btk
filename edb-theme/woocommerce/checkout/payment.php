@@ -70,9 +70,9 @@ global $WC_Edb;
     
         
       </div><!-- .cart-costs -->
-    <h1>Cart</h1>
+    <h1><?php _e('Items', 'edb')?></h1>
     <div class="cart-review-items">
-      <?php get_template_part('woocommerce/checkout/parts', 'items') ;?>
+      <?php get_template_part('woocommerce/checkout/parts', 'packages') ;?>
     </div><!-- cart-review-items -->
     </div>
     </div>
@@ -83,19 +83,7 @@ global $WC_Edb;
   <fieldset id="place-order-panel" class="checkout-panel <?php edb_panel_active('#place-order-panel') ?>">
     <div class="boxes">
       
-    <div class="box half">
-    <div class="cart-costs-review">
-      <h1>Total</h1>
-      <div class="cart-costs-repeat">
-         <?php get_template_part('woocommerce/checkout/parts', 'totals') ;?>
-      </div>
-      <h1>Cart</h1>
-      <div class="cart-review-items-repeat">
-        <?php get_template_part('woocommerce/checkout/parts', 'items') ;?>
-      </div>
-    
-    </div>
-    </div><div class="box half">
+<div class="box half">
     
     <div class="cart-address-review">
       <h1>DELIVERED TO</h1>
@@ -156,6 +144,19 @@ global $WC_Edb;
       <?php endif; ?>
     
       <?php do_action( 'woocommerce_review_order_after_submit' ); ?>
+    
+    </div>
+    </div>
+    <div class="box half">
+    <div class="cart-costs-review">
+      <h1>Total</h1>
+      <div class="cart-costs-repeat">
+         <?php get_template_part('woocommerce/checkout/parts', 'totals') ;?>
+      </div>
+      <h1><?php _e('Items', 'edb')?></h1>
+      <div class="cart-review-items-repeat">
+        <?php get_template_part('woocommerce/checkout/parts', 'packages') ;?>
+      </div>
     
     </div>
     </div>

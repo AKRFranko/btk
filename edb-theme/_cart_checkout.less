@@ -119,6 +119,7 @@ button,button:hover,button:active, input[type="submit"]{
   width: 10em;
   float: right;
   margin: 1em 0 1em 1em;
+  padding-top:0;
 }
 
 .cart_item{
@@ -592,6 +593,9 @@ select.missing {
 textarea.missing {
     border-color: red!important;
 }
+.woocommerce-checkout #payment .checklist-checkbox.missing span{
+  color:red;
+}
 
 /* damned overlay */
 .blockOverlay{
@@ -603,6 +607,11 @@ textarea.missing {
 }
 .cart-item-availability{
   white-space:nowrap;
+}
+
+.shipment-items h3 {
+    font-size: 15px;
+    padding-top: .5em;
 }
 
 .woocommerce .blockUI.blockOverlay:before,.woocommerce .loader:before{

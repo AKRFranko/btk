@@ -24,6 +24,7 @@ $order = wc_get_order( $order_id );
 	<tbody>
 		<?php
 			foreach( $order->get_items() as $item_id => $item ) {
+			 // write_log( $item );
 				wc_get_template( 'order/order-details-item.php', array(
 					'order'   => $order,
 					'item_id' => $item_id,

@@ -317,6 +317,19 @@ function edb_splash_page(){
    
    
 }
+
+add_filter( 'woocommerce_billing_fields', 'woo_filter_state_billing', 10, 1 );
+add_filter( 'woocommerce_shipping_fields', 'woo_filter_state_shipping', 10, 1 );
+
+function woo_filter_state_billing( $address_fields ) {
+  $address_fields['billing_state']['required'] = true;
+  return $address_fields;
+}
+
+function woo_filter_state_shipping( $address_fields ) {
+  $address_fields['shipping_state']['required'] = true;
+  return $address_fields;
+}
 /**
  * Implement the Custom Header feature.
  */

@@ -72,7 +72,7 @@ global $WC_Edb;
       
       
       <div class="shipping-review-notice">
-        <p>based on your selection, the final delivery fees will adjust automatically. shipping items individuallu may add shipping fees. for more information on how delivery fees are calculated click here.</p>
+        <p>based on your selection, the final delivery fees will adjust automatically. shipping items individuallu may add shipping fees. for more information on how delivery fees are calculated <a target="_blank" href="<?php echo home_url('/about-shipping'); ?>">click here</a>.</p>
       </div>
       
     </div><!-- shipping-review -->

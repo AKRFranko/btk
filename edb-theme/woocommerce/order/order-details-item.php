@@ -24,7 +24,7 @@ if ( ! apply_filters( 'woocommerce_order_item_visible', true, $item ) ) {
 			echo apply_filters( 'woocommerce_order_item_quantity_html', ' <strong class="product-quantity">' . sprintf( '&times; %s', $item['qty'] ) . '</strong>', $item );
 
 			do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order );
-
+      // write_log($item);
 			$order->display_item_meta( $item );
 			$order->display_item_downloads( $item );
 
