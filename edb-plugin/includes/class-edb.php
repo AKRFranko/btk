@@ -231,7 +231,9 @@ class Edb {
     add_action( 'woocommerce_created_customer', array($GLOBALS['Edb_Shipping_Method'],'created_customer') );
     add_action( 'woocommerce_order_status_completed', array($GLOBALS['Edb_Shipping_Method'],'order_status_completed') );
     
-    add_action('woocommerce_checkout_update_order_meta', array($GLOBALS['Edb_Shipping_Method'],'set_custom_fields_on_order') );
+    // add_action('woocommerce_checkout_update_order_meta', array($GLOBALS['Edb_Shipping_Method'],'set_custom_fields_on_order') );
+    add_action('woocommerce_add_order_item_meta', array($GLOBALS['Edb_Shipping_Method'],'set_custom_field_on_order_item'), 10, 3 );
+    add_action('woocommerce_order_get_items', array($GLOBALS['Edb_Shipping_Method'],'order_get_items'), 10, 2 );
     
     
     // add_action( 'woocommerce_review_order_before_submit',  array($GLOBALS['Edb_Shipping_Method'], 'review_order_before_submit') );

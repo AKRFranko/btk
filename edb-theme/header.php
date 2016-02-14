@@ -24,9 +24,11 @@
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
 <?php wp_head(); ?>
+
+
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class( edb_body_classes()); ?>>
   
 <div id="page" class="site">
   <header id="masthead">

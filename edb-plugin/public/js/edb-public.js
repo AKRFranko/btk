@@ -519,6 +519,7 @@ window.requestAnimFrame = (function(){
   $(document).on('click', '.qty-plus, .qty-minus', function( e ){
     e.preventDefault();
     var $widget = $(this).parents('.qty-widget');
+    var data = $widget.data();
     var $input = $widget.find('input');
     
     var $val = $widget.find('.qty-val');
@@ -535,7 +536,15 @@ window.requestAnimFrame = (function(){
     $val.text(value);
     $input.val(value);
     $input.attr('value', value);
-    $input.trigger('change');
+    // if( data.multiplier ){
+    //   var multiplier = parseFloat(data.multiplier);
+    //   var qty = parseFloat( value );
+    //   var total = (multiplier*value).toFixed(2);
+    //   var $target = $(data.multiplierTarget);
+    //   $target.text('$'+total);
+      
+    // }
+    //$input.trigger('change');
   })
   
   $(document).on('click', '.summary-toggle', function( e ){

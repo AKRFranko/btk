@@ -300,7 +300,7 @@ function edb_splash_page(){
        echo "<div class='edb-slider' data-autocycle=\"on\">";
        echo "<div class='edb-slides'>";
        $active = ' active';
-       write_log($images);
+      // write_log($images);
        foreach( $images as $index => $image ){
          echo "<div class='edb-slide$active'>";
          if($index > 0) $active = '';
@@ -318,6 +318,16 @@ function edb_splash_page(){
    
 }
 
+function edb_body_classes(){
+  $tests = array('is_lynx','is_gecko','is_winIE','is_macIE','is_opera','is_NS4','is_safari','is_chrome','is_iphone','is_IE','is_edge');
+  $deviceclasses = array();
+  foreach( $tests as $t ){
+    if($GLOBALS[$t]){
+      $deviceclasses[]= str_replace('_', '-' , $t);
+    }
+  }
+  return $deviceclasses;
+}
 add_filter( 'woocommerce_billing_fields', 'woo_filter_state_billing', 10, 1 );
 add_filter( 'woocommerce_shipping_fields', 'woo_filter_state_shipping', 10, 1 );
 

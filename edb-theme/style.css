@@ -1796,6 +1796,15 @@ a#show-material-toast {
   line-height: 2;
   text-transform: uppercase;
 }
+.product-subname {
+  font-family: "adobe-caslon-pro", Georgia, 'Times New Roman', Times, serif;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 1;
+  text-transform: uppercase;
+  margin-bottom: .5em;
+  margin-top: .5em;
+}
 .product-price {
   font-family: "pragmatica-web-condensed", 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: bold;

@@ -5,6 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <?php
+
 global $Edb_Shipping_Method;
 $shipments = array();
  $edb_shipping_methods = array(

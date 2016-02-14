@@ -6,14 +6,15 @@ function time_elapsed($ptime) {
     if ($etime < 1) {
         return '0 seconds';
     }
-
-    $a = array(12 * 30 * 24 * 60 * 60 => 'year',
-        30 * 24 * 60 * 60 => 'month',
-        7 * 24 * 60 * 60 => 'week',
-        24 * 60 * 60 => 'day',
-        60 * 60 => 'hour',
-        60 => 'min',
-        1 => 'sec'
+/*
+12 * 30 * 24 * 60 * 60 => 'year',
+30 * 24 * 60 * 60 => 'month'*/
+    $a = array(
+        7 * 24 * 60 * 60 => 'week'
+        // 24 * 60 * 60 => 'day',
+        // 60 * 60 => 'hour',
+        // 60 => 'min',
+        // 1 => 'sec'
     );
 
     foreach ($a as $secs => $text) {
@@ -107,9 +108,31 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     
   }
   
+  public function order_get_items( $items, $order ){
+    write_log('order_get_items');
+    // write_log( $items );
+    return $items;
+  }
+  
+  public function set_custom_field_on_order_item( $item_id, $values, $cart_item_key  ){
+    global $Edb_Shipping_Method;
+    write_log('set_custom_field_on_order_item');
+    // write_log( "item_id: $item_id");
+    // write_log( "cart_item_key: $cart_item_key");
+    // write_log($item);
+    foreach($Edb_Shipping_Method->packages as $package){
+      if($package['cart_item_key'] == $cart_item_key ){
+        write_log($package);
+        woocommerce_add_order_item_meta( $item_id, 'edb_shipping', $package['edb_shipping'] );
+      }
+    }
+    // die();
+  }
   public function set_custom_fields_on_order( $order_id ){
     write_log('set_custom_fields_on_order');
-    write_log(WC()->order);
+    write_log($_POST);
+    
+    
   }
 
   public function cart_needs_shipping( $needs_shipping ){
@@ -403,8 +426,6 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
       $customer['calculated_shipping'] = 0;
       
       WC()->session->set('customer', $customer );
-      
-
       WC()->cart->calculate_totals();   
       if($this->shipping_debug) write_log('CART TOTAL: '.WC()->cart->shipping_total );
       if($this->shipping_debug) write_log('');

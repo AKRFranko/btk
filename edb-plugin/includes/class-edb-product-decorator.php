@@ -305,6 +305,7 @@ class Edb_Product_Decorator {
         $this->images['technical'] = wp_get_attachment_image_src( $image->ID, 'full')[0];
       }else if( $image->ID == $featured_image_id ){
         $this->images['featured'] = wp_get_attachment_image_src( $image->ID, 'full')[0];
+        $slideshow_images[] = $this->images['featured'];
       }else{
         $slideshow_images[] = wp_get_attachment_image_src( $image->ID, 'full')[0];
       }
@@ -336,7 +337,7 @@ class Edb_Product_Decorator {
     
     ksort($variation_images);
     
-    array_unshift( $slideshow_images , $this->images['featured'] );  
+    // array_unshift( $slideshow_images , $this->images['featured'] );  
     
     
     // array_unshift( $slideshow_images , $this->images['technical'] );  

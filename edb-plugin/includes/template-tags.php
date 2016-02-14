@@ -537,6 +537,7 @@ function edb_checkout_payment_summary(){
 
 function edb_add_to_cart_button( $product_id, $qty=1 ){
   // echo "<form class='edb-add-to-cart' method='post'>";
+  
   echo '<div class="product-selected-material"><span class="label">'.__('No color selected', 'edb').'</span><a href="#" id="show-material-toast" class="ifo-btn"><abbr title="info">i</abbr></a><span class="value"></span></div>';
   ?>
     <div class="product-quantity-input quantity">
