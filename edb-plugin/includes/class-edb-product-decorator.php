@@ -319,7 +319,7 @@ class Edb_Product_Decorator {
       
     }
     $variation_ids = $this->variations;
-
+    
     foreach( $variation_ids as $variation_id ){
       
       

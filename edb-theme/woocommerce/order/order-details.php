@@ -13,42 +13,93 @@ if ( ! defined( 'ABSPATH' ) ) {
 // write_log(array_keys($GLOBALS));
 $order = wc_get_order( $order_id );
 ?>
-<h2><?php _e( 'Order Details', 'woocommerce' ); ?></h2>
-<table class="shop_table order_details">
-	<thead>
-		<tr>
-			<th class="product-name"><?php _e( 'Product', 'woocommerce' ); ?></th>
-			<th class="product-total"><?php _e( 'Total', 'woocommerce' ); ?></th>
-		</tr>
-	</thead>
-	<tbody>
+
+<div class="boxes">
+  
+  <div class="box half">
+    
+    <!--<h1><?php _e('ORDER DETAILS', 'edb'); ?></h1>-->
+    
+    <div class="cart-items">
+      
 		<?php
-			foreach( $order->get_items() as $item_id => $item ) {
-			 // write_log( $item );
-				wc_get_template( 'order/order-details-item.php', array(
-					'order'   => $order,
-					'item_id' => $item_id,
-					'item'    => $item,
-					'product' => apply_filters( 'woocommerce_order_item_product', $order->get_product_from_item( $item ), $item )
-				) );
-			}
+		$edb_shipping_methods = array(
+      'edb_self_pickup' => "I will pick up.",
+      'edb_ship_ready' => "Ship when ready",
+      'edb_ship_bundle_1' => "Ship bundle 1",
+      'edb_ship_bundle_2' => "Ship bundle 2",
+      'edb_ship_bundle_3' => "Ship bundle 3"
+    );
+    
+		  $split = array();
+      foreach( $order->get_items() as $item_id => $item ) {
+        foreach( $item['edb_shipments'] as $method => $qty ){
+          if(empty($split[$method])){
+            $split[$method]= array();
+          }
+          $split[$method][]=array( 'item_id' => $item_id, 'item' => $item, 'quantity' => $qty );
+        }
+      }
+      foreach( $split as $method => $items ){
+        
+        echo "<h2>".$edb_shipping_methods[$method]."</h2>";
+        foreach( $items as $copy ){
+          //echo "<pre>".json_encode($copy['item'])."</pre>";
+          $item_product = $order->get_product_from_item( $copy['item'] );
+          // $item_line_total = $copy['item']['line_total'];
+          // $item_line_qty    = $copy['item']['item_meta']['_qty'][0];
+          
+          // $per_item_cost = $item_line_total / $item_line_qty;
+          
+          // $copy['item']['edb_shipping'] = $method;
+          // $copy['item']['qty'] = $copy['quantity'];
+          // $copy['item']['line_total'] = $per_item_cost * $copy['quantity'];
+          // $copy['item']['line_subtotal'] = $per_item_cost * $copy['quantity'];
+          // $copy['item']['item_meta']['_qty'] = $copy['quantity'];
+          // $copy['item']['item_meta']['_line_total'] = $per_item_cost * $copy['quantity'];
+          // $copy['item']['item_meta']['_line_subtotal'] = $per_item_cost * $copy['quantity'];
+          
+          wc_get_template( 'order/order-details-item.php', array(
+            'order'   => $order,
+            'item_id' => $copy['item_id'],
+            'item'    => $copy['item'],
+            'product' => apply_filters( 'woocommerce_order_item_product', $item_product, $item )
+          ) );      
+        }
+      }
+    
 		?>
 		<?php do_action( 'woocommerce_order_items_table', $order ); ?>
-	</tbody>
-	<tfoot>
-		<?php
-			foreach ( $order->get_order_item_totals() as $key => $total ) {
-				?>
-				<tr>
-					<th scope="row"><?php echo $total['label']; ?></th>
-					<td><?php echo $total['value']; ?></td>
-				</tr>
-				<?php
-			}
-		?>
-	</tfoot>
-</table>
+		
+		</div>
+      </div>
+      <div class="box half">
+        <h1>Totals</h1>
+        <div class="cart-costs">
+        <?php
+          foreach ( $order->get_order_item_totals() as $key => $total ) {
+            ?>
+            <div class="cost-line">
+              <?php if( $key =='shipping'){ ?>
+              <span class="label"><?php echo $total['label']; ?></span>
+                <span class="value"><?php edb_cart_shipping_total();?></span> 
+              <?php }else{ ?>
+                <span class="label"><?php echo $total['label']; ?></span>
+                <span class="value"><?php echo $total['value']; ?></span>
+              <?php }; ?>
+              <?php write_log( $key ); ?>
+              
+            </div>
+            
+            <?php
+          }
+        ?>
+        </div>
+        <?php do_action( 'woocommerce_order_details_after_order_table', $order ); ?>
+        <?php wc_get_template( 'order/order-details-customer.php', array( 'order' =>  $order ) ); ?>
+      </div>
+    </div>
+	
 
-<?php do_action( 'woocommerce_order_details_after_order_table', $order ); ?>
 
-<?php wc_get_template( 'order/order-details-customer.php', array( 'order' =>  $order ) ); ?>
+

@@ -144,6 +144,63 @@ body.toast-cover #page{
 .btk-form-success.inplace{
   display:none;
 }
+
+
+@media all and (min-width:320px) and (max-width:500px){
+  .toast.vertical.active{
+    margin-top:0;
+    top:0;
+    height:100vh;
+  }
+  .toast .page .image{
+    background-color:red;
+  }
+  .toast .page .image,
+  .toast .page .content{
+    width:100%;
+    height:60%;
+    margin-top:1em;
+  }
+  .toast .page .image{
+    height:40%;
+  }
+  .toast .close{
+    right:.5em;
+    top:.5em;
+  }
+  .toast .page .title{
+    margin:0;
+  }
+  .toast .wpcf7-form-control-wrap input {
+    width:100%;
+  }
+  
+  
+  .toast  .material-description{
+    height:100%;
+    .box,.box.half{
+      margin:0;
+      width:100%!important;
+      height:60%;
+      margin-top:1em;
+    }
+    .box.half.material-image{
+      height:40%;
+      
+    }
+    .material-info{
+      .name,.color,.description,p,.composition{
+        width:100%;
+        display:block;
+        float:left;
+      }
+      ul,li{width:100%;margin:0;display:block;float:left;}
+    }
+  }
+  
+}
+
+
 // .toast.fullbleed{
 //   opacity:0;
 //   transform:scale(0);

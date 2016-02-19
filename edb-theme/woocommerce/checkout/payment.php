@@ -123,9 +123,25 @@ global $WC_Edb;
 <h3>Final Checklist</h3>
     <label class="checklist-checkbox"><input type="checkbox" name="final_checklist_fits"> <span>I made sure the item fits.</span> </label>
     <label class="checklist-checkbox"><input type="checkbox" name="final_checklist_noinclude"> <span>The delivery does not include...</span></label>
-    <label class="checklist-checkbox"><input type="checkbox" name="final_checklist_variation"> <span>I am aware that there can be slight variation in the colors of the swatches and the dinal product due to dye lot difference.</span></label>
+    <label class="checklist-checkbox"><input type="checkbox" name="final_checklist_variation"> <span>I am aware that there can be slight variation in the colors of the swatches and the final product due to dye lot difference.</span></label>
     </div>
     
+    
+    </div>
+    <div class="box half">
+    <div class="cart-costs-review">
+      <h1>Total</h1>
+      <div class="cart-costs-repeat">
+         <?php get_template_part('woocommerce/checkout/parts', 'totals') ;?>
+      </div>
+      <h1><?php _e('Items', 'edb')?></h1>
+      <div class="cart-review-items-repeat">
+        <?php get_template_part('woocommerce/checkout/parts', 'packages') ;?>
+      </div>
+    
+    </div>
+    
+    </div>
     <div class="form-row place-order">
     
       <noscript><?php _e( 'Since your browser does not support JavaScript, or it is disabled, please ensure you click the <em>Update Totals</em> button before placing your order. You may be charged more than the amount stated above if you fail to do so.', 'woocommerce' ); ?><br/><input type="submit" class="button alt" name="woocommerce_checkout_update_totals" value="<?php esc_attr_e( 'Update totals', 'woocommerce' ); ?>" /></noscript>
@@ -145,20 +161,6 @@ global $WC_Edb;
     
       <?php do_action( 'woocommerce_review_order_after_submit' ); ?>
     
-    </div>
-    </div>
-    <div class="box half">
-    <div class="cart-costs-review">
-      <h1>Total</h1>
-      <div class="cart-costs-repeat">
-         <?php get_template_part('woocommerce/checkout/parts', 'totals') ;?>
-      </div>
-      <h1><?php _e('Items', 'edb')?></h1>
-      <div class="cart-review-items-repeat">
-        <?php get_template_part('woocommerce/checkout/parts', 'packages') ;?>
-      </div>
-    
-    </div>
     </div>
     </div>
     

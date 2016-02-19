@@ -31,6 +31,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 @import "_sliders";
 @import "_splash";
 @import "_toast";
+@import "_order";
 
 .postcode{
   text-transform:uppercase!important;
@@ -39,6 +40,10 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
   .slide-clickable{
     top:3em;
   }
+  #site-nav a{
+    padding:0 .25em;
+  }
+  
 }
 @media (max-width: 991px){
   
@@ -199,8 +204,8 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
     margin-top: .5em;
     margin-bottom: 0;
     line-height: 1.1;
-    
-    width: calc( ~"100% - 3em");
+    width:100%;
+    // width: calc( ~"100% - 3em");
   }
   .product-subname{
     margin:0 0 .25em 0;

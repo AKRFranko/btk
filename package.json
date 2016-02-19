@@ -1,0 +1,25 @@
+{
+  "name": "btk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "datauri": "^1.0.4",
+    "forms": "^1.1.4",
+    "glob-fs": "^0.1.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AKRFranko/btk.git"
+  },
+  "author": "franko <code@akr.club> (http://akr.club)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AKRFranko/btk/issues"
+  },
+  "homepage": "https://github.com/AKRFranko/btk#readme"
+}

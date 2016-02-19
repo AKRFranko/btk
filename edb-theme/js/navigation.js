@@ -11,6 +11,9 @@
  
 
   */
+  
+  
+  
 
   // window.viewportUnitsBuggyfill.init();
   var $ = jQuery;
@@ -122,6 +125,17 @@
     // console.log(name)
 
   })
+  
+  // $(document).on('change','.shipping-method-choice input', function(){
+  //   var $input = $( this );
+  //   var $label = $(this).closest('label');
+  //   var isChecked = $input.is(':checked');
+  //   if(isChecked){
+  //     $label.addClass('checked')
+  //   }else{
+  //     $label.removeClass('checked')
+  //   }
+  // })
 
   $(document).on('change', '.product-quantity-input input[name="quantity"]', function() {
     if ($('.product-color-choices .active-choice').length) {
@@ -162,6 +176,29 @@
   // });
 
   $(function() {
+    
+    if($('.is-safari .home-slider').length){
+      var $hc = $('.home-slider .controls');
+      function resizeSlider(){
+        var ww = jQuery(window).width();
+        var wh = jQuery(window).height();
+        
+        if(width < height ){
+            $hc.addClass( 'ios-offset' );
+        }else{
+          $hc.removeClass( 'ios-offset' );
+        }
+      }
+      $(window).resize( resizeSlider );
+      
+    }
+    // var bg = jQuery("#bg1, #bg2");
+    // jQuery(window).resize("resizeBackground");
+    // function resizeBackground() {
+    //     bg.height(jQuery(window).height());
+    // }
+    // resizeBackground();
+    
     $('.address-field input.input-text').removeClass('input-text');
     // setTimeout( function(){
     //   // console.log('REMOVE ERROR');
@@ -224,7 +261,14 @@
   $(document).ajaxComplete(function(event, res) {
     $('.address-field input.input-text').removeClass('input-text');
     // console.log('REMOVE ERROR');
-    
+    // $('.shipping-method-choice input').each( function(){
+    //   if( $(this).is(':checked')){
+    //   $(this).closest('label').addClass('checked')  
+    //   }else{
+    //     $(this).closest('label').removeClass('checked')  
+    //   }
+      
+    // })
     if (res.responseJSON.mailSent) {
       $('.wpcf7-form').html('<h1>Thank you!</h1><p>We\'ll get back to you shortly.');
     }

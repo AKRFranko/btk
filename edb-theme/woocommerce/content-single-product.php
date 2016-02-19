@@ -101,36 +101,47 @@ if ( ! defined( 'ABSPATH' ) ) {
     
   </div><!-- .product-sections -->
   <div class="product-sub-sections">
-    <div class="product-sub-section">
-      
-      <div class="product-technical-image">
-        <?php 
-          if(edb_has_tech_image( $product->id )){ 
-            edb_product_tech_image( $product->id  );
-          };
-        ?>
-      </div>
-      <div class="product-introduction-video">
-        <?php edb_product_video_link( $product->id, 'introduction' ); ?>
-        <!--<a class="yt-thumb" href="https://www.youtube.com/embed/_qogwJT4QxI">-->
-        <!--  <img src="https://img.youtube.com/vi/_qogwJT4QxI/mqdefault.jpg">-->
-        <!--</a>-->
-      </div>
-      
-    </div>
-    <div class="product-sub-section">
-      <div class="product-designer-text">
-        <h2 class="section-title">DESIGNER</h2>
+    <?php 
+     $hasTechImage = edb_has_tech_image( $product->id ) ;
+     $hasIntroVid = edb_has_introduction_video( $product->id );
+     $solo = $hasTechImage && $hasTechImage ? '' : 'solo';
+     if( $hasTechImage || $hasIntroVid ){ ?>
+      <div class="product-sub-section <?php echo $solo; ?>">
+        <?php  if($hasTechImage){  ?>
+          <div class="product-technical-image">
+          <?php edb_product_tech_image( $product->id  ); ?>
+          </div>
+        <?php };?>
+        <?php  if($hasIntroVid){  ?>
+          <div class="product-introduction-video">
+            <?php edb_product_video_link( $product->id, 'introduction' ); ?>
+          </div>
+        <?php };?>
+    </div>  
+    <?php } ?>
+    <?php if(edb_has_designer( $product->id )){ ?>
+      <div class="product-sub-section">
+        <div class="product-designer-text">
+          <h2 class="section-title">DESIGNER</h2>
         
-        <p>
-          a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat.
-        </p>
+          <p>
+            a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat.
+          </p>
+        </div>
+        <div class="product-designer-image">
+          <span class="round-image-wrapper"><img src="https://development.elementdebase.com/wp-content/themes/btk/img/kalle-lasn.jpg"></span>
+        </div>
       </div>
-      <div class="product-designer-image">
-        <span class="round-image-wrapper"><img src="https://development.elementdebase.com/wp-content/themes/btk/img/kalle-lasn.jpg"></span>
-      </div>
-    </div>
-    <div class="product-sub-section">
+    <?php }; ?>
+    
+    <?php 
+      $hasInstruVid = edb_has_instruction_video( $product->id );
+      $hasDims = edb_has_dimensions( $product->id );
+      $solo = $hasInstruVid && $hasDims ? '' : 'solo';
+    ?>
+    <?php if($hasInstruVid || $hasDims){ ?>
+    <div class="product-sub-section <?php echo $solo; ?>">
+      <?php if($hasInstruVid){ ?>
       <div class="product-instruction-video">
         <h2 class="section-title"><?php _e('Assembly Instructions', 'edb'); ?></h2>
         <?php edb_product_video_link( $product->id, 'instruction' ); ?>
@@ -138,11 +149,15 @@ if ( ! defined( 'ABSPATH' ) ) {
         <!--  <img src="https://img.youtube.com/vi/_qogwJT4QxI/mqdefault.jpg">-->
         <!--</a>-->
       </div>
+      <?php };?>
+      <?php if( $hasDims){ ?>
       <div class="product-detailed-information">
         <h2 class="section-title"><?php _e('Materials and Dimensions', 'edb'); ?></h2>
         <p>a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat.</p>
       </div>
+      <?php };?>
     </div>
+    <?php }; ?>
     
     <div class="product-sub-section">
       <div class="product-shipping-return-text">
@@ -153,7 +168,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         <span class="round-image-wrapper"></span>
       </div>
     </div>
-    
+    <?php if( edb_has_sidekick( $product->id)){ ?>
     <div class="product-sub-section">
       <div class="product-sidekick" style="background-image:url(/wp-content/themes/btk/img/diagram.jpg);">
         <div>
@@ -163,7 +178,9 @@ if ( ! defined( 'ABSPATH' ) ) {
       </div>
       
     </div>
+    <?php }; ?>
     
+    <?php if( edb_has_review( $product->id)){ ?>
     <div class="product-sub-section">
       <div class="product-review-text">
         <h2 class="section-title"><?php _e('Why HEather Loves this model', 'edb'); ?></h2>
@@ -173,6 +190,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         <span class="round-image-wrapper"></span>
       </div>
     </div>
+    <?php }; ?>
   </div>
   
 

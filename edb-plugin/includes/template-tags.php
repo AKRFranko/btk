@@ -64,7 +64,10 @@ function edb_decorated_product( $product_id ){
 function edb_package_item_image( $package_item_key, $package_item ){
   $variation_id = $package_item['variation_id'];
   $decorated = edb_decorated_product( $variation_id );
-  echo '<img src="'. $decorated->images['material_variations'][$decorated->material]. '">';
+  $image_id = get_post_thumbnail_id( $variation_id);
+  
+  // $this->materials[$variation_material]['image'] = wp_get_attachment_image_src($image_id, 'thumb')[0];
+  echo '<img src="'. wp_get_attachment_image_src($image_id, 'thumbnail')[0]. '">';
 }
 function edb_package_item_name( $package_item_key, $package_item ){
   $variation_id = $package_item['variation_id'];
@@ -83,11 +86,43 @@ function edb_package_item_category( $package_item_key, $package_item ){
   echo $decorated->category;
 }
 
+// function edb_split_order_items_into_shipments( $order ){
+//   $split = array();
+//   $order_items = $order->get_items();
+//   foreach( $order_items as $item_id => $item ){
+//     foreach( $item['edb_shipments'] as $shipping_method => $qty ){
+//       if(empty($split[$shipping_method])){
+//         $split[$shipping_method] = array();
+//       }
+//       $split[$shipping_method][]=array(
+//           'item_id' => $item_id,
+//           'item' =>$item,
+//           'qty' => $qty
+//       );
+//     }
+//   }
+//   foreach( $split as $shipping_method => $items ){
+//     foreach( $items as $copy ){
+//       $product = $order->get_product_from_item( $copy['item'] );
+//       $item = $copy['item'];
+//       $line_total = $item['line_total'];
+//       $line_qty = $item['item_meta']['_qty'][0];
+//       write_log($item);
+      
+//       //$pre_item_cost = $item_line_total / $item_line_qty;
+//       // $copy['item']['edb_shipping'] = $shipping_method;
+//       // $copy['item']['qty'] = $copy['quantity'];
+//       // $copy['item']['line_total']
+//     }
+//   }
+// }
+
 function edb_cart_item_image( $cart_item_key, $cart_item ){
-  $product_id = $cart_item['product_id'];
-  $variation_id = $cart_item['variation_id'];
-  $decorated = edb_decorated_product( $variation_id );
-  echo '<img src="'. $decorated->images['material_variations'][$decorated->material]. '">';
+  edb_package_item_image($cart_item_key, $cart_item  );
+  // $product_id = $cart_item['product_id'];
+  // $variation_id = $cart_item['variation_id'];
+  // $decorated = edb_decorated_product( $variation_id );
+  // echo '<img src="'. $decorated->images['material_variations'][$decorated->material]. '">';
 }
 function edb_cart_item_name( $cart_item_key, $cart_item ){
   $product_id = $cart_item['product_id'];
@@ -153,6 +188,22 @@ function edb_checkout_item_availability( $cart_item_key, $cart_item  ){
   
   
 }
+
+function edb_order_item_availability( $item, $order ){
+  $product_id = $item['product_id'];
+  $variation_id = $item['variation_id'];
+  $shipping = $item['edb_shipping'];
+  
+  $availability = $item['edb_availabilities'][$shipping];
+  $order_date = strtotime($order->order_date);
+  
+  $display =  strtotime( $availability, $order_date );
+  // write_log( $availability );
+  // write_log( $order_date );
+  // write_log( $display );
+  echo sprintf( __('Ships: %s', 'edb') ,date_i18n('j F Y', $display) );
+  
+}
 function edb_shipping_item_availability( $package ){
   $product_id = $package['product_id'];
   $variation_id = $package['variation_id'];
@@ -167,16 +218,16 @@ function edb_shipping_item_availability( $package ){
 
 function edb_cart_item_availability( $cart_item_key, $cart_item ){
   return edb_checkout_item_availability( $cart_item_key, $cart_item );
-  $product_id = $cart_item['product_id'];
-  $variation_id = $cart_item['variation_id'];
-  $decorated = edb_decorated_product( $variation_id );
-  $delays = $decorated->shipping_delays[$variation_id];
-  $now = strtotime(date(DATE_RFC2822));
+  // $product_id = $cart_item['product_id'];
+  // $variation_id = $cart_item['variation_id'];
+  // $decorated = edb_decorated_product( $variation_id );
+  // $delays = $decorated->shipping_delays[$variation_id];
+  // $now = strtotime(date(DATE_RFC2822));
   
-  $min = trim(time_elapsed(strtotime( $delays['available'], $now )));
-  $max = trim(time_elapsed(strtotime( $delays['backorder'], $now )));;
-  //var_dump( $cart_item );
-  echo "$min ~ $max";
+  // $min = trim(time_elapsed(strtotime( $delays['available'], $now )));
+  // $max = trim(time_elapsed(strtotime( $delays['backorder'], $now )));;
+  // //var_dump( $cart_item );
+  // echo "$min ~ $max";
 }
 function edb_get_category_url( $category ){
   $prod_cat_args = array(
@@ -410,6 +461,34 @@ function edb_has_tech_image( $product_id ){
   return !(strpos($image, 'missing') !== false);
 }
 
+function edb_has_introduction_video( $product_id ){
+  $decorated = edb_decorated_product( $product_id );
+  $video = $decorated->videos['introduction'];
+  return !is_null($video['youtube_id']);
+}
+
+function edb_has_instruction_video( $product_id ){
+  $decorated = edb_decorated_product( $product_id );
+  $video = $decorated->videos['instruction'];
+  return !is_null($video['youtube_id']);
+}
+
+function edb_has_dimensions( $product_id ){
+  // TODO
+  return false;
+}
+function edb_has_sidekick($product_id ){
+  // TODO
+  return false;
+}
+function edb_has_designer( $product_id ){
+  // TODO
+  return false;
+}
+function edb_has_review( $product_id ){
+  // TODO
+  return false;
+}
 
 function edb_product_tech_image( $product_id ){
   $decorated = edb_decorated_product( $product_id );

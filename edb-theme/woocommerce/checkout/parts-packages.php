@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php
 
 global $Edb_Shipping_Method;
-$shipments = array();
+
  $edb_shipping_methods = array(
   'edb_self_pickup' => "I will pick up.",
   'edb_ship_ready' => "Ship when ready",
@@ -15,6 +15,7 @@ $shipments = array();
   'edb_ship_bundle_2' => "Ship bundle 2",
   'edb_ship_bundle_3' => "Ship bundle 3"
 ); 
+$shipments = array();
 foreach($Edb_Shipping_Method->packages as $key => $item)
 {
    $shipments[$item['edb_shipping']][$key] = $item;

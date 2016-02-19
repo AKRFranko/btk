@@ -25,7 +25,7 @@
       }else{
         setTimeout( function(){
           $('#contest').addClass('active');
-        }, 10000)
+        }, 100)
       }  
     }
     $('input[name=attribute_edb_material]').trigger('change')

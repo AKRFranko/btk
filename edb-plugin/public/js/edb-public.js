@@ -459,6 +459,8 @@ window.requestAnimFrame = (function(){
   $(document).on('click', '#place_order', function( e ){
     if(!validatePanel('place-order-panel')){
       e.preventDefault()
+      
+      
     }
   });
   
@@ -479,6 +481,11 @@ window.requestAnimFrame = (function(){
         $('#currentPanel').val( '#' + $panels.eq(targetIndex).attr('id') );
       })  
     }else{
+      var $panel = $('.checkout-panel.active');
+      var offset = $panel.offset();
+      $('html,body').animate({
+        scrollTop: 0
+      });
       console.log('not valid');
     }
     

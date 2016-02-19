@@ -2,8 +2,9 @@
 
 function time_elapsed($ptime) {
     $etime = $ptime - time();
-
+    // write_log("etime: $etime ptime: $ptime");
     if ($etime < 1) {
+      
         return '0 seconds';
     }
 /*
@@ -110,30 +111,145 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   
   public function order_get_items( $items, $order ){
     write_log('order_get_items');
-    // write_log( $items );
+    foreach($items as $key => $item){
+      // write_log( $item );
+      if($item['type'] == 'line_item'){
+        if(!empty($items[$key]['edb_shipments'])){
+          $items[$key]['edb_shipments'] = unserialize($items[$key]['edb_shipments']);  
+          $items[$key]['edb_shipping'] = array_keys($items[$key]['edb_shipments'])[0];
+          
+        }else{
+          write_log('SHIPMENTS EMPTY');
+          // write_log( $items[$key] );
+        }
+        if(!empty($items[$key]['edb_availabilities'])){
+          $items[$key]['edb_availabilities'] = unserialize($items[$key]['edb_availabilities']);  
+        }else{
+          write_log('AVAILABILITES EMPTY');
+          // write_log( $items[$key] );
+        }
+        
+      }
+    }
+    
     return $items;
   }
+  public function checkout_split_order_item( $order, $item, $item_id){
+    $shipment_meta  = $item['edb_shipments'];
+    $availabilities = $item['edb_availabilities'];
+    
+    $original_qty = $item['item_meta']['_qty'][0];
+    $product = $order->get_product_from_item( $item );
+    $per_item_total = $item['line_total'] / $original_qty;
+    $per_item_subtotal = $item['line_subtotal'] / $original_qty;
+    $per_item_subtotal_tax = $item['line_subtotal_tax'] / $original_qty;
+    $per_item_tax = $item['line_tax'] / $original_qty;
+    $original_tax_data = unserialize($item['item_meta']['_line_tax_data'][0]);
+    $per_item_tax_data = array( 'total' => array(), 'subtotal' => array());
+    // write_log('ORIGINAL TAX DATA');
+    // write_log($original_tax_data);
+    foreach($original_tax_data['total'] as $i => $value ){
+      $per_item_tax_data['total'][$i] = $value / $original_qty;
+    }
+    foreach($original_tax_data['subtotal'] as $i => $value ){
+      $per_item_tax_data['subtotal'][$i] = $value / $original_qty;
+    }
+    $index = 0;
+    foreach( $shipment_meta as $shipping_method => $qty){
+      $availability = $availabilities[$shipping_method];
+      $ships = array( );
+      $avails = array( );
+      $ships[$shipping_method] = $qty;
+      $avails[$shipping_method] = $availability;
+      $totals = array(
+                'subtotal'=> $qty * $per_item_subtotal,
+                'subtotal_tax' => $qty * $per_item_subtotal_tax,
+                'total' => $qty * $per_item_total,
+                'tax' => $qty * $per_item_tax,
+                );
+      $tax_data = array('total'=>array(), 'subtotal' => array() );
+      foreach($per_item_tax_data['total'] as $i => $per_item_value ){
+        $tax_data['total'][$i] = $per_item_value * $qty;
+      }
+      foreach($per_item_tax_data['subtotal'] as $i=> $per_item_value ){
+        $tax_data['subtotal'][$i] = $per_item_value* $qty;
+      }
+      
+      $totals['tax_data'] =  $tax_data ;
+      // write_log('NEW TAX DATA');
+      // write_log($tax_data);
+      if($index == 0){
+        $args = array( 'qty' => $qty, 'totals' => $totals );
+        $order->update_product( $item_id, $product, $args );
+        wc_update_order_item_meta( $item_id, 'edb_shipments', $ships);
+        wc_update_order_item_meta( $item_id, 'edb_availabilities', $avails );
+        wc_update_order_item_meta( $item_id, '_line_tax_data', $tax_data );
+      }else{
+        write_log('ADDING TAX_DATA META!');
+        $new_item_id = $order->add_product( $product, $qty, array(
+          'variation'=> array( 'attribute_edb_material' => $item['edb_material']),
+          'totals' => $totals
+        ) );
+        wc_add_order_item_meta( $new_item_id, 'edb_shipments', $ships);
+        wc_add_order_item_meta( $new_item_id, 'edb_availabilities', $avails );
+      }
+      $index++;
+    }
+    // $order->update_taxes();
+    
+  }
   
+  public function checkout_update_order_meta( $order_id, $posted ){
+    $order = wc_get_order( $order_id );
+    write_log("woocommerce_checkout_update_order_meta");  
+    write_log( "BEFORE ORDER HAD: " . count( $order->get_items() ) . " line items.");
+
+    $original_items = $order->get_items();
+    foreach($original_items as $item_id => $item ){
+      
+      if(count($item['edb_shipments']) > 1){
+        $this->checkout_split_order_item( $order, $item, $item_id);
+      }
+      
+    }
+    $order->update_taxes();
+    write_log( "NOW ORDER HAS: " . count( $order->get_items() ) . " line items." );
+    
+  }
   public function set_custom_field_on_order_item( $item_id, $values, $cart_item_key  ){
     global $Edb_Shipping_Method;
     write_log('set_custom_field_on_order_item');
+    
     // write_log( "item_id: $item_id");
     // write_log( "cart_item_key: $cart_item_key");
     // write_log($item);
+    $shipments=array();
+    $availability_dates=array();
     foreach($Edb_Shipping_Method->packages as $package){
-      if($package['cart_item_key'] == $cart_item_key ){
-        write_log($package);
-        woocommerce_add_order_item_meta( $item_id, 'edb_shipping', $package['edb_shipping'] );
+      
+      if(empty($shipments[$cart_item_key])){
+        $shipments[$cart_item_key] = array();
       }
+      if(empty($availability_dates[$cart_item_key])){
+        $availability_dates[$cart_item_key] = array();
+      }
+      if($package['cart_item_key'] == $cart_item_key ){
+        $shipments[$cart_item_key][$package['edb_shipping']] =  $package['contents'][0]['quantity'];
+        $availability_dates[$cart_item_key][$package['edb_shipping']] = $package['contents'][0]['edb_availability'];
+      }
+      
     }
-    // die();
-  }
-  public function set_custom_fields_on_order( $order_id ){
-    write_log('set_custom_fields_on_order');
-    write_log($_POST);
-    
+    // write_log('add_order_item_meta');
+    woocommerce_add_order_item_meta( $item_id, 'edb_shipments', $shipments[$cart_item_key] );
+    woocommerce_add_order_item_meta( $item_id, 'edb_availabilities', $availability_dates[$cart_item_key] );
     
   }
+  // public function set_custom_fields_on_order( $order_id ){
+  //   write_log('set_custom_fields_on_order');
+  //   write_log($_POST);
+    
+    
+  // }
 
   public function cart_needs_shipping( $needs_shipping ){
     // $customer = WC()->session->customer;
@@ -1014,10 +1130,10 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
         $packages[$packageID_1]=$this->create_package($available_items, $shipping_method_1,$item_key,'available');
         $packages[$packageID_2]=$this->create_package($backorder_items,$shipping_method_2,$item_key,'backorder');
         
-        if(!in_array($item_key, $Edb_Shipping_Method->cart_item_shipments)){
-          $Edb_Shipping_Method->cart_item_shipments[$item_key] = array();
-        }
-        $Edb_Shipping_Method->cart_item_shipments[$item_key] = array($shipping_method_1,$shipping_method_2);
+        // if(!in_array($item_key, $Edb_Shipping_Method->cart_item_shipments)){
+        //   $Edb_Shipping_Method->cart_item_shipments[$item_key] = array();
+        // }
+        // $Edb_Shipping_Method->cart_item_shipments[$item_key] = array($shipping_method_1,$shipping_method_2);
       }else{
         $item['edb_availability'] = $this->get_package_availability( $item['data'], false);
         
@@ -1027,10 +1143,10 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
         }
         $shipping_method = $shipping_methods[$packageID_1];
         $packages[$packageID_1]=$this->create_package($item,$shipping_method,$item_key,'available');
-        if(!in_array($item_key, $Edb_Shipping_Method->cart_item_shipments)){
-          $Edb_Shipping_Method->cart_item_shipments[$item_key] = array();
-        }
-        $Edb_Shipping_Method->cart_item_shipments[$item_key] = array($shipping_method);
+        // if(!in_array($item_key, $Edb_Shipping_Method->cart_item_shipments)){
+        //   $Edb_Shipping_Method->cart_item_shipments[$item_key] = array();
+        // }
+        // $Edb_Shipping_Method->cart_item_shipments[$item_key] = array($shipping_method);
       }
     }
     $counts = array();

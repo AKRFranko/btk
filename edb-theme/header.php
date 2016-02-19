@@ -45,7 +45,7 @@
       <nav id="site-nav">
         <?php if ( is_user_logged_in() ) : ?>
         <?php $current_user = wp_get_current_user(); ?>
-        <?php _e('Welcome', 'edb'); ?><a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>"><b><?php echo $current_user->user_nicename; ?></b></a>,<a class="logout" href="<?php echo wp_logout_url( home_url('/') ); ?>"><?php _e('sign out', 'edb'); ?></a>
+        <?php _e('Welcome', 'edb'); ?><a class="my-account" href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>"><b><?php echo $current_user->user_nicename; ?></b></a><a class="logout" href="<?php echo wp_logout_url( home_url('/') ); ?>"><?php _e('sign out', 'edb'); ?></a>
         <?php else: ?>
         <a class="login" href="<?php echo esc_url(home_url('/')); ?>sign-in"><?php _e('Sign in', 'edb'); ?></a>
         <?php endif; ?>

@@ -6,6 +6,12 @@
  *
  * @package edb
  */
+ 
+$preview = get_stylesheet_directory() . '/woocommerce/emails/woo-preview-emails.php';
+ 
+if(file_exists($preview)) {
+     require $preview;
+}
 
 if ( ! function_exists( '_s_setup' ) ) :
 /**

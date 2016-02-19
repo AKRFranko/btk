@@ -9,6 +9,39 @@
   min-height:calc(~"100vh - @{mast-height}");
   max-height:calc(~"100vh - @{mast-height}");
 }
+
+.edb-slider .controls.ios-offset{
+  margin-top:60px;
+}
+
+@media all and (min-width:320px) and (max-width:500px){
+    .product-slideshow{
+        .edb-slide, .edb-slider .edb-slide .backdrop{
+          min-height:calc(~"320px * 0.613");
+          max-height:calc(~"320px * 0.613");
+      // min-height:460px;
+      // max-height:460px;
+        } 
+        &, & .edb-slider{
+          min-height:calc(~"390px * 0.613");
+          max-height:calc(~"390px * 0.613");
+        }
+        .edb-slider .controls{
+          // top:460px;
+          top:calc(~"320px * 0.613");
+        }
+    }
+    a#show-material-toast{
+      abbr[title]{ border:0;}
+      width:1.5em;
+      height:1.5em;
+      border-radius:.75em;
+      right:5.5em;
+      top: .5em;
+      padding-top: .25em;
+    }
+}
+
 @media all and (min-width:900px){
   .home-slider{
     &, & .edb-slider, .edb-slide, .edb-slider .edb-slide .backdrop{
