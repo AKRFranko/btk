@@ -16,21 +16,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 <table class="shop_table shop_table_responsive customer_details">
 	<?php if ( $order->customer_note ) : ?>
 		<tr>
-			<th><?php _e( 'Note:', 'woocommerce' ); ?></th>
+			<th><?php _e( 'note', 'edb' ); ?>:</th>
 			<td><?php echo wptexturize( $order->customer_note ); ?></td>
 		</tr>
 	<?php endif; ?>
 
 	<?php if ( $order->billing_email ) : ?>
 		<tr>
-			<th><?php _e( 'Email:', 'woocommerce' ); ?></th>
+			<th><?php _e( 'email', 'edb' ); ?>:</th>
 			<td><?php echo esc_html( $order->billing_email ); ?></td>
 		</tr>
 	<?php endif; ?>
 
 	<?php if ( $order->billing_phone ) : ?>
 		<tr>
-			<th><?php _e( 'Telephone:', 'woocommerce' ); ?></th>
+			<th><?php _e( 'telephone', 'edb' ); ?>:</th>
 			<td><?php echo esc_html( $order->billing_phone ); ?></td>
 		</tr>
 	<?php endif; ?>
@@ -46,10 +46,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php endif; ?>
 
 <header class="title">
-	<h3><?php _e( 'Billing Address', 'woocommerce' ); ?></h3>
+	<h3><?php _e( 'billing address', 'edb' ); ?></h3>
 </header>
 <address>
-	<?php echo ( $address = $order->get_formatted_billing_address() ) ? $address : __( 'N/A', 'woocommerce' ); ?>
+	<?php echo ( $address = $order->get_formatted_billing_address() ) ? $address : __( 'N/A', 'edb' ); ?>
 </address>
 
 <?php if ( ! wc_ship_to_billing_address_only() && $order->needs_shipping_address() ) : ?>
@@ -57,10 +57,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div><!-- /.col-1 -->
 	<div class="col-2">
 		<header class="title">
-			<h3><?php _e( 'Shipping Address', 'woocommerce' ); ?></h3>
+			<h3><?php _e( 'shipping address', 'edb' ); ?></h3>
 		</header>
 		<address>
-			<?php echo ( $address = $order->get_formatted_shipping_address() ) ? $address : __( 'N/A', 'woocommerce' ); ?>
+			<?php echo ( $address = $order->get_formatted_shipping_address() ) ? $address : __( 'N/A', 'edb' ); ?>
 		</address>
 	</div><!-- /.col-2 -->
 </div><!-- /.col2-set -->

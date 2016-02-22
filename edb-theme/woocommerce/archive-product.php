@@ -96,6 +96,7 @@ get_header( 'shop' ); ?>
                 </h2>
                   <p class="article-subtitle">
                     <?php 
+                      
                       echo wc_price($product->price);
                     ?>
                   </p>  

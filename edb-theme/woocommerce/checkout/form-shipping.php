@@ -34,7 +34,7 @@ $do_not_ship = WC()->session->get('do_not_ship');
 
 		<div class="shipping_address">
 		  
-      <h1><?php _e( 'Shipping Address', 'edb' ); ?></h1>
+      <h1><?php _e( 'shipping address', 'edb' ); ?></h1>
       
 			<?php do_action( 'woocommerce_before_checkout_shipping_form', $checkout ); ?>
 
@@ -56,7 +56,7 @@ $do_not_ship = WC()->session->get('do_not_ship');
 
 		<?php if ( ! WC()->cart->needs_shipping() || WC()->cart->ship_to_billing_address_only() ) : ?>
 
-			<h3><?php _e( 'Additional Information', 'woocommerce' ); ?></h3>
+			<h3><?php _e( 'additional information', 'edb' ); ?></h3>
 
 		<?php endif; ?>
 

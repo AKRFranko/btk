@@ -25,7 +25,7 @@
       }else{
         setTimeout( function(){
           $('#contest').addClass('active');
-        }, 100)
+        }, 10000)
       }  
     }
     $('input[name=attribute_edb_material]').trigger('change')
@@ -60,7 +60,8 @@
     e.preventDefault()
     var $close = $(this);
     var $toast = $close.closest('.toast');
-    $toast.removeClass('active');
+    // $toast.removeClass('active');
+    $toast.remove();
     sessionStorage.setItem('has_dismissed_contest', true );
   });
   

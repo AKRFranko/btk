@@ -28,10 +28,10 @@ if ( get_option( 'woocommerce_enable_shipping_calc' ) === 'no' || ! WC()->cart->
 		<?php if ( apply_filters( 'woocommerce_shipping_calculator_enable_postcode', true ) ) : ?>
 
       <p class="total-line">
-        <span class="label">Enter your postal code to calculate shipping costs</span>
+        <span class="label"><?php _e('enter your postal code to calculate shipping costs', 'edb'); ?></span>
         <span class="value">
-          <input type="text" value="<?php echo esc_attr( WC()->customer->get_shipping_postcode() ); ?>" placeholder="<?php esc_attr_e( 'Postcode / Zip', 'woocommerce' ); ?>" name="calc_shipping_postcode" id="calc_shipping_postcode" />
-          <button type="submit" name="calc_shipping" value="1" class="button"><?php _e( 'Update Totals', 'woocommerce' ); ?></button>
+          <input type="text" value="<?php echo esc_attr( WC()->customer->get_shipping_postcode() ); ?>" placeholder="<?php esc_attr_e( 'postcode / zip', 'edb' ); ?>" name="calc_shipping_postcode" id="calc_shipping_postcode" />
+          <button type="submit" name="calc_shipping" value="1" class="button"><?php _e( 'update totals', 'edb' ); ?></button>
         </span>
         
       </p>

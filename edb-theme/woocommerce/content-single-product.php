@@ -57,7 +57,7 @@ if ( ! defined( 'ABSPATH' ) ) {
       
     </div>
     <div class="product-description">
-      <h2 class="section-title"><?php _e('Description', 'edb'); ?></h2>
+      <h2 class="section-title"><?php _e('description', 'edb'); ?></h2>
       <p><?php echo $edb_product->description; ?></p>
       <?php edb_product_pdf( $product_id ); ?>
       <!--<button id="product-pdf-download" class="">downlaod pdf</button>-->
@@ -74,7 +74,7 @@ if ( ! defined( 'ABSPATH' ) ) {
           
           <?php if ( empty( $available_variations ) && false !== $available_variations ) : ?>
             <div class="product-color-choices">
-              <p class="stock out-of-stock"><?php _e( 'This product is currently out of stock and unavailable.', 'woocommerce' ); ?></p>
+              <p class="stock out-of-stock"><?php _e( 'this product is currently out of stock and unavailable.', 'edb' ); ?></p>
             </div>
           <?php else : ?>
             <div class="product-color-choices">
@@ -92,7 +92,7 @@ if ( ! defined( 'ABSPATH' ) ) {
           <?php endif; ?>
         
           <?php do_action( 'woocommerce_after_variations_form' ); ?>
-          <small class="stocknote">= <?php _e('In Stock'); ?></small>
+          <small class="stocknote">= <?php _e('in stock','edb'); ?></small>
         </form>
         
         <?php do_action( 'woocommerce_after_add_to_cart_form' ); ?>
@@ -122,7 +122,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     <?php if(edb_has_designer( $product->id )){ ?>
       <div class="product-sub-section">
         <div class="product-designer-text">
-          <h2 class="section-title">DESIGNER</h2>
+          <h2 class="section-title"><?php _e('designer'); ?></h2>
         
           <p>
             a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat.
@@ -143,7 +143,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     <div class="product-sub-section <?php echo $solo; ?>">
       <?php if($hasInstruVid){ ?>
       <div class="product-instruction-video">
-        <h2 class="section-title"><?php _e('Assembly Instructions', 'edb'); ?></h2>
+        <h2 class="section-title"><?php _e('assembly instructions', 'edb'); ?></h2>
         <?php edb_product_video_link( $product->id, 'instruction' ); ?>
         <!--<a class="yt-thumb" href="https://www.youtube.com/embed/_qogwJT4QxI">-->
         <!--  <img src="https://img.youtube.com/vi/_qogwJT4QxI/mqdefault.jpg">-->
@@ -152,7 +152,7 @@ if ( ! defined( 'ABSPATH' ) ) {
       <?php };?>
       <?php if( $hasDims){ ?>
       <div class="product-detailed-information">
-        <h2 class="section-title"><?php _e('Materials and Dimensions', 'edb'); ?></h2>
+        <h2 class="section-title"><?php _e('materials and dimensions', 'edb'); ?></h2>
         <p>a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat.</p>
       </div>
       <?php };?>
@@ -161,7 +161,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     
     <div class="product-sub-section">
       <div class="product-shipping-return-text">
-        <h2 class="section-title"><?php _e('Shipping and Return', 'edb'); ?></h2>
+        <h2 class="section-title"><?php _e('shipping and return', 'edb'); ?></h2>
         <p>a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat.</p>
       </div>
       <div class="product-shipping-return-image">
@@ -183,7 +183,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     <?php if( edb_has_review( $product->id)){ ?>
     <div class="product-sub-section">
       <div class="product-review-text">
-        <h2 class="section-title"><?php _e('Why HEather Loves this model', 'edb'); ?></h2>
+        <h2 class="section-title"><?php _e('why heather loves this model', 'edb'); ?></h2>
         <p>a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat.</p>
       </div>
       <div class="product-review-image">

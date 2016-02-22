@@ -3,10 +3,10 @@ msgstr ""
 "Project-Id-Version: edb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Thu Feb 04 2016 12:49:34 GMT-0500 (EST)\n"
-"PO-Revision-Date: Thu Feb 04 2016 12:52:20 GMT-0500 (EST)\n"
-"Last-Translator: franko <franko@akr.club>\n"
+"PO-Revision-Date: Sun Feb 21 2016 17:05:58 GMT-0500 (EST)\n"
+"Last-Translator: admin <edb@akr.club>\n"
 "Language-Team: \n"
-"Language: French (Canada)\n"
+"Language: French (France)\n"
 "Plural-Forms: nplurals=2; plural=n > 1\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,7 +19,7 @@ msgstr ""
 "_x:1,2c;_ex:1,2c;_nx:1,2,4c;_nx_noop:1,2,3c;_n_js:1,2;_nx_js:1,2,3c;"
 "esc_attr__:1;esc_html__:1;esc_attr_e:1;esc_html_e:1;esc_attr_x:1,2c;"
 "esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
-"X-Loco-Target-Locale: fr_CA\n"
+"X-Loco-Target-Locale: fr_FR\n"
 "X-Generator: Loco - https://localise.biz/"
 
 #: ../comments.php:31
@@ -46,96 +46,28 @@ msgstr ""
 msgid "Comments are closed."
 msgstr ""
 
-#: ../search.php:19
-#, php-format
-msgid "Search Results for: %s"
+#: ../functions.php:53
+msgid "Primary"
 msgstr ""
 
-#: ../footer.php:17
-msgid "back to top"
+#: ../functions.php:112
+msgid "sidebar"
 msgstr ""
 
-#: ../header.php:46
-msgid "sign out"
+#: ../functions.php:121
+msgid "languages"
 msgstr ""
 
-#: ../header.php:48
-msgid "Sign in"
+#: ../functions.php:167 ../functions.php:175
+msgid "lookbook"
 msgstr ""
 
-#: ../header.php:51
-msgid "Cart"
+#: ../functions.php:314
+msgid "enter"
 msgstr ""
 
-#: ../header.php:82 ../header.php:84
-#, php-format
-msgid "View all post filed under %s"
-msgstr ""
-
-#: ../header.php:84
-msgid "all"
-msgstr ""
-
-#: ../header.php:87
-#, php-format
-msgid "View all %s"
-msgstr ""
-
-#: ../header.php:96
-msgid "Welcome"
-msgstr ""
-
-#: ../header.php:99 ../header.php:110
-msgid "Returning customers<br />Please sign in"
-msgstr ""
-
-#: ../header.php:103
-msgid "New customers<br />Sign up for shopping<br />and exclusive offers"
-msgstr ""
-
-#: ../header.php:114 ../header.php:140
-msgid "email"
-msgstr ""
-
-#: ../header.php:118 ../header.php:144
-msgid "password"
-msgstr ""
-
-#: ../header.php:124
-msgid "enter edb"
-msgstr ""
-
-#: ../header.php:128
-msgid "> Click here to recover lost password"
-msgstr ""
-
-#: ../header.php:135
-msgid "New customers sign up for shopping<br />and exclusive offers"
-msgstr ""
-
-#: ../header.php:148
-msgid "confirm password"
-msgstr ""
-
-#: ../header.php:154
-msgid "sign up to edb"
-msgstr ""
-
-#: ../header.php:155 ../woocommerce/myaccount/form-login.php:71 ..
-#: woocommerce/myaccount/form-login.php:107
-msgid "Register"
-msgstr ""
-
-#: ../header.php:163
-msgid "Back"
-msgstr ""
-
-#: ../header.php:171
-msgid "Skip to content"
-msgstr ""
-
-#: ../header.php:179
-msgid "Primary Menu"
+#: ../functions.php:315
+msgid "entrez"
 msgstr ""
 
 #: ../404.php:17
@@ -158,12 +90,96 @@ msgstr ""
 msgid "Try looking in the monthly archives. %1$s"
 msgstr ""
 
-#: ../functions.php:47
-msgid "Primary"
+#: ../header.php:97 ../header.php:99
+#, php-format
+msgid "View all post filed under %s"
 msgstr ""
 
-#: ../functions.php:106
-msgid "Sidebar"
+#: ../header.php:102
+#, php-format
+msgid "View all %s"
+msgstr ""
+
+#: ../header.php:115 ../header.php:126
+msgid "returning customers<br />please sign in"
+msgstr ""
+
+#: ../header.php:119
+msgid "new customers<br />sign up for shopping<br />and exclusive offers"
+msgstr ""
+
+#: ../header.php:141
+msgid "login"
+msgstr "connecter"
+
+#: ../header.php:144
+msgid "> click here to recover lost password"
+msgstr ""
+
+#: ../header.php:151
+msgid "new customers sign up for shopping<br />and exclusive offers"
+msgstr ""
+
+#: ../header.php:164
+msgid "confirm password"
+msgstr ""
+
+#: ../header.php:170
+msgid "sign up to edb"
+msgstr ""
+
+#: ../header.php:171
+msgid "register"
+msgstr ""
+
+#: ../header.php:179
+msgid "back"
+msgstr ""
+
+#: ../search.php:19
+#, php-format
+msgid "Search Results for: %s"
+msgstr ""
+
+#: ../inc/template-tags.php:28
+#, php-format
+msgctxt "post date"
+msgid "posted on %s"
+msgstr ""
+
+#: ../inc/template-tags.php:33
+#, php-format
+msgctxt "post author"
+msgid "by %s"
+msgstr ""
+
+#. translators: used between list items, there is a space after the comma
+#. translators: used between list items, there is a space after the comma
+#: ../inc/template-tags.php:50 ../inc/template-tags.php:56
+msgid ", "
+msgstr ""
+
+#: ../inc/template-tags.php:52
+#, php-format
+msgid "posted in %1$s"
+msgstr ""
+
+#: ../inc/template-tags.php:58
+#, php-format
+msgid "tagged %1$s"
+msgstr ""
+
+#: ../inc/template-tags.php:64
+msgid "leave a comment"
+msgstr ""
+
+#: ../inc/template-tags.php:64
+msgid "1 comment"
+msgstr ""
+
+#: ../inc/template-tags.php:64
+#, php-format
+msgid "% comments"
 msgstr ""
 
 #: ../woocommerce/single-product-reviews.php:24
@@ -192,18 +208,6 @@ msgstr ""
 #: ../woocommerce/single-product-reviews.php:61
 #, php-format
 msgid "Leave a Reply to %s"
-msgstr ""
-
-#: ../woocommerce/single-product-reviews.php:65
-msgid "Name"
-msgstr ""
-
-#: ../woocommerce/single-product-reviews.php:67
-msgid "Email"
-msgstr ""
-
-#: ../woocommerce/single-product-reviews.php:70
-msgid "Submit"
 msgstr ""
 
 #: ../woocommerce/single-product-reviews.php:76
@@ -247,29 +251,28 @@ msgstr ""
 msgid "Only logged in customers who have purchased this product may leave a review."
 msgstr ""
 
-#: ../woocommerce/content-single-product.php:59
-msgid "Description"
+#: ../woocommerce/content-single-product.php:60
+msgid "description"
 msgstr ""
 
-#: ../woocommerce/content-single-product.php:75 ../woocommerce/single-product/add-
-#: to-cart/variable.php:23
-msgid "This product is currently out of stock and unavailable."
+#: ../woocommerce/content-single-product.php:77
+msgid "this product is currently out of stock and unavailable."
 msgstr ""
 
 #: ../woocommerce/content-single-product.php:125
-msgid "Assembly Instructions"
+msgid "designer"
 msgstr ""
 
-#: ../woocommerce/content-single-product.php:131
-msgid "Materials and Dimensions"
+#: ../woocommerce/content-single-product.php:146
+msgid "assembly instructions"
 msgstr ""
 
-#: ../woocommerce/content-single-product.php:138
-msgid "Shipping and Return"
+#: ../woocommerce/content-single-product.php:155
+msgid "materials and dimensions"
 msgstr ""
 
-#: ../woocommerce/content-single-product.php:158
-msgid "Why HEather Loves this model"
+#: ../woocommerce/content-single-product.php:186
+msgid "why heather loves this model"
 msgstr ""
 
 #: ../woocommerce/product-searchform.php:2
@@ -291,535 +294,217 @@ msgctxt "submit button"
 msgid "Search"
 msgstr ""
 
-#: ../woocommerce/loop/sale-flash.php:19 ../woocommerce/single-product/sale-flash.
-#: php:19
-msgid "Sale!"
+#: ../woocommerce/single-product/product-image.php:42
+msgid "Placeholder"
 msgstr ""
 
-#: ../woocommerce/loop/result-count.php:31
-msgid "Showing the single result"
-msgstr ""
-
-#: ../woocommerce/loop/result-count.php:33
+#: ../woocommerce/single-product/review.php:29
 #, php-format
-msgid "Showing all %d results"
+msgid "Rated %d out of 5"
 msgstr ""
 
-#: ../woocommerce/loop/result-count.php:35
-#, php-format
-msgctxt "%1$d = first, %2$d = last, %3$d = total"
-msgid "Showing %1$d&ndash;%2$d of %3$d results"
+#: ../woocommerce/single-product/review.php:30
+msgid "out of 5"
 msgstr ""
 
-#: ../woocommerce/loop/no-products-found.php:17
-msgid "No products were found matching your selection."
+#: ../woocommerce/single-product/review.php:37
+msgid "Your comment is awaiting approval"
 msgstr ""
 
-#: ../woocommerce/myaccount/form-add-payment-method.php:41
-msgid ""
-"Sorry, it seems that there are no payment methods which support adding a new "
-"payment method. Please contact us if you require assistance or wish to make "
-"alternate arrangements."
+#: ../woocommerce/single-product/review.php:46
+msgid "verified owner"
 msgstr ""
 
-#: ../woocommerce/myaccount/form-add-payment-method.php:49
-msgid "Add Payment Method"
+#: ../woocommerce/single-product/meta.php:26
+msgid "SKU"
 msgstr ""
 
-#: ../woocommerce/myaccount/my-orders.php:26
-msgid "Recent Orders"
+#: ../woocommerce/single-product/meta.php:26 ../woocommerce/order/order-details-
+#: customer.php:52 ../woocommerce/order/order-details-customer.php:63
+msgid "N/A"
 msgstr ""
 
-#: ../woocommerce/myaccount/my-orders.php:32
-msgid "Order"
-msgstr ""
-
-#: ../woocommerce/myaccount/my-orders.php:33 ../woocommerce/myaccount/my-orders.
-#: php:52
-msgid "Date"
-msgstr ""
-
-#: ../woocommerce/myaccount/my-orders.php:34 ../woocommerce/myaccount/my-orders.
-#: php:55
-msgid "Status"
-msgstr ""
-
-#: ../woocommerce/myaccount/my-orders.php:35 ../woocommerce/myaccount/my-orders.
-#: php:58 ../woocommerce/checkout/form-summaries.php:63 ../woocommerce/cart/cart-
-#: totals.php:29 ../woocommerce/cart/cart-totals.php:105 ..
-#: woocommerce/order/order-details.php:21
-msgid "Total"
-msgstr ""
-
-#: ../woocommerce/myaccount/my-orders.php:47
-msgid "Order Number"
-msgstr ""
-
-#: ../woocommerce/myaccount/my-orders.php:49
-msgctxt "hash before order number"
-msgid "#"
-msgstr ""
-
-#: ../woocommerce/myaccount/my-orders.php:59
-#, php-format
-msgid "%s for %s item"
-msgid_plural "%s for %s items"
+#: ../woocommerce/single-product/meta.php:30
+msgid "category"
+msgid_plural "categories"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../woocommerce/myaccount/my-orders.php:68 ../woocommerce/checkout/thankyou.php:
-#: 28
-msgid "Pay"
-msgstr ""
-
-#: ../woocommerce/myaccount/my-orders.php:75
-msgid "Cancel"
-msgstr ""
-
-#: ../woocommerce/myaccount/my-orders.php:81
-msgid "View"
-msgstr ""
-
-#: ../woocommerce/myaccount/form-lost-password.php:20
-msgid "Password reset"
-msgstr ""
-
-#: ../woocommerce/myaccount/form-lost-password.php:24
-msgid ""
-"Lost your password? Please enter your username or email address. You will "
-"receive a link to create a new password via email."
-msgstr ""
-
-#: ../woocommerce/myaccount/form-lost-password.php:26 ../woocommerce/global/form-
-#: login.php:26
-msgid "Username or email"
-msgstr ""
-
-#: ../woocommerce/myaccount/form-lost-password.php:30
-msgid "Enter a new password below."
-msgstr ""
-
-#: ../woocommerce/myaccount/form-lost-password.php:33
-msgid "New password"
-msgstr ""
-
-#: ../woocommerce/myaccount/form-lost-password.php:37
-msgid "Re-enter new password"
-msgstr ""
-
-#: ../woocommerce/myaccount/form-lost-password.php:52
-msgid "Reset Password"
-msgstr ""
-
-#: ../woocommerce/myaccount/form-lost-password.php:52
-msgid "Save"
-msgstr ""
-
-#: ../woocommerce/myaccount/my-address.php:17
-msgid "My Addresses"
-msgstr ""
-
-#: ../woocommerce/myaccount/my-address.php:19 ../woocommerce/myaccount/my-address.
-#: php:25 ../woocommerce/myaccount/form-edit-address.php:16 ..
-#: woocommerce/checkout/form-billing.php:18 ../woocommerce/checkout/form-
-#: summaries.php:26 ../woocommerce/order/order-details-customer.php:49
-msgid "Billing Address"
-msgstr ""
-
-#: ../woocommerce/myaccount/my-address.php:20 ../woocommerce/myaccount/form-edit-
-#: address.php:16 ../woocommerce/checkout/form-summaries.php:33 ..
-#: woocommerce/checkout/form-shipping.php:37 ../woocommerce/order/order-details-
-#: customer.php:60
-msgid "Shipping Address"
-msgstr ""
-
-#: ../woocommerce/myaccount/my-address.php:23
-msgid "My Address"
-msgstr ""
-
-#: ../woocommerce/myaccount/my-address.php:35
-msgid "The following addresses will be used on the checkout page by default."
-msgstr ""
-
-#: ../woocommerce/myaccount/my-address.php:45
-msgid "Edit"
-msgstr ""
-
-#: ../woocommerce/myaccount/my-address.php:64
-msgid "You have not set up this type of address yet."
-msgstr ""
-
-#: ../woocommerce/myaccount/my-account.php:19
-#, php-format
-msgid "Hello <strong>%1$s</strong> (not %1$s? <a href=\"%2$s\">Sign out</a>)."
-msgstr ""
-
-#: ../woocommerce/myaccount/my-account.php:24
-#, php-format
-msgid ""
-"From your account dashboard you can view your recent orders, manage your "
-"shipping and billing addresses and <a href=\"%s\">edit your password and "
-"account details</a>."
-msgstr ""
-
-#: ../woocommerce/myaccount/my-downloads.php:20
-msgid "Available Downloads"
-msgstr ""
-
-#: ../woocommerce/myaccount/my-downloads.php:29
-#, php-format
-msgid "%s download remaining"
-msgid_plural "%s downloads remaining"
+#: ../woocommerce/single-product/meta.php:32
+msgid "tag"
+msgid_plural "tags"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../woocommerce/myaccount/form-edit-address.php:45
-msgid "Save Address"
+#: ../woocommerce/single-product/related.php:42
+msgid "Related Products"
 msgstr ""
 
-#: ../woocommerce/myaccount/view-order.php:20
+#: ../woocommerce/single-product/product-attributes.php:29
+msgid "weight"
+msgstr ""
+
+#: ../woocommerce/single-product/product-attributes.php:36
+msgid "dimensions"
+msgstr ""
+
+#: ../woocommerce/single-product/rating.php:27
 #, php-format
-msgid ""
-"Order #<mark class=\"order-number\">%s</mark> was placed on <mark class=\"order-"
-"date\">%s</mark> and is currently <mark class=\"order-status\">%s</mark>."
+msgid "Rated %s out of 5"
 msgstr ""
 
-#: ../woocommerce/myaccount/view-order.php:24 ../woocommerce/order/tracking.php:25
-msgid "Order Updates"
-msgstr ""
-
-#: ../woocommerce/myaccount/view-order.php:30 ../woocommerce/order/tracking.php:31
-msgid "l jS \\o\\f F Y, h:ia"
-msgstr ""
-
-#: ../woocommerce/myaccount/form-login.php:39 ../woocommerce/auth/form-login.php:26
-msgid "Username or email address"
-msgstr ""
-
-#: ../woocommerce/myaccount/form-login.php:43 ../woocommerce/myaccount/form-login.
-#: php:93 ../woocommerce/auth/form-login.php:30 ../woocommerce/global/form-login.
-#: php:30
-msgid "Password"
-msgstr ""
-
-#: ../woocommerce/myaccount/form-login.php:53 ../woocommerce/global/form-login.
-#: php:42
-msgid "Remember me"
-msgstr ""
-
-#: ../woocommerce/myaccount/form-login.php:59 ../woocommerce/global/form-login.
-#: php:46
-msgid "Lost your password?"
-msgstr ""
-
-#: ../woocommerce/myaccount/form-login.php:79
-msgid "Username"
-msgstr ""
-
-#: ../woocommerce/myaccount/form-login.php:86 ../woocommerce/myaccount/form-edit-
-#: account.php:33
-msgid "Email address"
-msgstr ""
-
-#: ../woocommerce/myaccount/form-login.php:100
-msgid "Anti-spam"
-msgstr ""
-
-#: ../woocommerce/myaccount/form-login.php:109
-msgid "I already have an account"
-msgstr ""
-
-#: ../woocommerce/myaccount/form-login.php:117
-msgid "I'm new here"
-msgstr ""
-
-#: ../woocommerce/myaccount/form-login.php:122
-msgid "checkout as guest"
-msgstr ""
-
-#: ../woocommerce/myaccount/form-login.php:123
-msgid ""
-"Continue as guest user and you may create an account after palcing your "
-"order."
-msgstr ""
-
-#: ../woocommerce/myaccount/form-login.php:124
-msgid "OR"
-msgstr ""
-
-#: ../woocommerce/myaccount/form-login.php:125
-msgid "sign up now"
-msgstr ""
-
-#: ../woocommerce/myaccount/form-edit-account.php:23
-msgid "First name"
-msgstr ""
-
-#: ../woocommerce/myaccount/form-edit-account.php:27
-msgid "Last name"
-msgstr ""
-
-#: ../woocommerce/myaccount/form-edit-account.php:38
-msgid "Password Change"
-msgstr ""
-
-#: ../woocommerce/myaccount/form-edit-account.php:41
-msgid "Current Password (leave blank to leave unchanged)"
-msgstr ""
-
-#: ../woocommerce/myaccount/form-edit-account.php:45
-msgid "New Password (leave blank to leave unchanged)"
-msgstr ""
-
-#: ../woocommerce/myaccount/form-edit-account.php:49
-msgid "Confirm New Password"
-msgstr ""
-
-#: ../woocommerce/myaccount/form-edit-account.php:59
-msgid "Save changes"
-msgstr ""
-
-#: ../woocommerce/checkout/parts-totals.php:11
-msgid "Order Total"
-msgstr ""
-
-#: ../woocommerce/checkout/parts-totals.php:17 ../woocommerce/cart/mini-cart.php:
-#: 71 ../woocommerce/cart/cart-totals.php:45
-msgid "Subtotal"
-msgstr ""
-
-#: ../woocommerce/checkout/parts-totals.php:35 ../woocommerce/cart/cart-totals.
-#: php:67 ../woocommerce/cart/cart-shipping.php:120 ../woocommerce/cart/cart-
-#: shipping.php:203
-msgid "Shipping"
-msgstr ""
-
-#: ../woocommerce/checkout/review-order.php:17
-msgid "Choose your delivery options"
-msgstr ""
-
-#: ../woocommerce/checkout/review-order.php:49
-msgid "total delivery"
-msgstr ""
-
-#: ../woocommerce/checkout/form-pay.php:21 ../woocommerce/emails/customer-
-#: refunded-order.php:34 ../woocommerce/emails/customer-invoice.php:31 ..
-#: woocommerce/emails/admin-new-order.php:27 ../woocommerce/emails/customer-
-#: processing-order.php:27 ../woocommerce/emails/admin-cancelled-order.php:22 ..
-#: woocommerce/emails/customer-note.php:31 ../woocommerce/emails/customer-
-#: completed-order.php:27 ../woocommerce/order/order-details.php:20
-msgid "Product"
-msgstr ""
-
-#: ../woocommerce/checkout/form-pay.php:22
-msgid "Qty"
-msgstr ""
-
-#: ../woocommerce/checkout/form-pay.php:23
-msgid "Totals"
-msgstr ""
-
-#: ../woocommerce/checkout/form-pay.php:84
-msgid ""
-"Sorry, it seems that there are no available payment methods for your "
-"location. Please contact us if you require assistance or wish to make "
-"alternate arrangements."
-msgstr ""
-
-#: ../woocommerce/checkout/form-pay.php:94
-msgid "Pay for order"
-msgstr ""
-
-#: ../woocommerce/checkout/form-billing.php:39
-msgid "I want to pick it up myself"
-msgstr ""
-
-#: ../woocommerce/checkout/form-billing.php:49
-msgid "Ship to same address"
-msgstr ""
-
-#: ../woocommerce/checkout/form-billing.php:63
-msgid "Create an account?"
-msgstr ""
-
-#: ../woocommerce/checkout/form-billing.php:74
-msgid ""
-"Create an account by entering the information below. If you are a returning "
-"customer please login at the top of the page."
-msgstr ""
-
-#: ../woocommerce/checkout/form-coupon.php:19
-msgid "Have a coupon?"
-msgstr ""
-
-#: ../woocommerce/checkout/form-coupon.php:19
-msgid "Click here to enter your code"
-msgstr ""
-
-#: ../woocommerce/checkout/form-coupon.php:26 ../woocommerce/cart/cart.php:120
-msgid "Coupon code"
-msgstr ""
-
-#: ../woocommerce/checkout/form-coupon.php:30 ../woocommerce/cart/cart.php:120
-msgid "Apply Coupon"
-msgstr ""
-
-#: ../woocommerce/checkout/cart-errors.php:18
-msgid ""
-"There are some issues with the items in your cart (shown above). Please go "
-"back to the cart page and resolve these issues before checking out."
-msgstr ""
-
-#: ../woocommerce/checkout/cart-errors.php:22
-msgid "Return To Cart"
-msgstr ""
-
-#: ../woocommerce/checkout/thankyou.php:18
-msgid ""
-"Unfortunately your order cannot be processed as the originating "
-"bank/merchant has declined your transaction."
-msgstr ""
-
-#: ../woocommerce/checkout/thankyou.php:22
-msgid "Please attempt your purchase again or go to your account page."
-msgstr ""
-
-#: ../woocommerce/checkout/thankyou.php:24
-msgid "Please attempt your purchase again."
-msgstr ""
-
-#: ../woocommerce/checkout/thankyou.php:30
-msgid "My Account"
-msgstr ""
-
-#: ../woocommerce/checkout/thankyou.php:36 ../woocommerce/checkout/thankyou.php:67
-msgid "Thank you. Your order has been received."
-msgstr ""
-
-#: ../woocommerce/checkout/thankyou.php:40
-msgid "Order Number:"
-msgstr ""
-
-#: ../woocommerce/checkout/thankyou.php:44
-msgid "Date:"
-msgstr ""
-
-#: ../woocommerce/checkout/thankyou.php:48
-msgid "Total:"
-msgstr ""
-
-#: ../woocommerce/checkout/thankyou.php:53
-msgid "Payment Method:"
-msgstr ""
-
-#: ../woocommerce/checkout/payment.php:34
-msgid "PAYMENT DETAILS"
-msgstr ""
-
-#: ../woocommerce/checkout/payment.php:44
-msgid "Please fill in your details above to see available payment methods."
-msgstr ""
-
-#: ../woocommerce/checkout/payment.php:46
-msgid ""
-"Sorry, it seems that there are no available payment methods for your state. "
-"Please contact us if you require assistance or wish to make alternate "
-"arrangements."
-msgstr ""
-
-#: ../woocommerce/checkout/payment.php:57
-msgid "Do you have a promo code?"
-msgstr ""
-
-#: ../woocommerce/checkout/payment.php:58
-msgid "promo code"
-msgstr ""
-
-#: ../woocommerce/checkout/payment.php:143
-msgid ""
-"Since your browser does not support JavaScript, or it is disabled, please "
-"ensure you click the <em>Update Totals</em> button before placing your order."
-" You may be charged more than the amount stated above if you fail to do so."
-msgstr ""
-
-#: ../woocommerce/checkout/payment.php:143
-msgid "Update totals"
-msgstr ""
-
-#: ../woocommerce/checkout/payment.php:153
+#: ../woocommerce/single-product/rating.php:29
 #, php-format
-msgid ""
-"I&rsquo;ve read and accept the <a href=\"%s\" target=\"_blank\">terms &amp; "
-"conditions</a>"
+msgid "out of %s5%s"
 msgstr ""
 
-#: ../woocommerce/checkout/form-checkout.php:20
-msgid "You must be logged in to checkout."
+#: ../woocommerce/single-product/rating.php:30
+#, php-format
+msgid "based on %s customer rating"
+msgid_plural "based on %s customer ratings"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../woocommerce/single-product/rating.php:33
+#, php-format
+msgid "%s customer review"
+msgid_plural "%s customer reviews"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../woocommerce/single-product/up-sells.php:43
+msgid "You may also like&hellip;"
 msgstr ""
 
-#: ../woocommerce/checkout/form-summaries.php:43
-msgid "Delivery Fees"
+#: ../woocommerce/single-product/tabs/description.php:16
+msgid "Product Description"
 msgstr ""
 
-#: ../woocommerce/checkout/form-summaries.php:53
-msgid "Payment Details"
-msgstr ""
-
-#: ../woocommerce/checkout/form-shipping.php:59 ../woocommerce/single-
-#: product/tabs/additional-information.php:16
+#: ../woocommerce/single-product/tabs/additional-information.php:16
 msgid "Additional Information"
 msgstr ""
 
-#: ../woocommerce/checkout/form-login.php:30
+#: ../woocommerce/single-product/add-to-cart/variable.php:23
+msgid "This product is currently out of stock and unavailable."
+msgstr ""
+
+#: ../woocommerce/order/form-tracking.php:20
 msgid ""
-"If you have shopped with us before, please enter your details in the boxes "
-"below. If you are a new customer please proceed to the Billing &amp; "
-"Shipping section."
+"To track your order please enter your Order ID in the box below and press "
+"the \"Track\" button. This was given to you on your receipt and in the "
+"confirmation email you should have received."
 msgstr ""
 
-#: ../woocommerce/cart/cross-sells.php:40
-msgid "You may be interested in&hellip;"
+#: ../woocommerce/order/form-tracking.php:22
+msgid "Order ID"
 msgstr ""
 
-#: ../woocommerce/cart/mini-cart.php:40 ../woocommerce/cart/cart.php:97
-msgid "Remove this item"
+#: ../woocommerce/order/form-tracking.php:22
+msgid "Found in your order confirmation email."
 msgstr ""
 
-#: ../woocommerce/cart/mini-cart.php:63
-msgid "No products in the cart."
+#: ../woocommerce/order/form-tracking.php:23
+msgid "Email you used during checkout."
 msgstr ""
 
-#: ../woocommerce/cart/mini-cart.php:76
-msgid "View Cart"
+#: ../woocommerce/order/form-tracking.php:26
+msgid "Track"
 msgstr ""
 
-#: ../woocommerce/cart/mini-cart.php:77
-msgid "Checkout"
+#: ../woocommerce/order/order-details-customer.php:14
+msgid "Customer Details"
 msgstr ""
 
-#: ../woocommerce/cart/cart-totals.php:22
-msgid "Estimated Shipping cost"
+#: ../woocommerce/order/order-details-customer.php:19
+msgid "note"
+msgstr ""
+
+#: ../woocommerce/order/order-details-customer.php:33
+msgid "telephone"
+msgstr ""
+
+#: ../woocommerce/order/order-details.php:21
+msgid "order details"
+msgstr ""
+
+#: ../woocommerce/order/order-details.php:27
+msgid "I will pick up."
+msgstr ""
+
+#: ../woocommerce/order/order-details.php:28 ../woocommerce/checkout/parts-
+#: packages.php:13 ../woocommerce/checkout/review-order.php:20
+msgid "ship when ready"
+msgstr ""
+
+#: ../woocommerce/order/order-details.php:29 ../woocommerce/checkout/parts-
+#: packages.php:14 ../woocommerce/checkout/review-order.php:21
+msgid "ship bundle 1"
+msgstr ""
+
+#: ../woocommerce/order/order-details.php:30 ../woocommerce/checkout/parts-
+#: packages.php:15 ../woocommerce/checkout/review-order.php:22
+msgid "ship bundle 2"
+msgstr ""
+
+#: ../woocommerce/order/order-details.php:31 ../woocommerce/checkout/parts-
+#: packages.php:16 ../woocommerce/checkout/review-order.php:23
+msgid "ship bundle 3"
+msgstr ""
+
+#: ../woocommerce/order/order-details.php:77 ../woocommerce/checkout/form-pay.php:
+#: 23
+msgid "totals"
+msgstr ""
+
+#: ../woocommerce/order/tracking.php:14
+#, php-format
+msgid "Order #%s which was made %s has the status &ldquo;%s&rdquo;"
+msgstr ""
+
+#: ../woocommerce/order/tracking.php:14
+msgid "ago"
+msgstr ""
+
+#: ../woocommerce/order/tracking.php:16
+msgid "and was completed"
+msgstr ""
+
+#: ../woocommerce/order/tracking.php:16
+msgid " ago"
+msgstr ""
+
+#: ../woocommerce/order/tracking.php:25 ../woocommerce/myaccount/view-order.php:27
+msgid "Order Updates"
+msgstr ""
+
+#: ../woocommerce/order/tracking.php:31 ../woocommerce/myaccount/view-order.php:33
+msgid "l jS \\o\\f F Y, h:ia"
+msgstr ""
+
+#: ../woocommerce/order/order-again.php:16
+msgid "Order Again"
+msgstr ""
+
+#: ../woocommerce/cart/cart-totals.php:29 ../woocommerce/checkout/payment.php:133
+#: ../woocommerce/checkout/form-summaries.php:63 ../woocommerce/checkout/thankyou.
+#: php:48
+msgid "total"
 msgstr ""
 
 #: ../woocommerce/cart/cart-totals.php:32
-msgid "Estimated delay"
+msgid "estimated delay"
 msgstr ""
 
-#: ../woocommerce/cart/cart-totals.php:119
-#, php-format
-msgid " (taxes estimated for %s)"
+#: ../woocommerce/cart/cart.php:120
+msgid "coupon"
 msgstr ""
 
-#: ../woocommerce/cart/cart-totals.php:122
-#, php-format
-msgid ""
-"Note: Shipping and taxes are estimated%s and will be updated during checkout "
-"based on your billing and shipping information."
+#: ../woocommerce/cart/cart.php:120 ../woocommerce/checkout/form-coupon.php:30
+msgid "apply coupon"
 msgstr ""
 
-#: ../woocommerce/cart/cart-shipping.php:118
-#, php-format
-msgid "Shipping #%s"
+#: ../woocommerce/cart/proceed-to-checkout-button.php:16
+msgid "proceed to checkout"
 msgstr ""
 
 #: ../woocommerce/cart/cart-shipping.php:163
@@ -843,36 +528,45 @@ msgid ""
 "or contact us if you need any help."
 msgstr ""
 
-#: ../woocommerce/cart/cart-empty.php:18
-msgid "Your cart is currently empty."
+#: ../woocommerce/cart/cross-sells.php:40
+msgid "You may be interested in&hellip;"
+msgstr ""
+
+#: ../woocommerce/cart/mini-cart.php:77
+msgid "checkout"
 msgstr ""
 
 #: ../woocommerce/cart/cart-empty.php:22
 msgid "Return To Shop"
 msgstr ""
 
-#: ../woocommerce/cart/shipping-calculator.php:32
-msgid "Postcode / Zip"
+#: ../woocommerce/cart/shipping-calculator.php:31
+msgid "enter your postal code to calculate shipping costs"
 msgstr ""
 
-#: ../woocommerce/cart/shipping-calculator.php:37
-msgid "Update Totals"
+#: ../woocommerce/cart/shipping-calculator.php:33
+msgid "postcode / zip"
 msgstr ""
 
-#: ../woocommerce/cart/cart.php:120
-msgid "Coupon"
+#: ../woocommerce/cart/shipping-calculator.php:34
+msgid "update totals"
 msgstr ""
 
-#: ../woocommerce/cart/cart.php:126
-msgid "Update Cart"
+#: ../woocommerce/emails/customer-completed-order.php:18 ..
+#: woocommerce/emails/plain/customer-completed-order.php:16
+#, php-format
+msgid ""
+"Hi there. Your recent order on %s has been completed. Your order details are "
+"shown below for your reference:"
 msgstr ""
 
-#: ../woocommerce/cart/proceed-to-checkout-button.php:16
-msgid "Proceed to Checkout"
-msgstr ""
-
-#: ../woocommerce/emails/email-order-items.php:25
-msgid "Product Image"
+#: ../woocommerce/emails/customer-completed-order.php:22 ..
+#: woocommerce/emails/customer-refunded-order.php:29 ..
+#: woocommerce/emails/customer-invoice.php:26 ../woocommerce/emails/customer-
+#: processing-order.php:22 ../woocommerce/emails/customer-note.php:26 ..
+#: woocommerce/emails/admin-new-order.php:22
+#, php-format
+msgid "Order #%s"
 msgstr ""
 
 #: ../woocommerce/emails/customer-refunded-order.php:20
@@ -885,36 +579,51 @@ msgstr ""
 msgid "Hi there. Your order on %s has been refunded."
 msgstr ""
 
-#: ../woocommerce/emails/customer-refunded-order.php:29 ..
-#: woocommerce/emails/customer-invoice.php:26 ../woocommerce/emails/admin-new-
-#: order.php:22 ../woocommerce/emails/customer-processing-order.php:22 ..
-#: woocommerce/emails/customer-note.php:26 ../woocommerce/emails/customer-
-#: completed-order.php:22
-#, php-format
-msgid "Order #%s"
-msgstr ""
-
-#: ../woocommerce/emails/customer-refunded-order.php:35 ..
-#: woocommerce/emails/customer-invoice.php:32 ../woocommerce/emails/admin-new-
-#: order.php:28 ../woocommerce/emails/customer-processing-order.php:28 ..
-#: woocommerce/emails/admin-cancelled-order.php:23 ..
-#: woocommerce/emails/customer-note.php:32 ../woocommerce/emails/customer-
-#: completed-order.php:28
-msgid "Quantity"
-msgstr ""
-
-#: ../woocommerce/emails/customer-refunded-order.php:36 ..
-#: woocommerce/emails/customer-invoice.php:33 ../woocommerce/emails/admin-new-
-#: order.php:29 ../woocommerce/emails/customer-processing-order.php:29 ..
-#: woocommerce/emails/admin-cancelled-order.php:24 ..
-#: woocommerce/emails/customer-note.php:33 ../woocommerce/emails/customer-
-#: completed-order.php:29
-msgid "Price"
-msgstr ""
-
 #: ../woocommerce/emails/customer-refunded-order.php:50 ..
 #: woocommerce/emails/plain/customer-refunded-order.php:32
 msgid "Amount Refunded"
+msgstr ""
+
+#: ../woocommerce/emails/customer-invoice.php:20 ..
+#: woocommerce/emails/plain/customer-invoice.php:17
+#, php-format
+msgid ""
+"An order has been created for you on %s. To pay for this order please use "
+"the following link: %s"
+msgstr ""
+
+#: ../woocommerce/emails/admin-cancelled-order.php:13 ..
+#: woocommerce/emails/plain/admin-cancelled-order.php:15
+#, php-format
+msgid "The order #%d from %s has been cancelled. The order was as follows:"
+msgstr ""
+
+#: ../woocommerce/emails/admin-cancelled-order.php:17
+#, php-format
+msgid "Order: %s"
+msgstr ""
+
+#: ../woocommerce/emails/customer-new-account.php:18 ..
+#: woocommerce/emails/plain/customer-new-account.php:16
+#, php-format
+msgid "Thanks for creating an account on %s. Your username is <strong>%s</strong>."
+msgstr ""
+
+#: ../woocommerce/emails/customer-new-account.php:22
+#, php-format
+msgid "Your password has been automatically generated: <strong>%s</strong>"
+msgstr ""
+
+#: ../woocommerce/emails/customer-new-account.php:26 ..
+#: woocommerce/emails/plain/customer-new-account.php:21
+#, php-format
+msgid ""
+"You can access your account area to view your orders and change your "
+"password here: %s."
+msgstr ""
+
+#: ../woocommerce/emails/woo-preview-emails.php:87
+msgid "Preview Email Templates"
 msgstr ""
 
 #: ../woocommerce/emails/customer-reset-password.php:18 ..
@@ -942,68 +651,11 @@ msgstr ""
 msgid "Click here to reset your password"
 msgstr ""
 
-#: ../woocommerce/emails/customer-invoice.php:20 ..
-#: woocommerce/emails/plain/customer-invoice.php:17
-#, php-format
-msgid ""
-"An order has been created for you on %s. To pay for this order please use "
-"the following link: %s"
-msgstr ""
-
-#: ../woocommerce/emails/customer-invoice.php:20
-msgid "pay"
-msgstr ""
-
-#: ../woocommerce/emails/admin-new-order.php:18
-#, php-format
-msgid "You have received an order from %s. The order is as follows:"
-msgstr ""
-
-#: ../woocommerce/emails/customer-new-account.php:18 ..
-#: woocommerce/emails/plain/customer-new-account.php:16
-#, php-format
-msgid "Thanks for creating an account on %s. Your username is <strong>%s</strong>."
-msgstr ""
-
-#: ../woocommerce/emails/customer-new-account.php:22
-#, php-format
-msgid "Your password has been automatically generated: <strong>%s</strong>"
-msgstr ""
-
-#: ../woocommerce/emails/customer-new-account.php:26 ..
-#: woocommerce/emails/plain/customer-new-account.php:21
-#, php-format
-msgid ""
-"You can access your account area to view your orders and change your "
-"password here: %s."
-msgstr ""
-
-#: ../woocommerce/emails/email-addresses.php:20 ../woocommerce/emails/plain/email-
-#: addresses.php:14
-msgid "Billing address"
-msgstr ""
-
-#: ../woocommerce/emails/email-addresses.php:30 ../woocommerce/emails/plain/email-
-#: addresses.php:18
-msgid "Shipping address"
-msgstr ""
-
 #: ../woocommerce/emails/customer-processing-order.php:18 ..
 #: woocommerce/emails/plain/customer-processing-order.php:16
 msgid ""
 "Your order has been received and is now being processed. Your order details "
 "are shown below for your reference:"
-msgstr ""
-
-#: ../woocommerce/emails/admin-cancelled-order.php:13 ..
-#: woocommerce/emails/plain/admin-cancelled-order.php:15
-#, php-format
-msgid "The order #%d from %s has been cancelled. The order was as follows:"
-msgstr ""
-
-#: ../woocommerce/emails/admin-cancelled-order.php:17
-#, php-format
-msgid "Order: %s"
 msgstr ""
 
 #: ../woocommerce/emails/customer-note.php:18 ..
@@ -1016,12 +668,52 @@ msgstr ""
 msgid "For your reference, your order details are shown below."
 msgstr ""
 
-#: ../woocommerce/emails/customer-completed-order.php:18 ..
-#: woocommerce/emails/plain/customer-completed-order.php:16
+#: ../woocommerce/emails/email-order-items.php:25
+msgid "Product Image"
+msgstr ""
+
+#: ../woocommerce/emails/admin-new-order.php:18
+#, php-format
+msgid "You have received an order from %s. The order is as follows:"
+msgstr ""
+
+#: ../woocommerce/emails/plain/customer-completed-order.php:22 ..
+#: woocommerce/emails/plain/customer-refunded-order.php:22 ..
+#: woocommerce/emails/plain/customer-invoice.php:23 ..
+#: woocommerce/emails/plain/admin-cancelled-order.php:21 ..
+#: woocommerce/emails/plain/customer-processing-order.php:22 ..
+#: woocommerce/emails/plain/customer-note.php:30 ..
+#: woocommerce/emails/plain/admin-new-order.php:22
+#, php-format
+msgid "Order number: %s"
+msgstr ""
+
+#: ../woocommerce/emails/plain/customer-completed-order.php:23 ..
+#: woocommerce/emails/plain/customer-refunded-order.php:23 ..
+#: woocommerce/emails/plain/customer-invoice.php:24 ..
+#: woocommerce/emails/plain/admin-cancelled-order.php:22 ..
+#: woocommerce/emails/plain/customer-processing-order.php:23 ..
+#: woocommerce/emails/plain/customer-note.php:31 ..
+#: woocommerce/emails/plain/admin-new-order.php:23
+msgid "jS F Y"
+msgstr ""
+
+#: ../woocommerce/emails/plain/customer-refunded-order.php:16
 #, php-format
 msgid ""
-"Hi there. Your recent order on %s has been completed. Your order details are "
-"shown below for your reference:"
+"Hi there. Your order on %s has been refunded. Your order details are shown "
+"below for your reference:"
+msgstr ""
+
+#: ../woocommerce/emails/plain/admin-cancelled-order.php:36 ..
+#: woocommerce/emails/plain/admin-new-order.php:37
+#, php-format
+msgid "View order: %s"
+msgstr ""
+
+#: ../woocommerce/emails/plain/customer-new-account.php:19
+#, php-format
+msgid "Your password is <strong>%s</strong>."
 msgstr ""
 
 #: ../woocommerce/emails/plain/email-order-items.php:35
@@ -1043,68 +735,27 @@ msgstr ""
 msgid "Download"
 msgstr ""
 
-#: ../woocommerce/emails/plain/customer-refunded-order.php:16
-#, php-format
-msgid ""
-"Hi there. Your order on %s has been refunded. Your order details are shown "
-"below for your reference:"
-msgstr ""
-
-#: ../woocommerce/emails/plain/customer-refunded-order.php:22 ..
-#: woocommerce/emails/plain/customer-invoice.php:23 ..
-#: woocommerce/emails/plain/admin-new-order.php:22 ..
-#: woocommerce/emails/plain/customer-processing-order.php:22 ..
-#: woocommerce/emails/plain/admin-cancelled-order.php:21 ..
-#: woocommerce/emails/plain/customer-note.php:30 ..
-#: woocommerce/emails/plain/customer-completed-order.php:22
-#, php-format
-msgid "Order number: %s"
-msgstr ""
-
-#: ../woocommerce/emails/plain/customer-refunded-order.php:23 ..
-#: woocommerce/emails/plain/customer-invoice.php:24 ..
-#: woocommerce/emails/plain/admin-new-order.php:23 ..
-#: woocommerce/emails/plain/customer-processing-order.php:23 ..
-#: woocommerce/emails/plain/admin-cancelled-order.php:22 ..
-#: woocommerce/emails/plain/customer-note.php:31 ..
-#: woocommerce/emails/plain/customer-completed-order.php:23
-msgid "jS F Y"
-msgstr ""
-
 #: ../woocommerce/emails/plain/admin-new-order.php:16
 #, php-format
 msgid "You have received an order from %s."
 msgstr ""
 
-#: ../woocommerce/emails/plain/admin-new-order.php:37 ..
-#: woocommerce/emails/plain/admin-cancelled-order.php:36
-#, php-format
-msgid "View order: %s"
-msgstr ""
-
-#: ../woocommerce/emails/plain/customer-new-account.php:19
-#, php-format
-msgid "Your password is <strong>%s</strong>."
-msgstr ""
-
-#: ../woocommerce/auth/form-grant-access.php:16 ../woocommerce/auth/form-login.
-#: php:18
+#: ../woocommerce/auth/form-login.php:18 ../woocommerce/auth/form-grant-access.
+#: php:16
 #, php-format
 msgid "%s would like to connect to your store"
+msgstr ""
+
+#: ../woocommerce/auth/form-login.php:22
+#, php-format
+msgid ""
+"To connect to %1$s you need to be logged in. Log in to your store below, or "
+"%2$scancel and return to %1$s%3$s"
 msgstr ""
 
 #: ../woocommerce/auth/form-grant-access.php:20
 #, php-format
 msgid "This will give \"%s\" <strong>%s</strong> access which will allow it to:"
-msgstr ""
-
-#: ../woocommerce/auth/form-grant-access.php:30
-#, php-format
-msgid "Logged in as %s"
-msgstr ""
-
-#: ../woocommerce/auth/form-grant-access.php:30
-msgid "Logout"
 msgstr ""
 
 #: ../woocommerce/auth/form-grant-access.php:34
@@ -1119,97 +770,143 @@ msgstr ""
 msgid "Application Authentication Request"
 msgstr ""
 
-#: ../woocommerce/auth/form-login.php:22
+#: ../woocommerce/checkout/payment.php:44
+msgid "please fill in your details above to see available payment methods."
+msgstr ""
+
+#: ../woocommerce/checkout/payment.php:46
+msgid ""
+"sorry, it seems that there are no available payment methods for your state. "
+"please contact us if you require assistance or wish to make alternate "
+"arrangements."
+msgstr ""
+
+#: ../woocommerce/checkout/payment.php:73 ../woocommerce/checkout/payment.php:137
+msgid "items"
+msgstr ""
+
+#: ../woocommerce/checkout/payment.php:102
+msgid "please click here to fill in your address information."
+msgstr ""
+
+#: ../woocommerce/checkout/payment.php:114
+msgid "please click here to fill in your payment information."
+msgstr ""
+
+#: ../woocommerce/checkout/payment.php:123
+msgid "Final Checklist"
+msgstr ""
+
+#: ../woocommerce/checkout/payment.php:124
+msgid "i made sure the item fits."
+msgstr ""
+
+#: ../woocommerce/checkout/payment.php:125
+msgid "The delivery does not include..."
+msgstr ""
+
+#: ../woocommerce/checkout/payment.php:126
+msgid ""
+"i am aware that there can be slight variation in the colors of the swatches "
+"and the final product due to dye lot difference."
+msgstr ""
+
+#: ../woocommerce/checkout/payment.php:147
+msgid ""
+"Since your browser does not support JavaScript, or it is disabled, please "
+"ensure you click the <em>Update Totals</em> button before placing your order."
+" You may be charged more than the amount stated above if you fail to do so."
+msgstr ""
+
+#: ../woocommerce/checkout/payment.php:157
 #, php-format
 msgid ""
-"To connect to %1$s you need to be logged in. Log in to your store below, or "
-"%2$scancel and return to %1$s%3$s"
+"I&rsquo;ve read and accept the <a href=\"%s\" target=\"_blank\">terms &amp; "
+"conditions</a>"
 msgstr ""
 
-#: ../woocommerce/single-product/related.php:42
-msgid "Related Products"
+#: ../woocommerce/checkout/form-login.php:30
+msgid ""
+"If you have shopped with us before, please enter your details in the boxes "
+"below. If you are a new customer please proceed to the Billing &amp; "
+"Shipping section."
 msgstr ""
 
-#: ../woocommerce/single-product/product-image.php:42
-msgid "Placeholder"
+#: ../woocommerce/checkout/form-checkout.php:20
+msgid "you must be logged in to checkout."
 msgstr ""
 
-#: ../woocommerce/single-product/rating.php:27
+#: ../woocommerce/checkout/form-pay.php:84
+msgid ""
+"Sorry, it seems that there are no available payment methods for your "
+"location. Please contact us if you require assistance or wish to make "
+"alternate arrangements."
+msgstr ""
+
+#: ../woocommerce/checkout/form-pay.php:94
+msgid "pay for order"
+msgstr ""
+
+#: ../woocommerce/checkout/thankyou.php:18
+msgid ""
+"unfortunately your order cannot be processed as the originating "
+"bank/merchant has declined your transaction."
+msgstr ""
+
+#: ../woocommerce/checkout/thankyou.php:22
+msgid "please attempt your purchase again or go to your account page."
+msgstr ""
+
+#: ../woocommerce/checkout/thankyou.php:24
+msgid "please attempt your purchase again."
+msgstr ""
+
+#: ../woocommerce/checkout/thankyou.php:36 ../woocommerce/checkout/thankyou.php:67
+msgid "thank you. your order has been received."
+msgstr ""
+
+#: ../woocommerce/checkout/thankyou.php:40
+msgid "order number"
+msgstr ""
+
+#: ../woocommerce/checkout/thankyou.php:53
+msgid "payment method"
+msgstr ""
+
+#: ../woocommerce/checkout/cart-errors.php:18
+msgid ""
+"There are some issues with the items in your cart (shown above). Please go "
+"back to the cart page and resolve these issues before checking out."
+msgstr ""
+
+#: ../woocommerce/checkout/review-order.php:62
+msgid "self pickup discount"
+msgstr ""
+
+#: ../woocommerce/checkout/review-order.php:75
+msgid ""
+"based on your selection, the final delivery fees will adjust automatically. "
+"shipping items individuallu may add shipping fees. for more information on "
+"how delivery fees are calculated"
+msgstr ""
+
+#: ../woocommerce/loop/no-products-found.php:17
+msgid "No products were found matching your selection."
+msgstr ""
+
+#: ../woocommerce/loop/result-count.php:31
+msgid "Showing the single result"
+msgstr ""
+
+#: ../woocommerce/loop/result-count.php:33
 #, php-format
-msgid "Rated %s out of 5"
+msgid "Showing all %d results"
 msgstr ""
 
-#: ../woocommerce/single-product/rating.php:29
+#: ../woocommerce/loop/result-count.php:35
 #, php-format
-msgid "out of %s5%s"
-msgstr ""
-
-#: ../woocommerce/single-product/rating.php:30
-#, php-format
-msgid "based on %s customer rating"
-msgid_plural "based on %s customer ratings"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../woocommerce/single-product/rating.php:33
-#, php-format
-msgid "%s customer review"
-msgid_plural "%s customer reviews"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../woocommerce/single-product/review.php:29
-#, php-format
-msgid "Rated %d out of 5"
-msgstr ""
-
-#: ../woocommerce/single-product/review.php:30
-msgid "out of 5"
-msgstr ""
-
-#: ../woocommerce/single-product/review.php:37
-msgid "Your comment is awaiting approval"
-msgstr ""
-
-#: ../woocommerce/single-product/review.php:46
-msgid "verified owner"
-msgstr ""
-
-#: ../woocommerce/single-product/meta.php:26
-msgid "SKU:"
-msgstr ""
-
-#: ../woocommerce/single-product/meta.php:26 ../woocommerce/order/order-details-
-#: customer.php:52 ../woocommerce/order/order-details-customer.php:63
-msgid "N/A"
-msgstr ""
-
-#: ../woocommerce/single-product/meta.php:30
-msgid "Category:"
-msgid_plural "Categories:"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../woocommerce/single-product/meta.php:32
-msgid "Tag:"
-msgid_plural "Tags:"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../woocommerce/single-product/up-sells.php:43
-msgid "You may also like&hellip;"
-msgstr ""
-
-#: ../woocommerce/single-product/product-attributes.php:29
-msgid "Weight"
-msgstr ""
-
-#: ../woocommerce/single-product/product-attributes.php:36
-msgid "Dimensions"
-msgstr ""
-
-#: ../woocommerce/single-product/tabs/description.php:16
-msgid "Product Description"
+msgctxt "%1$d = first, %2$d = last, %3$d = total"
+msgid "Showing %1$d&ndash;%2$d of %3$d results"
 msgstr ""
 
 #: ../woocommerce/global/quantity-input.php:15
@@ -1217,119 +914,78 @@ msgctxt "Product quantity input tooltip"
 msgid "Qty"
 msgstr ""
 
-#: ../woocommerce/order/order-details.php:16
-msgid "Order Details"
+#: ../woocommerce/myaccount/form-login.php:100
+msgid "Anti-spam"
 msgstr ""
 
-#: ../woocommerce/order/form-tracking.php:20
+#: ../woocommerce/myaccount/form-lost-password.php:24
 msgid ""
-"To track your order please enter your Order ID in the box below and press "
-"the \"Track\" button. This was given to you on your receipt and in the "
-"confirmation email you should have received."
+"Lost your password? Please enter your username or email address. You will "
+"receive a link to create a new password via email."
 msgstr ""
 
-#: ../woocommerce/order/form-tracking.php:22
-msgid "Order ID"
+#: ../woocommerce/myaccount/form-lost-password.php:30
+msgid "Enter a new password below."
 msgstr ""
 
-#: ../woocommerce/order/form-tracking.php:22
-msgid "Found in your order confirmation email."
+#: ../woocommerce/myaccount/my-address.php:35
+msgid "The following addresses will be used on the checkout page by default."
 msgstr ""
 
-#: ../woocommerce/order/form-tracking.php:23
-msgid "Billing Email"
+#: ../woocommerce/myaccount/my-address.php:64
+msgid "You have not set up this type of address yet."
 msgstr ""
 
-#: ../woocommerce/order/form-tracking.php:23
-msgid "Email you used during checkout."
+#: ../woocommerce/myaccount/my-orders.php:49
+msgctxt "hash before order number"
+msgid "#"
 msgstr ""
 
-#: ../woocommerce/order/form-tracking.php:26
-msgid "Track"
+#: ../woocommerce/myaccount/my-downloads.php:20
+msgid "Available Downloads"
 msgstr ""
 
-#: ../woocommerce/order/tracking.php:14
+#: ../woocommerce/myaccount/my-downloads.php:29
 #, php-format
-msgid "Order #%s which was made %s has the status &ldquo;%s&rdquo;"
+msgid "%s download remaining"
+msgid_plural "%s downloads remaining"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../woocommerce/myaccount/form-add-payment-method.php:41
+msgid ""
+"Sorry, it seems that there are no payment methods which support adding a new "
+"payment method. Please contact us if you require assistance or wish to make "
+"alternate arrangements."
 msgstr ""
 
-#: ../woocommerce/order/tracking.php:14
-msgid "ago"
+#: ../woocommerce/myaccount/form-add-payment-method.php:49
+msgid "Add Payment Method"
 msgstr ""
 
-#: ../woocommerce/order/tracking.php:16
-msgid "and was completed"
-msgstr ""
-
-#: ../woocommerce/order/tracking.php:16
-msgid " ago"
-msgstr ""
-
-#: ../woocommerce/order/order-again.php:16
-msgid "Order Again"
-msgstr ""
-
-#: ../woocommerce/order/order-details-customer.php:14
-msgid "Customer Details"
-msgstr ""
-
-#: ../woocommerce/order/order-details-customer.php:19
-msgid "Note:"
-msgstr ""
-
-#: ../woocommerce/order/order-details-customer.php:26
-msgid "Email:"
-msgstr ""
-
-#: ../woocommerce/order/order-details-customer.php:33
-msgid "Telephone:"
-msgstr ""
-
-#: ../inc/template-tags.php:28
+#: ../woocommerce/myaccount/view-order.php:22
 #, php-format
-msgctxt "post date"
-msgid "Posted on %s"
+msgid ""
+"Order #<mark class=\"order-number\">%s</mark> was placed on <mark class=\"order-"
+"date\">%s</mark> and is currently <mark class=\"order-status\">%s</mark>."
 msgstr ""
 
-#: ../inc/template-tags.php:33
+#: ../woocommerce/myaccount/my-account.php:19
 #, php-format
-msgctxt "post author"
-msgid "by %s"
+msgid "Hello <strong>%1$s</strong> (not %1$s? <a href=\"%2$s\">Sign out</a>)."
 msgstr ""
 
-#. translators: used between list items, there is a space after the comma
-#. translators: used between list items, there is a space after the comma
-#: ../inc/template-tags.php:50 ../inc/template-tags.php:56
-msgid ", "
-msgstr ""
-
-#: ../inc/template-tags.php:52
+#: ../woocommerce/myaccount/my-account.php:24
 #, php-format
-msgid "Posted in %1$s"
+msgid ""
+"From your account dashboard you can view your recent orders, manage your "
+"shipping and billing addresses and <a href=\"%s\">edit your password and "
+"account details</a>."
 msgstr ""
 
-#: ../inc/template-tags.php:58
+#: ../template-parts/content-page.php:63 ../template-parts/content.php:59
 #, php-format
-msgid "Tagged %1$s"
-msgstr ""
-
-#: ../inc/template-tags.php:64
-msgid "Leave a comment"
-msgstr ""
-
-#: ../inc/template-tags.php:64
-msgid "1 Comment"
-msgstr ""
-
-#: ../inc/template-tags.php:64
-#, php-format
-msgid "% Comments"
-msgstr ""
-
-#. translators: %s: Name of current post
-#: ../inc/template-tags.php:71
-#, php-format
-msgid "Edit %s"
+msgid "Continue reading %s <span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
 
 #: ../template-parts/content-none.php:14
@@ -1353,37 +1009,548 @@ msgid ""
 "searching can help."
 msgstr ""
 
-#: ../template-parts/content.php:59 ../template-parts/content-page.php:63
-#, php-format
-msgid "Continue reading %s <span class=\"meta-nav\">&rarr;</span>"
-msgstr ""
-
 #. Name of the theme
 msgid "edb"
 msgstr ""
 
 #. Theme URI of the theme
-msgid "http://underscores.me/"
+msgid "http://elementdebase.com/"
 msgstr ""
 
 #. Description of the theme
-msgid ""
-"Hi. I'm a starter theme called <code>_s</code>, or <em>underscores</em>, if "
-"you like. I'm a theme meant for hacking so don't use me as a <em>Parent "
-"Theme</em>. Instead try turning me into the next, most awesome, WordPress "
-"theme out there. That's what I'm here for."
+msgid "EDB Theme"
 msgstr ""
 
 #. Author of the theme
-msgid "Automattic"
+msgid "Franko"
 msgstr ""
 
 #. Author URI of the theme
-msgid "http://automattic.com/"
+msgid "http://akr.club/"
 msgstr ""
 
-#: ../header.php:125 ../woocommerce/myaccount/form-login.php:33 ..
-#: woocommerce/myaccount/form-login.php:51 ../woocommerce/auth/form-login.php:35
-#: ../woocommerce/global/form-login.php:39
+#: ../footer.php:17
+msgid "back to top"
+msgstr "retour au haut de la page"
+
+#: ../functions.php:162
+msgid "products"
+msgstr "produits"
+
+#: ../functions.php:163
+msgid "order samples"
+msgstr "échantillons"
+
+#: ../functions.php:164 ../functions.php:169 ../woocommerce/cart/cart-shipping.
+#: php:120 ../woocommerce/cart/cart-shipping.php:203 ..
+#: woocommerce/checkout/parts-totals.php:32
+msgid "shipping"
+msgstr "livraison"
+
+#: ../functions.php:165 ../functions.php:172
+msgid "about"
+msgstr "A propos de nous"
+
+#: ../functions.php:166 ../functions.php:168
+msgid "contact us"
+msgstr "contact"
+
+#: ../functions.php:170
+msgid "return & exchange"
+msgstr "retour & échanges"
+
+#: ../functions.php:171 ../woocommerce/checkout/thankyou.php:30
+msgid "my account"
+msgstr "mon compte"
+
+#: ../functions.php:173
+msgid "FAQ"
+msgstr "Questions"
+
+#: ../functions.php:174
+msgid "trade & designers"
+msgstr "designers & professionnels"
+
+#: ../functions.php:176
+msgid "privacy policy"
+msgstr "politique de confidentialité"
+
+#: ../functions.php:177
+msgid "terms of use"
+msgstr "termes d'usage"
+
+#: ../functions.php:294
+msgid "download PDF"
+msgstr "télécharger le PDF"
+
+#: ../header.php:48 ../header.php:112
+msgid "welcome"
+msgstr "Bienvenue"
+
+#: ../header.php:48
+msgid "sign out"
+msgstr "se déconnecter"
+
+#: ../header.php:50
+msgid "sign in"
+msgstr "se connecter"
+
+#: ../header.php:53
+msgid "cart"
+msgstr "panier"
+
+#: ../header.php:99 ../header.php:109
+msgid "all"
+msgstr "tous"
+
+#: ../header.php:130 ../header.php:156 ../woocommerce/order/order-details-
+#: customer.php:26
+msgid "email"
+msgstr "courriel"
+
+#: ../header.php:134 ../header.php:160
+msgid "password"
+msgstr "mot de passe"
+
+#: ../header.php:140
+msgid "enter edb"
+msgstr "entrez dans edb"
+
+#. translators: %s: Name of current post
+#: ../inc/template-tags.php:71
+#, php-format
+msgid "edit %s"
+msgstr "modifier %s"
+
+#: ../woocommerce/single-product-reviews.php:65
+msgid "Name"
+msgstr "Nom"
+
+#: ../woocommerce/single-product-reviews.php:67
+msgid "Email"
+msgstr "Courriel"
+
+#: ../woocommerce/single-product-reviews.php:70
+msgid "Submit"
+msgstr "Envoyer"
+
+#: ../woocommerce/content-single-product.php:95
+msgid "in stock"
+msgstr "disponible"
+
+#: ../woocommerce/content-single-product.php:164
+msgid "shipping and return"
+msgstr "livraison et retours"
+
+#: ../woocommerce/single-product/sale-flash.php:19 ../woocommerce/loop/sale-flash.
+#: php:19
+msgid "Sale!"
+msgstr "Vente!"
+
+#: ../woocommerce/order/form-tracking.php:23
+msgid "Billing Email"
+msgstr "courriel de facturation"
+
+#: ../woocommerce/order/order-details-customer.php:49 ..
+#: woocommerce/checkout/form-billing.php:18 ../woocommerce/checkout/form-
+#: summaries.php:26 ../woocommerce/myaccount/my-address.php:19 ..
+#: woocommerce/myaccount/my-address.php:25 ../woocommerce/myaccount/form-edit-
+#: address.php:16
+msgid "billing address"
+msgstr "adresse de facturation"
+
+#: ../woocommerce/order/order-details-customer.php:60 ..
+#: woocommerce/checkout/form-summaries.php:33 ../woocommerce/checkout/form-
+#: shipping.php:37 ../woocommerce/myaccount/my-address.php:20 ..
+#: woocommerce/myaccount/form-edit-address.php:16
+msgid "shipping address"
+msgstr "adresse de livraison"
+
+#: ../woocommerce/cart/cart-totals.php:22
+msgid "estimated shipping cost"
+msgstr "frais de livraison estimés"
+
+#: ../woocommerce/cart/cart-totals.php:25
+#, php-format
+msgid "estimated shipping cost for %s"
+msgstr "frais de livraison estimés pour %s"
+
+#: ../woocommerce/cart/cart-totals.php:32
+#, php-format
+msgid "%s week"
+msgid_plural "%s weeks"
+msgstr[0] "%s semaine"
+msgstr[1] "%s semaines"
+
+#: ../woocommerce/cart/cart.php:95
+msgid "remove"
+msgstr "retirer"
+
+#: ../woocommerce/cart/cart.php:97 ../woocommerce/cart/mini-cart.php:40
+msgid "remove this item"
+msgstr "retirer cet item"
+
+#: ../woocommerce/cart/cart.php:120
+msgid "Coupon code"
+msgstr "code coupon"
+
+#: ../woocommerce/cart/cart.php:126
+msgid "update cart"
+msgstr "mettre a jour le panier"
+
+#: ../woocommerce/cart/cart-shipping.php:100 ../woocommerce/checkout/payment.php:
+#: 100 ../woocommerce/checkout/payment.php:112 ../woocommerce/checkout/parts-
+#: packages.php:76 ../woocommerce/myaccount/my-address.php:45
+msgid "edit"
+msgstr "modifier"
+
+#: ../woocommerce/cart/cart-shipping.php:118
+#, php-format
+msgid "shipping #%s"
+msgstr "#%s livraison"
+
+#: ../woocommerce/cart/mini-cart.php:63
+msgid "no products in the cart."
+msgstr "aucun produits dans le panier"
+
+#: ../woocommerce/cart/mini-cart.php:71 ../woocommerce/checkout/parts-totals.php:17
+msgid "subtotal"
+msgstr "sous-total"
+
+#: ../woocommerce/cart/mini-cart.php:76
+msgid "view cart"
+msgstr "voir le panier"
+
+#: ../woocommerce/cart/cart-empty.php:18
+msgid "Your cart is currently empty."
+msgstr "votre panier est vide"
+
+#: ../woocommerce/emails/customer-completed-order.php:27 ..
+#: woocommerce/emails/customer-refunded-order.php:34 ..
+#: woocommerce/emails/customer-invoice.php:31 ../woocommerce/emails/admin-
+#: cancelled-order.php:22 ../woocommerce/emails/customer-processing-order.php:27 .
+#: ./woocommerce/emails/customer-note.php:31 ../woocommerce/emails/admin-new-
+#: order.php:27
+msgid "Product"
+msgstr "produit"
+
+#: ../woocommerce/emails/customer-completed-order.php:28 ..
+#: woocommerce/emails/customer-refunded-order.php:35 ..
+#: woocommerce/emails/customer-invoice.php:32 ../woocommerce/emails/admin-
+#: cancelled-order.php:23 ../woocommerce/emails/customer-processing-order.php:28 .
+#: ./woocommerce/emails/customer-note.php:32 ../woocommerce/emails/admin-new-
+#: order.php:28
+msgid "Quantity"
+msgstr "quantitée"
+
+#: ../woocommerce/emails/customer-completed-order.php:29 ..
+#: woocommerce/emails/customer-refunded-order.php:36 ..
+#: woocommerce/emails/customer-invoice.php:33 ../woocommerce/emails/admin-
+#: cancelled-order.php:24 ../woocommerce/emails/customer-processing-order.php:29 .
+#: ./woocommerce/emails/customer-note.php:33 ../woocommerce/emails/admin-new-
+#: order.php:29
+msgid "Price"
+msgstr "Prix"
+
+#: ../woocommerce/emails/email-addresses.php:20 ../woocommerce/emails/plain/email-
+#: addresses.php:14
+msgid "Billing address"
+msgstr "adresse de facturation"
+
+#: ../woocommerce/emails/email-addresses.php:30 ../woocommerce/emails/plain/email-
+#: addresses.php:18
+msgid "Shipping address"
+msgstr "addresse de livraison"
+
+#: ../woocommerce/emails/customer-invoice.php:20 ../woocommerce/checkout/thankyou.
+#: php:28
+msgid "pay"
+msgstr "payer"
+
+#: ../woocommerce/auth/form-login.php:26 ../woocommerce/myaccount/form-login.php:39
+msgid "Username or email address"
+msgstr "nom d'utilisateur ou adresse courriel"
+
+#: ../woocommerce/auth/form-login.php:30 ../woocommerce/global/form-login.php:30 .
+#: ./woocommerce/myaccount/form-login.php:43 ../woocommerce/myaccount/form-login.
+#: php:93
+msgid "Password"
+msgstr "mot de passe"
+
+#: ../woocommerce/auth/form-login.php:35 ../woocommerce/global/form-login.php:39 .
+#: ./woocommerce/myaccount/form-login.php:33 ../woocommerce/myaccount/form-login.
+#: php:51
 msgid "Login"
-msgstr "Logguer"
+msgstr "Se connecter"
+
+#: ../woocommerce/auth/form-grant-access.php:30
+#, php-format
+msgid "Logged in as %s"
+msgstr "Connecté en tant que %s"
+
+#: ../woocommerce/auth/form-grant-access.php:30
+msgid "Logout"
+msgstr "Déconnecter"
+
+#: ../woocommerce/checkout/payment.php:34 ../woocommerce/checkout/form-summaries.
+#: php:19 ../woocommerce/checkout/form-summaries.php:53
+msgid "payment details"
+msgstr "détails du paiement"
+
+#: ../woocommerce/checkout/payment.php:57
+msgid "do you have a promo code?"
+msgstr "vous avez un code promotionel?"
+
+#: ../woocommerce/checkout/payment.php:58
+msgid "promo code"
+msgstr "code promotionel"
+
+#: ../woocommerce/checkout/payment.php:66
+msgid "order summary"
+msgstr "sommaire de la commande"
+
+#: ../woocommerce/checkout/payment.php:79 ../woocommerce/checkout/form-checkout.
+#: php:53 ../woocommerce/checkout/review-order.php:79
+msgid "save & continue"
+msgstr "sauvegarder et procéder "
+
+#: ../woocommerce/checkout/payment.php:89
+msgid "delivered to"
+msgstr "Livraison "
+
+#: ../woocommerce/checkout/payment.php:108
+msgid "payment"
+msgstr "paiement"
+
+#: ../woocommerce/checkout/payment.php:147
+msgid "Update totals"
+msgstr "mise à jour du total"
+
+#: ../woocommerce/checkout/parts-totals.php:11
+msgid "order total"
+msgstr "total "
+
+#: ../woocommerce/checkout/form-billing.php:38
+msgid "i want to pick it up myself"
+msgstr "je désire effectuer la ceuillette moi-même"
+
+#: ../woocommerce/checkout/form-billing.php:48
+msgid "ship to same address"
+msgstr "livrer à la même adresse"
+
+#: ../woocommerce/checkout/form-summaries.php:17
+msgid "address"
+msgstr "adresse"
+
+#: ../woocommerce/checkout/form-summaries.php:18 ../woocommerce/checkout/form-
+#: summaries.php:43
+msgid "delivery fees"
+msgstr "frais de livraison"
+
+#: ../woocommerce/checkout/form-summaries.php:20
+msgid "review & submit"
+msgstr "réviser et soumettre"
+
+#: ../woocommerce/checkout/form-pay.php:21
+msgid "product"
+msgstr "produit"
+
+#: ../woocommerce/checkout/form-pay.php:22
+msgid "qty"
+msgstr "qtée."
+
+#: ../woocommerce/checkout/thankyou.php:44
+msgid "date"
+msgstr "date"
+
+#: ../woocommerce/checkout/form-coupon.php:26
+msgid "coupon code"
+msgstr "code promotionel"
+
+#: ../woocommerce/checkout/parts-packages.php:12 ../woocommerce/checkout/review-
+#: order.php:19
+msgid "i will pick up"
+msgstr "je ferai la ceuillette"
+
+#: ../woocommerce/checkout/cart-errors.php:22
+msgid "Return To Cart"
+msgstr "retour au panier"
+
+#: ../woocommerce/checkout/review-order.php:17
+msgid "choose your delivery options"
+msgstr "options de livraison"
+
+#: ../woocommerce/checkout/review-order.php:49
+msgid "total delivery"
+msgstr "total de livraison"
+
+#: ../woocommerce/checkout/review-order.php:75
+msgid "click here"
+msgstr "cliquez ici"
+
+#: ../woocommerce/checkout/form-shipping.php:59
+msgid "additional information"
+msgstr "informations additionelles"
+
+#: ../woocommerce/global/form-login.php:26 ../woocommerce/myaccount/form-lost-
+#: password.php:26
+msgid "Username or email"
+msgstr "Nom d'utilisateur ou courriel"
+
+#: ../woocommerce/global/form-login.php:42 ../woocommerce/myaccount/form-login.
+#: php:53
+msgid "Remember me"
+msgstr "Se rapeller de moi"
+
+#: ../woocommerce/global/form-login.php:46 ../woocommerce/myaccount/form-login.
+#: php:59
+msgid "Lost your password?"
+msgstr "Perdu votre mot de passe?"
+
+#: ../woocommerce/myaccount/form-login.php:71 ../woocommerce/myaccount/form-login.
+#: php:107
+msgid "Register"
+msgstr "S'enregistrer"
+
+#: ../woocommerce/myaccount/form-login.php:79
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+#: ../woocommerce/myaccount/form-login.php:86 ../woocommerce/myaccount/form-edit-
+#: account.php:33
+msgid "Email address"
+msgstr "Adresse Courriel"
+
+#: ../woocommerce/myaccount/form-login.php:109
+msgid "I already have an account"
+msgstr "J'ai déja un compte"
+
+#: ../woocommerce/myaccount/form-login.php:117
+msgid "I'm new here"
+msgstr "C'est ma premiere fois ici"
+
+#: ../woocommerce/myaccount/form-login.php:122
+msgid "checkout as guest"
+msgstr "Procéder au paiement en tant qu'invité"
+
+#: ../woocommerce/myaccount/form-login.php:123
+msgid ""
+"Continue as guest user and you may create an account after palcing your "
+"order."
+msgstr ""
+"Continuer en tant qu'invité, vous pourrez vous enregistrer apres votre "
+"commande."
+
+#: ../woocommerce/myaccount/form-login.php:124
+msgid "OR"
+msgstr "OU"
+
+#: ../woocommerce/myaccount/form-login.php:125
+msgid "sign up now"
+msgstr "S'enregistere Maintenant"
+
+#: ../woocommerce/myaccount/form-lost-password.php:20
+msgid "Password reset"
+msgstr "Réinitialiser le mot de passe"
+
+#: ../woocommerce/myaccount/form-lost-password.php:33
+msgid "New password"
+msgstr "Nouveau mot de passe"
+
+#: ../woocommerce/myaccount/form-lost-password.php:37
+msgid "Re-enter new password"
+msgstr "Confirmez le nouveau mot de passe"
+
+#: ../woocommerce/myaccount/form-lost-password.php:52
+msgid "Reset Password"
+msgstr "Réinitializer le mot de passe"
+
+#: ../woocommerce/myaccount/form-lost-password.php:52
+msgid "Save"
+msgstr "Enregistrer"
+
+#: ../woocommerce/myaccount/my-address.php:17
+msgid "my addresses"
+msgstr "mes adresses"
+
+#: ../woocommerce/myaccount/my-address.php:23
+msgid "my address"
+msgstr "mon adresse"
+
+#: ../woocommerce/myaccount/my-orders.php:26
+msgid "Recent Orders"
+msgstr "Commandes Récentes"
+
+#: ../woocommerce/myaccount/my-orders.php:32
+msgid "Order"
+msgstr "Commande"
+
+#: ../woocommerce/myaccount/my-orders.php:33 ../woocommerce/myaccount/my-orders.
+#: php:52
+msgid "Date"
+msgstr "Date"
+
+#: ../woocommerce/myaccount/my-orders.php:34 ../woocommerce/myaccount/my-orders.
+#: php:55
+msgid "Status"
+msgstr "Statut"
+
+#: ../woocommerce/myaccount/my-orders.php:35 ../woocommerce/myaccount/my-orders.
+#: php:58
+msgid "Total"
+msgstr "Total"
+
+#: ../woocommerce/myaccount/my-orders.php:47
+msgid "Order Number"
+msgstr "Numéro de Commande"
+
+#: ../woocommerce/myaccount/my-orders.php:59
+#, php-format
+msgid "%s for %s item"
+msgid_plural "%s for %s items"
+msgstr[0] "%s pour %s item"
+msgstr[1] "%s pour %s items"
+
+#: ../woocommerce/myaccount/my-orders.php:68
+msgid "Pay"
+msgstr "Payer"
+
+#: ../woocommerce/myaccount/my-orders.php:75
+msgid "Cancel"
+msgstr "annuler"
+
+#: ../woocommerce/myaccount/my-orders.php:81
+msgid "View"
+msgstr "voir"
+
+#: ../woocommerce/myaccount/form-edit-address.php:45
+msgid "save address"
+msgstr "enregistrer cette adresse"
+
+#: ../woocommerce/myaccount/form-edit-account.php:23
+msgid "First name"
+msgstr "Prénom"
+
+#: ../woocommerce/myaccount/form-edit-account.php:27
+msgid "Last name"
+msgstr "Nom de famille"
+
+#: ../woocommerce/myaccount/form-edit-account.php:38
+msgid "Password Change"
+msgstr "Changement de Mot de passe "
+
+#: ../woocommerce/myaccount/form-edit-account.php:41
+msgid "Current Password (leave blank to leave unchanged)"
+msgstr "Mot de passe (laisser vide pour ne pas changer)"
+
+#: ../woocommerce/myaccount/form-edit-account.php:45
+msgid "New Password (leave blank to leave unchanged)"
+msgstr "nouveau mot de passe (laisser vide pour ne pas changer)"
+
+#: ../woocommerce/myaccount/form-edit-account.php:49
+msgid "Confirm New Password"
+msgstr "confirmez le nouveau mot de passe"
+
+#: ../woocommerce/myaccount/form-edit-account.php:59
+msgid "Save changes"
+msgstr "sauvegarder les changements"

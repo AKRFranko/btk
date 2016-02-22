@@ -109,7 +109,7 @@ add_action( 'after_setup_theme', '_s_content_width', 0 );
  */
 function _s_widgets_init() {
 	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', 'edb' ),
+		'name'          => esc_html__( 'sidebar', 'edb' ),
 		'id'            => 'sidebar-1',
 		'description'   => '',
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
@@ -118,7 +118,7 @@ function _s_widgets_init() {
 		'after_title'   => '</h2>',
 	) );
 	register_sidebar( array(
-    'name'          => esc_html__( 'Languages', 'edb' ),
+    'name'          => esc_html__( 'languages', 'edb' ),
     'id'            => 'languages',
     'description'   => '',
     'before_widget' => '',
@@ -157,9 +157,31 @@ function _s_scripts() {
 add_action( 'wp_enqueue_scripts', '_s_scripts' );
 
 add_action( 'init', 'edb_theme_remove_wc_breadcrumbs' );
+add_action('init', 'edb_menu_strings_init');
+function edb_menu_strings_init( ){
+  __("products", 'edb');
+  __("order samples", 'edb');
+  __("shipping", 'edb');
+  __("about", 'edb');
+  __("contact us", 'edb');
+  __("lookbook", 'edb');
+  __("contact us", 'edb');
+  __("shipping", 'edb');
+  __("return & exchange", 'edb');
+  __("my account", 'edb');
+  __("about", 'edb');
+  __("FAQ", 'edb');
+  __("trade & designers", 'edb');
+  __("lookbook", 'edb');
+  __("privacy policy", 'edb');
+  __("terms of use", 'edb');
+}
 function edb_theme_remove_wc_breadcrumbs() {
     remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
 }
+
+add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 24;' ), 20 );
+
 function custom_excerpt_length( $length ) {
   return 20;
 }
@@ -272,7 +294,7 @@ function btk_product_pdf_link( $productID, $fileName){
       
       $pdflink = $pdf->guid; 
       
-      return '<a target="_blank" href="'.$pdflink.'" download="'.sanitize_file_name($fileName . '.pdf').'" class="upper pr-pdf">download PDF</a>';
+      return '<a target="_blank" href="'.$pdflink.'" download="'.sanitize_file_name($fileName . '.pdf').'" class="upper pr-pdf">'.__('download PDF', 'edb').'</a>';
     }
     return '';
 }
@@ -292,8 +314,8 @@ function edb_splash_page(){
     'numberposts' => 1
   );
   $links = array(
-    'en' => array( 'url'=>home_url(), 'label' => __('Enter', 'edb') ),
-    'fr' => array( 'url'=>home_url().'/fr', 'label' => __('Entrez', 'edb') )
+    'en' => array( 'url'=>home_url(), 'label' => __('enter', 'edb') ),
+    'fr' => array( 'url'=>home_url().'/fr', 'label' => __('entrez', 'edb') )
    );
   foreach($links as $lang => $link){
     echo "<a class=\"language-selection\" href=\"".$link['url']."\">".$link['label']."</a>";
@@ -345,6 +367,25 @@ function woo_filter_state_billing( $address_fields ) {
 function woo_filter_state_shipping( $address_fields ) {
   $address_fields['shipping_state']['required'] = true;
   return $address_fields;
+}
+
+add_filter( 'wp_nav_menu_items', 'edb_translate_menu', 10, 2 );
+function edb_translate_menu( $items, $menu ) {
+  
+  $doc = new DOMDocument();
+  $doc->loadHTML($items);
+  $links = $doc->getElementsByTagName('a');
+  $strings = array();
+  foreach( $links as $link ){
+    array_push( $strings, $link->nodeValue );
+    $link->nodeValue = htmlspecialchars(__( $link->nodeValue, 'edb' ));
+    
+
+  }
+  
+  // write_log( json_encode( $strings));
+  return $doc->saveHTML();
+
 }
 /**
  * Implement the Custom Header feature.

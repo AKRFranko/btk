@@ -9,7 +9,7 @@ body.toast-cover #page{
   position:fixed;
   width:100vh;
   height:100vh;
-  transition:all .2s ease-out;
+  transition:all .7s ease-out;
   left:0;
   width:100vw;
   top:117px;
@@ -21,6 +21,9 @@ body.toast-cover #page{
   box-sizing:border-box;
   padding:1em 2em;
   // overflow:hidden;
+}
+.troast.active{
+  transition:none;
 }
 
 
@@ -56,6 +59,7 @@ body.toast-cover #page{
   margin:0;
   
 }
+
 .toast.vertical.active,
 .toast.vertical.bottom.active{
   margin-top:calc(~"50vh - 117px");

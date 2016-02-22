@@ -1,4 +1,18 @@
 #! /bin/sh
+
+wget -O /home/franko/Code/edb.com/btk/edb-theme/languages/edb.pot --user=edb --password=Golgo.13 https://development.elementdebase.com/wp-content/themes/edb-theme/languages/edb.pot
+wget -O /home/franko/Code/edb.com/btk/edb-theme/languages/fr_FR.po --user=edb --password=Golgo.13 https://development.elementdebase.com/wp-content/themes/edb-theme/languages/fr_FR.po
+wget -O /home/franko/Code/edb.com/btk/edb-theme/languages/fr_FR.mo --user=edb --password=Golgo.13 https://development.elementdebase.com/wp-content/themes/edb-theme/languages/fr_FR.mo
+
+
+wget -O /home/franko/Code/edb.com/btk/edb-plugin/languages/edb.pot --user=edb --password=Golgo.13 https://development.elementdebase.com/wp-content/plugins/edb-plugin/languages/edb.pot
+wget -O /home/franko/Code/edb.com/btk/edb-plugin/languages/fr_FR.po --user=edb --password=Golgo.13 https://development.elementdebase.com/wp-content/plugins/edb-plugin/languages/fr_FR.po
+wget -O /home/franko/Code/edb.com/btk/edb-plugin/languages/fr_FR.mo --user=edb --password=Golgo.13 https://development.elementdebase.com/wp-content/plugins/edb-plugin/languages/fr_FR.mo
+
+wget -O /home/franko/Code/edb.com/btk/edb-lookbook/languages/edb.pot --user=edb --password=Golgo.13 https://development.elementdebase.com/wp-content/plugins/edb-lookbook/languages/edb.pot
+wget -O /home/franko/Code/edb.com/btk/edb-lookbook/languages/fr_FR.po --user=edb --password=Golgo.13 https://development.elementdebase.com/wp-content/plugins/edb-lookbook/languages/fr_FR.po
+wget -O /home/franko/Code/edb.com/btk/edb-lookbook/languages/fr_FR.mo --user=edb --password=Golgo.13 https://development.elementdebase.com/wp-content/plugins/edb-lookbook/languages/fr_FR.mo
+
 sudo cd /home/franko/Code/edb.com/btk
 echo "Bundling themes and plugins"
 rm ./edb-theme.zip

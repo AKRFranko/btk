@@ -31,7 +31,7 @@ global $WC_Edb;
       <div class="boxes">
         <div class="box half">
       
-      <h2><?php _e('PAYMENT DETAILS', 'edb'); ?></h2>
+      <h2><?php _e('payment details', 'edb'); ?></h2>
 	   <?php if ( WC()->cart->needs_payment() ) : ?>
      <div class="payment_methods methods">
        <?php
@@ -41,9 +41,9 @@ global $WC_Edb;
            }
          } else {
            if ( ! WC()->customer->get_country() ) {
-             $no_gateways_message = __( 'Please fill in your details above to see available payment methods.', 'woocommerce' );
+             $no_gateways_message = __( 'please fill in your details above to see available payment methods.', 'edb' );
            } else {
-             $no_gateways_message = __( 'Sorry, it seems that there are no available payment methods for your state. Please contact us if you require assistance or wish to make alternate arrangements.', 'woocommerce' );
+             $no_gateways_message = __( 'sorry, it seems that there are no available payment methods for your state. please contact us if you require assistance or wish to make alternate arrangements.', 'edb' );
            }
    
            echo '<li>' . apply_filters( 'woocommerce_no_available_payment_methods_message', $no_gateways_message ) . '</li>';
@@ -54,8 +54,8 @@ global $WC_Edb;
      <?php if (WC()->cart->coupons_enabled() ) { ?>
        <div class="checkout-coupon">
          
-         <h1><?php _e('Do you have a promo code?', 'edb'); ?></h1>
-         <input type="text" name="coupon_code" placeholder="<?php esc_attr_e( 'promo code', 'woocommerce' ); ?>" id="coupon_code" value="" />
+         <h1><?php _e('do you have a promo code?', 'edb'); ?></h1>
+         <input type="text" name="coupon_code" placeholder="<?php esc_attr_e( 'promo code', 'edb' ); ?>" id="coupon_code" value="" />
        </div>
      <?php }; ?>
      </div>
@@ -63,20 +63,20 @@ global $WC_Edb;
 
 
     
-      <h1>ORDER SUMMARY</h1>
+      <h1><?php _e('order summary','edb');?></h1>
      
       <div class="cart-costs">
        <?php get_template_part('woocommerce/checkout/parts', 'totals') ;?>
     
         
       </div><!-- .cart-costs -->
-    <h1><?php _e('Items', 'edb')?></h1>
+    <h1><?php _e('items', 'edb')?></h1>
     <div class="cart-review-items">
       <?php get_template_part('woocommerce/checkout/parts', 'packages') ;?>
     </div><!-- cart-review-items -->
     </div>
     </div>
-    <button type="button" class="edb-save-and-continue">save & continue</button>
+    <button type="button" class="edb-save-and-continue"><?php _e('save & continue', 'edb'); ?></button>
     
   </fieldset><!-- #payment-info-panel -->
 
@@ -86,7 +86,7 @@ global $WC_Edb;
 <div class="box half">
     
     <div class="cart-address-review">
-      <h1>DELIVERED TO</h1>
+      <h1><?php _e('delivered to', 'edb');?></h1>
       <?php if(!empty(WC()->customer->shipping_address_1)){ ?>
       <p>
         <?php echo WC()->customer->shipping_address_1;  ?>,<?php echo WC()->customer->shipping_address_2;  ?>
@@ -97,21 +97,21 @@ global $WC_Edb;
         <?php echo WC()->customer->shipping_country;  ?>,
         <?php echo WC()->customer->shipping_postcode;  ?>
       </p>
-      <a href="#" class="panel-link" data-panel="#address-info-panel">edit</a>
+      <a href="#" class="panel-link" data-panel="#address-info-panel"><?php _e('edit', 'edb'); ?></a>
       <?php }else{ ?>
-        <div class="warning"><a href="#" class="panel-link" data-panel="#address-info-panel">please click here to fill in your address information.</a></div>
+        <div class="warning"><a href="#" class="panel-link" data-panel="#address-info-panel"><?php _e('please click here to fill in your address information.','edb'); ?></a></div>
       <?php } ?>
     </div>
     
     
     <div class="cart-payment">
-      <h1>Payment</h1>
+      <h1><?php _e('payment', 'edb'); ?></h1>
       <?php if(!empty(WC()->session->get('edb_payment_info_card_number'))){ ?>
       <p class="credit-card-type"><?php echo WC()->session->get('edb_payment_info_card_number'); ?></p>
       <p class="credit-card-number"><?php echo WC()->session->get('edb_payment_info_card_expiry'); ?></p>
-      <a href="#" class="panel-link" data-panel="#payment-info-panel">edit</a>
+      <a href="#" class="panel-link" data-panel="#payment-info-panel"><?php _e('edit', 'edb'); ?></a>
       <?php }else{ ?>
-        <div class="warning"><a href="#" class="panel-link" data-panel="#payment-info-panel">please click here to fill in your payment information.</a></div>
+        <div class="warning"><a href="#" class="panel-link" data-panel="#payment-info-panel"><?php _e('please click here to fill in your payment information.','edb'); ?></a></div>
       <?php }; ?>
       
     </div>
@@ -120,21 +120,21 @@ global $WC_Edb;
     
     <div class="cart-final-checklist">
 
-<h3>Final Checklist</h3>
-    <label class="checklist-checkbox"><input type="checkbox" name="final_checklist_fits"> <span>I made sure the item fits.</span> </label>
-    <label class="checklist-checkbox"><input type="checkbox" name="final_checklist_noinclude"> <span>The delivery does not include...</span></label>
-    <label class="checklist-checkbox"><input type="checkbox" name="final_checklist_variation"> <span>I am aware that there can be slight variation in the colors of the swatches and the final product due to dye lot difference.</span></label>
+<h3><?php _e('Final Checklist', 'edb'); ?></h3>
+    <label class="checklist-checkbox"><input type="checkbox" name="final_checklist_fits"> <span><?php _e('i made sure the item fits.','edb'); ?></span> </label>
+    <label class="checklist-checkbox"><input type="checkbox" name="final_checklist_noinclude"> <span><?php _e('The delivery does not include...','edb'); ?></span></label>
+    <label class="checklist-checkbox"><input type="checkbox" name="final_checklist_variation"> <span><?php _e('i am aware that there can be slight variation in the colors of the swatches and the final product due to dye lot difference.','edb'); ?></span></label>
     </div>
     
     
     </div>
     <div class="box half">
     <div class="cart-costs-review">
-      <h1>Total</h1>
+      <h1><?php _e('total','edb'); ?></h1>
       <div class="cart-costs-repeat">
          <?php get_template_part('woocommerce/checkout/parts', 'totals') ;?>
       </div>
-      <h1><?php _e('Items', 'edb')?></h1>
+      <h1><?php _e('items', 'edb')?></h1>
       <div class="cart-review-items-repeat">
         <?php get_template_part('woocommerce/checkout/parts', 'packages') ;?>
       </div>

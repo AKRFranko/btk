@@ -120,7 +120,7 @@ class Edb_Admin {
 	    $current_status = 0;
 	  }
 	  foreach($levels as $level ){
-	    $options[$level] = __($level, 'edb');
+	    $options[$level] = $level;
 	  }
 	  ?>
 	  <h3>EDB Designer Information</h3>

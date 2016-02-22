@@ -14,14 +14,14 @@ global $WC_Edb;
 ?>
 
 <fieldset id="shipping-packages-panel" class="checkout-panel woocommerce-checkout-review-order-table <?php edb_panel_active('#shipping-packages-panel') ?>">
-  <h1><?php _e('Choose your delivery options', 'edb'); ?></h1>
+  <h1><?php _e('choose your delivery options', 'edb'); ?></h1>
     <?php $edb_shipping_methods = array(
-      'edb_self_pickup' => "I will pick up.",
-      'edb_ship_ready' => "Ship when ready",
-      'edb_ship_bundle_1' => "Ship bundle 1",
-      'edb_ship_bundle_2' => "Ship bundle 2",
-      'edb_ship_bundle_3' => "Ship bundle 3"
-    ); ?>
+            'edb_self_pickup' => __("i will pick up", 'edb'),
+            'edb_ship_ready' => __("ship when ready",'edb'),
+            'edb_ship_bundle_1' => __("ship bundle 1",'edb'),
+            'edb_ship_bundle_2' => __("ship bundle 2",'edb'),
+            'edb_ship_bundle_3' => __("ship bundle 3",'edb')
+          );?>
     <div class="shipping-method-choices">
       <?php foreach($edb_shipping_methods as $method_name => $label ){ ?>
       
@@ -59,7 +59,7 @@ global $WC_Edb;
             if($fee->id == 'self-pickup-discount'){
             ?>
             <div class="shipping-review-total">
-              <span class="label">Self pickup discount</span>
+              <span class="label"><?php _e('self pickup discount', 'edb'); ?></span>
               <span class="value"><?php echo wc_price($fee->amount); ?></span>
             </div>
             
@@ -72,11 +72,11 @@ global $WC_Edb;
       
       
       <div class="shipping-review-notice">
-        <p>based on your selection, the final delivery fees will adjust automatically. shipping items individuallu may add shipping fees. for more information on how delivery fees are calculated <a target="_blank" href="<?php echo home_url('/about-shipping'); ?>">click here</a>.</p>
+        <p><?php _e('based on your selection, the final delivery fees will adjust automatically. shipping items individuallu may add shipping fees. for more information on how delivery fees are calculated', 'edb');?><a target="_blank" href="<?php echo home_url('/about-shipping'); ?>"><?php _e('click here', 'edb'); ?></a>.</p>
       </div>
       
     </div><!-- shipping-review -->
-  <button type="button" class="edb-save-and-continue">save & continue</button>
+  <button type="button" class="edb-save-and-continue"><?php _e('save & continue', 'edb'); ?></button>
 </fieldset><!-- .woocommerce-checkout-review-order-table -->
   
 

@@ -1,100 +1,167 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the edb package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# Loco Gettext template
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: edb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-04 12:09-0500\n"
+"POT-Revision-Date: Sat Feb 20 2016 17:26:48 GMT-0500 (EST)\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ..\n"
+"X-Poedit-KeywordsList: _:1;gettext:1;dgettext:2;ngettext:1,2;dngettext:2,3;"
+"__:1;_e:1;_c:1;_n:1,2;_n_noop:1,2;_nc:1,2;__ngettext:1,2;__ngettext_noop:1,2;"
+"_x:1,2c;_ex:1,2c;_nx:1,2,4c;_nx_noop:1,2,3c;_n_js:1,2;_nx_js:1,2,3c;"
+"esc_attr__:1;esc_html__:1;esc_attr_e:1;esc_html_e:1;esc_attr_x:1,2c;"
+"esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
+"X-Generator: Loco - https://localise.biz/"
 
-#: admin/class-edb-admin.php:173 admin/class-edb-admin.php:236
-msgid "Min shipping delay when item is <b>in stock</b>"
+#. Name of the plugin
+msgid "edb"
 msgstr ""
 
-#: admin/class-edb-admin.php:175 admin/class-edb-admin.php:238
-msgid "ex: +7 days"
+#. URI of the plugin
+msgid "http://akr.clubedb"
 msgstr ""
 
-#: admin/class-edb-admin.php:183
-msgid "Min shipping delay when item is <b>backorder</b>"
+#. Description of the plugin
+msgid ""
+"This is a short description of what the plugin does. It's displayed in the "
+"WordPress admin area."
 msgstr ""
 
-#: admin/class-edb-admin.php:185 admin/class-edb-admin.php:251
-msgid "ex: +14 days"
+#. Author of the plugin
+msgid "Franko"
 msgstr ""
 
-#: admin/class-edb-admin.php:194
-msgid "Image to use as technical detail."
+#. Author URI of the plugin
+msgid "http://akr.club"
 msgstr ""
 
-#: admin/class-edb-admin.php:202 admin/class-edb-admin.php:210
-msgid "URL of youtube video for product introduction"
+#: ../includes/template-tags.php:49
+msgid "download pdf"
 msgstr ""
 
-#: admin/class-edb-admin.php:249
-msgid "Min shipping delay  when item is <b>backorder</b>"
+#: ../includes/template-tags.php:206
+#, php-format
+msgid "ships: %s"
 msgstr ""
 
-#: admin/class-edb-admin.php:331
-msgid "Material ID"
+#: ../includes/template-tags.php:402
+msgid "order samples"
 msgstr ""
 
-#: includes/class-edb-shipping.php:1021
-msgid "EDB Self Pickup"
+#: ../includes/template-tags.php:418
+msgid "select a color"
 msgstr ""
 
-#: includes/class-edb-shipping.php:1022 includes/class-edb-shipping.php:1045
-#: includes/class-edb-shipping.php:1086 includes/class-edb-shipping.php:1120
-#: includes/class-edb-shipping.php:1150
-msgid "A custom shipping module."
+#: ../includes/template-tags.php:425
+msgid "in stock"
 msgstr ""
 
-#: includes/class-edb-shipping.php:1044
-msgid "EDB Ship Ready"
+#: ../includes/template-tags.php:429
+msgid "backorder"
 msgstr ""
 
-#: includes/class-edb-shipping.php:1085
-msgid "EDB Ship Bundle 1"
+#: ../includes/template-tags.php:545
+msgid "self pickup"
 msgstr ""
 
-#: includes/class-edb-shipping.php:1119
-msgid "EDB Ship Bundle 2"
+#: ../includes/template-tags.php:546
+msgid "ship when ready"
 msgstr ""
 
-#: includes/class-edb-shipping.php:1149
-msgid "EDB Ship Bundle 3"
+#: ../includes/template-tags.php:547
+msgid "ship as bundle 1"
 msgstr ""
 
-#: includes/class-edb-wc-integration.php:23
+#: ../includes/template-tags.php:548
+msgid "ship as bundle 2"
+msgstr ""
+
+#: ../includes/template-tags.php:549
+msgid "ship as bundle 3"
+msgstr ""
+
+#: ../includes/template-tags.php:588
+msgid "self pickup discount"
+msgstr ""
+
+#: ../includes/template-tags.php:605
+msgid "credit card"
+msgstr ""
+
+#: ../includes/template-tags.php:609
+msgid "expiry"
+msgstr ""
+
+#: ../includes/template-tags.php:618
+msgid "no color selected"
+msgstr ""
+
+#: ../includes/template-tags.php:621
+msgid "quantity"
+msgstr ""
+
+#: ../includes/template-tags.php:631 ../includes/class-edb-shipping.php:27
+#, php-format
+msgid "%s week"
+msgid_plural "%s weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../includes/class-edb-wc-integration.php:23
 msgid "EDB Integration"
 msgstr ""
 
-#: includes/class-edb-wc-integration.php:24
+#: ../includes/class-edb-wc-integration.php:24
 msgid "An integratino demo to show you how easy it is to extend WooCommerce."
 msgstr ""
 
-#: includes/class-edb-wc-integration.php:185
-msgid "Looks like you made a mistake with the "
+#: ../includes/class-edb-shipping.php:378
+msgid "regular items"
 msgstr ""
 
-#: includes/template-tags.php:396
-msgid "Credit Card"
+#: ../includes/class-edb-shipping.php:381
+msgid "sale items"
 msgstr ""
 
-#: includes/template-tags.php:400
-msgid "Expiry"
+#: ../admin/class-edb-admin.php:184 ../admin/class-edb-admin.php:247
+msgid "Min shipping delay when item is <b>in stock</b>"
 msgstr ""
 
-#: includes/template-tags.php:411
-msgid "Quantity"
+#: ../admin/class-edb-admin.php:186 ../admin/class-edb-admin.php:249
+msgid "ex: +7 days"
+msgstr ""
+
+#: ../admin/class-edb-admin.php:194
+msgid "Min shipping delay when item is <b>backorder</b>"
+msgstr ""
+
+#: ../admin/class-edb-admin.php:196 ../admin/class-edb-admin.php:262
+msgid "ex: +14 days"
+msgstr ""
+
+#: ../admin/class-edb-admin.php:205
+msgid "Image to use as technical detail."
+msgstr ""
+
+#: ../admin/class-edb-admin.php:213 ../admin/class-edb-admin.php:221
+msgid "ID of youtube video for product introduction"
+msgstr ""
+
+#: ../admin/class-edb-admin.php:260
+msgid "Min shipping delay  when item is <b>backorder</b>"
+msgstr ""
+
+#: ../admin/class-edb-admin.php:357
+msgid "Material ID"
 msgstr ""

@@ -9,11 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $Edb_Shipping_Method;
 
  $edb_shipping_methods = array(
-  'edb_self_pickup' => "I will pick up.",
-  'edb_ship_ready' => "Ship when ready",
-  'edb_ship_bundle_1' => "Ship bundle 1",
-  'edb_ship_bundle_2' => "Ship bundle 2",
-  'edb_ship_bundle_3' => "Ship bundle 3"
+  'edb_self_pickup' => __("i will pick up", 'edb'),
+  'edb_ship_ready' => __("ship when ready",'edb'),
+  'edb_ship_bundle_1' => __("ship bundle 1",'edb'),
+  'edb_ship_bundle_2' => __("ship bundle 2",'edb'),
+  'edb_ship_bundle_3' => __("ship bundle 3",'edb')
 ); 
 $shipments = array();
 foreach($Edb_Shipping_Method->packages as $key => $item)
@@ -73,7 +73,7 @@ foreach( $shipments as $shipping_method => $packages ){
        
      </div>
      <div class="cart-item-edit">
-       <a href="<?php echo WC()->cart->get_cart_url(); ?>">edit</a>
+       <a href="<?php echo WC()->cart->get_cart_url(); ?>"><?php _e('edit', 'edb'); ?></a>
      </div>
    </div>
    

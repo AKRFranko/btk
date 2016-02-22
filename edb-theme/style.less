@@ -37,6 +37,11 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
   text-transform:uppercase!important;
 }
 @media  (max-width: 320px) and (max-width: 768px){
+  #page{
+    max-width:320px;
+    min-width:320px;
+    margin:0 auto;
+  }
   .slide-clickable{
     top:3em;
   }
@@ -54,7 +59,8 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
   #masthead.on #logo{
     /*TODO: put white logo*/
   }
-  #masthead.on #site-nav a{
+  #masthead.on #site-nav a,
+  #masthead.on #site-nav *{
     color:#fff;
   }
   
@@ -108,6 +114,11 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 
 @media (min-width: 768px) and (max-width: 991px) {
 
+#page{
+  max-width:768px;
+  min-width:768px;
+  margin:0 auto;
+}
   .listing-post,
   .listing-product{
    
@@ -148,6 +159,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
   }
   #page{
     max-width:960px;
+    min-width:960px;
     margin:0 auto;
   }
   #shop-nav{

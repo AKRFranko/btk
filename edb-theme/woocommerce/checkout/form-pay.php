@@ -18,9 +18,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<table class="shop_table">
 		<thead>
 			<tr>
-				<th class="product-name"><?php _e( 'Product', 'woocommerce' ); ?></th>
-				<th class="product-quantity"><?php _e( 'Qty', 'woocommerce' ); ?></th>
-				<th class="product-total"><?php _e( 'Totals', 'woocommerce' ); ?></th>
+				<th class="product-name"><?php _e( 'product', 'edb' ); ?></th>
+				<th class="product-quantity"><?php _e( 'qty', 'edb' ); ?></th>
+				<th class="product-total"><?php _e( 'totals', 'edb' ); ?></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -91,7 +91,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="form-row">
 			<?php wp_nonce_field( 'woocommerce-pay' ); ?>
 			<?php
-				$pay_order_button_text = apply_filters( 'woocommerce_pay_order_button_text', __( 'Pay for order', 'woocommerce' ) );
+				$pay_order_button_text = apply_filters( 'woocommerce_pay_order_button_text', __( 'pay for order', 'woocommerce' ) );
 
 				echo apply_filters( 'woocommerce_pay_order_button_html', '<input type="submit" class="button alt" id="place_order" value="' . esc_attr( $pay_order_button_text ) . '" data-value="' . esc_attr( $pay_order_button_text ) . '" />' );
 			?>

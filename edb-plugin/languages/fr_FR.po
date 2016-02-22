@@ -1,0 +1,165 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: edb\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-02-04 12:09-0500\n"
+"PO-Revision-Date: Sat Feb 20 2016 17:30:01 GMT-0500 (EST)\n"
+"Last-Translator: admin <edb@akr.club>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: French (France)\n"
+"Plural-Forms: nplurals=2; plural=n > 1\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ..\n"
+"X-Poedit-KeywordsList: _:1;gettext:1;dgettext:2;ngettext:1,2;dngettext:2,3;"
+"__:1;_e:1;_c:1;_n:1,2;_n_noop:1,2;_nc:1,2;__ngettext:1,2;__ngettext_noop:1,2;"
+"_x:1,2c;_ex:1,2c;_nx:1,2,4c;_nx_noop:1,2,3c;_n_js:1,2;_nx_js:1,2,3c;"
+"esc_attr__:1;esc_html__:1;esc_attr_e:1;esc_html_e:1;esc_attr_x:1,2c;"
+"esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
+"X-Loco-Target-Locale: fr_FR\n"
+"X-Generator: Loco - https://localise.biz/"
+
+#. Name of the plugin
+msgid "edb"
+msgstr ""
+
+#. URI of the plugin
+msgid "http://akr.clubedb"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"This is a short description of what the plugin does. It's displayed in the "
+"WordPress admin area."
+msgstr ""
+
+#. Author of the plugin
+msgid "Franko"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "http://akr.club"
+msgstr ""
+
+#: ../includes/template-tags.php:545
+msgid "self pickup"
+msgstr ""
+
+#: ../includes/template-tags.php:546
+msgid "ship when ready"
+msgstr ""
+
+#: ../includes/template-tags.php:547
+msgid "ship as bundle 1"
+msgstr ""
+
+#: ../includes/template-tags.php:548
+msgid "ship as bundle 2"
+msgstr ""
+
+#: ../includes/template-tags.php:549
+msgid "ship as bundle 3"
+msgstr ""
+
+#: ../includes/template-tags.php:588
+msgid "self pickup discount"
+msgstr ""
+
+#: ../includes/class-edb-wc-integration.php:23
+msgid "EDB Integration"
+msgstr ""
+
+#: ../includes/class-edb-wc-integration.php:24
+msgid "An integratino demo to show you how easy it is to extend WooCommerce."
+msgstr ""
+
+#: ../admin/class-edb-admin.php:184 ../admin/class-edb-admin.php:247
+msgid "Min shipping delay when item is <b>in stock</b>"
+msgstr ""
+
+#: ../admin/class-edb-admin.php:186 ../admin/class-edb-admin.php:249
+msgid "ex: +7 days"
+msgstr ""
+
+#: ../admin/class-edb-admin.php:194
+msgid "Min shipping delay when item is <b>backorder</b>"
+msgstr ""
+
+#: ../admin/class-edb-admin.php:196 ../admin/class-edb-admin.php:262
+msgid "ex: +14 days"
+msgstr ""
+
+#: ../admin/class-edb-admin.php:205
+msgid "Image to use as technical detail."
+msgstr ""
+
+#: ../admin/class-edb-admin.php:213 ../admin/class-edb-admin.php:221
+msgid "ID of youtube video for product introduction"
+msgstr ""
+
+#: ../admin/class-edb-admin.php:260
+msgid "Min shipping delay  when item is <b>backorder</b>"
+msgstr ""
+
+#: ../includes/template-tags.php:49
+msgid "download pdf"
+msgstr "télécharger le pdf"
+
+#: ../includes/template-tags.php:206
+#, php-format
+msgid "ships: %s"
+msgstr "départ: %s"
+
+#: ../includes/template-tags.php:402
+msgid "order samples"
+msgstr "commander des échantillons"
+
+#: ../includes/template-tags.php:418
+msgid "select a color"
+msgstr "choisir une couleur"
+
+#: ../includes/template-tags.php:425
+msgid "in stock"
+msgstr "disponible"
+
+#: ../includes/template-tags.php:429
+msgid "backorder"
+msgstr "arriéré de commande"
+
+#: ../includes/template-tags.php:605
+msgid "credit card"
+msgstr "carte de crédit"
+
+#: ../includes/template-tags.php:609
+msgid "expiry"
+msgstr "expiration"
+
+#: ../includes/template-tags.php:618
+msgid "no color selected"
+msgstr "aucune couleur sélectionnée"
+
+#: ../includes/template-tags.php:621
+msgid "quantity"
+msgstr "quantitée"
+
+#: ../includes/template-tags.php:631 ../includes/class-edb-shipping.php:27
+#, php-format
+msgid "%s week"
+msgid_plural "%s weeks"
+msgstr[0] "%s semaine"
+msgstr[1] "%s semaines"
+
+#: ../includes/class-edb-shipping.php:378
+msgid "regular items"
+msgstr "items réguliers"
+
+#: ../includes/class-edb-shipping.php:381
+msgid "sale items"
+msgstr "items en vente"
+
+#: ../admin/class-edb-admin.php:357
+msgid "Material ID"
+msgstr "ID Materiel"

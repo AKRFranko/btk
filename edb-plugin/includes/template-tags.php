@@ -1,5 +1,6 @@
 <?php 
 
+
 function edb_availability_date(  ){
     echo "edb_availability_date";
 }
@@ -172,7 +173,8 @@ function edb_checkout_item_availability( $cart_item_key, $cart_item  ){
   $decorated = edb_decorated_product( $variation_id );
   $delays = $decorated->shipping_delays[$variation_id];
   
-  $now = strtotime(date(DATE_RFC2822));
+  $now = strtotime(date(DATE_ATOM));
+  
   $min = trim(time_elapsed(strtotime( $delays['available'], $now )));
   $max = trim(time_elapsed(strtotime( $delays['backorder'], $now )));
   $available_stock = $decorated->variation_object->get_total_stock();
@@ -201,34 +203,30 @@ function edb_order_item_availability( $item, $order ){
   // write_log( $availability );
   // write_log( $order_date );
   // write_log( $display );
-  echo sprintf( __('Ships: %s', 'edb') ,date_i18n('j F Y', $display) );
+  echo sprintf( __('ships: %s', 'edb') ,date_i18n('j F Y', $display) );
   
 }
 function edb_shipping_item_availability( $package ){
+  
+
   $product_id = $package['product_id'];
   $variation_id = $package['variation_id'];
   $decorated = edb_decorated_product( $variation_id );
   $delays = $decorated->shipping_delays[$variation_id];
   $availability = $package['edb_availability'];
-  $now = strtotime(date(DATE_RFC2822));
-  $max = trim(time_elapsed(strtotime( $availability, $now )));
-  $available_stock = $decorated->variation_object->get_total_stock();
-  echo $package['quantity'] . " @ $max"; 
+  $now = strtotime(date(DATE_ATOM));
+  // write_log( $availability );
+  // write_log( $now );
+  // write_log( $max );
+  // $max = trim(time_elapsed(strtotime( $availability, $now )));
+  // $available_stock = $decorated->variation_object->get_total_stock();
+  echo $package['quantity'] . " @ $availability"; 
 }
 
 function edb_cart_item_availability( $cart_item_key, $cart_item ){
   return edb_checkout_item_availability( $cart_item_key, $cart_item );
-  // $product_id = $cart_item['product_id'];
-  // $variation_id = $cart_item['variation_id'];
-  // $decorated = edb_decorated_product( $variation_id );
-  // $delays = $decorated->shipping_delays[$variation_id];
-  // $now = strtotime(date(DATE_RFC2822));
-  
-  // $min = trim(time_elapsed(strtotime( $delays['available'], $now )));
-  // $max = trim(time_elapsed(strtotime( $delays['backorder'], $now )));;
-  // //var_dump( $cart_item );
-  // echo "$min ~ $max";
 }
+
 function edb_get_category_url( $category ){
   $prod_cat_args = array(
     'taxonomy'     => 'product_cat', //woocommerce
@@ -287,7 +285,7 @@ function edb_shipping_method_disabled( $method_name ){
   $package_ids = array_keys($packages);
   $package_count = count($package_ids);
   $bundle_methods = array('edb_ship_ready','edb_ship_bundle_2','edb_ship_bundle_3');
-  // write_log('edb_shipping_method_disabled. ' . $bundle_methods );
+  
   $disabled = '';
   if( $package_count < 3 && in_array($method_name, $bundle_methods ) ){
     $disabled = ' disabled';
@@ -417,25 +415,25 @@ function edb_product_material_picker( $product_id ){
   $decorated = edb_decorated_product( $product_id );
   $materials = $decorated->materials;
   echo '<div class="edb-material-picker">';
-  echo '<div class="label">select a color</div>';
+  echo '<div class="label">'.__('select a color', 'edb').'</div>';
   echo '<div class="edb-material-choices">';
   
   foreach($materials as $edb_material => $data ){
     $stock_qty = $decorated->stocks[$data['variation_id']];
     
     if($stock_qty > 0){
-      $stock_status = __('In stock', 'edb');
+      $stock_status = __('in stock', 'edb');
       $stock_class='in-stock';
       
     }else{
-      $stock_status = __('Backorder', 'edb');
+      $stock_status = __('backorder', 'edb');
       $stock_class='backorder';
       
     }
     
     $delays = $decorated->shipping_delays[ ''.$data['variation_id'] ];
     
-    $now = strtotime(date(DATE_RFC2822));
+    $now = strtotime(date(DATE_ATOM));
     $min = trim(time_elapsed(strtotime( $delays['available'], $now )));
     $max = trim(time_elapsed(strtotime( $delays['backorder'], $now )));
     $name = esc_attr( apply_filters('the_title',$data['post']->post_title) . "  <b>".apply_filters('the_title', get_the_subtitle($data['post']->ID))."</b>");
@@ -544,11 +542,11 @@ function edb_checkout_shipping_address_summary(){
 }
 function edb_get_shipping_method_name( $label ){
   $names = array(
-    'edb_self_pickup'=> 'Self pickup',
-    'edb_ship_ready'=> 'Ship when ready',
-    'edb_ship_bundle_1'=> 'Ship as bundle',
-    'edb_ship_bundle_2'=> 'Ship as bundle (2)',
-    'edb_ship_bundle_3'=> 'Ship as bundle (3)',
+    'edb_self_pickup'=> __('self pickup', 'edb'),
+    'edb_ship_ready'=> __('ship when ready','edb'),
+    'edb_ship_bundle_1'=> __('ship as bundle 1','edb'),
+    'edb_ship_bundle_2'=> __('ship as bundle 2','edb'),
+    'edb_ship_bundle_3'=> __('ship as bundle 3','edb'),
   );
   if(array_key_exists($label, $names )){
     return $names[$label];
@@ -587,7 +585,7 @@ function edb_checkout_delivery_fees_summary(){
             ?>
             <div class="summary-data-line">
               
-              <span class="label">Self pickup discount</span>
+              <span class="label"><?php _e('self pickup discount', 'edb'); ?></span>
               <span class="value"><?php echo wc_price($fee->amount); ?></span>
             </div>
             <?php
@@ -604,11 +602,11 @@ function edb_checkout_payment_summary(){
   $ccExpiry = WC()->session->get('edb_payment_info_card_expiry');
   ?>
   <div class="summay-data-line">
-    <span class="label"><?php _e('Credit Card'); ?></span>
+    <span class="label"><?php _e('credit card','edb'); ?></span>
     <span class="value cc-number"><?php echo $ccNum; ?></span>
   </div>
   <div class="summay-data-line">
-    <span class="label"><?php _e('Expiry'); ?></span>
+    <span class="label"><?php _e('expiry','edb'); ?></span>
     <span class="value cc-expiry"><?php echo $ccExpiry; ?></span>
   </div>
   <?php
@@ -617,10 +615,10 @@ function edb_checkout_payment_summary(){
 function edb_add_to_cart_button( $product_id, $qty=1 ){
   // echo "<form class='edb-add-to-cart' method='post'>";
   
-  echo '<div class="product-selected-material"><span class="label">'.__('No color selected', 'edb').'</span><a href="#" id="show-material-toast" class="ifo-btn"><abbr title="info">i</abbr></a><span class="value"></span></div>';
+  echo '<div class="product-selected-material"><span class="label">'.__('no color selected', 'edb').'</span><a href="#" id="show-material-toast" class="ifo-btn"><abbr title="info">i</abbr></a><span class="value"></span></div>';
   ?>
     <div class="product-quantity-input quantity">
-      <label><?php _e('Quantity', 'edb'); ?></label>
+      <label><?php _e('quantity', 'edb'); ?></label>
       <span class="value">
         <span class="qty-widget">
           <a href="#" class="qty-minus">-</a><span class="qty-val">1</span><a href="#" class="qty-plus">+</a>
@@ -630,7 +628,7 @@ function edb_add_to_cart_button( $product_id, $qty=1 ){
       </span>
     </div>
   <?php  
-  echo '<div class="product-selected-availability"><span class="label">availability</span><span class="value">1 week</span></div>';
+  echo '<div class="product-selected-availability"><span class="label">availability</span><span class="value">'.sprintf(_n('%s week','%s weeks',1,'edb'),1).'</span></div>';
   
   echo "<input type='hidden' name='add-to-cart' value='$product_id'>";
   echo "<input type='hidden' name='variation_id' value=''>";

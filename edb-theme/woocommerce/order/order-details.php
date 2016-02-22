@@ -18,17 +18,17 @@ $order = wc_get_order( $order_id );
   
   <div class="box half">
     
-    <!--<h1><?php _e('ORDER DETAILS', 'edb'); ?></h1>-->
+    <!--<h1><?php _e('order details', 'edb'); ?></h1>-->
     
     <div class="cart-items">
       
 		<?php
 		$edb_shipping_methods = array(
-      'edb_self_pickup' => "I will pick up.",
-      'edb_ship_ready' => "Ship when ready",
-      'edb_ship_bundle_1' => "Ship bundle 1",
-      'edb_ship_bundle_2' => "Ship bundle 2",
-      'edb_ship_bundle_3' => "Ship bundle 3"
+      'edb_self_pickup' => __("I will pick up.",'edb'),
+      'edb_ship_ready' => __("ship when ready",'edb'),
+      'edb_ship_bundle_1' => __("ship bundle 1",'edb'),
+      'edb_ship_bundle_2' => __("ship bundle 2",'edb'),
+      'edb_ship_bundle_3' => __("ship bundle 3",'edb')
     );
     
 		  $split = array();
@@ -74,7 +74,7 @@ $order = wc_get_order( $order_id );
 		</div>
       </div>
       <div class="box half">
-        <h1>Totals</h1>
+        <h1><?php _e('totals','edb'); ?></h1>
         <div class="cart-costs">
         <?php
           foreach ( $order->get_order_item_totals() as $key => $total ) {
@@ -87,7 +87,9 @@ $order = wc_get_order( $order_id );
                 <span class="label"><?php echo $total['label']; ?></span>
                 <span class="value"><?php echo $total['value']; ?></span>
               <?php }; ?>
-              <?php write_log( $key ); ?>
+              <?php 
+                #write_log( $key ); 
+              ?>
               
             </div>
             

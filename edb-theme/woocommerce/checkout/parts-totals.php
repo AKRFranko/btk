@@ -8,31 +8,28 @@ if ( ! defined( 'ABSPATH' ) ) {
 //do_action( 'woocommerce_review_order_before_order_total' ); 
 ?>
 <div class="cart-total cost-line">
-  <span class="label"><?php _e('Order Total', 'edb'); ?></span>
+  <span class="label"><?php _e('order total', 'edb'); ?></span>
   <span class="value"><?php wc_cart_totals_order_total_html(); ?></span>
 </div>
 <?php do_action( 'woocommerce_review_order_after_order_total' ); ?>
 
 <div class="cart-subtotal cost-line">
-  <span class="label"><?php _e( 'Subtotal', 'edb' ); ?></span>
+  <span class="label"><?php _e( 'subtotal', 'edb' ); ?></span>
   <span class="value"><?php wc_cart_totals_subtotal_html(); ?></span>
 </div>
 
 <?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
   <div class="cart-discount cost-line coupon-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
     
-    <?php if($code !== 'selfserve'){ ?>
+    
       <span class="label"><?php wc_cart_totals_coupon_label( $coupon ); ?></span>
       <span class="value"><?php wc_cart_totals_coupon_html( $coupon ); ?></span>
-    <?php }else{ ?>
-      <span class="label">Self serve discount</span>
-      <span class="value">-<?php echo wc_price(WC()->cart->get_coupon_discount_amount('selfserve',WC()->cart->display_cart_ex_tax )); ?></span>
-    <?php };?>
+    
   </div>
 <?php endforeach; ?>
 
 <div class="cart-shipping-total cost-line">
-  <span class="label"><?php _e('Shipping', 'edb'); ?></span>
+  <span class="label"><?php _e('shipping', 'edb'); ?></span>
   <span class="value"><?php edb_cart_shipping_total();?></span>
 </div>
 

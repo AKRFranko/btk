@@ -92,9 +92,9 @@ do_action( 'woocommerce_before_cart' ); ?>
             <div class="cart-item-remove">
               <?php
                 echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf(
-                  '<a href="%s" class="remove" title="%s" data-product_id="%s" data-product_sku="%s">remove &times;</a>',
+                  '<a href="%s" class="remove" title="%s" data-product_id="%s" data-product_sku="%s">'.__('remove', 'edb').' &times;</a>',
                   esc_url( WC()->cart->get_remove_url( $cart_item_key ) ),
-                  __( 'Remove this item', 'woocommerce' ),
+                  __( 'remove this item', 'edb' ),
                   esc_attr( $product_id ),
                   esc_attr( $_product->get_sku() )
                 ), $cart_item_key );
@@ -117,13 +117,13 @@ do_action( 'woocommerce_before_cart' ); ?>
 				<?php if ( WC()->cart->coupons_enabled() ) { ?>
 					<div class="coupon">
 
-						<label for="coupon_code"><?php _e( 'Coupon', 'woocommerce' ); ?>:</label> <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Coupon code', 'woocommerce' ); ?>" /> <input type="submit" class="button" name="apply_coupon" value="<?php esc_attr_e( 'Apply Coupon', 'woocommerce' ); ?>" />
+						<label for="coupon_code"><?php _e( 'coupon', 'edb' ); ?>:</label> <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Coupon code', 'woocommerce' ); ?>" /> <input type="submit" class="button" name="apply_coupon" value="<?php esc_attr_e( 'apply coupon', 'edb' ); ?>" />
 
 						<?php do_action( 'woocommerce_cart_coupon' ); ?>
 					</div>
 				<?php } ?>
 
-				<input type="submit" class="button" name="update_cart" value="<?php esc_attr_e( 'Update Cart', 'woocommerce' ); ?>" />
+				<input type="submit" class="button" name="update_cart" value="<?php esc_attr_e( 'update cart', 'edb' ); ?>" />
 
 				<?php do_action( 'woocommerce_cart_actions' ); ?>
 

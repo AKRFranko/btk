@@ -15,42 +15,42 @@ if ( $order ) : ?>
 
 	<?php if ( $order->has_status( 'failed' ) ) : ?>
 
-		<p><?php _e( 'Unfortunately your order cannot be processed as the originating bank/merchant has declined your transaction.', 'woocommerce' ); ?></p>
+		<p><?php _e( 'unfortunately your order cannot be processed as the originating bank/merchant has declined your transaction.', 'edb' ); ?></p>
 
 		<p><?php
 			if ( is_user_logged_in() )
-				_e( 'Please attempt your purchase again or go to your account page.', 'woocommerce' );
+				_e( 'please attempt your purchase again or go to your account page.', 'edb' );
 			else
-				_e( 'Please attempt your purchase again.', 'woocommerce' );
+				_e( 'please attempt your purchase again.', 'edb' );
 		?></p>
 
 		<p>
-			<a href="<?php echo esc_url( $order->get_checkout_payment_url() ); ?>" class="button pay"><?php _e( 'Pay', 'woocommerce' ) ?></a>
+			<a href="<?php echo esc_url( $order->get_checkout_payment_url() ); ?>" class="button pay"><?php _e( 'pay', 'edb' ) ?></a>
 			<?php if ( is_user_logged_in() ) : ?>
-			<a href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>" class="button pay"><?php _e( 'My Account', 'woocommerce' ); ?></a>
+			<a href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>" class="button pay"><?php _e( 'my account', 'edb' ); ?></a>
 			<?php endif; ?>
 		</p>
 
 	<?php else : ?>
 
-		<p><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', __( 'Thank you. Your order has been received.', 'woocommerce' ), $order ); ?></p>
+		<p><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', __( 'thank you. your order has been received.', 'db' ), $order ); ?></p>
 
 		<ul class="order_details">
 			<li class="order">
-				<?php _e( 'Order Number:', 'woocommerce' ); ?>
+				<?php _e( 'order number', 'edb' ); ?>:
 				<strong><?php echo $order->get_order_number(); ?></strong>
 			</li>
 			<li class="date">
-				<?php _e( 'Date:', 'woocommerce' ); ?>
+				<?php _e( 'date', 'edb' ); ?>:
 				<strong><?php echo date_i18n( get_option( 'date_format' ), strtotime( $order->order_date ) ); ?></strong>
 			</li>
 			<li class="total">
-				<?php _e( 'Total:', 'woocommerce' ); ?>
+				<?php _e( 'total', 'edb' ); ?>:
 				<strong><?php echo $order->get_formatted_order_total(); ?></strong>
 			</li>
 			<?php if ( $order->payment_method_title ) : ?>
 			<li class="method">
-				<?php _e( 'Payment Method:', 'woocommerce' ); ?>
+				<?php _e( 'payment method', 'edb' ); ?>:
 				<strong><?php echo $order->payment_method_title; ?></strong>
 			</li>
 			<?php endif; ?>
@@ -64,6 +64,6 @@ if ( $order ) : ?>
 
 <?php else : ?>
 
-	<p><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', __( 'Thank you. Your order has been received.', 'woocommerce' ), null ); ?></p>
+	<p><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', __( 'thank you. your order has been received.', 'edb' ), null ); ?></p>
 
 <?php endif; ?>

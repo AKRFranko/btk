@@ -40,6 +40,11 @@ body, body *{
   box-sizing:border-box;
   
 }
+body.splash{
+  max-height:100vh;
+  overflow:hidden;
+  position:fixed;
+}
 div{
   position:relative
 }
@@ -463,9 +468,149 @@ main,.post,.primary,.product,
  } 
 }
 
+.woocommerce-pagination{
+  display:block;
+  width:100%;
+  float:left;
+  margin:1em 0 5em 0;
+  text-align:center;
+  ul.page-numbers{
+    &,li{
+      margin:0;
+      padding:0;
+      list-style-type:none;
+    }
+    width:100%;
+    li{
+      display:inline-block;
+      font-family:@serif-font;
+      font-size:17px;
+      line-height:2.2;
+      a,span{
+
+        top:0;
+        left:0;
+        display:block;
+        width:2em;
+        height:2em;
+        
+      }
+      a{
+        text-decoration:none;  
+        color:#000;
+      }
+      a.next,a.prev{
+        display:none;
+      }
+      span{
+        font-weight:bold;
+        background:#000;
+        color:#fff;
+      }
+    }
+  }
+}
 .entry-content{
   width:calc(~"100% - 2em");
-  padding:2em;
+  padding:4em 2em 2em 2em;
+  div.wpcf7{
+    margin-top:3em;
+    // padding-left:1em;
+  }
+  .box div.wpcf7{
+    margin-top:0;
+    padding-left:0;
+  }
+}
+a.real-map {
+    display: block;
+    float: left;
+    margin-top: .5em;
+}
+dl{
+  display:block;
+  width:100%;
+  dt,dd{
+    box-sizing:border-box;
+    width:40%;
+    margin:0 0 .25em 0;
+    display:inline-block;
+  }
+}
+.image-header{
+  background:#eee;
+}
+.delivery-list{
+  margin:0;
+  margin-top:-2em;
+  padding:0;
+  text-align:center;
+  li{
+    list-style-type:none;
+    position:relative;
+    padding-top:2em;
+    border-bottom:1px solid #000;
+    padding-bottom:2em;
+    &:last-of-type{
+      border-bottom:0;
+    }
+    h3,p{
+      margin:0 0 .5em 0;
+    }
+    table{
+      margin-top:1em;
+    }
+    th,td{
+      padding:.5em;
+    }
+    @darkcell:#f6f6f6;
+    table tr:first-of-type{
+      border-bottom:1px solid #eee;
+      th:nth-of-type(even){
+        background-color:@darkcell;
+      }
+    }
+    table tr:nth-of-type(2){
+      border-bottom:1px solid #eee;
+      th,
+      td:nth-of-type(even){
+        background-color:@darkcell;
+      }
+    }
+    table tr:nth-of-type(3){
+      td:nth-of-type(odd){
+        background-color:@darkcell;
+      }
+    }
+    input, button{
+     height:2rem;
+     display:inline-block;
+     margin-top:.5em;
+    }
+    button{
+      padding:2px 1em;
+      
+    }
+    &:before{
+      content:'1';
+      display:block;
+      font-size:2em;
+      margin-bottom:.5em;
+      font-family:@serif-font;
+    }
+    &:nth-child(1):before{ content:'1';}
+    &:nth-child(2):before{ content:'2';}
+    &:nth-child(3):before{ content:'3';}
+    &:nth-child(4):before{ content:'4';}
+    &:nth-child(5):before{ content:'5';}
+    &:nth-child(6):before{ content:'6';}
+    h3{
+      font-family:@sans-font;
+      font-size:inherit;
+      text-transform:lowercase;
+    }
+  }
+  
 }
 
 
@@ -609,9 +754,65 @@ main,.post,.primary,.product,
 
 
 #artsy-map{
-  min-height:100px;
-  background-image:url('./artsy-map.jpg');
-  background-repeat:no-repeat;
-  background-size:cover;
+  display:none;
+  // min-height:100px;
+  // background-image:url('./artsy-map.jpg');
+  // background-repeat:no-repeat;
+  // background-size:cover;
 }
 
+.page .entry-title{
+ // margin-left:2rem;
+}
+
+@media all and (min-width:320px) and (max-width:500px){
+  #site-nav a.cart {
+      position: absolute;
+      top: 2em;
+      right: 3.5em;
+  }
+  #site-nav .list{
+    position: absolute;
+    top: 2em;
+    right: 2em;
+  }
+  
+  .page .entry-title{
+    // margin-left:1rem;
+  }
+  
+  .page-template-default:not(.woocommerce-page) .boxes .half:nth-of-type(even) {
+      padding-left: 0;
+  }
+  .page-template-default:not(.woocommerce-page) .boxes{
+    width:100%!important;margin:0;
+    padding-left:0!important;
+    padding-right:0!important;
+  }
+  .contact-more{
+    margin-bottom:2em;
+  }
+  #artsy-map{
+    display:none;
+  }
+  .half{
+    width:100%!important;
+  }
+  input[type="text"], input[type="tel"], input[type="url"], input[type="number"], input[type="email"], input[type="password"], .woocommerce-checkout #payment input, textarea, select, .select2-container > a.select2-choice{
+    width:98%;
+  }
+  .woocommerce-checkout #payment input[type=radio],
+  .woocommerce-checkout #payment input[type=checkbox]{
+    width:1em;
+  }
+  .page-template-default:not(.woocommerce-page) .entry-content{
+    width:100%;
+    padding:4em 1em 1em 1em;
+  }
+  .wpcf7-form {
+    width:100%;
+  }
+  .wpcf7-form h3{
+    margin-top:1em;
+  }
+}

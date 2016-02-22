@@ -1,0 +1,1 @@
+wget -O ./edb-theme/languages/fr_FR.po --user=edb --password=Golgo.13 https://development.elementdebase.com/wp-content/themes/edb-theme/languages/fr_FR.po

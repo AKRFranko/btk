@@ -97,7 +97,7 @@ if ( ! defined( 'ABSPATH' ) ) {
       
     </div>
     <div class="cart-item-edit">
-      <a href="<?php echo WC()->cart->get_cart_url(); ?>">edit</a>
+      <a href="<?php echo WC()->cart->get_cart_url(); ?>"><?php _e('edit', 'edb'); ?></a>
     </div>
   </div>
   
@@ -115,9 +115,9 @@ if ( ! defined( 'ABSPATH' ) ) {
       
       if ( $show_package_details ) {
         
-        printf( __( 'Shipping #%s', 'woocommerce' ), $product_name  );
+        printf( __( 'shipping #%s', 'edb' ), $product_name  );
       } else {
-        _e( 'Shipping', 'woocommerce' );
+        _e( 'shipping', 'edb' );
       }
     ?></th>
     <td>
@@ -200,7 +200,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             }
           }
   
-          echo '<p class="woocommerce-shipping-contents"><small>' . __( 'Shipping', 'woocommerce' ) . ': ' . implode( ', ', $product_names ) . '</small></p>';
+          echo '<p class="woocommerce-shipping-contents"><small>' . __( 'shipping', 'edb' ) . ': ' . implode( ', ', $product_names ) . '</small></p>';
         ?>
         
       <?php endif; ?>
