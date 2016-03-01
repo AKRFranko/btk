@@ -100,16 +100,30 @@ class Edb_Public {
 
 	}
 	public function check_redirect_state( $returnto ){
+	  
+	  write_log('check_redirect_state');
+	 // write_log( $returnto );
 	  if(isset($_POST['return_to']) && $_POST['return_to'] == 'checkout'){
+	    write_log('return to checkout');
 	    return home_url( '/checkout/' );
 	  }
+	 // write_log('do nothing?');
+	 // write_log( $_REQUEST );
+	  if( !empty($_REQUEST['register']) ){
+	    return get_permalink( woocommerce_get_page_id('myaccount') )."?new";
+	  }
 	}
+	
+	
+	
+	
 	public function maybe_login_user_before_checkout(){
-	 // write_log('maybe_login_user_before_checkout');
-	 // write_log('is_checkout? '.(is_checkout() ? 'true' : 'false'));
-	 // write_log('is_cart()? '.(is_cart() ? 'true' : 'false'));
-	 // write_log('is_user_logged_in?'.(is_user_logged_in() ? 'true' : 'false'));
+	  #write_log('maybe_login_user_before_checkout');
+	  #write_log('is_checkout? '.(is_checkout() ? 'true' : 'false'));
+	  #write_log('is_cart()? '.(is_cart() ? 'true' : 'false'));
+	  #write_log('is_user_logged_in?'.(is_user_logged_in() ? 'true' : 'false'));
 	  
+	 // write_log( 'template redirect');
 	  
 	 // write_log('session?'.( WC()->session->get('edb_user_checkout_as_guest') ? 'true' : 'false' ));
 	  if(isset($_REQUEST['guest'])){
@@ -118,6 +132,7 @@ class Edb_Public {
 	  }
 	  
 	  if(is_account_page()){
+	  
       $return_to_checkout = isset($_REQUEST['return_to']) && $_REQUEST['return_to'] == 'checkout';
       if($return_to_checkout){
         if( is_user_logged_in() || WC()->session->get('edb_user_checkout_as_guest') ){
@@ -130,6 +145,7 @@ class Edb_Public {
 	  }
 
 	  if( is_checkout() ){
+	    write_log( '- is checkout');
 	    if( is_user_logged_in() || WC()->session->get('edb_user_checkout_as_guest') ){
 	      return;
 	    }else{
@@ -137,7 +153,9 @@ class Edb_Public {
 	      exit();
 	    }
 	  }
-
+    
+    
+    
 	}
 	
 	public function get_shipping_delays( $product ){

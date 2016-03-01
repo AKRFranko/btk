@@ -1,0 +1,713 @@
+{
+    "001": {
+        "edb_material": "001",
+        "name": "Coton",
+        "color": "{:en}White{:}{:fr}Blanc{:}",
+        "composition": [
+            {
+                "en": "100% cotton",
+                "fr": "100% coton"
+            }
+        ]
+    },
+    "002": {
+        "edb_material": "002",
+        "name": "Linen",
+        "color": "{:en}Natural{:}{:fr}Naturel{:}",
+        "composition": [
+            {
+                "en": "40% viscose",
+                "fr": "40% viscose"
+            },
+            {
+                "en": "20% linen",
+                "fr": "20% lin"
+            },
+            {
+                "en": "20% polyester",
+                "fr": "20% polyester"
+            },
+            {
+                "en": "20% cotton",
+                "fr": "20% coton"
+            }
+        ]
+    },
+    "003": {
+        "edb_material": "003",
+        "name": "Linen",
+        "color": "{:en}Charcoal{:}{:fr}Anthracite{:}",
+        "composition": [
+            {
+                "en": "40% viscose",
+                "fr": "40% viscose"
+            },
+            {
+                "en": "20% linen",
+                "fr": "20% lin"
+            },
+            {
+                "en": "20% polyester",
+                "fr": "20% polyester"
+            },
+            {
+                "en": "20% cotton",
+                "fr": "20% coton"
+            }
+        ]
+    },
+    "004": {
+        "edb_material": "004",
+        "name": "Tweed",
+        "color": "{:en}Gris{:}{:fr}Grey{:}",
+        "composition": [
+            {
+                "en": "80% viscose",
+                "fr": "80% viscose"
+            },
+            {
+                "en": "20% linen",
+                "fr": "20% lin"
+            }
+        ]
+    },
+    "005": {
+        "edb_material": "005",
+        "name": "Epingle",
+        "color": "{:en}Grey{:}{:fr}Gris{:}",
+        "composition": [
+            {
+                "en": "76% cotton",
+                "fr": "76% coton"
+            },
+            {
+                "en": "24% acrylic",
+                "fr": "24% acrylique"
+            }
+        ]
+    },
+    "006": {
+        "edb_material": "006",
+        "name": "Flannel",
+        "color": "{:en}Charcoal{:}{:fr}Anthracite{:}",
+        "composition": [
+            {
+                "en": "2% SPA",
+                "fr": "2% SPA"
+            },
+            {
+                "en": "88% polyester",
+                "fr": "88% polyester"
+            },
+            {
+                "en": "10% viscose",
+                "fr": "10% viscose"
+            }
+        ]
+    },
+    "007": {
+        "edb_material": "007",
+        "name": "Canevas",
+        "color": "{:en}Deep Red{:}{:fr}Bourgogne{:}",
+        "composition": [
+            {
+                "en": "70% cotton",
+                "fr": "70% coton"
+            },
+            {
+                "en": "30% linen",
+                "fr": "30% lin"
+            }
+        ]
+    },
+    "008": {
+        "edb_material": "008",
+        "name": "Canevas",
+        "color": "{:en}Yellow{:}{:fr}Jaune{:}",
+        "composition": [
+            {
+                "en": "70% cotton",
+                "fr": "70% coton"
+            },
+            {
+                "en": "30% linen",
+                "fr": "30% lin"
+            }
+        ]
+    },
+    "009": {
+        "edb_material": "009",
+        "name": "Velvet",
+        "color": "{:en}Olive{:}{:fr}Olive{:}",
+        "composition": [
+            {
+                "en": "89% cotton",
+                "fr": "89% coton"
+            },
+            {
+                "en": "11% polyester",
+                "fr": "11% polyester"
+            }
+        ]
+    },
+    "010": {
+        "edb_material": "010",
+        "name": "Canevas",
+        "color": "{:en}Mossy{:}{:fr}Menthe{:}",
+        "composition": [
+            {
+                "en": "70% cotton",
+                "fr": "70% coton"
+            },
+            {
+                "en": "30% linen",
+                "fr": "30% lin"
+            }
+        ]
+    },
+    "011": {
+        "edb_material": "011",
+        "name": "Tissage",
+        "color": "{:en}Turquoise{:}{:fr}Turquoise{:}",
+        "composition": [
+            {
+                "en": "10% cotton",
+                "fr": "10% coton"
+            },
+            {
+                "en": "12% polyester",
+                "fr": "12% polyester"
+            },
+            {
+                "en": "24% linen",
+                "fr": "24% lin"
+            },
+            {
+                "en": "54% viscose",
+                "fr": "54% viscose"
+            }
+        ]
+    },
+    "012": {
+        "edb_material": "012",
+        "name": "Velvet",
+        "color": "{:en}Deep blue{:}{:fr}Bleu marine{:}",
+        "composition": [
+           {
+               "en": "89% cotton",
+               "fr": "89% coton"
+           },
+           {
+               "en": "11% polyester",
+               "fr": "11% polyester"
+           }
+        ]
+    },
+    "051": {
+        "edb_material": "051",
+        "name": "{:en}051{:}{:fr}051{:}",
+        "color": "{:en}051{:}{:fr}051{:}",
+        "composition": [
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            }
+        ]
+    },
+    "052": {
+        "edb_material": "052",
+        "name": "{:en}052{:}{:fr}052{:}",
+        "color": "{:en}052{:}{:fr}052{:}",
+        "composition": [
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            }
+        ]
+    },
+    "053": {
+        "edb_material": "053",
+        "name": "{:en}053{:}{:fr}053{:}",
+        "color": "{:en}053{:}{:fr}053{:}",
+        "composition": [
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            }
+        ]
+    },
+    "054": {
+        "edb_material": "054",
+        "name": "{:en}054{:}{:fr}054{:}",
+        "color": "{:en}054{:}{:fr}054{:}",
+        "composition": [
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            }
+        ]
+    },
+    "055": {
+        "edb_material": "055",
+        "name": "{:en}055{:}{:fr}055{:}",
+        "color": "{:en}055{:}{:fr}055{:}",
+        "composition": [
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            }
+        ]
+    },
+    "056": {
+        "edb_material": "056",
+        "name": "{:en}056{:}{:fr}056{:}",
+        "color": "{:en}056{:}{:fr}056{:}",
+        "composition": [
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            }
+        ]
+    },
+    "057": {
+        "edb_material": "057",
+        "name": "{:en}057{:}{:fr}057{:}",
+        "color": "{:en}057{:}{:fr}057{:}",
+        "composition": [
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            }
+        ]
+    },
+    "058": {
+        "edb_material": "058",
+        "name": "{:en}058{:}{:fr}058{:}",
+        "color": "{:en}058{:}{:fr}058{:}",
+        "composition": [
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            }
+        ]
+    },
+    "059": {
+        "edb_material": "059",
+        "name": "{:en}059{:}{:fr}059{:}",
+        "color": "{:en}059{:}{:fr}059{:}",
+        "composition": [
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            }
+        ]
+    },
+    "060": {
+        "edb_material": "060",
+        "name": "{:en}060{:}{:fr}060{:}",
+        "color": "{:en}060{:}{:fr}060{:}",
+        "composition": [
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            }
+        ]
+    },
+    "061": {
+        "edb_material": "061",
+        "name": "{:en}061{:}{:fr}061{:}",
+        "color": "{:en}061{:}{:fr}061{:}",
+        "composition": [
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            }
+        ]
+    },
+    "062": {
+        "edb_material": "062",
+        "name": "{:en}062{:}{:fr}062{:}",
+        "color": "{:en}062{:}{:fr}062{:}",
+        "composition": [
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            }
+        ]
+    },
+    "063": {
+        "edb_material": "063",
+        "name": "{:en}063{:}{:fr}063{:}",
+        "color": "{:en}063{:}{:fr}063{:}",
+        "composition": [
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            },
+            {
+                "en": "",
+                "fr": ""
+            }
+        ]
+    }
+}

@@ -1,1 +1,7 @@
-{"name":"t_table-yellow","category":"side-tables","materials":["062"]}
+{
+  "name": "t-table_yellow",
+  "category": "side-tables",
+  "materials": [
+    "062"
+  ]
+}

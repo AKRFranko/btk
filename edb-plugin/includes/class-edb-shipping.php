@@ -47,7 +47,7 @@ function endsWith($haystack, $needle) {
 
 class Edb_Shipping_Method extends WC_Shipping_Method{
  
-  public $shipping_debug = false;
+  public $shipping_debug = true;
   public $cart_item_shipments = array(); 
   
   public $rates_table = array(
@@ -98,15 +98,49 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     update_option('woocommerce_status_options',$status_options);
   }
   
+  public function after_checkout_validation( $posted ){
+    write_log('woocommerce_after_checkout_validation');
+    // $do_not_ship = WC()->session->get('do_not_ship');
+    // if($do_not_ship){
+    //   $posted['ship_to_different_address'] =0;
+    //   if ( isset( $posted['billing_country'] ) ) {
+    //       WC()->customer->set_shipping_country( $posted['billing_country'] );
+    //   }
+    //   if ( isset( $posted['billing_state'] ) ) {
+    //       WC()->customer->set_shipping_state( $posted['billing_state'] );
+    //   }
+    //   if ( isset( $posted['billing_postcode'] ) ) {
+    //       WC()->customer->set_shipping_postcode( $posted['billing_postcode'] );
+    //   }
+    // }
+    
+  }
+  
+  public function cart_needs_shipping_address( $sofar ){
+    
+    if(WC()->session->get('do_not_ship')){
+      return false;  
+    }
+    return $sofar;
+  }
+  public function before_checkout_process(){
+    write_log('before_checkout_process');
+    ##write_log( WC()->checkout );
+    
+
+    // write_log(WC()->customer);
+    // write_log(WC()->checkout);
+  }
   
   public function get_checkout_value( $value, $input ){
     write_log('get_checkout_value: '.$input);
     $cust = WC()->session->customer;
+    write_log('CART NEEDS SHIIPNIG: ' . ( $value == true ? 'true' : 'false') );
+    
     if(isset($cust[$input])){
       return $cust[$input];
     }
     
-    write_log('CART NEEDS SHIIPNIG: ' . $value );
     return $value;
     
   }
@@ -246,7 +280,6 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     woocommerce_add_order_item_meta( $item_id, 'edb_availabilities', $availability_dates[$cart_item_key] );
     
   }
-  // public function set_custom_fields_on_order( $order_id ){
   //   write_log('set_custom_fields_on_order');
   //   write_log($_POST);
     
@@ -500,7 +533,8 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
 
   
   public function review_order_before_shipping(  ){
-      if($this->shipping_debug) write_log( 'review before shipping');
+      write_log( 'review before shipping');
+      // write_log();
       // write_log(WC()->shipping);
       WC()->shipping->reset_shipping();
       global $Edb_Shipping_Method;
@@ -513,10 +547,10 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
             if( $data['current_panel'] && is_checkout() ){
               WC()->session->set('edb_active_panel', $data['current_panel'] );
             }  
-            if( isset($data['paypal_pro-card-number'])){
+            if( isset($data['paypal_pro_payflow-card-number'])){
               $old = WC()->session->get('edb_payment_info_card_number');
-              if(strlen($data['paypal_pro-card-number']) >= 10 ){
-                $fuzzed = substr($data['paypal_pro-card-number'], 0, 4) . str_repeat('*', strlen($data['paypal_pro-card-number']) - 8) . substr($data['paypal_pro-card-number'], -4);  
+              if(strlen($data['paypal_pro_payflow-card-number']) >= 10 ){
+                $fuzzed = substr($data['paypal_pro_payflow-card-number'], 0, 4) . str_repeat('*', strlen($data['paypal_pro_payflow-card-number']) - 8) . substr($data['paypal_pro_payflow-card-number'], -4);  
               }else{
                 $fuzzed = '';
               }
@@ -526,18 +560,18 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
               }
               WC()->session->set('edb_payment_info_card_number',  $fuzzed );
               //write_log('ORDER');
-              WC()->session->set('edb_paypal_pro_card-number',  $data['paypal_pro-card-number'] );
+              WC()->session->set('edb_paypal_pro_card-number',  $data['paypal_pro_payflow-card-number'] );
 
               
             }
-            if( isset($data['paypal_pro-card-expiry']) ){
-              WC()->session->set('edb_payment_info_card_expiry', $data['paypal_pro-card-expiry'] );
-              WC()->session->set('edb_paypal_pro_card-expiry',  $data['paypal_pro-card-expiry'] );
+            if( isset($data['paypal_pro_payflow-card-expiry']) ){
+              WC()->session->set('edb_payment_info_card_expiry', $data['paypal_pro_payflow-card-expiry'] );
+              WC()->session->set('edb_paypal_pro_card-expiry',  $data['paypal_pro_payflow-card-expiry'] );
             }else if($cc_changed){
               WC()->session->set('edb_payment_info_card_expiry', null );
             }
-            if( isset($data['paypal_pro-card-cvc'])){
-              WC()->session->set('edb_paypal_pro_card-cvc',  $data['paypal_pro-card-cvc'] );
+            if( isset($data['paypal_pro_payflow-card-cvc'])){
+              WC()->session->set('edb_paypal_pro_card-cvc',  $data['paypal_pro_payflow-card-cvc'] );
             }
         }
         
@@ -618,7 +652,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   
   
   function checkout_update_order_review( $postdata ){
-    //write_log('checkout_update_order_review');
+    write_log('checkout_update_order_review');
     $data = array();
     parse_str( $postdata, $data );
     $current_user = wp_get_current_user();
@@ -659,12 +693,13 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     if(isset($data['do_not_ship'])){
       //write_log('SETTING NO SHIP');
       WC()->session->set('do_not_ship', 1);
-      
+         
     }else{
       //write_log('SETTING YES SHIP');
       WC()->session->set('do_not_ship', 0);  
       
     }
+    
     
     // write_log("needs shipping address?: ".(WC()->cart->needs_shipping_address()  ? 'true' : 'false'));
     // $ship_not_same_address = $data['ship_to_same_address'];
@@ -673,6 +708,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
         //write_log('CHANGED A');
       }
       WC()->session->set('ship_to_same_address', 1);
+      // WC()->checkout->posted['ship_to_different_address']=false;
       //write_log('SHIPPING TO SAME');
       $this->copy_billing_fields_to_shipping( $data );
         
@@ -689,7 +725,8 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
       //write_log('SHIPPING TO DIFF');
       
       WC()->session->set('ship_to_same_address', false);
-      
+      // WC()->checkout->posted['ship_to_different_address']=true;
+      // $posted['ship_to_different_address'] =
       WC()->customer->save_data();
       // write_log(WC()->session->customer);
     }
@@ -855,14 +892,21 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   
   public function get_zone_from_postal_code( $postcode ){
     //if($this->shipping_debug) write_log("postcode: $postcode");
-    $postcode = strtolower($postcode);
-    if($postcode[0] == 'h'){
-      return 'zone-1';
+    $zones_table = array(
+      'zone-1' => '/^(H..|G1.|M..|K1.|T2.|T3.|T5.|T6.|V5.|V6.|C1A|R2.|R3.|E2.|E1.|E3.|B3.|S7.|S4.|A1.)\s?[A-Z0-9]{3}$/',
+      'zone-3' => '/^(J|G|K|L|N|P|T|V|C|R|E|B|S|A|Y|X)0.\s?...$/',
+    );
+    
+    $postcode = trim(strtoupper($postcode));
+    $zone = 'zone-2';
+    foreach($zones_table as $zone => $re){
+      write_log( "MATCH $re with $postcode: ". ( preg_match( $re, $postcode) ? 'true' : 'false' ) );
+      if( preg_match( $re, $postcode) ){
+        return $zone;
+      }
     }
-    if($postcode[0] == 'm'){
-      return 'zone-2';
-    }
-    return 'zone-3';
+    return $zone;
+    
   }
   
   public function get_shipping_class_items_cost( $shipping_class, $items ){

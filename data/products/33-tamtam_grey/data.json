@@ -1,1 +1,7 @@
-{"name":"tamtam-grey","category":"side-tables","materials":["054"]}
+{
+  "name": "tamtam_grey",
+  "category": "side-tables",
+  "materials": [
+    "054"
+  ]
+}

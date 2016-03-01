@@ -92,7 +92,8 @@ class Edb_Product_Decorator {
     
     $this->title = apply_filters('the_title', $this->post_object->post_title );
     $this->subtitle = apply_filters('the_title', $this->product_object->subtitle );
-    $this->description =  get_post_field('post_content', $this->post_id );
+    
+    $this->description =  apply_filters('the_content',get_post_field('post_content', $this->post_id ));
 
     $this->variations = $this->product_object->get_children();
     $this->stocks = array();
@@ -219,15 +220,16 @@ class Edb_Product_Decorator {
        }  
      }
    }
+   #write_log($variation_materials);
     
    $get_material_desc_args = array(
      'meta_key' => '_edb_material',
-     'meta_value' => $variation_materials,
+    // 'meta_value' => $variation_materials,
      'post_type' => 'edb_material_desc',
      'post_status'=> 'any',
      'posts_per_page'=> -1
    );
-   
+
    $material_descriptions = get_posts( $get_material_desc_args );
    
    $this->materials = array();
@@ -318,6 +320,7 @@ class Edb_Product_Decorator {
       $this->images['technical'] = get_bloginfo('template_directory')."/missing.png";
       
     }
+    
     $variation_ids = $this->variations;
     
     foreach( $variation_ids as $variation_id ){

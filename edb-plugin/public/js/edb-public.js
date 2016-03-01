@@ -293,15 +293,22 @@ window.requestAnimFrame = (function(){
   
   var setDoNotShip = function( checked ){
     var $diffAddr  = $('#ship-to-different-address input');
+    var $opposite = $('input[name=ship_to_different_address]');
     var $noShip  = $('#do-not-ship input');
     var addrHadChecked = $diffAddr.data('user-checked');
     if(!checked && addrHadChecked && addrHadChecked.value ){
       $diffAddr.prop('checked', true );
+      $opposite.val( 0 );
       $('.woocommerce-shipping-fields').show().trigger('update-shipping-fields', [ true ]);
     }
     if(checked){
       $diffAddr.prop('checked', false );
+      $opposite.val( 1 );
       $('.woocommerce-shipping-fields').hide().trigger('update-shipping-fields', [ false ]);
+    }
+    //jQuery('input[name=ship_to_different_address]').val();
+    if($noShip.is('checked')){
+      $opposite.val( 0 );
     }
     console.log('update beaause do not ship')
     $(document.body).trigger('update_checkout');
@@ -585,6 +592,9 @@ window.requestAnimFrame = (function(){
     
     $('#do-not-ship input, #ship-to-different-address input').trigger('change');
     
+    if($('#do-not-ship input').is(':checked')){
+      $('input[name=ship_to_different_address]').val(0)
+    }
     
     $(document.body).on('updated_checkout', fixFormPlaceholders );
     

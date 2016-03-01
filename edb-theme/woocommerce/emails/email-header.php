@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title><?php echo get_bloginfo( 'name' ); ?></title>
 		<style>
-			@import url(http://fonts.googleapis.com/css?family=Lato:400,900);
+			@import url(//fonts.googleapis.com/css?family=Lato:400,900);
 			<?php 
 			/*  This is normally not needed because 
 			 *  WooCommerce inserts it into your templates

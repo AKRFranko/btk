@@ -1,1 +1,7 @@
-{"name":"tamtam-orange","category":"coffee-tables","materials":["052"]}
+{
+  "name": "tamtam_orange",
+  "category": "side-tables",
+  "materials": [
+    "052"
+  ]
+}

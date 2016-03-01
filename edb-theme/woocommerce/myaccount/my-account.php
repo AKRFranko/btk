@@ -10,8 +10,13 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
+if(isset($_GET['new'])){
+  wc_add_notice('Thank you for registering with elementdebase.com', 'success');  
+}
 
-wc_print_notices(); ?>
+wc_print_notices(); 
+
+?>
 
 <p class="myaccount_user">
 	<?php

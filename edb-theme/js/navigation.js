@@ -97,7 +97,7 @@
     var availableQty = 1 * shippingDelays.stock;
 
     if (availableQty < selectedQty) {
-      $('.product-selected-availability .value').text(shippingDelays.min + ' ~ ' + shippingDelays.max)
+      $('.product-selected-availability .value').text(shippingDelays.max)
     } else {
       $('.product-selected-availability .value').text(shippingDelays.min)
     }
@@ -106,21 +106,28 @@
     var $originSlide = $('.edb-slide.active');
     var originSrc = $originSlide.find('img').attr('src');
     var $slider = $('.edb-slider');
-
-    $('.product-selected-material .label').html(name);
-    $originSlide.find('.backdrop').css({
-      'background-image': 'url(' + preview + ')'
-    });
     var index = $slider.find('.controls .current').text();
-    $slider.find('.controls .current').html(name).css('width', 'auto');
-    $slider.find('.controls .last, .controls .separator').hide();
-    $slider.one('cycled', function() {
+    $('.product-selected-material .label').html(name);
+    
+    if($choice.siblings().length){
       $originSlide.find('.backdrop').css({
-        'background-image': 'url(' + originSrc + ')'
+        'background-image': 'url(' + preview + ')'
+      });  
+      $slider.find('.controls .current').html(name).css('width', 'auto');
+      $slider.find('.controls .last, .controls .separator').hide();
+      $slider.one('cycled', function() {
+        
+          $originSlide.find('.backdrop').css({
+            'background-image': 'url(' + originSrc + ')'
+          });
+        
+        $slider.find('.controls .last, .controls .separator').show();
+        $slider.find('.controls .current').css('width', '2em')
       });
-      $slider.find('.controls .last, .controls .separator').show();
-      $slider.find('.controls .current').css('width', '2em')
-    })
+    }
+    
+    
+    
 
     // console.log(name)
 
@@ -191,6 +198,12 @@
       }
       $(window).resize( resizeSlider );
       
+    }
+    
+    if($('.edb-material-choice-square').length === 1){
+      $('.edb-material-choice-square').click();
+      
+      $('.product-menu').addClass('one-choice');
     }
     // var bg = jQuery("#bg1, #bg2");
     // jQuery(window).resize("resizeBackground");
@@ -270,7 +283,12 @@
       
     // })
     if (res.responseJSON.mailSent) {
-      $('.wpcf7-form').html('<h1>Thank you!</h1><p>We\'ll get back to you shortly.');
+      if(res.responseJSON.message){
+        $('.wpcf7-form').html('<h1>'+res.responseJSON.message+'</h1>');
+      }else{
+        $('.wpcf7-form').html('<h1>Thank you!</h1><p>We\'ll get back to you shortly.');  
+      }
+      
     }
   })
 

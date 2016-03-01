@@ -23,9 +23,9 @@
       }else if(contestDismissed){
         $('#contest').remove();
       }else{
-        setTimeout( function(){
-          $('#contest').addClass('active');
-        }, 10000)
+        //setTimeout( function(){
+        //  $('#contest').addClass('active');
+        //}, 10000)
       }  
     }
     $('input[name=attribute_edb_material]').trigger('change')

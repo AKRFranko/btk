@@ -158,7 +158,7 @@ function edb_get_material_name( $material_no ){
   if(empty($subtitle)){
     return $name;
   }
-  return "$name, $subtitle";
+  return "$name $subtitle";
 }
 function edb_checkout_item_material( $cart_item_key, $cart_item ){
   $product_id = $cart_item['product_id'];
@@ -381,7 +381,7 @@ function edb_material_toasts(){
       $subtitle = apply_filters('the_title', get_the_subtitle($post->ID));
       $excerpt = apply_filters('the_title', $post->post_excerpt );
       $content = apply_filters('the_content',$post->post_content );
-      $composition = explode("\n",$excerpt);
+      $composition = explode("|",$excerpt);
       $rules .= "\n#material-toast.material-$material #material-$material.material-description{ display:block; }";
       ?>
       
@@ -393,9 +393,10 @@ function edb_material_toasts(){
             <h1 class="name"><?php echo $title ?></h1>
             <h2 class="color"><?php echo $subtitle ?></h2>
             <p class="description"><?php echo $content; ?></p>
+            <p class="comp-title">Composition</p>
             <ul class="composition">
             <?php if(!empty($composition)){ foreach($composition as $line ){ ?>
-              <li><?php echo $line ?></li>
+              <li><?php echo trim($line) ?></li>
             <?php }; }; ?>
             </ul>
           </div>
@@ -414,6 +415,7 @@ function edb_material_toasts(){
 function edb_product_material_picker( $product_id ){
   $decorated = edb_decorated_product( $product_id );
   $materials = $decorated->materials;
+  
   echo '<div class="edb-material-picker">';
   echo '<div class="label">'.__('select a color', 'edb').'</div>';
   echo '<div class="edb-material-choices">';
@@ -436,7 +438,8 @@ function edb_product_material_picker( $product_id ){
     $now = strtotime(date(DATE_ATOM));
     $min = trim(time_elapsed(strtotime( $delays['available'], $now )));
     $max = trim(time_elapsed(strtotime( $delays['backorder'], $now )));
-    $name = esc_attr( apply_filters('the_title',$data['post']->post_title) . "  <b>".apply_filters('the_title', get_the_subtitle($data['post']->ID))."</b>");
+    // write_log($data);
+    $name =edb_get_material_name($edb_material);// esc_attr( apply_filters('the_title',$data['post']->post_title) . "  <b>".apply_filters('the_title', get_the_subtitle($data['post']->ID))."</b>");
     $availability_date  = esc_attr(json_encode( array( 'stock' => $stock_qty, 'min' => $min, 'max' => $max ) ));
     $preview = $decorated->images['material_variations'][$edb_material];
     echo "<label for=\"edb-material-choice-$edb_material\">";
@@ -453,10 +456,59 @@ function edb_product_material_picker( $product_id ){
 }
 
 
+
+function tmp_has_tech_image( $deco ){
+ $data = array("atrium_armchairs","flex_left-facing","mixmix-ottrec_modular","perplexe_side-tables","teatime_sofa-beds","capsule_sofa-beds","flex_right-facing","mixmix_right-facing","pique_left-facing","teatime_sofas","capsule_sofas","maritime_armchairs","mixmix-single_modular","pique_right-facing","t-table_side-tables","duo_sofas-beds","mixmix-corner_modular","panorama_left-facing","tamtam_side-tables","vintage_side-tables","duo_sofas","mixmix_left-facing","panorama_right-facing","taxi_armchairs");
+ $name = $deco->title;
+// write_log( $deco->title );
+ 
+ $cat = $deco->category;
+ if($cat == 'modular'){
+   if( $deco->product_id == 285){
+     
+     $name = 'mixmix-corner';
+   }
+   if( $deco->product_id == 214){
+     
+     $name = 'mixmix-ottrec';
+   }
+   if( $deco->product_id == 249){
+     
+     $name = 'mixmix-single';
+   }
+ }
+ $k = "$name"."_"."$cat";
+ 
+ if(in_array( $k, $data)){
+  return true;
+ }
+ return false;
+}
+
+function tmp_get_tech_image( $deco ){
+ $name = $deco->title;
+ $cat = $deco->category;
+ if($cat == 'modular'){
+   if( $deco->product_id == 285){
+     
+     $name = 'mixmix-corner';
+   }
+   if( $deco->product_id == 214){
+     
+     $name = 'mixmix-ottrec';
+   }
+   if( $deco->product_id == 249){
+     
+     $name = 'mixmix-single';
+   }
+ }
+ $k = "$name"."_"."$cat";
+ return 'https://elementdebase.com/wp-content/edb-svg/'.$k.'.svg';
+}
+
 function edb_has_tech_image( $product_id ){
   $decorated = edb_decorated_product( $product_id );
-  $image = $decorated->images['technical'];
-  return !(strpos($image, 'missing') !== false);
+  return tmp_has_tech_image( $decorated );
 }
 
 function edb_has_introduction_video( $product_id ){
@@ -490,7 +542,8 @@ function edb_has_review( $product_id ){
 
 function edb_product_tech_image( $product_id ){
   $decorated = edb_decorated_product( $product_id );
-  $image = $decorated->images['technical'];
+  $image = tmp_get_tech_image( $decorated );
+  #$image = $decorated->images['technical'];
   echo '<img src="'.$image.'">';
 }
 

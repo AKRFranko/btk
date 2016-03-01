@@ -101,12 +101,15 @@ if ( ! defined( 'ABSPATH' ) ) {
     
   </div><!-- .product-sections -->
   <div class="product-sub-sections">
+    
     <?php 
      $hasTechImage = edb_has_tech_image( $product->id ) ;
      $hasIntroVid = edb_has_introduction_video( $product->id );
      $solo = $hasTechImage && $hasTechImage ? '' : 'solo';
      if( $hasTechImage || $hasIntroVid ){ ?>
+     
       <div class="product-sub-section <?php echo $solo; ?>">
+        
         <?php  if($hasTechImage){  ?>
           <div class="product-technical-image">
           <?php edb_product_tech_image( $product->id  ); ?>
@@ -159,7 +162,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     </div>
     <?php }; ?>
     
-    <div class="product-sub-section">
+    <div class="product-sub-section" style="display:none">
       <div class="product-shipping-return-text">
         <h2 class="section-title"><?php _e('shipping and return', 'edb'); ?></h2>
         <p>a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat.</p>

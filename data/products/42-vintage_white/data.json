@@ -1,1 +1,7 @@
-{"name":"vintage-white","category":"side-tables","materials":["063"]}
+{
+  "name": "vintage_white",
+  "category": "side-tables",
+  "materials": [
+    "063"
+  ]
+}

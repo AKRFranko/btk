@@ -94,23 +94,12 @@ function singularize ($params)
 }
 
 
-// $categories = array(
-// 'sofas',
-// 'sofa-beds',
-// 'sectionals',
-// 'coffee-tables',
-// 'armchairs',
-// 'benches-ottomans',
-// 'headboards',
-// 'storage',
-// 'accessories',
-// );
+echo "Would you like to delete all products beforehand? (y/N) - ";
+$stdin = fopen('php://stdin', 'r');
+$response = fgetc($stdin);
+$delete_all=($response === 'n' ? false : true);
 
-// $sub_categories = array(
-//   'sofas'=> array( '2-seater', '3-seater', 'modular'),
-//   'sectionals' => array('left-facing','right-facing'),
-//   'accessories' => array('pillows','rugs', 'other')
-// );
+
 
 $shipping_classes = array(
   'sofas' => 'furniture',
@@ -125,18 +114,6 @@ $shipping_classes = array(
   'storage'=> 'accessories',
   'accessories'=> 'accessories'
 );
-
-// $category_materials = array(
-//   'sofas' => array('001','002','003','004','005','006','007','008','009','010','011','012'),
-//   'sofa-beds'=> array('001','002','003','004','005','006','007','008','009','010','011','012'),
-//   'sectionals'=> array('001','002','003','004','005','006','007','008','009','010','011','012'),
-//   'armchairs'=> array('001','002','003','004','005','006','007','008','009','010','011','012'),
-//   'coffee-tables'=> array('051','052','053','054','055','056','057','058','059','060','061','062'),
-//   'benches-ottomans'=> array('001','002','003','004','005','006','007','008','009','010','011','012'),
-//   'headboards'=> array('001','002','003','004','005','006'),
-//   'storage'=> array('001','002'),
-//   'accessories'=> array('101','102','103','104','105','106'),
-// );
 
 
 $skumap = array(
@@ -161,8 +138,18 @@ $skumap = array(
 );
 
 
-$script = array();
+$script = array('#!/bin/bash');
+$descriptions = json_decode( file_get_contents( './data/products/descriptions.json'), true );
+// var_dump($descriptions);
+if($delete_all){
+  $script[]='echo "removing products and their variatons"';
+  $script[]='wp post delete $(wp post list --post_type=product,product_variation --format=ids) --force --quiet';
+}
+$skips = json_decode(@file_get_contents('./data/skip.json'));
 
+if(empty($skips)){
+  $skips = array();   
+}
 function get_sku( $category, $name, $material ){
   global $skumap;
   $index = bin2hex( mhash( MHASH_ADLER32, $name ) );
@@ -176,11 +163,14 @@ function get_sku( $category, $name, $material ){
     $parts[]='XXX';
   }
   $parts[]=$index;
-  return implode('-', $parts);
+  return implode('', $parts);
 }
 
 function get_varname( $product ){
   return '_'.str_replace('-','_', $product->sku);
+}
+function get_slugname( $product ){
+  return strtolower(str_replace('-','_',$product->name)."_".str_replace('-','_', $product->sku));
 }
 
 function sortproducts( $a, $b ){
@@ -226,41 +216,70 @@ function get_file_list( $dir ){
 
 
 function read_products( $dir ){
+  global $skips;
   $files=array();
   $products=array();
   if( $dh = opendir($dir)){
     while (($file = readdir($dh)) !== false){
       if ($file == '.' or $file == '..') continue;
-      $files[]="$dir/$file";
+      if(is_dir("$dir/$file")){
+        $files[]="$dir/$file";  
+      }
     }
   }
-  // usort($files, 'sortproducts');
+  usort($files, 'sortproducts');
   foreach( $files as $file ){
     $matches = array();
     preg_match( "/(\d+)-.*/i", $file, $matches );
     $order = abs( $matches[1]);
     $json = json_decode(file_get_contents( "$file/data.json" ));
+    $names = explode('_',$json->name);
+    if(count($names) > 1){
+      $json->name = $names[0];
+      $json->subname = $names[1];
+    }
     $images = get_file_list( "$file/gallery");
+    
     usort( $images, 'sortimages');
     $feature = array_shift( $images );
+    
     $json->order = $order;
     $json->images  = $images;
     $json->feature = $feature;
-    $products[]=$json;
+    if(!in_array( basename($file), $skips)){
+      echo "Add:  $file\n";
+      $products[]=$json;    
+    }else{
+      echo "Skip: $file\n";
+    }
   }
   return $products;
 }
 
 function create_product_post( $product ){
   global $script;
+  global $descriptions;
+  
   $varname = get_varname($product);
   $name = $product->name;
-  $line = $varname.'=`wp post create --post_title="'.$product->name.'" --menu_order='.$product->order.' --post_name="'.$product->slug.'" --post_content="lorem ipsum dolore..." --post_type=product --post_status=publish --post_name='.$product->slug;
+  $description = "{:en}Lorem ipsum...{:}{:fr}Lorem ipsum...{:}";
+  if( array_key_exists( $name, $descriptions) ){
+    $en = $descriptions[$name]['en'];
+    if(array_key_exists('fr',$descriptions[$name])){
+      $fr = $descriptions[$name]['fr'];  
+    }else{
+      $fr = $en;
+    }
+    $description = "{:en}$en{:}{:fr}$fr{:}";
+  }
+  $line = $varname.'=`wp post create --post_title="'.$product->name.'" --menu_order='.$product->order.' --post_name="'.$product->slug.'" --post_content='.escapeshellarg($description).' --post_type=product --post_status=publish';
+  $script[]='echo "Creating Product: '.$product->name.'"';
   $script[]=$line.' --porcelain`';
 }
 function create_product_meta( $product ){
   global $script;
   $varname = get_varname($product);
+  $script[]='echo "Setting meta for: '.$product->name.'"';
   if(!empty($product->subname)){
     $script[] = 'wp post meta update $'.$varname.' _subtitle "{:en}'.$product->subname.'{:}{:fr}'.$product->subname.'{:}"';
   }
@@ -277,11 +296,15 @@ function create_product_meta( $product ){
     $script[] = 'wp post term add $'.$varname.' product_cat '.$product->alt_category;
     
   }
+  if(!empty($product->subname)){
+    $enfr = "{:en}".$product->subname."{:}{:fr}".$product->subname."{:}";
+    $script[] = 'wp post meta update $'.$varname.' _subtitle "'.$enfr.'"';
+  }
   
   $script[] = 'wp media import '.$product->feature.' --post_id=$'.$varname.' --featured_image=true';
   
   $mvars=array();
-  var_dump( $product->images );
+  // var_dump( $product->images );
   foreach( $product->images as $index => $image ){
     $mvar = $varname.'_'.$index;
     $script[] = $mvar.'=`wp media import '.$image.' --post_id=$'.$varname.' --porcelain`';
@@ -295,12 +318,14 @@ function create_variation_post( $product ){
   global $script;
   $varname = get_varname($product);
   $name = $product->name;
-  $line = $varname.'=`wp post create --post_title="'.$product->name.'" --post_name="'.$product->slug.'" --post_parent=$'.$product->parent.' --post_content="lorem ipsum dolore..." --post_type=product_variation --post_status=publish --post_name='.$product->slug;
+  $line = $varname.'=`wp post create --post_title="'.$product->name.'" --post_parent=$'.$product->parent.' --post_content="lorem ipsum dolore..." --post_type=product_variation --post_status=publish --post_name='.$product->slug;
+  $script[]='echo "Creating Variation: '.$product->name.'"';
   $script[]=$line.' --porcelain`';
 }
 function create_variation_meta( $product ){
   global $script;
   $varname = get_varname($product);
+  $script[]='echo "Setting meta for product: '.$product->name.' Variation: '.$product->material.'"';
   $script[] = 'wp post meta update $'.$varname.' _visibility visible';
   $script[] = 'wp post meta update $'.$varname.' attribute_edb_material '.$product->material;
   $script[] = 'wp post meta update $'.$varname.' _stock 2';
@@ -321,7 +346,7 @@ function generate_script( $products ){
     }
     $sku = get_sku( !empty($product->subcategory) ? $product->subcategory : $product->category,  $product->name, null );
     $product->sku = $sku;
-    $slug = get_varname( $product );
+    $slug = get_slugname( $product );
     $product->slug = $slug;
     $product->shipping_class = $shipping_classes[$product->category];
     create_product_post( $product );
@@ -330,7 +355,7 @@ function generate_script( $products ){
       $variation = get_array_copy( $product );
       $variation->name = $variation->name."-$material_id";
       $variation->material = $material_id;
-      $variation->slug = $variation->slug."_$material_id";
+      $variation->slug = $product->slug."$material_id";
       $variation->sku = get_sku( !empty($variation->subcategory) ? $variation->subcategory : $variation->category,  $variation->name, $material_id );
       $variation->parent = get_varname( $product );
       $variations[$material_id] = $variation;
@@ -346,173 +371,5 @@ generate_script( read_products('./data/products') );
 $shell_script = implode("\n",$script) ;
 // echo $shell_script;
 file_put_contents('./shell/catalog-create.sh', $shell_script );
-
-/*
-function get_file_list( $dir ){
-  $files=array();
-  if( $dh = opendir($dir)){
-    while (($file = readdir($dh)) !== false){
-      if ($file == '.' or $file == '..') continue;
-      $files[]="$dir/$file";
-    }
-  }
-  return $files;
-}
-
-
-
-function get_product_file_paths( $data ){
-  $paths = array('gallery'=>null,'assets'=>null);
-  $gallery_paths = get_file_list( $data['directory'].'/gallery' );
-  $asset_paths = get_file_list( $data['directory'].'/assets' );
-  if(!empty($gallery_paths)){
-    $paths['gallery'] = $gallery_paths;
-    
-  }
-  if(!empty($asset_paths)){
-    $paths['assets'] = $asset_paths;  
-  }
-  usort($paths['gallery'], 'comp');
-  $featured = array_shift($paths['gallery']);
-  $paths['featured']=$featured;
-  
-  return $paths;
-}
-
-$imports=array();
-$script = array();
-// Open a directory, and read its contents
-function get_product_directories( $dir, $cat=null, $data=array() ){
-  global $categories;
-  global $sub_categories;
-  global $imports;
-  if( $dh = opendir($dir)){
-    while (($file = readdir($dh)) !== false){
-      if ($file == '.' or $file == '..') continue;
-      
-      if(in_array( $file, $categories )){
-        get_product_directories( $dir."/$file", $file, array( "category" => $file, "subcategory" => null ) );
-      }else if( !is_null($cat) && in_array( $cat, array_keys($sub_categories) ) && in_array( $file, $sub_categories[$cat] ) ){
-        $data['subcategory']=$file;
-        get_product_directories( $dir."/$file", null, $data );
-      }else{
-        $data['directory']="$dir/$file";
-        
-        $data['files']=get_product_file_paths( $data );
-        
-        $imports[]=$data;
-      }
-    }
-  }
-}
-
-get_product_directories( "./data/products" );
-
-function get_array_copy( $array ){
-  $copy = array();
-  foreach($array as $k => $v){
-    $copy[$k]=$v;
-  }
-  return $copy;
-}
-foreach( $imports as $k => $import){
-  
-  $product_path = $import['directory'];
-  $composed_name = explode('-',basename($product_path));
-  $category = $import['category'];
-  $subcategory = $import['subcategory'];
-  $materials = $category_materials[$category];
-  $name = $composed_name[0];
-  $subname = (count($composed_name) > 1 ? $composed_name[1] : null);
-  $slug = strtolower($name);
-  if(!is_null($subname)){
-    $slug = $slug."_".strtolower($subname);
-  }
-  $product = array(
-    "name"=> $name,
-    "subname"=> $subname,
-    "slug"=> $slug,
-    "category"=> $category,
-    "subcategory"=> $subcategory,
-    "materials"=>$materials,
-    "shipping_class"=>$shipping_classes[$category],
-    "sku"=>get_sku( $category, $subcategory, null, $name, $subname ),
-    "files"=>$import['files']
-  );
-  $variations = array();
-  foreach( $materials as $material_id ){
-    $variation = get_array_copy( $product );
-    $variation['name'] = $variation['name']."-$material_id";
-    $variation['material'] = $material_id;
-    $variation['slug'] = $variation['slug']."_$material_id";
-    $variation['sku'] = get_sku( $variation['category'], $variation['subcategory'], null, $variation['name'], $variation['subname'] );
-    $variation['parent'] = get_varname( $product );
-    $variations[$material_id] = $variation;
-  }
-  $product['variations'] = $variations;
-  $imports[$k] = $product; 
-  
-};
-
-
-
-
-function get_varname( $product ){
-  return str_replace('-','_', $product['sku']);
-}
-
-
-function create_variation_meta( $product ){
-  global $script;
-  $varname = get_varname($product);
-  $script[] = 'wp post meta update $'.$varname.' _visibility visible';
-  $script[] = 'wp post meta update $'.$varname.' attribute_edb_material '.$product['material'];
-  $script[] = 'wp post meta update $'.$varname.' _stock 2';
-  $script[] = 'wp post meta update $'.$varname.' _stock_status instock';
-  $script[] = 'wp post meta update $'.$varname.' _manage_stock yes';
-  $script[] = 'wp post meta update $'.$varname.' _backorders yes';
-  $script[] = 'wp post meta update $'.$varname.' _price '.($product['shipping_class'] == 'furniture' ? '350.00' : '15.00');
-  $script[] = 'wp post meta update $'.$varname.' _regular_price '.($product['shipping_class'] == 'furniture' ? '350.00' : '15.00');
-  $script[] = 'wp post meta update $'.$varname.' _sku '.$product['sku'];
-  $script[] = 'wp media import '. $product['files']['featured'] .' --post_id=$'.$varname.' --featured_image=true';
-}
-
-function create_product_post( $product ){
-  global $script;
-  $varname = get_varname($product);
-  $name = $product['name'];
-  $line = $varname.'=`wp post create --post_title="'.$product['name'].'" --post_name="'.$product['slug'].'" --post_content="lorem ipsum dolore..." --post_type=product --post_status=publish --post_name='.$product['slug'];
-  $script[]=$line.' --porcelain`';
-}
-
-function create_variation_post( $product ){
-  global $script;
-  $varname = get_varname($product);
-  $name = $product['name'];
-  $line = $varname.'=`wp post create --post_title="'.$product['name'].'" --post_name="'.$product['slug'].'" --post_parent=$'.$product['parent'].' --post_content="lorem ipsum dolore..." --post_type=product_variation --post_status=publish --post_name='.$product['slug'];
-  $script[]=$line.' --porcelain`';
-}
-
-
-function generate_product_import_script( $imports ){
-  foreach( $imports as $import ){
-    // $varname = get_varname($product);
-    create_product_post( $import );
-    create_product_meta( $import );
-    foreach( $import['variations'] as $material_id => $variation ){
-      create_variation_post( $variation );
-      create_variation_meta( $variation );
-    }
-    
-  }
-    
-    
-}
-generate_product_import_script( $imports );
-
-
-
-
-*/
 
 ?>

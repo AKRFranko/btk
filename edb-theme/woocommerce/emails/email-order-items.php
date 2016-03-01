@@ -10,13 +10,47 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
+$edb_shipping_methods = array(
+  'edb_self_pickup' => __("I will pick up.",'edb'),
+  'edb_ship_ready' => __("ship when ready",'edb'),
+  'edb_ship_bundle_1' => __("ship bundle 1",'edb'),
+  'edb_ship_bundle_2' => __("ship bundle 2",'edb'),
+  'edb_ship_bundle_3' => __("ship bundle 3",'edb')
+);
 
-foreach ( $items as $item_id => $item ) :
+  $split = array();
+  foreach( $items as $item_id => $item ) {
+    foreach( $item['edb_shipments'] as $method => $qty ){
+      if(empty($split[$method])){
+        $split[$method]= array();
+      }
+      $split[$method][]=array( 'item_id' => $item_id, 'item' => $item, 'quantity' => $qty );
+    }
+  }
+  foreach( $split as $method => $items ){
+    echo "<tr class='td'><th class='td' style='text-align:left;' colspan='3'>".$edb_shipping_methods[$method]."</th></tr>";
+    
+    foreach( $items as $copy ){
+      write_log( $copy );
+      $item_product = $order->get_product_from_item( $copy['item'] );
+      
+      wc_get_template( 'emails/order-details-item.php', array(
+        'order'   => $order,
+        'item_id' => $copy['item_id'],
+        'item'    => $copy['item'],
+        'product' => apply_filters( 'woocommerce_order_item_product', $item_product, $item )
+      ) );      
+    }
+  }
+  
+if(false): foreach ( $items as $item_id => $item ) :
 	$_product     = apply_filters( 'woocommerce_order_item_product', $order->get_product_from_item( $item ), $item );
 	$item_meta    = new WC_Order_Item_Meta( $item, $_product );
 
 	if ( apply_filters( 'woocommerce_order_item_visible', true, $item ) ) {
 		?>
+		
+		<!--
 		<tr class="<?php echo esc_attr( apply_filters( 'woocommerce_order_item_class', 'order_item', $item, $order ) ); ?>">
 			<td class="td" style="text-align:left; vertical-align:middle; border: 1px solid #eee; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; word-wrap:break-word;"><?php
 
@@ -52,7 +86,7 @@ foreach ( $items as $item_id => $item ) :
 			?></td>
 			<td class="td" style="text-align:left; vertical-align:middle; border: 1px solid #eee; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;"><?php echo apply_filters( 'woocommerce_email_order_item_quantity', $item['qty'], $item ); ?></td>
 			<td class="td" style="text-align:left; vertical-align:middle; border: 1px solid #eee; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;"><?php echo $order->get_formatted_line_subtotal( $item ); ?></td>
-		</tr>
+		</tr>-->
 		<?php
 	}
 
@@ -62,4 +96,4 @@ foreach ( $items as $item_id => $item ) :
 		</tr>
 	<?php endif; ?>
 
-<?php endforeach; ?>
+<?php endforeach; endif;?>

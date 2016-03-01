@@ -214,6 +214,8 @@ class Edb {
     add_action( 'woocommerce_review_order_after_shipping',  array($GLOBALS['Edb_Shipping_Method'], 'review_order_after_shipping'), 10, 0 );
     
     add_action('woocommerce_cart_needs_shipping', array($GLOBALS['Edb_Shipping_Method'], 'cart_needs_shipping'), 10, 1 );
+    add_action('woocommerce_cart_needs_shipping_address',array($GLOBALS['Edb_Shipping_Method'], 'cart_needs_shipping_address'), 10, 1 );
+    
     
     add_action('template_redirect', array($GLOBALS['Edb_Shipping_Method'], 'persist_chosen_shipping_methods') );
     
@@ -236,7 +238,8 @@ class Edb {
     add_action('woocommerce_order_get_items', array($GLOBALS['Edb_Shipping_Method'],'order_get_items'), 10, 2 );
     add_action('woocommerce_checkout_update_order_meta', array($GLOBALS['Edb_Shipping_Method'],'checkout_update_order_meta'), 10, 2 );
     
-    
+    add_action('woocommerce_before_checkout_process', array($GLOBALS['Edb_Shipping_Method'],'before_checkout_process'));
+    add_action('woocommerce_after_checkout_validation',array($GLOBALS['Edb_Shipping_Method'],'after_checkout_validation'));
     // add_action( 'woocommerce_review_order_before_submit',  array($GLOBALS['Edb_Shipping_Method'], 'review_order_before_submit') );
     
     // add_action( 'woocommerce_before_checkout_billing_form', array($GLOBALS['Edb_Shipping_Method'],'before_checkout_billing_form') );
@@ -307,6 +310,7 @@ class Edb {
     $this->loader->add_action('template_redirect', $plugin_public, 'maybe_login_user_before_checkout' );
     $this->loader->add_action('woocommerce_login_redirect', $plugin_public, 'check_redirect_state'  );
     $this->loader->add_action('woocommerce_registration_redirect', $plugin_public, 'check_redirect_state'  );
+    // $this->loader->add_action('user_register', $plugin_public, 'user_register'  );
 	}
   
 	/**

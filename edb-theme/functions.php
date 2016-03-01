@@ -347,7 +347,7 @@ function edb_splash_page(){
 }
 
 function edb_body_classes(){
-  $tests = array('is_lynx','is_gecko','is_winIE','is_macIE','is_opera','is_NS4','is_safari','is_chrome','is_iphone','is_IE','is_edge');
+  $tests = array('is_lynx','is_gecko','is_winIE','is_macIE','is_opera','is_NS4','is_safari','is_chrome','is_iphone','is_IE');
   $deviceclasses = array();
   foreach( $tests as $t ){
     if($GLOBALS[$t]){
@@ -387,6 +387,29 @@ function edb_translate_menu( $items, $menu ) {
   return $doc->saveHTML();
 
 }
+
+function fix_language_page_links( $url, $post, $leavename ) {
+  if ( $post->post_type == 'post' || $post->post_type == 'page' ) {
+    // write_log( "got: $url" );
+    $links_to = get_post_meta( $post->ID, '_links_to', true );
+    $lang =WPGlobus::Config()->language;
+    if(!empty($links_to) && $lang == 'fr'){
+      $links_to = parse_url($links_to);
+      $parts = parse_url($url);
+      // write_log( $parts );
+      // write_log(substr( $parts['path'], 0, 4 ));
+      if(substr( $parts['path'], 0, 4 ) !== "/fr/" && $lang == 'fr'){
+        $url= '/fr'.$parts['path']. ( !empty($parts['query']) ? '?'.$parts['query'] : '');
+      }  
+    }
+    return $url;
+    // write_log( "gave: $url" );  
+  }
+  
+  return $url;
+}
+add_filter( 'post_link', 'fix_language_page_links', 100, 3 );
+
 /**
  * Implement the Custom Header feature.
  */

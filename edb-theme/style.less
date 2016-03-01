@@ -36,6 +36,8 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 .postcode{
   text-transform:uppercase!important;
 }
+
+
 @media  (max-width: 320px) and (max-width: 768px){
   #page{
     max-width:320px;
@@ -59,6 +61,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
   #masthead.on #logo{
     /*TODO: put white logo*/
   }
+  #masthead.on #site-nav,
   #masthead.on #site-nav a,
   #masthead.on #site-nav *{
     color:#fff;
@@ -169,6 +172,13 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
     height:auto;
     background:rgba(0,0,0,0.75);
   }
+  #sign-in-menu.on{
+    width:100%;
+    background:rgba(0,0,0,0.75);
+    & > *{
+      max-width:50%;
+    }
+  }
   #masthead.on #logo{
    .black-logo-image();
   }
@@ -250,6 +260,15 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
   .product-menu .product-selected-material{
     margin-top:0.5em;
     padding-top:0.5em;
+  }
+  .product-menu .product-selected-material .value{
+    margin-left:calc(~"60% - 44px");
+    background-size:cover;
+    width:42px;
+    height:38px;
+    margin-top:-8px;
+    margin-right:0;
+    
   }
   .product-share{
     margin:0;
@@ -375,5 +394,30 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
     
 }
 
+@media all and (orientation:portrait) and (min-width:768px){
+  .material-description{
+    max-width:700px;
+    .material-image{
+      min-height:450px;
+    }
+    margin:1em calc(~"50% - 350px");
+    
+  }
+}
+
+@media all and  (min-width:1025px){
+  .material-description{
+    max-width:1024px;
+    .material-image{
+      height:445px;
+    }
+    margin:1em calc(~"50% - 512px");
+    
+  }
+  .toast .close{
+    right:0;
+    margin-right:calc(~"50vw - 512px");
+  }
+}
 
 

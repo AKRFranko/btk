@@ -103,7 +103,7 @@ button,button:hover,button:active, input[type="submit"]{
   color:#fff!important;
   text-align:center;
   min-width:6em;
-  padding:.25em 1em;
+  padding:.25em 1em!important;
   border:1px solid #000;
   box-shadow:none!important;
   border-radius:0!important;
@@ -116,10 +116,13 @@ button,button:hover,button:active, input[type="submit"]{
   text-decoration:none
 }
 .woocommerce #payment #place_order{
+  &,&:hover,&:active{
   width: 10em;
   float: right;
   margin: 1em 0 1em 1em;
-  padding-top:0;
+  padding-top:0!important;  
+  }
+  
 }
 
 .cart_item{
