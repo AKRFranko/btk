@@ -59,17 +59,19 @@ if ( ! defined( 'ABSPATH' ) ) {
           edb_package_item_name( $index, $package['contents'][0] );
       ?>
     </div>
-    <div class="cart-item-material">
-      <?php
-          edb_package_item_material( $index, $package['contents'][0] );
-      ?>
-    </div>
+    
     <div class="cart-item-category">
       <?php
           edb_package_item_category( $index, $package['contents'][0] );
           // echo $total;
       ?>
       
+    </div>
+    <div class="cart-item-material">
+      <?php
+          edb_package_item_material( $index, $package['contents'][0] );
+          edb_package_item_material_thumb( $index, $package['contents'][0] );
+      ?>
     </div>
     <div class="cart-item-availability">
       <?php 

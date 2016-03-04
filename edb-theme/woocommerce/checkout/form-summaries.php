@@ -23,14 +23,14 @@
 <div id="checkout-panel-summaries">
   <div data-panel="#address-info-panel" class="summary">
     <a href="#" class="summary-toggle">
-      <?php _e('billing address', 'edb'); ?>
+      <?php _e('billing address ', 'edb'); ?>
     </a>
     <div class="summary-data">
       <?php edb_checkout_billing_address_summary(); ?>
     </div>
     <?php if( WC()->session->get('do_not_ship') != 1){ ?>
     <div class="summary-title">
-      <?php _e('shipping address', 'edb'); ?>
+      <?php _e('shipping address ', 'edb'); ?>
     </div>
     <div class="summary-data">
       <?php edb_checkout_shipping_address_summary(); ?>

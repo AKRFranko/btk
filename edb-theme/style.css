@@ -1173,11 +1173,22 @@ div {
 #sign-in-menu .register-form {
   width: 100%;
 }
+#sign-in-menu .login-form > p:first-child,
+#sign-in-menu .register-form > p:first-child {
+  margin-top: 1em;
+}
 #sign-in-menu.on,
 #sign-in-menu .sign-in.on,
 #sign-in-menu .login-form.on,
 #sign-in-menu .register-form.on {
   display: block;
+}
+#sign-in-menu input {
+  width: 14em;
+}
+#sign-in-menu input[type="submit"] {
+  width: 8em;
+  margin-left: 8em;
 }
 #cart-item-counter {
   font-weight: bold;
@@ -1716,6 +1727,9 @@ footer#colophon {
   padding: 1em;
   transition: all 0.3s ease-in;
 }
+#account-boxes a {
+  color: #000;
+}
 #account-boxes .box:first-of-type form {
   margin-left: -1000px;
   opacity: 0;
@@ -1742,7 +1756,7 @@ footer#colophon {
   font-size: 20px;
 }
 #account-boxes h2 {
-  text-align: left;
+  text-align: center;
 }
 #artsy-map {
   display: none;
@@ -1872,7 +1886,7 @@ footer#colophon {
 .material-description li {
   font-family: "adobe-caslon-pro", Georgia, 'Times New Roman', Times, serif;
   margin-right: calc(50% + 3em);
-  text-align: right;
+  text-align: left;
   margin-bottom: .5em;
 }
 .material-info {
@@ -1885,9 +1899,6 @@ footer#colophon {
   padding: 0;
   width: auto;
   display: inline-block;
-}
-.material-info .color:before {
-  content: '_';
 }
 .material-info .description {
   padding-right: 5em;
@@ -2013,7 +2024,7 @@ footer#colophon {
 }
 a#show-material-toast {
   position: absolute;
-  right: 4em;
+  right: 3.5em;
   top: 1em;
 }
 .product-menu .product-add-to-cart {
@@ -2551,9 +2562,12 @@ form.checkout h3 {
   text-align: center;
 }
 #calc_shipping_postcode {
-  width: 6em;
+  width: 155px!important;
   line-height: 2.1!important;
   padding-left: .5em;
+}
+#calc_shipping_postcode + button {
+  width: 155px;
 }
 .cart-item-remove a {
   white-space: nowrap;
@@ -2584,7 +2598,6 @@ form.checkout h3 {
   margin: 0;
   padding: 0 .5em;
   vertical-align: bottom;
-  margin-left: -0.3em;
 }
 .cart-collaterals .total-line.cart-message {
   box-sizing: border-box;
@@ -2601,7 +2614,7 @@ form.checkout h3 {
 }
 .cart-checkout {
   text-align: right;
-  padding-right: 1em;
+  padding-top: 3em;
 }
 .woocommerce .checkout-button,
 .woocommerce .button.alt,
@@ -2665,7 +2678,7 @@ input[type="submit"] {
   vertical-align: top;
   position: relative;
   /*outline:1px solid red;*/
-  height: 5em;
+  height: 6em;
   width: 25%;
 }
 .cart-item-image {
@@ -2715,11 +2728,17 @@ input[type="submit"] {
 }
 .cart-item-options .cart-item-line-total {
   margin-top: -0.2em;
-  text-align: left;
+  text-align: center;
 }
 .cart-item-name,
 .cart-item-material {
-  display: inline;
+  display: inline-block;
+  white-space: nowrap;
+}
+img.material-thumb {
+  display: block;
+  width: 1em;
+  max-height: 1em;
 }
 .cart-item-name {
   font-weight: bold;
@@ -2761,6 +2780,10 @@ input[type="submit"] {
   white-space: normal;
   padding: 0 1em 1em 1em;
   vertical-align: top;
+}
+.shipping-method-choice:nth-of-type(3),
+.shipping-method-choices > div {
+  border-right-color: #fff;
 }
 .shipping-method-choice:last-of-type {
   border-right: 0;
@@ -2865,6 +2888,10 @@ CHECKOUT
   text-transform: uppercase;
   position: relative;
 }
+.summary .summary-toggle {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
 .summary .summary-toggle:after {
   position: absolute;
   top: .5em;
@@ -2927,7 +2954,7 @@ CHECKOUT
 }
 .cart-address-review p,
 .cart-payment p {
-  margin: 0 0 0 30%;
+  margin: 0 0 0 0;
 }
 .cart-final-checklist {
   padding-top: 1em;
@@ -3103,7 +3130,7 @@ fieldset {
 }
 .cost-line .label {
   display: inline-block;
-  width: 120px;
+  width: 50%;
 }
 .cost-line.cart-total .label,
 .cost-line.cart-total .value {
@@ -3239,7 +3266,7 @@ small.stocknote {
 @media all and (min-width: 320px) and (max-width: 500px) {
   .cart_item {
     height: auto;
-    min-height: 9rem;
+    min-height: 11rem;
   }
   .cart-item-info {
     position: absolute;
@@ -3330,6 +3357,9 @@ small.stocknote {
   #account-boxes {
     margin-top: -1em;
   }
+  #account-boxes form p.form-row.form-row-first {
+    width: 100%!important;
+  }
   #account-boxes form h2 {
     margin-bottom: .25em;
   }
@@ -3338,6 +3368,7 @@ small.stocknote {
     min-height: auto;
   }
   #account-boxes .box form {
+    text-align: center;
     transition: opacity 0.2s ease-out;
     margin: .5em;
   }
@@ -3768,8 +3799,19 @@ body.toast-cover #page {
 .postcode {
   text-transform: uppercase!important;
 }
-@media (max-width: 320px) and (max-width: 768px) {
+html,
+body {
+  min-width: 320px;
+}
+.entry-content a,
+.entry-content a:hover,
+.entry-content a:active,
+.entry-content a:visited {
+  color: #000;
+}
+@media (min-width: 100px) and (max-width: 320px) {
   #page {
+    outline: 1px solid red;
     max-width: 320px;
     min-width: 320px;
     margin: 0 auto;

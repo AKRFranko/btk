@@ -15,6 +15,7 @@
   var contestDismissed =sessionStorage.getItem('has_dismissed_contest');
   
   $(function(){
+    $('#contest').remove();
     if($(document.body).hasClass('splash')){
       $('#contest').remove();
     }else{

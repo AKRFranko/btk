@@ -16,9 +16,9 @@ global $WC_Edb;
 <fieldset id="shipping-packages-panel" class="checkout-panel woocommerce-checkout-review-order-table <?php edb_panel_active('#shipping-packages-panel') ?>">
   <h1><?php _e('choose your delivery options', 'edb'); ?></h1>
     <?php $edb_shipping_methods = array(
-            'edb_self_pickup' => __("i will pick up", 'edb'),
+            'edb_self_pickup' => __("self pickup", 'edb'),
             'edb_ship_ready' => __("ship when ready",'edb'),
-            'edb_ship_bundle_1' => __("ship bundle 1",'edb'),
+            'edb_ship_bundle_1' => __("delivery",'edb'),
             'edb_ship_bundle_2' => __("ship bundle 2",'edb'),
             'edb_ship_bundle_3' => __("ship bundle 3",'edb')
           );?>
@@ -72,7 +72,7 @@ global $WC_Edb;
       
       
       <div class="shipping-review-notice">
-        <p><?php _e('based on your selection, the final delivery fees will adjust automatically. shipping items individuallu may add shipping fees. for more information on how delivery fees are calculated', 'edb');?><a target="_blank" href="<?php echo home_url('/about-shipping'); ?>"><?php _e('click here', 'edb'); ?></a>.</p>
+        <p><?php _e('For the items ordered, please choose your delivery options : self pick up (at our Montréal warehouse) or delivery to the adresse submitted. Based on your selection, the final delivery fees will adjust automatically. for more information on how delivery fees are calculated', 'edb');?><a target="_blank" href="<?php echo home_url('/about-shipping'); ?>"> <?php _e('click here', 'edb'); ?></a>.</p>
       </div>
       
     </div><!-- shipping-review -->

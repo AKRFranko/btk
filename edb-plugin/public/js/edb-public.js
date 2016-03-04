@@ -344,6 +344,13 @@ window.requestAnimFrame = (function(){
           $input.removeClass('missing')
         }
       })
+      $('#billing_postcode,#shipping_postcode').each( function(){
+        var val = $(this).val();
+        if(!/^([a-zA-Z]\d[a-zA-Z]( )?\d[a-zA-Z]\d)$/.test(val)){
+          hasErrors = true;
+          $(this).addClass('missing');
+        }
+      })
       return !hasErrors;
     },
     'payment-info-panel': function( $panel ){
@@ -362,18 +369,19 @@ window.requestAnimFrame = (function(){
       return !hasErrors;
     },
     'place-order-panel': function( $panel ){
-      var checks = $panel.find('.checklist-checkbox');
-      var hasErrors = false;
-      checks.each(function(){
-        var $input = $(this).find('input');
-        if(!$input.is(':checked')){
-          $(this).addClass('missing')
-          hasErrors = true;
-        }else{
-          $(this).removeClass('missing')
-        }
-      })
-      return !hasErrors;
+      return true;
+      // var checks = $panel.find('.checklist-checkbox');
+      // var hasErrors = false;
+      // checks.each(function(){
+      //   var $input = $(this).find('input');
+      //   if(!$input.is(':checked')){
+      //     $(this).addClass('missing')
+      //     hasErrors = true;
+      //   }else{
+      //     $(this).removeClass('missing')
+      //   }
+      // })
+      // return !hasErrors;
     }
   };
   
@@ -470,6 +478,9 @@ window.requestAnimFrame = (function(){
       
     }
   });
+  
+  
+  
   
   $(document).on('click', '.edb-save-and-continue', function( e ){
     var $panels =$('.checkout-panel');
@@ -575,10 +586,32 @@ window.requestAnimFrame = (function(){
   });
   
   $(document).on('change','.shipping-calculator-form .value input', function(){
-    $('button[name=calc_shipping').click();
+    //$('button[name=calc_shipping').click();
+    var value = $(this).val();
+    if(!value) return;
+    if(!/^([a-zA-Z]\d[a-zA-Z]( )?\d[a-zA-Z]\d)$/.test(value)){
+      
+      $(this).addClass('missing')
+    }else{
+      $(this).removeClass('missing')
+      
+    }
   });
+  
+ 
+  
   // When document is ready....
   $(function(){
+    
+    $('.shipping-calculator-form').submit(function(e){
+      var inp = $('.shipping-calculator-form .value input');
+      var val = inp.val();
+      if(!/^([a-zA-Z]\d[a-zA-Z]( )?\d[a-zA-Z]\d)$/.test(val)){
+        e.preventDefault();
+      }
+    });
+    
+    $('.shipping-calculator-form .value input').trigger('change');
     
     fixFormPlaceholders();
     

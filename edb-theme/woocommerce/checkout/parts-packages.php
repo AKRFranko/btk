@@ -9,9 +9,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $Edb_Shipping_Method;
 
  $edb_shipping_methods = array(
-  'edb_self_pickup' => __("i will pick up", 'edb'),
+  'edb_self_pickup' => __("self pickup", 'edb'),
   'edb_ship_ready' => __("ship when ready",'edb'),
-  'edb_ship_bundle_1' => __("ship bundle 1",'edb'),
+  'edb_ship_bundle_1' => __("delivery",'edb'),
   'edb_ship_bundle_2' => __("ship bundle 2",'edb'),
   'edb_ship_bundle_3' => __("ship bundle 3",'edb')
 ); 
@@ -42,17 +42,19 @@ foreach( $shipments as $shipping_method => $packages ){
            edb_package_item_name( $index, $package['contents'][0] );
        ?>
      </div>
-     <div class="cart-item-material">
-       <?php
-           edb_package_item_material( $index, $package['contents'][0] );
-       ?>
-     </div>
+     
      <div class="cart-item-category">
        <?php
            edb_package_item_category( $index, $package['contents'][0] );
            // echo $total;
        ?>
        
+     </div>
+     <div class="cart-item-material">
+       <?php
+           edb_package_item_material( $index, $package['contents'][0] );
+           edb_package_item_material_thumb( $index, $package['contents'][0]  ); 
+       ?>
      </div>
      <div class="cart-item-availability">
        <?php 

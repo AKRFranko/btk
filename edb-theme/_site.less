@@ -267,12 +267,26 @@ div{
 #sign-in-menu,#sign-in-menu .sign-in,#sign-in-menu .login-form,#sign-in-menu .register-form{
   display:none
 }
-#sign-in-menu .login-form,#sign-in-menu .register-form{
+#sign-in-menu .login-form,
+#sign-in-menu .register-form{
   width:100%;
+  & > p:first-child{
+    margin-top:1em;
+  }
 }
 #sign-in-menu.on,#sign-in-menu .sign-in.on,#sign-in-menu .login-form.on,#sign-in-menu .register-form.on{
   display:block;
 }
+#sign-in-menu input{
+  width:14em;
+  &[type="submit"]{
+    // background:#fff!important;
+    // color:#000!important;
+    width:8em;
+    margin-left:8em;
+  }
+}
+
 
 #cart-item-counter{
   font-weight:bold;
@@ -730,6 +744,9 @@ footer#colophon {
   transition:all .3s ease-in;
   
 }
+#account-boxes a{
+  color:#000;
+}
 #account-boxes .box:first-of-type form{
   // display:none;
   margin-left:-1000px;
@@ -759,7 +776,7 @@ footer#colophon {
   font-size:@font-size-2;
 }
 #account-boxes h2{
-  text-align:left;
+  text-align:center;
 }
 
 

@@ -73,13 +73,25 @@ function edb_package_item_image( $package_item_key, $package_item ){
 function edb_package_item_name( $package_item_key, $package_item ){
   $variation_id = $package_item['variation_id'];
   $decorated = edb_decorated_product( $variation_id );
-  echo $decorated->title;
+  if(!empty($decorated->subtitle)){
+    $name = $decorated->title . "_" . $decorated->subtitle;
+  }else{
+    $name = $decorated->title;
+  }
+  echo $name;
+  
 }
 function edb_package_item_material( $package_item_key, $package_item ){
   $variation_id = $package_item['variation_id'];
   $decorated = edb_decorated_product( $variation_id );
   echo edb_get_material_name($decorated->material);
 }
+function edb_package_item_material_thumb( $package_item_key, $package_item ){
+  $variation_id = $package_item['variation_id'];
+  $decorated = edb_decorated_product( $variation_id );
+  echo edb_get_material_thumb($decorated->material);
+}
+
 function edb_package_item_category( $package_item_key, $package_item ){
   $variation_id = $package_item['variation_id'];
   $decorated = edb_decorated_product( $variation_id );
@@ -129,7 +141,12 @@ function edb_cart_item_name( $cart_item_key, $cart_item ){
   $product_id = $cart_item['product_id'];
   $variation_id = $cart_item['variation_id'];
   $decorated = edb_decorated_product( $variation_id );
-  echo $decorated->title;
+  if(!empty($decorated->subtitle)){
+    $name = $decorated->title . "_" . $decorated->subtitle;
+  }else{
+    $name = $decorated->title;
+  }
+  echo $name;
 }
 function edb_cart_item_material( $cart_item_key, $cart_item ){
   $product_id = $cart_item['product_id'];
@@ -137,12 +154,31 @@ function edb_cart_item_material( $cart_item_key, $cart_item ){
   $decorated = edb_decorated_product( $variation_id );
   echo edb_get_material_name($decorated->material);
 }
+function edb_cart_item_material_thumb( $cart_item_key, $cart_item ){
+  $product_id = $cart_item['product_id'];
+  $variation_id = $cart_item['variation_id'];
+  $decorated = edb_decorated_product( $variation_id );
+  echo edb_get_material_thumb($decorated->material);
+}
 function edb_cart_item_category( $cart_item_key, $cart_item ){
   $product_id = $cart_item['product_id'];
   $variation_id = $cart_item['variation_id'];
   
   $decorated = edb_decorated_product( $variation_id );
   echo $decorated->category;
+}
+
+function edb_get_material_thumb( $material_no ){
+  $get_material_desc_args = array(
+    'meta_key' => '_edb_material',
+    'meta_value' => $material_no,
+    'post_type' => 'edb_material_desc',
+    'post_status'=> 'any',
+    'posts_per_page'=> 1
+  );
+  $dpost = get_posts($get_material_desc_args)[0];
+  $image_id = get_post_thumbnail_id( $dpost->ID ,'thumbnail');
+  echo "<img class=\"material-thumb\" src=\"".wp_get_attachment_image_src($image_id, 'full')[0]."\">";
 }
 function edb_get_material_name( $material_no ){
   $get_material_desc_args = array(
@@ -158,7 +194,7 @@ function edb_get_material_name( $material_no ){
   if(empty($subtitle)){
     return $name;
   }
-  return "$name $subtitle";
+  return "$name $subtitle $material_no";
 }
 function edb_checkout_item_material( $cart_item_key, $cart_item ){
   $product_id = $cart_item['product_id'];
@@ -180,12 +216,12 @@ function edb_checkout_item_availability( $cart_item_key, $cart_item  ){
   $available_stock = $decorated->variation_object->get_total_stock();
   $wanted_stock = abs($cart_item['quantity']);
   if($available_stock <= 0 ){
-    echo "$wanted_stock @ $max";
+    echo "$wanted_stock &lt; $max";
   }else if($wanted_stock <= $available_stock ){
-    echo "$wanted_stock @ $min";
+    echo "$wanted_stock &lt; $min";
   }else{
     $backorder_stock = $wanted_stock - $available_stock;
-    echo "$available_stock @ $min, $backorder_stock @ $max";  
+    echo "$available_stock &lt; $min, $backorder_stock &lt; $max";  
   }
   
   
@@ -206,21 +242,48 @@ function edb_order_item_availability( $item, $order ){
   echo sprintf( __('ships: %s', 'edb') ,date_i18n('j F Y', $display) );
   
 }
+
+function edb_latest_availability( $cart ){
+  $latest = 0;
+  foreach( $cart->cart_contents as $cart_item_key => $cart_item ){
+    $product_id = $cart_item['product_id'];
+    $variation_id = $cart_item['variation_id'];
+    $decorated = edb_decorated_product( $variation_id );
+    $delays = $decorated->shipping_delays[$variation_id];
+    $now = strtotime(date(DATE_ATOM));
+    $min = strtotime( $delays['available'], $now );
+    $max = strtotime( $delays['backorder'], $now );
+    $available_stock = $decorated->variation_object->get_total_stock();
+    $wanted_stock = abs($cart_item['quantity']);
+    if($available_stock <= 0 ){
+      if($latest < $max ){
+        $latest = $max;
+      }
+    }else if($wanted_stock <= $available_stock ){
+      if($latest < $min ){
+        $latest = $min;
+      }
+    }
+  }
+  echo time_elapsed($latest);
+}
 function edb_shipping_item_availability( $package ){
   
 
   $product_id = $package['product_id'];
   $variation_id = $package['variation_id'];
-  $decorated = edb_decorated_product( $variation_id );
-  $delays = $decorated->shipping_delays[$variation_id];
-  $availability = $package['edb_availability'];
-  $now = strtotime(date(DATE_ATOM));
+  edb_checkout_item_availability( $package, $package );
+  // $decorated = edb_decorated_product( $variation_id );
+  // $delays = $decorated->shipping_delays[$variation_id];
+  // $availability = $package['edb_availability'];
+  // $now = strtotime(date(DATE_ATOM));
   // write_log( $availability );
   // write_log( $now );
   // write_log( $max );
   // $max = trim(time_elapsed(strtotime( $availability, $now )));
   // $available_stock = $decorated->variation_object->get_total_stock();
-  echo $package['quantity'] . " @ $availability"; 
+  // echo $package['quantity'] . " < $availability"; 
+  
 }
 
 function edb_cart_item_availability( $cart_item_key, $cart_item ){
@@ -390,11 +453,12 @@ function edb_material_toasts(){
             <img src="<?php echo $large; ?>">
           </div>
           <div class="material-info box half">
-            <h1 class="name"><?php echo $title ?></h1>
-            <h2 class="color"><?php echo $subtitle ?></h2>
+            <h1 class="name"><?php echo "$title" ?></h1>
+            <h2 class="color"><?php echo "$subtitle $material" ?></h2>
             <p class="description"><?php echo $content; ?></p>
-            <p class="comp-title">Composition</p>
+            
             <ul class="composition">
+              <li>composition</li>
             <?php if(!empty($composition)){ foreach($composition as $line ){ ?>
               <li><?php echo trim($line) ?></li>
             <?php }; }; ?>
@@ -415,9 +479,10 @@ function edb_material_toasts(){
 function edb_product_material_picker( $product_id ){
   $decorated = edb_decorated_product( $product_id );
   $materials = $decorated->materials;
-  
   echo '<div class="edb-material-picker">';
-  echo '<div class="label">'.__('select a color', 'edb').'</div>';
+  echo '<div class="label">';
+  _e('select a color', 'edb');
+  echo '</div>';
   echo '<div class="edb-material-choices">';
   
   foreach($materials as $edb_material => $data ){
@@ -458,11 +523,47 @@ function edb_product_material_picker( $product_id ){
 
 
 function tmp_has_tech_image( $deco ){
- $data = array("atrium_armchairs","flex_left-facing","mixmix-ottrec_modular","perplexe_side-tables","teatime_sofa-beds","capsule_sofa-beds","flex_right-facing","mixmix_right-facing","pique_left-facing","teatime_sofas","capsule_sofas","maritime_armchairs","mixmix-single_modular","pique_right-facing","t-table_side-tables","duo_sofas-beds","mixmix-corner_modular","panorama_left-facing","tamtam_side-tables","vintage_side-tables","duo_sofas","mixmix_left-facing","panorama_right-facing","taxi_armchairs");
+ $data = array("atrium_armchairs",
+              "maritime_armchairs",
+              "nautique_accessories-pillows",
+              "stripes_sofas-3-seater",
+              "atrium_sofas-3-seater",
+              "maritime-natural_sofas-3-seater",
+              "panorama_sectionals-left-facing",
+              "swivel_armchairs",
+              "capsule_sofa-beds",
+              "maritime-walnut_sofas-3-seater",
+              "panorama_sectionals-right-facing",
+              "tamtam_side-tables",
+              "capsule_sofas",
+              "mixmix-corner_modular",
+              "perplexe_side-tables",
+              "taxi_armchairs",
+              "duo_sofa-beds",
+              "mixmix-ottrec_modular",
+              "ping_armchairs",
+              "taxi_sofas-3-seater",
+              "duo_sofas",
+              "mixmix_sectionals-left-facing",
+              "pique_sectionals-left-facing",
+              "teatime_sofa-beds",
+              "flex_sectionals-left-facing",
+              "mixmix_sectionals-right-facing",
+              "pique_sectionals-right-facing",
+              "teatime_sofas",
+              "flex_sectionals-right-facing",
+              "mixmix-single_modular",
+              "slope_armchairs",
+              "t-table_side-tables",
+              "majuscule_accessories-pillows",
+              "mutation_accessories-pillows",
+              "slope_sofas-3-seater",
+              "vintage_side-tables");
+
  $name = $deco->title;
-// write_log( $deco->title );
+  
  
- $cat = $deco->category;
+ $cat = $deco->category_slug;
  if($cat == 'modular'){
    if( $deco->product_id == 285){
      
@@ -477,7 +578,16 @@ function tmp_has_tech_image( $deco ){
      $name = 'mixmix-single';
    }
  }
+ if( $cat == 'sofas-3-seater'){
+   if($deco->product_id == 1150){
+     $name = 'maritime-walnut';
+   }
+   if($deco->product_id == 1111){
+     $name = 'maritime-natural';
+   }
+ }
  $k = "$name"."_"."$cat";
+ write_log( "\n\n\n$k\n\n\n");
  
  if(in_array( $k, $data)){
   return true;
@@ -487,7 +597,8 @@ function tmp_has_tech_image( $deco ){
 
 function tmp_get_tech_image( $deco ){
  $name = $deco->title;
- $cat = $deco->category;
+ $cat = $deco->category_slug;
+ 
  if($cat == 'modular'){
    if( $deco->product_id == 285){
      
@@ -502,7 +613,16 @@ function tmp_get_tech_image( $deco ){
      $name = 'mixmix-single';
    }
  }
+ if( $cat == 'sofas-3-seater'){
+   if($deco->product_id == 1150){
+     $name = 'maritime-walnut';
+   }
+   if($deco->product_id == 1111){
+     $name = 'maritime-natural';
+   }
+ }
  $k = "$name"."_"."$cat";
+ write_log('https://elementdebase.com/wp-content/edb-svg/'.$k.'.svg');
  return 'https://elementdebase.com/wp-content/edb-svg/'.$k.'.svg';
 }
 
@@ -681,14 +801,14 @@ function edb_add_to_cart_button( $product_id, $qty=1 ){
       </span>
     </div>
   <?php  
-  echo '<div class="product-selected-availability"><span class="label">availability</span><span class="value">'.sprintf(_n('%s week','%s weeks',1,'edb'),1).'</span></div>';
+  echo '<div class="product-selected-availability"><span class="label">'.__('availability', 'edb').'</span><span class="value">--</span></div>';
   
   echo "<input type='hidden' name='add-to-cart' value='$product_id'>";
   echo "<input type='hidden' name='variation_id' value=''>";
   echo "<input type='hidden' name='attribute_edb_material' value=''>";
   echo "<input type='hidden' name='product_id' value='$product_id'>";
   echo '<div class="product-add-to-cart">';
-  echo "<button id='add-to-cart' type='submit'>ADD TO CART</button>";
+  echo "<button id='add-to-cart' type='submit'>".__('ADD TO CART', 'edb')."</button>";
   echo '</div>';
   // echo "</form>";
 }

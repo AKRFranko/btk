@@ -118,13 +118,13 @@ global $WC_Edb;
     
     <?php do_action( 'woocommerce_review_order_after_cart_contents' ); ?>
     
-    <div class="cart-final-checklist">
+<!--    <div class="cart-final-checklist">-->
 
-<h3><?php _e('Final Checklist', 'edb'); ?></h3>
-    <label class="checklist-checkbox"><input type="checkbox" name="final_checklist_fits"> <span><?php _e('i made sure the item fits.','edb'); ?></span> </label>
-    <label class="checklist-checkbox"><input type="checkbox" name="final_checklist_noinclude"> <span><?php _e('The delivery does not include...','edb'); ?></span></label>
-    <label class="checklist-checkbox"><input type="checkbox" name="final_checklist_variation"> <span><?php _e('i am aware that there can be slight variation in the colors of the swatches and the final product due to dye lot difference.','edb'); ?></span></label>
-    </div>
+<!--<h3><?php _e('Final Checklist', 'edb'); ?></h3>-->
+<!--    <label class="checklist-checkbox"><input type="checkbox" name="final_checklist_fits"> <span><?php _e('i made sure the item fits.','edb'); ?></span> </label>-->
+<!--    <label class="checklist-checkbox"><input type="checkbox" name="final_checklist_noinclude"> <span><?php _e('The delivery does not include...','edb'); ?></span></label>-->
+<!--    <label class="checklist-checkbox"><input type="checkbox" name="final_checklist_variation"> <span><?php _e('i am aware that there can be slight variation in the colors of the swatches and the final product due to dye lot difference.','edb'); ?></span></label>-->
+<!--    </div>-->
     
     
     </div>

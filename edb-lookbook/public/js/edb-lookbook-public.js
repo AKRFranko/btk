@@ -3,7 +3,7 @@
 
 	var idleTime = 0;
 	var autoCycletime = 3;
-	var autoCycleBetween = 5000;
+	var autoCycleBetween = 10000;
 	var autoCycleOn = false;
 	var nextAutoCycle;
 	
@@ -30,7 +30,7 @@
 	   
        $('.edb-slider').each(function(){
          var $slider = $(this);
-         if($slider.data('autocycle') || idleTime > 3){
+         if($slider.data('autocycle')  ){
           cycle( this, 1 );     
          }
          

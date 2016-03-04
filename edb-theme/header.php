@@ -144,12 +144,13 @@
           <?php do_action( 'woocommerce_login_form' ); ?>
           <p class="submit">
             <?php wp_nonce_field( 'woocommerce-login' ); ?>
-            <span class="valign"><?php _e('enter edb', 'edb'); ?></span>
+            <!--<span class="valign"><?php _e('enter edb', 'edb'); ?></span>-->
             <input class="valign icon-arrow-lite-right-white" type="submit"  name="login" value="<?php _e( 'login', 'edb' ); ?>" />
             <input name="rememberme" type="checkbox" id="rememberme" value="forever" class="hide" checked="checked" />
           </p>
           <a href="<?php echo esc_url(home_url('/')); ?>my-account/lost-password" class="lost-password alignright"><?php _e('> click here to recover lost password', 'edb'); ?></a>
           <?php do_action( 'woocommerce_login_form_end' ); ?>
+          <a href="#" class="back-to-choices"><?php _e('back', 'edb'); ?></a>
         </form>
       </div>
 
@@ -174,18 +175,19 @@
           <?php do_action( 'register_form' ); ?>
           <p class="submit">
             <?php wp_nonce_field( 'woocommerce-register' ); ?>
-            <span class="valign"><?php _e('sign up to edb', 'edb'); ?></span>
+            <!--<span class="valign"><?php _e('sign up to edb', 'edb'); ?></span>-->
             <input type="submit" class="valign icon-arrow-lite-right-white" name="register" value="<?php _e( 'register', 'edb' ); ?>" />
           </p>
           <?php do_action( 'woocommerce_register_form_end' ); ?>
         </form>
+        <a href="#" class="back-to-choices"><?php _e('back', 'edb'); ?></a>
       </div>
 
       <!-- close menu -->
-      <p class="back-home">
-        <span class="valign"><?php _e('back', 'edb'); ?></span>
-        <a class="buttons valign icon-arrow-lite-left-white"></a>
-      </p>
+      <!--<p class="back-home">-->
+      <!--  <span class="valign"></span>-->
+      <!--  <a class="buttons valign icon-arrow-lite-left-white"></a>-->
+      <!--</p>-->
     </div>
         
       </div><!-- inner -->

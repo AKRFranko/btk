@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div id="account-boxes" class="box half">
 <form method="post" class="lost_reset_password">
   
-  <h2><?php _e('Password reset'); ?></h2>
+  <h2><?php _e('Password reset','woocommerce'); ?></h2>
   
 	<?php if( 'lost_password' == $args['form'] ) : ?>
 

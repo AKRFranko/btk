@@ -42,11 +42,13 @@ do_action( 'woocommerce_before_cart' ); ?>
             <div class="cart-item-name">
             <?php edb_cart_item_name( $cart_item_key, $cart_item ); ?>
             </div>
-            <div class="cart-item-material">
-            <?php edb_cart_item_material( $cart_item_key, $cart_item ); ?>
-            </div>
+            
             <div class="cart-item-category">
             <?php edb_cart_item_category( $cart_item_key, $cart_item ); ?>
+            </div>
+            <div class="cart-item-material">
+            <?php edb_cart_item_material( $cart_item_key, $cart_item ); ?>
+            <?php edb_cart_item_material_thumb( $cart_item_key, $cart_item ); ?>
             </div>
             
             <div class="cart-item-availability">

@@ -237,13 +237,14 @@ function edb_add_checkout_tabs_and_summary_fragments( $fragments ){
 function btk_edb_slider($query, $attach = null, $blankTargets = false) {
   $slider_query = new WP_Query($query);
   $data = array();
-  echo "<div class='edb-slider' data-kenburns='1'>";
+  echo "<div class='edb-slider' data-autocycle='1'>";
   echo "<div class='edb-slides'>";
   $active = ' active';
   while ($slider_query->have_posts()) {
     $slider_query->the_post();
     if (has_post_thumbnail()) {
       $src = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full')[0];
+      
       ?><div class="edb-slide<?php echo $active; ?>">
         
           <div class="backdrop" style="background-image:url('<?php echo esc_attr($src); ?>')">
@@ -393,23 +394,46 @@ function fix_language_page_links( $url, $post, $leavename ) {
     // write_log( "got: $url" );
     $links_to = get_post_meta( $post->ID, '_links_to', true );
     $lang =WPGlobus::Config()->language;
+    $parts = parse_url($url);
     if(!empty($links_to) && $lang == 'fr'){
       $links_to = parse_url($links_to);
-      $parts = parse_url($url);
+      
       // write_log( $parts );
       // write_log(substr( $parts['path'], 0, 4 ));
       if(substr( $parts['path'], 0, 4 ) !== "/fr/" && $lang == 'fr'){
         $url= '/fr'.$parts['path']. ( !empty($parts['query']) ? '?'.$parts['query'] : '');
       }  
+    }else{
+      // write_log("REWRITE URL: $url" );
+      // if(substr( $parts['path'], 0, 4 ) !== "/fr/" && $lang == 'fr'){
+      //   $url= '/fr'.$parts['path']. ( !empty($parts['query']) ? '?'.$parts['query'] : '');
+      // }  
     }
     return $url;
     // write_log( "gave: $url" );  
   }
-  
   return $url;
 }
 add_filter( 'post_link', 'fix_language_page_links', 100, 3 );
 
+
+
+function change_menu($items){
+  $lang =WPGlobus::Config()->language;
+  foreach( $items as $item ){
+    $url = $item->url;
+    $parts = parse_url($url);
+    if(substr( $parts['path'], 0, 4 ) !== "/fr/" && $lang == 'fr'){
+      $url= '/fr'.$parts['path']. ( !empty($parts['query']) ? '?'.$parts['query'] : '');
+    } 
+    $item->url = $url;
+  }
+
+  return $items;
+
+}
+
+add_filter('wp_nav_menu_objects', 'change_menu');
 /**
  * Implement the Custom Header feature.
  */

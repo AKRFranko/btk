@@ -14,7 +14,7 @@
  *
  * @wordpress-plugin
  * Plugin Name:       edb
- * Plugin URI:        http://akr.clubedb
+ * Plugin URI:        http://akr.club
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
  * Version:           1.0.0
  * Author:            Franko

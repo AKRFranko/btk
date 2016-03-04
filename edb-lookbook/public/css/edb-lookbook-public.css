@@ -376,6 +376,7 @@ body,
   font-size: 22.5px;
   text-transform: lowercase;
   text-shadow: 0 0 2px rgba(0, 0, 0, 0.05);
+  text-align: right;
 }
 .home-slider .edb-slider .titles a h3:after {
   content: '';

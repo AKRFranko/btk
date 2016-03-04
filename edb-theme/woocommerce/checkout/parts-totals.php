@@ -35,10 +35,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 <?php foreach ( WC()->cart->get_fees() as $fee ) : ?>
+  <?php if( $fee->id == 'self-pickup-discount' ){ ?>
+  <div class="fee cart-fee cost-line">
+    <span class="label"><?php _e('self pickup discount', 'edb'); ?></span>
+    <span class="value"><?php echo wc_price($fee->amount); ?></span>
+  </div>
+  
+  <?php
+  }else{
+  ?>
   <div class="fee cart-fee cost-line">
     <span class="label"><?php echo esc_html( $fee->name ); ?></span>
     <span class="value"><?php wc_cart_totals_fee_html( $fee ); ?></span>
   </div>
+<?php } ?>
 <?php endforeach; ?>
 
 <?php if ( wc_tax_enabled() && WC()->cart->tax_display_cart === 'excl' ) : ?>

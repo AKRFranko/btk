@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: edb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-04 12:09-0500\n"
-"PO-Revision-Date: Sat Feb 20 2016 17:30:01 GMT-0500 (EST)\n"
-"Last-Translator: admin <edb@akr.club>\n"
+"PO-Revision-Date: Thu Mar 03 2016 14:21:53 GMT-0500 (EST)\n"
+"Last-Translator: admin <admin@elementdebase.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: French (France)\n"
 "Plural-Forms: nplurals=2; plural=n > 1\n"
@@ -23,11 +23,12 @@ msgstr ""
 "X-Generator: Loco - https://localise.biz/"
 
 #. Name of the plugin
+#, fuzzy
 msgid "edb"
 msgstr ""
 
-#. URI of the plugin
-msgid "http://akr.clubedb"
+#. Author URI of the plugin
+msgid "http://akr.club"
 msgstr ""
 
 #. Description of the plugin
@@ -40,33 +41,34 @@ msgstr ""
 msgid "Franko"
 msgstr ""
 
-#. Author URI of the plugin
-msgid "http://akr.club"
-msgstr ""
-
-#: ../includes/template-tags.php:545
+#: ../includes/template-tags.php:718
+#, fuzzy
 msgid "self pickup"
 msgstr ""
 
-#: ../includes/template-tags.php:546
+#: ../includes/template-tags.php:719
 msgid "ship when ready"
 msgstr ""
 
-#: ../includes/template-tags.php:547
+#: ../includes/template-tags.php:720
 msgid "ship as bundle 1"
 msgstr ""
 
-#: ../includes/template-tags.php:548
+#: ../includes/template-tags.php:721
 msgid "ship as bundle 2"
 msgstr ""
 
-#: ../includes/template-tags.php:549
+#: ../includes/template-tags.php:722
 msgid "ship as bundle 3"
 msgstr ""
 
-#: ../includes/template-tags.php:588
+#: ../includes/template-tags.php:761
 msgid "self pickup discount"
 msgstr ""
+
+#: ../includes/template-tags.php:804
+msgid "availability"
+msgstr "disponibilité"
 
 #: ../includes/class-edb-wc-integration.php:23
 msgid "EDB Integration"
@@ -108,55 +110,59 @@ msgstr ""
 msgid "download pdf"
 msgstr "télécharger le pdf"
 
-#: ../includes/template-tags.php:206
+#: ../includes/template-tags.php:242
 #, php-format
 msgid "ships: %s"
 msgstr "départ: %s"
 
-#: ../includes/template-tags.php:402
+#: ../includes/template-tags.php:467
 msgid "order samples"
-msgstr "commander des échantillons"
+msgstr "échantillons"
 
-#: ../includes/template-tags.php:418
+#: ../includes/template-tags.php:484
 msgid "select a color"
 msgstr "choisir une couleur"
 
-#: ../includes/template-tags.php:425
+#: ../includes/template-tags.php:492
 msgid "in stock"
 msgstr "disponible"
 
-#: ../includes/template-tags.php:429
+#: ../includes/template-tags.php:496
 msgid "backorder"
 msgstr "arriéré de commande"
 
-#: ../includes/template-tags.php:605
+#: ../includes/template-tags.php:778
 msgid "credit card"
 msgstr "carte de crédit"
 
-#: ../includes/template-tags.php:609
+#: ../includes/template-tags.php:782
 msgid "expiry"
 msgstr "expiration"
 
-#: ../includes/template-tags.php:618
+#: ../includes/template-tags.php:791
 msgid "no color selected"
 msgstr "aucune couleur sélectionnée"
 
-#: ../includes/template-tags.php:621
+#: ../includes/template-tags.php:794
 msgid "quantity"
 msgstr "quantitée"
 
-#: ../includes/template-tags.php:631 ../includes/class-edb-shipping.php:27
+#: ../includes/template-tags.php:811
+msgid "ADD TO CART"
+msgstr "AJOUTER AU PANIER"
+
+#: ../includes/class-edb-shipping.php:27
 #, php-format
 msgid "%s week"
 msgid_plural "%s weeks"
 msgstr[0] "%s semaine"
 msgstr[1] "%s semaines"
 
-#: ../includes/class-edb-shipping.php:378
+#: ../includes/class-edb-shipping.php:411
 msgid "regular items"
 msgstr "items réguliers"
 
-#: ../includes/class-edb-shipping.php:381
+#: ../includes/class-edb-shipping.php:414
 msgid "sale items"
 msgstr "items en vente"
 

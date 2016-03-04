@@ -95,11 +95,14 @@ class Edb_Product_Decorator {
     
     $this->description =  apply_filters('the_content',get_post_field('post_content', $this->post_id ));
 
-    $this->variations = $this->product_object->get_children();
+    $this->variations = $this->product_object->get_children( $visible_only = true );
     $this->stocks = array();
+    $this->available_variations=array();
     foreach( $this->variations as $vid){
       $this->stocks[$vid] = get_post_meta($vid, '_stock', true);
+      array_push( $this->available_variations,get_post_meta($vid, 'attribute_edb_material', true));
     }
+    
     // get all materials and their descriptions
     $this->init_materials();
     // organize images for slideshow and custom edb stuff
@@ -151,9 +154,11 @@ class Edb_Product_Decorator {
     foreach( $product_cat_terms as $category ){
       $categories[]=$category->name;
     }
+    
     // write_log( $categories );
     $this->category = implode(', ', $categories);
-    
+    $this->category_slug = $product_cat_terms[0]->slug;
+    // $this->category_slug = $categories[0]
     // $this->videos = array(
     //   'introduction' => get_post_meta( $this->post_id, '_edb_introduction_video', true ),
     //   'instruction' => get_post_meta( $this->post_id, '_edb_instruction_video', true )
@@ -199,7 +204,7 @@ class Edb_Product_Decorator {
     
    $product_attributes = get_post_meta( $this->post_id, '_product_attributes');
    $variation_materials = array();
-   
+  // write_log( $this->variations );
    foreach( $product_attributes as $product_attribute ){
      foreach($product_attribute as $name=>$attribute){
        if( $name == 'edb_material'){
@@ -231,15 +236,17 @@ class Edb_Product_Decorator {
    );
 
    $material_descriptions = get_posts( $get_material_desc_args );
-   
+  // write_log($material_descriptions);
    $this->materials = array();
    
    foreach( $variation_materials as $variation_material){
+     if(in_array($variation_material, $this->available_variations)){
+      $this->materials[$variation_material] = array( );
+      $this->materials[$variation_material]['edb_material'] = $variation_material;
+      $this->materials[$variation_material]['post'] = null;
+      $this->materials[$variation_material]['image'] = null;  
      
-     $this->materials[$variation_material] = array( );
-     $this->materials[$variation_material]['edb_material'] = $variation_material;
-     $this->materials[$variation_material]['post'] = null;
-     $this->materials[$variation_material]['image'] = null;
+     
      
      $description = null;
      
@@ -249,6 +256,7 @@ class Edb_Product_Decorator {
          $image_id = get_post_thumbnail_id( $desc_post->ID ,'full');
          $this->materials[$variation_material]['image'] = wp_get_attachment_image_src($image_id, 'full')[0];
        }
+     }
      }
      
    } 

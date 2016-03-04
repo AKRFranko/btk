@@ -114,7 +114,7 @@ $return_to = isset( $_REQUEST['return_to'] ) ? $_REQUEST['return_to'] : '';
     </div>
     <div class="box half">
       <form method="post" class="guest">
-        <h2><?php _e("I'm new here", 'edb'); ?></h2>
+        <h2><?php _e("First Visit", 'edb'); ?></h2>
           <?php wp_nonce_field( 'woocommerce-register' ); ?>
           <?php wp_nonce_field( 'woocommerce-login' ); ?>
           <input name="guest" value="yes" type="hidden">

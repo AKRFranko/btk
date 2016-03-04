@@ -25,15 +25,16 @@ if ( ! defined( 'ABSPATH' ) ) {
       $estimated_label = sprintf(__( 'estimated shipping cost for %s', 'edb' ),'<b class="postcode">'.strtoupper(WC()->customer->get_shipping_postcode()).'</b>');
     }
     
+    
     ?>
     <p class="total-line cart-subtotal"><span class="label"><?php _e( 'total', 'edb' ); ?></span><span class="value"><?php wc_cart_totals_subtotal_html(); ?></span></p>
     
     <p class="total-line cart-shipping"><span class="label"><?php echo $estimated_label ?></span><span class="value"><?php echo $calculated; ?></span></p>
-    <p class="total-line cart-delay"><span class="label"><?php _e('estimated delay', 'edb'); ?></span><span class="value"><?php echo sprintf(_n('%s week', '%s weeks', 1, 'edb'), 1); ?></span></p>
+    <p class="total-line cart-delay"><span class="label"><?php _e('estimated delay', 'edb'); ?></span><span class="value"><?php echo edb_latest_availability( WC()->cart ); ?></span></p>
     <?php woocommerce_shipping_calculator(); ?>
-    <p class="total-line cart-message">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. ut pellentesque vulputate venenatis. vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; donec ut lacinia ligula. aenean vel velit molestie, dapibus tortor eget, dignissim nibh.
-    </p>
+    <!--<p class="total-line cart-message">-->
+    <!--  Lorem ipsum dolor sit amet, consectetur adipiscing elit. ut pellentesque vulputate venenatis. vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; donec ut lacinia ligula. aenean vel velit molestie, dapibus tortor eget, dignissim nibh.-->
+    <!--</p>-->
     
     
   <?php };

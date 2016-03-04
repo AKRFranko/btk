@@ -56,12 +56,12 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
        'below'=> array(
          'zone-1'=> 65,
          'zone-2'=> 150,
-         'zone-3'=> 200
+         'zone-3'=> 265
          ),
        'above'=> array(
          'zone-1'=> 0,
-         'zone-2'=> 100,
-         'zone-3'=> 300
+         'zone-2'=> 85,
+         'zone-3'=> 200
          )
      ),
      'accessories'=> array(
@@ -434,7 +434,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     }
     if($totals > 0){
       $rebate = (5 * $totals)/100;  
-      WC()->cart->add_fee('self pickup discount', -1 * $rebate );
+      WC()->cart->add_fee('self pickup discount', -1 * $rebate, true );
     }
     
     
@@ -893,18 +893,22 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   public function get_zone_from_postal_code( $postcode ){
     //if($this->shipping_debug) write_log("postcode: $postcode");
     $zones_table = array(
-      'zone-1' => '/^(H..|G1.|M..|K1.|T2.|T3.|T5.|T6.|V5.|V6.|C1A|R2.|R3.|E2.|E1.|E3.|B3.|S7.|S4.|A1.)\s?[A-Z0-9]{3}$/',
-      'zone-3' => '/^(J|G|K|L|N|P|T|V|C|R|E|B|S|A|Y|X)0.\s?...$/',
+      'zone-1' => '/^(H..|G1.|M..|K1.|T2.|T3.|T5.|T6.|V5.|V6.|C1A|R2.|R3.|E2.|E1.|E3.|B3.|S7.|S4.|A1.|J4.).+$/',
+      'zone-3' => '/^(J|G|K|L|N|P|T|V|C|R|E|B|S|A|Y|X)0.+$/',
     );
+    if(!preg_match( '/^([a-zA-Z]\d[a-zA-Z]( )?\d[a-zA-Z]\d)$/', $postcode )){
+      return 'zone-3';
+    }
     
     $postcode = trim(strtoupper($postcode));
     $zone = 'zone-2';
-    foreach($zones_table as $zone => $re){
+    foreach($zones_table as $z => $re){
       write_log( "MATCH $re with $postcode: ". ( preg_match( $re, $postcode) ? 'true' : 'false' ) );
       if( preg_match( $re, $postcode) ){
-        return $zone;
+        $zone = $z;
       }
     }
+    write_log( "returns zone: $zone");
     return $zone;
     
   }

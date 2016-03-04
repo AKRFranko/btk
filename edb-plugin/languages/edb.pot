@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: edb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-04 12:09-0500\n"
-"POT-Revision-Date: Sat Feb 20 2016 17:26:48 GMT-0500 (EST)\n"
+"POT-Revision-Date: Thu Mar 03 2016 14:34:44 GMT-0500 (EST)\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,8 +28,8 @@ msgstr ""
 msgid "edb"
 msgstr ""
 
-#. URI of the plugin
-msgid "http://akr.clubedb"
+#. Author URI of the plugin
+msgid "http://akr.club"
 msgstr ""
 
 #. Description of the plugin
@@ -42,81 +42,78 @@ msgstr ""
 msgid "Franko"
 msgstr ""
 
-#. Author URI of the plugin
-msgid "http://akr.club"
-msgstr ""
-
 #: ../includes/template-tags.php:49
 msgid "download pdf"
 msgstr ""
 
-#: ../includes/template-tags.php:206
+#: ../includes/template-tags.php:242
 #, php-format
 msgid "ships: %s"
 msgstr ""
 
-#: ../includes/template-tags.php:402
+#: ../includes/template-tags.php:467
 msgid "order samples"
 msgstr ""
 
-#: ../includes/template-tags.php:418
+#: ../includes/template-tags.php:484
 msgid "select a color"
 msgstr ""
 
-#: ../includes/template-tags.php:425
+#: ../includes/template-tags.php:492
 msgid "in stock"
 msgstr ""
 
-#: ../includes/template-tags.php:429
+#: ../includes/template-tags.php:496
 msgid "backorder"
 msgstr ""
 
-#: ../includes/template-tags.php:545
+#: ../includes/template-tags.php:718
 msgid "self pickup"
 msgstr ""
 
-#: ../includes/template-tags.php:546
+#: ../includes/template-tags.php:719
 msgid "ship when ready"
 msgstr ""
 
-#: ../includes/template-tags.php:547
+#: ../includes/template-tags.php:720
 msgid "ship as bundle 1"
 msgstr ""
 
-#: ../includes/template-tags.php:548
+#: ../includes/template-tags.php:721
 msgid "ship as bundle 2"
 msgstr ""
 
-#: ../includes/template-tags.php:549
+#: ../includes/template-tags.php:722
 msgid "ship as bundle 3"
 msgstr ""
 
-#: ../includes/template-tags.php:588
+#: ../includes/template-tags.php:761
 msgid "self pickup discount"
 msgstr ""
 
-#: ../includes/template-tags.php:605
+#: ../includes/template-tags.php:778
 msgid "credit card"
 msgstr ""
 
-#: ../includes/template-tags.php:609
+#: ../includes/template-tags.php:782
 msgid "expiry"
 msgstr ""
 
-#: ../includes/template-tags.php:618
+#: ../includes/template-tags.php:791
 msgid "no color selected"
 msgstr ""
 
-#: ../includes/template-tags.php:621
+#: ../includes/template-tags.php:794
 msgid "quantity"
 msgstr ""
 
-#: ../includes/template-tags.php:631 ../includes/class-edb-shipping.php:27
-#, php-format
-msgid "%s week"
-msgid_plural "%s weeks"
-msgstr[0] ""
-msgstr[1] ""
+#: ../includes/template-tags.php:804
+msgid "availability"
+msgstr ""
+
+#: ../includes/template-tags.php:811
+msgid "ADD TO CART"
+msgstr ""
 
 #: ../includes/class-edb-wc-integration.php:23
 msgid "EDB Integration"
@@ -126,11 +123,18 @@ msgstr ""
 msgid "An integratino demo to show you how easy it is to extend WooCommerce."
 msgstr ""
 
-#: ../includes/class-edb-shipping.php:378
+#: ../includes/class-edb-shipping.php:27
+#, php-format
+msgid "%s week"
+msgid_plural "%s weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../includes/class-edb-shipping.php:411
 msgid "regular items"
 msgstr ""
 
-#: ../includes/class-edb-shipping.php:381
+#: ../includes/class-edb-shipping.php:414
 msgid "sale items"
 msgstr ""
 
