@@ -44,7 +44,10 @@ if ( ! defined( 'ABSPATH' ) ) {
       
       <div class="product-name"><?php echo $edb_product->title; ?></div>
       <div class="product-subname"><?php echo $edb_product->subtitle; ?></div>
-      
+      <?php if( $edb_product->category_slug == 'accessories-pillows' && $edb_product->product_id !== 1533 ){ 
+          $stuff_link=get_permalink(1533);
+      ?><p class="product-warning"><?php echo sprintf(__( 'The <a href="%s">stuffing</a> is sold separately. <a href="%s">click here to get some.</a>' ,'edb'), $stuff_link, $stuff_link ); ?></p>
+      <?php } ?>
       <div class="product-price">$<?php echo $edb_product->price; ?></div>
       
       <div class="product-share">
@@ -61,6 +64,7 @@ if ( ! defined( 'ABSPATH' ) ) {
       <p><?php echo $edb_product->description; ?></p>
       <?php edb_product_pdf( $product_id ); ?>
       <!--<button id="product-pdf-download" class="">downlaod pdf</button>-->
+      
     </div>
     
     <div class="product-menu">
@@ -136,6 +140,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         </div>
       </div>
     <?php }; ?>
+    
     
     <?php 
       $hasInstruVid = edb_has_instruction_video( $product->id );

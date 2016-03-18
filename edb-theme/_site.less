@@ -66,6 +66,16 @@ div{
   }
 }
 
+
+span.highlight {
+    background: rgb(250,250,120);
+    padding-left: .2em;
+    padding-right: .2em;
+}
+
+p > sup{
+  margin-left:-.7em
+}
 #wpadminbar{
   margin-top:-46px;
 }
@@ -101,7 +111,7 @@ div{
   background-color:transparent;
   .black-logo-image();
   
-  // background-image:url(https://development.elementdebase.com/wp-content/themes/btk/img/edb_small_square.png);
+  
   background-position:left top;
   background-size:contain;
   background-repeat:no-repeat;
@@ -302,6 +312,8 @@ div{
   z-index:10;
   display:none;
   opacity:0;
+  cursor: pointer;
+
   transition:all .2s ease-in;
 }
 #overlay.on{
@@ -423,6 +435,13 @@ textarea{
   font-size:18px;
 
 }
+.value.warning {
+    white-space: normal;
+    display: block;
+    width: inherit;
+    padding: 1em;
+}
+
 .woocommerce-error,.woocommerce-error li{
   .left-floating-block;
   padding:0;
@@ -433,7 +452,7 @@ textarea{
 .woocommerce-error li{
   width:auto;
 }
-.woocommerce-message,.woocommerce-error{
+.woocommerce-message,.woocommerce-error,.woocommerce-info{
   .left-floating-block;
   box-sizing:border-box;
   // position:fixed;
@@ -445,6 +464,7 @@ textarea{
   color:#fff;
   font-weight:bold;
   transition:all .5s linear;
+  margin-bottom:1em;
 }
 .woocommerce-message.hide,.woocommerce-error.hide{
   height:0;
@@ -790,6 +810,19 @@ footer#colophon {
 
 .page .entry-title{
  // margin-left:2rem;
+}
+
+img#register-seal {
+    margin-top: 1em;
+    position: absolute;
+    bottom: 1em;
+    right: 2em;
+}
+
+#paypal-logo {
+    position: absolute;
+    bottom: 90px;
+    right: 2.5em;
 }
 
 @media all and (min-width:320px) and (max-width:500px){

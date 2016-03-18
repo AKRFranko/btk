@@ -56,6 +56,7 @@ global $WC_Edb;
          
          <h1><?php _e('do you have a promo code?', 'edb'); ?></h1>
          <input type="text" name="coupon_code" placeholder="<?php esc_attr_e( 'promo code', 'edb' ); ?>" id="coupon_code" value="" />
+         <button type="button" class="button" id="apply_coupon"><?php esc_attr_e( 'apply coupon', 'edb' ); ?></button>
        </div>
      <?php }; ?>
      </div>
@@ -84,7 +85,7 @@ global $WC_Edb;
     <div class="boxes">
       
 <div class="box half">
-    
+    <?php if(!WC()->session->get('do_not_ship')){ ?> 
     <div class="cart-address-review">
       <h1><?php _e('delivered to', 'edb');?></h1>
       <?php if(!empty(WC()->customer->shipping_address_1)){ ?>
@@ -102,6 +103,8 @@ global $WC_Edb;
         <div class="warning"><a href="#" class="panel-link" data-panel="#address-info-panel"><?php _e('please click here to fill in your address information.','edb'); ?></a></div>
       <?php } ?>
     </div>
+    <?php }; ?>
+    
     
     
     <div class="cart-payment">

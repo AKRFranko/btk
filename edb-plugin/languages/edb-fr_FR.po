@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: edb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-04 12:09-0500\n"
-"PO-Revision-Date: Thu Mar 03 2016 14:21:53 GMT-0500 (EST)\n"
+"PO-Revision-Date: Sun Mar 06 2016 14:33:07 GMT-0500 (EST)\n"
 "Last-Translator: admin <admin@elementdebase.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: French (France)\n"
@@ -61,14 +61,6 @@ msgstr ""
 #: ../includes/template-tags.php:722
 msgid "ship as bundle 3"
 msgstr ""
-
-#: ../includes/template-tags.php:761
-msgid "self pickup discount"
-msgstr ""
-
-#: ../includes/template-tags.php:804
-msgid "availability"
-msgstr "disponibilité"
 
 #: ../includes/class-edb-wc-integration.php:23
 msgid "EDB Integration"
@@ -131,23 +123,31 @@ msgstr "disponible"
 msgid "backorder"
 msgstr "arriéré de commande"
 
-#: ../includes/template-tags.php:778
+#: ../includes/template-tags.php:769
+msgid "self pickup discount"
+msgstr "escompte auto-cueillette"
+
+#: ../includes/template-tags.php:786
 msgid "credit card"
 msgstr "carte de crédit"
 
-#: ../includes/template-tags.php:782
+#: ../includes/template-tags.php:790
 msgid "expiry"
 msgstr "expiration"
 
-#: ../includes/template-tags.php:791
+#: ../includes/template-tags.php:799
 msgid "no color selected"
 msgstr "aucune couleur sélectionnée"
 
-#: ../includes/template-tags.php:794
+#: ../includes/template-tags.php:802
 msgid "quantity"
 msgstr "quantitée"
 
-#: ../includes/template-tags.php:811
+#: ../includes/template-tags.php:812
+msgid "availability"
+msgstr "disponibilité"
+
+#: ../includes/template-tags.php:819
 msgid "ADD TO CART"
 msgstr "AJOUTER AU PANIER"
 
@@ -158,11 +158,11 @@ msgid_plural "%s weeks"
 msgstr[0] "%s semaine"
 msgstr[1] "%s semaines"
 
-#: ../includes/class-edb-shipping.php:411
+#: ../includes/class-edb-shipping.php:425
 msgid "regular items"
 msgstr "items réguliers"
 
-#: ../includes/class-edb-shipping.php:414
+#: ../includes/class-edb-shipping.php:428
 msgid "sale items"
 msgstr "items en vente"
 

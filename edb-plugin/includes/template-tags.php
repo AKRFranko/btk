@@ -5,6 +5,31 @@ function edb_availability_date(  ){
     echo "edb_availability_date";
 }
 
+
+function facebook_meta_tags(){
+  global $post;
+  
+  $path=$_SERVER['REQUEST_URI'];
+  $uri='https://elementdebase.com'.$path;
+  $meta_url = $uri;
+  $meta_title = 'élément de base';
+  $meta_image = 'https://elementdebase.com/wp-content/uploads/2016/02/images_sections_0000_contact.jpg';
+  $meta_description='when we created élément de base, we set out to launch asustainable company that inspires creative interiors throughits offer of stylish, renewable, locally designed furniture at prices to suit any budget...';
+  if(is_product()){
+    $decorated = edb_decorated_product($post->ID);
+    if(!empty($decorated->subtitle)){
+      $meta_title = $decorated->title . "_" . $decorated->subtitle;
+    }else{
+      $meta_title = $decorated->title;
+    }
+    $meta_description = strip_tags($decorated->description . " " . wc_price( $decorated->price ));
+    $image_id = get_post_thumbnail_id( $post->ID);
+    $meta_image=wp_get_attachment_image_src($image_id, 'full')[0];
+    
+  }
+  echo "<meta property='og:url' content='$meta_url'/><meta property='og:title' content='$meta_title'/><meta property='og:image' content='$meta_image'/><meta property='og:site_name' content='élément de base'/><meta property='og:description' content='$meta_description'/>";
+}
+
 function woocommerce_wp_image_select( $field ) { 
     global $thepostid, $post; 
     $thepostid = empty( $thepostid ) ? $post->ID : $thepostid; 
@@ -538,6 +563,9 @@ function tmp_has_tech_image( $deco ){
               "capsule_sofas",
               "mixmix-corner_modular",
               "perplexe_side-tables",
+              "perplexe-azure_side-tables",
+              "perplexe-pink_side-tables",
+              "perplexe-smoke_side-tables",
               "taxi_armchairs",
               "duo_sofa-beds",
               "mixmix-ottrec_modular",
@@ -734,11 +762,19 @@ function edb_cart_shipping_total(){
   }
   echo $ship_total;
 }
+
+function edb_order_shipping_total( $order ){
+  $ship_total = $order->get_total_shipping();
+  if($ship_total == 'Free!'){
+    $ship_total = '$0.00';
+  }
+  echo $ship_total;
+}
 function edb_checkout_delivery_fees_summary(){
   $shipping_rates = WC()->session->get('_edb_cart_current_shipping_rates'); 
   if(!empty($shipping_rates)){
     foreach($shipping_rates as $name => $rate){
-      if($name !== 'edb_self_pickup' && !empty($rate['item_count']) && $rate['item_count'] > 0 ){
+      if($name !== 'edb_self_pickup' && !empty($rate['item_count']) && $rate['item_count'] > 0 && !empty(WC()->customer->get_shipping_postcode()) ){
       ?>
       <div class="summary-data-line">
         

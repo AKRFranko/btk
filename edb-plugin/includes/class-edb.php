@@ -27,6 +27,8 @@
  * @subpackage Edb/includes
  * @author     Franko <franko@akr.club>
  */
+
+
 class Edb {
 
 	/**

@@ -63,6 +63,7 @@ $order = wc_get_order( $order_id );
             'order'   => $order,
             'item_id' => $copy['item_id'],
             'item'    => $copy['item'],
+            'shipping_method'=> $method,
             'product' => apply_filters( 'woocommerce_order_item_product', $item_product, $item )
           ) );      
         }

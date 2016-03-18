@@ -1,5 +1,5 @@
 <?php
-
+// include ('/srv/http/wordpress/production/wp-content/plugins/woocommerce/woocommerce.php');
 function time_elapsed($ptime) {
     $etime = $ptime - time();
     // write_log("etime: $etime ptime: $ptime");
@@ -47,7 +47,7 @@ function endsWith($haystack, $needle) {
 
 class Edb_Shipping_Method extends WC_Shipping_Method{
  
-  public $shipping_debug = true;
+  public $shipping_debug = false;
   public $cart_item_shipments = array(); 
   
   public $rates_table = array(
@@ -62,6 +62,19 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
          'zone-1'=> 0,
          'zone-2'=> 85,
          'zone-3'=> 200
+         )
+     ),
+     'small-furniture' => array( 
+       'min' => 500,
+       'below'=> array(
+         'zone-1'=> 18,
+         'zone-2'=> 25,
+         'zone-3'=> 28
+         ),
+       'above'=> array(
+         'zone-1'=> 0,
+         'zone-2'=> 10,
+         'zone-3'=> 15
          )
      ),
      'accessories'=> array(
@@ -79,7 +92,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
      )
    );
  public $level_discounts_table = array(
-   'vip' => array( 'regular' => 10,'sale' => 2),
+   'vip' => array( 'regular' => 10,'sale' => 5),
    'vvip' => array( 'regular' => 15,'sale' => 3),
    'vvvip' => array( 'regular' => 20,'sale' => 6),
    'vvvvip' => array( 'regular' => 25,'sale' => 12)
@@ -124,6 +137,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     return $sofar;
   }
   public function before_checkout_process(){
+    
     write_log('before_checkout_process');
     ##write_log( WC()->checkout );
     
@@ -543,10 +557,14 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
           $data = array();
           $cc_changed = false;
           parse_str( $_POST['post_data'], $data );
-          
+            
+            
             if( $data['current_panel'] && is_checkout() ){
               WC()->session->set('edb_active_panel', $data['current_panel'] );
-            }  
+            }else{
+              WC()->session->set('edb_active_panel', '#address-info-panel' );
+            } 
+            
             if( isset($data['paypal_pro_payflow-card-number'])){
               $old = WC()->session->get('edb_payment_info_card_number');
               if(strlen($data['paypal_pro_payflow-card-number']) >= 10 ){
@@ -886,21 +904,31 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
         return 'furniture';
       }
     }
+    foreach( $items as $item){
+      $product = $item['data'];
+      $product_shipping_class = $product->get_shipping_class(); 
+      if( $product_shipping_class == 'small-furniture'){
+        return 'small-furniture';
+      }
+    }
     return 'accessories'; 
   }
   
   
   public function get_zone_from_postal_code( $postcode ){
     //if($this->shipping_debug) write_log("postcode: $postcode");
+    
+    $postcode = trim(strtoupper($postcode));
+    write_log("\nGET ZONE FROM: '$postcode'");
     $zones_table = array(
       'zone-1' => '/^(H..|G1.|M..|K1.|T2.|T3.|T5.|T6.|V5.|V6.|C1A|R2.|R3.|E2.|E1.|E3.|B3.|S7.|S4.|A1.|J4.).+$/',
       'zone-3' => '/^(J|G|K|L|N|P|T|V|C|R|E|B|S|A|Y|X)0.+$/',
     );
-    if(!preg_match( '/^([a-zA-Z]\d[a-zA-Z]( )?\d[a-zA-Z]\d)$/', $postcode )){
+    if(!preg_match( '/^([a-zA-Z]\d[a-zA-Z]\s?\d[a-zA-Z]\d)$/', $postcode )){
       return 'zone-3';
     }
     
-    $postcode = trim(strtoupper($postcode));
+    
     $zone = 'zone-2';
     foreach($zones_table as $z => $re){
       write_log( "MATCH $re with $postcode: ". ( preg_match( $re, $postcode) ? 'true' : 'false' ) );
@@ -918,7 +946,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     // if($this->shipping_debug) write_log( $items );
     if(count($items) == 0){ return 0;} 
     $postcode = WC()->customer->get_shipping_postcode();
-    if(isset($_POST['calc_shipping_postcode'])){
+    if(isset($_POST['calc_shipping_postcode']) && !empty($_POST['calc_shipping_postcode'])){
       $postcode = $_POST['calc_shipping_postcode'];
       // WC()->customer->set_shipping_postcode($postcode);
     }
@@ -1108,6 +1136,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
               }
             }
           }
+          
           // write_log('VERIFY DO NOT SHIP', json_encode($overrideMethods));
           // write_log('setting to overriedes 2');
           // write_log($overrideMethods);

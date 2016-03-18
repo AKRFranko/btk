@@ -1,0 +1,126 @@
+<html>
+  <head>
+    <style>
+    html,body{
+      margin:0;
+      padding:0;
+    }
+     body{
+        /*transform:scale(.5);*/
+        transform-origin:top left;
+      }
+      .viewer{
+        background-image:url('https://elementdebase.com/wp-content/uploads/2016/02/carousel-20.jpg');
+        background-size:cover;
+        background-position:center;
+        background-repeat:no-repeat;
+        display:inline-block;
+        margin:1em;
+        outline:1px dotted red;
+        position:relative;
+      }
+      .viewer:after{
+        content:'';
+        position:absolute;
+        top:0;
+        left:0;
+        width:100px;
+        height:1.2em;
+        color:#000;
+        background:rgba(0,0,0,0.5);
+      }
+      .section{
+        display:block;
+        text-align:center;
+        width:100%;
+        position:relative;
+      }
+      #a{
+       display:none;
+      }
+      #b{
+        width:960px;
+        height:588px;
+      }
+      #b:after{
+        content:'960x588';
+      }
+      #c{
+        width:768px;
+        height:907px;
+      }
+      #c:after{
+        content:'768x907';
+      }
+      #d{
+        width:375px;
+        height:550px;
+      }
+      #d:after{
+        content:'375x550';
+      }
+      #e{
+        width:320px;
+        height:450px;
+      }
+      #e:after{
+        content:'320x450';
+      }
+      
+      #la{
+        display:none;
+        width:1500px;
+        height:920px;
+      }
+      #lb{
+        width:768px;
+        height:460px;
+        
+      }
+      #lb:after{
+        content:'768x460';
+      }
+      #lc{
+        width:960px;
+        height:460px;
+      }
+      #lc:after{
+        content:'960x460';
+      }
+      #ld{
+        width:375px;
+        height:460px;
+      }
+      #ld:after{
+        content:'375x460';
+      }
+      #le{
+        width:320px;
+        height:460px;
+      }
+      #le:after{
+        content:'320x460';
+      }
+    </style>
+  </head>
+  <body>
+    <div class="section">
+      <h1>Home Slider</h1>
+      <div id="a" class="viewer"></div>
+      <div id="b" class="viewer"></div>
+      <div id="c" class="viewer"></div>
+      <div id="d" class="viewer"></div>
+      <div id="e" class="viewer"></div>
+      
+    </div>
+    <div class="section">
+      <h1>Lookbook</h1>
+      <div id="la" class="viewer"></div>
+      <div id="lb" class="viewer"></div>
+      <div id="lc" class="viewer"></div>
+      <div id="ld" class="viewer"></div>
+      <div id="le" class="viewer"></div>
+    </div>
+    
+  </body>
+</html>

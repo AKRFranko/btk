@@ -43,8 +43,10 @@ do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order );
     </div>
     <div class="cart-item-availability">
       <?php 
-       
-        edb_order_item_availability($item, $order);
+        if($shipping_method != 'edb_self_pickup'){
+          edb_order_item_availability($item, $order);  
+        }
+        
      
       ?>
        

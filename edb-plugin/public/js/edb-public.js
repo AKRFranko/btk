@@ -434,12 +434,13 @@ window.requestAnimFrame = (function(){
   
   
   $(document).on('change focusout', '.cart-item-quantity-input input', function( e ){
-    var time = e.type =='focusout' ? 1200 : 3000;
-    debounce( updateCart, time );
+    // var time = e.type =='focusout' ? 1200 : 3000;
+    updateCart();
+    // debounce( , 1000 );
   });
-  $(document).on('change keyup focusout', '#coupon_code', function( e ){
-    var time = e.type =='focusout' ? 1 : e.type =='keyup' ? 1000 : 500;
-    debounce( applyCoupon, time );
+  $(document).on('click', '#apply_coupon', function( e ){
+    applyCoupon()
+    
   });
   
   // $(document).on('keyup focusout', '#coupon_code', function( e ){
@@ -569,7 +570,7 @@ window.requestAnimFrame = (function(){
     //   $target.text('$'+total);
       
     // }
-    //$input.trigger('change');
+    $input.trigger('change');
   })
   
   $(document).on('click', '.summary-toggle', function( e ){
@@ -612,6 +613,12 @@ window.requestAnimFrame = (function(){
     });
     
     $('.shipping-calculator-form .value input').trigger('change');
+    
+    $('.checkout-button').on('click', function(e){
+      var value  =$('.shipping-calculator-form .value input').val();
+      
+      $(this).parents('form').append($('<input>').attr({name:'shipping_postcode', type:'hidden'}).val( value ));
+    });
     
     fixFormPlaceholders();
     

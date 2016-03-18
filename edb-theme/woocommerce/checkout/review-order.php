@@ -46,9 +46,14 @@ global $WC_Edb;
         if(!isset($do_not_ship) || !$do_not_ship){
       ?>
       <div class="shipping-review-total">
-        <span class="label"><?php _e('total delivery', 'edb'); ?></span>
         
-        <span class="value"><?php edb_cart_shipping_total();?></span>
+        <?php if(!empty(WC()->customer->shipping_postcode)){ ?>
+          <span class="label"><?php _e('total delivery', 'edb'); ?></span>
+          <span class="value"><?php edb_cart_shipping_total();?></span>        
+        <?php }else{ ?>
+          <div class="warning"><a href="#" class="panel-link" data-panel="#address-info-panel"><?php _e('please click here to fill in your address information.','edb'); ?></a></div>
+        <?php } ?>
+
       </div>  
       <?php  }; ?>
       
@@ -73,6 +78,7 @@ global $WC_Edb;
       
       <div class="shipping-review-notice">
         <p><?php _e('For the items ordered, please choose your delivery options : self pick up (at our Montréal warehouse) or delivery to the adresse submitted. Based on your selection, the final delivery fees will adjust automatically. for more information on how delivery fees are calculated', 'edb');?><a target="_blank" href="<?php echo home_url('/about-shipping'); ?>"> <?php _e('click here', 'edb'); ?></a>.</p>
+        <p><?php _e('We offer the self pick-up option. Come pick up your order at tour warehosue and save an additional 5% on the last ticketed price', "edb"); ?></p>
       </div>
       
     </div><!-- shipping-review -->

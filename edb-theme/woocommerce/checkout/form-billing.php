@@ -20,7 +20,35 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php do_action( 'woocommerce_before_checkout_billing_form', $checkout ); ?>
 
 	<?php foreach ( $checkout->checkout_fields['billing'] as $key => $field ) : ?>
-		<?php woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); ?>
+	
+	  <?php 
+	  
+	  if($key == 'shipping_postcode' || $key == 'billing_postcode' ){
+	      $billingValue = $checkout->get_value('billing_postcode' );
+	      $shippingValue = $checkout->get_value('shipping_postcode' );
+	      $customerValue = WC()->customer->get_shipping_postcode();
+        if(!empty($shippingValue)){
+          $value = $shippingValue;
+        }
+        if(!empty($billingValue)){
+          $value = $billingValue;
+        }
+
+        if(empty($value)){
+          $value = $customerValue;
+        }
+        
+        if(empty($value) && isset($_REQUEST['shipping_postcode'])){
+          $value = $_REQUEST['shipping_postcode'];
+        }
+
+	      woocommerce_form_field( $key, $field, $value ); 
+	      
+	  }else{ 
+		    woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); 
+		};
+		
+		?>
 
 	<?php endforeach; ?>
   
@@ -35,7 +63,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     <div id="do-not-ship">
       <input id="do-not-ship-option" class="input-checkbox" <?php checked( $do_not_ship, 1 ); ?> type="checkbox" name="do_not_ship" value="1" />  
     </div>
-    <?php _e('i want to pick it up myself', 'edb'); ?>
+    <?php _e('self pickup, save 5% extra', 'edb'); ?>
   </label>
   
 

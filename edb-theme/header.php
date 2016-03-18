@@ -16,6 +16,7 @@
   <script src="//use.typekit.net/osv5fru.js"></script>
   <script>try{Typekit.load();}catch(e){}</script>
   
+  <?php facebook_meta_tags(); ?>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#ffffff">
@@ -78,6 +79,7 @@
         $ignore = array('benches-ottomans', 'headboards', 'storage');
         // var_dump( );
         foreach($maincats as $main){
+          
           if( !in_array( $main->name, $ignore )){
             
           

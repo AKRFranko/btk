@@ -38,6 +38,7 @@ $my_query = new WP_Query(array(
   
       <?php while ($my_query->have_posts()): $my_query->the_post();?>
       <article class="article">    
+      
           <a class="article-link" href="<?php echo get_permalink();?>">
             <?php if (has_post_thumbnail()): ?>
               <?php
@@ -57,7 +58,12 @@ $my_query = new WP_Query(array(
               <?php the_subtitle();?>
             </p>
             <span class="article-body">
-              <?php the_excerpt(); ?>
+              <?php if(preg_match("/product-category/", get_permalink())){ 
+                the_content();
+               }else{ 
+                the_excerpt();
+              } ?>
+              
             </span>
           </a>
       </article>  

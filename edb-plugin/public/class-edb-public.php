@@ -96,22 +96,25 @@ class Edb_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/edb-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/edb-public.js', array( 'jquery' ), $this->version . '.a', false );
 
 	}
 	public function check_redirect_state( $returnto ){
 	  
 	  write_log('check_redirect_state');
-	 // write_log( $returnto );
+	  write_log( $returnto );
 	  if(isset($_POST['return_to']) && $_POST['return_to'] == 'checkout'){
 	    write_log('return to checkout');
 	    return home_url( '/checkout/' );
 	  }
-	 // write_log('do nothing?');
-	 // write_log( $_REQUEST );
+	  write_log('do nothing?');
+	  write_log( $_REQUEST );
 	  if( !empty($_REQUEST['register']) ){
 	    return get_permalink( woocommerce_get_page_id('myaccount') )."?new";
 	  }
+	  if( !empty($_REQUEST['login']) ){
+      return get_permalink( woocommerce_get_page_id('myaccount') );
+    }
 	}
 	
 	

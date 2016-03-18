@@ -163,6 +163,7 @@
 	 });
 	 
    $(function( ) {
+
       $('.edb-slider').each(function(){
         updateCount( this );
         hammerDown( this );

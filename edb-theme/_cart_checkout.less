@@ -87,7 +87,7 @@ form.checkout h3{
 .cart-checkout{
   text-align:right;
   // padding-right:1em;
-  padding-top:3em;
+  padding-top:1em;
 }
 
 
@@ -138,7 +138,10 @@ button,button:hover,button:active, input[type="submit"]{
   width:100%;
   margin-top:0.5em;
   padding-bottom:0.5em;
-  border-bottom:1px solid #000;
+  border-bottom:1px solid #bbb;
+}
+.cart_item:last-of-type{
+  border-color:#000;
 }
 .cart-item-image,
 .cart-item-info,
@@ -399,7 +402,7 @@ CHECKOUT
 }
 .cart-payment{
   width:100%;
-  border-bottom:1px solid #000;
+  border-bottom:1px solid #bbb;
   padding-bottom:1em;
 }
 .cart-address-review p:first-of-type,
@@ -550,12 +553,12 @@ padding-left:.5em;
   min-height:3em;
   margin-bottom:1em!important;
   padding-bottom:1em!important;
-  border-bottom:1px solid #000;
+  border-bottom:1px solid #bbb;
 }
 
 
 .cart-costs,.cart-costs-repeat{
-  border-bottom:1px solid #000;
+  border-bottom:1px solid #bbb;
   margin-bottom:1em!important;
   padding-bottom:1em!important;
 }
@@ -603,6 +606,7 @@ padding-left:.5em;
 .form-row.form-row-last{
   padding-left:.5em;
 }
+
 .shipped_via{
   display:none;
 }
@@ -734,6 +738,13 @@ small.stocknote {
 .shipping-method-choices div:nth-of-type(5){
   display:none;
 }
+
+button#apply_coupon{
+padding: .22em .5em!important;
+height: 2.4em;
+display: inline-block;  
+}
+
 @media all and (min-width:320px) and (max-width:500px){
   .cart_item{
     height:auto;
@@ -834,8 +845,10 @@ small.stocknote {
   #account-boxes {
       margin-top: -1em;
   }
-  #account-boxes form p.form-row.form-row-first{
+  #account-boxes form p.form-row.form-row-first,
+  #account-boxes form p.form-row.form-row-last{
     width:100%!important;
+    padding-left:0;
   }
   #account-boxes form h2{
     margin-bottom:.25em;

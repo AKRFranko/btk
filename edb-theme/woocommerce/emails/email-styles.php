@@ -12,9 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 // Load colours
 $bg              = get_option( 'woocommerce_email_background_color' );
 $body            = get_option( 'woocommerce_email_body_background_color' );
-$base            = get_option( 'woocommerce_email_base_color' );
-$base_text       = wc_light_or_dark( $base, '#202020', '#ffffff' );
-$text            = get_option( 'woocommerce_email_text_color' );
+$base            = '#000';
+$base_text       = '#000';
+$text            = '#000';
 
 $bg_darker_10    = wc_hex_darker( $bg, 10 );
 $body_darker_10  = wc_hex_darker( $body, 10 );
@@ -117,7 +117,7 @@ $text_lighter_20 = wc_hex_lighter( $text, 20 );
 }
 
 h1 {
-    color: <?php echo esc_attr( $base ); ?>;
+    color: #000;
     font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
     font-size: 30px;
     font-weight: 300;
@@ -129,7 +129,7 @@ h1 {
 }
 
 h2 {
-    color: <?php echo esc_attr( $base ); ?>;
+    color: #000;
     display: block;
     font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
     font-size: 18px;
@@ -140,7 +140,7 @@ h2 {
 }
 
 h3 {
-    color: <?php echo esc_attr( $base ); ?>;
+    color: #000;
     display: block;
     font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
     font-size: 16px;

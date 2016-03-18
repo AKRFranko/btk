@@ -11,12 +11,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 $edb_shipping_methods = array(
-  'edb_self_pickup' => __("I will pick up.",'edb'),
+  'edb_self_pickup' => __("self pickup", 'edb'),
   'edb_ship_ready' => __("ship when ready",'edb'),
-  'edb_ship_bundle_1' => __("ship bundle 1",'edb'),
+  'edb_ship_bundle_1' => __("delivery",'edb'),
   'edb_ship_bundle_2' => __("ship bundle 2",'edb'),
   'edb_ship_bundle_3' => __("ship bundle 3",'edb')
-);
+); 
 
   $split = array();
   foreach( $items as $item_id => $item ) {
@@ -29,7 +29,13 @@ $edb_shipping_methods = array(
   }
   foreach( $split as $method => $items ){
     echo "<tr class='td'><th class='td' style='text-align:left;' colspan='3'>".$edb_shipping_methods[$method]."</th></tr>";
-    
+    ?>
+    <tr>
+      <th class="td" scope="col" style="text-align:left;"><?php _e( 'Product', 'edb' ); ?></th>
+      <th class="td" scope="col" style="text-align:left;"><?php _e( 'Quantity', 'edb' ); ?></th>
+      <th class="td" scope="col" style="text-align:left;"><?php _e( 'Price', 'edb' ); ?></th>
+    </tr>
+    <?php
     foreach( $items as $copy ){
       write_log( $copy );
       $item_product = $order->get_product_from_item( $copy['item'] );

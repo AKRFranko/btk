@@ -20,6 +20,8 @@
   <?php wp_nav_menu( array( 'menu' => 'footer' ) ); ?>
   <?php wp_nav_menu( array( 'menu' => 'footer2' ) ); ?>
   <!--<?php echo do_shortcode('[feather_follow show="facebook, twitter, pinterest, instagram, youtube, tumblr"]'); ?>-->
+  <img id="register-seal" src="/wp-content/register-site-seal.gif">
+  <a id="paypal-logo" href="https://www.paypal.com/webapps/mpp/paypal-popup" title="How PayPal Works" onclick="javascript:window.open('https://www.paypal.com/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img src="https://www.paypalobjects.com/webstatic/mktg/logo/bdg_secured_by_pp_2line.png" border="0" alt="Secured by PayPal"></a>
 </footer><!-- #colophon -->
 
 <?php wp_footer(); ?>
@@ -64,7 +66,6 @@
 <?php if(is_product()){ ?>
   <?php edb_material_toasts(); ?>
 <?php } ?>
-
 
 
 </body>

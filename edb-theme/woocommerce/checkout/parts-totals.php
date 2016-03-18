@@ -7,6 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php 
 //do_action( 'woocommerce_review_order_before_order_total' ); 
 ?>
+
+
 <div class="cart-total cost-line">
   <span class="label"><?php _e('order total', 'edb'); ?></span>
   <span class="value"><?php wc_cart_totals_order_total_html(); ?></span>
@@ -28,11 +30,18 @@ if ( ! defined( 'ABSPATH' ) ) {
   </div>
 <?php endforeach; ?>
 
-<div class="cart-shipping-total cost-line">
-  <span class="label"><?php _e('shipping', 'edb'); ?></span>
-  <span class="value"><?php edb_cart_shipping_total();?></span>
-</div>
-
+<?php if( !WC()->session->get('do_not_ship') && !empty(WC()->customer->shipping_postcode)){ ?>
+  <div class="cart-shipping-total cost-line">
+    <span class="label"><?php _e('shipping', 'edb'); ?></span>
+    <span class="value"><?php edb_cart_shipping_total(); ?></span>
+  </div>
+<?php }else{ ?>
+  <div class="cart-shipping-total cost-line">
+    <span class="label"><?php _e('shipping', 'edb'); ?></span>
+    
+    <span class="value warning"><a href="#" class="panel-link" data-panel="#address-info-panel"><?php _e('please click here to fill in your address information.','edb'); ?></a></span>
+  </div>
+<?php }; ?>
 
 <?php foreach ( WC()->cart->get_fees() as $fee ) : ?>
   <?php if( $fee->id == 'self-pickup-discount' ){ ?>

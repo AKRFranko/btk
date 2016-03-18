@@ -3,7 +3,7 @@
  *
  * Handles toggling the navigation menu for small screens and enables tab
  * support for dropdown menus.
- */ (function() {
+ */ (function($) {
 
 
 
@@ -12,8 +12,7 @@
 
   */
   
-  
-  
+
 
   // window.viewportUnitsBuggyfill.init();
   var $ = jQuery;
@@ -32,6 +31,11 @@
     e.preventDefault();
     var $cats = $('#cat-nav');
     $cats.toggleClass('on');
+    if($cats.is('.on')){
+      $(document).trigger('cat-menu-on')
+    }else{
+      $(document).trigger('cat-menu-off')
+    }
   });
 
   $(document).on('click', '#cat-nav', function(e) {
@@ -69,6 +73,10 @@
       $('#sign-in-menu .register-form').addClass('on');
     }
   }
+  
+  $(document).on('click', '#site-nav > .login', function(e){
+    e.preventDefault();
+  })
 
   $(document).on('click', '.burger', function(e) {
     e.preventDefault();
@@ -159,17 +167,7 @@
   
   
   //,#site-nav,#shop-nav,#cat-nav
-  $( document ).on('click tap', "#overlay.on", function( e ){
-    console.log(e.target)
-    toggleBurger();
-    
-  });
-  
-  $(document).on('click tap','#sign-in-menu', function( e ){
-    if($(e.target).is('#sign-in-menu')){
-      toggleBurger();
-    }
-  });
+ 
   // $(document).on('change','.shipping-method-choice input', function(){
   //   var $input = $( this );
   //   var $label = $(this).closest('label');
@@ -200,6 +198,27 @@
   
   $(function() {
     
+    
+    $( "#overlay" ).on('click', function( e ){
+      //console.log(e.target)
+      e.preventDefault();
+      e.stopPropagation();
+      toggleBurger()
+      
+      
+    });
+    
+    
+    
+    $('#sign-in-menu').on('click', function( e ){
+      if($(e.target).is('#sign-in-menu')){
+        e.preventDefault();
+        e.stopPropagation();
+        toggleBurger()
+        
+      }
+    });
+    
     if($('.is-safari .home-slider').length){
       var $hc = $('.home-slider .controls');
       function resizeSlider(){
@@ -224,6 +243,8 @@
     
     
     $('.address-field input.input-text').removeClass('input-text');
+    
+
     // setTimeout( function(){
     //   // console.log('REMOVE ERROR');
     //   $('.woocommerce-error, .woocommerce-message').addClass('hide');
@@ -269,6 +290,7 @@
         $current.text(pageSelector.active + 1);
       });
 
+      
     }
     // if($('.wpcf7-form').length){
     //   $('form.wpcf7-form').each( function(){
@@ -280,31 +302,51 @@
     //   })
     // }
 
-  })
-
-  $(document).ajaxComplete(function(event, res) {
-    $('.address-field input.input-text').removeClass('input-text');
-    // console.log('REMOVE ERROR');
-    // $('.shipping-method-choice input').each( function(){
-    //   if( $(this).is(':checked')){
-    //   $(this).closest('label').addClass('checked')  
-    //   }else{
-    //     $(this).closest('label').removeClass('checked')  
-    //   }
-      
-    // })
-    if (res.responseJSON.mailSent) {
-      if(res.responseJSON.message){
-        $('.wpcf7-form').html('<h1>'+res.responseJSON.message+'</h1>');
-      }else{
-        $('.wpcf7-form').html('<h1>Thank you!</h1><p>We\'ll get back to you shortly.');  
+   
+  });
+  
+  var highlightCF7Message = function( message ){
+    console.log( message );
+    var open;
+    var chars = message.split('');
+    return chars.reduce( function( msg, char ){
+      if(char == '|' ){
+        if(!open){
+          open = true;
+          char  = '<span class="highlight">';  
+        }else{
+          open = false;
+          char  = '</span>';  
+        }
+        
       }
       
+      return msg+char;
+    }, '' )
+  };
+  
+  $(document).ajaxComplete(function(event, res) {
+    $('.address-field input.input-text').removeClass('input-text');
+    if (res.responseJSON) {
+      if(res.responseJSON.mailSent){
+        if(res.responseJSON.message){
+          $('.wpcf7-form').html('<p>'+highlightCF7Message(res.responseJSON.message)+'</p>');
+        }else{
+          $('.wpcf7-form').html('<h1>Thank you!</h1><p>We\'ll get back to you shortly.</p>');  
+        }  
+      }else{
+        if(res.responseJSON.message){
+          $('.wpcf7-form').prepend('<p>'+highlightCF7Message(res.responseJSON.message)+'</p>');  
+        }else{
+          $('.wpcf7-form').html('<h1>Oops!</h1><p>That didn\'t work.</p>');
+        }
+      }
     }
-  })
+  });
 
 
   $(document).on('click', '#check-postcode', getShippingZone);
+  
 
   $(document).on('change', 'postal_code', function() {
     var postcode = $('input[name=postal_code]').val();
@@ -328,4 +370,4 @@
 
 
 
-})();
+})(jQuery);

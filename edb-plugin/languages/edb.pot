@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: edb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-04 12:09-0500\n"
-"POT-Revision-Date: Thu Mar 03 2016 14:34:44 GMT-0500 (EST)\n"
+"POT-Revision-Date: Sun Mar 06 2016 14:32:50 GMT-0500 (EST)\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,31 +87,31 @@ msgstr ""
 msgid "ship as bundle 3"
 msgstr ""
 
-#: ../includes/template-tags.php:761
+#: ../includes/template-tags.php:769
 msgid "self pickup discount"
 msgstr ""
 
-#: ../includes/template-tags.php:778
+#: ../includes/template-tags.php:786
 msgid "credit card"
 msgstr ""
 
-#: ../includes/template-tags.php:782
+#: ../includes/template-tags.php:790
 msgid "expiry"
 msgstr ""
 
-#: ../includes/template-tags.php:791
+#: ../includes/template-tags.php:799
 msgid "no color selected"
 msgstr ""
 
-#: ../includes/template-tags.php:794
+#: ../includes/template-tags.php:802
 msgid "quantity"
 msgstr ""
 
-#: ../includes/template-tags.php:804
+#: ../includes/template-tags.php:812
 msgid "availability"
 msgstr ""
 
-#: ../includes/template-tags.php:811
+#: ../includes/template-tags.php:819
 msgid "ADD TO CART"
 msgstr ""
 
@@ -130,11 +130,11 @@ msgid_plural "%s weeks"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../includes/class-edb-shipping.php:411
+#: ../includes/class-edb-shipping.php:425
 msgid "regular items"
 msgstr ""
 
-#: ../includes/class-edb-shipping.php:414
+#: ../includes/class-edb-shipping.php:428
 msgid "sale items"
 msgstr ""
 

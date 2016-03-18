@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: edb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Thu Feb 04 2016 12:49:34 GMT-0500 (EST)\n"
-"PO-Revision-Date: Fri Mar 04 2016 14:34:09 GMT-0500 (EST)\n"
+"PO-Revision-Date: Wed Mar 09 2016 12:57:59 GMT-0500 (EST)\n"
 "Last-Translator: admin <admin@elementdebase.com>\n"
 "Language-Team: \n"
 "Language: French (France)\n"
@@ -62,11 +62,11 @@ msgstr ""
 msgid "lookbook"
 msgstr ""
 
-#: ../functions.php:317
+#: ../functions.php:321
 msgid "enter"
 msgstr ""
 
-#: ../functions.php:318
+#: ../functions.php:322
 msgid "entrez"
 msgstr ""
 
@@ -90,17 +90,17 @@ msgstr ""
 msgid "Try looking in the monthly archives. %1$s"
 msgstr ""
 
-#: ../header.php:100 ../header.php:105
+#: ../header.php:101 ../header.php:106
 #, php-format
 msgid "View all post filed under %s"
 msgstr ""
 
-#: ../header.php:109
+#: ../header.php:110
 #, php-format
 msgid "View all %s"
 msgstr ""
 
-#: ../header.php:178
+#: ../header.php:179
 msgid "sign up to edb"
 msgstr ""
 
@@ -219,27 +219,36 @@ msgstr ""
 msgid "Only logged in customers who have purchased this product may leave a review."
 msgstr ""
 
-#: ../woocommerce/content-single-product.php:60
+#: ../woocommerce/content-single-product.php:49
+#, php-format
+msgid ""
+"The <a href=\"%s\">stuffing</a> is sold separately. <a href=\"%s\">click here to "
+"get some.</a>"
+msgstr ""
+"La <a href=\"%s\">bourrure</a> est vendue  séparément. <a href=\"%s\">cliquez "
+"ici pour en commander.</a>\n"
+
+#: ../woocommerce/content-single-product.php:63
 msgid "description"
 msgstr ""
 
-#: ../woocommerce/content-single-product.php:77
+#: ../woocommerce/content-single-product.php:81
 msgid "this product is currently out of stock and unavailable."
 msgstr ""
 
-#: ../woocommerce/content-single-product.php:128
+#: ../woocommerce/content-single-product.php:132
 msgid "designer"
 msgstr ""
 
-#: ../woocommerce/content-single-product.php:149
+#: ../woocommerce/content-single-product.php:154
 msgid "assembly instructions"
 msgstr ""
 
-#: ../woocommerce/content-single-product.php:158
+#: ../woocommerce/content-single-product.php:163
 msgid "materials and dimensions"
 msgstr ""
 
-#: ../woocommerce/content-single-product.php:189
+#: ../woocommerce/content-single-product.php:194
 msgid "why heather loves this model"
 msgstr ""
 
@@ -395,8 +404,7 @@ msgstr ""
 msgid "order details"
 msgstr ""
 
-#: ../woocommerce/order/order-details.php:27 ../woocommerce/emails/email-order-
-#: items.php:14
+#: ../woocommerce/order/order-details.php:27
 msgid "I will pick up."
 msgstr ""
 
@@ -406,8 +414,7 @@ msgstr ""
 msgid "ship when ready"
 msgstr ""
 
-#: ../woocommerce/order/order-details.php:29 ../woocommerce/emails/email-order-
-#: items.php:16
+#: ../woocommerce/order/order-details.php:29
 msgid "ship bundle 1"
 msgstr ""
 
@@ -457,7 +464,7 @@ msgstr ""
 msgid "Order Again"
 msgstr ""
 
-#: ../woocommerce/cart/cart-totals.php:30 ../woocommerce/checkout/payment.php:133
+#: ../woocommerce/cart/cart-totals.php:30 ../woocommerce/checkout/payment.php:136
 #: ../woocommerce/checkout/form-summaries.php:63 ../woocommerce/checkout/thankyou.
 #: php:48
 msgid "total"
@@ -467,7 +474,8 @@ msgstr ""
 msgid "coupon"
 msgstr ""
 
-#: ../woocommerce/cart/cart.php:122 ../woocommerce/checkout/form-coupon.php:30
+#: ../woocommerce/cart/cart.php:122 ../woocommerce/checkout/payment.php:59 ..
+#: woocommerce/checkout/form-coupon.php:30
 msgid "apply coupon"
 msgstr ""
 
@@ -504,7 +512,7 @@ msgstr ""
 msgid "postcode / zip"
 msgstr ""
 
-#: ../woocommerce/emails/customer-completed-order.php:18 ..
+#: ../woocommerce/emails/customer-completed-order.php:32 ..
 #: woocommerce/emails/plain/customer-completed-order.php:16
 #, php-format
 msgid ""
@@ -512,10 +520,22 @@ msgid ""
 "shown below for your reference:"
 msgstr ""
 
-#: ../woocommerce/emails/customer-completed-order.php:22 ..
+#: ../woocommerce/emails/customer-completed-order.php:35
+msgid "Your items are ready for pickup"
+msgstr ""
+
+#: ../woocommerce/emails/customer-completed-order.php:37
+msgid "Your items for pickup are ready, the others have been shipped."
+msgstr ""
+
+#: ../woocommerce/emails/customer-completed-order.php:39
+msgid "Your order has been shipped."
+msgstr ""
+
+#: ../woocommerce/emails/customer-completed-order.php:46 ..
 #: woocommerce/emails/customer-refunded-order.php:29 ..
-#: woocommerce/emails/customer-invoice.php:26 ../woocommerce/emails/customer-
-#: processing-order.php:22 ../woocommerce/emails/customer-note.php:26 ..
+#: woocommerce/emails/customer-invoice.php:28 ../woocommerce/emails/customer-
+#: processing-order.php:25 ../woocommerce/emails/customer-note.php:26 ..
 #: woocommerce/emails/admin-new-order.php:22
 #, php-format
 msgid "Order #%s"
@@ -555,55 +575,8 @@ msgstr ""
 msgid "Order: %s"
 msgstr ""
 
-#: ../woocommerce/emails/customer-new-account.php:18 ..
-#: woocommerce/emails/plain/customer-new-account.php:16
-#, php-format
-msgid "Thanks for creating an account on %s. Your username is <strong>%s</strong>."
-msgstr ""
-
-#: ../woocommerce/emails/customer-new-account.php:22
-#, php-format
-msgid "Your password has been automatically generated: <strong>%s</strong>"
-msgstr ""
-
-#: ../woocommerce/emails/customer-new-account.php:26 ..
-#: woocommerce/emails/plain/customer-new-account.php:21
-#, php-format
-msgid ""
-"You can access your account area to view your orders and change your "
-"password here: %s."
-msgstr ""
-
 #: ../woocommerce/emails/woo-preview-emails.php:87
 msgid "Preview Email Templates"
-msgstr ""
-
-#: ../woocommerce/emails/customer-reset-password.php:18 ..
-#: woocommerce/emails/plain/customer-reset-password.php:16
-msgid "Someone requested that the password be reset for the following account:"
-msgstr ""
-
-#: ../woocommerce/emails/customer-reset-password.php:19 ..
-#: woocommerce/emails/plain/customer-reset-password.php:18
-#, php-format
-msgid "Username: %s"
-msgstr ""
-
-#: ../woocommerce/emails/customer-reset-password.php:20 ..
-#: woocommerce/emails/plain/customer-reset-password.php:19
-msgid "If this was a mistake, just ignore this email and nothing will happen."
-msgstr ""
-
-#: ../woocommerce/emails/customer-reset-password.php:21 ..
-#: woocommerce/emails/plain/customer-reset-password.php:20
-msgid "To reset your password, visit the following address:"
-msgstr ""
-
-#: ../woocommerce/emails/customer-processing-order.php:18 ..
-#: woocommerce/emails/plain/customer-processing-order.php:16
-msgid ""
-"Your order has been received and is now being processed. Your order details "
-"are shown below for your reference:"
 msgstr ""
 
 #: ../woocommerce/emails/customer-note.php:18 ..
@@ -616,7 +589,7 @@ msgstr ""
 msgid "For your reference, your order details are shown below."
 msgstr ""
 
-#: ../woocommerce/emails/email-order-items.php:59
+#: ../woocommerce/emails/email-order-items.php:65
 msgid "Product Image"
 msgstr ""
 
@@ -659,9 +632,44 @@ msgstr ""
 msgid "View order: %s"
 msgstr ""
 
+#: ../woocommerce/emails/plain/customer-new-account.php:16
+#, php-format
+msgid "Thanks for creating an account on %s. Your username is <strong>%s</strong>."
+msgstr ""
+
 #: ../woocommerce/emails/plain/customer-new-account.php:19
 #, php-format
 msgid "Your password is <strong>%s</strong>."
+msgstr ""
+
+#: ../woocommerce/emails/plain/customer-new-account.php:21
+#, php-format
+msgid ""
+"You can access your account area to view your orders and change your "
+"password here: %s."
+msgstr ""
+
+#: ../woocommerce/emails/plain/customer-reset-password.php:16
+msgid "Someone requested that the password be reset for the following account:"
+msgstr ""
+
+#: ../woocommerce/emails/plain/customer-reset-password.php:18
+#, php-format
+msgid "Username: %s"
+msgstr ""
+
+#: ../woocommerce/emails/plain/customer-reset-password.php:19
+msgid "If this was a mistake, just ignore this email and nothing will happen."
+msgstr ""
+
+#: ../woocommerce/emails/plain/customer-reset-password.php:20
+msgid "To reset your password, visit the following address:"
+msgstr ""
+
+#: ../woocommerce/emails/plain/customer-processing-order.php:16
+msgid ""
+"Your order has been received and is now being processed. Your order details "
+"are shown below for your reference:"
 msgstr ""
 
 #: ../woocommerce/emails/plain/email-order-items.php:35
@@ -729,44 +737,44 @@ msgid ""
 "arrangements."
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:73 ../woocommerce/checkout/payment.php:137
+#: ../woocommerce/checkout/payment.php:74 ../woocommerce/checkout/payment.php:140
 msgid "items"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:102
+#: ../woocommerce/checkout/payment.php:103
 msgid "please click here to fill in your address information."
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:114
+#: ../woocommerce/checkout/payment.php:117
 msgid "please click here to fill in your payment information."
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:123
+#: ../woocommerce/checkout/payment.php:126
 msgid "Final Checklist"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:124
+#: ../woocommerce/checkout/payment.php:127
 msgid "i made sure the item fits."
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:125
+#: ../woocommerce/checkout/payment.php:128
 msgid "The delivery does not include..."
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:126
+#: ../woocommerce/checkout/payment.php:129
 msgid ""
 "i am aware that there can be slight variation in the colors of the swatches "
 "and the final product due to dye lot difference."
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:147
+#: ../woocommerce/checkout/payment.php:150
 msgid ""
 "Since your browser does not support JavaScript, or it is disabled, please "
 "ensure you click the <em>Update Totals</em> button before placing your order."
 " You may be charged more than the amount stated above if you fail to do so."
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:157
+#: ../woocommerce/checkout/payment.php:160
 #, php-format
 msgid ""
 "I&rsquo;ve read and accept the <a href=\"%s\" target=\"_blank\">terms &amp; "
@@ -809,10 +817,6 @@ msgstr ""
 msgid "please attempt your purchase again."
 msgstr ""
 
-#: ../woocommerce/checkout/thankyou.php:36 ../woocommerce/checkout/thankyou.php:67
-msgid "thank you. your order has been received."
-msgstr ""
-
 #: ../woocommerce/checkout/thankyou.php:40
 msgid "order number"
 msgstr ""
@@ -826,10 +830,6 @@ msgid ""
 "There are some issues with the items in your cart (shown above). Please go "
 "back to the cart page and resolve these issues before checking out."
 msgstr ""
-
-#: ../woocommerce/checkout/review-order.php:62
-msgid "self pickup discount"
-msgstr "escompte d'auto cueillette"
 
 #: ../woocommerce/loop/no-products-found.php:17
 msgid "No products were found matching your selection."
@@ -911,19 +911,6 @@ msgid ""
 "date\">%s</mark> and is currently <mark class=\"order-status\">%s</mark>."
 msgstr ""
 
-#: ../woocommerce/myaccount/my-account.php:24
-#, php-format
-msgid "Hello <strong>%1$s</strong> (not %1$s? <a href=\"%2$s\">Sign out</a>)."
-msgstr ""
-
-#: ../woocommerce/myaccount/my-account.php:29
-#, php-format
-msgid ""
-"From your account dashboard you can view your recent orders, manage your "
-"shipping and billing addresses and <a href=\"%s\">edit your password and "
-"account details</a>."
-msgstr ""
-
 #: ../template-parts/content-page.php:63 ../template-parts/content.php:59
 #, php-format
 msgid "Continue reading %s <span class=\"meta-nav\">&rarr;</span>"
@@ -969,18 +956,6 @@ msgstr ""
 #. Author URI of the theme
 msgid "http://akr.club/"
 msgstr ""
-
-#: ../woocommerce/checkout/review-order.php:75
-msgid ""
-"For the items ordered, please choose your delivery options : self pick up "
-"(at our Montréal warehouse) or delivery to the adresse submitted. Based on "
-"your selection, the final delivery fees will adjust automatically. for more "
-"information on how delivery fees are calculated"
-msgstr ""
-"Veuillez choisir vos options de livraison : l'auto-cueilette (à notre "
-"entrepôt) ou une livraison à l'adresse soumise. \n"
-"Selon votre sélection, les frais finaux de livraison s'ajusteront "
-"automatiquement. Pour plus d'information concernant nos frais de livraison "
 
 #: ../footer.php:19
 msgid "back to top"
@@ -1032,72 +1007,72 @@ msgstr "politique de confidentialité"
 msgid "terms of use"
 msgstr "termes d'usage"
 
-#: ../functions.php:297
+#: ../functions.php:301
 msgid "download PDF"
 msgstr "télécharger le PDF"
 
-#: ../header.php:48 ../header.php:119
+#: ../header.php:49 ../header.php:120
 msgid "welcome"
-msgstr "Bienvenu"
+msgstr "Bienvenue"
 
-#: ../header.php:48
+#: ../header.php:49
 msgid "sign out"
 msgstr "se déconnecter"
 
-#: ../header.php:50
+#: ../header.php:51
 msgid "sign in"
 msgstr "se connecter"
 
-#: ../header.php:53
+#: ../header.php:54
 msgid "cart"
 msgstr "panier"
 
-#: ../header.php:105 ../header.php:116
+#: ../header.php:106 ../header.php:117
 msgid "all"
 msgstr "tous"
 
-#: ../header.php:122 ../header.php:133
+#: ../header.php:123 ../header.php:134
 msgid "returning customers<br />please sign in"
 msgstr "client membre<br />ouvrez une session\n"
 
-#: ../header.php:126
+#: ../header.php:127
 msgid "new customers<br />sign up for shopping<br />and exclusive offers"
 msgstr "Première visite<br />créez un compte"
 
-#: ../header.php:137 ../header.php:164 ../woocommerce/order/order-details-
+#: ../header.php:138 ../header.php:165 ../woocommerce/order/order-details-
 #: customer.php:26
 msgid "email"
 msgstr "courriel"
 
-#: ../header.php:141 ../header.php:168
+#: ../header.php:142 ../header.php:169
 msgid "password"
 msgstr "mot de passe"
 
-#: ../header.php:147
+#: ../header.php:148
 msgid "enter edb"
 msgstr "entrez dans edb"
 
-#: ../header.php:148
+#: ../header.php:149
 msgid "login"
 msgstr "connecter"
 
-#: ../header.php:151
+#: ../header.php:152
 msgid "> click here to recover lost password"
 msgstr "> cliquez ici pour récupérer votre mot de passe"
 
-#: ../header.php:153 ../header.php:183
+#: ../header.php:154 ../header.php:184
 msgid "back"
 msgstr "retour"
 
-#: ../header.php:159
+#: ../header.php:160
 msgid "new customers sign up for shopping<br />and exclusive offers"
 msgstr "Première visite<br />créez un compte"
 
-#: ../header.php:172
+#: ../header.php:173
 msgid "confirm password"
 msgstr "confirmer le mot de passe"
 
-#: ../header.php:179
+#: ../header.php:180
 msgid "register"
 msgstr "s'enregistrer"
 
@@ -1119,11 +1094,11 @@ msgstr "Courriel"
 msgid "Submit"
 msgstr "Envoyer"
 
-#: ../woocommerce/content-single-product.php:95
+#: ../woocommerce/content-single-product.php:99
 msgid "in stock"
 msgstr "disponible"
 
-#: ../woocommerce/content-single-product.php:167
+#: ../woocommerce/content-single-product.php:172
 msgid "shipping and return"
 msgstr "livraison et retours"
 
@@ -1136,16 +1111,17 @@ msgstr "Vente!"
 msgid "Billing Email"
 msgstr "courriel de facturation"
 
-#: ../woocommerce/order/order-details-customer.php:49 ..
-#: woocommerce/checkout/form-billing.php:18 ../woocommerce/myaccount/my-address.
-#: php:19 ../woocommerce/myaccount/my-address.php:25 ..
-#: woocommerce/myaccount/form-edit-address.php:16
+#: ../woocommerce/order/order-details-customer.php:49 ../woocommerce/emails/email-
+#: addresses.php:20 ../woocommerce/checkout/form-billing.php:18 ..
+#: woocommerce/myaccount/my-address.php:19 ../woocommerce/myaccount/my-address.
+#: php:25 ../woocommerce/myaccount/form-edit-address.php:16
 msgid "billing address"
 msgstr "adresse de facturation"
 
-#: ../woocommerce/order/order-details-customer.php:60 ..
-#: woocommerce/checkout/form-shipping.php:37 ../woocommerce/myaccount/my-address.
-#: php:20 ../woocommerce/myaccount/form-edit-address.php:16
+#: ../woocommerce/order/order-details-customer.php:60 ../woocommerce/emails/email-
+#: addresses.php:30 ../woocommerce/checkout/form-shipping.php:37 ..
+#: woocommerce/myaccount/my-address.php:20 ../woocommerce/myaccount/form-edit-
+#: address.php:16
 msgid "shipping address"
 msgstr "adresse de livraison"
 
@@ -1183,7 +1159,7 @@ msgid "proceed to checkout"
 msgstr "Procéder au paiement"
 
 #: ../woocommerce/cart/cart-shipping.php:102 ../woocommerce/checkout/payment.php:
-#: 100 ../woocommerce/checkout/payment.php:112 ../woocommerce/checkout/parts-
+#: 101 ../woocommerce/checkout/payment.php:115 ../woocommerce/checkout/parts-
 #: packages.php:78 ../woocommerce/myaccount/my-address.php:45
 msgid "edit"
 msgstr "modifier"
@@ -1221,51 +1197,162 @@ msgstr "entrez votre code postal pour calculer les frais de livraison"
 msgid "update totals"
 msgstr "mise à jour du total"
 
-#: ../woocommerce/emails/customer-completed-order.php:27 ..
-#: woocommerce/emails/customer-refunded-order.php:34 ..
-#: woocommerce/emails/customer-invoice.php:31 ../woocommerce/emails/admin-
-#: cancelled-order.php:22 ../woocommerce/emails/customer-processing-order.php:27 .
-#: ./woocommerce/emails/customer-note.php:31 ../woocommerce/emails/admin-new-
-#: order.php:27
+#: ../woocommerce/emails/customer-refunded-order.php:34 ..
+#: woocommerce/emails/admin-cancelled-order.php:22 ..
+#: woocommerce/emails/customer-note.php:31 ../woocommerce/emails/email-order-
+#: items.php:34 ../woocommerce/emails/admin-new-order.php:27
 msgid "Product"
 msgstr "produit"
 
-#: ../woocommerce/emails/customer-completed-order.php:28 ..
-#: woocommerce/emails/customer-refunded-order.php:35 ..
-#: woocommerce/emails/customer-invoice.php:32 ../woocommerce/emails/admin-
-#: cancelled-order.php:23 ../woocommerce/emails/customer-processing-order.php:28 .
-#: ./woocommerce/emails/customer-note.php:32 ../woocommerce/emails/admin-new-
-#: order.php:28
+#: ../woocommerce/emails/customer-refunded-order.php:35 ..
+#: woocommerce/emails/admin-cancelled-order.php:23 ..
+#: woocommerce/emails/customer-note.php:32 ../woocommerce/emails/email-order-
+#: items.php:35 ../woocommerce/emails/admin-new-order.php:28
 msgid "Quantity"
 msgstr "quantitée"
 
-#: ../woocommerce/emails/customer-completed-order.php:29 ..
-#: woocommerce/emails/customer-refunded-order.php:36 ..
-#: woocommerce/emails/customer-invoice.php:33 ../woocommerce/emails/admin-
-#: cancelled-order.php:24 ../woocommerce/emails/customer-processing-order.php:29 .
-#: ./woocommerce/emails/customer-note.php:33 ../woocommerce/emails/admin-new-
-#: order.php:29
+#: ../woocommerce/emails/customer-refunded-order.php:36 ..
+#: woocommerce/emails/admin-cancelled-order.php:24 ..
+#: woocommerce/emails/customer-note.php:33 ../woocommerce/emails/email-order-
+#: items.php:36 ../woocommerce/emails/admin-new-order.php:29
 msgid "Price"
 msgstr "Prix"
-
-#: ../woocommerce/emails/email-addresses.php:20 ../woocommerce/emails/plain/email-
-#: addresses.php:14
-msgid "Billing address"
-msgstr "adresse de facturation"
-
-#: ../woocommerce/emails/email-addresses.php:30 ../woocommerce/emails/plain/email-
-#: addresses.php:18
-msgid "Shipping address"
-msgstr "addresse de livraison"
 
 #: ../woocommerce/emails/customer-invoice.php:20 ../woocommerce/checkout/thankyou.
 #: php:28
 msgid "pay"
 msgstr "payer"
 
-#: ../woocommerce/emails/customer-reset-password.php:24
+#: ../woocommerce/emails/customer-new-account.php:18
+#, php-format
+msgid "Hello %s"
+msgstr "%s, bienvenue chez edb\n"
+
+#: ../woocommerce/emails/customer-new-account.php:20
+msgid "Thanks for joining elementdebase.com"
+msgstr "Merci d’avoir rejoint elementdebase.com"
+
+#: ../woocommerce/emails/customer-new-account.php:23
+#, php-format
+msgid "Your username: %s"
+msgstr "Nom d'utilisateur: %s"
+
+#: ../woocommerce/emails/customer-new-account.php:24
+msgid "Your password: ******"
+msgstr "mot de passe: ******\n"
+
+#: ../woocommerce/emails/customer-new-account.php:28
+msgid ""
+"If you’ve forgotten your password, just ask us to send you a new one when "
+"you log-in. "
+msgstr ""
+"Vous avez oublié votre mot de passe? Lors de votre prochaine connexion, "
+"faites-nous le savoir et nous vous en ferons parvenir un nouveau."
+
+#: ../woocommerce/emails/customer-new-account.php:29
+msgid "We look forward to seeing you soon,"
+msgstr "Nous espérons vous revoir bientôt.\n"
+
+#: ../woocommerce/emails/customer-new-account.php:33
+msgid "The team at elementdebase.com"
+msgstr "L’Équipe de edb"
+
+#: ../woocommerce/emails/customer-new-account.php:38
+msgid ""
+"We’re excited you’ve joined us on our quest for inspiring furniture at "
+"affordable prices. We’ve founded this new company for all the creatives out "
+"there, just like you. "
+msgstr ""
+"Nous sommes ravis de vous savoir solidaire de notre quête d’une alternative "
+"inspirante et abordable en matière de mobilier. Nous avons créé cette "
+"entreprise pour toutes les personnes créatives qui, comme vous, osent être "
+"uniques, veulent sortir des sentiers battus et rêver."
+
+#: ../woocommerce/emails/customer-new-account.php:39
+msgid ""
+"All those who dare to be unique, those who colour outside the lines, the "
+"style makers and the dreamers. "
+msgstr ""
+" Nous vous souhaitons la bienvenue chez élément de base.\n"
+" "
+
+#: ../woocommerce/emails/customer-new-account.php:42
+msgid "Welcome to edb!"
+msgstr "Bienvenue chez edb!"
+
+#: ../woocommerce/emails/customer-reset-password.php:18
+#, php-format
+msgid "Hello %s,"
+msgstr "Bonjour %s,\n"
+
+#: ../woocommerce/emails/customer-reset-password.php:20
+msgid ""
+"There was recently a request to change the password to your elementdebase "
+"account. If you requested this password change, please click on the "
+"following link to reset your password. "
+msgstr ""
+"Nous avons reçu une demande d’un nouveau mot de passe pour votre compte chez "
+"edb. Si vous êtes à l’origine de cette requête, veuillez cliquer sur le lien "
+"ci-joint.\n"
+
+#: ../woocommerce/emails/customer-reset-password.php:22
 msgid "Click here to reset your password"
 msgstr "Cliquez ici pour réinitialiser votre mot de passe"
+
+#: ../woocommerce/emails/customer-reset-password.php:24
+msgid "If the link does not work, please copy and paste the URL into your browser."
+msgstr ""
+"Si le lien ne fonctionne pas, nous vous invitions à le copier puis à le "
+"coller dans votre navigateur.\n"
+" "
+
+#: ../woocommerce/emails/customer-reset-password.php:26
+msgid ""
+"If you did not make this request, please ignore this message and your "
+"password will remain the same."
+msgstr ""
+"Si vous n’êtes pas l’auteur de cette demande, ne tenez pas compte de ce "
+"message et votre mot de passe demeurera inchangé.\n"
+
+#: ../woocommerce/emails/customer-reset-password.php:28
+msgid ""
+"If you have any questions about this email, please don’t hesitate to contact "
+"our Member services team and we’ll be happy to assist you."
+msgstr ""
+"Pour toutes questions relatives à ce courriel, communiquez avec notre "
+"service à la clientèle. Nous y répondrons avec plaisir.\n"
+
+#: ../woocommerce/emails/customer-reset-password.php:30
+msgid "The team at edb"
+msgstr "L’Équipe de edb"
+
+#: ../woocommerce/emails/customer-processing-order.php:18
+msgid ""
+"Thank you for placing your order with element de base.&nbsp;You made a smart "
+"purchase, we can assure you Great design at great prices!"
+msgstr ""
+"Nous vous remercions d’avoir effectué une commande chez élément de base. "
+"Nous pouvons vous assurer que vous avez fait un choix éclairé avec un "
+"rapport qualité-prix inégalé. Ce courriel sert de confirmation à cet achat "
+"récent.\n"
+
+#: ../woocommerce/emails/email-order-items.php:14 ../woocommerce/checkout/parts-
+#: packages.php:12 ../woocommerce/checkout/review-order.php:19
+msgid "self pickup"
+msgstr "auto-cueillette"
+
+#: ../woocommerce/emails/email-order-items.php:16 ../woocommerce/checkout/parts-
+#: packages.php:14 ../woocommerce/checkout/review-order.php:21
+msgid "delivery"
+msgstr "livraison"
+
+#: ../woocommerce/emails/plain/email-addresses.php:14
+msgid "Billing address"
+msgstr "adresse de facturation"
+
+#: ../woocommerce/emails/plain/email-addresses.php:18
+msgid "Shipping address"
+msgstr "addresse de livraison"
 
 #: ../woocommerce/auth/form-login.php:26 ../woocommerce/myaccount/form-login.php:39
 msgid "Username or email address"
@@ -1305,28 +1392,28 @@ msgstr "vous avez un code promotionel?"
 msgid "promo code"
 msgstr "code promotionel"
 
-#: ../woocommerce/checkout/payment.php:66
+#: ../woocommerce/checkout/payment.php:67
 msgid "order summary"
 msgstr "sommaire de la commande"
 
-#: ../woocommerce/checkout/payment.php:79 ../woocommerce/checkout/form-checkout.
-#: php:53 ../woocommerce/checkout/review-order.php:79
+#: ../woocommerce/checkout/payment.php:80 ../woocommerce/checkout/form-checkout.
+#: php:53 ../woocommerce/checkout/review-order.php:80
 msgid "save & continue"
 msgstr "sauvegarder et procéder "
 
-#: ../woocommerce/checkout/payment.php:89
+#: ../woocommerce/checkout/payment.php:90
 msgid "delivered to"
 msgstr "Livraison "
 
-#: ../woocommerce/checkout/payment.php:108
+#: ../woocommerce/checkout/payment.php:111
 msgid "payment"
 msgstr "paiement"
 
-#: ../woocommerce/checkout/payment.php:147
+#: ../woocommerce/checkout/payment.php:150
 msgid "Update totals"
 msgstr "mise à jour du total"
 
-#: ../woocommerce/checkout/payment.php:153 ../woocommerce/checkout/payment.php:153
+#: ../woocommerce/checkout/payment.php:156 ../woocommerce/checkout/payment.php:156
 msgid "place order"
 msgstr "commander"
 
@@ -1334,9 +1421,15 @@ msgstr "commander"
 msgid "order total"
 msgstr "total "
 
+#: ../woocommerce/checkout/parts-totals.php:40 ../woocommerce/checkout/review-
+#: order.php:62
+msgid "self pickup discount"
+msgstr "escompte d'auto cueillette"
+
 #: ../woocommerce/checkout/form-billing.php:38
-msgid "i want to pick it up myself"
-msgstr "je désire effectuer la ceuillette moi-même"
+#, php-format
+msgid "self pickup, save 5% extra"
+msgstr "auto-cueillette, épargnez 5% additionel"
 
 #: ../woocommerce/checkout/form-billing.php:48
 msgid "ship to same address"
@@ -1371,6 +1464,10 @@ msgstr "produit"
 msgid "qty"
 msgstr "qtée."
 
+#: ../woocommerce/checkout/thankyou.php:36 ../woocommerce/checkout/thankyou.php:67
+msgid "thank you. your order has been received."
+msgstr "Nous vous remercions pour votre commande.\n"
+
 #: ../woocommerce/checkout/thankyou.php:44
 msgid "date"
 msgstr "date"
@@ -1378,16 +1475,6 @@ msgstr "date"
 #: ../woocommerce/checkout/form-coupon.php:26
 msgid "coupon code"
 msgstr "code promotionel"
-
-#: ../woocommerce/checkout/parts-packages.php:12 ../woocommerce/checkout/review-
-#: order.php:19
-msgid "self pickup"
-msgstr "auto-cueillette"
-
-#: ../woocommerce/checkout/parts-packages.php:14 ../woocommerce/checkout/review-
-#: order.php:21
-msgid "delivery"
-msgstr "livraison"
 
 #: ../woocommerce/checkout/cart-errors.php:22
 msgid "Return To Cart"
@@ -1402,8 +1489,30 @@ msgid "total delivery"
 msgstr "total de livraison"
 
 #: ../woocommerce/checkout/review-order.php:75
+msgid ""
+"For the items ordered, please choose your delivery options : self pick up "
+"(at our Montréal warehouse) or delivery to the adresse submitted. Based on "
+"your selection, the final delivery fees will adjust automatically. for more "
+"information on how delivery fees are calculated"
+msgstr ""
+"Veuillez choisir vos options de livraison : l'auto-cueilette (à notre "
+"entrepôt) ou une livraison à l'adresse soumise. \n"
+"Selon votre sélection, les frais finaux de livraison s'ajusteront "
+"automatiquement. Pour plus d'information concernant nos frais de livraison "
+
+#: ../woocommerce/checkout/review-order.php:75
 msgid "click here"
 msgstr "cliquez ici"
+
+#: ../woocommerce/checkout/review-order.php:76
+#, php-format
+msgid ""
+"We offer the self pick-up option. Come pick up your order at tour warehosue "
+"and save an additional 5% on the last ticketed price"
+msgstr ""
+"Nous offrons l'option de l'auto-cueillette. Venez ramasser votre commande "
+"directement à l'entrepôt et bénéficiez d'une réduction de 5% additionnel sur "
+"le dernier prix étiqueté."
 
 #: ../woocommerce/checkout/form-shipping.php:59
 msgid "additional information"
@@ -1571,3 +1680,29 @@ msgstr "confirmez le nouveau mot de passe"
 #: ../woocommerce/myaccount/form-edit-account.php:59
 msgid "Save changes"
 msgstr "sauvegarder les changements"
+
+#: ../woocommerce/myaccount/my-account.php:14
+msgid "Thank you for registering with elementdebase.com"
+msgstr "Nous vous remercions pour votre inscription.\n"
+
+#: ../woocommerce/myaccount/my-account.php:21
+msgid "My Account"
+msgstr "mon compte"
+
+#: ../woocommerce/myaccount/my-account.php:25
+#, php-format
+msgid "Hello <strong>%1$s</strong> (not %1$s? <a href=\"%2$s\">Sign out</a>)."
+msgstr ""
+"Bonjour <strong>%1$s</strong> (vous n'êtes pas %1$s? <a "
+"href=\"%2$s\">Déconnecter</a>).\n"
+
+#: ../woocommerce/myaccount/my-account.php:34
+#, php-format
+msgid ""
+"From your account dashboard you can view your recent orders, manage your "
+"shipping and billing addresses and <a href=\"%s\">edit your password and "
+"account details</a>."
+msgstr ""
+"Depuis cette page vous pouvez voir vos commandes récentes, gérer vos "
+"adresses de facturation et livraison et  <a href=\"%s\">modifier votre mot de "
+"passe et vos détails personels</a>. "

@@ -184,7 +184,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                                 	<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_header">
                                         <tr>
                                             <td>
-                                            	<h1><?php echo $email_heading; ?></h1>
+                                            	<h1><?php echo ''; ?></h1>
                                             </td>
                                         </tr>
                                     </table>

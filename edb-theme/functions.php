@@ -232,7 +232,10 @@ function edb_add_checkout_tabs_and_summary_fragments( $fragments ){
 }
 
 
-
+function remove_wc_password_meter() {
+    wp_dequeue_script( 'wc-password-strength-meter' );
+}
+add_action( 'wp_print_scripts', 'remove_wc_password_meter', 100 );
 
 function btk_edb_slider($query, $attach = null, $blankTargets = false) {
   $slider_query = new WP_Query($query);
@@ -316,7 +319,7 @@ function edb_splash_page(){
   );
   $links = array(
     'en' => array( 'url'=>home_url(), 'label' => __('enter', 'edb') ),
-    'fr' => array( 'url'=>home_url().'/fr', 'label' => __('entrez', 'edb') )
+    'fr' => array( 'url'=>str_replace('/fr','',home_url()).'/fr', 'label' => __('entrez', 'edb') )
    );
   foreach($links as $lang => $link){
     echo "<a class=\"language-selection\" href=\"".$link['url']."\">".$link['label']."</a>";
@@ -395,11 +398,12 @@ function fix_language_page_links( $url, $post, $leavename ) {
     $links_to = get_post_meta( $post->ID, '_links_to', true );
     $lang =WPGlobus::Config()->language;
     $parts = parse_url($url);
+    
+    if(!empty($parts['host']) && !preg_match('/elementdebase/', $parts['host']) ){
+      return $url;
+    }
     if(!empty($links_to) && $lang == 'fr'){
       $links_to = parse_url($links_to);
-      
-      // write_log( $parts );
-      // write_log(substr( $parts['path'], 0, 4 ));
       if(substr( $parts['path'], 0, 4 ) !== "/fr/" && $lang == 'fr'){
         $url= '/fr'.$parts['path']. ( !empty($parts['query']) ? '?'.$parts['query'] : '');
       }  
@@ -423,9 +427,11 @@ function change_menu($items){
   foreach( $items as $item ){
     $url = $item->url;
     $parts = parse_url($url);
-    if(substr( $parts['path'], 0, 4 ) !== "/fr/" && $lang == 'fr'){
-      $url= '/fr'.$parts['path']. ( !empty($parts['query']) ? '?'.$parts['query'] : '');
-    } 
+    if(empty($parts['host']) || preg_match('/elementdebase/', $parts['host']) ){
+      if(substr( $parts['path'], 0, 4 ) !== "/fr/" && $lang == 'fr'){
+        $url= '/fr'.$parts['path']. ( !empty($parts['query']) ? '?'.$parts['query'] : '');
+      } 
+    }
     $item->url = $url;
   }
 

@@ -40,7 +40,34 @@ $do_not_ship = WC()->session->get('do_not_ship');
 
 			<?php foreach ( $checkout->checkout_fields['shipping'] as $key => $field ) : ?>
         <?php if($ship_to_same_address){ $field['custom_attributes'] = array('readonly'=>'readonly'); } ?>
-				<?php woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); ?>
+        <?php 
+        
+        if($key == 'shipping_postcode' || $key == 'billing_postcode' ){
+            $billingValue = $checkout->get_value('billing_postcode' );
+            $shippingValue = $checkout->get_value('shipping_postcode' );
+            $customerValue = WC()->customer->get_shipping_postcode();
+            if(!empty($shippingValue)){
+              $value = $shippingValue;
+            }
+            if(!empty($billingValue)){
+              $value = $billingValue;
+            }
+    
+            if(empty($value)){
+              $value = $customerValue;
+            }
+            
+            if(empty($value) && isset($_REQUEST['shipping_postcode'])){
+              $value = $_REQUEST['shipping_postcode'];
+            }
+            woocommerce_form_field( $key, $field, $value ); 
+            
+        }else{ 
+            woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); 
+        };
+        
+        ?>
+				
 
 			<?php endforeach; ?>
 

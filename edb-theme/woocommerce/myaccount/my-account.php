@@ -11,13 +11,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 if(isset($_GET['new'])){
-  wc_add_notice('Thank you for registering with elementdebase.com', 'success');  
+  wc_add_notice(__('Thank you for registering with elementdebase.com','edb'), 'success');  
 }
 
 wc_print_notices(); 
 
 ?>
-
+<br />
+<h1><?php _e('My Account', 'edb'); ?></h1>
 <p class="myaccount_user">
 	<?php
 	printf(
@@ -25,11 +26,15 @@ wc_print_notices();
 		$current_user->display_name,
 		wc_get_endpoint_url( 'customer-logout', '', wc_get_page_permalink( 'myaccount' ) )
 	);
-
-	printf( __( 'From your account dashboard you can view your recent orders, manage your shipping and billing addresses and <a href="%s">edit your password and account details</a>.', 'woocommerce' ),
-		wc_customer_edit_account_url()
-	);
 	?>
+</p>
+<p>
+  <?php
+  
+  printf( __( 'From your account dashboard you can view your recent orders, manage your shipping and billing addresses and <a href="%s">edit your password and account details</a>.', 'woocommerce' ),
+    wc_customer_edit_account_url()
+  );
+  ?>
 </p>
 
 <?php do_action( 'woocommerce_before_my_account' ); ?>
