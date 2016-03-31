@@ -11,7 +11,7 @@ function facebook_meta_tags(){
   
   $path=$_SERVER['REQUEST_URI'];
   $uri='https://elementdebase.com'.$path;
-  $meta_url = $uri;
+  $meta_url = rtrim($uri, '/');
   $meta_title = 'élément de base';
   $meta_image = 'https://elementdebase.com/wp-content/uploads/2016/02/images_sections_0000_contact.jpg';
   $meta_description='when we created élément de base, we set out to launch asustainable company that inspires creative interiors throughits offer of stylish, renewable, locally designed furniture at prices to suit any budget...';
@@ -25,7 +25,7 @@ function facebook_meta_tags(){
     $meta_description = strip_tags($decorated->description . " " . wc_price( $decorated->price ));
     $image_id = get_post_thumbnail_id( $post->ID);
     $meta_image=wp_get_attachment_image_src($image_id, 'full')[0];
-    
+    $meta_url = get_permalink();
   }
   echo "<meta property='og:url' content='$meta_url'/><meta property='og:title' content='$meta_title'/><meta property='og:image' content='$meta_image'/><meta property='og:site_name' content='élément de base'/><meta property='og:description' content='$meta_description'/>";
 }
@@ -552,12 +552,15 @@ function tmp_has_tech_image( $deco ){
               "maritime_armchairs",
               "nautique_accessories-pillows",
               "stripes_sofas-3-seater",
+              "stripes_sofas-2-seater",
               "atrium_sofas-3-seater",
+              "atrium_sofas-2-seater",
               "maritime-natural_sofas-3-seater",
               "panorama_sectionals-left-facing",
               "swivel_armchairs",
               "capsule_sofa-beds",
               "maritime-walnut_sofas-3-seater",
+              "maritime-walnut_sofas-2-seater",
               "panorama_sectionals-right-facing",
               "tamtam_side-tables",
               "capsule_sofas",
@@ -571,6 +574,7 @@ function tmp_has_tech_image( $deco ){
               "mixmix-ottrec_modular",
               "ping_armchairs",
               "taxi_sofas-3-seater",
+              "taxi_sofas-2-seater",
               "duo_sofas",
               "mixmix_sectionals-left-facing",
               "pique_sectionals-left-facing",
@@ -586,6 +590,8 @@ function tmp_has_tech_image( $deco ){
               "majuscule_accessories-pillows",
               "mutation_accessories-pillows",
               "slope_sofas-3-seater",
+              'pique-small_sectionals-right-facing',
+              'pique-small_sectionals-left-facing',
               "vintage_side-tables");
 
  $name = $deco->title;
@@ -614,6 +620,18 @@ function tmp_has_tech_image( $deco ){
      $name = 'maritime-natural';
    }
  }
+ if( $cat == 'sectionals-left-facing' || $cat == 'sectionals-right-facing'){
+   if($deco->product_id == 1750 || $deco->product_id == 1775){
+     $name = 'pique-small';
+   }
+ }
+ 
+ 
+ if( $cat == 'sofas-2-seater'){
+ if($deco->product_id == 1667){
+   $name = 'maritime-walnut';
+ }}
+ 
  $k = "$name"."_"."$cat";
  write_log( "\n\n\n$k\n\n\n");
  
@@ -647,6 +665,16 @@ function tmp_get_tech_image( $deco ){
    }
    if($deco->product_id == 1111){
      $name = 'maritime-natural';
+   }
+ }
+ if( $cat == 'sectionals-left-facing' || $cat == 'sectionals-right-facing'){
+   if($deco->product_id == 1750 || $deco->product_id == 1775){
+     $name = 'pique-small';
+   }
+ }
+ if( $cat == 'sofas-2-seater'){
+   if($deco->product_id ==  1667){
+     $name = 'maritime-walnut';
    }
  }
  $k = "$name"."_"."$cat";

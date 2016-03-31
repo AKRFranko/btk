@@ -98,14 +98,90 @@ class Edb_Order_Tool_Public {
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/edb-order-tool-public.js', array( 'jquery' ), $this->version, false );
 
+    $params = array(
+      'ajaxurl' => admin_url( 'admin-ajax.php', 'https' )
+    );
+    wp_localize_script( $this->plugin_name, 'edb_order_tool_params' , $params );
+    
 	}
 	
+	
+	public function handle_ajax(){
+	  $command = isset($_REQUEST['command']) ? $_REQUEST['command'] : false;
+	  $upload_dir = wp_upload_dir();
+    $path = $upload_dir['basedir'] . '/json';
+	  if($command){
+	    if( $command == 'initial'){
+	      echo file_get_contents( $path."/catalog.json" );
+	    }
+	  }
+	  
+    wp_die();
+  }
+  
+  public function update_materials_cache(){
+    $args = array(
+              'post_type'=> array('edb_material_desc'),
+              'post_status'=>'publish',
+              'posts_per_page'=>-1
+            );
+    $results = get_posts( $args );
+    $output = array();
+    
+    foreach( $results as $desc ){
+      $material = get_post_meta( $desc->ID, '_edb_material', true );
+      
+      $subtitle = get_post_meta( $desc->ID, '_subtitle', true );
+      $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($desc->ID), 'post-thumbnail' );
+      $url = $thumb['0']; 
+      $output[$material] = array(
+        "title"=> $desc->post_title,
+        "subtitle" => $subtitle,
+        "material" => $material,
+        "image" => $url
+      );
+    }
+    $upload_dir = wp_upload_dir();
+    $path = $upload_dir['basedir'] . '/json';
+    $url = $upload_dir['baseurl'] . '/json';
+    $file = "$path/materials.json";
+    if ( !file_exists($path) ) mkdir($path, 0775);
+    $fp = fopen($file, 'w');
+    fwrite($fp, json_encode( $output ));
+    fclose($fp);
+  }
+  
+  public function update_product_cache(){
+    
+    $args = array(
+      'post_type'=> array('product','product_variation'),
+      'post_status'=>'publish',
+      'posts_per_page'=>-1
+    );
+    $product_results = get_posts( $args );
+    $products = array();
+    foreach( $product_results as $product ){
+      $deco = edb_decorated_product( $product->ID );
+      $products[$product->ID] = $deco;
+    }
+    $this->cached_query_result = $products;
+    $upload_dir = wp_upload_dir();
+    $path = $upload_dir['basedir'] . '/json';
+    $url = $upload_dir['baseurl'] . '/json';
+    $file = "$path/catalog.json";
+    if ( !file_exists($path) ) mkdir($path, 0775);
+    $fp = fopen($file, 'w');
+    fwrite($fp, json_encode( $products ));
+    fclose($fp);
+    return true;
+  }
 	/**
    * Get the custom page tempalte
    *
    * @since    1.0.0
    */
   public function get_page_template( $template ) {
+    // $this->update_materials_cache();
     if( is_page('order-tool') ){
       return dirname( __FILE__ ) . '/partials/edb-order-tool-public-display.php';
     }

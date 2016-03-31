@@ -17,8 +17,9 @@
    exit('No can haz.');
  }
 
-  wp_head(); 
+  echo file_get_contents( dirname( __FILE__ ) . '/../eot-poly/app/index.html');
+  // wp_head(); 
 ?>
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
-<h1>ORDER TOOL</h1>
+
 

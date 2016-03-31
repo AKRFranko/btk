@@ -13,7 +13,7 @@
 ?>
 <div class="checkout-tabs-and-summaries">
 <div id="checkout-panel-tabs">
-  <!--<?php var_dump(WC()->customer ); ?>-->
+  
   <a href="#address-info-panel" class="<?php edb_panel_active('#address-info-panel'); ?>"><?php _e('address', 'edb'); ?></a>
   <a href="#shipping-packages-panel" class="<?php edb_panel_active('#shipping-packages-panel'); ?>"><?php _e('delivery fees', 'edb'); ?></a>
   <a href="#payment-info-panel" class="<?php edb_panel_active('#payment-info-panel'); ?>"><?php _e('payment details', 'edb'); ?></a>

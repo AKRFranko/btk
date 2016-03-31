@@ -150,6 +150,27 @@ $skips = json_decode(@file_get_contents('./data/skip.json'));
 if(empty($skips)){
   $skips = array();   
 }
+
+$skumap = array(
+  'sofas' => 'SOF',
+  'sofa-beds'=> 'SOB',
+  'sectionals'=> 'SEC',
+  'coffee-tables'=> 'TAB',
+  'side-tables'=> 'TAB',
+  'armchairs'=> 'ARM',
+  'benches-ottomans'=> 'BNO',
+  'headboards'=> 'HED',
+  'storage'=> 'STO',
+  'accessories'=> 'ACC',
+  '2-seater'=>'2ST',
+  '3-seater'=>'3ST',
+  'left-facing'=>'LFT',
+  'right-facing'=>'RGT',
+  'modular'=>'MOD',
+  'pillows'=>'PIL',
+  'rugs'=>'RUG',
+  'other'=>'OTH',
+);
 function get_sku( $category, $name, $material ){
   global $skumap;
   $index = bin2hex( mhash( MHASH_ADLER32, $name ) );

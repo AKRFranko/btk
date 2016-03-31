@@ -75,7 +75,7 @@
         <ul>
       <?php
         $maincats = get_terms( 'product_cat', array('get'=>'all', 'parent' => 0, 'hide_empty' => false) );
-        $flatten = array('sofas','accessories');
+        $flatten = array('accessories');
         $ignore = array('benches-ottomans', 'headboards', 'storage');
         // var_dump( );
         foreach($maincats as $main){

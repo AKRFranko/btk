@@ -59,7 +59,15 @@
      }
 	 }
 	 
+	 var cycleDebounce = 0;
+	 
 	 function cycle( slider, direction ){
+	   var now= (new Date()).getTime();
+	   if( ( now - cycleDebounce ) < 100 ){
+	     return;
+	   }else{
+	     cycleDebounce = now;
+	   }
 	   var $slider = $( slider );
 	   var $active = $slider.find('.edb-slide.active');
 	   var cycleFn = direction == 1 ? 'next' : 'prev';

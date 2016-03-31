@@ -228,6 +228,7 @@ window.requestAnimFrame = (function(){
     $('.checkout-panel.active, #checkout-panel-tabs a.active, .summary.active').removeClass('active');
     var $targets = $( hash +', '+ '.summary[data-panel='+hash+'], a[href='+hash+']');
     $targets.addClass('active');
+    //$( hash ).find('.edb-save-and-continue').click();
     if(!history.replaceState){
       window.location.hash = hash;
     }else{

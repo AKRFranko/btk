@@ -154,7 +154,7 @@ class Edb_Order_Tool {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		// $this->loader->add_action( 'wp_ajax_edb_order_tool', $plugin_admin, 'enqueue_scripts' );
-		$this->loader->add_action( 'wp_ajax_edb_order_tool', $plugin_admin, 'handle_ajax' );
+		
 
 	}
 
@@ -172,7 +172,7 @@ class Edb_Order_Tool {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 		$this->loader->add_filter( 'template_include', $plugin_public, 'get_page_template', 99 );
-
+    $this->loader->add_action( 'wp_ajax_edb_order_tool', $plugin_public, 'handle_ajax' );
 	}
 
 	/**

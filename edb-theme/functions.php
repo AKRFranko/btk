@@ -318,8 +318,8 @@ function edb_splash_page(){
     'numberposts' => 1
   );
   $links = array(
-    'en' => array( 'url'=>home_url(), 'label' => __('enter', 'edb') ),
-    'fr' => array( 'url'=>str_replace('/fr','',home_url()).'/fr', 'label' => __('entrez', 'edb') )
+    'en' => array( 'url'=>home_url()."?splashed", 'label' => __('enter', 'edb') ),
+    'fr' => array( 'url'=>str_replace('/fr','',home_url()).'/fr'."?splashed", 'label' => __('entrez', 'edb') )
    );
   foreach($links as $lang => $link){
     echo "<a class=\"language-selection\" href=\"".$link['url']."\">".$link['label']."</a>";
