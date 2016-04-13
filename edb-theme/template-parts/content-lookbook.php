@@ -15,7 +15,7 @@
     $image_id = get_post_thumbnail_id( get_the_ID() );
     $image_src = wp_get_attachment_image_src( $image_id, 'full')[0];
   ?>
-    <div class="edb-slider">
+    <div class="edb-slider" zooms>
       <h1 class="edb-slider-main-title"><?php the_title(); ?></h1>
       <div class="edb-slider-main-text"><?php the_excerpt(); ?></div>
       <div class="edb-slides">
@@ -53,7 +53,7 @@
                     <?php 
                       
                       
-                      $decorated = edb_decorated_product( $feature->id );   
+                      $decorated = $feature;
                       if(!empty($decorated)){
                         $catlink = edb_get_category_url($decorated->category);  
                         

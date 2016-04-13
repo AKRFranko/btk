@@ -13,18 +13,20 @@ function time_elapsed($ptime) {
 30 * 24 * 60 * 60 => 'month'*/
     $a = array(
         7 * 24 * 60 * 60 => 'week'
-        // 24 * 60 * 60 => 'day',
-        // 60 * 60 => 'hour',
-        // 60 => 'min',
-        // 1 => 'sec'
+        // ,24 * 60 * 60 => 'day'
+        // ,60 * 60 => 'hour'
+        // ,60 => 'min'
+        // ,1 => 'sec'
     );
 
     foreach ($a as $secs => $text) {
         $d = $etime / $secs;
         if ($d >= 1) {
             $r = round($d);
-            
-            return sprintf(_n( '%s week', '%s weeks',  $r, 'edb' ), $r);
+            // return sprintf(_n( '%s %s', '%s %s',  $r, 'edb' ), $r, $text );
+            return sprintf(_n( '%s week', '%s weeks',  $r, 'edb' ), $r );
+        }else{
+          return sprintf(_n('%s week', '%s weeks', 1, 'edb'), 1 );
         }
     }
 }
@@ -343,6 +345,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     $html = '';
     $edb_backorder_delay = get_post_meta( $post_id, '_edb_backorder_delay', true);
     $edb_available_delay = get_post_meta( $post_id, '_edb_available_delay', true);
+
     if(empty($edb_available_delay)){
       $edb_available_delay = '+7 days';
     }

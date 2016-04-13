@@ -12,12 +12,17 @@
  * @subpackage Edb_Order_Tool/public/partials
  */
  global $user_login;
- get_currentuserinfo();
- if('franko' !== $user_login){
-   exit('No can haz.');
- }
-
-  echo file_get_contents( dirname( __FILE__ ) . '/../eot-poly/app/index.html');
+  get_currentuserinfo();
+  if('franko' !== $user_login){
+    auth_redirect();
+    exit(); 
+  }
+  $contents =  file_get_contents( dirname( __FILE__ ) . '/../edb-poly/app/index.html');
+  $params = json_encode( array(
+    'ajaxurl' => admin_url( 'admin-ajax.php', 'https' )
+  ));
+  echo str_replace( 'WP_INJECT', '<script type="text/javascript">var edb_order_tool_params = '.$params.';</script>', $contents );
+  
   // wp_head(); 
 ?>
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->

@@ -148,6 +148,7 @@ function _s_scripts() {
   wp_enqueue_script( '_s-splash', get_template_directory_uri() . '/js/splash.js', array('jquery','_s_hammer'), '20120206', true );
   wp_enqueue_script( '_s-toast', get_template_directory_uri() . '/js/toast.js', array('jquery','_s_hammer'), '20120206', true );
   
+  wp_localize_script('_s-toast', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 	wp_enqueue_script( '_s-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -182,10 +183,6 @@ function edb_theme_remove_wc_breadcrumbs() {
 
 add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 24;' ), 20 );
 
-function custom_excerpt_length( $length ) {
-  return 20;
-}
-add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 
 
 add_filter( 'the_subtitle', 'translate_subtitle' );
@@ -193,10 +190,22 @@ function translate_subtitle( $s ) {
   return  WPGlobus_Core::text_filter( $s, WPGlobus::Config()->language );
   
 }
-function new_excerpt_more( $more ) {
-  return '... more';
+
+function edb_translate_string( $s ){
+  return WPGlobus_Core::text_filter( $s, WPGlobus::Config()->language );
 }
-add_filter('excerpt_more', 'new_excerpt_more');
+
+function custom_excerpt_length( $length ) {
+  return 20;
+}
+add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
+
+function edb_excerpt_more( $more ) {
+  return '... '.edb_translate_string("{:en}more{:}{:fr}{:}");
+}
+add_filter('excerpt_more', 'edb_excerpt_more');
+
+
 
 // // remove speciific woocommerce stylsheets...
 // add_filter( 'woocommerce_enqueue_styles', 'edb_dequeue_woocommerce_styles' );
@@ -440,6 +449,46 @@ function change_menu($items){
 }
 
 add_filter('wp_nav_menu_objects', 'change_menu');
+
+
+
+function subscribe_to_newsletter() {
+ 
+    // The $_REQUEST contains all the data sent via ajax
+    if ( isset($_REQUEST) ) {
+        $email = $_REQUEST['email'];
+        $mlpost = get_post( 1890 );
+        $list = $mlpost->post_content;
+        $lang = WPGlobus::Config()->language;
+        $list .= "\n$email ($lang)";
+        $update = array('ID' => 1890, 'post_title' => $mlpost->post_title, 'post_content'=>$list );
+        wp_update_post( $update );
+        echo json_encode( array('message' => WPGlobus_Core::text_filter( "{:en}Thank you! $email has been subscribed! {:}{:fr}Merci! $email est mainteant abboné{:}", WPGlobus::Config()->language ) ) );
+    }
+    // Always die in functions echoing ajax content
+   die();
+}
+
+
+add_filter( 'wpcf7_validate_email*', 'custom_email_confirmation_validation_filter', 20, 2 );
+ 
+function custom_email_confirmation_validation_filter( $result, $tag ) {
+    $tag = new WPCF7_Shortcode( $tag );
+ 
+    if ( 'your-email-confirm' == $tag->name ) {
+        $your_email = isset( $_POST['your-email'] ) ? trim( $_POST['your-email'] ) : '';
+        $your_email_confirm = isset( $_POST['your-email-confirm'] ) ? trim( $_POST['your-email-confirm'] ) : '';
+ 
+        if ( $your_email != $your_email_confirm ) {
+            $result->invalidate( $tag, "Are you sure this is the correct address?" );
+        }
+    }
+    return $result;
+}
+ 
+add_action( 'wp_ajax_subscribe_to_newsletter', 'subscribe_to_newsletter' );
+add_action( 'wp_ajax_nopriv_subscribe_to_newsletter', 'subscribe_to_newsletter' );
+
 /**
  * Implement the Custom Header feature.
  */

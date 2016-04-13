@@ -367,6 +367,13 @@
     }
 
   }
+  
+  $( function(){
+    $('input[name=your-email-confirm]').get(0).onpaste = function( e ){
+      e.preventDefault();
+      // $('input[name=your-email-confirm]').after('<span role="alert" class="wpcf7-not-valid-tip">no pasting.</span>');
+    };
+  })
 
 
 

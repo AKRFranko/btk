@@ -149,7 +149,8 @@ class Edb_Public {
 
 	  if( is_checkout() ){
 	    write_log( '- is checkout');
-	    if( is_user_logged_in() || WC()->session->get('edb_user_checkout_as_guest') ){
+	    write_log( $_REQUEST );
+	    if( is_user_logged_in() || WC()->session->get('edb_user_checkout_as_guest') || isset($_REQUEST['pay_for_order']) ){
 	      return;
 	    }else{
 	      wp_redirect( home_url( '/my-account/?return_to=checkout' ) );  

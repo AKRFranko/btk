@@ -75,8 +75,10 @@
         <ul>
       <?php
         $maincats = get_terms( 'product_cat', array('get'=>'all', 'parent' => 0, 'hide_empty' => false) );
-        $flatten = array('accessories');
+        $flatten = array();
         $ignore = array('benches-ottomans', 'headboards', 'storage');
+        $standalone = array('accessories-rugs');
+        
         // var_dump( );
         foreach($maincats as $main){
           
@@ -84,12 +86,15 @@
             
           
           
-          if ( strtolower($main->name) !== 'lookbook' ) {
+          if ( strtolower($main->name) !== 'lookbook' &&  strtolower($main->name) !== 'accessories') {
             echo "<li>";
-            
-            if( !in_array($main->slug,$flatten)){
-              $subcats = get_terms( 'product_cat', array( 'parent' => $main->term_id, 'hide_empty' => false ) );
-            }else{
+            $subcats = get_terms( 'product_cat', array( 'parent' => $main->term_id, 'hide_empty' => false ) );
+            foreach( $subcats as $sub ){
+              if( in_array( $sub->slug, $standalone )  ){
+                echo '<a href="' . get_term_link( $sub ) . '" title="' . sprintf( __( 'View all %s', 'edb' ), $sub->name ) . '">' . __( $sub->name, 'edb') . '</a></li><li>';
+              }
+            }
+            if( in_array($main->slug,$flatten)){
               $subcats = array();
             }
             if( !empty($subcats)){
@@ -111,6 +116,12 @@
               echo '<a href="' . get_term_link( $main ) . '" title="' . sprintf( __( 'View all %s', 'edb' ), $main->name ) . '">' . __( $main->name, 'edb') . '</a>';
             }
             echo "</li>";
+          }else{
+            if(strtolower($main->name) === 'accessories'){
+              echo '<li><a href="/product-category/accessories-rugs/" title="' . sprintf( __( 'View all %s', 'edb' ), 'rugs' ) . '">' . __( 'rugs', 'edb') . '</a></li>';
+              echo '<li><a href="/product-category/accessories-pillows/" title="' . sprintf( __( 'View all %s', 'edb' ), 'pillows' ) . '">' . __( 'accessories', 'edb') . '</a></li>';
+            }
+            
           }
           }
         }

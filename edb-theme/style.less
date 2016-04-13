@@ -61,6 +61,7 @@ html,body{
     padding:0 .25em;
   }
   
+  
 }
 @media (max-width: 991px){
   
@@ -158,7 +159,7 @@ html,body{
     color:#fff;
   }
   .product-sub-sections{
-    margin-top: 4.5em;
+    margin-top: 58px;
     padding:0 1em;
   }
 }
@@ -244,12 +245,18 @@ html,body{
   }
   .product-description{
     width:100%;
-    padding:@mast-height 0;
+    padding:58px 0;
     margin:0;
+  }
+  .product-add-to-cart{
+    button{
+      margin-bottom:2em;
+    }
+    
   }
   .product-sidekick > div{
     width:970px;
-    margin:@mast-height auto;
+    margin:58px auto;
     padding:0 1em;
   }
   
@@ -370,14 +377,28 @@ html,body{
     div.product-technical-image{
       .left-floating-block;
       margin:0;
-      padding:0;
-      width:100%:;
+      padding:0.5em;
+      width:100%;
+      img{
+        width:calc(~"100% - 1em");
+        height:calc(~"100% - 1em");
+        margin:.5em;
+      }
     }
     div.product-introduction-video,div.product-technical-image{
       margin:-2em 0;
     }
     div.product-introduction-video{
-      margin-bottom:-2.5em;
+      margin-bottom:-58px;
+      margin-top:1em;
+      .youtube_video_link{
+        padding:0;
+        width:100%;
+        left:0;
+        top:0;
+        padding-bottom:calc(~"100% * 0.5625");
+      }
+      
     }
     .product-introduction-video, .product-instruction-video{
         .left-floating-block;
@@ -400,6 +421,9 @@ html,body{
       margin-top:3em;
       padding-bottom: calc(~" 100% * 0.5625");
     }
+  }
+  footer#colophon {
+      padding-bottom: 200px;
   }
     
 }

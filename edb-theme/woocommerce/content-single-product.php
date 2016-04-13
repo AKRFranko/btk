@@ -161,7 +161,7 @@ if ( ! defined( 'ABSPATH' ) ) {
       <?php if( $hasDims){ ?>
       <div class="product-detailed-information">
         <h2 class="section-title"><?php _e('materials and dimensions', 'edb'); ?></h2>
-        <p>a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat.</p>
+        <?php edb_product_dimensions( $product->id ); ?>
       </div>
       <?php };?>
     </div>

@@ -51,6 +51,8 @@ class Edb_Order_Tool_Public {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+		
+		
 
 	}
 
@@ -96,7 +98,7 @@ class Edb_Order_Tool_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/edb-order-tool-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'edb-poly/app/script/edb.js', array( 'jquery' ), $this->version, false );
 
     $params = array(
       'ajaxurl' => admin_url( 'admin-ajax.php', 'https' )
@@ -104,15 +106,30 @@ class Edb_Order_Tool_Public {
     wp_localize_script( $this->plugin_name, 'edb_order_tool_params' , $params );
     
 	}
-	
+
+  public function create_order( $jsonData ){
+    $order = wc_create_order();
+    
+    foreach( $jsonData['order'] as $json ){
+      $order->add_product( get_product( $json['product_id'] ),$json['quantity'] );
+    }
+    $order->calculate_totals();
+    $this->order = $order;
+    
+    return $this->order->get_checkout_payment_url();
+  }	
 	
 	public function handle_ajax(){
+	  write_log('HANDLE AJAX');
 	  $command = isset($_REQUEST['command']) ? $_REQUEST['command'] : false;
 	  $upload_dir = wp_upload_dir();
     $path = $upload_dir['basedir'] . '/json';
 	  if($command){
 	    if( $command == 'initial'){
 	      echo file_get_contents( $path."/catalog.json" );
+	    }
+	    if( $command == 'create_order'){
+	      echo $this->create_order( $_REQUEST );
 	    }
 	  }
 	  
@@ -181,6 +198,8 @@ class Edb_Order_Tool_Public {
    * @since    1.0.0
    */
   public function get_page_template( $template ) {
+    // $this->update_materials_cache();
+    // $this->update_product_cache();
     // $this->update_materials_cache();
     if( is_page('order-tool') ){
       return dirname( __FILE__ ) . '/partials/edb-order-tool-public-display.php';

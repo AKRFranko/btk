@@ -92,9 +92,15 @@ class Edb_Product_Decorator {
     
     $this->title = apply_filters('the_title', $this->post_object->post_title );
     $this->subtitle = apply_filters('the_title', $this->product_object->subtitle );
+    if(!empty($this->subtitle)){
+      $this->full_name = $this->title . '-' . preg_replace('/\s+/', '', $this->subtitle);;  
+    }else{
+      $this->full_name = $this->title;  
+    }
+    
     
     $this->description =  apply_filters('the_content',get_post_field('post_content', $this->post_id ));
-
+    $this->materials_and_dimensions =apply_filters('the_content',get_post_meta( $this->post_id ,'_edb_materials_and_dimensions',true));
     $this->variations = $this->product_object->get_children( $visible_only = true );
     $this->stocks = array();
     $this->available_variations=array();
@@ -158,6 +164,7 @@ class Edb_Product_Decorator {
     // write_log( $categories );
     $this->category = implode(', ', $categories);
     $this->category_slug = $product_cat_terms[0]->slug;
+    $this->wireframe_name = strtolower($this->full_name . '_' . $this->category_slug);
     // $this->category_slug = $categories[0]
     // $this->videos = array(
     //   'introduction' => get_post_meta( $this->post_id, '_edb_introduction_video', true ),
@@ -176,24 +183,31 @@ class Edb_Product_Decorator {
     
     $avail_default = get_post_meta( $this->product_id, '_edb_available_delay', true);
     $backo_default = get_post_meta( $this->product_id, '_edb_backorder_delay', true);
+    $exp_default = get_post_meta( $this->product_id, '_edb_expected_restock', true);
+    // write_log($avail_default);
     if(empty($avail_default)){
-      $avail_default = '+7 days';
+      $avail_default = '+2 weeks';
     }
     if(empty($backo_default)){
-      $backo_default = '+14 days';
+      $backo_default = '+16 weeks';
     }
     foreach( $this->variations as $variation_id){
-      $avail = get_post_meta( $this->product_id, '_edb_variation_available_delay', true);
-      $backo = get_post_meta( $this->product_id, '_edb_variation_backorder_delay', true);
+      $avail = get_post_meta( $variation_id, '_edb_variation_available_delay', true);
+      $backo = get_post_meta( $variation_id, '_edb_variation_backorder_delay', true);
+      $exp   = get_post_meta( $variation_id, '_edb_variation_expected_restock', true);
       if(empty($avail)){
         $avail = $avail_default;
       }
       if(empty($backo)){
         $backo = $backo_default;
       }
+      if(empty($exp)){
+        $exp = $exp_default;
+      }
       $shipping_delays[$variation_id] = array(
         'available' => $avail,
-        'backorder' => $backo
+        'backorder' => $backo,
+        'expected'=>$exp
       );
     }
     $this->shipping_delays = $shipping_delays;

@@ -111,13 +111,33 @@
 	  var $next = $('<a href="#">').addClass('proxy-control proxy-control-next');
 	  $slides.after($prev)
 	  $slides.after($next)
-	  $prev.on('click', function(){
+	  $prev.on('click', function( e ){
+	    e.preventDefault();
 	    $slider.find('.controls .prev').click()
 	  })
-	  $next.on('click', function(){
+	  $next.on('click', function( e ){
+	    e.preventDefault();
       $slider.find('.controls .next').click()
     })
 	  
+	 }
+	 
+	 
+	 function setupZoomControl( slider ){
+	   var $slider = $( slider );
+	   
+	   var $zoom = $('<a>').addClass('zoom-control').attr('href', '#');
+	   var $unzoom = $('<a>').addClass('zoom-close').attr('href', '#');
+	   
+     var $zoomBox = $slider.data('zoomDrop');
+     $zoom.add($unzoom).on('click', function( e ){
+       $slider.add(document.body).toggleClass('zoomed');
+      
+     });
+     
+     $slider.find('.controls').append( $zoom );
+     $(document.body).append($unzoom);
+	   
 	 }
 	 
 	 function updateCount( slider ){
@@ -172,11 +192,22 @@
 	 
    $(function( ) {
 
+      // var zoomDrop = $('<div>').addClass('zoom-dropsheet').html('<div class="inner">');
+      // var close = $('<a>').addClass('zoom-close').attr('href', '#');
+      // zoomDrop.append(close);
+      // $(document.body).append(zoomDrop);
+      
       $('.edb-slider').each(function(){
+        
         updateCount( this );
         hammerDown( this );
         setupProxyControls( this );
+        
+        if(!$('.home-slider').length){
+          setupZoomControl( this );
+        }
       });
+      
       
       
    });
@@ -190,7 +221,9 @@
    
    
     
-   
+   $(document).on('click','.zoom-control, .zoom-close', function( e ){
+     e.preventDefault();
+   })
    
 	  /*
 

@@ -235,9 +235,23 @@ function edb_checkout_item_availability( $cart_item_key, $cart_item  ){
   $delays = $decorated->shipping_delays[$variation_id];
   
   $now = strtotime(date(DATE_ATOM));
+  $exp = $now;
+  if(!empty($delays['expected'])){
+    $exp = strtotime( $delays['expected'], $now );
+    if($exp > $now){
+      $diff = $exp-$now;
+      $exp=$now-$diff;
+    }
+    
+  }
+  $min_date = strtotime( $delays['available'], $now );
+  $max_date = strtotime( $delays['backorder'], $exp );
+  if($max_date < $min_date){
+    $max_date = $min_date;
+  }
+  $min = trim(time_elapsed($min_date));
+  $max = trim(time_elapsed($max_date));
   
-  $min = trim(time_elapsed(strtotime( $delays['available'], $now )));
-  $max = trim(time_elapsed(strtotime( $delays['backorder'], $now )));
   $available_stock = $decorated->variation_object->get_total_stock();
   $wanted_stock = abs($cart_item['quantity']);
   if($available_stock <= 0 ){
@@ -260,6 +274,7 @@ function edb_order_item_availability( $item, $order ){
   $availability = $item['edb_availabilities'][$shipping];
   $order_date = strtotime($order->order_date);
   
+  
   $display =  strtotime( $availability, $order_date );
   // write_log( $availability );
   // write_log( $order_date );
@@ -270,14 +285,30 @@ function edb_order_item_availability( $item, $order ){
 
 function edb_latest_availability( $cart ){
   $latest = 0;
+  
   foreach( $cart->cart_contents as $cart_item_key => $cart_item ){
     $product_id = $cart_item['product_id'];
     $variation_id = $cart_item['variation_id'];
     $decorated = edb_decorated_product( $variation_id );
     $delays = $decorated->shipping_delays[$variation_id];
     $now = strtotime(date(DATE_ATOM));
-    $min = strtotime( $delays['available'], $now );
-    $max = strtotime( $delays['backorder'], $now );
+    $exp = $now;
+    if(!empty($delays['expected'])){
+      $exp = strtotime( $delays['expected'], $now );
+      if($exp > $now){
+        $diff = $exp-$now;
+        $exp=$now-$diff;
+      }
+      
+    }
+    $min_date = strtotime( $delays['available'], $now );
+    $max_date = strtotime( $delays['backorder'], $exp );
+    if($max_date < $min_date){
+      $max_date = $min_date;
+    }
+    
+    $min = $min_date;
+    $max = $max_date;
     $available_stock = $decorated->variation_object->get_total_stock();
     $wanted_stock = abs($cart_item['quantity']);
     if($available_stock <= 0 ){
@@ -526,9 +557,28 @@ function edb_product_material_picker( $product_id ){
     $delays = $decorated->shipping_delays[ ''.$data['variation_id'] ];
     
     $now = strtotime(date(DATE_ATOM));
-    $min = trim(time_elapsed(strtotime( $delays['available'], $now )));
-    $max = trim(time_elapsed(strtotime( $delays['backorder'], $now )));
+    $exp=$now;
+    if(!empty($delays['expected'])){
+      $exp = strtotime( $delays['expected'], $now );
+      if($exp > $now){
+        $diff = $exp-$now;
+        $exp=$now-$diff;
+      }
+      
+    }
+    
+
+    $min_date=strtotime( $delays['available'], $now );
+    $max_date=strtotime( $delays['backorder'], $exp );
+    if($max_date < $min_date ){
+      $max_date = $min_date;
+    }
+    $min = trim(time_elapsed($min_date));
+    $max = trim(time_elapsed($max_date));
+    
+    // write_log('elap:'.time_elapsed(strtotime( $delays['backorder'], $now )));
     // write_log($data);
+    
     $name =edb_get_material_name($edb_material);// esc_attr( apply_filters('the_title',$data['post']->post_title) . "  <b>".apply_filters('the_title', get_the_subtitle($data['post']->ID))."</b>");
     $availability_date  = esc_attr(json_encode( array( 'stock' => $stock_qty, 'min' => $min, 'max' => $max ) ));
     $preview = $decorated->images['material_variations'][$edb_material];
@@ -592,94 +642,110 @@ function tmp_has_tech_image( $deco ){
               "slope_sofas-3-seater",
               'pique-small_sectionals-right-facing',
               'pique-small_sectionals-left-facing',
+              'majuscule-blue_accessories-pillows',
+              'majuscule-white_accessories-pillows',
+              'nautique-green_accessories-pillows',
+              'panorama-laf_sofas-2-seater',
+              'panorama-raf_sofas-2-seater',
+              'majuscule-orange_accessories-pillows',
+              'mixmix_sofas-2-seater',
+              'pique-laf_sofas-2-seater',
+              'majuscule-pink_accessories-pillows',
+              'mutation_accessories-pillows',
+              'pique-raf_sofas-2-seater',
               "vintage_side-tables");
 
- $name = $deco->title;
-  
+// $name = $deco->title;
  
- $cat = $deco->category_slug;
- if($cat == 'modular'){
-   if( $deco->product_id == 285){
+ 
+// $cat = $deco->category_slug;
+// if($cat == 'modular'){
+//   if( $deco->product_id == 285){
      
-     $name = 'mixmix-corner';
-   }
-   if( $deco->product_id == 214){
+//     $name = 'mixmix-corner';
+//   }
+//   if( $deco->product_id == 214){
      
-     $name = 'mixmix-ottrec';
-   }
-   if( $deco->product_id == 249){
+//     $name = 'mixmix-ottrec';
+//   }
+//   if( $deco->product_id == 249){
      
-     $name = 'mixmix-single';
-   }
- }
- if( $cat == 'sofas-3-seater'){
-   if($deco->product_id == 1150){
-     $name = 'maritime-walnut';
-   }
-   if($deco->product_id == 1111){
-     $name = 'maritime-natural';
-   }
- }
- if( $cat == 'sectionals-left-facing' || $cat == 'sectionals-right-facing'){
-   if($deco->product_id == 1750 || $deco->product_id == 1775){
-     $name = 'pique-small';
-   }
- }
+//     $name = 'mixmix-single';
+//   }
+// }
+// if( $cat == 'sofas-3-seater'){
+//   if($deco->product_id == 1150){
+//     $name = 'maritime-walnut';
+//   }
+//   if($deco->product_id == 1111){
+//     $name = 'maritime-natural';
+//   }
+// }
+// if( $cat == 'sectionals-left-facing' || $cat == 'sectionals-right-facing'){
+//   if($deco->product_id == 1750 || $deco->product_id == 1775){
+//     $name = 'pique-small';
+//   }
+// }
  
  
- if( $cat == 'sofas-2-seater'){
- if($deco->product_id == 1667){
-   $name = 'maritime-walnut';
- }}
+// if( $cat == 'sofas-2-seater'){
+// if($deco->product_id == 1667){
+//   $name = 'maritime-walnut';
+// }
+   
+   
+// }
  
- $k = "$name"."_"."$cat";
- write_log( "\n\n\n$k\n\n\n");
- 
- if(in_array( $k, $data)){
+// $k = "$name"."_"."$cat";
+// write_log( "\n\n\n$k\n\n\n");
+ $wfname = $deco->wireframe_name;
+ write_log('https://elementdebase.com/wp-content/edb-svg/'.$wfname.'.svg');
+ if(in_array( $wfname, $data)){
   return true;
  }
  return false;
 }
 
 function tmp_get_tech_image( $deco ){
- $name = $deco->title;
- $cat = $deco->category_slug;
+// $name = $deco->title;
+// $cat = $deco->category_slug;
  
- if($cat == 'modular'){
-   if( $deco->product_id == 285){
+// if($cat == 'modular'){
+//   if( $deco->product_id == 285){
      
-     $name = 'mixmix-corner';
-   }
-   if( $deco->product_id == 214){
+//     $name = 'mixmix-corner';
+//   }
+//   if( $deco->product_id == 214){
      
-     $name = 'mixmix-ottrec';
-   }
-   if( $deco->product_id == 249){
+//     $name = 'mixmix-ottrec';
+//   }
+//   if( $deco->product_id == 249){
      
-     $name = 'mixmix-single';
-   }
- }
- if( $cat == 'sofas-3-seater'){
-   if($deco->product_id == 1150){
-     $name = 'maritime-walnut';
-   }
-   if($deco->product_id == 1111){
-     $name = 'maritime-natural';
-   }
- }
- if( $cat == 'sectionals-left-facing' || $cat == 'sectionals-right-facing'){
-   if($deco->product_id == 1750 || $deco->product_id == 1775){
-     $name = 'pique-small';
-   }
- }
- if( $cat == 'sofas-2-seater'){
-   if($deco->product_id ==  1667){
-     $name = 'maritime-walnut';
-   }
- }
- $k = "$name"."_"."$cat";
- write_log('https://elementdebase.com/wp-content/edb-svg/'.$k.'.svg');
- return 'https://elementdebase.com/wp-content/edb-svg/'.$k.'.svg';
+//     $name = 'mixmix-single';
+//   }
+// }
+// if( $cat == 'sofas-3-seater'){
+//   if($deco->product_id == 1150){
+//     $name = 'maritime-walnut';
+//   }
+//   if($deco->product_id == 1111){
+//     $name = 'maritime-natural';
+//   }
+// }
+// if( $cat == 'sectionals-left-facing' || $cat == 'sectionals-right-facing'){
+//   if($deco->product_id == 1750 || $deco->product_id == 1775){
+//     $name = 'pique-small';
+//   }
+// }
+// if( $cat == 'sofas-2-seater'){
+//   if($deco->product_id ==  1667){
+//     $name = 'maritime-walnut';
+//   }
+// }
+// $k = "$name"."_"."$cat";
+ $wfname = $deco->wireframe_name;
+ write_log('https://elementdebase.com/wp-content/edb-svg/'.$wfname.'.svg');
+ return 'https://elementdebase.com/wp-content/edb-svg/'.$wfname.'.svg';
 }
 
 function edb_has_tech_image( $product_id ){
@@ -700,9 +766,16 @@ function edb_has_instruction_video( $product_id ){
 }
 
 function edb_has_dimensions( $product_id ){
-  // TODO
-  return false;
+  $decorated = edb_decorated_product( $product_id );
+  return !empty($decorated->materials_and_dimensions);
 }
+
+function edb_product_dimensions( $product_id ){
+  $decorated = edb_decorated_product( $product_id );
+  echo $decorated->materials_and_dimensions;
+}
+
+
 function edb_has_sidekick($product_id ){
   // TODO
   return false;

@@ -206,6 +206,10 @@ class Edb {
     $GLOBALS['Edb_Shipping_Method_Ship_Bundle_2'] = new Edb_Shipping_Method_Ship_Bundle_2( __FILE__ );
     $GLOBALS['Edb_Shipping_Method_Ship_Bundle_3'] = new Edb_Shipping_Method_Ship_Bundle_3( __FILE__ );
     
+    
+    // add_action('woocommerce_reduce_order_stock', array( $this, 'mirror_reduce_order_stock'), 10, 1);
+    // add_action('woocommerce_get_stock_quantity', array( $this, 'mirror_get_stock'), 10, 1);
+    
     add_filter( 'woocommerce_cart_shipping_method_full_label' ,array( $GLOBALS['Edb_Shipping_Method'], 'cart_shipping_method_full_label') );
     add_filter( 'woocommerce_add_cart_item_data',  array($GLOBALS['Edb_Shipping_Method'], 'add_cart_item_custom_data'  ), 10, 2 );
     add_filter( 'woocommerce_get_cart_item_from_session', array($GLOBALS['Edb_Shipping_Method'], 'get_cart_items_from_session'), 1, 3 );
@@ -251,8 +255,40 @@ class Edb {
     
     // add_filter('woocommerce_coupon_is_valid_for_product', array($GLOBALS['Edb_Shipping_Method'], 'can_coupon_apply_to_product') , 10, 4 );
     
+    
+    
+	}
+	
+	public function mirror_reduce_order_stock( $order ){
+	  write_log('mirror_reduce_order_stock');
+	  
+	  foreach( $order->get_items() as $item ){
+	    
+	    if( !empty($item['product_id']) ){
+	      $target = get_product( $item['product_id'] );
+	      $mirror_from = $target->get_attribute('edb_mirror_stock_from');
+	      
+	      if(!empty($mirror_from)){
+	        $source = get_product( $mirror_from );
+	        $source_target = $source->get_attribute('edb_mirror_stock_to');
+	        if(!empty($source_target) && $source_target == $item['product_id']){
+	            $target_variation = get_product( $item['variation_id'] );
+	            $target_material = $target_variation->get_attribute('edb_material');
+	            $source_variations = $source->get_available_variations();
+	            foreach($source_variations as $source_variation){
+	              if($source_variation['attributes']['attribute_edb_material'] == $target_material){
+	                $source_variation = get_product( $source_variation['variation_id'] );
+	                $target_variation->set_stock( $source_variation->get_stock_quantity() );
+	              }
+	            }
+	        }
+	      }
+	    }
+	  }
+	  
 	  
 	}
+	
 
 	/**
 	 * Register all of the hooks related to the admin area functionality
@@ -290,6 +326,7 @@ class Edb {
     $this->loader->add_action( 'wp_ajax_edb_guess_shipping_zone', $plugin_admin,'edb_ajax_guess_shipping_zone' );
     $this->loader->add_action( 'wp_ajax_nopriv_edb_guess_shipping_zone', $plugin_admin,'edb_ajax_guess_shipping_zone' );
     
+    # $this->loader->add_action( 'woocommerce_reduce_order_stock', $this, 'mirror_reduce_order_stock' );
 	}
 
 	/**
