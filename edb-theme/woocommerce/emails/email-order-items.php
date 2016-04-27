@@ -37,7 +37,8 @@ $edb_shipping_methods = array(
     </tr>
     <?php
     foreach( $items as $copy ){
-      write_log( $copy );
+      
+      // write_log( $copy );
       $item_product = $order->get_product_from_item( $copy['item'] );
       
       wc_get_template( 'emails/order-details-item.php', array(

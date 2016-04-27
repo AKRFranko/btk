@@ -35,6 +35,7 @@ global $WC_Edb;
 	   <?php if ( WC()->cart->needs_payment() ) : ?>
      <div class="payment_methods methods">
        <?php
+       
          if ( ! empty( $available_gateways ) ) {
            foreach ( $available_gateways as $gateway ) {
              wc_get_template( 'checkout/payment-method.php', array( 'gateway' => $gateway ) );

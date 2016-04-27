@@ -8,9 +8,9 @@ function time_elapsed($ptime) {
       
         return 'today';
     }
-/*
-12 * 30 * 24 * 60 * 60 => 'year',
-30 * 24 * 60 * 60 => 'month'*/
+    /*
+      12 * 30 * 24 * 60 * 60 => 'year',
+      30 * 24 * 60 * 60 => 'month'*/
     $a = array(
         7 * 24 * 60 * 60 => 'week'
         // ,24 * 60 * 60 => 'day'
@@ -49,7 +49,8 @@ function endsWith($haystack, $needle) {
 
 class Edb_Shipping_Method extends WC_Shipping_Method{
  
-  public $shipping_debug = false;
+  public $shipping_debug = true;
+  
   public $cart_item_shipments = array(); 
   
   public $rates_table = array(
@@ -250,7 +251,17 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     // $order->update_taxes();
     
   }
-  
+  public function before_pay_action( $order, $order_key ){
+    write_log('BEFORE PAY ACTION');
+    $billing = array();
+    foreach( $_REQUEST as $name => $value ){
+      if( preg_match('/billing/', $name)){
+        WC()->customer->{$name} = $value;
+        $billing[ str_replace( 'billing_', '', $name ) ] = $value;
+      }
+    }
+    $order->set_address( $billing, 'billing');
+  }
   public function checkout_update_order_meta( $order_id, $posted ){
     $order = wc_get_order( $order_id );
     write_log("woocommerce_checkout_update_order_meta");  
@@ -259,6 +270,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     $original_items = $order->get_items();
     foreach($original_items as $item_id => $item ){
       
+      // write_log( $item );
       if(count($item['edb_shipments']) > 1){
         $this->checkout_split_order_item( $order, $item, $item_id);
       }
@@ -320,11 +332,11 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     $edb_backorder_delay = get_post_meta( $package_product->post->ID, '_edb_backorder_delay', true);
     $edb_available_delay = get_post_meta( $package_product->post->ID, '_edb_available_delay', true);
     if(empty($edb_available_delay)){
-      $edb_available_delay = '+7 days';
+      $edb_available_delay = '+2 weeks';
     }
     if(empty($edb_backorder_delay)){
       
-      $edb_backorder_delay = '+14 days';
+      $edb_backorder_delay = '+16 weeks';
     }
     if( $is_backorder ){
       return trim(time_elapsed(strtotime( $edb_backorder_delay, $now )));
@@ -347,11 +359,11 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     $edb_available_delay = get_post_meta( $post_id, '_edb_available_delay', true);
 
     if(empty($edb_available_delay)){
-      $edb_available_delay = '+7 days';
+      $edb_available_delay = '+2 weeks';
     }
     if(empty($edb_backorder_delay)){
       
-      $edb_backorder_delay = '+14 days';
+      $edb_backorder_delay = '+16 weeks';
     }
     foreach( WC()->cart->cart_contents as $cart_item ){
       if( $cart_item['variation_id'] == $product_id ){
@@ -662,7 +674,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     $current_user = wp_get_current_user();
     $customer_id = $current_user->ID;
     $customer = WC()->session->get('customer');
-    $woocommerce_shipping_fields = array( 'shipping_first_name','shipping_last_name', 'shipping_company',  'shipping_country', 'shipping_address_1','shipping_address_2','shipping_city','shipping_state','shipping_postcode');
+    $woocommerce_shipping_fields = array( 'shipping_first_name','shipping_last_name', 'shipping_company',  'shipping_phone','shipping_country', 'shipping_address_1','shipping_address_2','shipping_city','shipping_state','shipping_postcode');
     foreach($woocommerce_shipping_fields as $field  ){
         update_user_meta( $customer_id , $field, null );
         WC()->customer->__set( $field, null);
@@ -685,7 +697,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     );
     // write_log( "customer id: $customer_id");
     $woocommerce_billing_fields = array( 'billing_first_name','billing_last_name', 'billing_company', 'billing_email', 'billing_phone', 'billing_country', 'billing_address_1','billing_address_2','billing_city','billing_state','billing_postcode');
-    $woocommerce_shipping_fields = array( 'shipping_first_name','shipping_last_name', 'shipping_company',  'shipping_country', 'shipping_address_1','shipping_address_2','shipping_city','shipping_state','shipping_postcode');
+    $woocommerce_shipping_fields = array( 'shipping_first_name','shipping_last_name', 'shipping_phone','shipping_company',  'shipping_country', 'shipping_address_1','shipping_address_2','shipping_city','shipping_state','shipping_postcode');
     
     foreach($wordpress_fields as $field => $equivalent){
       if(isset($data[$equivalent])){
@@ -769,6 +781,10 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     global $woocommerce;
     if($this->shipping_debug) write_log('add_cart_item_custom_data');
     $cart_item_meta['edb_shipping'] = 'edb_ship_bundle_1';
+    if(isset($_REQUEST['leg_option'])){
+      $cart_item_meta['edb_leg'] = $_REQUEST['leg_option'];
+    }
+    // write_log( $_REQUEST['leg_option'] );
     // write_log('set cart item meta edb_Shipping as: edb_ship_bundle_1' );
     return $cart_item_meta; 
   }
@@ -776,10 +792,14 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   //Get it from the session and add it to the cart variable
   function get_cart_items_from_session( $item, $values, $key ) {
       if($this->shipping_debug) write_log('get_cart_items_from_session');
-      // write_log( $values );
+      write_log( $values );
       if ( array_key_exists( 'edb_shipping', $values ) ){
         // if($this->shipping_debug) write_log('get_cart_items_from_session ('.$key.') :  '.json_encode( $values ));
         $item[ 'edb_shipping' ] = $values['edb_shipping'];
+      }
+      if ( array_key_exists( 'edb_leg', $values ) ){
+        // if($this->shipping_debug) write_log('get_cart_items_from_session ('.$key.') :  '.json_encode( $values ));
+        $item[ 'edb_leg' ] = $values['edb_leg'];
       }
       
       
@@ -856,7 +876,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     
     foreach( $bundles as $method => $bundle  ){
       if( $method == $this->id){
-        // if($this->shipping_debug) write_log( 'had rate:' . json_encode( $this->rates ));
+        if($this->shipping_debug) write_log( 'had rate:' . json_encode( $this->rates ));
         if( empty( $bundle) ){
             if($this->shipping_debug) write_log("NUM ITEMS: 0");
             $rate = array(
@@ -865,13 +885,13 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
                   'cost' => 0
                 );
         }else{
-          // if($this->shipping_debug) write_log("Bundle $method has ".count($bundle['contents'])." items.");
+          if($this->shipping_debug) write_log("Bundle $method has ".count($bundle['contents'])." items.");
           $num = count($bundle['contents']);
           if($this->shipping_debug) write_log("NUM ITEMS: $num");
           $rate = $this->calculate_shipping_for_bundle( $bundle );  
           
         } 
-        // if($this->shipping_debug) write_log( "Add: ".$rate['cost']);
+        if($this->shipping_debug) write_log( "Add: ".$rate['cost']);
         $this->add_rate( $rate ); 
         $Edb_Shipping_Method->rates[$this->id]=$rate;
         if(isset($bundle['contents'])){
@@ -978,6 +998,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     global $Edb;
     $newitem = $item;
     $newitem['quantity'] = $have;
+    $newitem['edb_was_backorder'] = false;
     $newitem['line_total'] = ( $item['line_total'] / $wants ) * $have;
     $newitem['line_tax'] = ( $item['line_tax'] / $wants ) * $have;
     $newitem['line_subtotal'] = ( $item['line_subtotal'] / $wants ) * $have;
@@ -1002,6 +1023,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     $newitem = $item;
     $qty = $wants - $have;
     $newitem['quantity'] = $qty;
+    $newitem['edb_was_backorder'] = true;
     $newitem['line_total'] = ( $item['line_total'] / $wants ) * $qty;
     $newitem['line_tax'] = ( $item['line_tax'] / $wants ) * $qty;
     $newitem['line_subtotal'] = ( $item['line_subtotal'] / $wants ) * $qty;

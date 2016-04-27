@@ -12,16 +12,17 @@
   $(function(){
     $('#splash').each(function(){
       var $splash = $( this );
-      var splashID = $splash.data('id');
-      if(lastSplashSeen === splashID){
-        $splash.remove();
-      }else{
-        $('body').addClass('splash');
-        $splash.addClass('active');
-      }
-      $('#splash').on('click', '.language-selection', function(){
-        localStorage.setItem('last_splash_seen', splashID );
-      })
+      $splash.remove();
+      // var splashID = $splash.data('id');
+      // if(lastSplashSeen === splashID){
+      //   $splash.remove();
+      // }else{
+      //   $('body').addClass('splash');
+      //   $splash.addClass('active');
+      // }
+      // $('#splash').on('click', '.language-selection', function(){
+      //   localStorage.setItem('last_splash_seen', splashID );
+      // })
     });
     // $('#contest').each()
     

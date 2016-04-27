@@ -13,7 +13,7 @@
  */
  global $user_login;
   get_currentuserinfo();
-  if('franko' !== $user_login){
+  if(!current_user_can('publish_posts')){
     auth_redirect();
     exit(); 
   }

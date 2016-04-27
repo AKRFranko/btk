@@ -69,6 +69,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     
     <div class="product-menu">
         <?php
+        
         // $attribute_keys = array_keys( $attributes );
         $available_variations = $edb_product->variations;
         do_action( 'woocommerce_before_add_to_cart_form' ); ?>
@@ -89,8 +90,23 @@ if ( ! defined( 'ABSPATH' ) ) {
             <?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
             
             
-              <?php edb_add_to_cart_button( $product->id ); ?>
-            
+              <?php 
+                edb_add_to_cart_button( $product->id ); 
+                if(!empty($edb_product->leg_options)){
+                  $lv = $_REQUEST['lv'];
+                  
+                  if(!empty($lv) && in_array( $lv, $edb_product->leg_options) ){
+                  
+                    echo "<input type=\"hidden\" name=\"leg_option\" value=\"$lv\">";
+                  }else{
+                    $lv = $edb_product->leg_options[0];
+                    echo "<input type=\"hidden\" name=\"leg_option\" value=\"$lv\">";
+                  }
+                  
+                  
+                }
+                ?>
+                
 
             <?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
           <?php endif; ?>

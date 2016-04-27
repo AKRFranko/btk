@@ -1,0 +1,243 @@
+{
+  "title": "Velvet",
+  "composition": {
+    "en": [
+      "89% cotton",
+      "11% polyester"
+    ],
+    "fr": [
+      "89% coton",
+      "11% polyester"
+    ]
+  }
+  "material": "012",
+  "subtitle":{
+  }
+}
+
+[
+  "Deep Blue",
+  "Bleu Marine"
+]
+_____
+{
+  "title": "Tissage",
+  "composition": {
+    "en": [
+      "10% cotton",
+      "12% polyester",
+      "24% linen",
+      "54% viscose"
+    ],
+    "fr": [
+      "10% coton",
+      "12% polyester",
+      "24% lin",
+      "54% viscose"
+    ]
+  }
+}
+"011"
+[
+  "Turqoise",
+  "Turquoise"
+]
+_____
+{
+  "title": "Canevas",
+  "composition": {
+    "en": [
+      "70% cotton",
+      "30% linen"
+    ],
+    "fr": [
+      "70% coton",
+      " 30% lin"
+    ]
+  }
+}
+"010"
+[
+  "Mossy",
+  "Menthe"
+]
+_____
+{
+  "title": "Velvet",
+  "composition": {
+    "en": [
+      "89% cotton",
+      "11% polyester"
+    ],
+    "fr": [
+      "89% coton",
+      " 11% polyester"
+    ]
+  }
+}
+"009"
+[
+  "Olive",
+  "Olive"
+]
+_____
+{
+  "title": "Canevas",
+  "composition": {
+    "en": [
+      "70% cotton",
+      "30% linen"
+    ],
+    "fr": [
+      "70% coton",
+      " 30% lin"
+    ]
+  }
+}
+"008"
+[
+  "Yellow",
+  "Jaune"
+]
+_____
+{
+  "title": "Canevas",
+  "composition": {
+    "en": [
+      "70% cotton",
+      "30% linen"
+    ],
+    "fr": [
+      "70% coton",
+      " 30% lin"
+    ]
+  }
+}
+"007"
+[
+  "Deep Red",
+  "Bourgogne"
+]
+_____
+{
+  "title": "Flannel",
+  "composition": {
+    "en": [
+      "2% SPA",
+      "88% polyester",
+      "10% viscose"
+    ],
+    "fr": [
+      "2% SPA",
+      " 88% polyester",
+      "10% viscose"
+    ]
+  }
+}
+"006"
+[
+  "Charcoal",
+  "Anthracite"
+]
+_____
+{
+  "title": "Epingle",
+  "composition": {
+    "en": [
+      "76% cotton",
+      "24% acrylic"
+    ],
+    "fr": [
+      "76% coton",
+      " 24% acrylique"
+    ]
+  }
+}
+"005"
+[
+  "Grey",
+  "Gris"
+]
+_____
+{
+  "title": "Tweed",
+  "composition": {
+    "en": [
+      "80% viscose",
+      "20% linen"
+    ],
+    "fr": [
+      "80% viscose",
+      " 20% lin"
+    ]
+  }
+}
+"004"
+[
+  "Grey",
+  "Gris"
+]
+_____
+{
+  "title": "Linen",
+  "composition": {
+    "en": [
+      "40% viscose",
+      "20% linen",
+      "20% polyester",
+      "20% cotton"
+    ],
+    "fr": [
+      "40% viscose",
+      "20% lin",
+      "20% polyester ",
+      "20% coton"
+    ]
+  }
+}
+"003"
+[
+  "Charcoal",
+  "Anthracite"
+]
+_____
+{
+  "title": "Linen",
+  "composition": {
+    "en": [
+      "40% viscose",
+      "20% linen 20%",
+      "polyester 20%",
+      "cotton"
+    ],
+    "fr": [
+      "40% viscose",
+      " 20% lin",
+      " 20% polyester",
+      " 20% coton"
+    ]
+  }
+}
+"002"
+[
+  "Natural",
+  "Naturel"
+]
+_____
+{
+  "title": "Coton",
+  "composition": {
+    "en": [
+      "100% cotton"
+    ],
+    "fr": [
+      "100% coton"
+    ]
+  }
+}
+"001"
+[
+  "White",
+  "Blanc"
+]
+_____

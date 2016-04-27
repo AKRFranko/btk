@@ -96,7 +96,7 @@ class Edb_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/edb-public.js', array( 'jquery' ), $this->version . '.a', false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/edb-public.js', array( 'jquery' ), $this->version . '.c', false );
 
 	}
 	public function check_redirect_state( $returnto ){
@@ -151,6 +151,14 @@ class Edb_Public {
 	    write_log( '- is checkout');
 	    write_log( $_REQUEST );
 	    if( is_user_logged_in() || WC()->session->get('edb_user_checkout_as_guest') || isset($_REQUEST['pay_for_order']) ){
+	     // if(isset($_REQUEST['pay_for_order'])){
+	     //   foreach( $_REQUEST as $field => $value ){
+	     //     if( preg_match('billing', $field) ){
+	     //       WC()->customer->{$field} = $value;
+	            
+	     //     }
+	     //   }
+	     // }
 	      return;
 	    }else{
 	      wp_redirect( home_url( '/my-account/?return_to=checkout' ) );  

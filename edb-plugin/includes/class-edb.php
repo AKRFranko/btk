@@ -246,6 +246,8 @@ class Edb {
     
     add_action('woocommerce_before_checkout_process', array($GLOBALS['Edb_Shipping_Method'],'before_checkout_process'));
     add_action('woocommerce_after_checkout_validation',array($GLOBALS['Edb_Shipping_Method'],'after_checkout_validation'));
+    
+    add_action('woocommerce_before_pay_action', array($GLOBALS['Edb_Shipping_Method'],'before_pay_action'));
     // add_action( 'woocommerce_review_order_before_submit',  array($GLOBALS['Edb_Shipping_Method'], 'review_order_before_submit') );
     
     // add_action( 'woocommerce_before_checkout_billing_form', array($GLOBALS['Edb_Shipping_Method'],'before_checkout_billing_form') );
@@ -260,31 +262,31 @@ class Edb {
 	}
 	
 	public function mirror_reduce_order_stock( $order ){
-	  write_log('mirror_reduce_order_stock');
+	 // write_log('mirror_reduce_order_stock');
 	  
-	  foreach( $order->get_items() as $item ){
+	 // foreach( $order->get_items() as $item ){
 	    
-	    if( !empty($item['product_id']) ){
-	      $target = get_product( $item['product_id'] );
-	      $mirror_from = $target->get_attribute('edb_mirror_stock_from');
+	 //   if( !empty($item['product_id']) ){
+	 //     $target = get_product( $item['product_id'] );
+	 //     $mirror_from = $target->get_attribute('edb_mirror_stock_from');
 	      
-	      if(!empty($mirror_from)){
-	        $source = get_product( $mirror_from );
-	        $source_target = $source->get_attribute('edb_mirror_stock_to');
-	        if(!empty($source_target) && $source_target == $item['product_id']){
-	            $target_variation = get_product( $item['variation_id'] );
-	            $target_material = $target_variation->get_attribute('edb_material');
-	            $source_variations = $source->get_available_variations();
-	            foreach($source_variations as $source_variation){
-	              if($source_variation['attributes']['attribute_edb_material'] == $target_material){
-	                $source_variation = get_product( $source_variation['variation_id'] );
-	                $target_variation->set_stock( $source_variation->get_stock_quantity() );
-	              }
-	            }
-	        }
-	      }
-	    }
-	  }
+	 //     if(!empty($mirror_from)){
+	 //       $source = get_product( $mirror_from );
+	 //       $source_target = $source->get_attribute('edb_mirror_stock_to');
+	 //       if(!empty($source_target) && $source_target == $item['product_id']){
+	 //           $target_variation = get_product( $item['variation_id'] );
+	 //           $target_material = $target_variation->get_attribute('edb_material');
+	 //           $source_variations = $source->get_available_variations();
+	 //           foreach($source_variations as $source_variation){
+	 //             if($source_variation['attributes']['attribute_edb_material'] == $target_material){
+	 //               $source_variation = get_product( $source_variation['variation_id'] );
+	 //               $target_variation->set_stock( $source_variation->get_stock_quantity() );
+	 //             }
+	 //           }
+	 //       }
+	 //     }
+	 //   }
+	 // }
 	  
 	  
 	}

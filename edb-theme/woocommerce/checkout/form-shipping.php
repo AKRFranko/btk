@@ -39,32 +39,47 @@ $do_not_ship = WC()->session->get('do_not_ship');
 			<?php do_action( 'woocommerce_before_checkout_shipping_form', $checkout ); ?>
 
 			<?php foreach ( $checkout->checkout_fields['shipping'] as $key => $field ) : ?>
+        <?php if( $key == 'shipping_phone'){
+          $field['label'] = __('Phone','edb');
+          $field['placeholder'] = __('Phone','edb');
+
+        } ?>			  
         <?php if($ship_to_same_address){ $field['custom_attributes'] = array('readonly'=>'readonly'); } ?>
         <?php 
         
-        if($key == 'shipping_postcode' || $key == 'billing_postcode' ){
-            $billingValue = $checkout->get_value('billing_postcode' );
+        if($key == 'shipping_postcode' ){
+            // $billingValue = $checkout->get_value('billing_postcode' );
             $shippingValue = $checkout->get_value('shipping_postcode' );
             $customerValue = WC()->customer->get_shipping_postcode();
+            // $fallback = '';
             if(!empty($shippingValue)){
               $value = $shippingValue;
             }
-            if(!empty($billingValue)){
-              $value = $billingValue;
+            if(!empty($billingValue) && empty($value)){
+              $value = $billingValue;//$fallback = "<input type=\"hidden\" name=\"s_postcode\" value=\"$billingValue\">";
+              // $value = $billingValue;
             }
-    
-            if(empty($value)){
+            if(!empty($customerValue) && empty($shippingValue)){
+              // $fallback = "<input type=\"hidden\" name=\"s_postcode\" value=\"$customerValue\">";
               $value = $customerValue;
             }
+            // if(empty($value)){
+            //   $value = $customerValue;
+            // }
             
             if(empty($value) && isset($_REQUEST['shipping_postcode'])){
+              
               $value = $_REQUEST['shipping_postcode'];
             }
-            woocommerce_form_field( $key, $field, $value ); 
-            
-        }else{ 
+            // if(empty($value)){
+            //   $value = $checkout->get_value( $key );
+            // }
+            echo "<input type=\"hidden\" name=\"calc_shipping_postcode\" value=\"$value\">";
+            // woocommerce_form_field( $key, $field, $value );
+            // echo $fallback;
+        }
             woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); 
-        };
+        // };
         
         ?>
 				

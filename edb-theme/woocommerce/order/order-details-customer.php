@@ -46,6 +46,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php endif; ?>
 
 <header class="title">
+  
 	<h3><?php _e( 'billing address', 'edb' ); ?></h3>
 </header>
 <address>
@@ -57,7 +58,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div><!-- /.col-1 -->
 	<div class="col-2">
 		<header class="title">
-			<h3><?php _e( 'shipping address', 'edb' ); ?></h3>
+		  <h3><?php _e( 'shipping address', 'edb' ); ?></h3>
+			
 		</header>
 		<address>
 			<?php echo ( $address = $order->get_formatted_shipping_address() ) ? $address : __( 'N/A', 'edb' ); ?>

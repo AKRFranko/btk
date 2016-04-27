@@ -183,6 +183,7 @@ class Edb_Admin {
     foreach( $attachment_images as $image){
       $image_options[$image->ID] = wp_get_attachment_image_src($image->ID, 'thumb');
     }
+    
     echo "<p><b>Materials & Dimensions</b></p>";
     woocommerce_wp_textarea_input(array(
       'id' => '_edb_materials_and_dimensions' ,
@@ -217,7 +218,7 @@ class Edb_Admin {
        'label' => __('Expected Restock Date', 'edb'),
        'type'=>'date',
        'desc_tip' => true,
-       'value' => isset( $edb_expected_restock ) && !empty( $edb_expected_restock ) ? $edb_expected_restock : null
+       'value' => isset( $edb_expected_restock ) ? $edb_expected_restock : null
        )
     );
     echo "<hr><p><b>EDB Related Media</b></p>";
@@ -296,7 +297,7 @@ class Edb_Admin {
        'label' => __('Expected Restock Date', 'edb'),
        'type'=>'date',
        'desc_tip' => true,
-       'value' => isset( $edb_expected_restock ) && !empty( $edb_expected_restock ) ? $edb_expected_restock : $default_edb_expected_restock
+       'value' =>  $edb_expected_restock 
        )
     );
 	}
@@ -308,10 +309,11 @@ class Edb_Admin {
 	}
 	
 	public function save_product_settings_fields( $post_id ){
-	 
+	  write_log('GABAGABA');
+	  write_log($_POST);
 	  $edb_available_delay = (isset( $_POST['_edb_available_delay'] ) && !empty($_POST['_edb_available_delay'])) ? $_POST['_edb_available_delay'] : '+2 weeks';
     $edb_backorder_delay = (isset( $_POST['_edb_backorder_delay'] ) && !empty($_POST['_edb_backorder_delay'])) ? $_POST['_edb_backorder_delay'] : '+16 weeks';
-    $edb_expected_restock = (isset( $_POST['_edb_expected_restock'] ) && !empty($_POST['_edb_expected_restock'])) ? $_POST['_edb_expected_restock'] : null;
+    $edb_expected_restock = $_POST['_edb_expected_restock'];
     $edb_technical_image = (isset($_POST['_edb_technical_image']) && !empty($_POST['_edb_technical_image'])) ? $_POST['_edb_technical_image'] : null;
     
     $edb_introduction_video = (isset($_POST['_edb_introduction_video']) && !empty($_POST['_edb_introduction_video'])) ? $_POST['_edb_introduction_video'] : null;
@@ -330,9 +332,9 @@ class Edb_Admin {
       update_post_meta( $post_id, '_edb_backorder_delay', esc_attr( $edb_backorder_delay ) );
     }
     
-    if(!empty( $edb_expected_restock  )){
+    // if(!empty( $edb_expected_restock  )){
       update_post_meta( $post_id, '_edb_expected_restock', esc_attr( $edb_expected_restock ) );
-    }
+    // }
     
     if(!empty($technical_image)){
       update_post_meta( $post_id, '_edb_technical_image', esc_attr( $edb_technical_image )  );
@@ -359,11 +361,11 @@ class Edb_Admin {
     $default_expected_restock = get_post_meta( $post_id, '_edb_expected_restock', true );
 	  $edb_available_delay = (isset( $_POST['_edb_variation_available_delay'] ) && !empty($_POST['_edb_variation_available_delay'])) ? $_POST['_edb_variation_available_delay'] : $default_available_delay;
 	  $edb_backorder_delay = (isset( $_POST['_edb_variation_backorder_delay'] ) && !empty($_POST['_edb_variation_backorder_delay'])) ? $_POST['_edb_variation_backorder_delay'] : $default_backorder_delay;
-	  $edb_expected_restock = (isset( $_POST['_edb_variation_expected_restock'] ) && !empty($_POST['_edb_variation_expected_restock'])) ? $_POST['_edb_variation_expected_restock'] : $default_expected_restock;
+	  $edb_expected_restock = $_POST['_edb_variation_expected_restock'];
 	  
-	  if(!empty($edb_expected_restock)){
+	 // if(!empty($edb_expected_restock)){
 	    update_post_meta( $post_id, '_edb_variation_expected_restock', esc_attr( $edb_expected_restock ) );
-	  }
+	 // }
 	  if($this->is_valid_delay_string( $edb_available_delay  )){
       update_post_meta( $post_id, '_edb_variation_available_delay', esc_attr( $edb_available_delay ) );
     }

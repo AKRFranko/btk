@@ -11,7 +11,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 // write_log(array_keys($GLOBALS));
-$order = wc_get_order( $order_id );
+
+  $order = wc_get_order( $order_id );  
+
 ?>
 
 <div class="boxes">
@@ -24,9 +26,9 @@ $order = wc_get_order( $order_id );
       
 		<?php
 		$edb_shipping_methods = array(
-      'edb_self_pickup' => __("I will pick up.",'edb'),
+      'edb_self_pickup' => __("self pickup", 'edb'),
       'edb_ship_ready' => __("ship when ready",'edb'),
-      'edb_ship_bundle_1' => __("ship bundle 1",'edb'),
+      'edb_ship_bundle_1' => __("delivery",'edb'),
       'edb_ship_bundle_2' => __("ship bundle 2",'edb'),
       'edb_ship_bundle_3' => __("ship bundle 3",'edb')
     );
@@ -75,7 +77,7 @@ $order = wc_get_order( $order_id );
 		</div>
       </div>
       <div class="box half">
-        <h1><?php _e('totals','edb'); ?></h1>
+        <h1><?php _e('total','edb'); ?></h1>
         <div class="cart-costs">
         <?php
           foreach ( $order->get_order_item_totals() as $key => $total ) {

@@ -117,10 +117,17 @@
             }
             echo "</li>";
           }else{
-            if(strtolower($main->name) === 'accessories'){
-              echo '<li><a href="/product-category/accessories-rugs/" title="' . sprintf( __( 'View all %s', 'edb' ), 'rugs' ) . '">' . __( 'rugs', 'edb') . '</a></li>';
-              echo '<li><a href="/product-category/accessories-pillows/" title="' . sprintf( __( 'View all %s', 'edb' ), 'pillows' ) . '">' . __( 'accessories', 'edb') . '</a></li>';
+            if(is_wp_error($main->name)){
+              write_log( 'WP_ERROR');
+              write_log( 'WP_ERROR:header.php');
+              write_log( $main );
+            }else{
+              if(strtolower($main->name) === 'accessories'){
+                echo '<li><a href="/product-category/accessories-rugs/" title="' . sprintf( __( 'View all %s', 'edb' ), 'rugs' ) . '">' . __( 'rugs', 'edb') . '</a></li>';
+                echo '<li><a href="/product-category/accessories-pillows/" title="' . sprintf( __( 'View all %s', 'edb' ), 'pillows' ) . '">' . __( 'accessories', 'edb') . '</a></li>';
+              }  
             }
+            
             
           }
           }

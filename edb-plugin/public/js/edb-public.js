@@ -151,6 +151,7 @@ window.requestAnimFrame = (function(){
     var $lastActive = $slideshow.find('.active-slide');
     var $tempSlide = $slideshow.find('[data-material='+material+']');
     var activeBG;
+    
     if($lastActive.data('original-image')){
       activeBG = $lastActive.data('original-image');
     }else{
@@ -257,7 +258,7 @@ window.requestAnimFrame = (function(){
     $('.woocommerce form .form-row label').each(function(){
       var $label = $( this );
       var $input = $label.next('input,select');
-      if($input.length){
+      if($input.length && $label.text()){
         $input.attr('placeholder', $label.text() );
       }
     })
@@ -398,13 +399,19 @@ window.requestAnimFrame = (function(){
   // Highjack Woocommerce Ajax Updates
   $(document).ajaxSend( function( event, request, settings ){
     var wcAjax = parseWCAjaxSettings( settings );
-    
+    // console.log('Highjack', event, request, settings );
     if(wcAjax ){
       if(wcAjax == 'update_shipping_method' || wcAjax == 'update_order_review'){
         saveSummaryToggles();
         var queryString = settings.data;
         // queryString = updateQueryStringShippingAddress(queryString);
-        // console.log(queryString.split('&'));
+        // var fixed = queryString.split('&').map( function( s ){
+        //   if(/^s_postcode/.test(s)){
+        //           return 's_postcode='+$('input[name=s_postcode]').val();     
+        //   }
+        //   return s;
+        // });
+        // console.log(fixed.join('&'));
         settings.data = queryString+'&'+$( 'select.shipping_method, input[name^=shipping_method][type=radio]:checked, input[name^=shipping_method][type=hidden]' ).serialize();
       }
     }

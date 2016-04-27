@@ -142,14 +142,14 @@ function _s_scripts() {
 // 	wp_enqueue_script( '_s_jquery_event_swipe', get_template_directory_uri() . '/js/jquery.event.swipe.js', array('jquery','_s_jquery_event_move'), '20120208', true );
 	
 // 	wp_enqueue_script( '_s-bugyfill', get_template_directory_uri() . '/js/viewport-units-buggyfill.js', array() , '20120206', true );
-	wp_enqueue_script( '_s_hammer', get_template_directory_uri() . '/js/hammer.min.js', array(), '20120208', true );
+	wp_enqueue_script( '_s_hammer', get_template_directory_uri() . '/js/hammer.min.js', array(), '20160403', true );
 
-  wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array('jquery','_s_hammer'), '20120206', true );
-  wp_enqueue_script( '_s-splash', get_template_directory_uri() . '/js/splash.js', array('jquery','_s_hammer'), '20120206', true );
-  wp_enqueue_script( '_s-toast', get_template_directory_uri() . '/js/toast.js', array('jquery','_s_hammer'), '20120206', true );
+  wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array('jquery','_s_hammer'), '20160403', true );
+  wp_enqueue_script( '_s-splash', get_template_directory_uri() . '/js/splash.js', array('jquery','_s_hammer'), '20160403', true );
+  wp_enqueue_script( '_s-toast', get_template_directory_uri() . '/js/toast.js', array('jquery','_s_hammer'), '20160403', true );
   
   wp_localize_script('_s-toast', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
-	wp_enqueue_script( '_s-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
+	wp_enqueue_script( '_s-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20160403', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -483,11 +483,75 @@ function custom_email_confirmation_validation_filter( $result, $tag ) {
             $result->invalidate( $tag, "Are you sure this is the correct address?" );
         }
     }
+    write_log( $result);
     return $result;
+}
+
+add_action('wpcf7_posted_data', 'custom_form_posted_data' );
+
+function custom_form_posted_data($posted_data){
+  foreach( $posted_data as $k => $v){
+    if($k == 'province' && !empty($v) && $v == 'Quebec'){
+      $v = 'Québec';
+    }
+    if($k == 'postal-code' && !empty($v)){
+      $v = wordwrap( strtoupper($v), 3, ' ', true );
+    }
+    $posted_data[$k] = $v;
+  }
+  return $posted_data;
 }
  
 add_action( 'wp_ajax_subscribe_to_newsletter', 'subscribe_to_newsletter' );
 add_action( 'wp_ajax_nopriv_subscribe_to_newsletter', 'subscribe_to_newsletter' );
+
+
+
+
+// Hook in
+add_filter( 'woocommerce_checkout_fields' , 'edb_override_checkout_fields' );
+
+// Our hooked in function - $fields is passed via the filter!
+function edb_override_checkout_fields( $fields ) {
+    
+     $fields['shipping']['shipping_phone'] = $fields['billing']['billing_phone'];
+     $fields['shipping']['shipping_phone']['class'] = array('form-row-first');
+     $order = array( 'shipping_first_name','shipping_last_name', 'shipping_company',  'shipping_phone','shipping_country', 'shipping_address_1','shipping_address_2','shipping_city','shipping_state','shipping_postcode');
+     $reordered = array();
+     foreach( $order as $field ){
+       $reordered[$field] = $fields['shipping'][$field];
+     }
+     $fields['shipping']=$reordered;
+      
+     return $fields;
+}
+
+// function test_edb_json(){
+//   edb_to_essential_json(36110);  
+// }
+
+// function edb_to_essential_json( $product_id ){
+//   $product = get_product($product_id);
+//   $attributes = $product->get_attributes();
+//   $materials = array();
+//   if($attributes['edb_material']){
+//     $materials = explode('|',$attributes['edb_material']['value']);
+//   }
+//   $json = array();
+//   $json['title'] = $product->post->post_title;
+//   $json['subtitle'] = $product->post->subtitle;
+//   $json['description'] = $product->post->post_content;
+//   $json['name'] = $product->post->post_name;
+//   $json['url'] = $product->post->guid;
+//   $json['type'] = $product->post->post_type;
+//   $json['is_variable'] = $product->product_type == 'variable';
+//   $json['material_numbers'] = $materials;
+//   $json['featured_image'] = get_post_thumbnail_id( $product_id );
+  
+//   write_log( $json );
+// }
+
+// add_action( 'init', 'test_edb_json'  );
 
 /**
  * Implement the Custom Header feature.

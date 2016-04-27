@@ -1,0 +1,97 @@
+{
+  "999": {},
+  "154": {},
+  "153": {},
+  "152": {},
+  "151": {},
+  "106": {},
+  "105": {},
+  "104": {},
+  "103": {},
+  "102": {},
+  "101": {},
+  "051": {},
+  "052": {},
+  "053": {},
+  "054": {},
+  "055": {},
+  "056": {},
+  "057": {},
+  "058": {},
+  "059": {},
+  "062": {},
+  "063": {},
+  "064": { },
+  "012": {
+    "title": "Velvet",
+    "subtitle": "{:en}Deep Blue{:}{:fr}Bleu Marine{:}",
+    "material": "012",
+    "image": "https:\/\/elementdebase-prod-elementdebase.netdna-ssl.com\/wp-content\/uploads\/2016\/02\/large-28.jpg"
+  },
+  "011": {
+    "title": "Tissage",
+    "subtitle": "{:en}Turqoise{:}{:fr}Turquoise{:}",
+    "material": "011",
+    "image": "https:\/\/elementdebase-prod-elementdebase.netdna-ssl.com\/wp-content\/uploads\/2016\/02\/large-25.jpg"
+  },
+  "010": {
+    "title": "Canevas",
+    "subtitle": "{:en}Mossy{:}{:fr}Menthe{:}",
+    "material": "010",
+    "image": "https:\/\/elementdebase-prod-elementdebase.netdna-ssl.com\/wp-content\/uploads\/2016\/02\/large-24.jpg"
+  },
+  "009": {
+    "title": "Velvet",
+    "subtitle": "{:en}Olive{:}{:fr}Olive{:}",
+    "material": "009",
+    "image": "https:\/\/elementdebase-prod-elementdebase.netdna-ssl.com\/wp-content\/uploads\/2016\/02\/large-23.jpg"
+  },
+  "008": {
+    "title": "Canevas",
+    "subtitle": "{:en}Yellow{:}{:fr}Jaune{:}",
+    "material": "008",
+    "image": "https:\/\/elementdebase-prod-elementdebase.netdna-ssl.com\/wp-content\/uploads\/2016\/02\/large-22.jpg"
+  },
+  "007": {
+    "title": "Canevas",
+    "subtitle": "{:en}Deep Red{:}{:fr}Bourgogne{:}",
+    "material": "007",
+    "image": "https:\/\/elementdebase-prod-elementdebase.netdna-ssl.com\/wp-content\/uploads\/2016\/02\/large-21.jpg"
+  },
+  "006": {
+    "title": "Flannel",
+    "subtitle": "{:en}Charcoal{:}{:fr}Anthracite{:}",
+    "material": "006",
+    "image": "https:\/\/elementdebase-prod-elementdebase.netdna-ssl.com\/wp-content\/uploads\/2016\/02\/large-20.jpg"
+  },
+  "005": {
+    "title": "Epingle",
+    "subtitle": "{:en}Grey{:}{:fr}Gris{:}",
+    "material": "005",
+    "image": "https:\/\/elementdebase-prod-elementdebase.netdna-ssl.com\/wp-content\/uploads\/2016\/02\/large-19.jpg"
+  },
+  "004": {
+    "title": "Tweed",
+    "subtitle": "{:en}Grey{:}{:fr}Gris{:}",
+    "material": "004",
+    "image": "https:\/\/elementdebase-prod-elementdebase.netdna-ssl.com\/wp-content\/uploads\/2016\/02\/large-18.jpg"
+  },
+  "003": {
+    "title": "Linen",
+    "subtitle": "{:en}Charcoal{:}{:fr}Anthracite{:}",
+    "material": "003",
+    "image": "https:\/\/elementdebase-prod-elementdebase.netdna-ssl.com\/wp-content\/uploads\/2016\/02\/large-17.jpg"
+  },
+  "002": {
+    "title": "Linen",
+    "subtitle": "{:en}Natural{:}{:fr}Naturel{:}",
+    "material": "002",
+    "image": "https:\/\/elementdebase-prod-elementdebase.netdna-ssl.com\/wp-content\/uploads\/2016\/02\/large-16.jpg"
+  },
+  "001": {
+    "title": "Coton",
+    "subtitle": "{:en}White{:}{:fr}Blanc{:}",
+    "material": "001",
+    "image": "https:\/\/elementdebase-prod-elementdebase.netdna-ssl.com\/wp-content\/uploads\/2016\/02\/large-15.jpg"
+  }
+}

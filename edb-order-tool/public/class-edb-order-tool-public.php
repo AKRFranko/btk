@@ -97,26 +97,50 @@ class Edb_Order_Tool_Public {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
+		 if(current_user_can('publish_posts') && is_page('order-tool')){
+		  wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'edb-poly/app/script/edb.js', array( 'jquery' ), $this->version, false );   
+		  $params = array( 'ajaxurl' => admin_url( 'admin-ajax.php', 'https' ) );
+      wp_localize_script( $this->plugin_name, 'edb_order_tool_params' , $params );
+		 }
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'edb-poly/app/script/edb.js', array( 'jquery' ), $this->version, false );
-
-    $params = array(
-      'ajaxurl' => admin_url( 'admin-ajax.php', 'https' )
-    );
-    wp_localize_script( $this->plugin_name, 'edb_order_tool_params' , $params );
+		
+     
+    
+     
     
 	}
 
   public function create_order( $jsonData ){
     $order = wc_create_order();
+    $items = $jsonData['order']['items'];
+    $shipping = $jsonData['order']['shipping_address'];
+    $billing = $jsonData['order']['billing_address'];
+    $noship = $jsonData['order']['shipping_address']['noship'];
+    $jsonData['order']['shipping_address']['noship'] = null;
+    if(!empty($shipping)){
+      $order->set_address( $shipping, 'shipping');
+    }
+    if(!empty($billing)){
+      $order->set_address( $billing, 'billing');
+    }
     
-    foreach( $jsonData['order'] as $json ){
-      $order->add_product( get_product( $json['product_id'] ),$json['quantity'] );
+    foreach(  $items as $item ){
+      $product = get_product( $item['variation_id'] );
+      if($product ){
+        $order->add_product( $product,$item['quantity'] );  
+      }
+      write_log( 'PRODUCT');
+    write_log( $product );
+      
     }
     $order->calculate_totals();
+    // $order->billing_email='franko@akr.club';
+    $order->calculate_shipping();
+    $order->calculate_totals( true );
+    
     $this->order = $order;
     
-    return $this->order->get_checkout_payment_url();
+    return $this->order->get_checkout_payment_url(  );
   }	
 	
 	public function handle_ajax(){
@@ -125,8 +149,11 @@ class Edb_Order_Tool_Public {
 	  $upload_dir = wp_upload_dir();
     $path = $upload_dir['basedir'] . '/json';
 	  if($command){
+	    
 	    if( $command == 'initial'){
-	      echo file_get_contents( $path."/catalog.json" );
+	      $this->update_product_cache();
+	      $this->catalog = file_get_contents( $path."/catalog.json" );
+	      echo $this->catalog;
 	    }
 	    if( $command == 'create_order'){
 	      echo $this->create_order( $_REQUEST );
@@ -137,27 +164,11 @@ class Edb_Order_Tool_Public {
   }
   
   public function update_materials_cache(){
-    $args = array(
-              'post_type'=> array('edb_material_desc'),
-              'post_status'=>'publish',
-              'posts_per_page'=>-1
-            );
+    $args = array( 'post_type'=> array('edb_material_desc'),'post_status'=>'publish','posts_per_page'=>-1);
     $results = get_posts( $args );
     $output = array();
     
-    foreach( $results as $desc ){
-      $material = get_post_meta( $desc->ID, '_edb_material', true );
-      
-      $subtitle = get_post_meta( $desc->ID, '_subtitle', true );
-      $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($desc->ID), 'post-thumbnail' );
-      $url = $thumb['0']; 
-      $output[$material] = array(
-        "title"=> $desc->post_title,
-        "subtitle" => $subtitle,
-        "material" => $material,
-        "image" => $url
-      );
-    }
+    foreach( $results as $desc ){ $material = get_post_meta( $desc->ID, '_edb_material', true );$subtitle = get_post_meta( $desc->ID, '_subtitle', true );$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($desc->ID), 'post-thumbnail' );$url = $thumb['0']; $output[$material] = array("title"=> $desc->post_title,"subtitle" => $subtitle,"material" => $material,"image" => $url);}
     $upload_dir = wp_upload_dir();
     $path = $upload_dir['basedir'] . '/json';
     $url = $upload_dir['baseurl'] . '/json';
@@ -170,17 +181,10 @@ class Edb_Order_Tool_Public {
   
   public function update_product_cache(){
     
-    $args = array(
-      'post_type'=> array('product','product_variation'),
-      'post_status'=>'publish',
-      'posts_per_page'=>-1
-    );
+    $args = array('post_type'=> array('product','product_variation'),'post_status'=>'publish','posts_per_page'=>-1);
     $product_results = get_posts( $args );
     $products = array();
-    foreach( $product_results as $product ){
-      $deco = edb_decorated_product( $product->ID );
-      $products[$product->ID] = $deco;
-    }
+    foreach( $product_results as $product ){$deco = edb_decorated_product( $product->ID ); $products[$product->ID] = $deco;}
     $this->cached_query_result = $products;
     $upload_dir = wp_upload_dir();
     $path = $upload_dir['basedir'] . '/json';

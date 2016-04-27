@@ -3180,6 +3180,7 @@ fieldset {
 .form-row select,
 .form-row .select2-container {
   width: 100%;
+  clear: both;
 }
 .form-row.form-row-first,
 .form-row.form-row-last {
@@ -3477,6 +3478,47 @@ button#apply_coupon {
     display: inline-block;
     margin-bottom: 1rem;
   }
+}
+.form-pay-order {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+.pay-order-address,
+.pay-order-items,
+.pay-order-totals {
+  vertical-align: top;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 49%;
+  margin: 0;
+}
+.pay-order-address {
+  min-height: 180px;
+}
+.pay-order-items,
+.pay-order-address:first-of-type {
+  padding-right: 3em;
+}
+.pay-order-payment {
+  margin-top: 3em;
+  width: 100%;
+}
+.pay-order-submit {
+  clear: both;
+}
+.payment_methods,
+.pay-order-submit {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+}
+.payment_box > p:first-child {
+  display: none;
+  float: right;
 }
 /* home slider */
 .home-slider {

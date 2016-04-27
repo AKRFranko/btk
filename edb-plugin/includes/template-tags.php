@@ -6,6 +6,39 @@ function edb_availability_date(  ){
 }
 
 
+function edb_formated_customer_address( $type ){
+  $customer = WC()->customer;
+  if( $type == 'billing'){
+    $name = $customer->first_name . ( empty($customer->last_name) ? '' :  ' ' . $customer->last_name );
+    $company = empty($customer->company) ? '' : $customer->company;
+    $email = empty($customer->email) ? '' : $customer->email;
+    $email .= empty($customer->phone) ? '' : ' ' . $customer->phone;
+    $address = $customer->address_1 . ( empty($customer->address_2) ? '' :  ', ' . $customer->address_2 );
+    $location = $customer->city . ', ' . $customer->state . ", " . $customer->country;
+    $postcode = $customer->postal_code;
+    // $fields = array('first_name','last_name','company','email','phone','address_1','address_2','city','state','country','postal_code');
+  echo "<p>".implode( '<br/>',array_filter( array($name, $company, $email, $address, $location, $postcode )))."</p>";  
+  }else{
+    if(!empty($customer->shipping_postal_code)){
+      // $fields = array('shipping_first_name','shipping_last_name','shipping_company','shipping_phone','shipping_address_1','shipping_address_2','shipping_city','shipping_state','shipping_country','shipping_postal_code');
+      $name = empty($customer->shipping_first_name) ? $name : $customer->shipping_first_name . ( empty($customer->shipping_last_name) ? '' :  ' ' . $customer->shipping_last_name );
+      $company = empty($customer->shipping_company) ? '' : $customer->shipping_company;
+      $email = empty($customer->shipping_phone) ? '' : $customer->shipping_phone;
+      $address = $customer->shipping_address_1 . ( empty($customer->shipping_address_2) ? '' :  ', ' . $customer->shipping_address_2 );
+      $location = $customer->shipping_city . ', ' . $customer->shipping_state . ", " . $customer->shipping_country;
+      $postcode = $customer->shipping_postal_code;
+      echo "<p>".implode( '<br/>',array_filter( array($name, $company, $email, $address, $location, $postcode )))."</p>";
+    }else{
+      echo "<p>No shipping required.</p>";
+    }
+    
+  }
+  
+  
+  
+   
+}
+
 function facebook_meta_tags(){
   global $post;
   
@@ -89,9 +122,12 @@ function edb_decorated_product( $product_id ){
 
 function edb_package_item_image( $package_item_key, $package_item ){
   $variation_id = $package_item['variation_id'];
+  write_log('edb_package_item_image'. $variation_id );
   $decorated = edb_decorated_product( $variation_id );
   $image_id = get_post_thumbnail_id( $variation_id);
-  
+  if(!$image_id){
+    $image_id = get_post_thumbnail_id( $decorated->product_id );
+  }
   // $this->materials[$variation_material]['image'] = wp_get_attachment_image_src($image_id, 'thumb')[0];
   echo '<img src="'. wp_get_attachment_image_src($image_id, 'thumbnail')[0]. '">';
 }
@@ -177,6 +213,7 @@ function edb_cart_item_material( $cart_item_key, $cart_item ){
   $product_id = $cart_item['product_id'];
   $variation_id = $cart_item['variation_id'];
   $decorated = edb_decorated_product( $variation_id );
+  write_log($cart_item);
   echo edb_get_material_name($decorated->material);
 }
 function edb_cart_item_material_thumb( $cart_item_key, $cart_item ){
@@ -236,19 +273,26 @@ function edb_checkout_item_availability( $cart_item_key, $cart_item  ){
   
   $now = strtotime(date(DATE_ATOM));
   $exp = $now;
-  if(!empty($delays['expected'])){
-    $exp = strtotime( $delays['expected'], $now );
-    if($exp > $now){
-      $diff = $exp-$now;
-      $exp=$now-$diff;
-    }
+  
+  // if(!empty($delays['expected'])){
+  //   $exp = strtotime( $delays['expected'], $now );
+  //   if($exp > $now){
+  //     $diff = $exp-$now;
+  //     $exp=$now-$diff;
+  //   }
     
-  }
+  // }
+  
   $min_date = strtotime( $delays['available'], $now );
   $max_date = strtotime( $delays['backorder'], $exp );
-  if($max_date < $min_date){
+  if(!empty($delays['expected'])){
+    $max_date = strtotime($delays['expected']);
+  }
+  if($max_date < $min_date ){
     $max_date = $min_date;
   }
+
+  
   $min = trim(time_elapsed($min_date));
   $max = trim(time_elapsed($max_date));
   
@@ -263,6 +307,12 @@ function edb_checkout_item_availability( $cart_item_key, $cart_item  ){
     echo "$available_stock &lt; $min, $backorder_stock &lt; $max";  
   }
   
+  
+}
+
+function edb_order_item_quantity( $item ){
+  // $item['']
+  echo "Qty: " . $item['qty'];
   
 }
 
@@ -293,19 +343,27 @@ function edb_latest_availability( $cart ){
     $delays = $decorated->shipping_delays[$variation_id];
     $now = strtotime(date(DATE_ATOM));
     $exp = $now;
-    if(!empty($delays['expected'])){
-      $exp = strtotime( $delays['expected'], $now );
-      if($exp > $now){
-        $diff = $exp-$now;
-        $exp=$now-$diff;
-      }
+    // if(!empty($delays['expected'])){
+    //   $exp = strtotime( $delays['expected'], $now );
+    //   if($exp > $now){
+    //     $diff = $exp-$now;
+    //     $exp=$now-$diff;
+    //   }
       
-    }
+    // }
     $min_date = strtotime( $delays['available'], $now );
     $max_date = strtotime( $delays['backorder'], $exp );
-    if($max_date < $min_date){
+    
+    if(!empty($delays['expected'])){
+      $max_date = strtotime($delays['expected']);
+    }
+    if($max_date < $min_date ){
       $max_date = $min_date;
     }
+
+    // $min = trim(time_elapsed($min_date));
+    // $max = trim(time_elapsed($max_date));
+    
     
     $min = $min_date;
     $max = $max_date;
@@ -557,25 +615,33 @@ function edb_product_material_picker( $product_id ){
     $delays = $decorated->shipping_delays[ ''.$data['variation_id'] ];
     
     $now = strtotime(date(DATE_ATOM));
-    $exp=$now;
-    if(!empty($delays['expected'])){
-      $exp = strtotime( $delays['expected'], $now );
-      if($exp > $now){
-        $diff = $exp-$now;
-        $exp=$now-$diff;
-      }
-      
-    }
+    // $exp=$now;
     
+    
+    // if(!empty($delays['expected'])){
+    //   $exp = strtotime( $delays['expected'] );
+    //   if($exp > $now){
+    //     $diff = $exp-$now;
+    //     $exp=$now-$diff;
+    //   }
+      
+    // }
+    // write_log('STRTOTIME:'.strtotime( $delays['expected'] ));
+    // write_log('NOW:'.strtotime( $delays['available'], $now ));
 
     $min_date=strtotime( $delays['available'], $now );
-    $max_date=strtotime( $delays['backorder'], $exp );
+    $max_date=strtotime( $delays['backorder'], $now );
+    if(!empty($delays['expected'])){
+      $max_date = strtotime($delays['expected']);
+    }
     if($max_date < $min_date ){
       $max_date = $min_date;
     }
+
     $min = trim(time_elapsed($min_date));
     $max = trim(time_elapsed($max_date));
     
+      
     // write_log('elap:'.time_elapsed(strtotime( $delays['backorder'], $now )));
     // write_log($data);
     
@@ -613,6 +679,13 @@ function tmp_has_tech_image( $deco ){
               "maritime-walnut_sofas-2-seater",
               "panorama_sectionals-right-facing",
               "tamtam_side-tables",
+              "tamtam-yellow_side-tables",
+              "tamtam-orange_side-tables",
+              "tamtam-green_side-tables",
+              "tamtam-grey_side-tables",
+              "tamtam-blue_side-tables",
+              "tamtam-pink_side-tables",
+
               "capsule_sofas",
               "mixmix-corner_modular",
               "perplexe_side-tables",
@@ -631,6 +704,8 @@ function tmp_has_tech_image( $deco ){
               "teatime_sofa-beds",
               "flex_sectionals-left-facing",
               "mixmix_sectionals-right-facing",
+              "mixmix-rec_sectionals-left-facing",
+              "mixmix-rec_sectionals-right-facing",
               "pique_sectionals-right-facing",
               "teatime_sofas",
               "flex_sectionals-right-facing",

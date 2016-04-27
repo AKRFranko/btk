@@ -3,7 +3,8 @@
  *
  * Handles toggling the navigation menu for small screens and enables tab
  * support for dropdown menus.
- */ (function($) {
+ */ 
+ (function($) {
 
 
 
@@ -98,6 +99,12 @@
     $('#sign-in-menu .sign-in').addClass('on')
   })
 
+
+  // $(document).ajaxSend( function( event, request, settings ){
+  //   console.log(settings.data)
+  //   settings.data = settings.data.replace(/postal-code\=([^&]+)/g,function(a,m,i){ return 'postal-code=' + ( m[0] + m[1] + m[2] + '%20' + m.slice(3)).toUpperCase()});
+  // });
+  
   $(document).ajaxComplete(function(event, res) {
     setTimeout(function() {
       
@@ -139,11 +146,19 @@
     $('.product-selected-material .label').html(name);
     
     if($choice.parent().siblings().length){
-      preview = $choice.css('background-image');
+      if(!preview){
       $originSlide.find('.backdrop').css({
-        'background-image': preview,
+        'background-image': $choice.css('background-image'),
         'background-size': '50%'
-      });  
+      });    
+      }else{
+        $originSlide.find('.backdrop').css({
+          'background-image': 'url('+preview+')',
+          'background-size': 'cover'
+        });  
+      }
+
+      
       $slider.find('.controls .current').html(name).css('width', 'auto');
       $slider.find('.controls .last, .controls .separator').hide();
       $slider.one('cycled', function() {
@@ -328,6 +343,7 @@
   $(document).ajaxComplete(function(event, res) {
     $('.address-field input.input-text').removeClass('input-text');
     if (res.responseJSON) {
+      
       if(res.responseJSON.mailSent){
         if(res.responseJSON.message){
           $('.wpcf7-form').html('<p>'+highlightCF7Message(res.responseJSON.message)+'</p>');
@@ -335,10 +351,11 @@
           $('.wpcf7-form').html('<h1>Thank you!</h1><p>We\'ll get back to you shortly.</p>');  
         }  
       }else{
+        console.log(res.responseJSON)
         if(res.responseJSON.message){
           $('.wpcf7-form').prepend('<p>'+highlightCF7Message(res.responseJSON.message)+'</p>');  
         }else{
-          $('.wpcf7-form').html('<h1>Oops!</h1><p>That didn\'t work.</p>');
+         // $('.wpcf7-form').html('<h1>Oops!</h1><p>That didn\'t work.</p>');
         }
       }
     }
@@ -367,12 +384,21 @@
     }
 
   }
+  $(function(){
+    // preload variation previews.
+    $('[data-preview]').each(function(){ var src=$(this).data('preview'); (new Image()).src=src;});
+  })
   
   $( function(){
-    $('input[name=your-email-confirm]').get(0).onpaste = function( e ){
-      e.preventDefault();
-      // $('input[name=your-email-confirm]').after('<span role="alert" class="wpcf7-not-valid-tip">no pasting.</span>');
-    };
+    
+    var inp = $('input[name=your-email-confirm]').get(0);
+    if(inp && inp.onpaste){
+      inp.onpaste = function( e ){
+        e.preventDefault();
+        e.stopPropagation()
+        // $('input[name=your-email-confirm]').after('<span role="alert" class="wpcf7-not-valid-tip">no pasting.</span>');
+      };
+    }
   })
 
 

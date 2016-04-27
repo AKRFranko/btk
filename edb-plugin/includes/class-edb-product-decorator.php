@@ -155,6 +155,11 @@ class Edb_Product_Decorator {
     
     
     $product_cat_terms = get_the_terms( $this->post_id, 'product_cat');
+    if( is_wp_error($product_cat_terms) ){
+      write_log('WP_ERROR');
+      write_log('WP_ERROR:PostID'.($this->post_id));
+      write_log('WP_ERROR:product_cat');
+    }
     $categories = array();
     // write_log($product_cat_terms);
     foreach( $product_cat_terms as $category ){
@@ -170,6 +175,23 @@ class Edb_Product_Decorator {
     //   'introduction' => get_post_meta( $this->post_id, '_edb_introduction_video', true ),
     //   'instruction' => get_post_meta( $this->post_id, '_edb_instruction_video', true )
     // );
+    $attr = $this->product_object->get_attributes();
+    if(!empty($attr) && !empty($attr['edb_leg'])){
+      $value = $attr['edb_leg']['value'];
+      if(strpos( $value, '|') !== false ){
+        $values = explode('|', $value);
+        $value = array();
+        foreach( $values as $v){
+          if(!empty($v)){
+            $value[] = trim($v);  
+          }
+        }
+      }else{
+        $value = array( $value );
+      }
+      $this->leg_options = $value;
+    }
+    // $this->leg_option = get_post_meta($this->product_id, 'attribute_edb_leg', true );
     $this->json = $this->get_json_object();
     
     
@@ -210,6 +232,7 @@ class Edb_Product_Decorator {
         'expected'=>$exp
       );
     }
+    // write_log( $shipping_delays );
     $this->shipping_delays = $shipping_delays;
     
   }
@@ -273,7 +296,9 @@ class Edb_Product_Decorator {
      }
      }
      
-   } 
+   }
+   
+   
    
   }
   
@@ -305,6 +330,7 @@ class Edb_Product_Decorator {
     $gallery_images = get_post_meta( $this->post_id, '_product_image_gallery', true);
     $featured_image_id  = get_post_thumbnail_id( $this->post_id );
     $technical_image_id = get_post_meta( $this->post_id, '_edb_technical_image', true );
+    
     $slideshow_images   = array();
     $variation_images   = array();
     
@@ -350,10 +376,14 @@ class Edb_Product_Decorator {
       
       
       $edb_material = get_post_meta($variation_id, 'attribute_edb_material', true );
+      
+      
       $image_id = get_post_thumbnail_id( $variation_id );
       $variation_images[$edb_material] = wp_get_attachment_image_src( $image_id, 'full')[0];
+      // write_log("FURST".$variation_images[$edb_material]);
+      // write_log($variation_images);
       if(empty($variation_images[$edb_material])){
-        $variation_images[$edb_material] = $this->images['featured'];
+        $variation_images[$edb_material] = null;//$this->materials[$edb_material]['image'];
       }
       if(isset($this->materials[$edb_material])){
         $this->materials[$edb_material]['variation_id'] = $variation_id;
