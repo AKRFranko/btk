@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! apply_filters( 'woocommerce_order_item_visible', true, $item ) ) {
 	return;
 }
+ 
 do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order );
 ?>
 <div class="cart_item">
@@ -57,6 +58,7 @@ do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order );
 
 </div>
 <?php
+
 do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order );
 
 if(false): ?>

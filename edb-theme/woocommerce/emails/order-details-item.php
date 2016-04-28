@@ -15,6 +15,7 @@ if ( ! apply_filters( 'woocommerce_order_item_visible', true, $item ) ) {
 	return;
 }
 do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order );
+
 ?>
 <tr class="<?php echo esc_attr( apply_filters( 'woocommerce_order_item_class', 'order_item', $item, $order ) ); ?>">
   <td class="td">
@@ -22,6 +23,7 @@ do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order );
     <?php edb_package_item_name( $item_id, $item ); ?><br />
     <?php edb_package_item_material( $item_id, $item ); ?><br />
     <?php edb_package_item_category( $item_id, $item );?>
+   
   </td>
   <td class="td">
     <?php echo $item['qty']; ?>

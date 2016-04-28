@@ -180,6 +180,67 @@ main > article {
    display:none!important;
  }
  
+ 
+ 
+ .pdf-download-item {
+     position:relative;
+     float: left;
+     width: calc(~"100% / 4");
+     border: 1px solid #fefefe;
+     height:0;
+     text-align:center;
+     padding-bottom:calc(~"100% / 4");
+     margin-bottom:calc(~"100% / 12");
+ }
+ 
+ .pdf-download-item{
+   .pdf-download-item-image{
+     position:absolute;
+     top:0;left:25%;
+     display:block;
+     background-position:center;
+     background-size:cover;
+     width:50%;
+     height:66%;
+     box-shadow:1px 1px 1px rgba(0,0,0,0.3);
+     border-radius:2px;
+     
+   }
+  // .pdf-download-item-image:active,
+  // .pdf-download-item-image:hover{
+  //   // top:-5%;
+  //   // left:-5%;
+  //   transform:scale(1.1);
+  //   transform-origin:center;
+  // }
+   .pdf-download-item-text{
+    position:relative;
+     margin-top:calc(~"50% + 2em");
+     padding:1em 2em;
+     text-align:center;
+   }
+   .pdf-download-item-button{
+     
+    width:100%;
+     
+     text-align:center;
+     a{
+      display:inline-block;
+      font-family:"pragmatica-web-condensed", 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+      background:#000;
+      color:#fff!important;
+      min-width:50%;
+      padding:.75em 1em!important;
+       font-weight: normal!important;
+       font-size: 13px;
+       text-shadow: none!important;
+       text-transform: uppercase;
+       text-decoration: none;
+     }
+     
+   }
+ } 
+ 
  @media all and (max-width:760px){
    .archive, .home{
       main > article{

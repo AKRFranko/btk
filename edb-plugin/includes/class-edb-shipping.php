@@ -165,7 +165,9 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   public function order_get_items( $items, $order ){
     write_log('order_get_items');
     foreach($items as $key => $item){
+      // write_log('CART HAS META?');
       // write_log( $item );
+      // write_log('//CART HAS META?');
       if($item['type'] == 'line_item'){
         if(!empty($items[$key]['edb_shipments'])){
           $items[$key]['edb_shipments'] = unserialize($items[$key]['edb_shipments']);  
@@ -237,6 +239,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
         wc_update_order_item_meta( $item_id, 'edb_shipments', $ships);
         wc_update_order_item_meta( $item_id, 'edb_availabilities', $avails );
         wc_update_order_item_meta( $item_id, '_line_tax_data', $tax_data );
+        
       }else{
         write_log('ADDING TAX_DATA META!');
         $new_item_id = $order->add_product( $product, $qty, array(
@@ -270,7 +273,6 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     $original_items = $order->get_items();
     foreach($original_items as $item_id => $item ){
       
-      // write_log( $item );
       if(count($item['edb_shipments']) > 1){
         $this->checkout_split_order_item( $order, $item, $item_id);
       }
@@ -283,12 +285,14 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   public function set_custom_field_on_order_item( $item_id, $values, $cart_item_key  ){
     global $Edb_Shipping_Method;
     write_log('set_custom_field_on_order_item');
-    
+    // write_log($Edb_Shipping_Method->packages);
     // write_log( "item_id: $item_id");
     // write_log( "cart_item_key: $cart_item_key");
     // write_log($item);
     $shipments=array();
+    $stock_statuses=array();
     $availability_dates=array();
+    
     foreach($Edb_Shipping_Method->packages as $package){
       
       if(empty($shipments[$cart_item_key])){
@@ -297,15 +301,21 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
       if(empty($availability_dates[$cart_item_key])){
         $availability_dates[$cart_item_key] = array();
       }
+      if(empty($stock_statuses[$cart_item_key])){
+        $edb_item_stock_statuses[$cart_item_key] = array();
+      }
       if($package['cart_item_key'] == $cart_item_key ){
         $shipments[$cart_item_key][$package['edb_shipping']] =  $package['contents'][0]['quantity'];
         $availability_dates[$cart_item_key][$package['edb_shipping']] = $package['contents'][0]['edb_availability'];
+        $stock_statuses[$cart_item_key][$package['edb_shipping']] = $package['edb_item_stock_status'];
       }
       
     }
-    // write_log('add_order_item_meta');
+    
     woocommerce_add_order_item_meta( $item_id, 'edb_shipments', $shipments[$cart_item_key] );
     woocommerce_add_order_item_meta( $item_id, 'edb_availabilities', $availability_dates[$cart_item_key] );
+    woocommerce_add_order_item_meta( $item_id, 'edb_item_stock_status', $stock_statuses );
+    // woocommerce_add_order_item_meta( $item_id, 'edb_item_stock_status', $availability_dates[$cart_item_key] );
     
   }
   //   write_log('set_custom_fields_on_order');
@@ -1004,6 +1014,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     $newitem['line_subtotal'] = ( $item['line_subtotal'] / $wants ) * $have;
     $newitem['line_subtotal_tax'] = ( $item['line_subtotal_tax'] / $wants ) * $have;
     $newitem['edb_availability'] = $this->get_package_availability( $item['data'], false);
+    $newitem['edb_item_stock_status']='available';
     if(isset($newitem['line_tax_data']['total']) && is_array($newitem['line_tax_data']['total'])){
       foreach($newitem['line_tax_data']['total'] as $index => $total ){
         $newitem['line_tax_data']['total'][$index] = ( $item['line_tax_data']['total'][$index] / $wants ) * $have;
@@ -1029,6 +1040,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     $newitem['line_subtotal'] = ( $item['line_subtotal'] / $wants ) * $qty;
     $newitem['line_subtotal_tax'] = ( $item['line_subtotal_tax'] / $wants ) * $qty;
     $newitem['edb_availability'] = $this->get_package_availability( $item['data'], true);
+    $newitem['edb_item_stock_status']='backorder';
     if(isset($newitem['line_tax_data']['total']) && is_array($newitem['line_tax_data']['total'])){
       foreach($newitem['line_tax_data']['total'] as $index => $total ){
         $newitem['line_tax_data']['total'][$index] = ( $item['line_tax_data']['total'][$index] / $wants ) * $qty;
@@ -1051,6 +1063,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
       'contents' => array( $items ),
       'cart_item_key'=> $cart_item_key,
       'edb_shipping' => $shipping_method,
+      'edb_item_stock_status' => $availability_type,
       // 'edb_availability'=> $availability_type,
       'contents_cost' => array_sum( wp_list_pluck( array($items), 'line_total' ) ),
       'applied_coupons' => WC()->cart->applied_coupons,

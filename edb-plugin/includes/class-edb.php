@@ -328,6 +328,8 @@ class Edb {
     $this->loader->add_action( 'wp_ajax_edb_guess_shipping_zone', $plugin_admin,'edb_ajax_guess_shipping_zone' );
     $this->loader->add_action( 'wp_ajax_nopriv_edb_guess_shipping_zone', $plugin_admin,'edb_ajax_guess_shipping_zone' );
     
+    
+    
     # $this->loader->add_action( 'woocommerce_reduce_order_stock', $this, 'mirror_reduce_order_stock' );
 	}
 
@@ -352,6 +354,7 @@ class Edb {
     $this->loader->add_action('woocommerce_login_redirect', $plugin_public, 'check_redirect_state'  );
     $this->loader->add_action('woocommerce_registration_redirect', $plugin_public, 'check_redirect_state'  );
     // $this->loader->add_action('user_register', $plugin_public, 'user_register'  );
+    $this->loader->add_action('woocommerce_api_product_response', $plugin_public, 'edb_api_get_products', 10, 2 );
 	}
   
 	/**

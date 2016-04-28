@@ -322,6 +322,7 @@ function edb_order_item_availability( $item, $order ){
   $shipping = $item['edb_shipping'];
   
   $availability = $item['edb_availabilities'][$shipping];
+  
   $order_date = strtotime($order->order_date);
   
   

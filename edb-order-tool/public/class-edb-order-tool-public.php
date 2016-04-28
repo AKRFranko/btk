@@ -102,7 +102,8 @@ class Edb_Order_Tool_Public {
 		  $params = array( 'ajaxurl' => admin_url( 'admin-ajax.php', 'https' ) );
       wp_localize_script( $this->plugin_name, 'edb_order_tool_params' , $params );
 		 }
-
+      
+      // wp_enqueue_script( $this->plugin_name, plugin_dir_url(__FILE__) . 'js/api.js', array('jquery'), $this->version, false );
 		
      
     

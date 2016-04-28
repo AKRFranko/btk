@@ -99,6 +99,13 @@ class Edb_Public {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/edb-public.js', array( 'jquery' ), $this->version . '.c', false );
 
 	}
+	
+	public function edb_api_get_products( $product_data, $product ){
+	  write_log( 'API GET PRODUCTS');  
+	  $product_data['subtitle'] = get_post_meta( $product->id, '_subtitle', true );
+	  return $product_data;
+	}
+	
 	public function check_redirect_state( $returnto ){
 	  
 	  write_log('check_redirect_state');
