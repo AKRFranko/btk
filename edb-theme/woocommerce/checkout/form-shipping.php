@@ -71,9 +71,9 @@ $do_not_ship = WC()->session->get('do_not_ship');
               
               $value = $_REQUEST['shipping_postcode'];
             }
-            // if(empty($value)){
-            //   $value = $checkout->get_value( $key );
-            // }
+            if(empty($value)){
+              $value = '';//$checkout->get_value( $key );
+            }
             echo "<input type=\"hidden\" name=\"calc_shipping_postcode\" value=\"$value\">";
             // woocommerce_form_field( $key, $field, $value );
             // echo $fallback;

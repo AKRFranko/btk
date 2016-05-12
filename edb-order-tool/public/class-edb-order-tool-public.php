@@ -101,9 +101,12 @@ class Edb_Order_Tool_Public {
 		  wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'edb-poly/app/script/edb.js', array( 'jquery' ), $this->version, false );   
 		  $params = array( 'ajaxurl' => admin_url( 'admin-ajax.php', 'https' ) );
       wp_localize_script( $this->plugin_name, 'edb_order_tool_params' , $params );
+      wp_enqueue_script( $this->plugin_name . 'lm', plugin_dir_url(__FILE__) . 'edb-poly/app/bower_components/liquidmetal/liquidmetal.js', array('jquery'), $this->version, false );
+      
+      wp_enqueue_script( $this->plugin_name, plugin_dir_url(__FILE__) . 'js/api.js', array('jquery'), $this->version, false );
 		 }
       
-      // wp_enqueue_script( $this->plugin_name, plugin_dir_url(__FILE__) . 'js/api.js', array('jquery'), $this->version, false );
+      
 		
      
     

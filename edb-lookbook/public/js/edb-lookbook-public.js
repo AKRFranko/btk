@@ -12,33 +12,45 @@
       var idleInterval = setInterval(timerIncrement, 30000); // 30 seconds
   
       //Zero the idle timer on mouse movement.
-      $(this).mousemove(function (e) {
-          idleTime = 0;
-      });
-      $(this).keypress(function (e) {
-          idleTime = 0;
-      });
+      $(this).mousemove(timerReset);
+      // $(this).keypress(timerReset);
+      $(this).mousedown(timerReset);
       
    });
   
    function timerIncrement() {
+    // console.log('timerIncrement!', idleTime, idleTime + 0.5);
       idleTime = idleTime + 0.5;
    }
    
+   function timerReset(){
+    // console.log('timerReset!')
+     idleTime = 0;
+   }
+   
 	 function autoCycle(){
+	   //console.log('autoCycle', idleTime );
 	   clearTimeout(nextAutoCycle);
 	   
        $('.edb-slider').each(function(){
          var $slider = $(this);
          if($slider.data('autocycle')  ){
-          cycle( this, 1 );     
+          cycle( this, 1 , 'autocycle');     
          }
          
        });
-     
-	   nextAutoCycle = setTimeout( autoCycle, autoCycleBetween  );
+     resetAutoCycle();
+	   
 	 }
-	 nextAutoCycle = setTimeout(autoCycle, autoCycleBetween );
+	 
+	 function resetAutoCycle(){
+	   //console.log('resetAutoCycle');
+	    clearTimeout(nextAutoCycle);
+	    nextAutoCycle = setTimeout(autoCycle, autoCycleBetween );  
+	 }
+	 
+	 resetAutoCycle();
+	 
 	 
 	 function cycleTo( slider, nth ){
 	   var $slider = $( slider );
@@ -55,13 +67,14 @@
      }
      var loop = -1;
      while(loop++ < times){
-       cycle($slider, direction);
+       cycle($slider, direction, 'cycleTo');
      }
 	 }
 	 
 	 var cycleDebounce = 0;
-	 
-	 function cycle( slider, direction ){
+	 var isCycling=false;
+	 function cycle( slider, direction, clr ){
+	   //console.log('cycle', direction,clr )
 	   var now= (new Date()).getTime();
 	   if( ( now - cycleDebounce ) < 100 ){
 	     return;
@@ -158,10 +171,10 @@
 	     hammer.get('pan').set({ threshold: 0.1 })
 	     $slider.data('hammered', hammer );
 	     hammer.on('swipeleft', function(){
-	       cycle( $slider, 1 )
+	       cycle( $slider, 1, 'hammerDown' )
 	     });
 	     hammer.on('swiperight', function(){
-         cycle( $slider, -1 )
+         cycle( $slider, -1, 'hammerDown' )
        })
 	     
 	   }
@@ -174,8 +187,10 @@
 	   //if(kenburns){
 	   //  $slider.removeClass('kenburns')
 	   //}
+	   timerReset();
+	   resetAutoCycle();
 	   var dir = $(this).hasClass('next') ? 1 : 0;
-	   cycle( $slider, dir );
+	   cycle( $slider, dir ,'nextprev');
 	   //if(kenburns){
 	   //$slider.one('cycled', function(){
 	   //  setTimeout(function(){

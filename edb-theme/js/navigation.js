@@ -17,6 +17,9 @@
 
   // window.viewportUnitsBuggyfill.init();
   var $ = jQuery;
+  
+ 
+  
   $(document).on('click', '.toggle', function() {
     var $nav = $(this).parents('nav');
     var $tog = $(this);
@@ -39,6 +42,7 @@
     }
   });
 
+  
   $(document).on('click', '#cat-nav', function(e) {
     var $target = $(e.target);
     if ($target.is('#cat-nav') || $target.is('div')) {
@@ -234,6 +238,15 @@
       }
     });
     
+    if($('.is-safari').length){
+      $('.image-download-button').on('click', function( e ){
+        e.preventDefault();
+        var img = jQuery(this).parent('.image-download-item').find('img').get(0);
+        var w = img.hasOwnProperty('naturalWidth') ? img.naturalWidth : img.width;
+        var h = img.hasOwnProperty('naturalHeight') ? img.naturalHeight : img.height;
+        window.open(img.src,'Image','width='+w+'px,height='+h+'px,resizable=1');
+      })
+    }
     if($('.is-safari .home-slider').length){
       var $hc = $('.home-slider .controls');
       function resizeSlider(){
@@ -271,12 +284,12 @@
         var hammer = new Hammer($slider.get(0));
         $slider.data('hammer', hammer);
         hammer.on('swipeleft', function(e) {
-          console.log('left');
+          // console.log('left');
           $slider.data('pageSelector').cycle(1);
           //$slider.trigger( e.additionalEvent );
         })
         hammer.on('swiperight', function(e) {
-          console.log('right');
+          // console.log('right');
           $slider.data('pageSelector').cycle(-1);
 
           //$slider.trigger( e.additionalEvent );
@@ -321,7 +334,7 @@
   });
   
   var highlightCF7Message = function( message ){
-    console.log( message );
+    // console.log( message );
     var open;
     var chars = message.split('');
     return chars.reduce( function( msg, char ){
@@ -351,7 +364,7 @@
           $('.wpcf7-form').html('<h1>Thank you!</h1><p>We\'ll get back to you shortly.</p>');  
         }  
       }else{
-        console.log(res.responseJSON)
+        // console.log(res.responseJSON)
         if(res.responseJSON.message){
           $('.wpcf7-form').prepend('<p>'+highlightCF7Message(res.responseJSON.message)+'</p>');  
         }else{

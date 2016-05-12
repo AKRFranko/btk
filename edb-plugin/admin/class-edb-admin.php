@@ -155,8 +155,12 @@ class Edb_Admin {
 	  if( !current_user_can('edit_user', $user_id ) ){
 	    return false;
 	  }
+
 	  $is_designer = isset($_POST['_edb_user_is_designer']) && !empty($_POST['_edb_user_is_designer']) ? $_POST['_edb_user_is_designer'] : 0;
 	  $designer_level = isset($_POST['_edb_designer_level']) && !empty($_POST['_edb_designer_level']) ? $_POST['_edb_designer_level'] : null;
+    if( $is_designer && is_null($designer_level)){
+      $designer_level = 'vip';
+    }
 	  update_user_meta( absint($user_id), '_edb_user_is_designer', $is_designer );
 	  if(!is_null($designer_level)){
 	    update_user_meta( absint($user_id), '_edb_designer_level', $designer_level );
@@ -404,6 +408,8 @@ class Edb_Admin {
 	   }
 	 }
 	 $selected_material = get_post_meta( $post->ID, '_edb_material' , true);
+	 $material_options[]='107';
+	 $material_options[]='108';
 	 if(count($material_options) > 0){
 	  woocommerce_wp_select(
        array(

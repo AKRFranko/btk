@@ -417,6 +417,8 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   public function get_user_level_discounts( ){
     $user = wp_get_current_user();
     $current_level = get_user_meta($user->ID, '_edb_designer_level', true );
+    write_log('DESIGNER DISCOUNTS');
+    write_log("level: $current_level");
     if(empty($current_level)) return null;
     return array("$current_level-regular-items","$current_level-sale-items");
   }
@@ -430,7 +432,8 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     $designerDiscounts = $this->get_user_level_discounts();
     $saleItemsTotal = 0;
     $regularItemsTotal = 0;
-    
+    write_log('DESIGNER DISCOUNTS');
+    write_log($designerDiscounts);
     if(!is_null($designerDiscounts)){
       $user = wp_get_current_user();
       $current_level = get_user_meta($user->ID, '_edb_designer_level', true );

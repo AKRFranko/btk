@@ -491,6 +491,7 @@ function edb_product_video_link( $product_id, $type ){
   if(!empty($data)){
     $link = $data['video_link'];
     $src = $data['image_src'];
+    // $src = str_replace('http:','https:');
     echo "<a class=\"youtube_video_link\" href=\"$link\" target=\"youtube\"><img src=\"$src\"></a>";
   }
 
@@ -667,6 +668,7 @@ function edb_product_material_picker( $product_id ){
 function tmp_has_tech_image( $deco ){
  $data = array("atrium_armchairs",
               "maritime_armchairs",
+              "maritime-narual_armchairs",
               "nautique_accessories-pillows",
               "stripes_sofas-3-seater",
               "stripes_sofas-2-seater",

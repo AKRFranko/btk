@@ -312,13 +312,13 @@ class Edb_Product_Decorator {
      'instruction'=>array('youtube_id' => null, 'video_link' => '#', 'image_src'=> $missing)
     );
    if(!empty($intro_id)){
-     $src = 'http://img.youtube.com/vi/'.$intro_id.'/maxresdefault.jpg';
-     $link = 'http://www.youtube.com/watch?v='.$intro_id;
+     $src = 'https://img.youtube.com/vi/'.$intro_id.'/maxresdefault.jpg';
+     $link = 'https://www.youtube.com/watch?v='.$intro_id;
      $this->videos['introduction'] = array( 'youtube_id' => $intro_id, 'image_src' => $src, 'video_link' => $link );
    }
    if(!empty($instu_id)){
-     $src = 'http://img.youtube.com/vi/'.$instu_id.'/maxresdefault.jpg';
-     $link = 'http://www.youtube.com/watch?v='.$instu_id;
+     $src = 'https://img.youtube.com/vi/'.$instu_id.'/maxresdefault.jpg';
+     $link = 'https://www.youtube.com/watch?v='.$instu_id;
      $this->videos['instruction'] = array( 'youtube_id' => $instu_id, 'image_src' => $src, 'video_link' => $link );
    }
    

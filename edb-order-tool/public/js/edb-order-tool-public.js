@@ -1,7 +1,7 @@
 (function($) {
   'use strict';
-  alert('qwerwer')
-  console.log('loasd')
+  // alert('qwerwer')
+  // console.log('loasd')
   jQuery(document).ready(function($) {
 
 
