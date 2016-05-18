@@ -668,7 +668,7 @@ function edb_product_material_picker( $product_id ){
 function tmp_has_tech_image( $deco ){
  $data = array("atrium_armchairs",
               "maritime_armchairs",
-              "maritime-narual_armchairs",
+              "maritime-natural_armchairs",
               "nautique_accessories-pillows",
               "stripes_sofas-3-seater",
               "stripes_sofas-2-seater",

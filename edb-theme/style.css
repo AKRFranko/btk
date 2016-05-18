@@ -2312,7 +2312,7 @@ main > article > header {
   width: 100%;
   clear: both;
   text-align: center;
-  margin-bottom: 5em;
+  margin-bottom: 6em;
 }
 .press-review .press-review-logo {
   width: 100%;
@@ -2325,10 +2325,15 @@ main > article > header {
 }
 .press-review .press-review-referral {
   margin-bottom: 2em;
+  display: none;
 }
 .press-review .press-review-referral a {
   text-decoration: none;
   color: #999!important;
+}
+.press-review .press-review-text {
+  width: 80%;
+  margin: 1em 10% 0;
 }
 .centered-post-list {
   list-style-type: none;
@@ -2640,7 +2645,6 @@ main > article > header {
     white-space: normal;
   }
   iframe.postvideo {
-    margin-left: calc(50% - 280px);
     margin-bottom: 3em;
     margin-top: 3em;
   }

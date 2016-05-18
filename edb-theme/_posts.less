@@ -28,7 +28,7 @@ main > article {
      width: 100%;
      clear: both;
      text-align: center;
-     margin-bottom: 5em;
+     margin-bottom: 6em;
      .press-review-logo{
        width:100%;
        text-align:center;
@@ -38,11 +38,16 @@ main > article {
      }
      .press-review-referral{
        margin-bottom:2em;
+       display:none;
        a{
          text-decoration:none;
           // font-size:1.25em;
         color:#999!important;
        }
+     }
+     .press-review-text {
+         width: 80%;
+         margin: 1em 10% 0;
      }
      
  }
@@ -352,7 +357,7 @@ main > article {
    }
    
    iframe.postvideo{
-     margin-left: calc(~"50% - 280px");
+    // margin-left: calc(~"50% - 280px");
      margin-bottom: 3em;
      margin-top: 3em;
    }
@@ -360,6 +365,7 @@ main > article {
     width: 100%;
    }
  }
+ 
  
  @media all and (min-width:760px) and (max-width:900px){
    .archive, .home{

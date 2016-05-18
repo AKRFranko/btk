@@ -211,8 +211,8 @@ window.requestAnimFrame = (function(){
     // console.log( $image );
     $picker.find('.active-choice').removeClass('active-choice');
     $label.addClass('active-choice');
-    $cart.find('input[name=variation_id]').val(varid);
-    $cart.find('input[name=attribute_edb_material]').val(value);
+    $cart.find('input[name="variation_id"]').val(varid);
+    $cart.find('input[name="attribute_edb_material"]').val(value);
     
     $cart.find('.product-selected-material .value').attr( 'style', $image.attr('style') );
     $(document).trigger('selected-edb-material-changed', [ value, varid ] );
@@ -227,7 +227,7 @@ window.requestAnimFrame = (function(){
     }
     $('#currentPanel').val( hash );
     $('.checkout-panel.active, #checkout-panel-tabs a.active, .summary.active').removeClass('active');
-    var $targets = $( hash +', '+ '.summary[data-panel='+hash+'], a[href='+hash+']');
+    var $targets = $( hash +', '+ '.summary[data-panel="'+hash+'"], a[href="'+hash+'"]');
     $targets.addClass('active');
     //$( hash ).find('.edb-save-and-continue').click();
     if(!history.replaceState){

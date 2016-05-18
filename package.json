@@ -8,7 +8,9 @@
     "forms": "^1.1.4",
     "glob-fs": "^0.1.6"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "woocommerce-api": "^1.2.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
