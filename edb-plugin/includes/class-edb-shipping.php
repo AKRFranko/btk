@@ -189,6 +189,45 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     
     return $items;
   }
+  
+  public function reduce_restock( $order ){
+    write_log("!!reduce_restock:");
+    // write_log($data);
+    foreach ( $order->get_items() as $item ) {
+      if ( $item['variation_id'] > 0 ) {
+          $restock = get_post_meta( $item['variation_id'], '_edb_variation_expected_restock', true );
+          if(!empty($restock)){
+            write_log('EXPECTS RESTOCK');
+            $restock_qty = get_post_meta( $item['variation_id'], '_edb_variation_expected_restock_qty', true );
+            $_product = $order->get_product_from_item( $item );
+            $stock = $_product->get_stock_quantity();
+            if($stock < 0 ){
+              write_log('STOCK LESSS THAN ZERO');
+              $diff= $restock_qty + $stock;
+              write_log('DIFF: '.$diff);
+              update_post_meta( $item['variation_id'], '_edb_variation_expected_restock_qty',  $restock_qty + $stock );
+              if($diff <= 0){
+                write_log('CLEARING RESTOCK DATE');
+                delete_post_meta( $item['variation_id'], '_edb_variation_expected_restock');
+              }
+              if($diff < 0){
+                $_product->increase_stock( abs( $diff ) );
+              }
+            }
+          }
+          
+          // if( $stock <= 0 && $restock_qty > 0){
+          //   $restock_qty = $restock_qty + $stock;
+          //   $diff = $restock_qty
+          //   update_post_meta( $item['variation_id'], '_edb_variation_expected_restock_qty', $restock_qty );
+          //   update_post_meta( $item['variation_id'], '_edb_variation_expected_restock', null );
+          // }
+          
+      }
+    }
+
+  }
+  
   public function checkout_split_order_item( $order, $item, $item_id){
     $shipment_meta  = $item['edb_shipments'];
     $availabilities = $item['edb_availabilities'];
@@ -210,7 +249,11 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
       $per_item_tax_data['subtotal'][$i] = $value / $original_qty;
     }
     $index = 0;
+    write_log('SHIPMETA');
+    write_log($shipment_meta);
+    write_log('___');
     foreach( $shipment_meta as $shipping_method => $qty){
+      
       $availability = $availabilities[$shipping_method];
       $ships = array( );
       $avails = array( );
@@ -285,6 +328,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   public function set_custom_field_on_order_item( $item_id, $values, $cart_item_key  ){
     global $Edb_Shipping_Method;
     write_log('set_custom_field_on_order_item');
+    
     // write_log($Edb_Shipping_Method->packages);
     // write_log( "item_id: $item_id");
     // write_log( "cart_item_key: $cart_item_key");
@@ -304,6 +348,8 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
       if(empty($stock_statuses[$cart_item_key])){
         $edb_item_stock_statuses[$cart_item_key] = array();
       }
+      // write_log($package['contents']);
+      // write_log('_____');
       if($package['cart_item_key'] == $cart_item_key ){
         $shipments[$cart_item_key][$package['edb_shipping']] =  $package['contents'][0]['quantity'];
         $availability_dates[$cart_item_key][$package['edb_shipping']] = $package['contents'][0]['edb_availability'];
@@ -339,18 +385,38 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   
   public function get_package_availability( $package_product, $is_backorder){
     $now = strtotime(date(DATE_RFC2822));
-    $edb_backorder_delay = get_post_meta( $package_product->post->ID, '_edb_backorder_delay', true);
-    $edb_available_delay = get_post_meta( $package_product->post->ID, '_edb_available_delay', true);
+    $edb_backorder_delay = get_post_meta( $package_product->variation_id, '_edb_variation_backorder_delay', true);
+    $edb_available_delay = get_post_meta( $package_product->variation_id, '_edb_variation_available_delay', true);
+    $edb_restock_delay = get_post_meta( $package_product->variation_id, '_edb_variation_expected_restock', true);
+    write_log("VARIATION: ".$package_product->variation_id);
+    write_log("edb_backorder_delay:$edb_backorder_delay");
+    write_log("edb_available_delay:$edb_available_delay");
+    write_log("edb_restock_delay:$edb_restock_delay");
+    // write_log($package_product);
+    // write_log("RESTOCK DATE:".$edb_restock_delay);
+    // write_log("RESTOCK DIFF:".( $edb_restock_delay - $now ));
     if(empty($edb_available_delay)){
+      
+      // write_log('RETURNING HARD_CODED 2WEEKS');
       $edb_available_delay = '+2 weeks';
     }
     if(empty($edb_backorder_delay)){
-      
+      // write_log('RETURNING HARD_CODED 16WEEKS');
       $edb_backorder_delay = '+16 weeks';
     }
+    
+    
+    
+    
     if( $is_backorder ){
+      if(!empty($edb_restock_delay)){
+        write_log('RETURNING EXPECTED RESTOCK DATE');
+        return trim(time_elapsed(strtotime($edb_restock_delay)));  
+      }
+      write_log('RETURNING EDB BACKO '.($is_backorder === true ? 'true' : 'false') );
       return trim(time_elapsed(strtotime( $edb_backorder_delay, $now )));
     }else{
+      write_log('RETURNING EDB AVAIL '.($is_backorder === true ? 'true' : 'false') );
       return trim(time_elapsed(strtotime( $edb_available_delay, $now )));
     }
   }
@@ -367,7 +433,9 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     $html = '';
     $edb_backorder_delay = get_post_meta( $post_id, '_edb_backorder_delay', true);
     $edb_available_delay = get_post_meta( $post_id, '_edb_available_delay', true);
-
+    $edb_restock_delay = get_post_meta( $post_id, '_edb_expected_restock', true);
+    // write_log('GET PRODUCT AVAIL RESTOCK DELAY');
+    // write_log($edb_restock_delay);
     if(empty($edb_available_delay)){
       $edb_available_delay = '+2 weeks';
     }
@@ -375,6 +443,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
       
       $edb_backorder_delay = '+16 weeks';
     }
+    
     foreach( WC()->cart->cart_contents as $cart_item ){
       if( $cart_item['variation_id'] == $product_id ){
         $qty_in_cart += $cart_item['quantity'];
@@ -387,6 +456,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
       if( $qty_in_stock < $qty_in_cart){
         $backorder_delay_in_words = time_elapsed(strtotime( $edb_backorder_delay, $now ));
         $available_delay_in_words = time_elapsed(strtotime( $edb_available_delay, $now ));
+        // $restock_delay_in_words = time_elapsed(strtotime( $edb_restock_delay, $now ));
         $backorder_qty = $qty_in_cart - $qty_in_stock;
         $availabilities = array(
           $this->availability_html($backorder_qty,$edb_available_delay ),
@@ -404,6 +474,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   }
   
   public function availability_html( $qty, $delay, $symbol = '@' ){
+    write_log('DELAY:'.$delay);
     $now = strtotime(date(DATE_RFC2822));
     $delay_in_words = time_elapsed( strtotime( $delay, $now ) );
     if( !is_cart() && !is_checkout()){
@@ -417,10 +488,17 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   public function get_user_level_discounts( ){
     $user = wp_get_current_user();
     $current_level = get_user_meta($user->ID, '_edb_designer_level', true );
-    write_log('DESIGNER DISCOUNTS');
-    write_log("level: $current_level");
-    if(empty($current_level)) return null;
-    return array("$current_level-regular-items","$current_level-sale-items");
+    
+    // write_log("level: $current_level");
+    $answer = null;
+    if(empty($current_level)){
+      $answer = null;
+      write_log('USER HAS DESIGNER DISCOUNTS: no');
+    }else{
+      $answer = array("$current_level-regular-items","$current_level-sale-items");
+      write_log('USER HAS DESIGNER DISCOUNTS: yes');
+    }
+    return $answer;
   }
   
   public function get_user_level_discount_percents( $level ){
@@ -432,12 +510,13 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     $designerDiscounts = $this->get_user_level_discounts();
     $saleItemsTotal = 0;
     $regularItemsTotal = 0;
-    write_log('DESIGNER DISCOUNTS');
+    write_log('DESIGNER DISCOUNTS:');
     write_log($designerDiscounts);
+    write_log('___');
     if(!is_null($designerDiscounts)){
       $user = wp_get_current_user();
       $current_level = get_user_meta($user->ID, '_edb_designer_level', true );
-      if($this->shipping_debug) write_log(' *** HAS DESIGNER DISOCUNTS *** ');
+      // if($this->shipping_debug) write_log(' *** HAS DESIGNER DISOCUNTS *** ');
       
       foreach($cart->cart_contents as $car_item_key => $cart_item ){
         if($cart_item['data']->is_on_sale()){
@@ -470,7 +549,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     foreach($packages as $package ){
       if(!empty($package['edb_shipping']) && $package['edb_shipping'] == 'edb_self_pickup'){
         $line_total = $package['contents'][0]['line_total'];
-        write_log($package['edb_shipping'] . ' line total: ' . $package['contents'][0]['line_total']);
+        write_log('pickup discount: ' . $package['edb_shipping'] . ' line total: ' . $package['contents'][0]['line_total']);
         $totals += $line_total;
       }
     }
@@ -805,7 +884,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   //Get it from the session and add it to the cart variable
   function get_cart_items_from_session( $item, $values, $key ) {
       if($this->shipping_debug) write_log('get_cart_items_from_session');
-      write_log( $values );
+      // write_log( $values );
       if ( array_key_exists( 'edb_shipping', $values ) ){
         // if($this->shipping_debug) write_log('get_cart_items_from_session ('.$key.') :  '.json_encode( $values ));
         $item[ 'edb_shipping' ] = $values['edb_shipping'];
@@ -1008,6 +1087,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   }
   
   public function get_available_items( $item, $wants, $have ){
+    write_log("GET_AVAILABLE_ITEMS: wants: $wants have: $have");
     global $Edb;
     $newitem = $item;
     $newitem['quantity'] = $have;
@@ -1033,6 +1113,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   }
   
   public function get_backorder_items( $item, $wants, $have ){
+    write_log("GET_BACKORDER_ITEMS: wants: $wants have: $have");
     global $Edb;
     $newitem = $item;
     $qty = $wants - $have;
@@ -1232,7 +1313,11 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     
     foreach( WC()->cart->get_cart() as $item_key => $item ){
       $product   = $item['data'];
+      // write_log('SPLITTING');
+      
       $stock_qty = $product->get_stock_quantity();
+      // write_log("STOCK: $stock_qty");
+      // write_log( $item );
       if($stock_qty < 0){
         $stock_qty = 0;
       }
@@ -1259,7 +1344,18 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
         //   $Edb_Shipping_Method->cart_item_shipments[$item_key] = array();
         // }
         // $Edb_Shipping_Method->cart_item_shipments[$item_key] = array($shipping_method_1,$shipping_method_2);
+      }else if( $stock_qty <= 0 ){
+        $item['edb_availability'] = $this->get_package_availability( $item['data'], true);
+        
+        $packageID_1 = $this->generate_package_id( 'other'.$item_key, $item, $item_key );
+        if(empty($shipping_methods[$packageID_1])){
+          $shipping_methods[$packageID_1] = 'edb_ship_bundle_1';
+        }
+        $shipping_method = $shipping_methods[$packageID_1];
+        $packages[$packageID_1]=$this->create_package($item,$shipping_method,$item_key,'backorder');
       }else{
+        // write_log('GET PACKAGE AVAILABILITY FOR:');
+        
         $item['edb_availability'] = $this->get_package_availability( $item['data'], false);
         
         $packageID_1 = $this->generate_package_id( 'other'.$item_key, $item, $item_key );

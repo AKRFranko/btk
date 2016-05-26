@@ -251,12 +251,15 @@ function edb_get_material_name( $material_no ){
     'posts_per_page'=> 1
   );
   $dpost = get_posts($get_material_desc_args);
+  if(count($dpost) > 0 ){
   $name = apply_filters('the_title', $dpost[0]->post_title);
   $subtitle = apply_filters('the_title', get_the_subtitle($dpost[0]->ID));
   if(empty($subtitle)){
     return $name;
   }
-  return "$name $subtitle $material_no";
+  return "$name $subtitle $material_no";  
+  }
+  return $material_no;
 }
 function edb_checkout_item_material( $cart_item_key, $cart_item ){
   $product_id = $cart_item['product_id'];
@@ -321,16 +324,26 @@ function edb_order_item_availability( $item, $order ){
   $variation_id = $item['variation_id'];
   $shipping = $item['edb_shipping'];
   
-  $availability = $item['edb_availabilities'][$shipping];
+  $availability = "+" . str_replace( 'semaine', 'week', $item['edb_availabilities'][$shipping]);
   
-  $order_date = strtotime($order->order_date);
+  $order_date = strtotime( $order->order_date );
   
   
   $display =  strtotime( $availability, $order_date );
-  // write_log( $availability );
-  // write_log( $order_date );
-  // write_log( $display );
-  echo sprintf( __('ships: %s', 'edb') ,date_i18n('j F Y', $display) );
+  
+  write_log('START');
+  write_log( $item );
+  write_log( $availability );
+  write_log( date_i18n( 'j F Y',$order_date ) );
+  write_log( date_i18n( 'j F Y',$display  ));
+  write_log('END');
+  
+  if($shipping == 'edb_self_pickup'){
+    echo sprintf( __('pickup: %s', 'edb') ,date_i18n('j F Y', $display) );
+  }else{
+    echo sprintf( __('ships: %s', 'edb') ,date_i18n('j F Y', $display) );  
+  }
+  
   
 }
 
@@ -592,6 +605,24 @@ function edb_material_toasts(){
     echo "<style type='text/css'>$rules</style>";
 }
 
+function product_has_or_expects_stock( $product_id ){
+  $decorated = edb_decorated_product( $product_id );
+  $restocks = 0;
+  $stocks = 0;
+  foreach( $decorated->stocks as $vid => $stock){
+    
+    
+    $restock = get_post_meta( $vid, '_edb_variation_expected_restock_qty', true );
+    $restocks+=$restock;
+    $stocks += $stock;
+    
+  }
+  return $stocks >= 1 || !empty( $restocks );
+  
+  
+  
+}
+
 function edb_product_material_picker( $product_id ){
   $decorated = edb_decorated_product( $product_id );
   $materials = $decorated->materials;
@@ -603,11 +634,14 @@ function edb_product_material_picker( $product_id ){
   
   foreach($materials as $edb_material => $data ){
     $stock_qty = $decorated->stocks[$data['variation_id']];
+    $restocking = $decorated->shipping_delays[$data['variation_id']]['expected'];
     
     if($stock_qty > 0){
       $stock_status = __('in stock', 'edb');
       $stock_class='in-stock';
-      
+    }else if(!empty($restocking) && $restocking !== 0){
+      $stock_status = __('restocking', 'edb');
+      $stock_class='re-stock';
     }else{
       $stock_status = __('backorder', 'edb');
       $stock_class='backorder';

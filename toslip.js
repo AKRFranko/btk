@@ -173,10 +173,10 @@ var wc = new WooCommerceAPI({
   // wpAPI: true,
   version: 'v3',
   verifySsl: false,
-  consumerKey:'ck_88b9a1cd25695b4a4514a395c6a5c94e72715199',
-  consumerSecret:'cs_c048c3fe2b104a0164e4b8c6e6e3e1782a5d067f'
-  // consumerKey: 'ck_dbc3f91b5f982189037625df93c50393ad99592b',
-  // consumerSecret: 'cs_9c2a41175bc6d02ef71de28ac1df33d538d8dac1'
+  // consumerKey:'ck_88b9a1cd25695b4a4514a395c6a5c94e72715199',
+  // consumerSecret:'cs_c048c3fe2b104a0164e4b8c6e6e3e1782a5d067f'
+  consumerKey: 'ck_dbc3f91b5f982189037625df93c50393ad99592b',
+  consumerSecret: 'cs_9c2a41175bc6d02ef71de28ac1df33d538d8dac1'
 });
 
 var onFailure = function( error ){
@@ -225,7 +225,7 @@ var onProductData = function( data ){
     type: 'variable',
     status: 'draft',
     description: desc,
-    categories: [52],
+    categories: [29], //[52]
     backorders: 'allow',
     featured_src: featured,
     shipping_class: 'accessories',
@@ -239,6 +239,11 @@ var onProductData = function( data ){
   wc.post('products', {  product: slipcover }, handle( onFailure, onProductCreated ))
   
 }
+var onCategoryData = function( data ){
+  cats = data.categories;
+  wc.get('products/' + pid, handle( onProductData, onFailure ) );  
+}
+
 
 
 var handle = function( succ, fail ){
@@ -248,8 +253,3 @@ var handle = function( succ, fail ){
   }
 }
 wc.get('categories', handle( onCategoryData, onFailure ))
-var onCategoryData = function( data ){
-  cats = data.categories;
-  wc.get('products/' + pid, handle( onProductData, onFailure ) );  
-}
-

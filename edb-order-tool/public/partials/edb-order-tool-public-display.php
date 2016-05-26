@@ -12,7 +12,7 @@
  * @subpackage Edb_Order_Tool/public/partials
  */
  global $user_login;
-  get_currentuserinfo();
+  wp_get_current_user();
   if(!current_user_can('publish_posts')){
     auth_redirect();
     exit(); 

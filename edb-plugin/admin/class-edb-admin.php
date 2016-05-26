@@ -225,15 +225,24 @@ class Edb_Admin {
        'value' => isset( $edb_expected_restock ) ? $edb_expected_restock : null
        )
     );
+    // woocommerce_wp_text_input(
+    // array(
+    //   'id' => '_edb_expected_restock_qty' ,
+    //   'label' => __('Expected Restock Quantity', 'edb'),
+    //   'type'=>'number',
+    //   'desc_tip' => true,
+    //   'value' => isset( $edb_expected_restock_qty ) ? $edb_expected_restock_qty : null
+    //   )
+    // );
     echo "<hr><p><b>EDB Related Media</b></p>";
-    woocommerce_wp_image_select(
-     array(
-       'id' => '_edb_technical_image' ,
-       'label' => __('Image to use as technical detail.', 'edb'),
-       'value' => null,
-       'options' => $image_options
-     )
-    );
+    // woocommerce_wp_image_select(
+    // array(
+    //   'id' => '_edb_technical_image' ,
+    //   'label' => __('Image to use as technical detail.', 'edb'),
+    //   'value' => null,
+    //   'options' => $image_options
+    // )
+    // );
     woocommerce_wp_text_input(
      array(
        'id' => '_edb_introduction_video' ,
@@ -263,6 +272,7 @@ class Edb_Admin {
 	  
     $edb_backorder_delay = get_post_meta( $variation->ID, '_edb_variation_backorder_delay', true );
     $edb_expected_restock = get_post_meta( $variation->ID, '_edb_variation_expected_restock', true );
+    $edb_expected_restock_qty = get_post_meta( $variation->ID, '_edb_variation_expected_restock_qty', true );
     echo "<hr><p><b>EDB Shipping Delays</b> <small>(overrides product settings at variation level)</small></p>";
     woocommerce_wp_hidden_input(
       array(
@@ -302,6 +312,15 @@ class Edb_Admin {
        'type'=>'date',
        'desc_tip' => true,
        'value' =>  $edb_expected_restock 
+       )
+    );
+    woocommerce_wp_text_input(
+     array(
+       'id' => '_edb_variation_expected_restock_qty' ,
+       'label' => __('Expected Restock Quantity', 'edb'),
+       'type'=>'number',
+       'desc_tip' => true,
+       'value' => isset( $edb_expected_restock_qty ) ? $edb_expected_restock_qty : 0
        )
     );
 	}
@@ -366,10 +385,14 @@ class Edb_Admin {
 	  $edb_available_delay = (isset( $_POST['_edb_variation_available_delay'] ) && !empty($_POST['_edb_variation_available_delay'])) ? $_POST['_edb_variation_available_delay'] : $default_available_delay;
 	  $edb_backorder_delay = (isset( $_POST['_edb_variation_backorder_delay'] ) && !empty($_POST['_edb_variation_backorder_delay'])) ? $_POST['_edb_variation_backorder_delay'] : $default_backorder_delay;
 	  $edb_expected_restock = $_POST['_edb_variation_expected_restock'];
+	  $edb_expected_restock_qty = isset( $_POST['_edb_variation_expected_restock_qty'] ) ? $_POST['_edb_variation_expected_restock_qty'] : 0;
 	  
 	 // if(!empty($edb_expected_restock)){
 	    update_post_meta( $post_id, '_edb_variation_expected_restock', esc_attr( $edb_expected_restock ) );
 	 // }
+	 //if(isset($_POST['_edb_variation_expected_restock_qty'])){
+	   update_post_meta( $post_id, '_edb_variation_expected_restock_qty', esc_attr( $edb_expected_restock_qty ) );
+	 //}
 	  if($this->is_valid_delay_string( $edb_available_delay  )){
       update_post_meta( $post_id, '_edb_variation_available_delay', esc_attr( $edb_available_delay ) );
     }

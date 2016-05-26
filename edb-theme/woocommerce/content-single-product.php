@@ -112,7 +112,13 @@ if ( ! defined( 'ABSPATH' ) ) {
           <?php endif; ?>
         
           <?php do_action( 'woocommerce_after_variations_form' ); ?>
-          <small class="stocknote">= <?php _e('in stock','edb'); ?></small>
+          
+          <?php if( !empty( $available_variations ) && count($available_variations) > 1  ){ ?>
+            <?php if( product_has_or_expects_stock( $product->id ) ){ ?> 
+              <small class="stocknote">= <?php _e('in stock','edb'); ?></small>
+              <small class="restocknote">= <?php _e('restocking','edb'); ?></small>
+            <?php } ?>
+          <?php }; ?>
         </form>
         
         <?php do_action( 'woocommerce_after_add_to_cart_form' ); ?>

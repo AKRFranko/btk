@@ -31,6 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<th class="td" scope="col" style="text-align:left;"><?php _e( 'Product', 'woocommerce' ); ?></th>
 			<th class="td" scope="col" style="text-align:left;"><?php _e( 'Quantity', 'woocommerce' ); ?></th>
 			<th class="td" scope="col" style="text-align:left;"><?php _e( 'Price', 'woocommerce' ); ?></th>
+			<!--<th class="td" scope="col" style="text-align:left;"><?php _e( 'Note', 'woocommerce' ); ?></th>-->
 		</tr>
 	</thead>
 	<tbody>

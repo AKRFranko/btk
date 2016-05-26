@@ -30,7 +30,14 @@ do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order );
   </td>  
   <td class="td">
     <?php echo wc_price($item['line_total']); ?>
-  </td>      
+  </td>
+  <td class="td">
+  <?php 
+      edb_order_item_availability( $item, $order );
+  ?>
+  </td>
+  
+
     
   
 

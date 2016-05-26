@@ -13,6 +13,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 
+<style type="text/css">
+  #body_content table{
+    font-size:11px;
+  }
+  #body_content table td{
+    padding:8px;
+  }
+</style>
 <?php do_action( 'woocommerce_email_header', $email_heading ); ?>
 
 <p><?php printf( __( 'You have received an order from %s. The order is as follows:', 'woocommerce' ), $order->get_formatted_billing_full_name() ); ?></p>
@@ -28,6 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<th class="td" scope="col" style="text-align:left;"><?php _e( 'Product', 'woocommerce' ); ?></th>
 			<th class="td" scope="col" style="text-align:left;"><?php _e( 'Quantity', 'woocommerce' ); ?></th>
 			<th class="td" scope="col" style="text-align:left;"><?php _e( 'Price', 'woocommerce' ); ?></th>
+			<th class="td" scope="col" style="text-align:left;"><?php _e( 'Note', 'woocommerce' ); ?></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -41,7 +50,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					$i++;
 					?><tr>
 						<th class="td" scope="col" colspan="2" style="font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; text-align:left; <?php if ( $i == 1 ) echo 'border-top-width: 4px;'; ?>"><?php echo $total['label']; ?></th>
-						<td class="td" scope="col" style="text-align:left; <?php if ( $i == 1 ) echo 'border-top-width: 4px;'; ?>"><?php echo $total['value']; ?></td>
+						<td class="td" scope="col" colspan="2" style="text-align:left; <?php if ( $i == 1 ) echo 'border-top-width: 4px;'; ?>"><?php echo $total['value']; ?></td>
 					</tr><?php
 				}
 			}

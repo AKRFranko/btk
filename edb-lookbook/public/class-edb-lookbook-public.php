@@ -96,7 +96,7 @@ class Edb_Lookbook_Public {
 		 * class.
 		 */
     wp_enqueue_script( $this->plugin_name + '_hammer', plugin_dir_url( __FILE__ ) . 'js/hammer.min.js', array(), $this->version, false );
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/edb-lookbook-public.js', array( 'jquery',$this->plugin_name + '_hammer' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/edb-lookbook-public.js', array( 'jquery',$this->plugin_name + '_hammer' ), $this->version . '.b', false );
 
 	}
 

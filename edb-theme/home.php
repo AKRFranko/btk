@@ -30,7 +30,7 @@ $paged = (get_query_var('page')) ? get_query_var('page') : 1;
 $my_query = new WP_Query(array(
   "paged" => $paged,
   "category_name" => "news",
-  "posts_per_page" => 7,
+  "posts_per_page" => 8,
 ));
 ?>
     <?php if ($my_query->have_posts()): ?>

@@ -75,7 +75,7 @@
         <ul>
       <?php
         $maincats = get_terms( 'product_cat', array('get'=>'all', 'parent' => 0, 'hide_empty' => false) );
-        $flatten = array();
+        $flatten = array('slipcovers');
         $ignore = array('benches-ottomans', 'headboards', 'storage');
         $standalone = array('accessories-rugs');
         

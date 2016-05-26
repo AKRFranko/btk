@@ -242,7 +242,7 @@ window.requestAnimFrame = (function(){
       if(hash){
         var activeHash = $('#checkout-panel-tabs a.active').attr('href');
         if(activeHash != hash){
-          $('#checkout-panel-tabs a[href='+hash+']').click();  
+          $('#checkout-panel-tabs a[href="'+hash+'"]').click();  
         }  
         var panelInput = $('#currentPanel');
         if(panelInput.length === 0){
@@ -295,7 +295,7 @@ window.requestAnimFrame = (function(){
   
   var setDoNotShip = function( checked ){
     var $diffAddr  = $('#ship-to-different-address input');
-    var $opposite = $('input[name=ship_to_different_address]');
+    var $opposite = $('input[name="ship_to_different_address"]');
     var $noShip  = $('#do-not-ship input');
     var addrHadChecked = $diffAddr.data('user-checked');
     if(!checked && addrHadChecked && addrHadChecked.value ){

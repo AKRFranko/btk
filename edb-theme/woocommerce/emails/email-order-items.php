@@ -28,12 +28,13 @@ $edb_shipping_methods = array(
     }
   }
   foreach( $split as $method => $items ){
-    echo "<tr class='td'><th class='td' style='text-align:left;' colspan='3'>".$edb_shipping_methods[$method]."</th></tr>";
+    echo "<tr class='td'><th class='td' style='text-align:left;' colspan='4'>".$edb_shipping_methods[$method]."</th></tr>";
     ?>
     <tr>
       <th class="td" scope="col" style="text-align:left;"><?php _e( 'Product', 'edb' ); ?></th>
       <th class="td" scope="col" style="text-align:left;"><?php _e( 'Quantity', 'edb' ); ?></th>
       <th class="td" scope="col" style="text-align:left;"><?php _e( 'Price', 'edb' ); ?></th>
+      <th class="td" scope="col" style="text-align:left;"><?php _e( 'Note', 'edb' ); ?></th>
     </tr>
     <?php
     foreach( $items as $copy ){

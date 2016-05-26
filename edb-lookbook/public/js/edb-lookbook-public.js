@@ -34,7 +34,7 @@
 	   
        $('.edb-slider').each(function(){
          var $slider = $(this);
-         if($slider.data('autocycle')  ){
+         if($slider.data('autocycle')  && $slider.data('autocycle')  !== 0){
           cycle( this, 1 , 'autocycle');     
          }
          
@@ -189,6 +189,10 @@
 	   //}
 	   timerReset();
 	   resetAutoCycle();
+	   $slider.data('autocycle', 0 ) ;
+	   setTimeout( function(){
+	     $slider.data('autocycle', 1 ) ;
+	   }, 30000)
 	   var dir = $(this).hasClass('next') ? 1 : 0;
 	   cycle( $slider, dir ,'nextprev');
 	   //if(kenburns){

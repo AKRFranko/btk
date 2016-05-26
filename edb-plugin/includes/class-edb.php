@@ -248,6 +248,8 @@ class Edb {
     add_action('woocommerce_after_checkout_validation',array($GLOBALS['Edb_Shipping_Method'],'after_checkout_validation'));
     
     add_action('woocommerce_before_pay_action', array($GLOBALS['Edb_Shipping_Method'],'before_pay_action'));
+    
+    add_filter('woocommerce_reduce_order_stock', array($GLOBALS['Edb_Shipping_Method'],'reduce_restock') );
     // add_action( 'woocommerce_review_order_before_submit',  array($GLOBALS['Edb_Shipping_Method'], 'review_order_before_submit') );
     
     // add_action( 'woocommerce_before_checkout_billing_form', array($GLOBALS['Edb_Shipping_Method'],'before_checkout_billing_form') );

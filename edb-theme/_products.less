@@ -4,13 +4,15 @@
   /*min-height:100vh;*/
 }
 .edb-material-choice-square.in-stock:after,
+.edb-material-choice-square.re-stock:after,
+.restocknote:before,
 .stocknote:before{
     content: '✓';
     background: rgba(0, 0, 0, 0.2);
     font-weight: bold;
     font-family: monospace;
     color: #fff;
-    text-shadow: 1px 1px 2px rgba(0,0,0,.3);
+    text-shadow: 1px 1px 2px rgba(0,0,0,.15);
     position: absolute;
     bottom: 0.2em;
     right: 0.25em;
@@ -23,11 +25,21 @@
     text-align: center;
     padding-top: .25em;
 }
+.restocknote:before,
 .stocknote:before{
   position:relative;
   bottom:0;
   right:0;
   margin-right:.2em;
+}
+.edb-material-choice-square.re-stock:after,
+.restocknote:before{
+  content:'↝';
+}
+.restocknote {
+    position: absolute;
+    bottom: 2em;
+    left: 0;
 }
 
 #material-toast:not(.active){

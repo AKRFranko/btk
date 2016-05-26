@@ -257,8 +257,7 @@ function btk_edb_slider($query, $attach = null, $blankTargets = false) {
     $slider_query->the_post();
     if (has_post_thumbnail()) {
       $src = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full')[0];
-      
-      ?><div class="edb-slide<?php echo $active; ?>">
+      ?><div class="edb-slide<?php echo $active; ?> <?php echo get_post_format($slider_query->post->ID); ?>">
         
           <div class="backdrop" style="background-image:url('<?php echo esc_attr($src); ?>')">
             <img src="<?php echo esc_attr($src); ?>">

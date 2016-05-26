@@ -96,7 +96,7 @@ class Edb_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/edb-public.js', array( 'jquery' ), $this->version . '.d', false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/edb-public.js', array( 'jquery' ), $this->version . '.e', false );
 
 	}
 	
