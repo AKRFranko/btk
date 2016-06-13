@@ -246,10 +246,15 @@ class Edb {
     
     add_action('woocommerce_before_checkout_process', array($GLOBALS['Edb_Shipping_Method'],'before_checkout_process'));
     add_action('woocommerce_after_checkout_validation',array($GLOBALS['Edb_Shipping_Method'],'after_checkout_validation'));
+    add_action('woocommerce_before_checkout_shipping_form', array($GLOBALS['Edb_Shipping_Method'],'before_shipping_form'));
     
     add_action('woocommerce_before_pay_action', array($GLOBALS['Edb_Shipping_Method'],'before_pay_action'));
     
     add_filter('woocommerce_reduce_order_stock', array($GLOBALS['Edb_Shipping_Method'],'reduce_restock') );
+    
+    add_filter('woocommerce_get_regular_price', array( $this, 'get_regular_price'), 10, 2 );
+    add_filter('woocommerce_get_sale_price', array( $this, 'get_sale_price'), 10, 2 );
+    
     // add_action( 'woocommerce_review_order_before_submit',  array($GLOBALS['Edb_Shipping_Method'], 'review_order_before_submit') );
     
     // add_action( 'woocommerce_before_checkout_billing_form', array($GLOBALS['Edb_Shipping_Method'],'before_checkout_billing_form') );
@@ -262,6 +267,16 @@ class Edb {
     
     
 	}
+  // public function get_regular_price( $price, $product ){
+  //   write_log( 'GET REGULAR PRICE');
+    
+  //   write_log($product);
+  // }
+  
+  // public function get_sale_price( $price, $product ){
+  //   write_log( 'GET SALE PRICE');
+  //   write_log($product->product_type);
+  // }
 	
 	public function mirror_reduce_order_stock( $order ){
 	 // write_log('mirror_reduce_order_stock');

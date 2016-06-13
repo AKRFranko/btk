@@ -30,6 +30,7 @@
         setTimeout( function(){
           $('#contest').addClass('active');
         }, 10000)
+        // $('#contest').addClass('active');
       }  
     }
     $('input[name=attribute_edb_material]').trigger('change')

@@ -110,7 +110,25 @@ right: 0em;
   min-height:calc(~"460px + 3em");
 }
 
-
+s.onsale{
+  text-decoration:none;
+  position:relative;
+  display:inline-block;
+  font-weight:normal;
+  &:after{
+    content:'';
+    position:absolute;
+    top:calc(~'50% - 2px');left:0;
+    height:2px;
+    width:100%;
+    transform-origin:center;
+    transform:rotate(15deg);
+    border-bottom:2px solid #000;
+  }
+}
+.saleprice{
+  color:#b91212;
+}
 
 // .products, 
 // .listing-product,.listing-product > a, .listing-product-name,.listing-product-price,.listing-product-image{

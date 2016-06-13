@@ -145,11 +145,38 @@ class Edb_Product_Decorator {
     }
     
     $this->price = $this->product_object->get_price();
-    if(empty($this->price)){
-      $variation = $factory->get_product($this->variations[0]);
-      $this->price = $variation->get_price();
-    }
     
+    // if(empty($this->price)){
+    //   $variation = $factory->get_product($this->variations[0]);
+    //   $this->price = $variation->get_price();
+    // }
+    
+    $this->price_html = $this->price;
+    if($this->product_object->is_on_sale()){
+      $regular_price =end($this->product_object->get_variation_prices()['regular_price']);
+      
+      $this->price_html = "<s class='onsale'>".$regular_price."</s> <span class=\"saleprice\">$".$this->price."</span>";
+    }
+    // write_log( "PRICE:".$this->product_object->get_price());
+    // write_log( "REGULAR:".$this->product_object->get_regular_price());
+    
+    // $regular_price = $this->product_object->get_regular_price();
+    // $sale_price=$this->product_object->get_sale_price();
+    
+    // foreach($this->variations as $vid => $vdata){
+    //   $p = $factory->get_product($vid)->get_price();
+    //   if(!empty($p) && $p != $regular_price){
+    //     $sale_price = $p;
+    //     break;
+    //   }
+    // }
+    // write_log('SALE PRICE: '.$sale_price);
+    // if(!empty($sale_price)){
+    //   $this->price_html = "<s class='onsale'>".$regular_price."</s> $".$this->price;
+    // }
+    // if(isset($this->variation_object) && $this->variation_object->is_on_sale()){
+    //   $this->price_html = "<s class='onsale'>".$this->variation_object->get_regular_price()."</s> ".$this->price;
+    // }
    
     // end get all materials and their descriptions
     

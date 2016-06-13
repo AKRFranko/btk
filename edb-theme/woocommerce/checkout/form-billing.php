@@ -19,31 +19,54 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<?php do_action( 'woocommerce_before_checkout_billing_form', $checkout ); ?>
 
-	<?php foreach ( $checkout->checkout_fields['billing'] as $key => $field ) : ?>
+	<?php 
+	$billingValue = $checkout->get_value('billing_postcode' );
+  $shippingValue = $checkout->get_value('shipping_postcode' );
+  $customerValue = WC()->customer->get_shipping_postcode();
+	foreach ( $checkout->checkout_fields['billing'] as $key => $field ) : ?>
 	
 	  <?php 
 	  
-	  if($key == 'shipping_postcode' || $key == 'billing_postcode' ){
-	      $billingValue = $checkout->get_value('billing_postcode' );
-	      $shippingValue = $checkout->get_value('shipping_postcode' );
-	      $customerValue = WC()->customer->get_shipping_postcode();
-        if(!empty($shippingValue)){
-          $value = $shippingValue;
-        }
-        if(!empty($billingValue)){
-          $value = $billingValue;
-        }
+	  if($key == 'shipping_postcode' ){
+	     if(empty($shippingValue)){
+	       $value = $billingValue;
+	     }
+	     if(empty($value)){
+	       $value = $customerValue;
+	     }
+	     woocommerce_form_field( $key, $field, $value ); 
+	     // write_log('SHIPPING_VALUE:');
+	     // write_log($shippingValue);
+	     // write_log('BILLING_VALUE:');
+      //   write_log($billingValue);
+      //   write_log('CUSTOMER_VALUE:');
+      //   write_log($customerValue);
+      //   if(!empty($shippingValue)){
+      //     $value = $shippingValue;
+      //   }
+      //   if(!empty($billingValue)){
+      //     $value = $billingValue;
+      //   }
 
-        if(empty($value)){
-          $value = $customerValue;
-        }
+      //   if(empty($value)){
+      //     $value = $customerValue;
+      //   }
         
-        if(empty($value) && isset($_REQUEST['shipping_postcode'])){
-          $value = $_REQUEST['shipping_postcode'];
-        }
-
-	      woocommerce_form_field( $key, $field, $value ); 
+      //   if(empty($value) && isset($_REQUEST['shipping_postcode'])){
+      //     $value = $_REQUEST['shipping_postcode'];
+      //   }
+      //   write_log('FINAL_VALUE:');
+      //   write_log($value);
+	     // woocommerce_form_field( $key, $field, $value ); 
 	      
+	  }else if($key == 'billing_postcode'){
+	    if(!empty($billingValue)){
+        $value = $billingValue;
+      }
+      if(empty($value)){
+        $value = $customerValue;
+      }
+      woocommerce_form_field( $key, $field, $value ); 
 	  }else{ 
 		    woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); 
 		};

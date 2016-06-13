@@ -263,10 +263,12 @@
 
     }
 
-    if ($('.edb-material-choice-square').length === 1) {
+    if ($('.edb-material-choice-square').length === 1 ) {
       $('.edb-material-choice-square').click();
-
-      $('.product-menu').addClass('one-choice');
+      if($('.product-cat-side-tables,.product_cat-accessories-pillows,.product-cat-accessories-rugs').length > 0 ){
+        $('.product-menu').addClass('one-choice');  
+      }
+      
     }
 
 

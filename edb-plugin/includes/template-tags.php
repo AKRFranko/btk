@@ -338,11 +338,14 @@ function edb_order_item_availability( $item, $order ){
   write_log( date_i18n( 'j F Y',$display  ));
   write_log('END');
   
-  if($shipping == 'edb_self_pickup'){
-    echo sprintf( __('pickup: %s', 'edb') ,date_i18n('j F Y', $display) );
-  }else{
-    echo sprintf( __('ships: %s', 'edb') ,date_i18n('j F Y', $display) );  
-  }
+  echo time_elapsed($display);//date_i18n('j F Y',$display);
+  // echo floor(($availability - $order_date) / $wk);
+  // echo datediffInWeeks( $availability, $order_date );
+  // if($shipping == 'edb_self_pickup'){
+  //   echo sprintf( __('pickup: %s', 'edb') ,date_i18n('j F Y', $display) );
+  // }else{
+  //   echo sprintf( __('ships: %s', 'edb') ,date_i18n('j F Y', $display) );  
+  // }
   
   
 }
@@ -704,6 +707,10 @@ function tmp_has_tech_image( $deco ){
               "maritime_armchairs",
               "maritime-natural_armchairs",
               "nautique_accessories-pillows",
+              "nautique-gold_accessories-pillows",
+              "nautique-green_accessories-pillows",
+              "nautique-white_accessories-pillows",
+              "nautique-blue_accessories-pillows",
               "stripes_sofas-3-seater",
               "stripes_sofas-2-seater",
               "atrium_sofas-3-seater",
@@ -722,7 +729,8 @@ function tmp_has_tech_image( $deco ){
               "tamtam-grey_side-tables",
               "tamtam-blue_side-tables",
               "tamtam-pink_side-tables",
-
+              "waffle_sectionals-left-facing",
+              "waffle_sectionals-right-facing",
               "capsule_sofas",
               "mixmix-corner_modular",
               "perplexe_side-tables",
@@ -748,7 +756,9 @@ function tmp_has_tech_image( $deco ){
               "flex_sectionals-right-facing",
               "mixmix-single_modular",
               "slope_armchairs",
-              "t-table_side-tables",
+              "t-table-yellow_side-tables",
+              "t-table-black_side-tables",
+              "t-table-white_side-tables",
               "majuscule_accessories-pillows",
               "mutation_accessories-pillows",
               "slope_sofas-3-seater",
@@ -765,7 +775,12 @@ function tmp_has_tech_image( $deco ){
               'majuscule-pink_accessories-pillows',
               'mutation_accessories-pillows',
               'pique-raf_sofas-2-seater',
-              "vintage_side-tables");
+              "vintage_side-tables",
+              "polka-green_accessories-pillows", 
+              "polka-purple_accessories-pillows",
+              "atrium-split_sofas-3-seater",
+              "maritime-natural_sofas-2-seater",
+              "vintage-white_side-tables");
 
 // $name = $deco->title;
  

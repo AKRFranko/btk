@@ -1,0 +1,128 @@
+[{
+  "material": "106"
+}, {
+  "material": "105"
+}, {
+  "material": "104"
+}, {
+  "material": "103"
+}, {
+  "material": "102"
+}, {
+  "material": "101"
+}, {
+  "material": "063"
+}, {
+  "material": "062"
+}, {
+  "material": "059"
+}, {
+  "material": "058"
+}, {
+  "material": "057"
+}, {
+  "material": "056"
+}, {
+  "material": "055"
+}, {
+  "material": "054"
+}, {
+  "material": "053"
+}, {
+  "material": "052"
+}, {
+  "material": "051"
+}, {
+  "material": "001",
+  "title": "Coton",
+  "subtitle": "{:en}White{:}{:fr}Blanc{:}",
+  "description": "{:en}100% cotton {:}{:fr}100% coton  {:}",
+  "image": "/wp-content/edb-materials/001.jpg"
+  
+}, {
+  "material": "002",
+  "title": "Linen",
+  "subtitle": "{:en}Natural{:}{:fr}Naturel{:}",
+  "description": "{:en}40% viscose|20% linen 20%| polyester 20%| cotton {:}{:fr}40% viscose|  20% lin|  20% polyester|  20% coton  {:}",
+  "image": "/wp-content/edb-materials/002.jpg"
+}, {
+  "material": "003",
+  "title": "Linen",
+  "subtitle": "{:en}Charcoal{:}{:fr}Anthracite{:}",
+  "description": "{:en}40% viscose|20% linen |20% polyester |20% cotton {:}{:fr}40% viscose | 20% lin | 20% polyester  |20% coton  {:}",
+  "image": "/wp-content/edb-materials/003.jpg"
+}, {
+  "material": "004",
+  "title": "Tweed",
+  "subtitle": "{:en}Grey{:}{:fr}Gris{:}",
+  "description": "{:en}80% viscose|20% linen {:}{:fr}80% viscose|  20% lin  {:}",
+  "image": "/wp-content/edb-materials/004.jpg"
+}, {
+  "material": "005",
+  "title": "Epingle",
+  "subtitle": "{:en}Grey{:}{:fr}Gris{:}",
+  "description": "{:en}76% cotton|24% acrylic {:}{:fr}76% coton|  24% acrylique  {:}",
+  "image": "/wp-content/edb-materials/005.jpg"
+}, {
+  "material": "006",
+  "title": "Flannel",
+  "subtitle": "{:en}Charcoal{:}{:fr}Anthracite{:}",
+  "description": "{:en}2% SPA|88% polyester |10% viscose {:}{:fr}2% SPA|  88% polyester | 10% viscose  {:}",
+  "image": "/wp-content/edb-materials/006.jpg"
+}, {
+  "material": "007",
+  "title": "Canevas",
+  "subtitle": "{:en}Deep Red{:}{:fr}Bourgogne{:}",
+  "description": "{:en}70% cotton|30% linen {:}{:fr}70% coton|  30% lin  {:}",
+  "image": "/wp-content/edb-materials/007.jpg"
+}, {
+  "material": "008",
+  "title": "Canevas",
+  "subtitle": "{:en}Yellow{:}{:fr}Jaune{:}",
+  "description": "{:en}70% cotton|30% linen {:}{:fr}70% coton|  30% lin  {:}",
+  "image": "/wp-content/edb-materials/008.jpg"
+}, {
+  "material": "009",
+  "title": "Velvet",
+  "subtitle": "{:en}Olive{:}{:fr}Olive{:}",
+  "description": "{:en}89% cotton|11% polyester {:}{:fr}89% coton|  11% polyester  {:}",
+  "image": "/wp-content/edb-materials/009.jpg"
+}, {
+  "material": "010",
+  "title": "Canevas",
+  "subtitle": "{:en}Mossy{:}{:fr}Menthe{:}",
+  "description": "{:en}70% cotton|30% linen {:}{:fr}70% coton|  30% lin  {:}",
+  "post_id": 1253
+}, {
+  "material": "011",
+  "title": "Tissage",
+  "subtitle": "{:en}Turqoise{:}{:fr}Turquoise{:}",
+  "description": "{:en}10% cotton|12% polyester| 24% linen |54% viscose {:}{:fr}10% coton | 12% polyester | 24% lin | 54% viscose  {:}",
+  "image": "/wp-content/edb-materials/011.jpg"
+}, {
+  "material": "012",
+  "title": "Velvet",
+  "subtitle": "{:en}Deep Blue{:}{:fr}Bleu Marine{:}",
+  "description": "{:en}89% cotton|11% polyester {:}{:fr}89% coton|11% polyester  {:}",
+  "image": "/wp-content/edb-materials/012.jpg"
+}, {
+  "material": "064"
+}, {
+  "material": "999"
+}, {
+  "material": "153"
+}, {
+  "material": "151"
+}, {
+  "material": "154"
+}, {
+  "material": "152"
+}, {
+  "material": "107"
+}, {
+  "material": "108"
+}, {
+  "material": "109"
+}, {
+  "material": "110"
+}]

@@ -510,6 +510,7 @@ class Edb_Admin {
        'public' => true,
       'supports' => array( 'title', 'excerpt', 'editor', 'thumbnail','page-attributes' ),
       'exclude_from_search' => true,
+      'show_in_rest' => true,
       'capability_type' => 'post',
       'rewrite' => array( 'slug' => 'materials' ),
       )

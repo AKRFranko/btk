@@ -133,7 +133,14 @@
           }
         }
       ?>
+      <?php if(WPGlobus::Config()->language == 'en'){ ?>
       <li><a href="/shop" title="Shop Around"><?php _e('all','edb'); ?></a></li>
+      <li><a style="color:#ff9999!important;" href="/shop?on_sale=1" title="On Sale"><?php _e('sale','edb'); ?></a></li>  
+      <?php }else{ ?>
+      <li><a href="/fr/shop" title="Shop Around"><?php _e('all','edb'); ?></a></li>
+      <li><a style="color:#ff9999!important;" href="/fr/shop?on_sale=1" title="On Sale"><?php _e('sale','edb'); ?></a></li>
+      <?php }; ?>
+      
     </ul></nav>
     <div id="sign-in-menu">
       <p class="welcome"><?php _e('welcome', 'edb');?></p>

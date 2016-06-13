@@ -1,0 +1,225 @@
+/*
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+*/
+
+(function(document) {
+  'use strict';
+
+  // Grab a reference to our auto-binding template
+  // and give it some initial binding values
+  // Learn more about auto-binding templates at http://goo.gl/Dx1u2g
+  var app = document.querySelector('#app');
+
+  // Sets app default base URL
+  app.baseUrl = '/wp-content/themes/edb/apps/order-tool/app/';
+  app.searchFilter = '';
+
+  app.resetFees = function() {
+    app.customFee = {
+      title: null,
+      taxable: false,
+      total: 0
+    };
+  }
+  app.resetBilling = function() {
+    app.billing = {
+      email: null
+    };
+  }
+  app.resetShipping = function() {
+    app.shipping = {
+      first_name: null,
+      last_name: null,
+      address_1: null,
+      address_2: null,
+      city: null,
+      state: null,
+      postcode: null,
+      country: 'CA'
+    };
+  }
+  app.resetShipping();
+  app.resetBilling();
+  app.resetFees();
+  
+  if (window.location.port === '') { // if production
+    // Uncomment app.baseURL below and
+    // set app.baseURL to '/your-pathname/' if running from folder in production
+    // app.baseUrl = '/polymer-starter-kit/';
+  }
+
+  app.displayInstalledToast = function() {
+    // Check to make sure caching is actually enabled—it won't be in the dev environment.
+    if (!Polymer.dom(document).querySelector('platinum-sw-cache').disabled) {
+      Polymer.dom(document).querySelector('#caching-complete').show();
+    }
+  };
+
+  // Listen for template bound event to know when bindings
+  // have resolved and content has been stamped to the page
+  app.addEventListener('dom-change', function() {
+    console.log('Our app is ready to rock!');
+
+
+  });
+
+  // See https://github.com/Polymer/polymer/issues/1381
+  window.addEventListener('WebComponentsReady', function() {
+    // imports are loaded and elements have been registered
+    EDB.load(app.onEDBLoaded, app.notifyProgress);
+
+    app.createSearchFilterListener();
+  });
+
+
+  app.onEDBLoaded = function() {
+    
+    // app.catalogItems = EDB.products;
+    // // EDB.cart.addItem(8012, 8013, 5);
+    // app.cartItems = [];
+  }
+  app.createSearchFilterListener = function() {
+    var lastFilter = '';
+    var oldStatus;
+    // document.querySelector('#searchFilter').addEventListener('input', function() {
+    //   if (app.searchFilter !== lastFilter) {
+    //     lastFilter = app.searchFilter;
+    //     // app.catalogItems = EDB.filterCatalogItems(app.searchFilter);  
+    //     EDB.filterCatalogItems(app.searchFilter);
+
+    //   }
+
+    // })
+  }
+  app.notifyProgress = function(message) {
+    app.status = message;
+  }
+  app.echo = function(a) {
+    return a;
+  }
+  app.computeStockNote = function(variation) {
+    return variation.isBackOrder ? 'backorder' : 'in-stock';
+  }
+  app.computeHiddenClass = function(hidden) {
+    return hidden ? 'hidden ' : 'not-hidden ';
+  }
+  app.computeShippingType = function(type) {
+    if (type == 'edb_self_pickup') {
+      return 'pickup';
+    } else {
+      return 'ship';
+    }
+  }
+  app.computeCartItemTotal = function(cartItem) {
+    return ((cartItem.line_item.quantity * cartItem.variation.price)).toFixed(2)
+  }
+  app.orderRequiresShipping = function(){
+    return EDB.orderRequiresShipping();
+  }
+  app.handleCheckout = function() {
+    app.customFees = EDB.getCustomFees();
+    app.shippingFees = EDB.getShippingFees();
+    app.route = 'checkout';
+  }
+  
+  app.handleOrderReview = function(){
+    EDB.order.setBilling( app.billing );
+    EDB.order.setShipping( app.shipping );
+    EDB.order.send( function( error, order ){
+      if(error){
+        console.log(error)
+      }else{
+        app.route = 'review';
+        app.currentOrder = order.order;
+      }
+    })
+  }
+  app.handleRemoveCartItem = function(event) {
+    EDB.cart.removeItem(event.model.cartItem.cart_token);
+    app.cartItems = EDB.getCartItems();
+  }
+  app.handleAddCustomFee = function() {
+    EDB.order.addFee(app.customFee);
+    app.customFee = {
+      title: null,
+      taxable: false,
+      total: 0
+    };
+    app.customFees = EDB.getCustomFees();
+    app.shippingFees = EDB.getShippingFees();
+  }
+  app.handleRemoveCustomFee = function() {
+    EDB.order.removeFee(event.model.feeItem.fee_token);
+    app.customFees = EDB.getCustomFees();
+    app.shippingFees = EDB.getShippingFees();
+
+  }
+  app.handleCancelOrder = function(){
+    EDB.cart.clearItems();
+    app.cartItems = [];
+    app.resetShipping();
+    app.resetBilling();
+    app.resetFees();
+    app.searchFilter = '';
+    EDB.filterCatalogItems('');
+    
+    app.route = 'home';
+  }
+  app.handleAddToCart = function(event) {
+
+    var parent = Polymer.dom(event).rootTarget.parentElement;
+    var input = parent.querySelector('paper-input');
+    var qty = 1 * input.value;
+    if (qty !== 0) {
+      var product_id = event.model.variation.product.id;
+      var variation_id = event.model.variation.id;
+      EDB.cart.addItem(product_id, variation_id, qty);
+      app.cartItems = EDB.getCartItems();
+      input.value = 0;
+    }
+
+  }
+
+  // Main area's paper-scroll-header-panel custom condensing transformation of
+  // the appName in the middle-container and the bottom title in the bottom-container.
+  // The appName is moved to top and shrunk on condensing. The bottom sub title
+  // is shrunk to nothing on condensing.
+  // window.addEventListener('paper-header-transform', function(e) {
+  //   var appName = Polymer.dom(document).querySelector('#mainToolbar .app-name');
+  //   var middleContainer = Polymer.dom(document).querySelector('#mainToolbar .middle-container');
+  //   var bottomContainer = Polymer.dom(document).querySelector('#mainToolbar .bottom-container');
+  //   var detail = e.detail;
+  //   var heightDiff = detail.height - detail.condensedHeight;
+  //   var yRatio = Math.min(1, detail.y / heightDiff);
+  //   // appName max size when condensed. The smaller the number the smaller the condensed size.
+  //   var maxMiddleScale = 0.50;
+  //   var auxHeight = heightDiff - detail.y;
+  //   var auxScale = heightDiff / (1 - maxMiddleScale);
+  //   var scaleMiddle = Math.max(maxMiddleScale, auxHeight / auxScale + maxMiddleScale);
+  //   var scaleBottom = 1 - yRatio;
+
+  //   // Move/translate middleContainer
+  //   Polymer.Base.transform('translate3d(0,' + yRatio * 100 + '%,0)', middleContainer);
+
+  //   // Scale bottomContainer and bottom sub title to nothing and back
+  //   Polymer.Base.transform('scale(' + scaleBottom + ') translateZ(0)', bottomContainer);
+
+  //   // Scale middleContainer appName
+  //   Polymer.Base.transform('scale(' + scaleMiddle + ') translateZ(0)', appName);
+  // });
+
+  // Scroll page to top and expand header
+  app.scrollPageToTop = function() {
+    //app.$.headerPanelMain.scrollToTop(true);
+  };
+
+  app.closeDrawer = function() {
+    //app.$.paperDrawerPanel.closeDrawer();
+  };
+
+})(document);

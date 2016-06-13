@@ -174,6 +174,7 @@ function edb_menu_strings_init( ){
   __("about", 'edb');
   __("FAQ", 'edb');
   __("trade & designers", 'edb');
+  __("large orders", 'edb');
   __("lookbook", 'edb');
   __("privacy policy", 'edb');
   __("terms of use", 'edb');
@@ -401,6 +402,36 @@ function edb_translate_menu( $items, $menu ) {
 
 }
 
+function edb_last_deploy(){
+  return filemtime('/srv/http/wordpress/production/wp-content/themes/edb-theme/index.php');
+  
+}
+function bustpagecache() {
+  echo "<div style='display:none'>".edb_last_deploy()."</div>";
+}
+
+function set_php_auth_header(){
+  // write_log('SET_PHP_AUTH_HEADER');
+  // write_log($_SERVER);
+  // if(!isset($_SERVER['PHP_AUTH_USER'])){
+  //   $httpauth = $_SERVER['HTTP_AUTHORIZATION'] || $_SERVER['REDIRECT_HTTP_AUTHORIZATION'];
+  //   list($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) = explode(':' , base64_decode(substr($httpauth, 6)));  
+  // }
+  // if(isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] == 'https://badb0x.akr.club/wp-content/themes/edb/js/order-tool-lib/index.html'){
+  //   write_log($_SERVER);
+  
+     if(current_user_can('publish_posts')){
+       $_SERVER['PHP_AUTH_USER'] = 'ck_dbc3f91b5f982189037625df93c50393ad99592b';
+       $_SERVER['PHP_AUTH_PW'] = 'cs_9c2a41175bc6d02ef71de28ac1df33d538d8dac1';
+     }
+    
+  // }
+  
+  // write_log($_SERVER['HTTP_AUTHORIZATION']);
+  // write_log($_SERVER);
+  // write_log($_SERVER['REDIRECT_HTTP_AUTHORIZATION']);
+}
+
 function fix_language_page_links( $url, $post, $leavename ) {
   if ( $post->post_type == 'post' || $post->post_type == 'page' ) {
     // write_log( "got: $url" );
@@ -551,7 +582,7 @@ function edb_override_checkout_fields( $fields ) {
 //   write_log( $json );
 // }
 
-// add_action( 'init', 'test_edb_json'  );
+add_action( 'init', 'set_php_auth_header'  );
 
 /**
  * Implement the Custom Header feature.

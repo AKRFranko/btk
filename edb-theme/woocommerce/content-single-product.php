@@ -48,7 +48,7 @@ if ( ! defined( 'ABSPATH' ) ) {
           $stuff_link=get_permalink(1533);
       ?><p class="product-warning"><?php echo sprintf(__( 'The <a href="%s">stuffing</a> is sold separately. <a href="%s">click here to get some.</a>' ,'edb'), $stuff_link, $stuff_link ); ?></p>
       <?php } ?>
-      <div class="product-price">$<?php echo $edb_product->price; ?></div>
+      <div class="product-price">$<?php echo $edb_product->price_html; ?></div>
       
       <div class="product-share">
         <ul class="social-share-options">

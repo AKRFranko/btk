@@ -33,7 +33,7 @@ $do_not_ship = WC()->session->get('do_not_ship');
 		?>
 
 		<div class="shipping_address">
-		  
+		   
       <h1><?php _e( 'shipping address', 'edb' ); ?></h1>
       
 			<?php do_action( 'woocommerce_before_checkout_shipping_form', $checkout ); ?>

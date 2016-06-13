@@ -74,7 +74,7 @@ foreach($order->get_address('billing') as $k => $v ){
     
       <?php 
       
-          woocommerce_form_field( $key, $field, WC()->customer->{$key}  ); 
+          woocommerce_form_field( $key, $field, $order->{$key}  ); 
       
       
       ?>
@@ -87,8 +87,30 @@ foreach($order->get_address('billing') as $k => $v ){
   <div class="pay-order-address">
     
     <h2><?php _e('shipping address', 'edb'); ?></h2>
-    
-    <?php edb_formated_customer_address( 'shipping' ); ?>
+    <?php 
+      
+      $shipping_fields = WC()->countries->get_address_fields( 'CA', 'shipping_' );
+      #edb_formated_customer_address( 'billing' ); 
+    ?>
+    <?php 
+      # do_action( 'woocommerce_before_checkout_billing_form', $checkout ); 
+    ?>
+  
+    <?php foreach ( $shipping_fields as $key => $field ) : ?>
+      <?php 
+      if(!empty($order->{$key})){
+        echo $order->{$key} . "<br/>";
+        // $field['custom_attributes']['readonly'] = true;
+        // array_push($field['class'], 'no-edit');
+        //   woocommerce_form_field( $key, $field, $order->{$key}  );   
+      }
+      
+      
+      
+      ?>
+  
+    <?php endforeach; ?>
+    <!--<?php edb_formated_customer_address( 'shipping' ); ?>-->
   </div>
   <div class="pay-order-items">
     <h1><?php _e('items', 'edb')?></h1>

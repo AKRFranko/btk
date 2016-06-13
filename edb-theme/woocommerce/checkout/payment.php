@@ -89,6 +89,7 @@ global $WC_Edb;
     <?php if(!WC()->session->get('do_not_ship')){ ?> 
     <div class="cart-address-review">
       <h1><?php _e('delivered to', 'edb');?></h1>
+      
       <?php if(!empty(WC()->customer->shipping_address_1)){ ?>
       <p>
         <?php echo WC()->customer->shipping_address_1;  ?>,<?php echo WC()->customer->shipping_address_2;  ?>

@@ -1,0 +1,427 @@
+[{
+  "material": "106"
+}, {
+  "material": "105"
+}, {
+  "material": "104"
+}, {
+  "material": "103"
+}, {
+  "material": "102"
+}, {
+  "material": "101"
+}, {
+  "material": "063"
+}, {
+  "material": "062"
+}, {
+  "material": "059"
+}, {
+  "material": "058"
+}, {
+  "material": "057"
+}, {
+  "material": "056"
+}, {
+  "material": "055"
+}, {
+  "material": "054"
+}, {
+  "material": "053"
+}, {
+  "material": "052"
+}, {
+  "material": "051"
+}, {
+  "material": "001",
+  "data": {
+    "material": "001",
+    "subtitle": "{:en}White{:}{:fr}Blanc{:}",
+    "post": {
+      "ID": 1235,
+      "post_author": "1",
+      "post_date": "2016-02-24 17:52:41",
+      "post_date_gmt": "2016-02-24 22:52:41",
+      "post_content": "",
+      "post_title": "Coton",
+      "post_excerpt": "{:en}100% cotton {:}{:fr}100% coton  {:}",
+      "post_status": "publish",
+      "comment_status": "closed",
+      "ping_status": "closed",
+      "post_password": "",
+      "post_name": "coton",
+      "to_ping": "",
+      "pinged": "",
+      "post_modified": "2016-02-29 14:14:41",
+      "post_modified_gmt": "2016-02-29 19:14:41",
+      "post_content_filtered": "",
+      "post_parent": 0,
+      "guid": "https://elementdebase.com/materials/coton/",
+      "menu_order": 0,
+      "post_type": "edb_material_desc",
+      "post_mime_type": "",
+      "comment_count": "0"
+    }
+  }
+}, {
+  "material": "002",
+  "data": {
+    "material": "002",
+    "subtitle": "{:en}Natural{:}{:fr}Naturel{:}",
+    "post": {
+      "ID": 1237,
+      "post_author": "1",
+      "post_date": "2016-02-24 17:52:42",
+      "post_date_gmt": "2016-02-24 22:52:42",
+      "post_content": "",
+      "post_title": "Linen",
+      "post_excerpt": "{:en}40% viscose|20% linen 20%| polyester 20%| cotton {:}{:fr}40% viscose|  20% lin|  20% polyester|  20% coton  {:}",
+      "post_status": "publish",
+      "comment_status": "closed",
+      "ping_status": "closed",
+      "post_password": "",
+      "post_name": "linen",
+      "to_ping": "",
+      "pinged": "",
+      "post_modified": "2016-02-29 14:14:40",
+      "post_modified_gmt": "2016-02-29 19:14:40",
+      "post_content_filtered": "",
+      "post_parent": 0,
+      "guid": "https://elementdebase.com/materials/linen/",
+      "menu_order": 0,
+      "post_type": "edb_material_desc",
+      "post_mime_type": "",
+      "comment_count": "0"
+    }
+  }
+}, {
+  "material": "003",
+  "data": {
+    "material": "003",
+    "subtitle": "{:en}Charcoal{:}{:fr}Anthracite{:}",
+    "post": {
+      "ID": 1239,
+      "post_author": "1",
+      "post_date": "2016-02-24 17:52:43",
+      "post_date_gmt": "2016-02-24 22:52:43",
+      "post_content": "",
+      "post_title": "Linen",
+      "post_excerpt": "{:en}40% viscose|20% linen |20% polyester |20% cotton {:}{:fr}40% viscose | 20% lin | 20% polyester  |20% coton  {:}",
+      "post_status": "publish",
+      "comment_status": "closed",
+      "ping_status": "closed",
+      "post_password": "",
+      "post_name": "linen-2",
+      "to_ping": "",
+      "pinged": "",
+      "post_modified": "2016-02-29 14:14:40",
+      "post_modified_gmt": "2016-02-29 19:14:40",
+      "post_content_filtered": "",
+      "post_parent": 0,
+      "guid": "https://elementdebase.com/materials/linen-2/",
+      "menu_order": 0,
+      "post_type": "edb_material_desc",
+      "post_mime_type": "",
+      "comment_count": "0"
+    }
+  }
+}, {
+  "material": "004",
+  "data": {
+    "material": "004",
+    "subtitle": "{:en}Grey{:}{:fr}Gris{:}",
+    "post": {
+      "ID": 1241,
+      "post_author": "1",
+      "post_date": "2016-02-24 17:52:43",
+      "post_date_gmt": "2016-02-24 22:52:43",
+      "post_content": "",
+      "post_title": "Tweed",
+      "post_excerpt": "{:en}80% viscose|20% linen {:}{:fr}80% viscose|  20% lin  {:}",
+      "post_status": "publish",
+      "comment_status": "closed",
+      "ping_status": "closed",
+      "post_password": "",
+      "post_name": "tweed",
+      "to_ping": "",
+      "pinged": "",
+      "post_modified": "2016-03-01 17:16:17",
+      "post_modified_gmt": "2016-03-01 22:16:17",
+      "post_content_filtered": "",
+      "post_parent": 0,
+      "guid": "https://elementdebase.com/materials/tweed/",
+      "menu_order": 0,
+      "post_type": "edb_material_desc",
+      "post_mime_type": "",
+      "comment_count": "0"
+    }
+  }
+}, {
+  "material": "005",
+  "data": {
+    "material": "005",
+    "subtitle": "{:en}Grey{:}{:fr}Gris{:}",
+    "post": {
+      "ID": 1243,
+      "post_author": "1",
+      "post_date": "2016-02-24 17:52:44",
+      "post_date_gmt": "2016-02-24 22:52:44",
+      "post_content": "",
+      "post_title": "Epingle",
+      "post_excerpt": "{:en}76% cotton|24% acrylic {:}{:fr}76% coton|  24% acrylique  {:}",
+      "post_status": "publish",
+      "comment_status": "closed",
+      "ping_status": "closed",
+      "post_password": "",
+      "post_name": "epingle",
+      "to_ping": "",
+      "pinged": "",
+      "post_modified": "2016-03-01 17:16:42",
+      "post_modified_gmt": "2016-03-01 22:16:42",
+      "post_content_filtered": "",
+      "post_parent": 0,
+      "guid": "https://elementdebase.com/materials/epingle/",
+      "menu_order": 0,
+      "post_type": "edb_material_desc",
+      "post_mime_type": "",
+      "comment_count": "0"
+    }
+  }
+}, {
+  "material": "006",
+  "data": {
+    "material": "006",
+    "subtitle": "{:en}Charcoal{:}{:fr}Anthracite{:}",
+    "post": {
+      "ID": 1245,
+      "post_author": "1",
+      "post_date": "2016-02-24 17:52:45",
+      "post_date_gmt": "2016-02-24 22:52:45",
+      "post_content": "",
+      "post_title": "Flannel",
+      "post_excerpt": "{:en}2% SPA|88% polyester |10% viscose {:}{:fr}2% SPA|  88% polyester | 10% viscose  {:}",
+      "post_status": "publish",
+      "comment_status": "closed",
+      "ping_status": "closed",
+      "post_password": "",
+      "post_name": "flannel",
+      "to_ping": "",
+      "pinged": "",
+      "post_modified": "2016-02-29 14:14:39",
+      "post_modified_gmt": "2016-02-29 19:14:39",
+      "post_content_filtered": "",
+      "post_parent": 0,
+      "guid": "https://elementdebase.com/materials/flannel/",
+      "menu_order": 0,
+      "post_type": "edb_material_desc",
+      "post_mime_type": "",
+      "comment_count": "0"
+    }
+  }
+}, {
+  "material": "007",
+  "data": {
+    "material": "007",
+    "subtitle": "{:en}Deep Red{:}{:fr}Bourgogne{:}",
+    "post": {
+      "ID": 1247,
+      "post_author": "1",
+      "post_date": "2016-02-24 17:52:46",
+      "post_date_gmt": "2016-02-24 22:52:46",
+      "post_content": "",
+      "post_title": "Canevas",
+      "post_excerpt": "{:en}70% cotton|30% linen {:}{:fr}70% coton|  30% lin  {:}",
+      "post_status": "publish",
+      "comment_status": "closed",
+      "ping_status": "closed",
+      "post_password": "",
+      "post_name": "canevas",
+      "to_ping": "",
+      "pinged": "",
+      "post_modified": "2016-02-29 14:14:38",
+      "post_modified_gmt": "2016-02-29 19:14:38",
+      "post_content_filtered": "",
+      "post_parent": 0,
+      "guid": "https://elementdebase.com/materials/canevas/",
+      "menu_order": 0,
+      "post_type": "edb_material_desc",
+      "post_mime_type": "",
+      "comment_count": "0"
+    }
+  }
+}, {
+  "material": "008",
+  "data": {
+    "material": "008",
+    "subtitle": "{:en}Yellow{:}{:fr}Jaune{:}",
+    "post": {
+      "ID": 1249,
+      "post_author": "1",
+      "post_date": "2016-02-24 17:52:47",
+      "post_date_gmt": "2016-02-24 22:52:47",
+      "post_content": "",
+      "post_title": "Canevas",
+      "post_excerpt": "{:en}70% cotton|30% linen {:}{:fr}70% coton|  30% lin  {:}",
+      "post_status": "publish",
+      "comment_status": "closed",
+      "ping_status": "closed",
+      "post_password": "",
+      "post_name": "canevas-2",
+      "to_ping": "",
+      "pinged": "",
+      "post_modified": "2016-02-29 14:14:38",
+      "post_modified_gmt": "2016-02-29 19:14:38",
+      "post_content_filtered": "",
+      "post_parent": 0,
+      "guid": "https://elementdebase.com/materials/canevas-2/",
+      "menu_order": 0,
+      "post_type": "edb_material_desc",
+      "post_mime_type": "",
+      "comment_count": "0"
+    }
+  }
+}, {
+  "material": "009",
+  "data": {
+    "material": "009",
+    "subtitle": "{:en}Olive{:}{:fr}Olive{:}",
+    "post": {
+      "ID": 1251,
+      "post_author": "1",
+      "post_date": "2016-02-24 17:52:48",
+      "post_date_gmt": "2016-02-24 22:52:48",
+      "post_content": "",
+      "post_title": "Velvet",
+      "post_excerpt": "{:en}89% cotton|11% polyester {:}{:fr}89% coton|  11% polyester  {:}",
+      "post_status": "publish",
+      "comment_status": "closed",
+      "ping_status": "closed",
+      "post_password": "",
+      "post_name": "velvet",
+      "to_ping": "",
+      "pinged": "",
+      "post_modified": "2016-02-29 14:14:37",
+      "post_modified_gmt": "2016-02-29 19:14:37",
+      "post_content_filtered": "",
+      "post_parent": 0,
+      "guid": "https://elementdebase.com/materials/velvet/",
+      "menu_order": 0,
+      "post_type": "edb_material_desc",
+      "post_mime_type": "",
+      "comment_count": "0"
+    }
+  }
+}, {
+  "material": "010",
+  "data": {
+    "material": "010",
+    "subtitle": "{:en}Mossy{:}{:fr}Menthe{:}",
+    "post": {
+      "ID": 1253,
+      "post_author": "0",
+      "post_date": "2016-02-24 17:52:48",
+      "post_date_gmt": "2016-02-24 22:52:48",
+      "post_content": "",
+      "post_title": "Canevas",
+      "post_excerpt": "{:en}70% cotton|30% linen {:}{:fr}70% coton|  30% lin  {:}",
+      "post_status": "publish",
+      "comment_status": "closed",
+      "ping_status": "closed",
+      "post_password": "",
+      "post_name": "canevas-3",
+      "to_ping": "",
+      "pinged": "",
+      "post_modified": "2016-02-29 14:14:38",
+      "post_modified_gmt": "2016-02-29 19:14:38",
+      "post_content_filtered": "",
+      "post_parent": 0,
+      "guid": "https://elementdebase.com/materials/canevas-3/",
+      "menu_order": 0,
+      "post_type": "edb_material_desc",
+      "post_mime_type": "",
+      "comment_count": "0"
+    }
+  }
+}, {
+  "material": "011",
+  "data": {
+    "material": "011",
+    "subtitle": "{:en}Turqoise{:}{:fr}Turquoise{:}",
+    "post": {
+      "ID": 1255,
+      "post_author": "1",
+      "post_date": "2016-02-24 17:52:49",
+      "post_date_gmt": "2016-02-24 22:52:49",
+      "post_content": "",
+      "post_title": "Tissage",
+      "post_excerpt": "{:en}10% cotton|12% polyester| 24% linen |54% viscose {:}{:fr}10% coton | 12% polyester | 24% lin | 54% viscose  {:}",
+      "post_status": "publish",
+      "comment_status": "closed",
+      "ping_status": "closed",
+      "post_password": "",
+      "post_name": "tissage",
+      "to_ping": "",
+      "pinged": "",
+      "post_modified": "2016-02-29 14:14:37",
+      "post_modified_gmt": "2016-02-29 19:14:37",
+      "post_content_filtered": "",
+      "post_parent": 0,
+      "guid": "https://elementdebase.com/materials/tissage/",
+      "menu_order": 0,
+      "post_type": "edb_material_desc",
+      "post_mime_type": "",
+      "comment_count": "0"
+    }
+  }
+}, {
+  "material": "012",
+  "data": {
+    "material": "012",
+    "subtitle": "{:en}Deep Blue{:}{:fr}Bleu Marine{:}",
+    "post": {
+      "ID": 1257,
+      "post_author": "1",
+      "post_date": "2016-02-24 17:52:50",
+      "post_date_gmt": "2016-02-24 22:52:50",
+      "post_content": "",
+      "post_title": "Velvet",
+      "post_excerpt": "{:en}89% cotton|11% polyester {:}{:fr}89% coton|11% polyester  {:}",
+      "post_status": "publish",
+      "comment_status": "closed",
+      "ping_status": "closed",
+      "post_password": "",
+      "post_name": "velvet-2",
+      "to_ping": "",
+      "pinged": "",
+      "post_modified": "2016-02-29 14:14:36",
+      "post_modified_gmt": "2016-02-29 19:14:36",
+      "post_content_filtered": "",
+      "post_parent": 0,
+      "guid": "https://elementdebase.com/materials/velvet-2/",
+      "menu_order": 0,
+      "post_type": "edb_material_desc",
+      "post_mime_type": "",
+      "comment_count": "0"
+    }
+  }
+}, {
+  "material": "064"
+}, {
+  "material": "999"
+}, {
+  "material": "153"
+}, {
+  "material": "151"
+}, {
+  "material": "154"
+}, {
+  "material": "152"
+}, {
+  "material": "107"
+}, {
+  "material": "108"
+}, {
+  "material": "109"
+}, {
+  "material": "110"
+}]

@@ -1,0 +1,309 @@
+<!doctype html>
+<!-- @license Copyright (c) 2015 The Polymer Project Authors. All rights reserved. This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt Code distributed by Google as part of the polymer project is also subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Polymer Starter Kit">
+    <title>Polymer Starter Kit</title>
+    <!-- Place favicon.ico in the `app/` directory -->
+    <!-- Chrome for Android theme color -->
+    <meta name="theme-color" content="#2E3AA1">
+    <!-- Web Application Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <!-- Tile color for Win8 -->
+    <meta name="msapplication-TileColor" content="#3372DF">
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="PSK">
+    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Polymer Starter Kit">
+    <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
+    <!-- Tile icon for Win8 (144x144) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild-->
+    <!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js -->
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <!-- endbuild -->
+    <!-- build:js bower_components/jquery/jquery.min.js -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- endbuild -->
+    <!-- Because this project uses vulcanize this should be your only html import in this file. All other imports should go in elements.html -->
+    <link rel="import" href="elements/elements.html">
+    <!-- For shared styles, shared-styles.html import in elements.html -->
+    <style is="custom-style" include="shared-styles"></style>
+  </head>
+  <body unresolved> <span id="browser-sync-binding"></span>
+
+    <template is="dom-bind" id="app">
+      <app-header-layout fullbleed>
+        <app-header effects="waterfall" fixed>
+          <app-toolbar>
+            <!--<paper-icon-button icon="menu"></paper-icon-button>-->
+            <div title>EDB/Order <small>{{status}}</small>
+            </div>
+            <!--<paper-icon-button icon="search"></paper-icon-button>-->
+          </app-toolbar>
+        </app-header>
+        <div content id="mainContent">
+          <iron-pages attr-for-selected="data-route" selected="{{route}}" hidden>
+            <section data-route="home">
+              
+              <div id="split-view" class="split-view">
+              
+                <div id="catalog-view" class="left-view">
+                  <div class="view-title">Catalog
+                    <paper-input id="searchFilter" type="search" value="{{searchFilter::input}}" label="search"></paper-input>
+                  </div>
+                  
+                  <template is="dom-repeat" items="{{catalogItems}}" as="product" initial-count="0">
+                    <paper-material class="catalog-item" elevation="1" hidden$="[[echo(product.hidden,searchFilter)]]">
+                      <div class="catalog-item-header">
+                        <div class="catalog-item-image">
+                          <iron-image sizing="cover" src="{{product.image}}"></iron-image>
+                        </div>
+                        <div class="catalog-item-title">
+                           <h1>{{product.name}} <small>{{product.categories}}</small></h1>
+
+                          <p class="catalog-item-meta"><span>price: </span><span>${{product.price}}</span>  <span>sale: </span><span>{{product.isOnSale}}</span>
+
+                          </p>
+                        </div>
+                      </div>
+                      <div class="catalog-item-variations">
+                        <template is="dom-repeat" items="{{product.variations}}" as="variation">
+                          <div class="catalog-item-variation" data-variation-id="{{variation.id}}">
+                            <div class="catalog-item-variation-title">
+                              <div class="meta-material-name">{{variation.material.fullName}}</div>
+                              <div class="meta-variation-stock"><span>stock: </span><span>{{variation.stock}}</span>
+                              </div>
+                            </div>
+                            <div class="catalog-item-variation-content">
+                              <div class="catalog-item-variation-image">
+                                <iron-image sizing="cover" src="{{variation.material.image}}"></iron-image>
+                              </div>
+                              <div class="catalog-item-quantity">
+                                <paper-input label="quantity" prevent-invalid-input type="number" auto-validate value="0" min="1" required step="1" max="100"></paper-input>
+                              </div>
+                              <paper-button raised class="catalog-item-add-button" on-click="handleAddToCart">add</paper-button>
+                            </div>
+                        </template>
+                        </div>
+                    </paper-material>
+                  </template>
+                  </div><!-- catalog view -->
+                  <div id="cart-view" class="right-view">
+                    <div class="view-title">Cart
+                      <paper-button id="checkoutButton" raised on-click="handleCheckout">checkout</paper-button>
+                    </div>
+                    <template is="dom-repeat" items="{{cartItems}}" as="cartItem">
+                      <paper-material class="cart-item" elevation="1">
+                        <div class="cart-item-header">
+                          <div class="cart-item-image">
+                            <iron-image sizing="cover" src="{{cartItem.product.image}}"></iron-image>
+                          </div>
+                          <div class="cart-item-title">
+                             <h1>{{cartItem.product.name}} <small>{{cartItem.product.categories}}</small></h1> 
+                            <p class="catalog-item-meta"><span>price: </span><span>${{cartItem.product.price}}</span><span class="space"></span>  <span>sale: </span><span>{{cartItem.product.isOnSale}}</span>
+
+                              <div class="cart-item-material-meta">
+                                <iron-image sizing="cover" src="{{cartItem.variation.material.image}}"></iron-image>
+                                <p>{{cartItem.variation.material.fullName}}</p>
+                              </div>
+                          </div>
+                          <paper-button class="cart-item-remove-button" on-click="handleRemoveCartItem">&times;</paper-button>
+                        </div>
+                        <div class="cart-item-options">
+                          <div class="cart-item-quantity">{{cartItem.line_item.quantity}}&times;</div>
+                          <div class="cart-item-shipping">
+                            <paper-radio-group selected="{{cartItem.shipping}}">
+                              <paper-radio-button name="edb_ship_bundle_1">ship</paper-radio-button>
+                              <paper-radio-button name="edb_self_pickup">pickup</paper-radio-button>
+                            </paper-radio-group>
+                          </div>
+                          <div class="cart-item-availability"><span class$="{{cartItem.availability}}">{{cartItem.availability}}</span></div>
+                        </div>
+                      </paper-material>
+                    </template>
+                  </div><!-- cart view -->
+                </div><!-- split view -->
+              <!--</div>-->
+            </section>
+            <section data-route="checkout">
+              <div id="checkout-split" class="split-view">
+                <div id="checkoutReview" class="left-view">
+                  <template is="dom-repeat" items="{{cartItems}}" as="cartItem">
+                    <paper-material class="cart-item" elevation="1">
+                      <div class="cart-item-header">
+                        <div class="cart-item-image">
+                          <iron-image sizing="cover" src="{{cartItem.product.image}}"></iron-image>
+                        </div>
+                        <div class="cart-item-title">
+                           <h1>{{cartItem.product.name}} <small>{{cartItem.product.categories}}</small></h1> 
+                          <!--<p class="catalog-item-meta"><span>price: </span><span>${{cartItem.product.price}}</span><span class="space"></span>  <span>sale: </span><span>{{cartItem.product.isOnSale}}</span>-->
+
+                            <div class="cart-item-material-meta">
+                              <iron-image sizing="cover" src="{{cartItem.variation.material.image}}"></iron-image>
+                              <p>{{cartItem.variation.material.fullName}}</p>
+                            </div>
+                        </div>
+                        <paper-button class="cart-item-remove-button" on-click="handleRemoveCartItem">&times;</paper-button>
+                      </div>
+                      <div class="cart-item-summary">
+                        <span class="quantity">{{cartItem.line_item.quantity}}</span>
+                        <span class="times">&times;</span>
+                        <span class="shipping">{{computeShippingType(cartItem.shipping)}}</span>
+                        <span class="space"></span>
+                        <span class="total">${{computeCartItemTotal(cartItem)}}</span>
+                      </div>
+                    
+                    </paper-material>
+                  </template>
+                  <template is="dom-repeat" items="{{customFees}}" as="fee">
+                    <paper-material class="fee-item" elevation="1">
+                      <div class="fee-item-title">{{fee.title}} <paper-button class="cart-item-remove-button" on-click="handleRemoveCustomFee">&times;</paper-button></div>
+                      <div class="fee-item-content">
+                      <div class="fee-item-taxable">Taxable: <span>{{fee.taxable}}</span></div>
+                      <div class="space"></div>
+                      <div class="fee-item-total">${{fee.total}}</div>  
+                      </div>
+                      
+                    </paper-material>
+                  </template>
+                  
+                  <template is="dom-repeat" items="{{shippingFees}}" as="fee">
+                    <paper-material class="fee-item" elevation="1">
+                        <div class="fee-item-title">{{fee.method_title}} <paper-button class="cart-item-remove-button" on-click="handleRemoveCustomFee">&times;</paper-button></div>
+                        <div class="fee-item-content">
+                        <div class="space"></div>
+                        <div class="fee-item-total">${{fee.total}}</div>  
+                        </div>
+                        
+                      </paper-material>
+                  </template>
+                </div>
+                <div id="checkoutForm" class="right-view">
+                  <paper-material>
+                    <h1 class="paper-font-title">Customer</h1>
+                    <paper-input label="email" required auto-validate type="email" value="{{billing.email::input}}"></paper-input>
+                    <template is="dom-if" if="{{orderRequiresShipping(cartItems)}}">
+                    <h1 class="paper-font-title">Shipping</h1>
+                    <paper-input label="First name" required auto-validate type="text" value="{{shipping.first_name::input}}"></paper-input>
+                    <paper-input label="Last name" required auto-validate type="text" value="{{shipping.last_name::input}}"></paper-input>
+                    <paper-input label="Address" required auto-validate type="text" value="{{shipping.address_1::input}}"></paper-input>
+                    <paper-input label="Suite/Apt" required auto-validate type="text" value="{{shipping.address_2::input}}"></paper-input>
+                    <paper-input label="City" required auto-validate type="text" value="{{shipping.city::input}}"></paper-input>
+                    <paper-input label="State" required auto-validate max-length="2" type="text" value="{{shipping.state::input}}"></paper-input>
+                    <paper-input label="Postcode" required auto-validate type="text" value="{{shipping.postcode::input}}"></paper-input>
+                    </template>
+                  </paper-material>
+                  <paper-material>
+                    <h1 class="paper-font-title">Custom Fee</h1>
+                    <paper-input label="Name" type="text" value="{{customFee.title::input}}"></paper-input>
+                    <paper-checkbox value="{{customFee.taxable::input}}">Taxable</paper-checkbox>
+                    <paper-input label="Total" type="number" value="{{customFee.total::input}}"></paper-input>
+                    <paper-button id="addCustomFee" class="custom-fee-button" raised on-click="handleAddCustomFee">add fee</paper-button>
+                  </paper-material>
+                  <paper-button id="placeOrder" on-click="handleOrderReview">review order</paper-button>
+                </div>
+              </div>
+            </section>
+            <section data-route="review">
+              <paper-material elevation="1">
+                <h1>Order</h1>
+                <div class="line-item">
+                  <div class="label">Email:</div>
+                  <div class="value">{{currentOrder.customer.billing_address.email}}</div>
+                </div>
+                <div class="line-item">
+                  <div class="label">Shipping:</div>
+                  <div class="value">
+                    <p>address: {{currentOrder.shipping_address.address_1}}</p>
+                    <p>suite/apt: {{currentOrder.shipping_address.address_2}}</p>
+                    <p>city: {{currentOrder.shipping_address.city}}</p>
+                    <p>state: {{currentOrder.shipping_address.state}}</p>
+                    <p>country: {{currentOrder.shipping_address.country}}</p>
+                    <p>postcode: {{currentOrder.shipping_address.postcode}}</p>
+                  </div>
+                </div>
+                <template is="dom-repeat" items="{{currentOrder.line_items}}" as="item">
+                  <div class="line-item">
+                    <div class="label"><span>{{item.name}}</span> <span>{{item.sku}}</span>  <span>{{item.quantity}}</span></div>
+                    <div class="value">${{item.total}}</div>
+                  </div>
+                </template>
+                <template is="dom-repeat" items="{{currentOrder.fee_lines}}" as="fee">
+                  <div class="line-item">
+                    <div class="label"><span>{{fee.title}}</span></div>
+                    <div class="value">${{fee.total}}</div>
+                  </div>
+                </template>
+                <template is="dom-repeat" items="{{currentOrder.shipping_lines}}" as="fee">
+                  <div class="line-item">
+                    <div class="label"><span>{{fee.method_title}}</span></div>
+                    <div class="value">${{fee.total}}</div>
+                  </div>
+                </template>
+                <template is="dom-repeat" items="{{currentOrder.tax_lines}}" as="tax">
+                  <div class="line-item">
+                    <div class="label"><span>{{tax.title}}</span></div>
+                    <div class="value">{{tax.total}}</div>
+                  </div>
+                </template>
+                <hr />
+                
+                <div class="line-item">
+                  <div class="label">Discount Total:</div>
+                  <div class="value">${{currentOrder.total_discount}}</div>
+                </div>
+                <div class="line-item">
+                  <div class="label">Shipping Total:</div>
+                  <div class="value">${{currentOrder.total_shipping}}</div>
+                </div>
+                <div class="line-item">
+                  <div class="label">Tax Total:</div>
+                  <div class="value">${{currentOrder.total_tax}}</div>
+                </div>
+                <div class="line-item">
+                  <div class="label">Total:</div>
+                  <div class="value">${{currentOrder.total}}</div>
+                </div>
+              </paper-material>
+              <paper-button id="completeOrder" on-click="handleCompleteOrder">complete</paper-button>
+              <paper-button id="cancelOrder" on-click="handleCancelOrder">cancel</paper-button>
+            </section>
+          </iron-pages>
+      </app-header-layout>
+     
+      <paper-toast id="toast"> <span class="toast-hide-button" role="button" tabindex="0" onclick="app.$.toast.hide()">Ok</span>
+
+      </paper-toast>
+      <!-- Uncomment next block to enable Service Worker support (1/2) -->
+      <!-- <paper-toast id="caching-complete" duration="6000" text="Caching complete! This app will work offline.">
+    </paper-toast>
+
+    <platinum-sw-register auto-register
+                          clients-claim
+                          skip-waiting
+                          base-uri="bower_components/platinum-sw/bootstrap"
+                          on-service-worker-installed="displayInstalledToast">
+      <platinum-sw-cache default-cache-strategy="fastest"
+                         cache-config-file="cache-config.json">
+      </platinum-sw-cache>
+    </platinum-sw-register>
+    -->
+    </template>
+    <!-- build:js scripts/app.js -->
+    <script src="bower_components/liquidmetal/liquidmetal.js"></script>
+    <script src="scripts/edb2.js"></script>
+    <script src="scripts/app.js"></script>
+    <!-- endbuild-->
+  </body>
+</html>

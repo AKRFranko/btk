@@ -66,7 +66,7 @@
 <?php if(is_product()){ ?>
   <?php edb_material_toasts(); ?>
 <?php } ?>
-
+<?php bustpagecache(); ?>
 
 </body>
 </html>

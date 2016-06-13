@@ -1,0 +1,342 @@
+<!doctype html>
+<!-- @license Copyright (c) 2015 The Polymer Project Authors. All rights reserved. This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt Code distributed by Google as part of the polymer project is also subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt -->
+<html lang="en">
+  <head>
+    WP_INJECT
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Polymer Starter Kit">
+    <title>Polymer Starter Kit</title>
+    <!-- Place favicon.ico in the `app/` directory -->
+    <!-- Chrome for Android theme color -->
+    <meta name="theme-color" content="#2E3AA1">
+    <!-- Web Application Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <!-- Tile color for Win8 -->
+    <meta name="msapplication-TileColor" content="#3372DF">
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="PSK">
+    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Polymer Starter Kit">
+    <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
+    <!-- Tile icon for Win8 (144x144) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild-->
+    <!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js -->
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <!-- endbuild -->
+    <!-- build:js bower_components/jquery/jquery.min.js -->
+    
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- endbuild -->
+    <!-- build:js bower_components/liquidmetal/liquidmetal.js -->
+    <script src="bower_components/liquidmetal/liquidmetal.js"></script>
+    <!-- endbuild -->
+    
+    <!-- Because this project uses vulcanize this should be your only html import in this file. All other imports should go in elements.html -->
+    <link rel="import" href="elements/elements.html">
+    <!-- For shared styles, shared-styles.html import in elements.html -->
+    <style is="custom-style" include="shared-styles"></style>
+    
+    
+    
+  </head>
+  <body unresolved> <span id="browser-sync-binding"></span>
+
+    <template is="dom-bind" id="app">
+      
+      <app-header-layout fullbleed>
+        
+        <app-header effects="waterfall" fixed>
+          
+            <app-toolbar>
+              <!--<paper-icon-button icon="menu"></paper-icon-button>-->
+              <div title>EDB/Order <small>{{status}}</small></div>
+              <!--<paper-icon-button icon="search"></paper-icon-button>-->
+          </app-toolbar>
+        </app-header>
+        
+        <div content id="mainContent">
+          
+          <iron-pages attr-for-selected="data-route" selected="{{route}}">
+            
+            <section data-route="home">
+              <div class="twin-forms">
+                <paper-material id="customerForm" class="input-form" elevation="1">
+                  <div class="input-form-title">
+                    <h1>Customer</h1>
+                  </div>
+                  <div class="input-form-content">
+                    <paper-input type="text" always-float-label auto-validate  label="First Name" value="{{billingAddress.first_name::input}}"></paper-input>
+                    <paper-input type="text" always-float-label auto-validate  label="Last Name" value="{{billingAddress.last_name::input}}"></paper-input>
+                    <paper-input type="email" always-float-label auto-validate required label="Email" value="{{billingAddress.email::input}}"></paper-input>
+                    <paper-input type="text" always-float-label auto-validate required pattern="[A-Za-z][0-9][A-Za-z]\s?[0-9][A-Za-z][0-9]" label="Postal Code" value="{{shippingAddress.postcode::input}}">
+                      <div class="zone-suffix" suffix>{{computeZone(shippingAddress.postcode)}}</div>
+
+                    </paper-input>
+                  </div>
+                </paper-material>
+                
+                <paper-material id="shippingForm" class="input-form" elevation="1">
+                  <div class="input-form-title">
+                    <h1>Shipping</h1>
+                  </div>
+                  
+                  <div class="input-form-content">
+                    <paper-input type="text" always-float-label label="First Name" value="{{shippingAddress.first_name::input}}"></paper-input>
+                    <paper-input type="text" always-float-label label="Last Name" value="{{shippingAddress.last_name::input}}"></paper-input>
+                    <paper-input type="text" always-float-label label="Company Name" value="{{shippingAddress.company::input}}"></paper-input>
+                    <paper-input type="text" always-float-label label="Phone" value="{{shippingAddress.phone::input}}"></paper-input>
+                    <paper-input type="text" always-float-label label="Address" value="{{shippingAddress.address_1::input}}"></paper-input>
+                    <paper-input type="text" always-float-label label="Suite/Apt" value="{{shippingAddress.address_2::input}}"></paper-input>
+                    <paper-input type="text" always-float-label label="City" value="{{shippingAddress.city::input}}"></paper-input>
+
+                    <paper-dropdown-menu id="selectProvince" class="province-dropdown" auto-validate required always-float-label label="Province">
+                      
+                      <paper-menu class="dropdown-content" placeholder="choose one" selected="{{shippingAddress.state}}" attr-for-selected="label">
+                        <paper-item label="QC">Quebec</paper-item>
+                        <paper-item label="ON">Ontario</paper-item>
+                        <paper-item label="AB">Alberta</paper-item>
+                        <paper-item label="BC">British Columbia</paper-item>
+                        <paper-item label="MB">Manitoba</paper-item>
+                        <paper-item label="NL">Newfoundland and Labrador</paper-item>
+                        <paper-item label="NS">Nova Scotia</paper-item>
+                        <paper-item label="SK">Saskatchewan</paper-item>
+                      </paper-menu>
+                    </paper-dropdown-menu>
+                  </div>
+                  
+                </paper-material>
+                </div>
+                
+                <paper-material class="input-form" elevation="1">
+                  <div class="input-form-title">
+                    <h1>Cart</h1>
+                    <div class="space"></div>
+                    <paper-button raised class="add-to-cart-button" on-click="handleOpenCatalog">Add Product</paper-button>
+                    <paper-button raised class="add-to-cart-button" on-click="handleOpenFees">Add Fee</paper-button>
+                  </div>
+                  <div class="input-form-content">
+                    
+                    
+                    <div class="list-of-products">
+                      <h3 hidden$="{{!cartItems.length}}">Products</h3>
+                        <template id="listOfProducts" is="dom-repeat" items="{{cartItems}}" as="cartItem">
+                          <paper-material class="list-item">
+                          <div class="list-item-header">
+                            <div class="list-item-image">
+                              <iron-image sizing="cover" style="width:64px;height:64px;background:#eee;" src="{{cartItem.product.image}}"></iron-image>
+                            </div>  
+                            <div class="list-item-meta">
+                              <div class="meta-line line-1">
+                                <div class="name">{{cartItem.product.name}}</div>
+                                <div class="space"></div>
+                                <paper-button class="remove-button" on-click="handleRemoveFromCart">remove</paper-button>
+                                
+                              </div>
+                              <div class="meta-line line-2">
+                                <div class="cats">{{cartItem.product.categories}}</div>
+                                
+                              </div>
+                              <div class="meta-line line-3">
+                                <iron-image sizing="cover" src="{{cartItem.variation.material.image}}"></iron-image>
+                                <span>{{cartItem.variation.material.fullName}}</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="list-item-content">
+                              <paper-radio-group selected="{{cartItem.shippingPackage}}" on-change="handleShippingChanged">
+                                <paper-radio-button name="edb_self_pickup">Pickup</paper-radio-button>
+                                <paper-radio-button name="edb_ship_bundle_1">Ship</paper-radio-button>
+                              </paper-radio-group>
+                          </div>
+                          <div class="list-item-total">
+                            <div class$="{{cartItem.availability}}">{{cartItem.availability}}</div>
+                            <div class="space"></div>
+                            <div class="quantity">{{cartItem.quantity}}</div>
+                            <div class="price">${{cartItem.total}}</div>
+                          </div>
+                          </paper-material>
+                          
+                        </template>
+                      
+                    </div>
+                    
+                    <div class="list-of-fees">
+                      <h3 hidden$="{{!feeItems.length}}">Custom Fees</h3>
+                      <template id="listOfFees" is="dom-repeat" items="{{feeItems}}" as="feeItem">
+                        <div class="fee-line">
+                          <div class="fee-label">
+                            <paper-button class="remove-button" on-click="handleRemoveFee">remove</paper-button>
+                          </div>
+                          <div class="fee-value">
+                            <div>{{feeItem.title}}</div>
+                            <div class="space"></div>
+                            <div class="amount">{{toMoney(feeItem.total)}}</div>
+                          </div>
+                        </div>
+                      </template>  
+                    </div>
+                  </div>
+                </paper-material>
+                
+                <paper-material class="input-form" elevation="1">
+                  <div class="input-form-title">
+                    <h1>Totals</h1>
+                  </div>
+                  <div class="input-form-content">
+                    <template is="dom-repeat" items="{{computeTotals(cartItems.*,shippingAddress.*,feeItems.*,shippingChanged)}}">
+                      <div class="total-line">
+                        <div class="total-label">{{item.label}}</div>
+                        <div class="total-value">{{toMoney(item.value)}}</div>
+                      </div>
+                    </template>
+                  </div>
+                </paper-material>
+                <paper-button id="postOrder" raised on-click="handlePostOrder">COMPLETE</paper-button>
+
+            </section>
+            
+            <section data-route="complete">
+             <paper-material id="completed" class="input-form" elevation="1">
+               
+                 <div class="input-form-title">
+                   <h1>Success!</h1>
+                 </div>
+                 <div class="input-form-content">
+                   <div class="final-message">
+                    <!--<p>This the URL you can send people to in order to complete payment:</p>-->
+                    <!--<pre>{{computePayOrderUrl(lastOrderResponse)}}</pre>-->
+                    <p>Click the button below to send an payment request email to <span>{{billingAddress.email}}</span></p>
+                    <paper-button raised on-click="handleSendOrderEmail">send email</paper-button>
+                   </div>
+                   
+                 </div>
+                 <paper-button raised on-click="handlePrepareForNewOrder">new Order</paper-button>
+                
+               
+             </paper-material>
+            </section>
+            
+          </iron-pages>
+          <paper-toast id="errorToast" class="fit-bottom" duration="0" always-on-top>
+            <paper-button on-click="hideErrors" class="close-button">close</paper-button>
+          </paper-toast>
+          </div><!-- mainContent -->
+      </app-header-layout>
+     
+      <!--<paper-toast id="toast"> <span class="toast-hide-button" role="button" tabindex="0" onclick="app.$.toast.hide()">Ok</span>-->
+
+      <!--</paper-toast>-->
+      <!-- Uncomment next block to enable Service Worker support (1/2) -->
+      <!-- <paper-toast id="caching-complete" duration="6000" text="Caching complete! This app will work offline.">
+    </paper-toast>
+
+    <platinum-sw-register auto-register
+                          clients-claim
+                          skip-waiting
+                          base-uri="bower_components/platinum-sw/bootstrap"
+                          on-service-worker-installed="displayInstalledToast">
+      <platinum-sw-cache default-cache-strategy="fastest"
+                         cache-config-file="cache-config.json">
+      </platinum-sw-cache>
+    </platinum-sw-register>
+    
+    
+    -->
+    
+    
+    
+    <paper-dialog id="addFee" modal>
+      <div class="input-form">
+        <div class="input-form-title">
+          <h1>Custom Fee</h1>
+        </div>
+        <div class="input-form-content">
+          <paper-input type="text" always-float-label label="Title" value="{{customFee.title::input}}"></paper-input>
+          <paper-checkbox checked value="{{customFee.taxable::input}}">Taxable</paper-checkbox>
+          <paper-input type="number" always-float-label label="Amount" value="{{customFee.total::input}}"></paper-input>
+          <paper-button class="fee-add-button" on-click="handleAddFee" raised>add</paper-button>
+        </div>
+      </div>
+      <div class="buttons">
+        <paper-button dialog-dismiss>done</paper-button>
+        <!--<paper-button dialog-dismiss>done</paper-button>-->
+      </div>
+    </paper-dialog>
+    
+    <paper-dialog id="catalog" modal opened="{{catalogOpened}}">
+      <paper-input label="search" placeholder="start typing..." id="searchFilter"  type="search" value="{{searchInput}}"></paper-input>
+            
+
+      <paper-dialog-scrollable>
+        <template id="listCatalog" is="dom-repeat" items="{{products}}"  initial-count="5" as="product" filter="{{filterProducts(categoryFilter)}}" sort="{{sortProducts(searchFilter)}}">
+          <paper-material class="list-item">
+            <div class="list-item-header">
+              <div class="list-item-image">
+                <iron-image sizing="cover" style="width:64px;height:64px;background:#eee;" src="{{product.image}}"></iron-image>
+              </div>  
+              <div class="list-item-meta">
+                <div class="meta-line line-1">
+                  <div class="name">{{product.name}}</div>
+                  <div class="space"></div>
+                  <div class="price">${{product.price}}</div>
+                  </div>
+                <div class="meta-line line-2">
+                  <div class="cats">{{product.categories}}</div>
+                  
+                </div>
+                <!--<div class="meta-line line-3">line-3</div>-->
+              </div>
+            </div>
+            <div class="list-item-content">
+              <div class="headings">
+                <div class="variation-stock-count">stock</div>
+                <div class="space"></div>
+              </div>
+                <div class="list-item-variations">
+                  
+  
+                    <iron-selector attr-for-selected="data-variation-id" selected="{{product.selectedVariation}}">
+                      <template class="repeat-variation-choices" is="dom-repeat" items="{{echo(product.variations,product.*)}}" as="variation" observe="product.*">
+                        <div class="variation-choice" data-variation-id="{{variation.id}}">
+                          <div class="variation-stock-count">{{variation.stock}}</div>
+                          <iron-image sizing="contain" style="width:32px;height:32px;background:#eee;" src="{{variation.material.image}}"></iron-image>
+                        </div>
+                      </template>
+                    </iron-selector>
+                </div> 
+                <paper-input class="variation-quantity" always-float-label type="number" min="1" step="1" max="100" label="quantity" value="{{product.wantedQuantity}}"></paper-input>
+                <paper-button class="variation-add-button" on-click="handleAddToCart" raised>add</paper-button>
+            </div>
+            
+            
+          </paper-material>
+        </template>
+      </paper-dialog-scrollable>
+      <div class="buttons">
+        <paper-button dialog-dismiss>done</paper-button>
+        <!--<paper-button dialog-dismiss>done</paper-button>-->
+      </div>
+    </paper-dialog>
+
+    </template>
+    <!-- build:js scripts/edb2.js -->
+    <script src="scripts/edb2.js"></script>
+    
+    <!-- endbuild-->
+    <!-- build:js scripts/app.js -->
+    
+    <script src="scripts/app.js"></script>
+    <!-- endbuild-->
+    
+  </body>
+</html>

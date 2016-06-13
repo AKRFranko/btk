@@ -404,6 +404,28 @@ window.requestAnimFrame = (function(){
       if(wcAjax == 'update_shipping_method' || wcAjax == 'update_order_review'){
         saveSummaryToggles();
         var queryString = settings.data;
+        var data = queryString.split('&').reduce( function( params, param ){
+          var pair = param.split('=').map(function (value) {
+              return decodeURIComponent(value.replace('+', ' '));
+          });
+          params[pair[0]] = pair[1];
+          return params; 
+        }, {} )
+        var s_map = {
+          s_address:$('input#shipping_address_1').val(),
+          s_address_2:$('input#shipping_address_2').val(),
+          s_city:$('input#shipping_city').val(),
+          s_country:$('input#shipping_country').val(),
+          s_postcode:$('input#shipping_postcode').val(),
+          s_state:$('input#shipping_state').val()
+        }
+        Object.keys(s_map).forEach( function( key ){
+          if( s_map[key] ){
+            data[key] = s_map[key];
+          }
+        });
+        // console.log('data',  $.param(data) )
+        // console.log('queryString',queryString.split('&'))
         // queryString = updateQueryStringShippingAddress(queryString);
         // var fixed = queryString.split('&').map( function( s ){
         //   if(/^s_postcode/.test(s)){
@@ -412,7 +434,7 @@ window.requestAnimFrame = (function(){
         //   return s;
         // });
         // console.log(fixed.join('&'));
-        settings.data = queryString+'&'+$( 'select.shipping_method, input[name^=shipping_method][type=radio]:checked, input[name^=shipping_method][type=hidden]' ).serialize();
+        settings.data = $.param(data)+'&'+$( 'select.shipping_method, input[name^=shipping_method][type=radio]:checked, input[name^=shipping_method][type=hidden]' ).serialize();
       }
     }
   });
@@ -599,10 +621,11 @@ window.requestAnimFrame = (function(){
     var value = $(this).val();
     if(!value) return;
     if(!/^([a-zA-Z]\d[a-zA-Z]( )?\d[a-zA-Z]\d)$/.test(value)){
+      var it = $(this);
+      $(this).addClass('missing');
       
-      $(this).addClass('missing')
     }else{
-      $(this).removeClass('missing')
+      $(this).removeClass('missing');
       
     }
   });

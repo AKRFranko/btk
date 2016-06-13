@@ -40,6 +40,28 @@ get_header( 'shop' ); ?>
 			 * @hooked woocommerce_product_archive_description - 10
 			 */
 			//do_action( 'woocommerce_archive_description' );
+			if($_GET['on_sale'] == 1){
+			  $args = array(
+            'post_type'      => 'product',
+            'meta_query'     => array(
+                'relation' => 'OR',
+                array( // Simple products type
+                    'key'           => '_sale_price',
+                    'value'         => 0,
+                    'compare'       => '>',
+                    'type'          => 'numeric'
+                ),
+                array( // Variable products type
+                    'key'           => '_min_variation_sale_price',
+                    'value'         => 0,
+                    'compare'       => '>',
+                    'type'          => 'numeric'
+                )
+            )
+        );
+        
+        query_posts( $args );
+			}
 		?>
 
 		<?php if ( have_posts() ) : ?>
@@ -61,6 +83,7 @@ get_header( 'shop' ); ?>
 				<?php while ( have_posts() ) : the_post(); ?>
 
 					<?php 
+					
 					# wc_get_template_part( 'content', 'product' ); 
 				  ?>
 					<article class="article">
@@ -96,8 +119,13 @@ get_header( 'shop' ); ?>
                 </h2>
                   <p class="article-subtitle">
                     <?php 
+                      if(!$product->is_on_sale()){
+                        echo wc_price($product->price);  
+                      }else{
+                        $regular_price =end($product->get_variation_prices()['regular_price']);
+                        echo "<s class=\"onsale\">".wc_price($regular_price)."</s> <span class=\"saleprice\">".wc_price($product->get_price())."</span>";
+                      }
                       
-                      echo wc_price($product->price);
                     ?>
                   </p>  
                 

@@ -1,5 +1,14 @@
 <?php
 // include ('/srv/http/wordpress/production/wp-content/plugins/woocommerce/woocommerce.php');
+function datediffInWeeks($date1, $date2)
+{
+    if($date1 > $date2) return datediffInWeeks($date2, $date1);
+    $first = DateTime::createFromFormat('m/d/Y', $date1);
+    $second = DateTime::createFromFormat('m/d/Y', $date2);
+    $weeks = floor($first->diff($second)->days/7);
+    return sprintf(_n('%s week', '%s weeks', $weeks, 'edb'), $weeks);
+}
+
 function time_elapsed($ptime) {
     $etime = $ptime - time();
     // write_log("etime: $etime ptime: $ptime");
@@ -59,12 +68,12 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
        'below'=> array(
          'zone-1'=> 65,
          'zone-2'=> 150,
-         'zone-3'=> 265
+         'zone-3'=> 250
          ),
        'above'=> array(
          'zone-1'=> 0,
          'zone-2'=> 85,
-         'zone-3'=> 200
+         'zone-3'=> 150
          )
      ),
      'small-furniture' => array( 
@@ -95,7 +104,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
      )
    );
  public $level_discounts_table = array(
-   'vip' => array( 'regular' => 10,'sale' => 5),
+   'vip' => array( 'regular' => 15,'sale' => 5),
    'vvip' => array( 'regular' => 15,'sale' => 3),
    'vvvip' => array( 'regular' => 20,'sale' => 6),
    'vvvvip' => array( 'regular' => 25,'sale' => 12)
@@ -151,11 +160,18 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   
   public function get_checkout_value( $value, $input ){
     write_log('get_checkout_value: '.$input);
-    $cust = WC()->session->customer;
+    // write_log('SESSION:');
+    // write_log( WC()->session->customer );
+    // write_log('CUSTOMER');
+    // write_log( WC()->customer );
+    // write_log('___');
+    $session = WC()->session->customer;
     write_log('CART NEEDS SHIIPNIG: ' . ( $value == true ? 'true' : 'false') );
     
-    if(isset($cust[$input])){
-      return $cust[$input];
+    if(isset($session[$input])){
+      // WC()->customer->{$input} = $session[$input];
+      // WC()->customer->save_data();
+      return $session[$input];
     }
     
     return $value;
@@ -741,7 +757,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   }
   
   function copy_billing_fields_to_shipping( $data ){
-    //write_log('copy_billing_fields_to_shipping');
+     write_log('!!!!!!!!!!!!!!!!copy_billing_fields_to_shipping!!!!!!!!!!!!!!!!!!!');
     
     $current_user = wp_get_current_user();
     $customer_id = $current_user->ID;
@@ -761,7 +777,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     WC()->session->set('customer', $customer );
   }
   function clear_shipping_fields( $data ){
-    //write_log('clear_shipping_fields');
+    write_log('!!!!!!!!!!!!!!!!!clear_shipping_fields!!!!!!!!!!!!!!!!!!!!!');
     // write_log(WC()->customer);
     $current_user = wp_get_current_user();
     $customer_id = $current_user->ID;
@@ -775,6 +791,17 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   // WC()->session->set('customer', $customer ); 
   }
   
+  function before_shipping_form(){
+    write_log('BEFORE_SHIPPING_FORM');
+    
+    foreach(WC()->session->customer as $field => $value ){
+      WC()->customer->{$field} = $value;
+      
+    }
+    WC()->customer->save_data();
+    // write_log(WC()->session->customer);
+    // write_log(WC()->customer);
+  }
   
   function checkout_update_order_review( $postdata ){
     write_log('checkout_update_order_review');
@@ -790,6 +817,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     // write_log( "customer id: $customer_id");
     $woocommerce_billing_fields = array( 'billing_first_name','billing_last_name', 'billing_company', 'billing_email', 'billing_phone', 'billing_country', 'billing_address_1','billing_address_2','billing_city','billing_state','billing_postcode');
     $woocommerce_shipping_fields = array( 'shipping_first_name','shipping_last_name', 'shipping_phone','shipping_company',  'shipping_country', 'shipping_address_1','shipping_address_2','shipping_city','shipping_state','shipping_postcode');
+    
     
     foreach($wordpress_fields as $field => $equivalent){
       if(isset($data[$equivalent])){
@@ -814,6 +842,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
         // $customer[$field] = $data[$field];
       }
     }
+    // WC()->session->customer = WC()->customer;
     
     if(isset($data['do_not_ship'])){
       //write_log('SETTING NO SHIP');
@@ -852,7 +881,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
       WC()->session->set('ship_to_same_address', false);
       // WC()->checkout->posted['ship_to_different_address']=true;
       // $posted['ship_to_different_address'] =
-      WC()->customer->save_data();
+      // WC()->customer->save_data();
       // write_log(WC()->session->customer);
     }
     
@@ -861,7 +890,13 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     // write_log(WC()->customer);
     // write_log();
     // WC()->session->set('customer', WC()->customer );
-    //WC()->customer->save_data();
+    
+    WC()->customer->save_data();
+    WC()->session->save_data();
+    // write_log('CUSTOMER');
+    // write_log( WC()->customer );
+    // write_log('SESSION');
+    // write_log( WC()->session->customer );
       // write_log(json_encode(WC()->customer));
   }
   
@@ -1032,7 +1067,11 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   
   public function get_zone_from_postal_code( $postcode ){
     //if($this->shipping_debug) write_log("postcode: $postcode");
-    
+    /*
+      h2A 2h2 est dans la zone 1
+       est dans la zone 2
+       est dans la zone 3
+    */
     $postcode = trim(strtoupper($postcode));
     write_log("\nGET ZONE FROM: '$postcode'");
     $zones_table = array(
@@ -1061,6 +1100,9 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     // if($this->shipping_debug) write_log( $items );
     if(count($items) == 0){ return 0;} 
     $postcode = WC()->customer->get_shipping_postcode();
+    // write_log('CUSTOMER SHIPPING POSTCODE: '.$postcode);
+    // write_log('POST');
+    // write_log($_POST);
     if(isset($_POST['calc_shipping_postcode']) && !empty($_POST['calc_shipping_postcode'])){
       $postcode = $_POST['calc_shipping_postcode'];
       // WC()->customer->set_shipping_postcode($postcode);
