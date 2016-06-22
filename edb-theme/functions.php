@@ -39,7 +39,7 @@ function _s_setup() {
 	 * hard-coded <title> tag in the document head, and expect WordPress to
 	 * provide it for us.
 	 */
-	add_theme_support( 'title-tag' );
+// 	add_theme_support( 'title-tag' );
 
 	/*
 	 * Enable support for Post Thumbnails on posts and pages.
@@ -133,7 +133,7 @@ add_action( 'widgets_init', '_s_widgets_init' );
  * Enqueue scripts and styles.
  */
 function _s_scripts() {
-	wp_enqueue_style( '_s-style', get_stylesheet_uri() );
+	wp_enqueue_style( '_s-style', get_stylesheet_uri(), array(), edb_last_deploy() );
 
 	
 	
@@ -149,7 +149,7 @@ function _s_scripts() {
   wp_enqueue_script( '_s-toast', get_template_directory_uri() . '/js/toast.js', array('jquery','_s_hammer'), '20160404', true );
   // wp_enqueue_script( '_s-tubes', get_template_directory_uri() . '/js/tubes.js', array('jquery','wpglobus'), '20160404', true );
   
-  wp_localize_script('_s-ajax_object', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+  wp_localize_script('_s-toast', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 	wp_enqueue_script( '_s-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20160404', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -254,6 +254,7 @@ function btk_edb_slider($query, $attach = null, $blankTargets = false) {
   echo "<div class='edb-slider' data-autocycle='1'>";
   echo "<div class='edb-slides'>";
   $active = ' active';
+  $i=0;
   while ($slider_query->have_posts()) {
     $slider_query->the_post();
     if (has_post_thumbnail()) {
@@ -261,7 +262,7 @@ function btk_edb_slider($query, $attach = null, $blankTargets = false) {
       ?><div class="edb-slide<?php echo $active; ?> <?php echo get_post_format($slider_query->post->ID); ?>">
         
           <div class="backdrop" style="background-image:url('<?php echo esc_attr($src); ?>')">
-            <img src="<?php echo esc_attr($src); ?>">
+            <img alt="slide <?php echo $i; ?>" src="<?php echo esc_attr($src); ?>">
           </div>
           
           <div class="titles">
@@ -271,14 +272,15 @@ function btk_edb_slider($query, $attach = null, $blankTargets = false) {
             </a>
           </div>
 
-          <div class="badge">
-            <span class="line-1">line 1</span>
-            <span class="line-2">line 2</span>
-            <span class="line-3">line 3</span>
-          </div>
+          <!--<div class="badge">-->
+          <!--  <span class="line-1">line 1</span>-->
+          <!--  <span class="line-2">line 2</span>-->
+          <!--  <span class="line-3">line 3</span>-->
+          <!--</div>-->
         
       </div><?php
       $active = '';
+      $i++;
     }
   }
   echo "</div>";
@@ -432,6 +434,16 @@ function set_php_auth_header(){
   // write_log($_SERVER['REDIRECT_HTTP_AUTHORIZATION']);
 }
 
+remove_action( 'wp_head', 'feed_links_extra', 3 ); // Display the links to the extra feeds such as category feeds
+remove_action( 'wp_head', 'feed_links', 2 ); // Display the links to the general feeds: Post and Comment Feed
+remove_action( 'wp_head', 'rsd_link' ); // Display the link to the Really Simple Discovery service endpoint, EditURI link
+remove_action( 'wp_head', 'wlwmanifest_link' ); // Display the link to the Windows Live Writer manifest file.
+remove_action( 'wp_head', 'index_rel_link' ); // index link
+remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 ); // prev link
+remove_action( 'wp_head', 'start_post_rel_link', 10, 0 ); // start link
+remove_action( 'wp_head', 'adjacent_posts_rel_link', 10, 0 ); // Display relational links for the posts adjacent to the current post.
+remove_action( 'wp_head', 'wp_generator' ); // Display the XHTML generator that is generated on the wp_head hook, WP version
+
 function fix_language_page_links( $url, $post, $leavename ) {
   if ( $post->post_type == 'post' || $post->post_type == 'page' ) {
     // write_log( "got: $url" );
@@ -481,6 +493,27 @@ function change_menu($items){
 
 add_filter('wp_nav_menu_objects', 'change_menu');
 
+
+function send_order_tool_email(){
+  if ( isset($_POST) && isset($_POST['send_order_email'])) {
+    $order_id = $_POST['send_order_email'];
+    $mailer = WC()->mailer();
+    $mails = $mailer->get_emails();
+    if ( !empty( $mails ) ) {
+        foreach ( $mails as $mail ) {
+            if ( $mail->id == 'customer_invoice' ) {
+              
+              $out = $mail->trigger( $order_id );
+              echo json_encode( array('sent'=>'ok', 'out' => $mail ) );              
+              
+            }
+         }
+    }
+  }
+  die();
+}
+
+add_action( 'wp_ajax_send_order_tool_email', 'send_order_tool_email' );
 
 
 function subscribe_to_newsletter() {
@@ -584,6 +617,9 @@ function edb_override_checkout_fields( $fields ) {
 
 add_action( 'init', 'set_php_auth_header'  );
 
+/**
+ * */
+ require get_template_directory() . '/seo.php';
 /**
  * Implement the Custom Header feature.
  */

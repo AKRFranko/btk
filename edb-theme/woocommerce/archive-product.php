@@ -106,7 +106,7 @@ get_header( 'shop' ); ?>
                   }
                 ?>
                 <span class="article-image<?php echo $stockclass ?>" style="background-image:url('<?php echo $hires[0]; ?>');">
-                  <?php echo '<img src="' . $lores[0] . '" data-hires-image="' . $hires[0] . '">'; ?>
+                  <?php echo '<img src="' . $lores[0] . '" alt="item image" data-hires-image="' . $hires[0] . '">'; ?>
                 </span>
                 
                 <span class="article-info">

@@ -113,7 +113,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   }
   app.displayErrors = function( errors ){
     var eToast = document.querySelector('#errorToast');
+    if(errors.errors){
+      errors = errors.errors;
+    }
     eToast.text = errors.join("\n");
+    
     eToast.open();
   }
   app.onEDBLoaded = function() {
@@ -322,13 +326,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    }
  }
  app.handleSendOrderEmail = function(  ){
-   var id = lastOrderResponse.order.id;
-   var key = lastOrderResponse.order.order_key;
-   EDB.sendOrderEmail( id, key );
+   var id = app.lastOrderResponse.order.id;
+   var key = app.lastOrderResponse.order.order_key;
+   EDB.sendOrderEmail( id, key ).done( function(){
+    document.querySelector('.final-message paper-button').disabled = true;
+    document.querySelector('.final-message paper-button').label = 'sent!';  
+   }).fail( function(){
+     app.displayErrors(['Sending email failed.']);
+   });
  }
   // Scroll page to top and expand header
   app.scrollPageToTop = function() {
     //app.$.headerPanelMain.scrollToTop(true);
+    
   };
 
   app.closeDrawer = function() {

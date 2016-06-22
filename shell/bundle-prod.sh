@@ -16,25 +16,24 @@ wget -O /home/franko/Code/edb.com/btk/edb-lookbook/languages/fr_FR.mo  https://e
 touch /home/franko/Code/edb.com/btk/edb-theme/index.php
 
 
-
-cd /home/franko/Code/edb.com/btk/edb-apps/order-tool/
 echo "Building order Tool"
-/home/franko/Code/edb.com/btk/edb-apps/order-tool/node_modules/gulp/bin/gulp.js && mkdir -p /home/franko/Code/edb.com/btk/edb-theme/apps/order-tool/ && rm -rf /home/franko/Code/edb.com/btk/edb-theme/apps/order-tool/* && cp -R /home/franko/Code/edb.com/btk/edb-apps/order-tool/dist /home/franko/Code/edb.com/btk/edb-theme/apps/order-tool/
-sudo cd /home/franko/Code/edb.com/btk
+cd /home/franko/Code/edb.com/btk/edb-apps/order-tool/ && /home/franko/Code/edb.com/btk/edb-apps/order-tool/node_modules/gulp/bin/gulp.js && mkdir -p /home/franko/Code/edb.com/btk/edb-theme/apps/order-tool/ && rm -rf /home/franko/Code/edb.com/btk/edb-theme/apps/order-tool/* && cp -R /home/franko/Code/edb.com/btk/edb-apps/order-tool/dist/ /home/franko/Code/edb.com/btk/edb-theme/apps/order-tool/app
+
 
 echo "Bundling themes and plugins"
+cd /home/franko/Code/edb.com/btk &&
 rm ./edb-theme.zip
 rm ./edb-plugin.zip
 rm ./edb-lookbook.zip
 # rm ./edb-order-tool.zip
-zip -r ./edb-theme.zip ./edb-theme
-zip -r ./edb-plugin.zip ./edb-plugin
-zip -r ./edb-lookbook.zip ./edb-lookbook
+zip -r ./edb-theme.zip ./edb-theme &&
+zip -r ./edb-plugin.zip ./edb-plugin &&
+zip -r ./edb-lookbook.zip ./edb-lookbook &&
 # zip -r ./edb-order-tool.zip ./edb-order-tool -x "*node_modules*"
-sudo cp ./edb-theme.zip /home/edb/
-sudo cp ./edb-plugin.zip /home/edb/
-sudo cp ./edb-lookbook.zip /home/edb/
+sudo cp ./edb-theme.zip /home/edb/ &&
+sudo cp ./edb-plugin.zip /home/edb/ &&
+sudo cp ./edb-lookbook.zip /home/edb/ &&
 # sudo cp ./edb-order-tool.zip /home/edb/
-sudo cp ./shell/install-prod.sh /home/edb
+sudo cp ./shell/install-prod.sh /home/edb &&
 sudo -u edb bash -x /home/edb/install-prod.sh
 

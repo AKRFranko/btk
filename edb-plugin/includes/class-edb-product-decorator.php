@@ -197,6 +197,18 @@ class Edb_Product_Decorator {
     $this->category = implode(', ', $categories);
     $this->category_slug = $product_cat_terms[0]->slug;
     $this->wireframe_name = strtolower($this->full_name . '_' . $this->category_slug);
+    $this->main_category = $categories[0];
+    if(isset($product_cat_terms[0]->parent)){
+      $parent = get_term($product_cat_terms[0]->parent);
+      if(!is_wp_error($parent)){
+        
+        $this->main_category = $parent->name;
+      }else{
+        
+        $this->main_category = trim(explode(',',$this->category)[0]);
+      }
+    }
+    
     // $this->category_slug = $categories[0]
     // $this->videos = array(
     //   'introduction' => get_post_meta( $this->post_id, '_edb_introduction_video', true ),

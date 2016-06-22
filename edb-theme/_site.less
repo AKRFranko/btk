@@ -300,6 +300,18 @@ p > sup{
 
 #cart-item-counter{
   font-weight:bold;
+  color:#ff5d5d;
+  &:before{
+    content: '';
+    width: .9em;
+    height: .9em;
+    background-image: url('data:image/svg+xml,<svg%20xmlns%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg"%20width%3D"510"%20height%3D"510"%20viewBox%3D"0%200%20510%20510"><path%20d%3D"M153%20408c-28%200-51%2023-51%2051s23%2051%2051%2051%2051-22.9%2051-51S181.1%20408%20153%20408zM0%200v51h51l91.8%20193.8L107.1%20306c-2.5%207.7-5.1%2017.9-5.1%2025.5%200%2028.1%2023%2051%2051%2051h306v-51H163.2c-2.5%200-5.1-2.5-5.1-5.1v-2.6l23-43.3h188.7c20.4%200%2035.7-10.2%2043.4-25.5L504.9%2089.3c5.1-5.1%205.1-7.6%205.1-12.7%200-15.3-10.2-25.5-25.5-25.5H107.1L84.2%200H0zM408%20408c-28%200-51%2023-51%2051s23%2051%2051%2051%2051-22.9%2051-51S436.1%20408%20408%20408z"%2F><%2Fsvg>');
+
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: -0.1em .2em;
+  }
 }
 
 #overlay{
@@ -738,9 +750,44 @@ footer#colophon {
 .menu-footer-container,.menu-footer2-container{
   .box;
   .half;
+  position:static;
   width:calc(~"50% - 2em")!important; 
   margin:0 1em;
 }
+
+/* facebo0k */
+#menu-item-1530 a {
+    text-indent: 1000px;
+    text-align: right;
+    color: red;
+    display: inline-block;
+    overflow: hidden;
+    width: 2em;
+    height: 2em;
+    background-image: url('data:image/svg+xml,<svg%20xmlns%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg"%20width%3D"61"%20height%3D"61"%20viewBox%3D"0%200%2060.7%2060.7"><path%20d%3D"M57.4%200H3.4C1.5%200%200%201.5%200%203.4v54c0%201.9%201.5%203.4%203.4%203.4h29.1V37.2h-7.9v-9.2h7.9v-6.8c0-7.8%204.8-12.1%2011.8-12.1%203.4%200%206.2%200.3%207.1%200.4v8.2l-4.9%200c-3.8%200-4.5%201.8-4.5%204.5v5.9h9.1l-1.2%209.2h-7.9v23.5h15.5c1.9%200%203.4-1.5%203.4-3.4V3.4C60.7%201.5%2059.2%200%2057.4%200z"%2F><%2Fsvg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+/* instaagram */
+#menu-item-1531 a {
+    text-indent: 1000px;
+    text-align: right;
+    color: red;
+    display: inline-block;
+    overflow: hidden;
+    width: 2em;
+    height: 2em;
+    background-image: url('data:image/svg+xml,<svg%20xmlns%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg"%20width%3D"510"%20height%3D"510"%20viewBox%3D"0%200%20510%20510"><path%20d%3D"M459%200H51C23%200%200%2023%200%2051v408c0%2028.1%2023%2051%2051%2051h408c28.1%200%2051-22.9%2051-51V51C510%2023%20487.1%200%20459%200zM255%20153c56.1%200%20102%2045.9%20102%20102%200%2056.1-45.9%20102-102%20102%20-56.1%200-102-45.9-102-102C153%20198.9%20198.9%20153%20255%20153zM63.8%20459C56.1%20459%2051%20453.9%2051%20446.3V229.5h53.6C102%20237.2%20102%20247.4%20102%20255c0%2084.2%2068.9%20153%20153%20153%2084.2%200%20153-68.8%20153-153%200-7.6%200-17.8-2.5-25.5H459v216.8c0%207.7-5.1%2012.8-12.7%2012.8H63.8zM459%20114.8c0%207.7-5.1%2012.8-12.7%2012.8h-51c-7.6%200-12.7-5.1-12.7-12.7v-51c0-7.6%205.1-12.7%2012.8-12.7h51C453.9%2051%20459%2056.1%20459%2063.8V114.8z"%2F><%2Fsvg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#menu-item-1530 a,
+#menu-item-1531 a
+{
+  margin-left:calc(~"100% + 2em");
+}
+
+
 // account logins forms
 #account-boxes{
   margin-top:2em;
@@ -825,6 +872,18 @@ img#register-seal {
     right: 2.5em;
 }
 
+
+.image-group img {
+  display:block;
+  
+    width: 100%;
+}
+.image-group {
+    width: 100%;
+}
+
+
+
 @media all and (min-width:320px) and (max-width:500px){
   #site-nav a.cart {
       position: absolute;
@@ -836,6 +895,7 @@ img#register-seal {
     top: 2em;
     right: 2em;
   }
+  
   // #site-nav a, #site-nav .list{
   //   padding-top:5.5em;
   // }

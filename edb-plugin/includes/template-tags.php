@@ -39,29 +39,29 @@ function edb_formated_customer_address( $type ){
    
 }
 
-function facebook_meta_tags(){
-  global $post;
+// function facebook_meta_tags(){
+//   global $post;
   
-  $path=$_SERVER['REQUEST_URI'];
-  $uri='https://elementdebase.com'.$path;
-  $meta_url = rtrim($uri, '/');
-  $meta_title = 'élément de base';
-  $meta_image = 'https://elementdebase.com/wp-content/uploads/2016/02/images_sections_0000_contact.jpg';
-  $meta_description='when we created élément de base, we set out to launch asustainable company that inspires creative interiors throughits offer of stylish, renewable, locally designed furniture at prices to suit any budget...';
-  if(is_product()){
-    $decorated = edb_decorated_product($post->ID);
-    if(!empty($decorated->subtitle)){
-      $meta_title = $decorated->title . "_" . $decorated->subtitle;
-    }else{
-      $meta_title = $decorated->title;
-    }
-    $meta_description = strip_tags($decorated->description . " " . wc_price( $decorated->price ));
-    $image_id = get_post_thumbnail_id( $post->ID);
-    $meta_image=wp_get_attachment_image_src($image_id, 'full')[0];
-    $meta_url = get_permalink();
-  }
-  echo "<meta property='og:url' content='$meta_url'/><meta property='og:title' content='$meta_title'/><meta property='og:image' content='$meta_image'/><meta property='og:site_name' content='élément de base'/><meta property='og:description' content='$meta_description'/>";
-}
+//   $path=$_SERVER['REQUEST_URI'];
+//   $uri='https://elementdebase.com'.$path;
+//   $meta_url = rtrim($uri, '/');
+//   $meta_title = 'élément de base';
+//   $meta_image = 'https://elementdebase.com/wp-content/uploads/2016/02/images_sections_0000_contact.jpg';
+//   $meta_description='when we created élément de base, we set out to launch asustainable company that inspires creative interiors throughits offer of stylish, renewable, locally designed furniture at prices to suit any budget...';
+//   if(is_product()){
+//     $decorated = edb_decorated_product($post->ID);
+//     if(!empty($decorated->subtitle)){
+//       $meta_title = $decorated->title . "_" . $decorated->subtitle;
+//     }else{
+//       $meta_title = $decorated->title;
+//     }
+//     $meta_description = strip_tags($decorated->description . " " . wc_price( $decorated->price ));
+//     $image_id = get_post_thumbnail_id( $post->ID);
+//     $meta_image=wp_get_attachment_image_src($image_id, 'full')[0];
+//     $meta_url = get_permalink();
+//   }
+//   echo "<meta property='og:url' content='$meta_url'/><meta property='og:title' content='$meta_title'/><meta property='og:image' content='$meta_image'/><meta property='og:site_name' content='élément de base'/><meta property='og:description' content='$meta_description'/>";
+// }
 
 function woocommerce_wp_image_select( $field ) { 
     global $thepostid, $post; 
@@ -129,7 +129,7 @@ function edb_package_item_image( $package_item_key, $package_item ){
     $image_id = get_post_thumbnail_id( $decorated->product_id );
   }
   // $this->materials[$variation_material]['image'] = wp_get_attachment_image_src($image_id, 'thumb')[0];
-  echo '<img src="'. wp_get_attachment_image_src($image_id, 'thumbnail')[0]. '">';
+  echo '<img src="'. wp_get_attachment_image_src($image_id, 'thumbnail')[0]. '" alt="item image">';
 }
 function edb_package_item_name( $package_item_key, $package_item ){
   $variation_id = $package_item['variation_id'];
@@ -324,6 +324,9 @@ function edb_order_item_availability( $item, $order ){
   $variation_id = $item['variation_id'];
   $shipping = $item['edb_shipping'];
   
+  if(!isset($item['edb_availabilities'][$shipping])){
+    $item['edb_availabilities'][$shipping] = '+2 weeks';
+  }
   $availability = "+" . str_replace( 'semaine', 'week', $item['edb_availabilities'][$shipping]);
   
   $order_date = strtotime( $order->order_date );
@@ -508,7 +511,7 @@ function edb_product_video_link( $product_id, $type ){
     $link = $data['video_link'];
     $src = $data['image_src'];
     // $src = str_replace('http:','https:');
-    echo "<a class=\"youtube_video_link\" href=\"$link\" target=\"youtube\"><img src=\"$src\"></a>";
+    echo "<a class=\"youtube_video_link\" href=\"$link\" target=\"youtube\"><img alt=\"youtube video\" src=\"$src\"></a>";
   }
 
 }
@@ -520,9 +523,10 @@ function edb_product_slideshow( $product_id ){
   $html = '<div class="edb-slider">';
   $html .= '<div class="edb-slides">';
   foreach($slide_images as $index => $src){
+    $alt = esc_attr($decorated->full_name ." image $index");
     $active = $index == 0 ? ' active' : '';
     $style = "background-image:url('".esc_attr($src)."');";
-    $img = "<img src='$src'>";
+    $img = "<img src='$src' alt='$alt'>";
     $html .= '<div class="edb-slide'.$active.'">';
     $html .= '<div class="backdrop" style="'.$style.'">'.$img.'</div>';
     $html .= '</div>';
@@ -582,10 +586,10 @@ function edb_material_toasts(){
       
         <div id="material-<?php echo $material; ?>" class="material-description boxes">
           <div class="material-image box half" style="background-image:url('<?php echo $large; ?>')">
-            <img src="<?php echo $large; ?>">
+            <img src="<?php echo $large; ?>" alt="material <?php echo $material ?>">
           </div>
           <div class="material-info box half">
-            <h1 class="name"><?php echo "$title" ?></h1>
+            <h2 class="name"><?php echo "$title" ?></h2>
             <h2 class="color"><?php echo "$subtitle $material" ?></h2>
             <p class="description"><?php echo $content; ?></p>
             
@@ -920,7 +924,7 @@ function edb_product_tech_image( $product_id ){
   $decorated = edb_decorated_product( $product_id );
   $image = tmp_get_tech_image( $decorated );
   #$image = $decorated->images['technical'];
-  echo '<img src="'.$image.'">';
+  echo '<img src="'.$image.'" alt="technical detail">';
 }
 
 function edb_checkout_billing_address_summary(){

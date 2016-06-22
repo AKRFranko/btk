@@ -387,8 +387,10 @@
     })
   };
   
-  EDB.sendOrderEmail = function(){
-    console.log('should send email');
+  EDB.sendOrderEmail = function( id, key ){
+    var url = edb_order_tool_params.ajaxurl;
+    return $.post( url ,{send_order_email:id,action:'send_order_tool_email'});
+    // console.log('should send email');
   }
 
   EDB.addToCart = function(product, variation, quantity) {

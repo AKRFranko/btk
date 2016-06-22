@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: edb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Thu Feb 04 2016 12:49:34 GMT-0500 (EST)\n"
-"POT-Revision-Date: Wed Jun 08 2016 11:45:15 GMT-0400 (EDT)\n"
+"POT-Revision-Date: Fri Jun 17 2016 13:01:00 GMT-0400 (EDT)\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: franko <franko@akr.club>\n"
 "Language-Team: \n"
@@ -24,6 +24,30 @@ msgstr ""
 "esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
 "X-Loco-Target-Locale: fr_CA\n"
 "X-Generator: Loco - https://localise.biz/"
+
+#: ../seo.php:3
+msgid "sofa-beds"
+msgstr ""
+
+#: ../seo.php:4
+msgid "sectionals"
+msgstr ""
+
+#: ../seo.php:5
+msgid "armchairs"
+msgstr ""
+
+#: ../seo.php:6 ../header.php:129
+msgid "accessories"
+msgstr ""
+
+#: ../seo.php:7
+msgid "slipcovers"
+msgstr ""
+
+#: ../seo.php:8
+msgid "modular"
+msgstr ""
 
 #: ../comments.php:31
 #, php-format
@@ -140,94 +164,90 @@ msgstr ""
 msgid "It looks like nothing was found at this location."
 msgstr ""
 
-#: ../header.php:49 ../header.php:140
+#: ../header.php:51 ../header.php:148
 msgid "welcome"
 msgstr ""
 
-#: ../header.php:49
+#: ../header.php:51
 msgid "sign out"
 msgstr ""
 
-#: ../header.php:51
+#: ../header.php:53
 msgid "sign in"
 msgstr ""
 
-#: ../header.php:54
+#: ../header.php:56
 msgid "cart"
 msgstr ""
 
-#: ../header.php:94 ../header.php:116 ../header.php:126 ../header.php:127
+#: ../header.php:96 ../header.php:118 ../header.php:128 ../header.php:129
 #, php-format
 msgid "View all %s"
 msgstr ""
 
-#: ../header.php:107 ../header.php:112
+#: ../header.php:109 ../header.php:114
 #, php-format
 msgid "View all post filed under %s"
 msgstr ""
 
-#: ../header.php:112 ../header.php:136
+#: ../header.php:114 ../header.php:139 ../header.php:142
 msgid "all"
 msgstr ""
 
-#: ../header.php:126
+#: ../header.php:128
 msgid "rugs"
 msgstr ""
 
-#: ../header.php:127
-msgid "accessories"
-msgstr ""
-
-#: ../header.php:137
+#: ../header.php:140 ../header.php:143
 msgid "sale"
 msgstr ""
 
-#: ../header.php:143 ../header.php:154
+#: ../header.php:151 ../header.php:162
 msgid "returning customers<br />please sign in"
 msgstr ""
 
-#: ../header.php:147
+#: ../header.php:155
 msgid "new customers<br />sign up for shopping<br />and exclusive offers"
 msgstr ""
 
-#: ../header.php:158 ../header.php:185 ../woocommerce/order/order-details-
+#: ../header.php:166 ../header.php:193 ../woocommerce/order/order-details-
 #: customer.php:26
 msgid "email"
 msgstr ""
 
-#: ../header.php:162 ../header.php:189
+#: ../header.php:170 ../header.php:197
 msgid "password"
 msgstr ""
 
-#: ../header.php:168
+#: ../header.php:176
 msgid "enter edb"
 msgstr ""
 
-#: ../header.php:169
+#: ../header.php:177
 msgid "login"
 msgstr ""
 
-#: ../header.php:172
+#: ../header.php:180
 msgid "> click here to recover lost password"
 msgstr ""
 
-#: ../header.php:174 ../header.php:204
+#: ../header.php:182 ../header.php:212
 msgid "back"
 msgstr ""
 
-#: ../header.php:180
+#: ../header.php:188
 msgid "new customers sign up for shopping<br />and exclusive offers"
 msgstr ""
 
-#: ../header.php:193
+#: ../header.php:201
 msgid "confirm password"
 msgstr ""
 
-#: ../header.php:199
+#: ../header.php:207
 msgid "sign up to edb"
 msgstr ""
 
-#: ../header.php:200
+#: ../header.php:208
 msgid "register"
 msgstr ""
 

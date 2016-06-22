@@ -29,6 +29,14 @@ do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order );
     <?php echo $item['qty']; ?>
   </td>  
   <td class="td">
+    <?php 
+        $total= $item['line_total'];
+        $subtotal = $item['line_subtotal'];
+        if($subtotal > $total ){
+          echo "<s>".wc_price($subtotal)."</s>";
+        }
+    ?>
+    
     <?php echo wc_price($item['line_total']); ?>
   </td>
   <td class="td">

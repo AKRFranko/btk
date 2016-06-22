@@ -7,7 +7,8 @@ if(!current_user_can('publish_posts')){
 }
 
 
-$contents =  file_get_contents( dirname( __FILE__ ) . '/apps/order-tool/dist/index.html');
+
+$contents =  file_get_contents( dirname( __FILE__ ) . '/apps/order-tool/app/index.html');
 $params = json_encode( array(
   'ajaxurl' => admin_url( 'admin-ajax.php', 'https' )
 ));
@@ -16,8 +17,8 @@ if($_SERVER['HTTP_HOST'] == 'badb0x.akr.club'){
 }else{
   $folder = 'edb-theme';
 }
-$injectScript = '<script type="text/javascript">var edb_order_tool_params = '.$params.';</script>';
-$injectBase = '<base href="https://'.$_SERVER['HTTP_HOST'].'/wp-content/themes/'.$folder.'/apps/order-tool/dist/">';
+$injectScript = '<script type="text/javascript">window.edb_order_tool_params = '.$params.';</script>';
+$injectBase = '<base href="https://'.$_SERVER['HTTP_HOST'].'/wp-content/themes/'.$folder.'/apps/order-tool/app/">';
 echo str_replace( 'WP_INJECT', "$injectBase\n$injectScript\n" , $contents );
 
 ?>

@@ -17,6 +17,7 @@
   <script>try{Typekit.load();}catch(e){}</script>
   
   <?php facebook_meta_tags(); ?>
+  <?php edb_seo_meta_tags(); ?>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#ffffff">
@@ -25,7 +26,7 @@
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
 <?php wp_head(); ?>
-
+<script type="text/javascript" src="//cdn.callrail.com/companies/288406270/215e63ac1c14dcead16d/12/swap.js"></script>
 
 </head>
 
@@ -34,6 +35,7 @@
 <div id="page" class="site">
   <header id="masthead">
       <div class="inner">
+        <h1 class="seo-title" style="font-size:0px;"><?php edb_seo_heading('Élément de base'); ?></h1>
       <a id="logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
       <p id="description">
         <?php
@@ -52,7 +54,7 @@
         <?php endif; ?>
         <a class="cart" href="<?php echo esc_url(home_url('/')); ?>cart">
           <?php _e('cart', 'edb'); ?>
-          <?php if ( WC()->cart->get_cart_contents_count() > 0 ) { echo '<span id="cart-item-counter" class="semi-bold">' . WC()->cart->get_cart_contents_count() . '</span>'; } ?>
+          <?php if ( WC()->cart->get_cart_contents_count() > 0 ) { echo '<span id="cart-item-counter" class="semi-bold">(' . WC()->cart->get_cart_contents_count() . ')</span>'; } ?>
         </a>
         <?php dynamic_sidebar( 'languages' ); ?>
         

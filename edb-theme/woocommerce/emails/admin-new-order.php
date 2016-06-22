@@ -41,7 +41,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</thead>
 	<tbody>
 		<?php echo $order->email_order_items_table( false, true ); ?>
+		<?php 
+      if( $order->get_used_coupons() ) {
+        foreach( $order->get_used_coupons() as $coupon) {
+          ?>
+            <tr>
+            <th class="td" scope="col" colspan="2" style="font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; text-align:left; <?php if ( $i == 1 ) echo 'border-top-width: 4px;'; ?>"><?php echo 'coupon' ?></th>
+            <td class="td" scope="col" colspan="2" style="text-align:left; <?php if ( $i == 1 ) echo 'border-top-width: 4px;'; ?>"><?php echo $coupon; ?></td>
+            </tr>
+          <?php
+        }
+      }
+    
+    ?>
 	</tbody>
+
 	<tfoot>
 		<?php
 			if ( $totals = $order->get_order_item_totals() ) {

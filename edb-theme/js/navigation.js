@@ -3,7 +3,8 @@
  *
  * Handles toggling the navigation menu for small screens and enables tab
  * support for dropdown menus.
- */ (function($) {
+ */
+(function($) {
 
 
 
@@ -30,6 +31,14 @@
     }
 
   });
+
+  $('.pdf-dowload-item-button a').each(function(i) {
+    $(this).on('click', function() {
+      ga('send', 'event', 'Poster', 'Download', 'Item', i + 1);
+      return true;
+    })
+  });
+
   $(document).on('click', '#shop-nav a:first', function(e) {
     e.preventDefault();
     var $cats = $('#cat-nav');
@@ -263,12 +272,12 @@
 
     }
 
-    if ($('.edb-material-choice-square').length === 1 ) {
+    if ($('.edb-material-choice-square').length === 1) {
       $('.edb-material-choice-square').click();
-      if($('.product-cat-side-tables,.product_cat-accessories-pillows,.product-cat-accessories-rugs').length > 0 ){
-        $('.product-menu').addClass('one-choice');  
+      if ($('.product-cat-side-tables,.product_cat-accessories-pillows,.product-cat-accessories-rugs').length > 0) {
+        $('.product-menu').addClass('one-choice');
       }
-      
+
     }
 
 
@@ -416,7 +425,7 @@
       $tex.html($tex.html() + '... ' + '<a href="' + url + '">read / lire<a>');
     })
   });
-  
+
   $(function() {
 
     var inp = $('input[name=your-email-confirm]').get(0);

@@ -197,7 +197,8 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
           $items[$key]['edb_availabilities'] = unserialize($items[$key]['edb_availabilities']);  
         }else{
           write_log('AVAILABILITES EMPTY');
-          // write_log( $items[$key] );
+          //$items[$key]['edb_availabilities'];
+          write_log( $items[$key] );
         }
         
       }
