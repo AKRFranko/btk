@@ -1,0 +1,192 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node',
+1 verbose cli   '/home/franko/.npm-packages/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--save',
+1 verbose cli   'Polymer/app-layout' ]
+2 info using npm@3.3.10
+3 info using node@v5.5.0
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData Polymer/app-layout
+8 silly fetchOtherPackageData Polymer/app-layout
+9 silly cache add args [ 'Polymer/app-layout', null ]
+10 verbose cache add spec Polymer/app-layout
+11 silly cache add parsed spec Result {
+11 silly cache add   raw: 'Polymer/app-layout',
+11 silly cache add   scope: null,
+11 silly cache add   name: null,
+11 silly cache add   rawSpec: 'Polymer/app-layout',
+11 silly cache add   spec: 'github:polymer/app-layout',
+11 silly cache add   type: 'hosted',
+11 silly cache add   hosted:
+11 silly cache add    { type: 'github',
+11 silly cache add      ssh: 'git@github.com:polymer/app-layout.git',
+11 silly cache add      sshUrl: 'git+ssh://git@github.com/polymer/app-layout.git',
+11 silly cache add      httpsUrl: 'git+https://github.com/polymer/app-layout.git',
+11 silly cache add      gitUrl: 'git://github.com/polymer/app-layout.git',
+11 silly cache add      shortcut: 'github:polymer/app-layout',
+11 silly cache add      directUrl: 'https://raw.githubusercontent.com/polymer/app-layout/master/package.json' } }
+12 verbose addRemoteGit caching Polymer/app-layout
+13 verbose addRemoteGit polymer/app-layout is a repository hosted by github
+14 silly tryGitProto attempting to clone git://github.com/polymer/app-layout.git
+15 silly tryClone cloning polymer/app-layout via git://github.com/polymer/app-layout.git
+16 verbose tryClone git-github-com-polymer-app-layout-git-98eb07907a123027ce264807a5057b61 not in flight; caching
+17 info git [ 'clone',
+17 info git   '--template=/home/franko/.npm/_git-remotes/_templates',
+17 info git   '--mirror',
+17 info git   'git://github.com/polymer/app-layout.git',
+17 info git   '/home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-98eb07907a123027ce264807a5057b61' ]
+18 verbose git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror git://github.com/polymer/app-layout.git /home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-98eb07907a123027ce264807a5057b61: Cloning into bare repository '/home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-98eb07907a123027ce264807a5057b61'...
+18 verbose git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror git://github.com/polymer/app-layout.git /home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-98eb07907a123027ce264807a5057b61: fatal: remote error:
+18 verbose git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror git://github.com/polymer/app-layout.git /home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-98eb07907a123027ce264807a5057b61:   Repository not found.
+19 silly tryHTTPS attempting to clone git+https://github.com/polymer/app-layout.git
+20 silly tryClone cloning polymer/app-layout via git+https://github.com/polymer/app-layout.git
+21 verbose tryClone git-https-github-com-polymer-app-layout-git-a49507a8fcc309de26f6405012c21dee not in flight; caching
+22 info git [ 'clone',
+22 info git   '--template=/home/franko/.npm/_git-remotes/_templates',
+22 info git   '--mirror',
+22 info git   'https://github.com/polymer/app-layout.git',
+22 info git   '/home/franko/.npm/_git-remotes/git-https-github-com-polymer-app-layout-git-a49507a8fcc309de26f6405012c21dee' ]
+23 verbose git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror https://github.com/polymer/app-layout.git /home/franko/.npm/_git-remotes/git-https-github-com-polymer-app-layout-git-a49507a8fcc309de26f6405012c21dee: Cloning into bare repository '/home/franko/.npm/_git-remotes/git-https-github-com-polymer-app-layout-git-a49507a8fcc309de26f6405012c21dee'...
+23 verbose git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror https://github.com/polymer/app-layout.git /home/franko/.npm/_git-remotes/git-https-github-com-polymer-app-layout-git-a49507a8fcc309de26f6405012c21dee: remote: Invalid username or password.
+23 verbose git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror https://github.com/polymer/app-layout.git /home/franko/.npm/_git-remotes/git-https-github-com-polymer-app-layout-git-a49507a8fcc309de26f6405012c21dee: fatal: Authentication failed for 'https://github.com/polymer/app-layout.git/'
+24 silly trySSH attempting to clone git@github.com:polymer/app-layout.git
+25 silly tryClone cloning polymer/app-layout via git@github.com:polymer/app-layout.git
+26 verbose tryClone git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e not in flight; caching
+27 info git [ 'clone',
+27 info git   '--template=/home/franko/.npm/_git-remotes/_templates',
+27 info git   '--mirror',
+27 info git   'git@github.com:polymer/app-layout.git',
+27 info git   '/home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e' ]
+28 error git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror git@github.com:polymer/app-layout.git /home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e: Cloning into bare repository '/home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e'...
+28 error git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror git@github.com:polymer/app-layout.git /home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e: Host key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8
+28 error git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror git@github.com:polymer/app-layout.git /home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e: +---[RSA 2048]----+
+28 error git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror git@github.com:polymer/app-layout.git /home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e: | =+o...+=o..     |
+28 error git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror git@github.com:polymer/app-layout.git /home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e: |o++... *o .      |
+28 error git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror git@github.com:polymer/app-layout.git /home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e: |*.o.  *o.        |
+28 error git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror git@github.com:polymer/app-layout.git /home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e: |oo.  ..o.= .     |
+28 error git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror git@github.com:polymer/app-layout.git /home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e: |.+o. .. S =      |
+28 error git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror git@github.com:polymer/app-layout.git /home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e: |*=+ .  o = .     |
+28 error git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror git@github.com:polymer/app-layout.git /home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e: |OE .  . o        |
+28 error git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror git@github.com:polymer/app-layout.git /home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e: | o     .         |
+28 error git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror git@github.com:polymer/app-layout.git /home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e: |                 |
+28 error git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror git@github.com:polymer/app-layout.git /home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e: +----[SHA256]-----+
+28 error git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror git@github.com:polymer/app-layout.git /home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e:
+28 error git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror git@github.com:polymer/app-layout.git /home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e: ERROR: Repository not found.
+28 error git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror git@github.com:polymer/app-layout.git /home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e: fatal: Could not read from remote repository.
+28 error git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror git@github.com:polymer/app-layout.git /home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e:
+28 error git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror git@github.com:polymer/app-layout.git /home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e: Please make sure you have the correct access rights
+28 error git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror git@github.com:polymer/app-layout.git /home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e: and the repository exists.
+29 silly fetchPackageMetaData Error: Command failed: git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror git@github.com:polymer/app-layout.git /home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e
+29 silly fetchPackageMetaData Cloning into bare repository '/home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e'...
+29 silly fetchPackageMetaData Host key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8
+29 silly fetchPackageMetaData +---[RSA 2048]----+
+29 silly fetchPackageMetaData | =+o...+=o..     |
+29 silly fetchPackageMetaData |o++... *o .      |
+29 silly fetchPackageMetaData |*.o.  *o.        |
+29 silly fetchPackageMetaData |oo.  ..o.= .     |
+29 silly fetchPackageMetaData |.+o. .. S =      |
+29 silly fetchPackageMetaData |*=+ .  o = .     |
+29 silly fetchPackageMetaData |OE .  . o        |
+29 silly fetchPackageMetaData | o     .         |
+29 silly fetchPackageMetaData |                 |
+29 silly fetchPackageMetaData +----[SHA256]-----+
+29 silly fetchPackageMetaData
+29 silly fetchPackageMetaData ERROR: Repository not found.
+29 silly fetchPackageMetaData fatal: Could not read from remote repository.
+29 silly fetchPackageMetaData
+29 silly fetchPackageMetaData Please make sure you have the correct access rights
+29 silly fetchPackageMetaData and the repository exists.
+29 silly fetchPackageMetaData
+29 silly fetchPackageMetaData     at ChildProcess.exithandler (child_process.js:213:12)
+29 silly fetchPackageMetaData     at emitTwo (events.js:100:13)
+29 silly fetchPackageMetaData     at ChildProcess.emit (events.js:185:7)
+29 silly fetchPackageMetaData     at maybeClose (internal/child_process.js:821:16)
+29 silly fetchPackageMetaData     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
+29 silly fetchPackageMetaData  error for Polymer/app-layout { [Error: Command failed: git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror git@github.com:polymer/app-layout.git /home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e
+29 silly fetchPackageMetaData Cloning into bare repository '/home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e'...
+29 silly fetchPackageMetaData Host key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8
+29 silly fetchPackageMetaData +---[RSA 2048]----+
+29 silly fetchPackageMetaData | =+o...+=o..     |
+29 silly fetchPackageMetaData |o++... *o .      |
+29 silly fetchPackageMetaData |*.o.  *o.        |
+29 silly fetchPackageMetaData |oo.  ..o.= .     |
+29 silly fetchPackageMetaData |.+o. .. S =      |
+29 silly fetchPackageMetaData |*=+ .  o = .     |
+29 silly fetchPackageMetaData |OE .  . o        |
+29 silly fetchPackageMetaData | o     .         |
+29 silly fetchPackageMetaData |                 |
+29 silly fetchPackageMetaData +----[SHA256]-----+
+29 silly fetchPackageMetaData
+29 silly fetchPackageMetaData ERROR: Repository not found.
+29 silly fetchPackageMetaData fatal: Could not read from remote repository.
+29 silly fetchPackageMetaData
+29 silly fetchPackageMetaData Please make sure you have the correct access rights
+29 silly fetchPackageMetaData and the repository exists.
+29 silly fetchPackageMetaData ]
+29 silly fetchPackageMetaData   killed: false,
+29 silly fetchPackageMetaData   code: 128,
+29 silly fetchPackageMetaData   signal: null,
+29 silly fetchPackageMetaData   cmd: 'git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror git@github.com:polymer/app-layout.git /home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e' }
+30 silly rollbackFailedOptional Starting
+31 silly rollbackFailedOptional Finishing
+32 silly runTopLevelLifecycles Starting
+33 silly runTopLevelLifecycles Finishing
+34 silly install printInstalled
+35 verbose stack Error: Command failed: git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror git@github.com:polymer/app-layout.git /home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e
+35 verbose stack Cloning into bare repository '/home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e'...
+35 verbose stack Host key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8
+35 verbose stack +---[RSA 2048]----+
+35 verbose stack | =+o...+=o..     |
+35 verbose stack |o++... *o .      |
+35 verbose stack |*.o.  *o.        |
+35 verbose stack |oo.  ..o.= .     |
+35 verbose stack |.+o. .. S =      |
+35 verbose stack |*=+ .  o = .     |
+35 verbose stack |OE .  . o        |
+35 verbose stack | o     .         |
+35 verbose stack |                 |
+35 verbose stack +----[SHA256]-----+
+35 verbose stack
+35 verbose stack ERROR: Repository not found.
+35 verbose stack fatal: Could not read from remote repository.
+35 verbose stack
+35 verbose stack Please make sure you have the correct access rights
+35 verbose stack and the repository exists.
+35 verbose stack
+35 verbose stack     at ChildProcess.exithandler (child_process.js:213:12)
+35 verbose stack     at emitTwo (events.js:100:13)
+35 verbose stack     at ChildProcess.emit (events.js:185:7)
+35 verbose stack     at maybeClose (internal/child_process.js:821:16)
+35 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
+36 verbose cwd /srv/http/codiad/workspace/Code/edb.com/btk/edb-apps/eedeebee
+37 error Linux 4.5.5-x86_64-linode69
+38 error argv "/usr/bin/node" "/home/franko/.npm-packages/bin/npm" "install" "--save" "Polymer/app-layout"
+39 error node v5.5.0
+40 error npm  v3.3.10
+41 error code 128
+42 error Command failed: git clone --template=/home/franko/.npm/_git-remotes/_templates --mirror git@github.com:polymer/app-layout.git /home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e
+42 error Cloning into bare repository '/home/franko/.npm/_git-remotes/git-github-com-polymer-app-layout-git-bc764779eaf4664f45f71d3989c9c13e'...
+42 error Host key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8
+42 error +---[RSA 2048]----+
+42 error | =+o...+=o..     |
+42 error |o++... *o .      |
+42 error |*.o.  *o.        |
+42 error |oo.  ..o.= .     |
+42 error |.+o. .. S =      |
+42 error |*=+ .  o = .     |
+42 error |OE .  . o        |
+42 error | o     .         |
+42 error |                 |
+42 error +----[SHA256]-----+
+42 error
+42 error ERROR: Repository not found.
+42 error fatal: Could not read from remote repository.
+42 error
+42 error Please make sure you have the correct access rights
+42 error and the repository exists.
+43 error If you need help, you may report this error at:
+43 error     <https://github.com/npm/npm/issues>
+44 verbose exit [ 1, true ]

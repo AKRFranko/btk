@@ -2374,7 +2374,8 @@ main {
   width: 100%;
 }
 main > article {
-  display: block;
+  vertical-align: top;
+  display: inline-block;
   float: left;
   width: 100%;
   box-sizing: border-box;
@@ -2387,6 +2388,12 @@ main > article {
 main > article > header {
   width: 100%;
   height: 100%;
+}
+main > .article.tall {
+  height: 760px;
+}
+.home .site-main {
+  margin: 0;
 }
 .press-review {
   display: block;
@@ -2703,10 +2710,23 @@ main > article > header {
   .archive main > article,
   .home main > article {
     height: calc(88vh - 117px);
+    min-height: 720px;
+  }
+  .archive main > article.tall,
+  .home main > article.tall {
+    height: calc(176vh - 117px);
+  }
+  .archive main > article.tall .article-image,
+  .home main > article.tall .article-image {
+    height: 75%;
+  }
+  .archive main > article.tall .article-info,
+  .home main > article.tall .article-info {
+    height: 25%;
   }
   .archive .article-info,
   .home .article-info {
-    padding: .5em 6em 0 1em;
+    padding: .5em 6em 1em 1em;
   }
   .archive .article-info:after,
   .home .article-info:after {
@@ -2739,17 +2759,26 @@ main > article > header {
 @media all and (min-width: 760px) and (max-width: 900px) {
   .archive main > article,
   .home main > article {
-    width: 50%;
+    width: calc(50% - 1em);
     height: 460px;
+    margin: .5em;
     margin-top: .7em;
   }
-  .archive main > article:nth-of-type(odd),
-  .home main > article:nth-of-type(odd) {
-    padding-right: calc(1em / 3);
+  .archive main > article.tall,
+  .home main > article.tall {
+    height: 690px;
   }
-  .archive main > article:nth-of-type(even),
-  .home main > article:nth-of-type(even) {
-    padding-left: calc(1em / 3);
+  .archive main > article.tall .article-image,
+  .home main > article.tall .article-image {
+    height: 75%;
+  }
+  .archive main > article.tall .article-image,
+  .home main > article.tall .article-image {
+    height: 460px;
+  }
+  .archive main > article.tall .article-info,
+  .home main > article.tall .article-info {
+    height: 230px;
   }
   a#show-material-toast {
     right: 4.5em;
@@ -2758,23 +2787,23 @@ main > article > header {
 @media all and (min-width: 900px) {
   .archive main > article,
   .home main > article {
-    width: calc(100% / 3);
+    width: calc(33.3%  - 1em);
     height: 380px;
-    padding: 0 .5em;
+    padding: 0;
+    margin: .5em;
     margin-top: .75em;
   }
-  .archive main > article:nth-of-type(3n),
-  .home main > article:nth-of-type(3n) {
-    padding-right: 0;
+  .archive main > article.tall,
+  .home main > article.tall {
+    height: 570px;
   }
-  .archive main > article:nth-of-type(3n-2),
-  .home main > article:nth-of-type(3n-2) {
-    padding-left: 0;
+  .archive main > article.tall .article-image,
+  .home main > article.tall .article-image {
+    height: 380px;
   }
-  .archive main > article:nth-of-type(3n-1),
-  .home main > article:nth-of-type(3n-1) {
-    padding-left: .25em;
-    padding-right: .25em;
+  .archive main > article.tall .article-info,
+  .home main > article.tall .article-info {
+    height: 190px;
   }
   p.videopost-text {
     box-sizing: border-box;

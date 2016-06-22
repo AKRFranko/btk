@@ -224,7 +224,12 @@
 
 
   $(function() {
-
+    jQuery('.home .site-main').masonry({
+      // options
+      itemSelector: '.article',
+      originLeft: true,
+      originTop: true
+    });
 
     $("#overlay").on('click', function(e) {
       //console.log(e.target)

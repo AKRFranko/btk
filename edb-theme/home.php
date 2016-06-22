@@ -33,12 +33,14 @@ $my_query = new WP_Query(array(
   "category_name" => "news",
   "posts_per_page" => 8,
 ));
+$alts = array('tall','small','small','tall','tall','small','small','tall','small','tall','small','small','tall','tall','small','small','tall','tall');
+
 ?>
     <?php if ($my_query->have_posts()): ?>
     <?php /* Start the Loop */?>
   
       <?php while ($my_query->have_posts()): $my_query->the_post();?>
-      <article class="article">    
+      <article class="article <?php echo array_shift($alts); ?>">    
       
           <a class="article-link" href="<?php echo get_permalink();?>">
             <?php if (has_post_thumbnail()): ?>
