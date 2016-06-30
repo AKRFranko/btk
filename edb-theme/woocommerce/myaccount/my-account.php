@@ -39,6 +39,21 @@ wc_print_notices();
 
 <?php do_action( 'woocommerce_before_my_account' ); ?>
 
+<?php 
+  $personal_coupon = edb_current_user_personal_coupon_info();
+  if(!empty($personal_coupon)){
+?>
+  <div id="personal-coupon-info">
+    <div class="info-line">
+      <?php printf( __( 'Your very own personal coupon code is: %s', 'edb'), '<code>'.$personal_coupon['code'].'</code>' ); ?>  
+    </div>
+    <div class="info-line">
+      <?php printf( __( 'You currently have a %s credit left.', 'edb'), '<b>'.wc_price($personal_coupon['credits_available'] ).'</b>') ; ?>
+    </div>
+    
+  </div>
+<?php };?>
+
 <?php wc_get_template( 'myaccount/my-downloads.php' ); ?>
 
 <?php wc_get_template( 'myaccount/my-orders.php', array( 'order_count' => $order_count ) ); ?>

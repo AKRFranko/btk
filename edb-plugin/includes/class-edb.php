@@ -255,6 +255,17 @@ class Edb {
     add_filter('woocommerce_get_regular_price', array( $this, 'get_regular_price'), 10, 2 );
     add_filter('woocommerce_get_sale_price', array( $this, 'get_sale_price'), 10, 2 );
     
+    // add_action( 'wc_ajax_apply_credits', array( $this,'edb_checkout_apply_credits'), 10, 2 );
+    // add_action( 'woocommerce_cart_calculate_fees', array( $this, 'edb_cart_add_credit_discount'), 10, 2 );
+
+    // function my_ajax_function() {
+    //   $mystuff = $_POST['stuff'];  
+    //   if ( defined( 'DOING_AJAX' ) && DOING_AJAX  ) { 
+    //     set_transient('fx_mystuff' , $mystuff, '0');
+    //   }
+    //   die();
+    // }
+    
     // add_action( 'woocommerce_review_order_before_submit',  array($GLOBALS['Edb_Shipping_Method'], 'review_order_before_submit') );
     
     // add_action( 'woocommerce_before_checkout_billing_form', array($GLOBALS['Edb_Shipping_Method'],'before_checkout_billing_form') );
@@ -264,9 +275,44 @@ class Edb {
     
     // add_filter('woocommerce_coupon_is_valid_for_product', array($GLOBALS['Edb_Shipping_Method'], 'can_coupon_apply_to_product') , 10, 4 );
     
-    
+   // add_action('woocommerce_cart_calculate_fees', array($this, 'edb_checkout_apply_credits'));
     
 	}
+	
+// 	public function edb_cart_add_credit_discount(){
+// 	  if(!empty($_SESSION['use_credits']) && !is_null($_SESSION['use_credits'])){
+// 	    $use_credits = absint($_SESSION['use_credits']);
+// 	    WC()->cart->add_fee('credit discount', -1 * $use_credits, true , '');
+// 	    $_SESSION['use_credits'] = null;
+// 	  }
+// 	}
+	public function edb_checkout_apply_credits(){
+  // 	if ( !defined( 'DOING_AJAX' ) || empty($_POST) )  return;
+    
+	 // $use_credits = $_POST['use_credits'];
+	 // if(empty($use_credits)){
+	 //   echo '<p>No credits to use.</p>';
+	 // }else{
+	   
+	 //  WC()->session->set('use_credits',$use_credits);
+	 //  //$_SESSION['use_credits']=;
+	 //  // write_log('AAAAAAAAAAAAAAAAAAAAAAA');
+	 //  // write_log('AAAAAAAAAAAAAAAAAAAAAAA'); 
+	 //  // write_log('AAAAAAAAAAAAAAAAAAAAAAA'); 
+	 //  // write_log('AAAAAAAAAAAAAAAAAAAAAAA'); 
+	 //  // write_log('AAAAAAAAAAAAAAAAAAAAAAA'); 
+	 //  // write_log('FEE'); 
+	 //  // write_log($fee);
+	 // }
+	 // wc_print_notices();
+	 // die();
+	  
+	}
+	
+	 // 
+// 	add_action( 'woocommerce_cart_calculate_fees', , 10, 2 );
+	
+
   // public function get_regular_price( $price, $product ){
   //   write_log( 'GET REGULAR PRICE');
     

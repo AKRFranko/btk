@@ -22,8 +22,14 @@
 <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#ffffff">
 <meta name="msapplication-TileColor" content="#ffffff">
+<!--<meta http-equiv="cache-control" content="max-age=0" />-->
+<!--<meta http-equiv="cache-control" content="no-cache" />-->
+<!--<meta http-equiv="expires" content="0" />-->
+<!--<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />-->
+<!--<meta http-equiv="pragma" content="no-cache" />-->
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+
 
 <?php wp_head(); ?>
 <script type="text/javascript" src="//cdn.callrail.com/companies/288406270/215e63ac1c14dcead16d/12/swap.js"></script>
@@ -50,7 +56,7 @@
         <?php $current_user = wp_get_current_user(); ?>
         <?php _e('welcome', 'edb'); ?><a class="my-account" href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>"><b><?php echo $current_user->user_nicename; ?></b></a><a class="logout" href="<?php echo wp_logout_url( home_url('/') ); ?>"><?php _e('sign out', 'edb'); ?></a>
         <?php else: ?>
-        <a class="login" href="<?php echo esc_url(home_url('/')); ?>sign-in"><?php _e('sign in', 'edb'); ?></a>
+        <a class="login" href="<?php echo esc_url(home_url('/')); ?>login"><?php _e('sign in', 'edb'); ?></a>
         <?php endif; ?>
         <a class="cart" href="<?php echo esc_url(home_url('/')); ?>cart">
           <?php _e('cart', 'edb'); ?>

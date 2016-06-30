@@ -31,16 +31,28 @@ $paged = (get_query_var('page')) ? get_query_var('page') : 1;
 $my_query = new WP_Query(array(
   "paged" => $paged,
   "category_name" => "news",
-  "posts_per_page" => 8,
+  "posts_per_page" => 12,
 ));
-$alts = array('tall','small','small','tall','tall','small','small','tall','small','tall','small','small','tall','tall','small','small','tall','tall');
+
+// $alts = array('tall','small','small','tall','tall','small','small','tall','small','tall','small','small','tall','tall','small','small','tall','tall');
 
 ?>
     <?php if ($my_query->have_posts()): ?>
     <?php /* Start the Loop */?>
   
       <?php while ($my_query->have_posts()): $my_query->the_post();?>
-      <article class="article <?php echo array_shift($alts); ?>">    
+      <?php $posttags = get_the_tags();
+            $altClass=' ';
+            if ($posttags) {
+              foreach($posttags as $tag) {
+                if($tag->name =='tall'){
+                    $altClass .= 'tall';
+                }
+              }
+            };
+            //https://badb0x.akr.club/wp-content/uploads/2015/12/image-2.jpg
+      ?>
+      <article class="article <?php echo $altClass; ?>">    
       
           <a class="article-link" href="<?php echo get_permalink();?>">
             <?php if (has_post_thumbnail()): ?>

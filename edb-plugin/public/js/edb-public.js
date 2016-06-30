@@ -145,6 +145,38 @@ window.requestAnimFrame = (function(){
       }); 
   }
   
+  var applyCredits = function(){
+      var wc_checkout_params = window.wc_checkout_params;
+      if(!wc_checkout_params || (wc_checkout_params && !wc_checkout_params.apply_coupon_nonce)){
+        return false;
+      }
+      var security = wc_checkout_params.apply_coupon_nonce;
+      var url = wc_checkout_params.wc_ajax_url.replace('%%endpoint%%','apply_credits');
+      var creds = parseFloat($('#checkout-personal-credit .amount').text().replace('$','').trim());
+      var amount = parseFloat($('#use_credits').val());
+      var data = { use_credits: amount, security: security }  
+      var $form = $('#use_credits').parents('form');
+      if(!amount || $form.is('.processing') ){
+        return false;
+      }
+      $form.addClass('processing').block({
+        message: null,
+        overlayCSS: {
+          background: '#fff',
+          opacity: 0.6
+        }
+      });
+      $.post( url, data, function( html ){
+        $form.removeClass( 'processing' ).unblock();
+        var $html = $( html );
+        $('#use_credits').val('');
+        $('#checkout-personal-credit .amount').text('$'+(creds - amount).toFixed(2));
+        $( '.woocommerce-error, .woocommerce-message' ).remove();
+        $form.before( $html );
+        $( document.body ).trigger( 'update_checkout', { update_shipping_method: false } );
+      }); 
+  }
+  
   // show variation image in slideshow
   var showVariationImage = function( material ){
     var $slideshow = $('.edb-slideshow');
@@ -472,7 +504,9 @@ window.requestAnimFrame = (function(){
     applyCoupon()
     
   });
-  
+  $(document).on('click','#apply_credits', function(e){
+    applyCredits();
+  })
   // $(document).on('keyup focusout', '#coupon_code', function( e ){
   //   debounce( applyCoupon, 2000 );
   // });

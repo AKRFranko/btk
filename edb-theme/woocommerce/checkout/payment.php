@@ -52,14 +52,29 @@ global $WC_Edb;
        ?>
      </div>
      <?php endif; ?>
+     <?php 
+       $personal_coupon = edb_current_user_personal_coupon_info();
+       
+       if(false && !empty($personal_coupon)){
+     ?>
+       <div id="checkout-personal-credit">
+         <h2><?php _e('Coupon Credits'); ?></h2>
+         <p><?php printf( __('You have a credit balance of %s', 'edb'), wc_price( $personal_coupon['credits_available'] ) ); ?></p>
+         <input type="number" name="use_credits" placeholder="<?php esc_attr_e( 'credits to use', 'edb' ); ?>" id="use_credits" />
+         <!--<button type="button" class="button" id="apply_credits"><?php esc_attr_e( 'apply credits', 'edb' ); ?></button>-->
+       </div>
+     <?php };?>
      <?php if (WC()->cart->coupons_enabled() ) { ?>
        <div class="checkout-coupon">
          
-         <h1><?php _e('do you have a promo code?', 'edb'); ?></h1>
+         <h2><?php _e('do you have a promo code?', 'edb'); ?></h2>
          <input type="text" name="coupon_code" placeholder="<?php esc_attr_e( 'promo code', 'edb' ); ?>" id="coupon_code" value="" />
          <button type="button" class="button" id="apply_coupon"><?php esc_attr_e( 'apply coupon', 'edb' ); ?></button>
        </div>
      <?php }; ?>
+     
+     
+     
      </div>
      <div class="box half">
 

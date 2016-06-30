@@ -34,7 +34,8 @@
 
   $('.pdf-dowload-item-button a').each(function(i) {
     $(this).on('click', function() {
-      ga('send', 'event', 'Poster', 'Download', 'Item', i + 1);
+      
+      ga('send', 'event', 'Poster', 'Download', $(this).attr('download'),1);
       return true;
     })
   });
@@ -230,6 +231,14 @@
       originLeft: true,
       originTop: true
     });
+    
+    // $(window).bind("pageshow", function(event) {
+    //     if (event.originalEvent.persisted) {
+    //         document.querySelector('body').style.backgroundColor='red';
+    //     }
+    
+    // });
+    
 
     $("#overlay").on('click', function(e) {
       //console.log(e.target)

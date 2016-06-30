@@ -329,7 +329,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     $order = wc_get_order( $order_id );
     write_log("woocommerce_checkout_update_order_meta");  
     write_log( "BEFORE ORDER HAD: " . count( $order->get_items() ) . " line items.");
-
+    
     $original_items = $order->get_items();
     foreach($original_items as $item_id => $item ){
       
@@ -579,10 +579,24 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     return $cart;
   }
 
+
+  // public function calculate_personal_credit_discount_fees( $cart ){
+  //   write_log('OI calculate_personal_credit_discount_fees');
+  //   write_log($cart);
+  // }
   public function calculate_fees( $cart ){
     // if($this->shipping_debug) write_log('**********************CALC FEES**********');
     $this->calculate_user_level_discount_fees( $cart );
     $this->calculate_self_pickup_discount_fees( $cart );
+    // if( $_SESSION['use_credits'] && !empty($_SESSION['use_credits'])){
+    //   $credits = absint($_SESSION['use_credits']);
+    //   $_SESSION['use_credits'] = null;
+    //   WC()->cart->add_fee('credit discount', -1 * $credits, true, ''  );
+    // }
+    return $cart;
+    // write_log("FEES:\n\n");
+    // write_log($_POST);
+    // $this->calculate_personal_credit_discount_fees( $cart );
     
    
   }
@@ -672,6 +686,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   
   public function review_order_before_shipping(  ){
       write_log( 'review before shipping');
+      
       // write_log();
       // write_log(WC()->shipping);
       WC()->shipping->reset_shipping();
@@ -806,8 +821,17 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   
   function checkout_update_order_review( $postdata ){
     write_log('checkout_update_order_review');
+    
     $data = array();
     parse_str( $postdata, $data );
+    
+    
+    // if(!empty($data['use_credits'])){
+    //   $use_credits = absint($data['use_credits']);
+    //   WC()->cart->add_fee( 'credit discount', -1 * $use_credits, false);
+    //   // write_log( WC()->cart->get_fees() );
+    //   // die();
+    // }
     $current_user = wp_get_current_user();
     $customer_id = $current_user->ID;
     // $customer = WC()->session->get('customer');
@@ -920,6 +944,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   //Get it from the session and add it to the cart variable
   function get_cart_items_from_session( $item, $values, $key ) {
       if($this->shipping_debug) write_log('get_cart_items_from_session');
+      
       // write_log( $values );
       if ( array_key_exists( 'edb_shipping', $values ) ){
         // if($this->shipping_debug) write_log('get_cart_items_from_session ('.$key.') :  '.json_encode( $values ));
@@ -929,7 +954,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
         // if($this->shipping_debug) write_log('get_cart_items_from_session ('.$key.') :  '.json_encode( $values ));
         $item[ 'edb_leg' ] = $values['edb_leg'];
       }
-      
+      // write_log($item);
       
       return $item;
   }

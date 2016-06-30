@@ -21,6 +21,8 @@ if ( ! function_exists( '_s_setup' ) ) :
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
+ 
+
 function _s_setup() {
 	/*
 	 * Make theme available for translation.
@@ -31,7 +33,8 @@ function _s_setup() {
 	load_theme_textdomain( 'edb', get_template_directory() . '/languages' );
 
 	// Add default posts and comments RSS feed links to head.
-	add_theme_support( 'automatic-feed-links' );
+// 	add_theme_support( 'automatic-feed-links' );
+
 
 	/*
 	 * Let WordPress manage the document title.
@@ -144,7 +147,7 @@ function _s_scripts() {
 // 	wp_enqueue_script( '_s-bugyfill', get_template_directory_uri() . '/js/viewport-units-buggyfill.js', array() , '20120206', true );
 	wp_enqueue_script( '_s_hammer', get_template_directory_uri() . '/js/hammer.min.js', array(), '20160404', true );
   wp_enqueue_script('masonry', "https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js", array('jquery'), '4.0', true );
-  wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array('jquery','_s_hammer','masonry'), '20160404', true );
+  wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array('jquery','_s_hammer','masonry'), '20160405', true );
   wp_enqueue_script( '_s-splash', get_template_directory_uri() . '/js/splash.js', array('jquery','_s_hammer'), '20160404', true );
   wp_enqueue_script( '_s-toast', get_template_directory_uri() . '/js/toast.js', array('jquery','_s_hammer'), '20160404', true );
   // wp_enqueue_script( '_s-tubes', get_template_directory_uri() . '/js/tubes.js', array('jquery','wpglobus'), '20160404', true );
@@ -183,6 +186,7 @@ function edb_theme_remove_wc_breadcrumbs() {
     remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
 }
 
+// add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 24;' ), 20 );
 add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 24;' ), 20 );
 
 
@@ -257,12 +261,23 @@ function btk_edb_slider($query, $attach = null, $blankTargets = false) {
   $i=0;
   while ($slider_query->have_posts()) {
     $slider_query->the_post();
+    $posttags = get_the_tags();
+          $altClass=' ';
+          if ($posttags) {
+            foreach($posttags as $tag) {
+              if($tag->name =='dark'){
+                  $altClass .= 'dark';
+              }
+            }
+          };
+          //https://badb0x.akr.club/wp-content/uploads/2015/12/image-2.jpg
+    
     if (has_post_thumbnail()) {
       $src = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full')[0];
-      ?><div class="edb-slide<?php echo $active; ?> <?php echo get_post_format($slider_query->post->ID); ?>">
+      ?><div class="edb-slide<?php echo $active; ?> <?php echo $altClass; ?> <?php echo get_post_format($slider_query->post->ID); ?>">
         
-          <div class="backdrop" style="background-image:url('<?php echo esc_attr($src); ?>')">
-            <img alt="slide <?php echo $i; ?>" src="<?php echo esc_attr($src); ?>">
+          <div class="backdrop" style="background-image:url('<?php echo esc_attr($src); ?>?noc=<?php echo time(); ?>')">
+            <img alt="slide <?php echo $i; ?>" src="<?php echo esc_attr($src); ?>?noc=<?php echo time(); ?>">
           </div>
           
           <div class="titles">
@@ -434,6 +449,33 @@ function set_php_auth_header(){
   // write_log($_SERVER['REDIRECT_HTTP_AUTHORIZATION']);
 }
 
+function edb_add_seo_paging(){
+  if(is_shop()){
+  global $wp_query;
+  $lang =WPGlobus::Config()->language;
+  $base = 'https://elementdebase.com/';
+  if($lang == 'fr'){
+    $base .= $lang . "/";
+  }
+  $page = $wp_query->query_vars['paged'];
+  if($page == 0 ) $page = 1;
+  $previous = $page > 1 ? $page - 1 : 0;
+  $next = $page + 1;
+  $last = $wp_query->max_num_pages;
+  
+  if($previous > 0){
+    echo '<link rel="prev" href="'.$base.'shop/page/'.$previous.'" />';
+  }
+  if( $next <= $last){
+    echo '<link rel="next" href="'.$base.'shop/page/'.$next.'" />';  
+  }  
+  }
+  
+  
+  
+  
+}
+add_action('wp_head','edb_add_seo_paging');
 remove_action( 'wp_head', 'feed_links_extra', 3 ); // Display the links to the extra feeds such as category feeds
 remove_action( 'wp_head', 'feed_links', 2 ); // Display the links to the general feeds: Post and Comment Feed
 remove_action( 'wp_head', 'rsd_link' ); // Display the link to the Really Simple Discovery service endpoint, EditURI link
@@ -443,6 +485,20 @@ remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 ); // prev link
 remove_action( 'wp_head', 'start_post_rel_link', 10, 0 ); // start link
 remove_action( 'wp_head', 'adjacent_posts_rel_link', 10, 0 ); // Display relational links for the posts adjacent to the current post.
 remove_action( 'wp_head', 'wp_generator' ); // Display the XHTML generator that is generated on the wp_head hook, WP version
+remove_action( 'wp_head', 'wc_products_rss_feed' );
+
+
+// function fb_disable_feed() {
+// wp_die( __('No feed available,please visit our <a href="'. get_bloginfo('url') .'">homepage</a>!') );
+// }
+
+// add_action('do_feed', 'fb_disable_feed', 1);
+// add_action('do_feed_rdf', 'fb_disable_feed', 1);
+// add_action('do_feed_rss', 'fb_disable_feed', 1);
+// add_action('do_feed_rss2', 'fb_disable_feed', 1);
+// add_action('do_feed_atom', 'fb_disable_feed', 1);
+// add_action('do_feed_rss2_comments', 'fb_disable_feed', 1);
+// add_action('do_feed_atom_comments', 'fb_disable_feed', 1);
 
 function fix_language_page_links( $url, $post, $leavename ) {
   if ( $post->post_type == 'post' || $post->post_type == 'page' ) {
@@ -590,6 +646,74 @@ function edb_override_checkout_fields( $fields ) {
      return $fields;
 }
 
+
+function edb_get_coupon_overall_discount_total( $coupon ){
+  global $wpdb;
+  $wc_coupon = new WC_Coupon($coupon);
+  if(!empty($wc_coupon)){
+    $coupon = $wc_coupon->code;
+  }
+  $coupon_total_query = "SELECT SUM(pm.meta_value) FROM wp_woocommerce_order_items as p,wp_woocommerce_order_itemmeta as pm WHERE  p.order_item_type='coupon' and p.order_item_name='$coupon' AND pm.order_item_id AND pm.order_item_id=p.order_item_id AND pm.meta_key='discount_amount';";
+  
+  $results = $wpdb->get_var($coupon_total_query);
+  return absint($results);
+}
+function edb_get_customer_personal_coupon( ){
+  global $wpdb;
+  $current_user = wp_get_current_user();
+  if(!empty($current_user)){
+    $email = $current_user->user_email;  
+    if(!empty($email)){
+      $coupon_name_query = "SELECT post_title FROM wp_posts WHERE post_type='shop_coupon' AND post_excerpt='$email';";
+      $results = $wpdb->get_var($coupon_name_query);
+      return $results;
+    }
+  }
+  return null;  
+}
+
+// function edb_current_user_has_personal_coupon(){
+//   $personal_coupon = edb_get_customer_personal_coupon();
+//   return !empty( $personal_coupon );
+// }
+
+function edb_current_user_personal_coupon_info(){
+  $current_user = wp_get_current_user();
+  $code = edb_get_customer_personal_coupon();
+  if(empty($code)) return null;
+  $discounted_total=0;
+  if($code){
+    $discounted_total = edb_get_coupon_overall_discount_total( $code );
+  }
+  $credits_total = 0.1 * ( ($discounted_total * 100) / 15);
+  $credits_used = get_user_meta( $current_user->ID, 'edb_total_credits_used', true );
+  if(empty($credits_used)){
+    $credits_used = 0;
+  }
+  $credits_available = $credits_total - $credits_used;
+  return array(
+    'user_id'=> $current_user->ID,
+    'code'=>    $code,
+    // total sum of all discounts given for this coupon
+    'coupon_discount_total' => $discounted_total,
+    // total sum of all orders using this coupon
+    'coupon_order_total' => ( ($discounted_total * 100) / 15) + $discounted_total,
+    // total sum of all orders using this coupon, minus sum of all discounts
+    'coupon_order_creditable_total'=>( ($discounted_total * 100) / 15),
+    // 10% of creditable sum
+    'credits_total'=> $credits_total,
+    // credits used so far
+    'credits_used'=> $credits_used,
+    // credits total minus credits used
+    'credits_available'=> $credits_available
+  );
+}
+
+write_log('CURRENT USER COUPON: '  );
+write_log(edb_current_user_personal_coupon_info());
+
+
+
 // function test_edb_json(){
 //   edb_to_essential_json(36110);  
 // }
@@ -616,6 +740,8 @@ function edb_override_checkout_fields( $fields ) {
 // }
 
 add_action( 'init', 'set_php_auth_header'  );
+
+// add_action('init', 'nocache_headers');
 
 /**
  * */
@@ -644,3 +770,8 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
+
+//SELECT SQL_CALC_FOUND_ROWS `order_item_id`, `order_item_name`, `order_item_type`, `order_id` FROM wp_woocommerce_order_items WHERE order_item_type='coupon' AND order_item_name='franko15';
+//2200  37045
+//SELECT SQL_CALC_FOUND_ROWS `meta_id`, `order_item_id`, `meta_key`, `meta_value` FROM wp_woocommerce_order_itemmeta WHERE order_item_id="2200";

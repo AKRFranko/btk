@@ -13,6 +13,31 @@
 .edb-slider .controls.ios-offset{
   margin-top:60px;
 }
+.home-slider .edb-slider .titles a h2{
+  color:#fff;
+}
+.home-slider .edb-slider .titles a h3{
+  background:rgba(0,0,0,0.33);
+  border:1px solid #fff;
+  white-space:nowrap;
+  padding:.5em 1em;
+  width:auto;
+  right:0;
+  left:auto;
+}
+.home-slider .edb-slider .edb-slide.dark .titles a h2{
+  color:#000;
+  text-shadow:0 0 2px rgba(255,255,255,0.03);
+}
+.home-slider .edb-slider .edb-slide.dark .titles a h3{
+  color:#000;
+  border-color:#000;
+  background-color:rgba(255,255,255,0.33);
+}
+
+.home-slider .edb-slider .titles a h3:after{
+  display:none;
+}
 
 .edb-slide.video{
   .titles{
@@ -92,9 +117,13 @@
   .home-slider .edb-slider .titles a h2{
     line-height:1;
     // font-size:1.5em;
-    top:auto;
-    bottom:auto;
-    position:relative;
+    // top:auto;
+    // bottom:auto;
+    // position:relative;
+  }
+  .home-slider .edb-slider .titles a h3{
+    width:auto;
+    display:inline-block;
   }
   .home-slider .edb-slider .titles a h2{
     // font-size:2em;
