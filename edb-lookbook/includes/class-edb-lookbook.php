@@ -171,7 +171,19 @@ class Edb_Lookbook {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-
+    $this->loader->add_filter('script_loader_tag', $plugin_public, 'script_tag_defer');
+    
+	}
+	public function script_tag_defer($tag, $handle){
+	  
+    
+       if(!is_admin()){
+        return str_replace( ' src', ' defer="defer" src', $tag ); 
+       }else{
+         return $tag;
+       }
+        
+    
 	}
 	
 	// Register Custom Post Type

@@ -418,8 +418,19 @@ class Edb {
     $this->loader->add_action('woocommerce_registration_redirect', $plugin_public, 'check_redirect_state'  );
     // $this->loader->add_action('user_register', $plugin_public, 'user_register'  );
     $this->loader->add_action('woocommerce_api_product_response', $plugin_public, 'edb_api_get_products', 10, 2 );
+    $this->loader->add_filter('script_loader_tag', $plugin_public, 'script_tag_defer');
 	}
-  
+  public function script_tag_defer($tag, $handle){
+    
+    
+       if(!is_admin()){
+        return str_replace( ' src', ' defer="defer" src', $tag ); 
+       }else{
+         return $tag;
+       }
+        
+    
+  }
 	/**
 	 * Run the loader to execute all of the hooks with WordPress.
 	 *
