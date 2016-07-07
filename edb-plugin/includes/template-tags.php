@@ -129,7 +129,7 @@ function edb_package_item_image( $package_item_key, $package_item ){
     $image_id = get_post_thumbnail_id( $decorated->product_id );
   }
   // $this->materials[$variation_material]['image'] = wp_get_attachment_image_src($image_id, 'thumb')[0];
-  echo '<img src="'. wp_get_attachment_image_src($image_id, 'thumbnail')[0]. '" alt="item image">';
+  echo '<img src="'. wp_get_attachment_image_src($image_id, 'thumbnail')[0]. '" alt="'.sprintf(__('%s thumbnail image', 'edb'),esc_attr($decorated->full_name)).'">';
 }
 function edb_package_item_name( $package_item_key, $package_item ){
   $variation_id = $package_item['variation_id'];
@@ -325,9 +325,9 @@ function edb_order_item_availability( $item, $order ){
   $shipping = $item['edb_shipping'];
   
   if(!isset($item['edb_availabilities'][$shipping])){
-    $item['edb_availabilities'][$shipping] = '+2 weeks';
+    $item['edb_availabilities'][$shipping] = '+1 week';
   }
-  $availability = "+" . str_replace( 'semaine', 'week', $item['edb_availabilities'][$shipping]);
+  $availability = "+" . str_replace('semaines', 'weeks', str_replace( 'semaine', 'week', $item['edb_availabilities'][$shipping]));
   
   $order_date = strtotime( $order->order_date );
   
@@ -511,7 +511,7 @@ function edb_product_video_link( $product_id, $type ){
     $link = $data['video_link'];
     $src = $data['image_src'];
     // $src = str_replace('http:','https:');
-    echo "<a class=\"youtube_video_link\" href=\"$link\" target=\"youtube\"><img alt=\"youtube video\" src=\"$src\"></a>";
+    echo "<a class=\"youtube_video_link\" href=\"$link\" target=\"youtube\"><img alt=\"".__('youtube video', 'edb')."\" src=\"$src\"></a>";
   }
 
 }
@@ -523,7 +523,7 @@ function edb_product_slideshow( $product_id ){
   $html = '<div class="edb-slider">';
   $html .= '<div class="edb-slides">';
   foreach($slide_images as $index => $src){
-    $alt = esc_attr($decorated->full_name ." image $index");
+    $alt = sprintf( __("%s image #%d",'edb'), esc_attr($decorated->full_name), $index);
     $active = $index == 0 ? ' active' : '';
     $style = "background-image:url('".esc_attr($src)."');";
     $img = "<img src='$src' alt='$alt'>";
@@ -586,7 +586,7 @@ function edb_material_toasts(){
       
         <div id="material-<?php echo $material; ?>" class="material-description boxes">
           <div class="material-image box half" style="background-image:url('<?php echo $large; ?>')">
-            <img src="<?php echo $large; ?>" alt="material <?php echo $material ?>">
+            <img src="<?php echo $large; ?>" alt="<?php printf(__('material #%s','edb'), $material ); ?>">
           </div>
           <div class="material-info box half">
             <h2 class="name"><?php echo "$title" ?></h2>
@@ -695,6 +695,9 @@ function edb_product_material_picker( $product_id ){
     
     echo "<div class=\"edb-material-choice-square $stock_class\" style=\"background-image:url('".$data['image']."');\">";
     echo "<input type='radio' id=\"edb-material-choice-$edb_material\" name=\"_edb_material_choice\" data-shipping-delay=\"$availability_date\" data-variation-id=\"".$data['variation_id']."\" data-name=\"".$name."\" data-preview=\"$preview\" value=\"$edb_material\">";
+    // if($stock_qty > 0 && $stock_qty <= 5){
+    //   echo "<span class=\"stock-left\">".absint($stock_qty)."</span>";
+    // }
     echo "</div>";
     echo "</label>";
   }
@@ -784,7 +787,8 @@ function tmp_has_tech_image( $deco ){
               "polka-purple_accessories-pillows",
               "atrium-split_sofas-3-seater",
               "maritime-natural_sofas-2-seater",
-              "vintage-white_side-tables");
+              "vintage-white_side-tables",
+              "vintage-black_side-tables");
 
 // $name = $deco->title;
  
@@ -924,7 +928,7 @@ function edb_product_tech_image( $product_id ){
   $decorated = edb_decorated_product( $product_id );
   $image = tmp_get_tech_image( $decorated );
   #$image = $decorated->images['technical'];
-  echo '<img src="'.$image.'" alt="technical detail">';
+  echo '<img src="'.$image.'" alt="'.__('technical detail image', 'edb' ).'">';
 }
 
 function edb_checkout_billing_address_summary(){

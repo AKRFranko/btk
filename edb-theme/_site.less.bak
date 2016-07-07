@@ -702,13 +702,6 @@ dl{
       text-transform:lowercase;
     }
   }
-  &.dark{
-    .titles{
-      .entry-title,.entry-subtitle{
-        color:#000;
-      }
-    }
-  }
   
 }
 // footer

@@ -85,31 +85,31 @@ $do_not_ship = WC()->session->get('do_not_ship');
 				
 
 			<?php endforeach; ?>
-
+      
 			<?php do_action( 'woocommerce_after_checkout_shipping_form', $checkout ); ?>
 
 		</div>
 
 	<?php endif; ?>
   <!-- 
-	<?php do_action( 'woocommerce_before_order_notes', $checkout ); ?>
+	<!--<?php do_action( 'woocommerce_before_order_notes', $checkout ); ?>-->
 
-	<?php if ( false && apply_filters( 'woocommerce_enable_order_notes_field', get_option( 'woocommerce_enable_order_comments', 'yes' ) === 'yes' ) ) : ?>
+	<!--<?php if ( false && apply_filters( 'woocommerce_enable_order_notes_field', get_option( 'woocommerce_enable_order_comments', 'yes' ) === 'yes' ) ) : ?>-->
 
-		<?php if ( ! WC()->cart->needs_shipping() || WC()->cart->ship_to_billing_address_only() ) : ?>
+	<!--	<?php if ( ! WC()->cart->needs_shipping() || WC()->cart->ship_to_billing_address_only() ) : ?>-->
 
-			<h3><?php _e( 'additional information', 'edb' ); ?></h3>
+	<!--		<h3><?php _e( 'additional information', 'edb' ); ?></h3>-->
 
-		<?php endif; ?>
+	<!--	<?php endif; ?>-->
 
-		<?php foreach ( $checkout->checkout_fields['order'] as $key => $field ) : ?>
+	<!--	<?php foreach ( $checkout->checkout_fields['order'] as $key => $field ) : ?>-->
 
-			<?php woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); ?>
+	<!--		<?php woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); ?>-->
 
-		<?php endforeach; ?>
+	<!--	<?php endforeach; ?>-->
 
-	<?php endif; ?>
+	<!--<?php endif; ?>-->
 
-	<?php do_action( 'woocommerce_after_order_notes', $checkout ); ?>
-	-->
+	<!--<?php do_action( 'woocommerce_after_order_notes', $checkout ); ?>-->
+	
 </div>

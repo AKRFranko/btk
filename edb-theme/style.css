@@ -1664,6 +1664,10 @@ dl dd {
   font-size: 22.5px;
   text-transform: lowercase;
 }
+.image-header.dark .titles .entry-title,
+.image-header.dark .titles .entry-subtitle {
+  color: #000;
+}
 #content {
   min-height: calc(98vh - 117px);
 }
@@ -1940,6 +1944,18 @@ div#personal-coupon-info {
   height: 1.3em;
   text-align: center;
   padding-top: .25em;
+}
+.edb-material-choice-square .stock-left {
+  display: Block;
+  position: absolute;
+  color: #FFF;
+  font-size: 13px;
+  font-weight: bold;
+  bottom: 2px;
+  left: 0;
+  width: calc(100% - 22px);
+  line-height: 1;
+  text-align: right;
 }
 .restocknote:before,
 .stocknote:before {
@@ -2375,10 +2391,10 @@ a#show-material-toast {
   display: inline-block;
   top: 50%;
   left: 50%;
-  width: 3em;
-  height: 3em;
-  margin-left: -1.5em;
-  margin-top: -1.5em;
+  width: 6em;
+  height: 6em;
+  margin-left: -3em;
+  margin-top: -3em;
   position: absolute;
   opacity: 0.5;
 }
@@ -2728,20 +2744,27 @@ main > .article.tall {
 @media all and (max-width: 760px) {
   .archive main > article,
   .home main > article {
-    height: calc(88vh - 117px);
-    min-height: 720px;
+    height: 425px;
+  }
+  .archive main > article .article-image,
+  .home main > article .article-image {
+    height: 225px;
+  }
+  .archive main > article .article-info,
+  .home main > article .article-info {
+    height: 200px;
   }
   .archive main > article.tall,
   .home main > article.tall {
-    height: calc(176vh - 117px);
+    height: 650px;
   }
   .archive main > article.tall .article-image,
   .home main > article.tall .article-image {
-    height: 75%;
+    height: 450px;
   }
   .archive main > article.tall .article-info,
   .home main > article.tall .article-info {
-    height: 25%;
+    height: 200px;
   }
   .archive .article-info,
   .home .article-info {
@@ -2876,6 +2899,15 @@ form.checkout h3 {
 }
 .cart-collaterals {
   padding-top: 1em;
+}
+p.shipping-note {
+  clear: both;
+  text-transform: italic;
+  padding: .5em;
+  border: 1px dashed #999;
+}
+#shipping_note {
+  height: 4em;
 }
 .cart-collaterals,
 .cart_totals,

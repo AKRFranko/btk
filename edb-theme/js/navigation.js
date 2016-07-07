@@ -122,7 +122,7 @@
     setTimeout(function() {
 
       $('.woocommerce-error, .woocommerce-message').addClass('hide');
-    }, 10000);
+    }, 30000);
   })
 
   $(document).on('click', '.toggle-login-type', function(e) {

@@ -192,12 +192,14 @@ add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 24;' ), 20 )
 
 
 add_filter( 'the_subtitle', 'translate_subtitle' );
+
 function translate_subtitle( $s ) {
   return  WPGlobus_Core::text_filter( $s, WPGlobus::Config()->language );
   
 }
 
 function edb_translate_string( $s ){
+  
   return WPGlobus_Core::text_filter( $s, WPGlobus::Config()->language );
 }
 
@@ -225,6 +227,16 @@ add_filter('excerpt_more', 'edb_excerpt_more');
 add_filter( 'woocommerce_enqueue_styles', '__return_false' );
 
 add_filter('woocommerce_update_order_review_fragments', 'edb_add_checkout_tabs_and_summary_fragments');
+// add_filter('woocommerce_before_order_notes', 'edb_before_order_notes');
+
+// function edb_before_order_notes( $args ){
+//   write_log('edb_before_order_notes');
+//   write_log($args);
+//   write_log($_POST);
+//   return $args;
+// }
+
+
 
 function edb_add_checkout_tabs_and_summary_fragments( $fragments ){
   
@@ -277,7 +289,7 @@ function btk_edb_slider($query, $attach = null, $blankTargets = false) {
       ?><div class="edb-slide<?php echo $active; ?> <?php echo $altClass; ?> <?php echo get_post_format($slider_query->post->ID); ?>">
         
           <div class="backdrop" style="background-image:url('<?php echo esc_attr($src); ?>?noc=<?php echo time(); ?>')">
-            <img alt="slide <?php echo $i; ?>" src="<?php echo esc_attr($src); ?>?noc=<?php echo time(); ?>">
+            <img alt="<?php echo esc_attr(get_the_title()); ?>, slide <?php echo $i; ?>" src="<?php echo esc_attr($src); ?>?noc=<?php echo time(); ?>">
           </div>
           
           <div class="titles">
@@ -449,6 +461,28 @@ function set_php_auth_header(){
   // write_log($_SERVER['REDIRECT_HTTP_AUTHORIZATION']);
 }
 
+
+// // Load our function when hook is set
+// add_action( 'pre_get_posts', 'edb_translate_query' );
+// // Create a function to excplude some categories from the main query
+// function edb_translate_query( $query ) {
+//   // Check if on frontend and main query is modified
+//     if ( ! is_admin() && $query->is_main_query() && $query->query_vars['attachment'] != 'register-site-seal.gif') {
+//         $request_uri = $_SERVER['REQUEST_URI'];
+//         $parsed = explode('/',$request_uri);
+//         if($parsed[1] == 'fr'){
+//           if($parsed[2] == 'categorie-produit'){
+            
+//             $query->set('product_cat',$parsed[count($parsed) - 2]);
+            
+//           }
+//         }
+//         write_log($query);
+        
+//         write_log($parsed);
+//     } // end if
+// }
+
 function edb_add_seo_paging(){
   if(is_shop()){
   global $wp_query;
@@ -471,6 +505,11 @@ function edb_add_seo_paging(){
   }  
   }
   
+  // write_log();
+  // $wprewrite = $GLOBALS['wp_rewrite'];
+  // $wprules = $wprewrite['rules'];
+  // $wprules['product-category/(.+?)/?$'] = 'index.php?product_cat=$matches[1]';
+  // $GLOBALS['wp_rewrite']['rules'] = $wprules;
   
   
   
@@ -488,25 +527,34 @@ remove_action( 'wp_head', 'wp_generator' ); // Display the XHTML generator that 
 remove_action( 'wp_head', 'wc_products_rss_feed' );
 
 
-// function fb_disable_feed() {
-// wp_die( __('No feed available,please visit our <a href="'. get_bloginfo('url') .'">homepage</a>!') );
-// }
+function edb_disabled_feed() {
+  wp_die( __('No feed available,please visit our <a href="'. get_bloginfo('url') .'">homepage</a>!') );
+}
 
-// add_action('do_feed', 'fb_disable_feed', 1);
-// add_action('do_feed_rdf', 'fb_disable_feed', 1);
-// add_action('do_feed_rss', 'fb_disable_feed', 1);
-// add_action('do_feed_rss2', 'fb_disable_feed', 1);
-// add_action('do_feed_atom', 'fb_disable_feed', 1);
-// add_action('do_feed_rss2_comments', 'fb_disable_feed', 1);
-// add_action('do_feed_atom_comments', 'fb_disable_feed', 1);
+add_action('do_feed', 'edb_disabled_feed', 1);
+add_action('do_feed_rdf', 'edb_disabled_feed', 1);
+add_action('do_feed_rss', 'edb_disabled_feed', 1);
+add_action('do_feed_rss2', 'edb_disabled_feed', 1);
+add_action('do_feed_atom', 'edb_disabled_feed', 1);
+add_action('do_feed_rss2_comments', 'edb_disabled_feed', 1);
+add_action('do_feed_atom_comments', 'edb_disabled_feed', 1);
 
 function fix_language_page_links( $url, $post, $leavename ) {
+  // write_log('GABA');
+  // write_log('GABA');
+  // write_log('GABA');
+  
+  $parts = parse_url($url);
+  $not_translated = array('/about-privacy','/about-terms', '/in-the-press');
+  
+  $lang =WPGlobus::Config()->language;
+  if(in_array($parts['path'], $not_translated)){
+    return $url;
+  }
   if ( $post->post_type == 'post' || $post->post_type == 'page' ) {
     // write_log( "got: $url" );
     $links_to = get_post_meta( $post->ID, '_links_to', true );
-    $lang =WPGlobus::Config()->language;
-    $parts = parse_url($url);
-    
+
     if(!empty($parts['host']) && !preg_match('/elementdebase/', $parts['host']) ){
       return $url;
     }
@@ -575,15 +623,43 @@ add_action( 'wp_ajax_send_order_tool_email', 'send_order_tool_email' );
 function subscribe_to_newsletter() {
  
     // The $_REQUEST contains all the data sent via ajax
+    
     if ( isset($_REQUEST) ) {
         $email = $_REQUEST['email'];
-        $mlpost = get_post( 1890 );
-        $list = $mlpost->post_content;
         $lang = WPGlobus::Config()->language;
-        $list .= "\n$email ($lang)";
-        $update = array('ID' => 1890, 'post_title' => $mlpost->post_title, 'post_content'=>$list );
-        wp_update_post( $update );
-        echo json_encode( array('message' => WPGlobus_Core::text_filter( "{:en}Thank you! $email has been subscribed! {:}{:fr}Merci! $email est mainteant abboné{:}", WPGlobus::Config()->language ) ) );
+        if(!empty($email)){
+          $mailchimp_base = "https://us13.api.mailchimp.com/3.0";
+          $newsletter_list_id = '23bc3101c2';
+          $apiKey='95a6322f4c1d11a7c2f455f84f4b7135-us13';
+          $mailchimp_list = "$mailchimp_base/lists/$newsletter_list_id/members/";
+          $data = array( 
+            
+            'email_address' => $email, 'status' => 'subscribed', 'merge_fields' => array('LANGUAGE' => $lang ),
+            'ip_signup' => $_SERVER['REMOTE_ADDR'],
+                'timestamp_signup' => $_SERVER['REQUEST_TIME']
+
+            );
+          
+          
+          $response = wp_remote_post($mailchimp_list,array(
+            'method' => 'POST',
+            'headers' => array(
+                'Content-Type' => 'application/json',
+                'Authorization' => 'apikey ' . $apiKey,
+            ),
+            'body'=>json_encode( $data )
+          ));
+          if($response['code'] == 200){
+            echo json_encode( array('message' => WPGlobus_Core::text_filter( "{:en}Thank you! $email has been subscribed! {:}{:fr}Merci! $email est mainteant abboné{:}", WPGlobus::Config()->language ) ) );  
+          }else{
+            echo json_encode( array('message' => WPGlobus_Core::text_filter( "{:en}Oops! something went wrong, please try again later. {:}{:fr}Oops! Quelquechose n'a pas fonctionné. Réessayez plus tard.{:}", WPGlobus::Config()->language ) ) );
+          }
+          
+          
+        }
+        
+        
+        
     }
     // Always die in functions echoing ajax content
    die();
@@ -709,8 +785,60 @@ function edb_current_user_personal_coupon_info(){
   );
 }
 
-write_log('CURRENT USER COUPON: '  );
-write_log(edb_current_user_personal_coupon_info());
+add_filter('woocommerce_checkout_fields', 'edb_override_checkout_fields_order_notes');
+
+function edb_override_checkout_fields_order_notes( $fields ){
+  $fields['shipping']['shipping_note'] = array(
+    'label'=> __('Shipping Note','edb'),
+    'type'=>'textarea',
+    'placeholder'=> __('Notes about your order.','edb'),
+    'required'=>false,
+    'class'=>array('form-row-wide'),
+    'clear'=>true
+  );
+  return $fields;
+}
+
+
+// add_filter( 'pre_get_posts', 'catalog_filters' );
+// function catalog_filters( $query ) {
+//     if ( $query->is_main_query() && $query->post_type = 'product' ) {
+//         if(isset($_GET['on_sale'])) {
+//             $meta_query = array(
+//                 'relation' => 'OR',
+//                 array( // Simple products type
+//                 'key' => '_sale_price',
+//                 'value' => 0,
+//                 'compare' => '>',
+//                 'type' => 'numeric'
+//                 ),
+//                 array( // Variable products type
+//                 'key' => '_min_variation_sale_price',
+//                 'value' => 0,
+//                 'compare' => '>',
+//                 'type' => 'numeric'
+//                 )
+//             ); 
+//             $query->set('meta_query', $meta_query); 
+//         }
+//         if(isset($_GET['bestsellers'])) {
+//             $meta_query     = array(
+//             array( 
+//                 'key'           => 'total_sales',
+//                 'value'         => 0,
+//                 'compare'       => '>',
+//                 'type'          => 'numeric'
+//                 )
+//             );
+//         }
+//     }
+
+// return $query;
+// }
+
+
+// write_log('CURRENT USER COUPON: '  );
+// write_log(edb_current_user_personal_coupon_info());
 
 
 

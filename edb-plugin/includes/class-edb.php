@@ -252,8 +252,8 @@ class Edb {
     
     add_filter('woocommerce_reduce_order_stock', array($GLOBALS['Edb_Shipping_Method'],'reduce_restock') );
     
-    add_filter('woocommerce_get_regular_price', array( $this, 'get_regular_price'), 10, 2 );
-    add_filter('woocommerce_get_sale_price', array( $this, 'get_sale_price'), 10, 2 );
+    // add_filter('woocommerce_get_regular_price', array( $this, 'get_regular_price'), 10, 2 );
+    // add_filter('woocommerce_get_sale_price', array( $this, 'get_sale_price'), 10, 2 );
     
     // add_action( 'wc_ajax_apply_credits', array( $this,'edb_checkout_apply_credits'), 10, 2 );
     // add_action( 'woocommerce_cart_calculate_fees', array( $this, 'edb_cart_add_credit_discount'), 10, 2 );

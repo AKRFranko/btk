@@ -30,7 +30,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<h3><?php _e( 'shipping address', 'edb' ); ?></h3>
 
 			<p class="text"><?php echo $shipping; ?></p>
-
+<?php 
+  $shipping_note = get_post_meta($order->id, '_shipping_note', true );
+  
+  if(!empty($shipping_note)){
+    ?>
+      <p class="text shipping-note">Note: <?php echo $shipping_note; ?></p>
+    <?php
+  }
+?>
 		</td>
 
 		<?php endif; ?>

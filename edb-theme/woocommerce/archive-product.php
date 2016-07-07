@@ -43,6 +43,7 @@ get_header( 'shop' ); ?>
 			//do_action( 'woocommerce_archive_description' );
 			if($_GET['on_sale'] == 1){
 			  $args = array(
+			      'nopaging'=> true,
             'post_type'      => 'product',
             'meta_query'     => array(
                 'relation' => 'OR',

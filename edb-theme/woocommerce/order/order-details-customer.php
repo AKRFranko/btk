@@ -68,3 +68,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 </div><!-- /.col2-set -->
 
 <?php endif; ?>
+<?php 
+  $shipping_note = get_post_meta($order->id, '_shipping_note', true );
+  
+  if(!empty($shipping_note)){
+    ?>
+      <p class="shipping-note">Note: <?php echo $shipping_note; ?></p>
+    <?php
+  }
+?>

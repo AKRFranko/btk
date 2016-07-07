@@ -17,8 +17,17 @@
     if ( has_post_thumbnail() ) {
       $image_id = get_post_thumbnail_id( get_the_ID() );
       $image_src = wp_get_attachment_image_src( $image_id, 'full')[0];
+      $posttags = get_the_tags();
+      $altClass=' ';
+      if ($posttags) {
+        foreach($posttags as $tag) {
+          if($tag->name =='dark'){
+              $altClass .= 'dark';
+          }
+        }
+      };
       ?>
-      <header class="entry-header image-header">
+      <header class="entry-header image-header <?php echo $altClass; ?>">
         <div class="post-image" style="background-image:url('<?php echo esc_attr($image_src); ?>');">
           <?php the_post_thumbnail(); ?>
         </div>
