@@ -145,15 +145,25 @@ function _s_scripts() {
 // 	wp_enqueue_script( '_s_jquery_event_swipe', get_template_directory_uri() . '/js/jquery.event.swipe.js', array('jquery','_s_jquery_event_move'), '20120208', true );
 	
 // 	wp_enqueue_script( '_s-bugyfill', get_template_directory_uri() . '/js/viewport-units-buggyfill.js', array() , '20120206', true );
-	wp_enqueue_script( '_s_hammer', get_template_directory_uri() . '/js/hammer.min.js', array(), '20160404', true );
+
+
+	
   wp_enqueue_script('masonry', "https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js", array('jquery'), '4.0', true );
+  
+  if($_SERVER['SERVER_ADDR'] == '45.56.104.172'){
+  wp_enqueue_script( '_s_hammer', get_template_directory_uri() . '/js/hammer.min.js', array(), '20160404', true );
   wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array('jquery','_s_hammer','masonry'), '20160405', true );
   wp_enqueue_script( '_s-splash', get_template_directory_uri() . '/js/splash.js', array('jquery','_s_hammer'), '20160404', true );
   wp_enqueue_script( '_s-toast', get_template_directory_uri() . '/js/toast.js', array('jquery','_s_hammer'), '20160404', true );
-  // wp_enqueue_script( '_s-tubes', get_template_directory_uri() . '/js/tubes.js', array('jquery','wpglobus'), '20160404', true );
-  
+  wp_enqueue_script( '_s-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20160404', true );
   wp_localize_script('_s-toast', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
-	wp_enqueue_script( '_s-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20160404', true );
+    
+  }else{
+  wp_enqueue_script('edb_all',get_template_directory_uri() . '/js/all.min.js', array('jquery','masonry'), '20160706', true);
+  wp_localize_script('edb_all', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );  
+  }
+  
+  
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -634,7 +644,7 @@ function subscribe_to_newsletter() {
           $mailchimp_list = "$mailchimp_base/lists/$newsletter_list_id/members/";
           $data = array( 
             
-            'email_address' => $email, 'status' => 'subscribed', 'merge_fields' => array('LANGUAGE' => $lang ),
+            'email_address' => $email, 'status' => 'subscribed', 'merge_fields' => array('MC_LANGUAGE' => $lang ),
             'ip_signup' => $_SERVER['REMOTE_ADDR'],
                 'timestamp_signup' => $_SERVER['REQUEST_TIME']
 
@@ -649,10 +659,15 @@ function subscribe_to_newsletter() {
             ),
             'body'=>json_encode( $data )
           ));
-          if($response['code'] == 200){
+          $responseBody = json_decode($response['body'], true);
+          
+          if(isset($response['response']) && isset($response['response']['code']) && $response['response']['code']  == 200){
             echo json_encode( array('message' => WPGlobus_Core::text_filter( "{:en}Thank you! $email has been subscribed! {:}{:fr}Merci! $email est mainteant abboné{:}", WPGlobus::Config()->language ) ) );  
           }else{
-            echo json_encode( array('message' => WPGlobus_Core::text_filter( "{:en}Oops! something went wrong, please try again later. {:}{:fr}Oops! Quelquechose n'a pas fonctionné. Réessayez plus tard.{:}", WPGlobus::Config()->language ) ) );
+            if(isset($responseBody['title']) && $responseBody['title'] == 'Member Exists'){
+              echo json_encode( array('message' => WPGlobus_Core::text_filter( "{:en}Thank you! But $email was already subscribed! {:}{:fr}Merci! Mais $email étais déja abboné{:}", WPGlobus::Config()->language ) ) );    
+            }
+            echo json_encode( array('error' => true, 'message' => WPGlobus_Core::text_filter( "{:en}Oops! something went wrong, please try again later. {:}{:fr}Oops! Quelquechose n'a pas fonctionné. Réessayez plus tard.{:}", WPGlobus::Config()->language ) ) );
           }
           
           

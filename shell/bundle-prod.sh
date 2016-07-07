@@ -22,6 +22,7 @@ cd /home/franko/Code/edb.com/btk/edb-apps/order-tool/ && /home/franko/Code/edb.c
 
 echo "Bundling themes and plugins"
 cd /home/franko/Code/edb.com/btk &&
+./shell/merge_and_minify.sh &&
 rm ./edb-theme.zip
 rm ./edb-plugin.zip
 rm ./edb-lookbook.zip

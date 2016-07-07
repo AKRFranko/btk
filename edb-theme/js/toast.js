@@ -92,7 +92,9 @@
       },
       success: function( data ){
         var json = JSON.parse(data);
-        localStorage.setItem('has_signed_up_for_newsletter', true );
+        if(!json.error){
+          localStorage.setItem('has_signed_up_for_newsletter', true );  
+        }
         $('#contest .body').html('<p>'+json.message+'</p>');
       },
       error: function( error ){
