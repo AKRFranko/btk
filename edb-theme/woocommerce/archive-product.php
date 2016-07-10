@@ -41,7 +41,7 @@ get_header( 'shop' ); ?>
 			 * @hooked woocommerce_product_archive_description - 10
 			 */
 			//do_action( 'woocommerce_archive_description' );
-			if($_GET['on_sale'] == 1){
+			if(isset($_GET['on_sale']) && $_GET['on_sale'] == 1){
 			  $args = array(
 			      'nopaging'=> true,
             'post_type'      => 'product',
@@ -97,7 +97,7 @@ get_header( 'shop' ); ?>
                     global $product;
                     $hires = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
                     $lores = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
-                    
+                    $deco = edb_decorated_product($product);
                   ?>
                 <?php endif;?>
                 <?php 
@@ -121,6 +121,7 @@ get_header( 'shop' ); ?>
                 </h2>
                   <p class="article-subtitle">
                     <?php 
+                      
                       if(!$product->is_on_sale()){
                         echo wc_price($product->price);  
                       }else{

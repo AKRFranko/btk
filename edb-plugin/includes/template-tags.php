@@ -122,7 +122,7 @@ function edb_decorated_product( $product_id ){
 
 function edb_package_item_image( $package_item_key, $package_item ){
   $variation_id = $package_item['variation_id'];
-  write_log('edb_package_item_image'. $variation_id );
+  // write_log('edb_package_item_image'. $variation_id );
   $decorated = edb_decorated_product( $variation_id );
   $image_id = get_post_thumbnail_id( $variation_id);
   if(!$image_id){
@@ -213,7 +213,7 @@ function edb_cart_item_material( $cart_item_key, $cart_item ){
   $product_id = $cart_item['product_id'];
   $variation_id = $cart_item['variation_id'];
   $decorated = edb_decorated_product( $variation_id );
-  write_log($cart_item);
+  //write_log($cart_item);
   echo edb_get_material_name($decorated->material);
 }
 function edb_cart_item_material_thumb( $cart_item_key, $cart_item ){
@@ -334,21 +334,14 @@ function edb_order_item_availability( $item, $order ){
   
   $display =  strtotime( $availability, $order_date );
   
-  write_log('START');
-  write_log( $item );
-  write_log( $availability );
-  write_log( date_i18n( 'j F Y',$order_date ) );
-  write_log( date_i18n( 'j F Y',$display  ));
-  write_log('END');
+  // write_log('START');
+  // write_log( $item );
+  // write_log( $availability );
+  // write_log( date_i18n( 'j F Y',$order_date ) );
+  // write_log( date_i18n( 'j F Y',$display  ));
+  // write_log('END');
   
   echo time_elapsed($display);//date_i18n('j F Y',$display);
-  // echo floor(($availability - $order_date) / $wk);
-  // echo datediffInWeeks( $availability, $order_date );
-  // if($shipping == 'edb_self_pickup'){
-  //   echo sprintf( __('pickup: %s', 'edb') ,date_i18n('j F Y', $display) );
-  // }else{
-  //   echo sprintf( __('ships: %s', 'edb') ,date_i18n('j F Y', $display) );  
-  // }
   
   
 }
@@ -957,6 +950,7 @@ function edb_checkout_billing_address_summary(){
 }
 function edb_checkout_shipping_address_summary(){
   $customer = WC()->session->customer;
+  
   $first_name = $customer['shipping_first_name'];
   $last_name = $customer['shipping_last_name'];
   

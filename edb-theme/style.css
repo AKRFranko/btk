@@ -3889,7 +3889,8 @@ button#apply_coupon {
   background: rgba(0, 0, 0, 0.33);
   border: 1px solid #fff;
   white-space: nowrap;
-  padding: .5em 1em;
+  padding: .3em .5em .2em .5em;
+  line-height: 1.5;
   width: auto;
   right: 0;
   left: auto;

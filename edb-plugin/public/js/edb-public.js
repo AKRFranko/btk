@@ -670,10 +670,12 @@ window.requestAnimFrame = (function(){
   $(function(){
     
     $('.shipping-calculator-form').submit(function(e){
+      console.log('shipping-calculator-form submit()')
       var inp = $('.shipping-calculator-form .value input');
       var val = inp.val();
       if(!/^([a-zA-Z]\d[a-zA-Z]( )?\d[a-zA-Z]\d)$/.test(val)){
         e.preventDefault();
+        return false;
       }
     });
     

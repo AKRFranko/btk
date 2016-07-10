@@ -30,7 +30,9 @@
 <!--  <h1>INFO TOAST</h1>-->
 <!--</div>-->
 
-<?php if(is_home()){ ?>
+<?php if( false ){ 
+  //is_home()
+?>
 <div id="splash" data-id="welcome" class="toast fullbleed">
   <?php edb_splash_page(); ?>
 </div>

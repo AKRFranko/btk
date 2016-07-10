@@ -91,8 +91,11 @@ class Edb {
 	}
 	public function dequeue_scripts(){
 	 // write_log('DEQ');
-	  wp_deregister_script('wc-cart-new');
-    wp_dequeue_script( 'wc-cart-new', '/srv/http/wordpress/wp-content/plugins/woocommerce-edb/assets/js/cart.js');
+	 // wp_deregister_script('wc-cart-new');
+  //   wp_dequeue_script( 'wc-cart-new', '/srv/http/wordpress/wp-content/plugins/woocommerce-edb/assets/js/cart.js');
+  
+  wp_deregister_script('wc-cart');
+  wp_dequeue_script( 'wc-cart', '/srv/http/wordpress/wp-content/plugins/woocommerce-edb/assets/js/cart.js');
   }
 
 	/**
@@ -418,16 +421,13 @@ class Edb {
     $this->loader->add_action('woocommerce_registration_redirect', $plugin_public, 'check_redirect_state'  );
     // $this->loader->add_action('user_register', $plugin_public, 'user_register'  );
     $this->loader->add_action('woocommerce_api_product_response', $plugin_public, 'edb_api_get_products', 10, 2 );
-    $this->loader->add_filter('script_loader_tag', $plugin_public, 'script_tag_defer');
+    // $this->loader->add_filter('script_loader_tag', $this, 'script_tag_defer');
 	}
+	
   public function script_tag_defer($tag, $handle){
     
-    
-       if(!is_admin()){
-        return str_replace( ' src', ' defer="defer" src', $tag ); 
-       }else{
-         return $tag;
-       }
+    return str_replace( ' src', ' defer="defer" src', $tag ); 
+       
         
     
   }

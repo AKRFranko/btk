@@ -12,7 +12,7 @@
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-  <!--<script src="//cdn.jsdelivr.net/fingerprintjs2/1.1.0/fingerprint2.min.js"></script>-->
+  
   <script src="//use.typekit.net/osv5fru.js"></script>
   <script>try{Typekit.load();}catch(e){}</script>
   
@@ -32,7 +32,7 @@
 
 
 <?php wp_head(); ?>
-<script type="text/javascript" src="//cdn.callrail.com/companies/288406270/215e63ac1c14dcead16d/12/swap.js"></script>
+<script defer type="text/javascript" src="//cdn.callrail.com/companies/288406270/215e63ac1c14dcead16d/12/swap.js"></script>
 
 </head>
 

@@ -121,6 +121,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     $status_options = get_option( 'woocommerce_status_options', array() );
     $status_options['shipping_debug_mode'] = 1;
     update_option('woocommerce_status_options',$status_options);
+    
   }
   
   public function after_checkout_validation( $posted ){
@@ -955,7 +956,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   function get_cart_items_from_session( $item, $values, $key ) {
       if($this->shipping_debug) write_log('get_cart_items_from_session');
       
-      // write_log( $values );
+      write_log( $values );
       if ( array_key_exists( 'edb_shipping', $values ) ){
         // if($this->shipping_debug) write_log('get_cart_items_from_session ('.$key.') :  '.json_encode( $values ));
         $item[ 'edb_shipping' ] = $values['edb_shipping'];
@@ -1141,6 +1142,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     // write_log($_POST);
     if(isset($_POST['calc_shipping_postcode']) && !empty($_POST['calc_shipping_postcode'])){
       $postcode = $_POST['calc_shipping_postcode'];
+      
       // WC()->customer->set_shipping_postcode($postcode);
     }
     if(!empty($postcode)){
@@ -1476,7 +1478,13 @@ class Edb_Shipping_Method_Self_Pickup extends Edb_Shipping_Method{
     $this->method_description = 'a custom shipping module.'; // Description shown in admin
 
     $this->enabled            = "yes"; // This can be added as an setting but for this example its forced enabled
-    $this->title              = "edb ready shipping"; // This can be added as an setting but for this example its forced.
+    $this->title              = "EDB Pickup"; // This can be added as an setting but for this example its forced.
+    // $this->supports              = array(
+    //   'shipping-zones',
+    //   'instance-settings',
+    //   'instance-settings-modal',
+    // );
+    
     $this->init();
   }
   
@@ -1500,6 +1508,11 @@ class Edb_Shipping_Method_Ship_Ready extends Edb_Shipping_Method{
 
     $this->enabled            = "yes"; // This can be added as an setting but for this example its forced enabled
     $this->title              = "EDB Ready Shipping"; // This can be added as an setting but for this example its forced.
+    // $this->supports              = array(
+    //   'shipping-zones',
+    //   'instance-settings',
+    //   'instance-settings-modal',
+    // );
     $this->init();
   }
  
@@ -1540,7 +1553,12 @@ class Edb_Shipping_Method_Ship_Bundle_1 extends Edb_Shipping_Method{
     $this->method_description = 'A custom shipping module.'; // Description shown in admin
 
     $this->enabled            = "yes"; // This can be added as an setting but for this example its forced enabled
-    $this->title              = "EDB Ready Shipping"; // This can be added as an setting but for this example its forced.
+    $this->title              = "EDB Bundle 1 Shipping"; // This can be added as an setting but for this example its forced.
+    // $this->supports              = array(
+    //   'shipping-zones',
+    //   'instance-settings',
+    //   'instance-settings-modal',
+    // );
     $this->init();
   }
   
@@ -1574,7 +1592,12 @@ class Edb_Shipping_Method_Ship_Bundle_2 extends Edb_Shipping_Method_Ship_Bundle_
     $this->method_description = 'A custom shipping module.'; // Description shown in admin
 
     $this->enabled            = "yes"; // This can be added as an setting but for this example its forced enabled
-    $this->title              = "EDB Ready Shipping"; // This can be added as an setting but for this example its forced.
+    $this->title              = "EDB Bundle 2 Shipping"; // This can be added as an setting but for this example its forced.
+    // $this->supports              = array(
+    //   'shipping-zones',
+    //   'instance-settings',
+    //   'instance-settings-modal',
+    // );
     $this->init();
   }
   
@@ -1604,7 +1627,12 @@ class Edb_Shipping_Method_Ship_Bundle_3 extends Edb_Shipping_Method_Ship_Bundle_
     $this->method_description = 'A custom shipping module.'; // Description shown in admin
 
     $this->enabled            = "yes"; // This can be added as an setting but for this example its forced enabled
-    $this->title              = "EDB Ready Shipping"; // This can be added as an setting but for this example its forced.
+    $this->title              = "EDB Bundle 3 Shipping"; // This can be added as an setting but for this example its forced.
+    // $this->supports              = array(
+    //   'shipping-zones',
+    //   'instance-settings',
+    //   'instance-settings-modal',
+    // );
     $this->init();
   }
   

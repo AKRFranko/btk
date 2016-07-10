@@ -410,7 +410,8 @@
     }
   });
 
-  function getShippingZone() {
+  function getShippingZone( e ) {
+    
     var postcode = $('input[name=postal_code]').val();
     if (postcode) {
       jQuery.post("/wp-admin/admin-ajax.php", {
@@ -422,6 +423,7 @@
     }
 
   }
+  // window.getShippingZone = getShippingZone;
   $(function() {
     // preload variation previews.
     $('[data-preview]').each(function() {
