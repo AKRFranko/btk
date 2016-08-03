@@ -80,6 +80,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-edb.php';
  */
 function run_edb() {
 	$plugin = new Edb();
+	
 	$plugin->run();
 	
 }

@@ -177,8 +177,10 @@ class Edb_Admin {
     $edb_instruction_video = get_post_meta( $post->ID, '_edb_instruction_video', true );
     
     $edb_materials_and_dimensions = get_post_meta( $post->ID, '_edb_materials_and_dimensions', true );
+    $edb_size_code = get_post_meta( $post->ID, '_edb_system_size_code', true );
+    $edb_meta_code= get_post_meta( $post->ID, '_edb_system_meta_code', true );
     
-    
+    $deco = edb_decorated_product($post->ID);
     
     
     $attachment_images = get_attached_media( 'image', $post->ID );
@@ -187,6 +189,18 @@ class Edb_Admin {
     foreach( $attachment_images as $image){
       $image_options[$image->ID] = wp_get_attachment_image_src($image->ID, 'thumb');
     }
+    echo "<p><b>System Name</b></p>";
+    echo "<p>".$deco->full_name."</p>";
+    woocommerce_wp_text_input(array(
+       'id' => '_edb_system_size_code' ,
+      'label' => __('Size Code', 'edb'),
+      'value' => $edb_size_code
+    ));
+    woocommerce_wp_text_input(array(
+       'id' => '_edb_system_meta_code' ,
+      'label' => __('Meta Code', 'edb'),
+      'value' => $edb_meta_code
+    ));
     
     echo "<p><b>Materials & Dimensions</b></p>";
     woocommerce_wp_textarea_input(array(
@@ -343,6 +357,8 @@ class Edb_Admin {
     $edb_instruction_video = (isset($_POST['_edb_instruction_video']) && !empty($_POST['_edb_instruction_video'])) ? $_POST['_edb_instruction_video'] : null;
     
     $edb_materials_and_dimensions = (isset($_POST['_edb_materials_and_dimensions']) && !empty($_POST['_edb_materials_and_dimensions'])) ? $_POST['_edb_materials_and_dimensions'] : null;
+    $edb_size_code = (isset($_POST['_edb_system_size_code']) && !empty($_POST['_edb_system_size_code'])) ? $_POST['_edb_system_size_code'] : null;
+    $edb_meta_code = (isset($_POST['_edb_system_meta_code']) && !empty($_POST['_edb_system_meta_code'])) ? $_POST['_edb_system_meta_code'] : null;
 
     
     $technical_image = wp_get_attachment_image_src($edb_technical_image, 'thumb');
@@ -372,6 +388,14 @@ class Edb_Admin {
     
     if(!empty($edb_materials_and_dimensions)){
       update_post_meta( $post_id, '_edb_materials_and_dimensions',  $edb_materials_and_dimensions );
+    }
+    
+    if(!empty($edb_size_code)){
+      update_post_meta( $post_id, '_edb_system_size_code', esc_attr( $edb_size_code ));
+    }
+    
+    if(!empty($edb_meta_code)){
+      update_post_meta( $post_id, '_edb_system_meta_code',  $edb_meta_code );
     }
     
 	}

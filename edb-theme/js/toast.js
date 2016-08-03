@@ -27,9 +27,14 @@
       }else if(!showDismissedContest){
         $('#contest').remove();
       }else{
-        setTimeout( function(){
-          $('#contest').addClass('active');
-        }, 10000)
+        if(!/checkout/.test(window.location.href)){
+          setTimeout( function(){
+            $('#contest').addClass('active');
+          }, 10000)  
+        }else{
+          $('#contest').remove();
+        }
+        
         // $('#contest').addClass('active');
       }  
     }

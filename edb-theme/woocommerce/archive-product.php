@@ -82,22 +82,31 @@ get_header( 'shop' ); ?>
         
 				<?php woocommerce_product_subcategories(); ?>
 
-				<?php while ( have_posts() ) : the_post(); ?>
+				<?php $count =0;while ( have_posts() ) : the_post(); $count++; ?>
 
 					<?php 
 					
 					# wc_get_template_part( 'content', 'product' ); 
 				  ?>
-					<article class="article">
+					<article class="article article-product">
 					  
-              
-              <a class="article-link" href="<?php echo get_permalink();?>">
+              <?php 
+                global $product; 
+                $deco = edb_decorated_product($product);
+                $ga_product = json_encode(array(
+                  'id'=>$product->post->ID,
+                  'name'=>$deco->full_name,
+                  'category'=> $deco->main_category,
+                  'position'=>$count));
+                  
+              ?>
+              <a class="article-link" href="<?php echo get_permalink();?>" data-product="<?php echo esc_attr($ga_product); ?>" onclick="edbStats.recordProductClick(this); return !ga.loaded;">
                 <?php if (has_post_thumbnail()): ?>
                   <?php
-                    global $product;
+                    
                     $hires = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
                     $lores = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
-                    $deco = edb_decorated_product($product);
+                    
                   ?>
                 <?php endif;?>
                 <?php 
@@ -113,11 +122,8 @@ get_header( 'shop' ); ?>
                 
                 <span class="article-info">
                 <h2 class="article-title">
-                    <?php 
-                      echo apply_filters('the_title', $product->post->post_title );
-                    ?>
-                    <?php if(!empty($product->subtitle )){ echo "_"; } ?>
-                    <?php echo apply_filters('the_title', $product->subtitle ); ?>
+                  <?php echo $deco->system_name_html; ?>
+                    
                 </h2>
                   <p class="article-subtitle">
                     <?php 
@@ -137,6 +143,7 @@ get_header( 'shop' ); ?>
                   
                   <?php the_excerpt(); ?>
                 </span>
+                
               </a>
             
           </article>

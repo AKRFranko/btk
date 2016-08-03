@@ -34,7 +34,14 @@ if ( $order ) : ?>
 	<?php else : ?>
 
 		<p><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', __( 'thank you. your order has been received.', 'db' ), $order ); ?></p>
-
+		<?php
+		  $ga_order = array(
+		    'id'=> $order->id,
+		    'revenue' => $order->get_total(),
+		    'tax' => $order->get_total_tax(),
+		    'shipping' => $order->get_total_shipping());
+		?>
+    <div id="ga-order" data-order="<?php echo esc_attr(json_encode($ga_order)); ?>"></div>
 		<ul class="order_details">
 			<li class="order">
 				<?php _e( 'order number', 'edb' ); ?>:

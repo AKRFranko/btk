@@ -45,6 +45,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php foreach ( WC()->cart->get_fees() as $fee ) : ?>
   <?php if( $fee->id == 'self-pickup-discount' ){ ?>
+  
   <div class="fee cart-fee cost-line">
     <span class="label"><?php _e('self pickup discount', 'edb'); ?></span>
     <span class="value"><?php echo wc_price($fee->amount); ?></span>
@@ -52,6 +53,7 @@ if ( ! defined( 'ABSPATH' ) ) {
   
   <?php
   }else{
+  
   ?>
   <div class="fee cart-fee cost-line">
     <span class="label"><?php echo esc_html( $fee->name ); ?></span>

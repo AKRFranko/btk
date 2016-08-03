@@ -68,7 +68,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
   });
-
+  
   // See https://github.com/Polymer/polymer/issues/1381
   window.addEventListener('WebComponentsReady', function() {
     // imports are loaded and elements have been registered
@@ -97,6 +97,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     // app.route = 'home'
     window.location.reload( true );
   }
+  app.toggleCustomFeeTaxable = function(){
+    
+    if(parseFloat(app.customFee.total) < 0){
+      app.set('customFee.taxable', false );
+      document.querySelector('#feeTaxCheckbox').checked=false;
+    }
+  }
   
   var refreshProducts = function(){
     
@@ -121,6 +128,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     eToast.open();
   }
   app.onEDBLoaded = function() {
+    
     // console.log(EDB);
     app.customFee = {
       title: null,
@@ -186,7 +194,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   app.computeTotals = function() {
     // console.log('computeTotals')
-    return EDB.calculateTotals().filter(function(t) {return t.label === 'total' ? true : t.value !== 0;})
+    return EDB.calculateTotals().filter(function(t) {return t.label === 'total' ? true : t.value !== 0 && !isNaN(t.value);})
   };
 
   app.computeZone = function( postcode ){
@@ -331,6 +339,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
    EDB.sendOrderEmail( id, key ).done( function(){
     document.querySelector('.final-message paper-button').disabled = true;
     document.querySelector('.final-message paper-button').label = 'sent!';  
+    document.querySelector('.final-message paper-button').style.backgroundColor='#999';
    }).fail( function(){
      app.displayErrors(['Sending email failed.']);
    });

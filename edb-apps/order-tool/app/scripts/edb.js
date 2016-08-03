@@ -188,6 +188,7 @@
     var categories = data.categories;
     var isOnSale = data.on_sale;
     preloadImage(imageSrc);
+    console.log(data.attributes)
     var shipping = {
       id: data.shipping_class_id,
       class: data.shipping_class

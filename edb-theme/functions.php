@@ -92,6 +92,7 @@ add_action( 'after_setup_theme', '_s_setup' );
 add_action( 'after_setup_theme', 'woocommerce_support' );
 function woocommerce_support() {
     add_theme_support( 'woocommerce' );
+    
 }
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -149,16 +150,17 @@ function _s_scripts() {
 
 
 	
-  wp_enqueue_script('masonry', "https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js", array('jquery'), '4.0', true );
+     wp_enqueue_script('masonry', "https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js", array('jquery'), '4.0', true );
   
   // if($_SERVER['SERVER_ADDR'] == '45.56.104.172'){
+     
      wp_enqueue_script( '_s_hammer', get_template_directory_uri() . '/js/hammer.min.js', array(), '20160706', true );
      wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array('jquery','_s_hammer','masonry'), '20160706', true );
      wp_enqueue_script( '_s-splash', get_template_directory_uri() . '/js/splash.js', array('jquery','_s_hammer'), '20160706', true );
      wp_enqueue_script( '_s-toast', get_template_directory_uri() . '/js/toast.js', array('jquery','_s_hammer'), '20160706', true );
      wp_enqueue_script( '_s-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20160706', true );
      wp_localize_script('_s-toast', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
-    
+     wp_enqueue_script( '_s_ga_ec', get_template_directory_uri() . '/js/ec.js', array(), '20160706', true );
   // }else{
   //   wp_enqueue_script('edb_all',get_template_directory_uri() . '/js/all.min.js', array('jquery','masonry'), '20170706', true);
   //   wp_localize_script('edb_all', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );  
@@ -171,6 +173,7 @@ function _s_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', '_s_scripts' );
+
 
 // add_filter( 'script_loader_tag', function ( $tag, $handle ) {
 //     if(is_admin()){
@@ -717,7 +720,7 @@ function custom_email_confirmation_validation_filter( $result, $tag ) {
             $result->invalidate( $tag, "Are you sure this is the correct address?" );
         }
     }
-    write_log( $result);
+    // write_log( $result);
     return $result;
 }
 
@@ -761,71 +764,143 @@ function edb_override_checkout_fields( $fields ) {
 }
 
 
-function edb_get_coupon_overall_discount_total( $coupon ){
+// function edb_get_coupon_overall_discount_total( $coupon ){
+//   global $wpdb;
+//   $wc_coupon = new WC_Coupon($coupon);
+//   if(!empty($wc_coupon)){
+//     $coupon = $wc_coupon->code;
+//   }
+//   $coupon_total_query = "SELECT SUM(pm.meta_value) FROM wp_woocommerce_order_items as p,wp_woocommerce_order_itemmeta as pm WHERE  p.order_item_type='coupon' and p.order_item_name='$coupon' AND pm.order_item_id AND pm.order_item_id=p.order_item_id AND pm.meta_key='discount_amount';";
+  
+//   $results = $wpdb->get_var($coupon_total_query);
+//   return abs($results);
+// }
+
+function _edb_get_email_credit_coupon_code( $email ){
+  // $user = get_user_by( 'email', $email );
+  if(!empty($email)){
+    $coupon_name_query = sprintf("SELECT post_title FROM wp_posts WHERE post_type='shop_coupon' AND post_excerpt='%s' LIMIT 1;",$email);
+    $results = $wpdb->get_var($coupon_name_query);
+    return $results;
+  }
+  return null;
+}
+
+
+
+function edb_get_coupon_credit_total( $coupon ){
   global $wpdb;
   $wc_coupon = new WC_Coupon($coupon);
   if(!empty($wc_coupon)){
     $coupon = $wc_coupon->code;
   }
-  $coupon_total_query = "SELECT SUM(pm.meta_value) FROM wp_woocommerce_order_items as p,wp_woocommerce_order_itemmeta as pm WHERE  p.order_item_type='coupon' and p.order_item_name='$coupon' AND pm.order_item_id AND pm.order_item_id=p.order_item_id AND pm.meta_key='discount_amount';";
+  #$coupon_order_ids = "SELECT DISTINCT oi.order_id FROM wp_woocommerce_order_items AS oi LEFT  JOIN  wp_posts AS p ON p.ID=oi.order_id LEFT JOIN wp_woocommerce_order_itemmeta AS om ON om.order_item_id=oi.order_item_id WHERE oi.order_item_name='$coupon' and p.post_status IN ('wc-processing','wc-completed')";
+  $results = $wpdb->get_results($coupon_order_ids, ARRAY_A );
+  $orders = array();
+  foreach( $results as $result ){
+    $orders[]=$result['order_id'];
+  }
+  if(empty( $orders )) return 0;
+   #$credit_query = "SELECT SUM(pm.meta_value)*0.1 FROM wp_woocommerce_order_items as p,wp_woocommerce_order_itemmeta as pm WHERE p.order_item_id = pm.order_item_id AND p.order_id IN (".implode(',',$orders).") AND pm.meta_key='_line_total' AND p.order_item_type='line_item'";
   
-  $results = $wpdb->get_var($coupon_total_query);
-  return absint($results);
+  $result = $wpdb->get_var($credit_query);
+  return abs($result);
+  
 }
+
+
 function edb_get_customer_personal_coupon( ){
   global $wpdb;
   $current_user = wp_get_current_user();
   if(!empty($current_user)){
-    $email = $current_user->user_email;  
-    if(!empty($email)){
-      $coupon_name_query = "SELECT post_title FROM wp_posts WHERE post_type='shop_coupon' AND post_excerpt='$email';";
-      $results = $wpdb->get_var($coupon_name_query);
-      return $results;
-    }
+    return edb_get_personal_coupon_by_email($current_user->user_email);
   }
   return null;  
 }
+
+// function test_edb_affiliates(){
+//   write_log('EDB AFFILIATES');
+//   write_log( edb_user_personal_coupon_info_for_email('mtlqrf@gmail.com') );
+// }
+
+// add_action('init','test_edb_affiliates');
+
+function edb_coupon_discount_amount($discount, $discounting_amount, $cart_item, $single, $coupon){
+  $deco = edb_decorated_product($cart_item['variation_id']);
+  $coupon_code = $coupon->code;
+  $coupon_post = get_post( $coupon->id );
+  $email = $coupon_post->post_excerpt;
+  if(empty($email)) return $discount;
+  if(!filter_var($email,FILTER_VALIDATE_EMAIL) ) return $discount;
+  if($deco->is_on_sale){
+    return 0;
+  }
+  return $discount;
+}
+
+add_action( 'manage_product_posts_custom_column', 'edb_product_column_name', 10, 2 );
+
+function edb_product_column_name( $column, $postid ) {
+    $deco = edb_decorated_product( $postid );
+    if ( $column == 'name' ) {
+        echo "(".$deco->system_name.")";
+    }
+}
+
+add_filter('woocommerce_coupon_get_discount_amount', 'edb_coupon_discount_amount',10,5);
 
 // function edb_current_user_has_personal_coupon(){
 //   $personal_coupon = edb_get_customer_personal_coupon();
 //   return !empty( $personal_coupon );
 // }
 
-function edb_current_user_personal_coupon_info(){
-  $current_user = wp_get_current_user();
-  $code = edb_get_customer_personal_coupon();
-  if(empty($code)) return null;
-  $discounted_total=0;
-  if($code){
-    $discounted_total = edb_get_coupon_overall_discount_total( $code );
-  }
-  $credits_total = 0.1 * ( ($discounted_total * 100) / 15);
-  $credits_used = get_user_meta( $current_user->ID, 'edb_total_credits_used', true );
-  if(empty($credits_used)){
-    $credits_used = 0;
-  }
-  $credits_available = $credits_total - $credits_used;
-  return array(
-    'user_id'=> $current_user->ID,
-    'code'=>    $code,
-    // total sum of all discounts given for this coupon
-    'coupon_discount_total' => $discounted_total,
-    // total sum of all orders using this coupon
-    'coupon_order_total' => ( ($discounted_total * 100) / 15) + $discounted_total,
-    // total sum of all orders using this coupon, minus sum of all discounts
-    'coupon_order_creditable_total'=>( ($discounted_total * 100) / 15),
-    // 10% of creditable sum
-    'credits_total'=> $credits_total,
-    // credits used so far
-    'credits_used'=> $credits_used,
-    // credits total minus credits used
-    'credits_available'=> $credits_available
-  );
-}
+// function edb_is_personal_coupon_code( $code ){
+  
+// }
+
+// function edb_get_credits_used_for_email( $email ){
+//   global $wpdb;
+//   $user = get_user_by( 'email', $email );
+//   if(empty($user)) return 0;
+//   $info = edb_user_personal_coupon_info_for_email( $email );
+//   if(empty($info)) return 0;
+//   $code = $info['code'];
+//   // $credits_used = get_user_meta( $user->ID, '_edb_credits_used', true  );
+//   // $credits_used_query = "SELECT sum(om.meta_value) FROM wp_woocommerce_order_items AS oi INNER JOIN wp_posts as p ON p.ID=oi.order_id INNER JOIN wp_woocommerce_order_itemmeta AS om ON oi.order_item_id=om.order_item_id WHERE  oi.order_id=37086 AND oi.order_item_name='$code credit' AND om.meta_key='_line_total' AND p.post_status IN ('wc-processing','wc-completed');";
+//   $credits_used = $wpdb->get_var($credits_used_query);
+//   if(empty($credits_used)) return 0;
+//   return abs($credits_used);
+// }
+
+
+// function edb_user_personal_coupon_info_for_email( $email ){
+//   $code = edb_get_personal_coupon_for_email( $email );
+//   if(empty($code)) return null;
+//   $userId = get_user_by( 'email', $email )->ID;
+//   $credits_total=edb_get_coupon_credit_total( $code );
+//   $credits_used=edb_get_credits_used_for_email( $email );
+//   $credits_available=$credits_total-$credits_used;
+//   return array(
+//   'user_id'=> $userId,
+//   'code'=>    $code,
+//   'credits_total'=> $credits_total,
+//   // credits used so far
+//   'credits_used'=> $credits_used,
+//   // credits total minus credits used
+//   'credits_available'=> $credits_available
+// ); 
+// }
+
+// function edb_current_user_personal_coupon_info(){
+//   $current_user = wp_get_current_user();
+//   if(empty($current_user)) return null;
+//   return edb_user_personal_coupon_info_for_email( $current_user->user_email );
+// }
 
 add_filter('woocommerce_checkout_fields', 'edb_override_checkout_fields_order_notes');
 
 function edb_override_checkout_fields_order_notes( $fields ){
+  
   $fields['shipping']['shipping_note'] = array(
     'label'=> __('Shipping Note','edb'),
     'type'=>'textarea',
@@ -836,6 +911,7 @@ function edb_override_checkout_fields_order_notes( $fields ){
   );
   return $fields;
 }
+
 
 
 // add_filter( 'pre_get_posts', 'catalog_filters' );
@@ -879,6 +955,90 @@ function edb_override_checkout_fields_order_notes( $fields ){
 // write_log(edb_current_user_personal_coupon_info());
 
 
+function get_order_ids_using_coupon_code( $code ){
+  global $wpdb;
+  $ids=array();
+  $query =sprintf("SELECT DISTINCT items.order_id FROM wp_woocommerce_order_itemmeta as meta INNER JOIN wp_woocommerce_order_items AS items  ON meta.order_item_id = items.order_item_id WHERE items.order_item_name='%s'" ,$code);
+  $results = $wpdb->get_results( $query );
+  foreach( $results as $result ){
+    $ids[] = $result->order_id;
+  }
+  return $ids;  
+}
+
+function get_credits_spent_for_coupon_code( $code ){
+  global $wpdb;
+  $total = 0;
+  $query = sprintf( "SELECT meta.meta_value FROM wp_woocommerce_order_itemmeta as meta INNER  JOIN wp_woocommerce_order_items as items  ON meta.order_item_id =items.order_item_id WHERE items.order_item_name='$code credit' AND meta.meta_key='_line_total'",$code);
+  $results = $wpdb->get_results( $query );
+  foreach( $results as $result ){
+    $total += abs( $result->meta_value );
+  }    
+  return $total;
+}
+
+function get_order_creditable_total( $order_id ){
+  global $wpdb;
+  $total=0;
+  if(is_array($order_id)){
+    foreach( $order_id as $id ){
+      $total+=get_order_creditable_total( $id );
+    }
+  }else{
+  
+    $query = sprintf("SELECT meta.meta_value FROM wp_woocommerce_order_itemmeta as meta INNER  JOIN wp_woocommerce_order_items as items  ON meta.order_item_id =items.order_item_id WHERE items.order_id=%d AND meta.meta_key='_line_total'",$order_id);
+    $results = $wpdb->get_results( $query );
+    foreach( $results as $result ){
+      $total += abs( $result->meta_value );
+    }    
+  }
+
+  return $total;  
+}
+
+function get_credit_coupon_for_email( $email ){
+  global $wpdb;
+  if(!empty($email)){
+  $query = sprintf("SELECT post_title FROM wp_posts WHERE post_type='shop_coupon' AND post_excerpt='%s';", $email);
+    $results = $wpdb->get_var($query);
+    return $results;
+  }
+  return null;  
+}
+
+function get_user_for_coupon_code( $code ){
+    global $wpdb;
+    if(!empty($code)){
+    $query = sprintf("SELECT post_excerpt FROM wp_posts WHERE post_type='shop_coupon' AND post_title='%s';", $code);
+      $email = $wpdb->get_var($query);
+      return get_user_by('email', $email );
+    }
+    return null;  
+}
+
+
+
+
+function get_credit_info_for_coupon_code( $code ){
+  $ids = get_order_ids_using_coupon_code( $code );
+  $info = array();
+  $user = get_user_for_coupon_code( $code );
+  $creditable_total = 0;
+  if(count($ids) > 0){
+    $creditable_total = get_order_creditable_total( $ids );
+  }
+  $credits_accumulated = 0.1*$creditable_total;
+  $credits_spent = get_credits_spent_for_coupon_code($code);//get_user_meta( $user->ID, '_edb_credits_spent', true );
+  $info['coupon_code'] = $code;
+  $info['creditable_user_id'] = $user->ID;
+  $info['creditable_user_email'] = $user->user_email;
+  $info['creditable_total'] = $creditable_total;
+  $info['credits_accumulated'] = $credits_accumulated;
+  $info['credits_spent'] = empty($credits_spent) ? 0 : $credits_spent;
+  $info['credits_available'] = $credits_accumulated - $credits_spent;
+  return $info;
+}
+
 
 // function test_edb_json(){
 //   edb_to_essential_json(36110);  
@@ -904,6 +1064,39 @@ function edb_override_checkout_fields_order_notes( $fields ){
   
 //   write_log( $json );
 // }
+
+
+// add_filter( 'manage_users_columns', 'edb_add_user_custom_column' );
+// add_filter( 'manage_users_sortable_columns', 'edb_add_user_custom_column' );
+ 
+// function edb_add_user_custom_column( $columns ) {
+//     $new_columns = $columns + array( 'affiliate_coupon' => 'Credit Coupon' );
+//     return $new_columns;
+// }
+
+// add_action( 'manage_users_custom_column', 'edb_show_user_custom_column_content', 10, 3);
+ 
+// function edb_show_user_custom_column_content( $value, $column_name, $user_id ) {
+//   if ( 'affiliate_coupon' == $column_name ){
+//     $user = get_user_by('id', $user_id );
+//     $info = edb_user_personal_coupon_info_for_email( $user->user_email );
+//     if(empty($info)) return $value;
+//     $code = $info['code'];
+//       $gain = $info['credits_total'];
+//       $used = $info['credits_used'];
+//       $avail = $info['credits_available'];
+//     return "code: <b>$code:</b>\n gain: <b>$$gain</b>\n used: <b>$$used</b>\n left: <b>$$avail</b>";
+    
+     
+//   }
+
+//   return $value;
+// }
+
+function edb_check_cart_updated(){
+  write_log('CART UPDATED');
+}
+add_action('woocommerce_cart_updated', 'edb_check_cart_updated');
 
 add_action( 'init', 'set_php_auth_header'  );
 

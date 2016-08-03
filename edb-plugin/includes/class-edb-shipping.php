@@ -9,6 +9,7 @@ function datediffInWeeks($date1, $date2)
     return sprintf(_n('%s week', '%s weeks', $weeks, 'edb'), $weeks);
 }
 
+
 function time_elapsed($ptime) {
     $etime = $ptime - time();
     // write_log("etime: $etime ptime: $ptime");
@@ -58,7 +59,7 @@ function endsWith($haystack, $needle) {
 
 class Edb_Shipping_Method extends WC_Shipping_Method{
  
-  public $shipping_debug = true;
+  public $shipping_debug = false;
   
   public $cart_item_shipments = array(); 
   
@@ -121,7 +122,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     $status_options = get_option( 'woocommerce_status_options', array() );
     $status_options['shipping_debug_mode'] = 1;
     update_option('woocommerce_status_options',$status_options);
-    
+    // $this->order_status_processing(37089); 
   }
   
   public function after_checkout_validation( $posted ){
@@ -160,14 +161,14 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   }
   
   public function get_checkout_value( $value, $input ){
-    write_log('get_checkout_value: '.$input);
+    // write_log('get_checkout_value: '.$input);
     // write_log('SESSION:');
     // write_log( WC()->session->customer );
     // write_log('CUSTOMER');
     // write_log( WC()->customer );
     // write_log('___');
     $session = WC()->session->customer;
-    write_log('CART NEEDS SHIIPNIG: ' . ( $value == true ? 'true' : 'false') );
+    // write_log('CART NEEDS SHIIPNIG: ' . ( $value == true ? 'true' : 'false') );
     
     if(isset($session[$input])){
       // WC()->customer->{$input} = $session[$input];
@@ -180,7 +181,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   }
   
   public function order_get_items( $items, $order ){
-    write_log('order_get_items');
+    // write_log('order_get_items');
     foreach($items as $key => $item){
       // write_log('CART HAS META?');
       // write_log( $item );
@@ -191,15 +192,15 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
           $items[$key]['edb_shipping'] = array_keys($items[$key]['edb_shipments'])[0];
           
         }else{
-          write_log('SHIPMENTS EMPTY');
+          // write_log('SHIPMENTS EMPTY');
           // write_log( $items[$key] );
         }
         if(!empty($items[$key]['edb_availabilities'])){
           $items[$key]['edb_availabilities'] = unserialize($items[$key]['edb_availabilities']);  
         }else{
-          write_log('AVAILABILITES EMPTY');
+          // write_log('AVAILABILITES EMPTY');
           //$items[$key]['edb_availabilities'];
-          write_log( $items[$key] );
+          // write_log( $items[$key] );
         }
         
       }
@@ -406,10 +407,17 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     $edb_backorder_delay = get_post_meta( $package_product->variation_id, '_edb_variation_backorder_delay', true);
     $edb_available_delay = get_post_meta( $package_product->variation_id, '_edb_variation_available_delay', true);
     $edb_restock_delay = get_post_meta( $package_product->variation_id, '_edb_variation_expected_restock', true);
+    
+    if(empty($edb_backorder_delay)){
+      $edb_backorder_delay = get_post_meta( $package_product->product_id, '_edb_backorder_delay', true);
+    }
+    if(empty($edb_available_delay)){
+      $edb_available_delay = get_post_meta( $package_product->product_id, '_edb_available_delay', true);
+    }
     write_log("VARIATION: ".$package_product->variation_id);
     write_log("edb_backorder_delay:$edb_backorder_delay");
     write_log("edb_available_delay:$edb_available_delay");
-    write_log("edb_restock_delay:$edb_restock_delay");
+    // write_log("edb_restock_delay:$edb_restock_delay");
     // write_log($package_product);
     // write_log("RESTOCK DATE:".$edb_restock_delay);
     // write_log("RESTOCK DIFF:".( $edb_restock_delay - $now ));
@@ -428,13 +436,13 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     
     if( $is_backorder ){
       if(!empty($edb_restock_delay)){
-        write_log('RETURNING EXPECTED RESTOCK DATE');
+        // write_log('RETURNING EXPECTED RESTOCK DATE');
         return trim(time_elapsed(strtotime($edb_restock_delay)));  
       }
-      write_log('RETURNING EDB BACKO '.($is_backorder === true ? 'true' : 'false') );
+      // write_log('RETURNING EDB BACKO '.($is_backorder === true ? 'true' : 'false') );
       return trim(time_elapsed(strtotime( $edb_backorder_delay, $now )));
     }else{
-      write_log('RETURNING EDB AVAIL '.($is_backorder === true ? 'true' : 'false') );
+      // write_log('RETURNING EDB AVAIL '.($is_backorder === true ? 'true' : 'false') );
       return trim(time_elapsed(strtotime( $edb_available_delay, $now )));
     }
   }
@@ -492,7 +500,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   }
   
   public function availability_html( $qty, $delay, $symbol = '@' ){
-    write_log('DELAY:'.$delay);
+    // write_log('DELAY:'.$delay);
     $now = strtotime(date(DATE_RFC2822));
     $delay_in_words = time_elapsed( strtotime( $delay, $now ) );
     if( !is_cart() && !is_checkout()){
@@ -511,10 +519,10 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     $answer = null;
     if(empty($current_level)){
       $answer = null;
-      write_log('USER HAS DESIGNER DISCOUNTS: no');
+      // write_log('USER HAS DESIGNER DISCOUNTS: no');
     }else{
-      $answer = array("$current_level-regular-items","$current_level-sale-items");
-      write_log('USER HAS DESIGNER DISCOUNTS: yes');
+      $answer = array("$current_level-regular-items","$current_level- sale-items");
+      // write_log('USER HAS DESIGNER DISCOUNTS: yes');
     }
     return $answer;
   }
@@ -528,9 +536,9 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     $designerDiscounts = $this->get_user_level_discounts();
     $saleItemsTotal = 0;
     $regularItemsTotal = 0;
-    write_log('DESIGNER DISCOUNTS:');
-    write_log($designerDiscounts);
-    write_log('___');
+    // write_log('DESIGNER DISCOUNTS:');
+    // write_log($designerDiscounts);
+    // write_log('___');
     if(!is_null($designerDiscounts)){
       $user = wp_get_current_user();
       $current_level = get_user_meta($user->ID, '_edb_designer_level', true );
@@ -561,43 +569,99 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   
   public function calculate_self_pickup_discount_fees($cart){
     global $Edb_Shipping_Method;
-    write_log('calculate_self_pickup_discount_fees');
+    // write_log('calculate_self_pickup_discount_fees');
     $packages = $Edb_Shipping_Method->packages;
     $totals = 0;
-    foreach($packages as $package ){
-      if(!empty($package['edb_shipping']) && $package['edb_shipping'] == 'edb_self_pickup'){
-        $line_total = $package['contents'][0]['line_total'];
-        write_log('pickup discount: ' . $package['edb_shipping'] . ' line total: ' . $package['contents'][0]['line_total']);
-        $totals += $line_total;
-      }
+    if(!empty($packages)){
+      foreach($packages as $package ){
+        if(!empty($package['edb_shipping']) && $package['edb_shipping'] == 'edb_self_pickup'){
+          $line_total = $package['contents'][0]['line_total'];
+        // write_log('pickup discount: ' . $package['edb_shipping'] . ' line total: ' . $package['contents'][0]['line_total']);
+          $totals += $line_total;
+        }
+      }  
     }
+    
     if($totals > 0){
       $rebate = (5 * $totals)/100;  
       WC()->cart->add_fee('self pickup discount', -1 * $rebate, true );
+      
     }
     
+    
+    
+    
+    
+    
+    //   if(isset($_SESSION['use_credits']) && !empty($_SESSION['use_credits'])){
+    //     WC()->cart->add_fee('user credit', -1 * abs($_SESSION['use_credits']), true );
+        
+    //     write_log('PROCESSING CREDIT USAGE: '.(-1 * $_SESSION['use_credits']));
+        
+    //     $_SESSION['use_credits'] = 0;
+    //   }
     
     return $cart;
   }
 
 
   // public function calculate_personal_credit_discount_fees( $cart ){
-  //   write_log('OI calculate_personal_credit_discount_fees');
-  //   write_log($cart);
+  //   shout('calculate_personal_credit_discount_fees', $_POST );
+    
   // }
+  public function add_credit_discount(){
+      @session_start();
+      
+      if(isset($_SESSION['use_credits']) && !empty($_SESSION['use_credits'])){
+        $info = get_credit_info_for_coupon_code($_SESSION['use_credits_code']);
+        $credits =  $_SESSION['use_credits'];  
+        $subtotal = WC()->cart->subtotal;
+        if($credits > $info['credits_available']){
+            $credits = $info['credits_available'];
+        }
+        if($credits > $subtotal){
+            $credits = $subtotal;
+        }
+        $_SESSION['use_credits'] = $credits;
+        
+        WC()->cart->add_fee(trim($_SESSION['use_credits_code']) . ' credit',-1 * $credits, false );
+      }
+      
+  }
+  
+  public function remove_credit_discount(){
+      @session_start();
+      if(isset($_SESSION['remove_credits']) &&  $_SESSION['remove_credits'] == true ){
+        $fee_name = trim($_SESSION['use_credits_code']) . ' credit';
+        
+        
+        $fees = WC()->cart->get_fees;
+        $newfees = array();
+        
+        foreach ($fees as $fee) {
+          if ($fee->name != $fee_name) {
+              $newfees[] = $fee;
+          } 
+        }
+        
+        WC()->session->set('fees',$newfees);  
+        $_SESSION['remove_credits']=null;
+        $_SESSION['use_credits'] = null;
+        $_SESSION['use_credits_code'] = null;
+      }
+        
+
+  }
   public function calculate_fees( $cart ){
+    // @session_start();
     // if($this->shipping_debug) write_log('**********************CALC FEES**********');
     $this->calculate_user_level_discount_fees( $cart );
     $this->calculate_self_pickup_discount_fees( $cart );
-    // if( $_SESSION['use_credits'] && !empty($_SESSION['use_credits'])){
-    //   $credits = absint($_SESSION['use_credits']);
-    //   $_SESSION['use_credits'] = null;
-    //   WC()->cart->add_fee('credit discount', -1 * $credits, true, ''  );
-    // }
+    
+    $this->add_credit_discount();
+    $this->remove_credit_discount();
     return $cart;
-    // write_log("FEES:\n\n");
-    // write_log($_POST);
-    // $this->calculate_personal_credit_discount_fees( $cart );
+    
     
    
   }
@@ -663,6 +727,13 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     
     
   }
+  
+  public function order_status_processing( $order_id ){
+    // $order = new WC_Order( $order_id );
+    // write_log( $order->get_order_item_totals() );
+    @session_start();
+    $_SESSION['use_credits']=null;
+  }
   // public function can_coupon_apply_to_product( $valid, $product, $inst, $values){
   //   // write_log( $inst );
   //   return $valid;
@@ -683,13 +754,24 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
 
   }
   
-
+  public function process_credit_usage( $credits, $cart ){
+    $user_credits = edb_current_user_personal_coupon_info();
+    if(!$user_credits) return;
+    $current_user = wp_get_current_user();
+    $credits_used = get_user_meta($current_user->ID, '_edb_credits_used', true );
+    if(empty($credits_used)) $credits_used = 0;
+    $credits_used = $credits_used + $credits;
+    update_user_meta($current_user->ID, '_edb_credits_used', $credits_used );
+    // update_user_meta($current_user->ID, '_edb_credits_used', 0);
+    WC()->cart->add_fee('credit '.$user_credits['code'], -1 * $credits, true);
+    
+    $_SESSION['use_credits']=0;
+  }
   
   public function review_order_before_shipping(  ){
       write_log( 'review before shipping');
       
-      // write_log();
-      // write_log(WC()->shipping);
+      
       WC()->shipping->reset_shipping();
       global $Edb_Shipping_Method;
       if(!empty($_POST)){
@@ -705,14 +787,14 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
               WC()->session->set('edb_active_panel', '#address-info-panel' );
             } 
             
-            if( $data['order_comments'] && is_checkout() ){
-              write_log('ORDER NOTES');
+            if( isset($data['order_comments']) && is_checkout() ){
+              // write_log('ORDER NOTES');
               
               // WC()->checkout->posted['order_comments']= $data['order_comments'];
               global $wp;
               $order_id = $wp->query_vars['order-pay'];
               $order = new WC_Order( $order_id );
-              write_log(WC()->order);
+              // write_log(WC()->order);
             }
             
             if( isset($data['paypal_pro_payflow-card-number'])){
@@ -751,6 +833,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
       $customer['calculated_shipping'] = 0;
       
       WC()->session->set('customer', $customer );
+      
       WC()->cart->calculate_totals();   
       if($this->shipping_debug) write_log('CART TOTAL: '.WC()->cart->shipping_total );
       if($this->shipping_debug) write_log('');
@@ -784,7 +867,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   }
   
   function copy_billing_fields_to_shipping( $data ){
-     write_log('!!!!!!!!!!!!!!!!copy_billing_fields_to_shipping!!!!!!!!!!!!!!!!!!!');
+    // write_log('!!!!!!!!!!!!!!!!copy_billing_fields_to_shipping!!!!!!!!!!!!!!!!!!!');
     
     $current_user = wp_get_current_user();
     $customer_id = $current_user->ID;
@@ -804,7 +887,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     WC()->session->set('customer', $customer );
   }
   function clear_shipping_fields( $data ){
-    write_log('!!!!!!!!!!!!!!!!!clear_shipping_fields!!!!!!!!!!!!!!!!!!!!!');
+    // write_log('!!!!!!!!!!!!!!!!!clear_shipping_fields!!!!!!!!!!!!!!!!!!!!!');
     // write_log(WC()->customer);
     $current_user = wp_get_current_user();
     $customer_id = $current_user->ID;
@@ -819,7 +902,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   }
   
   function before_shipping_form(){
-    write_log('BEFORE_SHIPPING_FORM');
+    // write_log('BEFORE_SHIPPING_FORM');
     
     foreach(WC()->session->customer as $field => $value ){
       WC()->customer->{$field} = $value;
@@ -832,20 +915,17 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   
   function checkout_update_order_review( $postdata ){
     write_log('checkout_update_order_review');
-    
+    // @session_start();
     $data = array();
     parse_str( $postdata, $data );
     
     
-    // if(!empty($data['use_credits'])){
-    //   $use_credits = absint($data['use_credits']);
-    //   WC()->cart->add_fee( 'credit discount', -1 * $use_credits, false);
-    //   // write_log( WC()->cart->get_fees() );
-    //   // die();
-    // }
     $current_user = wp_get_current_user();
     $customer_id = $current_user->ID;
     // $customer = WC()->session->get('customer');
+    // if(isset($_SESSION['use_credits'])){
+    //   $this->process_credit_usage($_SESSION['use_credits']);
+    // }
     $wordpress_fields = array(
       'first_name' => 'billing_first_name',
       'last_name' => 'billing_last_name' 
@@ -926,7 +1006,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     // write_log(WC()->customer);
     // write_log();
     // WC()->session->set('customer', WC()->customer );
-    
+    WC()->cart->calculate_fees();
     WC()->customer->save_data();
     WC()->session->save_data();
     // write_log('CUSTOMER');
@@ -956,7 +1036,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   function get_cart_items_from_session( $item, $values, $key ) {
       if($this->shipping_debug) write_log('get_cart_items_from_session');
       
-      write_log( $values );
+      // write_log( $values );
       if ( array_key_exists( 'edb_shipping', $values ) ){
         // if($this->shipping_debug) write_log('get_cart_items_from_session ('.$key.') :  '.json_encode( $values ));
         $item[ 'edb_shipping' ] = $values['edb_shipping'];
@@ -1110,7 +1190,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
        est dans la zone 3
     */
     $postcode = trim(strtoupper($postcode));
-    write_log("\nGET ZONE FROM: '$postcode'");
+    // write_log("\nGET ZONE FROM: '$postcode'");
     $zones_table = array(
       'zone-1' => '/^(H..|G1.|M..|K1.|T2.|T3.|T5.|T6.|V5.|V6.|C1A|R2.|R3.|E2.|E1.|E3.|B3.|S7.|S4.|A1.|J4.).+$/',
       'zone-3' => '/^(J|G|K|L|N|P|T|V|C|R|E|B|S|A|Y|X)0.+$/',
@@ -1122,18 +1202,18 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     
     $zone = 'zone-2';
     foreach($zones_table as $z => $re){
-      write_log( "MATCH $re with $postcode: ". ( preg_match( $re, $postcode) ? 'true' : 'false' ) );
+      // write_log( "MATCH $re with $postcode: ". ( preg_match( $re, $postcode) ? 'true' : 'false' ) );
       if( preg_match( $re, $postcode) ){
         $zone = $z;
       }
     }
-    write_log( "returns zone: $zone");
+    // write_log( "returns zone: $zone");
     return $zone;
     
   }
   
   public function get_shipping_class_items_cost( $shipping_class, $items ){
-    //if($this->shipping_debug) write_log("get_shipping_class_items_cost: $shipping_class = ".count($items)." items.");
+    // if($this->shipping_debug) write_log("get_shipping_class_items_cost: $shipping_class = ".count($items)." items.");
     // if($this->shipping_debug) write_log( $items );
     if(count($items) == 0){ return 0;} 
     $postcode = WC()->customer->get_shipping_postcode();
@@ -1153,9 +1233,13 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
       
       $zone = 'zone-3';  
     }
-    if($this->shipping_debug) write_log('FOUND ZONE: '.$zone);
-    $items_total_cost = array_sum( wp_list_pluck( $items, 'line_total' ) );
     
+    $items_total_cost = array_sum( wp_list_pluck( $items, 'line_total' ) );
+    if($this->shipping_debug){
+      write_log('FOUND ZONE: '.$zone);
+      write_log('USING: '.$postcode);
+      write_log('CALCULATED FROM: '.$items_total_cost);
+    }
     
     $table = $this->rates_table[$shipping_class];
     $min = $table['min'];
@@ -1167,7 +1251,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   }
   
   public function get_available_items( $item, $wants, $have ){
-    write_log("GET_AVAILABLE_ITEMS: wants: $wants have: $have");
+    // write_log("GET_AVAILABLE_ITEMS: wants: $wants have: $have");
     global $Edb;
     $newitem = $item;
     $newitem['quantity'] = $have;
@@ -1193,7 +1277,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   }
   
   public function get_backorder_items( $item, $wants, $have ){
-    write_log("GET_BACKORDER_ITEMS: wants: $wants have: $have");
+    // write_log("GET_BACKORDER_ITEMS: wants: $wants have: $have");
     global $Edb;
     $newitem = $item;
     $qty = $wants - $have;
@@ -1517,6 +1601,7 @@ class Edb_Shipping_Method_Ship_Ready extends Edb_Shipping_Method{
   }
  
   public function calculate_shipping_for_bundle( $bundle ){
+      write_log( $bundle );
       $split = array();
       foreach( $bundle['contents'] as $item ){
         $pk = $item['package_key'];

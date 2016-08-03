@@ -1,0 +1,513 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node',
+1 verbose cli   '/home/franko/.npm-packages/bin/npm',
+1 verbose cli   'i',
+1 verbose cli   '--save',
+1 verbose cli   'htmltopdf' ]
+2 info using npm@3.3.10
+3 info using node@v5.5.0
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData htmltopdf
+8 silly fetchNamedPackageData htmltopdf
+9 silly mapToRegistry name htmltopdf
+10 silly mapToRegistry using default registry
+11 silly mapToRegistry registry https://registry.npmjs.org/
+12 silly mapToRegistry uri https://registry.npmjs.org/htmltopdf
+13 verbose request uri https://registry.npmjs.org/htmltopdf
+14 verbose request no auth needed
+15 info attempt registry request try #1 at 5:26:34 PM
+16 verbose request id 2f3b594df6224b94
+17 verbose etag "6P3VJGLF3SAPQTCTE4XJ4GPY8"
+18 http request GET https://registry.npmjs.org/htmltopdf
+19 http 304 https://registry.npmjs.org/htmltopdf
+20 verbose headers { date: 'Fri, 29 Jul 2016 21:26:27 GMT',
+20 verbose headers   via: '1.1 varnish',
+20 verbose headers   'cache-control': 'max-age=300',
+20 verbose headers   etag: '"6P3VJGLF3SAPQTCTE4XJ4GPY8"',
+20 verbose headers   age: '13',
+20 verbose headers   connection: 'keep-alive',
+20 verbose headers   'x-served-by': 'cache-jfk1037-JFK',
+20 verbose headers   'x-cache': 'HIT',
+20 verbose headers   'x-cache-hits': '1',
+20 verbose headers   'x-timer': 'S1469827587.986312,VS0,VE0',
+20 verbose headers   vary: 'Accept-Encoding' }
+21 silly get cb [ 304,
+21 silly get   { date: 'Fri, 29 Jul 2016 21:26:27 GMT',
+21 silly get     via: '1.1 varnish',
+21 silly get     'cache-control': 'max-age=300',
+21 silly get     etag: '"6P3VJGLF3SAPQTCTE4XJ4GPY8"',
+21 silly get     age: '13',
+21 silly get     connection: 'keep-alive',
+21 silly get     'x-served-by': 'cache-jfk1037-JFK',
+21 silly get     'x-cache': 'HIT',
+21 silly get     'x-cache-hits': '1',
+21 silly get     'x-timer': 'S1469827587.986312,VS0,VE0',
+21 silly get     vary: 'Accept-Encoding' } ]
+22 verbose etag https://registry.npmjs.org/htmltopdf from cache
+23 verbose get saving htmltopdf to /home/franko/.npm/registry.npmjs.org/htmltopdf/.cache.json
+24 silly install normalizeTree
+25 silly loadCurrentTree Finishing
+26 silly loadIdealTree Starting
+27 silly install loadIdealTree
+28 silly cloneCurrentTree Starting
+29 silly install cloneCurrentTreeToIdealTree
+30 silly cloneCurrentTree Finishing
+31 silly loadShrinkwrap Starting
+32 silly install loadShrinkwrap
+33 silly loadShrinkwrap Finishing
+34 silly loadAllDepsIntoIdealTree Starting
+35 silly install loadAllDepsIntoIdealTree
+36 silly resolveWithNewModule htmltopdf@0.0.6 checking installable status
+37 silly cache add args [ 'htmltopdf', null ]
+38 verbose cache add spec htmltopdf
+39 silly cache add parsed spec Result {
+39 silly cache add   raw: 'htmltopdf',
+39 silly cache add   scope: null,
+39 silly cache add   name: 'htmltopdf',
+39 silly cache add   rawSpec: '',
+39 silly cache add   spec: '*',
+39 silly cache add   type: 'range' }
+40 silly addNamed htmltopdf@*
+41 verbose addNamed "*" is a valid semver range for htmltopdf
+42 silly addNameRange { name: 'htmltopdf', range: '*', hasData: false }
+43 silly mapToRegistry name htmltopdf
+44 silly mapToRegistry using default registry
+45 silly mapToRegistry registry https://registry.npmjs.org/
+46 silly mapToRegistry uri https://registry.npmjs.org/htmltopdf
+47 verbose addNameRange registry:https://registry.npmjs.org/htmltopdf not in flight; fetching
+48 verbose get https://registry.npmjs.org/htmltopdf not expired, no request
+49 silly addNameRange number 2 { name: 'htmltopdf', range: '*', hasData: true }
+50 silly addNameRange versions [ 'htmltopdf', [ '0.0.1', '0.0.4', '0.0.5', '0.0.6' ] ]
+51 silly addNamed htmltopdf@0.0.6
+52 verbose addNamed "0.0.6" is a plain semver version for htmltopdf
+53 silly cache afterAdd htmltopdf@0.0.6
+54 verbose afterAdd /home/franko/.npm/htmltopdf/0.0.6/package/package.json not in flight; writing
+55 verbose afterAdd /home/franko/.npm/htmltopdf/0.0.6/package/package.json written
+56 silly fetchNamedPackageData phantom
+57 silly mapToRegistry name phantom
+58 silly mapToRegistry using default registry
+59 silly mapToRegistry registry https://registry.npmjs.org/
+60 silly mapToRegistry uri https://registry.npmjs.org/phantom
+61 silly fetchNamedPackageData handlebars
+62 silly mapToRegistry name handlebars
+63 silly mapToRegistry using default registry
+64 silly mapToRegistry registry https://registry.npmjs.org/
+65 silly mapToRegistry uri https://registry.npmjs.org/handlebars
+66 verbose request uri https://registry.npmjs.org/phantom
+67 verbose request no auth needed
+68 info attempt registry request try #1 at 5:26:34 PM
+69 verbose etag "9LENLDVYUXZVFJ90PGD5ETU4A"
+70 http request GET https://registry.npmjs.org/phantom
+71 verbose request uri https://registry.npmjs.org/handlebars
+72 verbose request no auth needed
+73 info attempt registry request try #1 at 5:26:34 PM
+74 verbose etag "EJTS5X8N4MEGVX0HV43YLVE3G"
+75 http request GET https://registry.npmjs.org/handlebars
+76 http 304 https://registry.npmjs.org/phantom
+77 verbose headers { date: 'Fri, 29 Jul 2016 21:26:28 GMT',
+77 verbose headers   via: '1.1 varnish',
+77 verbose headers   'cache-control': 'max-age=300',
+77 verbose headers   etag: '"9LENLDVYUXZVFJ90PGD5ETU4A"',
+77 verbose headers   age: '79',
+77 verbose headers   connection: 'keep-alive',
+77 verbose headers   'x-served-by': 'cache-jfk1036-JFK',
+77 verbose headers   'x-cache': 'HIT',
+77 verbose headers   'x-cache-hits': '1',
+77 verbose headers   'x-timer': 'S1469827588.359628,VS0,VE0',
+77 verbose headers   vary: 'Accept-Encoding' }
+78 silly get cb [ 304,
+78 silly get   { date: 'Fri, 29 Jul 2016 21:26:28 GMT',
+78 silly get     via: '1.1 varnish',
+78 silly get     'cache-control': 'max-age=300',
+78 silly get     etag: '"9LENLDVYUXZVFJ90PGD5ETU4A"',
+78 silly get     age: '79',
+78 silly get     connection: 'keep-alive',
+78 silly get     'x-served-by': 'cache-jfk1036-JFK',
+78 silly get     'x-cache': 'HIT',
+78 silly get     'x-cache-hits': '1',
+78 silly get     'x-timer': 'S1469827588.359628,VS0,VE0',
+78 silly get     vary: 'Accept-Encoding' } ]
+79 verbose etag https://registry.npmjs.org/phantom from cache
+80 verbose get saving phantom to /home/franko/.npm/registry.npmjs.org/phantom/.cache.json
+81 http 304 https://registry.npmjs.org/handlebars
+82 verbose headers { date: 'Fri, 29 Jul 2016 21:26:28 GMT',
+82 verbose headers   via: '1.1 varnish',
+82 verbose headers   'cache-control': 'max-age=300',
+82 verbose headers   etag: '"EJTS5X8N4MEGVX0HV43YLVE3G"',
+82 verbose headers   age: '231',
+82 verbose headers   connection: 'keep-alive',
+82 verbose headers   'x-served-by': 'cache-jfk1043-JFK',
+82 verbose headers   'x-cache': 'HIT',
+82 verbose headers   'x-cache-hits': '11',
+82 verbose headers   'x-timer': 'S1469827588.359862,VS0,VE0',
+82 verbose headers   vary: 'Accept-Encoding' }
+83 silly get cb [ 304,
+83 silly get   { date: 'Fri, 29 Jul 2016 21:26:28 GMT',
+83 silly get     via: '1.1 varnish',
+83 silly get     'cache-control': 'max-age=300',
+83 silly get     etag: '"EJTS5X8N4MEGVX0HV43YLVE3G"',
+83 silly get     age: '231',
+83 silly get     connection: 'keep-alive',
+83 silly get     'x-served-by': 'cache-jfk1043-JFK',
+83 silly get     'x-cache': 'HIT',
+83 silly get     'x-cache-hits': '11',
+83 silly get     'x-timer': 'S1469827588.359862,VS0,VE0',
+83 silly get     vary: 'Accept-Encoding' } ]
+84 verbose etag https://registry.npmjs.org/handlebars from cache
+85 verbose get saving handlebars to /home/franko/.npm/registry.npmjs.org/handlebars/.cache.json
+86 silly resolveWithNewModule handlebars@4.0.5 checking installable status
+87 silly cache add args [ 'handlebars@^4.0.5', null ]
+88 verbose cache add spec handlebars@^4.0.5
+89 silly cache add parsed spec Result {
+89 silly cache add   raw: 'handlebars@^4.0.5',
+89 silly cache add   scope: null,
+89 silly cache add   name: 'handlebars',
+89 silly cache add   rawSpec: '^4.0.5',
+89 silly cache add   spec: '>=4.0.5 <5.0.0',
+89 silly cache add   type: 'range' }
+90 silly addNamed handlebars@>=4.0.5 <5.0.0
+91 verbose addNamed ">=4.0.5 <5.0.0" is a valid semver range for handlebars
+92 silly addNameRange { name: 'handlebars', range: '>=4.0.5 <5.0.0', hasData: false }
+93 silly mapToRegistry name handlebars
+94 silly mapToRegistry using default registry
+95 silly mapToRegistry registry https://registry.npmjs.org/
+96 silly mapToRegistry uri https://registry.npmjs.org/handlebars
+97 verbose addNameRange registry:https://registry.npmjs.org/handlebars not in flight; fetching
+98 silly resolveWithNewModule phantom@0.8.4 checking installable status
+99 silly cache add args [ 'phantom@^0.8.3', null ]
+100 verbose cache add spec phantom@^0.8.3
+101 silly cache add parsed spec Result {
+101 silly cache add   raw: 'phantom@^0.8.3',
+101 silly cache add   scope: null,
+101 silly cache add   name: 'phantom',
+101 silly cache add   rawSpec: '^0.8.3',
+101 silly cache add   spec: '>=0.8.3 <0.9.0',
+101 silly cache add   type: 'range' }
+102 silly addNamed phantom@>=0.8.3 <0.9.0
+103 verbose addNamed ">=0.8.3 <0.9.0" is a valid semver range for phantom
+104 silly addNameRange { name: 'phantom', range: '>=0.8.3 <0.9.0', hasData: false }
+105 silly mapToRegistry name phantom
+106 silly mapToRegistry using default registry
+107 silly mapToRegistry registry https://registry.npmjs.org/
+108 silly mapToRegistry uri https://registry.npmjs.org/phantom
+109 verbose addNameRange registry:https://registry.npmjs.org/phantom not in flight; fetching
+110 verbose request uri https://registry.npmjs.org/handlebars
+111 verbose request no auth needed
+112 info attempt registry request try #1 at 5:26:34 PM
+113 verbose etag "EJTS5X8N4MEGVX0HV43YLVE3G"
+114 http request GET https://registry.npmjs.org/handlebars
+115 verbose get https://registry.npmjs.org/phantom not expired, no request
+116 silly addNameRange number 2 { name: 'phantom', range: '>=0.8.3 <0.9.0', hasData: true }
+117 silly addNameRange versions [ 'phantom',
+117 silly addNameRange   [ '0.0.1',
+117 silly addNameRange     '0.0.2',
+117 silly addNameRange     '0.1.0',
+117 silly addNameRange     '0.2.0',
+117 silly addNameRange     '0.2.1',
+117 silly addNameRange     '0.2.2',
+117 silly addNameRange     '0.2.3',
+117 silly addNameRange     '0.2.4',
+117 silly addNameRange     '0.3.0',
+117 silly addNameRange     '0.3.1',
+117 silly addNameRange     '0.3.2',
+117 silly addNameRange     '0.3.3',
+117 silly addNameRange     '0.3.4',
+117 silly addNameRange     '0.3.5',
+117 silly addNameRange     '0.4.0',
+117 silly addNameRange     '0.4.1',
+117 silly addNameRange     '0.4.2',
+117 silly addNameRange     '0.5.0',
+117 silly addNameRange     '0.5.1',
+117 silly addNameRange     '0.5.2',
+117 silly addNameRange     '0.5.3',
+117 silly addNameRange     '0.5.4',
+117 silly addNameRange     '0.5.6',
+117 silly addNameRange     '0.5.7',
+117 silly addNameRange     '0.6.0',
+117 silly addNameRange     '0.6.1',
+117 silly addNameRange     '0.6.2',
+117 silly addNameRange     '0.6.3',
+117 silly addNameRange     '0.6.4',
+117 silly addNameRange     '0.6.5',
+117 silly addNameRange     '0.6.6',
+117 silly addNameRange     '0.7.0',
+117 silly addNameRange     '0.7.1',
+117 silly addNameRange     '0.7.2',
+117 silly addNameRange     '0.8.0',
+117 silly addNameRange     '0.8.2',
+117 silly addNameRange     '0.8.3',
+117 silly addNameRange     '0.8.4',
+117 silly addNameRange     '0.9.0',
+117 silly addNameRange     '1.0.0',
+117 silly addNameRange     '2.0.0-alpha',
+117 silly addNameRange     '2.0.0-alpha.1',
+117 silly addNameRange     '2.0.0-alpha.2',
+117 silly addNameRange     '2.0.0-alpha.3',
+117 silly addNameRange     '2.0.0-alpha.4',
+117 silly addNameRange     '2.0.0-alpha.5',
+117 silly addNameRange     '2.0.0-alpha.6',
+117 silly addNameRange     '2.0.0-alpha.7',
+117 silly addNameRange     '2.0.0-alpha.8',
+117 silly addNameRange     '2.0.0',
+117 silly addNameRange     '2.0.1',
+117 silly addNameRange     '2.0.2',
+117 silly addNameRange     '2.0.3',
+117 silly addNameRange     '2.0.4',
+117 silly addNameRange     '2.0.5',
+117 silly addNameRange     '2.0.6',
+117 silly addNameRange     '2.0.7',
+117 silly addNameRange     '2.0.8',
+117 silly addNameRange     '2.0.9',
+117 silly addNameRange     '2.0.10',
+117 silly addNameRange     '2.1.0',
+117 silly addNameRange     '2.1.1',
+117 silly addNameRange     '2.1.2',
+117 silly addNameRange     '2.1.3',
+117 silly addNameRange     '2.1.4',
+117 silly addNameRange     '2.1.5',
+117 silly addNameRange     '2.1.7',
+117 silly addNameRange     '2.1.8',
+117 silly addNameRange     '2.1.9',
+117 silly addNameRange     '2.1.10',
+117 silly addNameRange     '2.1.11',
+117 silly addNameRange     '2.1.12',
+117 silly addNameRange     '2.1.13' ] ]
+118 silly addNamed phantom@0.8.4
+119 verbose addNamed "0.8.4" is a plain semver version for phantom
+120 warn deprecated phantom@0.8.4: v1 is no longer maintained, please upgrade to v2.0+ as soon possible.
+121 silly cache afterAdd phantom@0.8.4
+122 verbose afterAdd /home/franko/.npm/phantom/0.8.4/package/package.json not in flight; writing
+123 verbose afterAdd /home/franko/.npm/phantom/0.8.4/package/package.json written
+124 http 304 https://registry.npmjs.org/handlebars
+125 verbose headers { date: 'Fri, 29 Jul 2016 21:26:28 GMT',
+125 verbose headers   via: '1.1 varnish',
+125 verbose headers   'cache-control': 'max-age=300',
+125 verbose headers   etag: '"EJTS5X8N4MEGVX0HV43YLVE3G"',
+125 verbose headers   age: '231',
+125 verbose headers   connection: 'keep-alive',
+125 verbose headers   'x-served-by': 'cache-jfk1039-JFK',
+125 verbose headers   'x-cache': 'HIT',
+125 verbose headers   'x-cache-hits': '9',
+125 verbose headers   'x-timer': 'S1469827588.445292,VS0,VE0',
+125 verbose headers   vary: 'Accept-Encoding' }
+126 silly get cb [ 304,
+126 silly get   { date: 'Fri, 29 Jul 2016 21:26:28 GMT',
+126 silly get     via: '1.1 varnish',
+126 silly get     'cache-control': 'max-age=300',
+126 silly get     etag: '"EJTS5X8N4MEGVX0HV43YLVE3G"',
+126 silly get     age: '231',
+126 silly get     connection: 'keep-alive',
+126 silly get     'x-served-by': 'cache-jfk1039-JFK',
+126 silly get     'x-cache': 'HIT',
+126 silly get     'x-cache-hits': '9',
+126 silly get     'x-timer': 'S1469827588.445292,VS0,VE0',
+126 silly get     vary: 'Accept-Encoding' } ]
+127 verbose etag https://registry.npmjs.org/handlebars from cache
+128 verbose get saving handlebars to /home/franko/.npm/registry.npmjs.org/handlebars/.cache.json
+129 silly addNameRange number 2 { name: 'handlebars', range: '>=4.0.5 <5.0.0', hasData: true }
+130 silly addNameRange versions [ 'handlebars',
+130 silly addNameRange   [ '1.0.6',
+130 silly addNameRange     '1.0.6-2',
+130 silly addNameRange     '1.0.7',
+130 silly addNameRange     '1.0.8',
+130 silly addNameRange     '1.0.9',
+130 silly addNameRange     '1.0.10',
+130 silly addNameRange     '1.0.11',
+130 silly addNameRange     '1.0.12',
+130 silly addNameRange     '1.1.0',
+130 silly addNameRange     '1.1.1',
+130 silly addNameRange     '1.1.2',
+130 silly addNameRange     '1.2.0',
+130 silly addNameRange     '1.2.1',
+130 silly addNameRange     '1.3.0',
+130 silly addNameRange     '2.0.0-alpha.1',
+130 silly addNameRange     '2.0.0-alpha.2',
+130 silly addNameRange     '2.0.0-alpha.3',
+130 silly addNameRange     '2.0.0-alpha.4',
+130 silly addNameRange     '2.0.0-beta.1',
+130 silly addNameRange     '2.0.0',
+130 silly addNameRange     '3.0.0',
+130 silly addNameRange     '3.0.1',
+130 silly addNameRange     '3.0.2',
+130 silly addNameRange     '3.0.3',
+130 silly addNameRange     '4.0.0',
+130 silly addNameRange     '4.0.1',
+130 silly addNameRange     '4.0.2',
+130 silly addNameRange     '4.0.3',
+130 silly addNameRange     '4.0.4',
+130 silly addNameRange     '4.0.5',
+130 silly addNameRange     '1.0.2-beta',
+130 silly addNameRange     '1.0.4-beta',
+130 silly addNameRange     '1.0.5-beta' ] ]
+131 silly addNamed handlebars@4.0.5
+132 verbose addNamed "4.0.5" is a plain semver version for handlebars
+133 silly cache afterAdd handlebars@4.0.5
+134 verbose afterAdd /home/franko/.npm/handlebars/4.0.5/package/package.json not in flight; writing
+135 verbose afterAdd /home/franko/.npm/handlebars/4.0.5/package/package.json written
+136 silly fetchNamedPackageData optimist
+137 silly mapToRegistry name optimist
+138 silly mapToRegistry using default registry
+139 silly mapToRegistry registry https://registry.npmjs.org/
+140 silly mapToRegistry uri https://registry.npmjs.org/optimist
+141 silly fetchNamedPackageData source-map
+142 silly mapToRegistry name source-map
+143 silly mapToRegistry using default registry
+144 silly mapToRegistry registry https://registry.npmjs.org/
+145 silly mapToRegistry uri https://registry.npmjs.org/source-map
+146 silly fetchNamedPackageData uglify-js
+147 silly mapToRegistry name uglify-js
+148 silly mapToRegistry using default registry
+149 silly mapToRegistry registry https://registry.npmjs.org/
+150 silly mapToRegistry uri https://registry.npmjs.org/uglify-js
+151 verbose request uri https://registry.npmjs.org/optimist
+152 verbose request no auth needed
+153 info attempt registry request try #1 at 5:26:34 PM
+154 verbose etag "23ED24XTTZLI8X52DZGGOUR5N"
+155 http request GET https://registry.npmjs.org/optimist
+156 verbose request uri https://registry.npmjs.org/source-map
+157 verbose request no auth needed
+158 info attempt registry request try #1 at 5:26:34 PM
+159 verbose etag "EGXSTXT2LKN9F6Q8FYTUKIGP5"
+160 http request GET https://registry.npmjs.org/source-map
+161 verbose request uri https://registry.npmjs.org/uglify-js
+162 verbose request no auth needed
+163 info attempt registry request try #1 at 5:26:34 PM
+164 verbose etag "2ZHF5YRLSTS7QFC7X4ODKCLKY"
+165 http request GET https://registry.npmjs.org/uglify-js
+166 http 304 https://registry.npmjs.org/uglify-js
+167 verbose headers { date: 'Fri, 29 Jul 2016 21:26:28 GMT',
+167 verbose headers   via: '1.1 varnish',
+167 verbose headers   'cache-control': 'max-age=300',
+167 verbose headers   etag: '"2ZHF5YRLSTS7QFC7X4ODKCLKY"',
+167 verbose headers   age: '92',
+167 verbose headers   connection: 'keep-alive',
+167 verbose headers   'x-served-by': 'cache-jfk1046-JFK',
+167 verbose headers   'x-cache': 'HIT',
+167 verbose headers   'x-cache-hits': '5',
+167 verbose headers   'x-timer': 'S1469827588.603251,VS0,VE0',
+167 verbose headers   vary: 'Accept-Encoding' }
+168 silly get cb [ 304,
+168 silly get   { date: 'Fri, 29 Jul 2016 21:26:28 GMT',
+168 silly get     via: '1.1 varnish',
+168 silly get     'cache-control': 'max-age=300',
+168 silly get     etag: '"2ZHF5YRLSTS7QFC7X4ODKCLKY"',
+168 silly get     age: '92',
+168 silly get     connection: 'keep-alive',
+168 silly get     'x-served-by': 'cache-jfk1046-JFK',
+168 silly get     'x-cache': 'HIT',
+168 silly get     'x-cache-hits': '5',
+168 silly get     'x-timer': 'S1469827588.603251,VS0,VE0',
+168 silly get     vary: 'Accept-Encoding' } ]
+169 verbose etag https://registry.npmjs.org/uglify-js from cache
+170 verbose get saving uglify-js to /home/franko/.npm/registry.npmjs.org/uglify-js/.cache.json
+171 http 304 https://registry.npmjs.org/source-map
+172 verbose headers { date: 'Fri, 29 Jul 2016 21:26:28 GMT',
+172 verbose headers   via: '1.1 varnish',
+172 verbose headers   'cache-control': 'max-age=300',
+172 verbose headers   etag: '"EGXSTXT2LKN9F6Q8FYTUKIGP5"',
+172 verbose headers   age: '193',
+172 verbose headers   connection: 'keep-alive',
+172 verbose headers   'x-served-by': 'cache-jfk1044-JFK',
+172 verbose headers   'x-cache': 'HIT',
+172 verbose headers   'x-cache-hits': '32',
+172 verbose headers   'x-timer': 'S1469827588.603720,VS0,VE0',
+172 verbose headers   vary: 'Accept-Encoding' }
+173 silly get cb [ 304,
+173 silly get   { date: 'Fri, 29 Jul 2016 21:26:28 GMT',
+173 silly get     via: '1.1 varnish',
+173 silly get     'cache-control': 'max-age=300',
+173 silly get     etag: '"EGXSTXT2LKN9F6Q8FYTUKIGP5"',
+173 silly get     age: '193',
+173 silly get     connection: 'keep-alive',
+173 silly get     'x-served-by': 'cache-jfk1044-JFK',
+173 silly get     'x-cache': 'HIT',
+173 silly get     'x-cache-hits': '32',
+173 silly get     'x-timer': 'S1469827588.603720,VS0,VE0',
+173 silly get     vary: 'Accept-Encoding' } ]
+174 verbose etag https://registry.npmjs.org/source-map from cache
+175 verbose get saving source-map to /home/franko/.npm/registry.npmjs.org/source-map/.cache.json
+176 http 304 https://registry.npmjs.org/optimist
+177 verbose headers { date: 'Fri, 29 Jul 2016 21:26:28 GMT',
+177 verbose headers   via: '1.1 varnish',
+177 verbose headers   'cache-control': 'max-age=300',
+177 verbose headers   etag: '"23ED24XTTZLI8X52DZGGOUR5N"',
+177 verbose headers   age: '128',
+177 verbose headers   connection: 'keep-alive',
+177 verbose headers   'x-served-by': 'cache-jfk1033-JFK',
+177 verbose headers   'x-cache': 'HIT',
+177 verbose headers   'x-cache-hits': '519',
+177 verbose headers   'x-timer': 'S1469827588.603553,VS0,VE0',
+177 verbose headers   vary: 'Accept-Encoding' }
+178 silly get cb [ 304,
+178 silly get   { date: 'Fri, 29 Jul 2016 21:26:28 GMT',
+178 silly get     via: '1.1 varnish',
+178 silly get     'cache-control': 'max-age=300',
+178 silly get     etag: '"23ED24XTTZLI8X52DZGGOUR5N"',
+178 silly get     age: '128',
+178 silly get     connection: 'keep-alive',
+178 silly get     'x-served-by': 'cache-jfk1033-JFK',
+178 silly get     'x-cache': 'HIT',
+178 silly get     'x-cache-hits': '519',
+178 silly get     'x-timer': 'S1469827588.603553,VS0,VE0',
+178 silly get     vary: 'Accept-Encoding' } ]
+179 verbose etag https://registry.npmjs.org/optimist from cache
+180 verbose get saving optimist to /home/franko/.npm/registry.npmjs.org/optimist/.cache.json
+181 silly resolveWithNewModule optimist@0.6.1 checking installable status
+182 silly cache add args [ 'optimist@^0.6.1', null ]
+183 verbose cache add spec optimist@^0.6.1
+184 silly cache add parsed spec Result {
+184 silly cache add   raw: 'optimist@^0.6.1',
+184 silly cache add   scope: null,
+184 silly cache add   name: 'optimist',
+184 silly cache add   rawSpec: '^0.6.1',
+184 silly cache add   spec: '>=0.6.1 <0.7.0',
+184 silly cache add   type: 'range' }
+185 silly addNamed optimist@>=0.6.1 <0.7.0
+186 verbose addNamed ">=0.6.1 <0.7.0" is a valid semver range for optimist
+187 silly addNameRange { name: 'optimist', range: '>=0.6.1 <0.7.0', hasData: false }
+188 silly mapToRegistry name optimist
+189 silly mapToRegistry using default registry
+190 silly mapToRegistry registry https://registry.npmjs.org/
+191 silly mapToRegistry uri https://registry.npmjs.org/optimist
+192 verbose addNameRange registry:https://registry.npmjs.org/optimist not in flight; fetching
+193 silly resolveWithNewModule source-map@0.4.4 checking installable status
+194 silly cache add args [ 'source-map@^0.4.4', null ]
+195 verbose cache add spec source-map@^0.4.4
+196 silly cache add parsed spec Result {
+196 silly cache add   raw: 'source-map@^0.4.4',
+196 silly cache add   scope: null,
+196 silly cache add   name: 'source-map',
+196 silly cache add   rawSpec: '^0.4.4',
+196 silly cache add   spec: '>=0.4.4 <0.5.0',
+196 silly cache add   type: 'range' }
+197 silly addNamed source-map@>=0.4.4 <0.5.0
+198 verbose addNamed ">=0.4.4 <0.5.0" is a valid semver range for source-map
+199 silly addNameRange { name: 'source-map', range: '>=0.4.4 <0.5.0', hasData: false }
+200 silly mapToRegistry name source-map
+201 silly mapToRegistry using default registry
+202 silly mapToRegistry registry https://registry.npmjs.org/
+203 silly mapToRegistry uri https://registry.npmjs.org/source-map
+204 verbose addNameRange registry:https://registry.npmjs.org/source-map not in flight; fetching
+205 silly resolveWithNewModule uglify-js@2.7.0 checking installable status
+206 silly cache add args [ 'uglify-js@^2.6', null ]
+207 verbose cache add spec uglify-js@^2.6
+208 silly cache add parsed spec Result {
+208 silly cache add   raw: 'uglify-js@^2.6',
+208 silly cache add   scope: null,
+208 silly cache add   name: 'uglify-js',
+208 silly cache add   rawSpec: '^2.6',
+208 silly cache add   spec: '>=2.6.0 <3.0.0',
+208 silly cache add   type: 'range' }
+209 silly addNamed uglify-js@>=2.6.0 <3.0.0
+210 verbose addNamed ">=2.6.0 <3.0.0" is a valid semver range for uglify-js
+211 silly addNameRange { name: 'uglify-js', range: '>=2.6.0 <3.0.0', hasData: false }
+212 silly mapToRegistry name uglify-js
+213 silly mapToRegistry using default registry
+214 silly mapToRegistry registry https://registry.npmjs.org/
+215 silly mapToRegistry uri https://registry.npmjs.org/uglify-js
+216 verbose addNameRange registry:https://registry.npmjs.org/uglify-js not in flight; fetching
+217 verbose request uri https://registry.npmjs.org/optimist
+218 verbose request no auth needed
+219 info attempt registry request try #1 

@@ -11,9 +11,20 @@ if ( ! defined( 'ABSPATH' ) ) {
     // write_log("CART ITEM");
     // write_log($cart_item);
     $_product     = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+    // $deco = edb_decorated_product( $_product->ID );
     if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
+      
+      $deco = edb_decorated_product($_product);
+      $ga_product = json_encode(array(
+        'id'=>$_product->post->ID,
+        'name'=>$deco->full_name,
+        'category'=> $deco->main_category,
+        'variant'=> $deco->material,
+        'price'=> $deco->price,
+        'quantity'=> $cart_item['quantity'] ));
       ?>
-      <div class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
+      
+      <div data-product="<?php echo esc_attr($ga_product); ?>" class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
         <div class="cart-item-image">
           <?php
             global $Edb_Shipping_Method;

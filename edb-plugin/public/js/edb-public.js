@@ -154,9 +154,10 @@ window.requestAnimFrame = (function(){
       var url = wc_checkout_params.wc_ajax_url.replace('%%endpoint%%','apply_credits');
       var creds = parseFloat($('#checkout-personal-credit .amount').text().replace('$','').trim());
       var amount = parseFloat($('#use_credits').val());
-      var data = { use_credits: amount, security: security }  
+      var code = $('#use_credits').data('credit-code');
+      var data = { use_credits: amount, security: security, use_credits_code: code }  
       var $form = $('#use_credits').parents('form');
-      if(!amount || $form.is('.processing') ){
+      if($form.is('.processing') ){
         return false;
       }
       $form.addClass('processing').block({

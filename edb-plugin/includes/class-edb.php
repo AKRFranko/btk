@@ -86,6 +86,7 @@ class Edb {
     $this->loader->add_filter( 'woocommerce_integrations', $this, 'register_integration' );
     
     $this->loader->add_action('wp_enqueue_scripts', $this, 'dequeue_scripts', 9999 );
+    //$this->loader->add_action('woocommerce_shipping_methods', $this, 'load_shipping' );
     
 
 	}
@@ -192,6 +193,8 @@ class Edb {
 	   //write_log('ignored register_shipping_methods');
 	 }
    return $methods;
+
+
 	}
 	
 	
@@ -241,6 +244,7 @@ class Edb {
     add_action( 'woocommerce_checkout_update_order_review',  array($GLOBALS['Edb_Shipping_Method'], 'checkout_update_order_review') );
     add_action( 'woocommerce_created_customer', array($GLOBALS['Edb_Shipping_Method'],'created_customer') );
     add_action( 'woocommerce_order_status_completed', array($GLOBALS['Edb_Shipping_Method'],'order_status_completed') );
+    add_action( 'woocommerce_order_status_processing', array($GLOBALS['Edb_Shipping_Method'],'order_status_processing') );
     
     // add_action('woocommerce_checkout_update_order_meta', array($GLOBALS['Edb_Shipping_Method'],'set_custom_fields_on_order') );
     add_action('woocommerce_add_order_item_meta', array($GLOBALS['Edb_Shipping_Method'],'set_custom_field_on_order_item'), 10, 3 );
@@ -258,7 +262,7 @@ class Edb {
     // add_filter('woocommerce_get_regular_price', array( $this, 'get_regular_price'), 10, 2 );
     // add_filter('woocommerce_get_sale_price', array( $this, 'get_sale_price'), 10, 2 );
     
-    // add_action( 'wc_ajax_apply_credits', array( $this,'edb_checkout_apply_credits'), 10, 2 );
+    add_action( 'wc_ajax_apply_credits', array( $this,'edb_checkout_apply_credits'), 10, 2 );
     // add_action( 'woocommerce_cart_calculate_fees', array( $this, 'edb_cart_add_credit_discount'), 10, 2 );
 
     // function my_ajax_function() {
@@ -290,25 +294,23 @@ class Edb {
 // 	  }
 // 	}
 	public function edb_checkout_apply_credits(){
-  // 	if ( !defined( 'DOING_AJAX' ) || empty($_POST) )  return;
-    
-	 // $use_credits = $_POST['use_credits'];
-	 // if(empty($use_credits)){
-	 //   echo '<p>No credits to use.</p>';
-	 // }else{
-	   
-	 //  WC()->session->set('use_credits',$use_credits);
-	 //  //$_SESSION['use_credits']=;
-	 //  // write_log('AAAAAAAAAAAAAAAAAAAAAAA');
-	 //  // write_log('AAAAAAAAAAAAAAAAAAAAAAA'); 
-	 //  // write_log('AAAAAAAAAAAAAAAAAAAAAAA'); 
-	 //  // write_log('AAAAAAAAAAAAAAAAAAAAAAA'); 
-	 //  // write_log('AAAAAAAAAAAAAAAAAAAAAAA'); 
-	 //  // write_log('FEE'); 
-	 //  // write_log($fee);
-	 // }
-	 // wc_print_notices();
-	 // die();
+  	if ( !defined( 'DOING_AJAX' ) || empty($_POST) )  return;
+	  $use_credits = $_POST['use_credits'];
+	  $use_credits_code = $_POST['use_credits_code'];
+	  @session_start();
+	  if(!empty($use_credits)){
+	    write_log("CREDITS TO USE: $use_credits");
+	    
+	   // WC()->cart->add_fee('credit discount', -1 * $use_credits, false );
+	    $_SESSION['use_credits']=$use_credits;
+	    $_SESSION['use_credits_code']=$use_credits_code;
+	   // write_log(WC()->cart);
+	  }else{
+          // WC()->cart->add_fee('credit discount', -1 * $use_credits, false );
+           $_SESSION['remove_credits']=true;
+	  }
+	  wc_print_notices();
+	  die();
 	  
 	}
 	

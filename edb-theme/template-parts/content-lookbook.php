@@ -65,10 +65,8 @@
                       <a class="category" href="<?php echo $catlink ;?>">
                         <?php echo $decorated->category; ?>
                       </a><a class="title <?php echo empty($decorated->subtitle) ? 'large' : '';?>" href="<?php echo $decorated->url; ?>">
-                        <?php echo $decorated->title; ?>
-                      </a><?php if(!empty($decorated->subtitle)){?><a class="subtitle" href="<?php echo $decorated->url; ?>">
-                        <?php echo $decorated->subtitle; ?>
-                      </a><?php };?><a class="price" href="<?php echo $decorated->url; ?>">
+                        <?php echo $decorated->system_name; ?>
+                      </a><a class="price" href="<?php echo $decorated->url; ?>">
                         <?php echo wc_price($decorated->price); ?>
                       </a>
                     </li>

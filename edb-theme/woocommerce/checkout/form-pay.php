@@ -128,6 +128,7 @@ foreach($order->get_address('billing') as $k => $v ){
       <div class="cart-item-info">
         <div class="cart-item-name">
           <?php
+              
               edb_package_item_name( $item_id, $item );
           ?>
         </div>

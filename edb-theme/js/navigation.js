@@ -39,7 +39,17 @@
       return true;
     })
   });
+  
+  $('.cart-item-remove a').each(function(i) {
+    $(this).on('click', function() {
+      var product = $(this).parents('.cart_item').data('product');
+      var qty = $(this).parents('.cart_item').find('.cart-item-quantity-input input').val();
+      ga('send', 'event', 'Cart', 'remove-from-cart', product.name,qty);
+      return true;
+    })
+  });
 
+  
   $(document).on('click', '#shop-nav a:first', function(e) {
     e.preventDefault();
     var $cats = $('#cat-nav');
@@ -195,17 +205,23 @@
 
 
   //,#site-nav,#shop-nav,#cat-nav
-
-  // $(document).on('change','.shipping-method-choice input', function(){
-  //   var $input = $( this );
-  //   var $label = $(this).closest('label');
-  //   var isChecked = $input.is(':checked');
-  //   if(isChecked){
-  //     $label.addClass('checked')
-  //   }else{
-  //     $label.removeClass('checked')
-  //   }
-  // })
+// var setSelfPickup = function(){
+//   var choices = $('.shipping-method-choice input:checked').map(function(){ return $(this).val()});
+//   var allPickup = choices.filter(function( i,c ){ return c == 'edb_self_pickup'});
+  
+//   if(allPickup.length == choices.length && !$('#do-not-ship-option:checked').length){
+//     $('#do-not-ship-option').click();
+//   }
+// }
+//   $(document).on('change','.shipping-method-choice input', function(){
+//     setSelfPickup()
+//   })
+//   $(document).ajaxSuccess( function(){
+//     if($('#do-not-ship-option').length){
+//       setSelfPickup()
+//     }
+//   })
+  
 
   $(document).on('change', '.product-quantity-input input[name="quantity"]', function() {
     if ($('.product-color-choices .active-choice').length) {
@@ -231,6 +247,14 @@
       originLeft: true,
       originTop: true
     });
+    var mat_choices = $('[name=_edb_material_choice]');
+    if( mat_choices && mat_choices.length && mat_choices.length === 1){
+      var value = parseFloat(mat_choices.val());
+      if(value > 12){
+        $('.edb-material-picker,.product-selected-material').hide()  
+      }
+      
+    }
     
     // $(window).bind("pageshow", function(event) {
     //     if (event.originalEvent.persisted) {
@@ -399,7 +423,9 @@
     }
   });
 
-
+    $(document).on('click', 'button', function(){
+        $(this).addClass('loading');
+    })
   $(document).on('click', '#check-postcode', getShippingZone);
 
 

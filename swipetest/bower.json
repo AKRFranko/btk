@@ -1,0 +1,21 @@
+{
+  "name": "swipetest",
+  "homepage": "https://github.com/AKRFranko/btk",
+  "authors": [
+    "franko <franko@akr.club>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Swiper": "swiper#^3.3.1"
+  }
+}

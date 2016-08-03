@@ -29,11 +29,16 @@ do_action( 'woocommerce_before_cart' ); ?>
 			
 		
 			$product_id   = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
-      
+			$edb_product = edb_decorated_product($cart_item['variation_id']);
+      $ga_product = json_encode(array(
+      'id'=>$product_id,
+      'name'=>$edb_product->full_name,
+      'category'=> $edb_product->main_category,
+      'variant'=>$edb_product->material));
 			if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
 			  
 				?>
-				<div id="cart-item-<?php echo $cart_item_key;?>" class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
+				<div id="cart-item-<?php echo $cart_item_key;?>" data-product="<?php echo esc_attr($ga_product);?>" class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
 
           <div class="cart-item-image">
             <?php edb_cart_item_image( $cart_item_key, $cart_item ); ?>

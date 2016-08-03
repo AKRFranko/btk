@@ -52,9 +52,11 @@ class Edb_Product_Decorator {
   public $post_object = null;
   public $stocks = array();
   public $variations = array();
-  
+  public $system_name = null;
   public $shipping_delays = null;
   
+  
+ 
   public function __construct( $product ) {
     $factory = new WC_Product_Factory();
     
@@ -96,7 +98,10 @@ class Edb_Product_Decorator {
       $this->full_name = $this->title . '-' . preg_replace('/\s+/', '', $this->subtitle);;  
     }else{
       $this->full_name = $this->title;  
+      
     }
+    
+    
     
     
     $this->description =  apply_filters('the_content',get_post_field('post_content', $this->post_id ));
@@ -144,6 +149,7 @@ class Edb_Product_Decorator {
       $this->url = $this->product_object->get_permalink( );
     }
     
+    
     $this->price = $this->product_object->get_price();
     
     // if(empty($this->price)){
@@ -152,10 +158,12 @@ class Edb_Product_Decorator {
     // }
     
     $this->price_html = $this->price;
+    $this->is_on_sale = false;
     if($this->product_object->is_on_sale()){
       $regular_price =end($this->product_object->get_variation_prices()['regular_price']);
       
       $this->price_html = "<s class='onsale'>".$regular_price."</s> <span class=\"saleprice\">$".$this->price."</span>";
+      $this->is_on_sale = true;
     }
     // write_log( "PRICE:".$this->product_object->get_price());
     // write_log( "REGULAR:".$this->product_object->get_regular_price());
@@ -233,10 +241,27 @@ class Edb_Product_Decorator {
     // $this->leg_option = get_post_meta($this->product_id, 'attribute_edb_leg', true );
     $this->json = $this->get_json_object();
     
-    
+    $size_code = get_post_meta( $this->product_id, '_edb_system_size_code', true );
+    $meta_code = get_post_meta( $this->product_id, '_edb_system_meta_code', true );
+        
     // write_log( $this->json );
+    //  = 
+    $size_code = get_post_meta( $this->product_id, '_edb_system_size_code', true );
+    $meta_code = get_post_meta( $this->product_id, '_edb_system_meta_code', true );
+    $system_name = str_replace(array('-tweed','-flannel','-velvet','-epingle','_5x8','_6x9','-solo','-split','-gold','-purple','-green','-yellow','-blue', '-pink','-orange',' azure','-grey','-smoke','-black','-white','-ottrec', '-single','-corner','-small','-rec','-natural','-walnut', '-raf','-laf'),'',strtolower($this->title));
+    $names_text = strtoupper( $system_name ." " . (empty($size_code) ? '' : " $size_code") . (empty($meta_code) ? '' : " - $meta_code"));
+    $names_html = '<span class="edb-product-name">'.$system_name.'</span>';
+    $names_html .='<span class="edb-product-system-meta">';
+    if(!empty($size_code)){
+      $names_html.= ' <span class="edb-product-size-code">'.$size_code.'</span>';  
+    }
+    if(!empty($meta_code)){
+      $names_html.= ' - <span class="edb-product-meta-code">'.$meta_code.'</span>';  
+    }
+    $names_html .='</span>';
     
-    
+    $this->system_name = $names_text;
+    $this->system_name_html = $names_html;
   }
   
   private function init_shipping(){

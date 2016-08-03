@@ -113,11 +113,12 @@ $edb_deco_cache = array();
 
 
 function edb_decorated_product( $product_id ){
-  if(!isset($edb_deco_cache[$product_id])){
-    $edb_deco_cache[$product_id] = new Edb_Product_Decorator( $product_id );
-  }
-  
-  return $edb_deco_cache[$product_id];
+  // if(!isset($edb_deco_cache[$product_id])){
+  //   $edb_deco_cache[$product_id] = new Edb_Product_Decorator( $product_id );
+  // }
+  $deco =  new Edb_Product_Decorator( $product_id );
+  return $deco;
+  // return $edb_deco_cache[$product_id];
 }
 
 function edb_package_item_image( $package_item_key, $package_item ){
@@ -139,7 +140,7 @@ function edb_package_item_name( $package_item_key, $package_item ){
   }else{
     $name = $decorated->title;
   }
-  echo $name;
+  echo $decorated->system_name_html;
   
 }
 function edb_package_item_material( $package_item_key, $package_item ){
@@ -207,7 +208,8 @@ function edb_cart_item_name( $cart_item_key, $cart_item ){
   }else{
     $name = $decorated->title;
   }
-  echo $name;
+  // echo $name;
+  echo $decorated->system_name_html;
 }
 function edb_cart_item_material( $cart_item_key, $cart_item ){
   $product_id = $cart_item['product_id'];
@@ -327,7 +329,8 @@ function edb_order_item_availability( $item, $order ){
   if(!isset($item['edb_availabilities'][$shipping])){
     $item['edb_availabilities'][$shipping] = '+1 week';
   }
-  $availability = "+" . str_replace('semaines', 'weeks', str_replace( 'semaine', 'week', $item['edb_availabilities'][$shipping]));
+  // write_log( $item['edb_availabilities'][$shipping] );
+  $availability = "+" . str_replace('jour', 'day', str_replace('semaines', 'weeks', str_replace( 'semaine', 'week', $item['edb_availabilities'][$shipping])));
   
   $order_date = strtotime( $order->order_date );
   
@@ -703,14 +706,23 @@ function edb_product_material_picker( $product_id ){
 
 
 function tmp_has_tech_image( $deco ){
- $data = array("atrium_armchairs",
+ $data = array("atrium-solo_sofas-3-seater",
+              "piquÉ-small_sectionals-left-facing",
+              "piquÉ-small_sectionals-right-facing",
+              "atrium_armchairs",
               "maritime_armchairs",
               "maritime-natural_armchairs",
               "nautique_accessories-pillows",
               "nautique-gold_accessories-pillows",
               "nautique-green_accessories-pillows",
+              "cube-epingle_ottomans",
+              "cube-flannel_ottomans", 
+              "cube-tweed_ottomans",  
+              "cube-velvet_ottomans",
               "nautique-white_accessories-pillows",
               "nautique-blue_accessories-pillows",
+              "lines-blue_accessories-pillows",
+              "lines-grey_accessories-pillows",
               "stripes_sofas-3-seater",
               "stripes_sofas-2-seater",
               "atrium_sofas-3-seater",
@@ -774,6 +786,7 @@ function tmp_has_tech_image( $deco ){
               'pique-laf_sofas-2-seater',
               'majuscule-pink_accessories-pillows',
               'mutation_accessories-pillows',
+              "dia24_ottomans",
               'pique-raf_sofas-2-seater',
               "vintage_side-tables",
               "polka-green_accessories-pillows", 

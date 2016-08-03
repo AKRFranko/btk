@@ -85,16 +85,16 @@
         $maincats = get_terms( 'product_cat', array('get'=>'all', 'parent' => 0, 'hide_empty' => false) );
         $flatten = array('slipcovers');
         $ignore = array('benches-ottomans', 'headboards', 'storage');
-        $standalone = array('accessories-rugs');
+        $standalone = array('accessories-rugs','accessories-ottomans');
         
         // var_dump( );
         foreach($maincats as $main){
           
-          if( !in_array( $main->name, $ignore )){
+          if( !in_array( $main->slug, $ignore )){
             
           
           
-          if ( strtolower($main->name) !== 'lookbook' &&  strtolower($main->name) !== 'accessories') {
+          if ( strtolower($main->slug) !== 'lookbook' &&  strtolower($main->slug) !== 'accessories') {
             echo "<li>";
             $subcats = get_terms( 'product_cat', array( 'parent' => $main->term_id, 'hide_empty' => false ) );
             foreach( $subcats as $sub ){
@@ -130,7 +130,9 @@
               write_log( 'WP_ERROR:header.php');
               write_log( $main );
             }else{
-              if(strtolower($main->name) === 'accessories'){
+              
+              if(strtolower($main->slug) === 'accessories'){
+                echo '<li><a href="/product-category/ottomans/" title="' . sprintf( __( 'View all %s', 'edb' ), 'ottomans' ) . '">' . __( 'ottomans', 'edb') . '</a></li>';
                 echo '<li><a href="/product-category/accessories-rugs/" title="' . sprintf( __( 'View all %s', 'edb' ), 'rugs' ) . '">' . __( 'rugs', 'edb') . '</a></li>';
                 echo '<li><a href="/product-category/accessories-pillows/" title="' . sprintf( __( 'View all %s', 'edb' ), 'pillows' ) . '">' . __( 'accessories', 'edb') . '</a></li>';
               }  

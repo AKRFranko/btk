@@ -24,9 +24,12 @@ if ( ! defined( 'ABSPATH' ) ) {
   $shippingValue = $checkout->get_value('shipping_postcode' );
   $customerValue = WC()->customer->get_shipping_postcode();
 	foreach ( $checkout->checkout_fields['billing'] as $key => $field ) : ?>
-	
-	  <?php 
 	  
+	  <?php 
+	  if( $key == 'billing_email' || $key == 'billing_phone'){
+	   $field['class'] = array( 'form-row-wide');
+	   
+	  }
 	  if($key == 'shipping_postcode' ){
 	     if(empty($shippingValue)){
 	       $value = $billingValue;

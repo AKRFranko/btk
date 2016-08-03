@@ -132,6 +132,11 @@
     if (typeof notifyProgress == 'undefined') {
       notifyProgress = function(message) {
         console.log(message);
+        try{
+        var p = document.createElement('p');
+        p.appendChild( document.createTextNode(message ));
+        document.querySelector('#app-loader').appendChild(p);
+        }catch(Ignored){ return Ignored;}
       }
     }
     var products = [];
@@ -149,6 +154,7 @@
       var onChunk = function(data) {
         fetched += data.products.length;
         products = products.concat(data.products);
+        
         notifyProgress('...got ' + fetched + ' of ' + stop);
         if (fetched < stop) {
           start += 10;
@@ -156,7 +162,7 @@
         } else {
           fetched = 0;
           start = 0;
-          callback(null, products);
+          callback(null, products.filter( function(p){ return p ;}));
         }
       }
       var fetchChunk = function() {
@@ -249,14 +255,17 @@
 
   var createVariation = function(data, product) {
     // console.log(data)
+    if(!product){
+      console.log(arguments)
+    }
     var materialId = data.attributes[0].option;
 
     // var imageSrc = MATERIALS[materialID].image;//'/wp-content/edb-materials/' + materialId + '.jpg';
     var materialObject = EDB.materials.filter(function(m) {
       return m.material == materialId
     })[0];
-
-    if (!materialObject.image) {
+    
+    if (materialObject && !materialObject.image) {
       materialObject.image = product.image;
     }
 
@@ -372,6 +381,9 @@
       if (error) return callback(error);
       createDataLibrary(data);
       callback(null, EDB);
+      var loader = document.querySelector('#app-loader');
+      loader.setAttribute('class','app-loaded');
+      // loader.parentNode.removeChild( loader );
       // EDB.addToCart(EDB.products[0], EDB.products[0].variations[0], 5);
       // EDB.removeCartItem(EDB.cartItems[1].token);
       // EDB.addFee({
@@ -602,6 +614,7 @@
     var shippings = EDB.cartItems.filter(function(item) {
       return item.shippingPackage != 'edb_self_pickup';
     });
+    var order_total=0;
     var type_totals = {
       'furniture': 0,
       'small-furniture': 0,
@@ -611,15 +624,22 @@
       var price = item.variation.price;
       var qty = item.quantity;
       var total = 1 * (price * qty);
+      order_total += total;
       type_totals[item.product.shipping.class] += total;
     });
 
-    return Object.keys(type_totals).reduce(function(total, key) {
-      if (type_totals[key]) {
-        return total + getZoneCost(key, type_totals[key], postcode);
-      }
-      return total;
-    }, 0);
+    
+    var shipping_total = 0;
+    if( type_totals.furniture > 0 ){
+        return getZoneCost('furniture', order_total, postcode);
+    }
+    if( type_totals['small-furniture'] > 0 ){
+        return getZoneCost('small-furniture', order_total, postcode);
+    }
+    if( type_totals['accessories'] > 0 ){
+        return getZoneCost('accessories', order_total, postcode);
+    }
+    
 
   };
 
@@ -648,7 +668,9 @@
       
       return t + (1 * tx.amount);
     }, 0);
-
+    if(isNaN(totals.total)){
+      totals.total = 0;
+    }
     return Object.keys(totals).reduce(function(all, k) {
       if (k != 'tax') {
         var l = k;

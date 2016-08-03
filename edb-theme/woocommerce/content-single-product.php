@@ -30,9 +30,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	 global $product;
 	 $product_id = get_the_ID();
 	 $edb_product = edb_decorated_product( $product_id );
+	 $ga_product = json_encode(array(
+   'id'=>$product->post->ID,
+   'name'=>$edb_product->full_name,
+   'category'=> $edb_product->main_category));
 ?>
 
-<div itemscope itemtype="<?php echo woocommerce_get_product_schema(); ?>" id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
+<div itemscope itemtype="<?php echo woocommerce_get_product_schema(); ?>" id="product-<?php the_ID(); ?>" <?php post_class(); ?> data-product="<?php echo esc_attr($ga_product);?>">
 
   <div class="product-sections">
     
@@ -42,7 +46,8 @@ if ( ! defined( 'ABSPATH' ) ) {
     
     <div class="product-info">
       
-      <div class="product-name"><?php echo $edb_product->title; ?></div>
+      <div class="product-name"><?php echo $edb_product->system_name_html; ?></div>
+      
       <div class="product-subname"><?php echo $edb_product->subtitle; ?></div>
       <?php if( $edb_product->category_slug == 'accessories-pillows' && $edb_product->product_id !== 1533 ){ 
           $stuff_link=get_permalink(1533);

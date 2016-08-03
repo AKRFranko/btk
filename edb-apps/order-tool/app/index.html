@@ -75,8 +75,8 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
                     <h1>Customer</h1>
                   </div>
                   <div class="input-form-content">
-                    <paper-input type="text" always-float-label auto-validate  label="First Name" value="{{billingAddress.first_name::input}}"></paper-input>
-                    <paper-input type="text" always-float-label auto-validate  label="Last Name" value="{{billingAddress.last_name::input}}"></paper-input>
+                    <paper-input type="text" always-float-label auto-validate label="First Name" value="{{billingAddress.first_name::input}}"></paper-input>
+                    <paper-input type="text" always-float-label auto-validate label="Last Name" value="{{billingAddress.last_name::input}}"></paper-input>
                     <paper-input type="email" always-float-label auto-validate required label="Email" value="{{billingAddress.email::input}}"></paper-input>
                     <paper-input type="text" always-float-label auto-validate required pattern="[A-Za-z][0-9][A-Za-z]\s?[0-9][A-Za-z][0-9]" label="Postal Code" value="{{shippingAddress.postcode::input}}">
                       <div class="zone-suffix" suffix>{{computeZone(shippingAddress.postcode)}}</div>
@@ -262,8 +262,8 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
         </div>
         <div class="input-form-content">
           <paper-input type="text" always-float-label label="Title" value="{{customFee.title::input}}"></paper-input>
-          <paper-checkbox checked value="{{customFee.taxable::input}}">Taxable</paper-checkbox>
-          <paper-input type="number" always-float-label label="Amount" value="{{customFee.total::input}}"></paper-input>
+          <paper-checkbox id="feeTaxCheckbox" checked on-click="toggleCustomFeeTaxable" value="{{customFee.taxable::input}}">Taxable</paper-checkbox>
+          <paper-input type="number" always-float-label on-change="toggleCustomFeeTaxable" label="Amount" value="{{customFee.total::input}}"></paper-input>
           <paper-button class="fee-add-button" on-click="handleAddFee" raised>add</paper-button>
         </div>
       </div>
@@ -327,7 +327,7 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
         <!--<paper-button dialog-dismiss>done</paper-button>-->
       </div>
     </paper-dialog>
-
+    <div id="app-loader"></div>
     </template>
     <!-- build:js scripts/edb2.js -->
     <script src="scripts/edb2.js"></script>

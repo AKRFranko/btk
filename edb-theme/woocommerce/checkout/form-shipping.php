@@ -43,8 +43,13 @@ $do_not_ship = WC()->session->get('do_not_ship');
           $field['label'] = __('Phone','edb');
           $field['placeholder'] = __('Phone','edb');
 
-        } ?>			  
-        <?php if($ship_to_same_address){ $field['custom_attributes'] = array('readonly'=>'readonly'); } ?>
+        }
+        if( $key == 'shipping_note'){
+           $field['value'] = '';
+           
+ 
+         } ?>			  
+        <?php if($ship_to_same_address && $key !== 'shipping_note'){ $field['custom_attributes'] = array('readonly'=>'readonly'); } ?>
         <?php 
         
         if($key == 'shipping_postcode' ){
