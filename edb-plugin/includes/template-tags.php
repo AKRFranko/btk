@@ -685,6 +685,7 @@ function edb_product_material_picker( $product_id ){
     // write_log($data);
     
     $name =edb_get_material_name($edb_material);// esc_attr( apply_filters('the_title',$data['post']->post_title) . "  <b>".apply_filters('the_title', get_the_subtitle($data['post']->ID))."</b>");
+    
     $availability_date  = esc_attr(json_encode( array( 'stock' => $stock_qty, 'min' => $min, 'max' => $max ) ));
     $preview = $decorated->images['material_variations'][$edb_material];
     echo "<label for=\"edb-material-choice-$edb_material\">";
@@ -711,6 +712,10 @@ function tmp_has_tech_image( $deco ){
               "piquÉ-small_sectionals-right-facing",
               "atrium_armchairs",
               "maritime_armchairs",
+              "atrium_sectionals-right-facing",
+              "atrium_sectionals-left-facing",
+              "dive_sectionals-left-facing",
+              "dive_sectionals-right-facing", 
               "maritime-natural_armchairs",
               "nautique_accessories-pillows",
               "nautique-gold_accessories-pillows",

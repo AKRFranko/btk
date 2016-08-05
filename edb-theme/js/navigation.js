@@ -3,8 +3,7 @@
  *
  * Handles toggling the navigation menu for small screens and enables tab
  * support for dropdown menus.
- */
-(function($) {
+ */ (function($) {
 
 
 
@@ -34,22 +33,22 @@
 
   $('.pdf-dowload-item-button a').each(function(i) {
     $(this).on('click', function() {
-      
-      ga('send', 'event', 'Poster', 'Download', $(this).attr('download'),1);
-      return true;
-    })
-  });
-  
-  $('.cart-item-remove a').each(function(i) {
-    $(this).on('click', function() {
-      var product = $(this).parents('.cart_item').data('product');
-      var qty = $(this).parents('.cart_item').find('.cart-item-quantity-input input').val();
-      ga('send', 'event', 'Cart', 'remove-from-cart', product.name,qty);
+
+      ga('send', 'event', 'Poster', 'Download', $(this).attr('download'), 1);
       return true;
     })
   });
 
-  
+  $('.cart-item-remove a').each(function(i) {
+    $(this).on('click', function() {
+      var product = $(this).parents('.cart_item').data('product');
+      var qty = $(this).parents('.cart_item').find('.cart-item-quantity-input input').val();
+      ga('send', 'event', 'Cart', 'remove-from-cart', product.name, qty);
+      return true;
+    })
+  });
+
+
   $(document).on('click', '#shop-nav a:first', function(e) {
     e.preventDefault();
     var $cats = $('#cat-nav');
@@ -154,6 +153,7 @@
     var shippingDelays = data.shippingDelay;
     var selectedQty = $('input[name=quantity]').val();
     var availableQty = 1 * shippingDelays.stock;
+    var $mdesc = $('#material-' + $input.val());
 
     if (availableQty < selectedQty) {
       $('.product-selected-availability .value').text(shippingDelays.max)
@@ -163,13 +163,17 @@
     // var availabilites = $input.data('preview');
 
     var $originSlide = $('.edb-slide.active');
+
     var originSrc = $originSlide.find('img').attr('src');
     var $slider = $('.edb-slider');
+    $slider.data('autocycle', 0);
     var index = $slider.find('.controls .current').text();
     $('.product-selected-material .label').html(name);
 
     if ($choice.parent().siblings().length) {
       if (!preview) {
+        
+        console.log($mdesc.html())
         $originSlide.find('.backdrop').css({
           'background-image': $choice.css('background-image'),
           'background-size': '50%'
@@ -205,23 +209,23 @@
 
 
   //,#site-nav,#shop-nav,#cat-nav
-// var setSelfPickup = function(){
-//   var choices = $('.shipping-method-choice input:checked').map(function(){ return $(this).val()});
-//   var allPickup = choices.filter(function( i,c ){ return c == 'edb_self_pickup'});
-  
-//   if(allPickup.length == choices.length && !$('#do-not-ship-option:checked').length){
-//     $('#do-not-ship-option').click();
-//   }
-// }
-//   $(document).on('change','.shipping-method-choice input', function(){
-//     setSelfPickup()
-//   })
-//   $(document).ajaxSuccess( function(){
-//     if($('#do-not-ship-option').length){
-//       setSelfPickup()
-//     }
-//   })
-  
+  // var setSelfPickup = function(){
+  //   var choices = $('.shipping-method-choice input:checked').map(function(){ return $(this).val()});
+  //   var allPickup = choices.filter(function( i,c ){ return c == 'edb_self_pickup'});
+
+  //   if(allPickup.length == choices.length && !$('#do-not-ship-option:checked').length){
+  //     $('#do-not-ship-option').click();
+  //   }
+  // }
+  //   $(document).on('change','.shipping-method-choice input', function(){
+  //     setSelfPickup()
+  //   })
+  //   $(document).ajaxSuccess( function(){
+  //     if($('#do-not-ship-option').length){
+  //       setSelfPickup()
+  //     }
+  //   })
+
 
   $(document).on('change', '.product-quantity-input input[name="quantity"]', function() {
     if ($('.product-color-choices .active-choice').length) {
@@ -248,21 +252,21 @@
       originTop: true
     });
     var mat_choices = $('[name=_edb_material_choice]');
-    if( mat_choices && mat_choices.length && mat_choices.length === 1){
+    if (mat_choices && mat_choices.length && mat_choices.length === 1) {
       var value = parseFloat(mat_choices.val());
-      if(value > 12){
-        $('.edb-material-picker,.product-selected-material').hide()  
+      if (value > 12) {
+        $('.edb-material-picker,.product-selected-material').hide()
       }
-      
+
     }
-    
+
     // $(window).bind("pageshow", function(event) {
     //     if (event.originalEvent.persisted) {
     //         document.querySelector('body').style.backgroundColor='red';
     //     }
-    
+
     // });
-    
+
 
     $("#overlay").on('click', function(e) {
       //console.log(e.target)
@@ -423,9 +427,9 @@
     }
   });
 
-    $(document).on('click', 'button', function(){
-        $(this).addClass('loading');
-    })
+  $(document).on('click', 'button', function() {
+    $(this).addClass('loading');
+  })
   $(document).on('click', '#check-postcode', getShippingZone);
 
 
@@ -436,8 +440,8 @@
     }
   });
 
-  function getShippingZone( e ) {
-    
+  function getShippingZone(e) {
+
     var postcode = $('input[name=postal_code]').val();
     if (postcode) {
       jQuery.post("/wp-admin/admin-ajax.php", {

@@ -139,6 +139,7 @@ class Edb_Public {
 	  if(isset($_REQUEST['guest'])){
 	    $requests_guest = $_REQUEST['guest'] == 'yes' ? ( is_user_logged_in() ? false : true ) : false;  
 	    WC()->session->set('edb_user_checkout_as_guest', $requests_guest );
+	    do_action('edb_checkout_as_guest');
 	  }
 	  
 	  if(is_account_page()){
