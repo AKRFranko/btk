@@ -29,6 +29,7 @@
    }
    
 	 function autoCycle(){
+	   
 	   //console.log('autoCycle', idleTime );
 	   clearTimeout(nextAutoCycle);
 	   

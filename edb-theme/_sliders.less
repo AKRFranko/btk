@@ -13,6 +13,13 @@
 .edb-slider .controls.ios-offset{
   margin-top:60px;
 }
+.home-slider .edb-slider .titles{
+  height:100%;
+}
+.home-slider .edb-slider .titles a{
+  height:inherit;
+  display:block;
+}
 .home-slider .edb-slider .titles a h2{
   color:#fff;
 }
@@ -27,6 +34,7 @@
   right:0;
   left:auto;
 }
+
 .home-slider .edb-slider .edb-slide.dark .titles a h2{
   color:#000;
   text-shadow:0 0 2px rgba(255,255,255,0.03);
@@ -90,6 +98,112 @@
   }
   
 }
+
+.edb-slide .material-info{
+  transition:all .2s ease-in-out;
+  overflow:hidden;
+  box-sizing:border-box;
+  padding:0;
+  width:0;
+  height:0;
+  top:50%;
+  left:50%;
+  transform:scale(0);
+}
+
+.info-slide{
+  box-sizing:border-box;
+  border:1px solid #000;
+  background:#fff;
+  
+}
+.info-slide .backdrop{
+  opacity:0;
+}
+.edb-slide.info-slide .material-info{
+  display:block;
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  padding:2rem;
+  transform:scale(1);
+}
+.info-slide .material-info-material-image{
+  display:block;
+  width:50%;
+  height:50%;
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+}
+.info-slide .material-info-product-image{
+  display:block;
+  width:50%;
+  height:50%;
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+}
+.info-slide .material-info-title{
+  position:absolute;
+  top:0;
+  left:50%;
+  width:50%;
+  padding:2rem;
+  font-size:18px;
+  font-family:adobe-caslon-pro;
+  text-transform:uppercase;
+  font-weight:normal;
+}
+.info-slide .material-info-composition{
+  list-style-type: none;
+  margin: 0;
+  padding: 0 2rem 2rem 2rem;
+  position: absolute;
+  top: 5.5rem;
+  left: 50%;
+  height:calc(~"50% - 5.5rem");
+  width:50%;
+  
+  
+}
+.info-slide .material-info-composition li{
+  line-height:1.5;
+}
+
+.info-slide .material-info-stock-label {
+    display: block;
+    color: red;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    height:1.5rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.info-slide .material-info-stock-availability {
+    display: block;
+    width: 50%;
+    position: absolute;
+    color: red;
+    height:1.5rem;
+    text-align: center;
+    top:calc(~"50% + 1.5rem");
+    left: 50%;
+}
+.info-slide .material-info-stock-message{
+  display: block;
+  width: 50%;
+  position: absolute;
+  color: red;
+  text-align: center;
+  top:calc(~"50% + 3rem");
+  left: 50%;
+} 
 @media all and (max-width:320px){
   .home-slider .edb-slider .titles a h3,
   .home-slider .edb-slider .titles a h2{
@@ -102,6 +216,8 @@
 }
 
 @media all and (min-width:320px) and (max-width:500px){
+  
+  
   .home-slider{
     margin-bottom:.5em;
   }
@@ -176,6 +292,35 @@
       top: .5em;
       padding-top: .25em;
     }
+    
+    
+    .edb-slide.info-slide .material-info{
+      padding:0;
+    }
+    .edb-slide.info-slide .material-info-title{
+      padding:.25rem;
+    }
+    .edb-slide.info-slide .material-info-composition{
+      padding:0 .25rem .25rem .25rem;
+      top:2rem;
+      height:calc(~"60% - 1.5rem");
+    }
+    .edb-slide.info-slide .material-info-stock-label{
+      top:60%;
+      height:1.25rem;
+    }
+    .edb-slide.info-slide .material-info-stock-availability{
+      top:calc(~"60% + 1.25rem");
+    }
+    .edb-slide.info-slide .material-info-stock-message{
+      top:calc(~"60% + 2.5rem");
+    }
+}
+@media all and (min-height:900px) and (orientation:portrait){
+  .edb-slider .titles{
+    bottom:0!important;
+    height:100%;
+  }
 }
 
 @media all and (min-width:900px){
@@ -189,6 +334,14 @@
     .edb-slider .controls{
       // top:460px;
       top:calc(~"960px * 0.613");
+    }
+    .edb-slider .titles{
+      bottom:0;
+      height:100%;
+    }
+    .edb-slider .titles a{
+      height:inherit;
+      display:block;
     }
     
   }

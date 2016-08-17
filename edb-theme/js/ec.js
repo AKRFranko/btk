@@ -165,6 +165,7 @@
 
   $(function(){
     ga('require', 'ec');  
+    ga('require', 'linkid');
     var currentList = getCurrentList();
     if(currentList !== null){
       $('.article-link').map( function( ){
@@ -182,8 +183,9 @@
       var product = $('div[data-product]').data('product');
       ga('ec:addProduct', product);
       ga('ec:setAction', 'detail');
-      ga('send', 'pageview'); 
+     
     }
+    ga('send', 'pageview'); 
   });
   
   

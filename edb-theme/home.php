@@ -16,7 +16,7 @@ get_header();?>
     
     <!-- main slider -->
     <div class="home-slider">
-      <?php btk_edb_slider('category_name=carousel&posts_per_page=5');?>
+      <?php btk_edb_slider('category_name=carousel&posts_per_page=6');?>
       
     </div>
     <main id="main" class="site-main lower" role="main">

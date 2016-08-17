@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: edb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Thu Feb 04 2016 12:49:34 GMT-0500 (EST)\n"
-"POT-Revision-Date: Fri Jul 29 2016 16:36:59 GMT-0400 (EDT)\n"
+"POT-Revision-Date: Fri Aug 05 2016 15:29:39 GMT-0400 (EDT)\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: franko <franko@akr.club>\n"
 "Language-Team: \n"
@@ -24,250 +24,6 @@ msgstr ""
 "esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
 "X-Loco-Target-Locale: fr_CA\n"
 "X-Generator: Loco - https://localise.biz/"
-
-#: ../seo.php:3
-msgid "sofa-beds"
-msgstr ""
-
-#: ../seo.php:4
-msgid "sectionals"
-msgstr ""
-
-#: ../seo.php:5
-msgid "armchairs"
-msgstr ""
-
-#: ../seo.php:6 ../header.php:136
-msgid "accessories"
-msgstr ""
-
-#: ../seo.php:7
-msgid "slipcovers"
-msgstr ""
-
-#: ../seo.php:8
-msgid "modular"
-msgstr ""
-
-#: ../comments.php:31
-#, php-format
-msgctxt "comments title"
-msgid "One thought on &ldquo;%2$s&rdquo;"
-msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../comments.php:40 ../comments.php:61
-msgid "Comment navigation"
-msgstr ""
-
-#: ../comments.php:43 ../comments.php:64
-msgid "Older Comments"
-msgstr ""
-
-#: ../comments.php:44 ../comments.php:65
-msgid "Newer Comments"
-msgstr ""
-
-#: ../comments.php:78
-msgid "Comments are closed."
-msgstr ""
-
-#: ../footer.php:19
-msgid "back to top"
-msgstr ""
-
-#: ../functions.php:56
-msgid "Primary"
-msgstr ""
-
-#: ../functions.php:116
-msgid "sidebar"
-msgstr ""
-
-#: ../functions.php:125
-msgid "languages"
-msgstr ""
-
-#: ../functions.php:194
-msgid "products"
-msgstr ""
-
-#: ../functions.php:195
-msgid "order samples"
-msgstr ""
-
-#: ../functions.php:196 ../functions.php:201 ../woocommerce/cart/cart-shipping.
-#: php:122 ../woocommerce/cart/cart-shipping.php:205 ..
-#: /woocommerce/checkout/parts-totals.php:35 ../woocommerce/checkout/parts-totals.
-#: php:40
-msgid "shipping"
-msgstr ""
-
-#: ../functions.php:197 ../functions.php:204
-msgid "about"
-msgstr ""
-
-#: ../functions.php:198 ../functions.php:200
-msgid "contact us"
-msgstr ""
-
-#: ../functions.php:199 ../functions.php:208
-msgid "lookbook"
-msgstr ""
-
-#: ../functions.php:202
-msgid "return & exchange"
-msgstr ""
-
-#: ../functions.php:203 ../woocommerce/checkout/thankyou.php:30
-msgid "my account"
-msgstr ""
-
-#: ../functions.php:205
-msgid "FAQ"
-msgstr ""
-
-#: ../functions.php:206
-msgid "trade & designers"
-msgstr ""
-
-#: ../functions.php:207
-msgid "large orders"
-msgstr ""
-
-#: ../functions.php:209
-msgid "privacy policy"
-msgstr ""
-
-#: ../functions.php:210
-msgid "terms of use"
-msgstr ""
-
-#: ../functions.php:366
-msgid "download PDF"
-msgstr ""
-
-#: ../functions.php:386
-msgid "enter"
-msgstr ""
-
-#: ../functions.php:387
-msgid "entrez"
-msgstr ""
-
-#: ../functions.php:905
-msgid "Shipping Note"
-msgstr ""
-
-#: ../functions.php:907
-msgid "Notes about your order."
-msgstr ""
-
-#: ../404.php:17
-msgid "Oops! That page can&rsquo;t be found."
-msgstr ""
-
-#: ../404.php:21
-msgid "It looks like nothing was found at this location."
-msgstr ""
-
-#: ../header.php:57 ../header.php:155
-msgid "welcome"
-msgstr ""
-
-#: ../header.php:57
-msgid "sign out"
-msgstr ""
-
-#: ../header.php:59
-msgid "sign in"
-msgstr ""
-
-#: ../header.php:62
-msgid "cart"
-msgstr ""
-
-#: ../header.php:102 ../header.php:124 ../header.php:134 ../header.php:135 ..
-#: /header.php:136
-#, php-format
-msgid "View all %s"
-msgstr ""
-
-#: ../header.php:115 ../header.php:120
-#, php-format
-msgid "View all post filed under %s"
-msgstr ""
-
-#: ../header.php:120 ../header.php:146 ../header.php:149
-msgid "all"
-msgstr ""
-
-#: ../header.php:134
-msgid "ottomans"
-msgstr ""
-
-#: ../header.php:135
-msgid "rugs"
-msgstr ""
-
-#: ../header.php:147 ../header.php:150
-msgid "sale"
-msgstr ""
-
-#: ../header.php:158 ../header.php:169
-msgid "returning customers<br />please sign in"
-msgstr ""
-
-#: ../header.php:162
-msgid "new customers<br />sign up for shopping<br />and exclusive offers"
-msgstr ""
-
-#: ../header.php:173 ../header.php:200 ../woocommerce/order/order-details-
-#: customer.php:26
-msgid "email"
-msgstr ""
-
-#: ../header.php:177 ../header.php:204
-msgid "password"
-msgstr ""
-
-#: ../header.php:183
-msgid "enter edb"
-msgstr ""
-
-#: ../header.php:184
-msgid "login"
-msgstr ""
-
-#: ../header.php:187
-msgid "> click here to recover lost password"
-msgstr ""
-
-#: ../header.php:189 ../header.php:219
-msgid "back"
-msgstr ""
-
-#: ../header.php:195
-msgid "new customers sign up for shopping<br />and exclusive offers"
-msgstr ""
-
-#: ../header.php:208
-msgid "confirm password"
-msgstr ""
-
-#: ../header.php:214
-msgid "sign up to edb"
-msgstr ""
-
-#: ../header.php:215
-msgid "register"
-msgstr ""
-
-#: ../search.php:19
-#, php-format
-msgid "Search Results for: %s"
-msgstr ""
 
 #: ../inc/template-tags.php:28
 #, php-format
@@ -316,147 +72,56 @@ msgstr ""
 msgid "edit %s"
 msgstr ""
 
-#: ../woocommerce/single-product-reviews.php:24
+#: ../seo.php:3
+msgid "sofa-beds"
+msgstr ""
+
+#: ../seo.php:4
+msgid "sectionals"
+msgstr ""
+
+#: ../seo.php:5
+msgid "armchairs"
+msgstr ""
+
+#: ../seo.php:6 ../header.php:137
+msgid "accessories"
+msgstr ""
+
+#: ../seo.php:7
+msgid "slipcovers"
+msgstr ""
+
+#: ../seo.php:8
+msgid "modular"
+msgstr ""
+
+#: ../comments.php:31
 #, php-format
-msgid "%s review for %s"
-msgid_plural "%s reviews for %s"
+msgctxt "comments title"
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../woocommerce/single-product-reviews.php:26
-msgid "Reviews"
+#: ../comments.php:40 ../comments.php:61
+msgid "Comment navigation"
 msgstr ""
 
-#: ../woocommerce/single-product-reviews.php:47
-msgid "There are no reviews yet."
+#: ../comments.php:43 ../comments.php:64
+msgid "Older Comments"
 msgstr ""
 
-#: ../woocommerce/single-product-reviews.php:60
-msgid "Add a review"
+#: ../comments.php:44 ../comments.php:65
+msgid "Newer Comments"
 msgstr ""
 
-#: ../woocommerce/single-product-reviews.php:60
-msgid "Be the first to review"
+#: ../comments.php:78
+msgid "Comments are closed."
 msgstr ""
 
-#: ../woocommerce/single-product-reviews.php:61
-#, php-format
-msgid "Leave a Reply to %s"
-msgstr ""
-
-#: ../woocommerce/single-product-reviews.php:65
-msgid "Name"
-msgstr ""
-
-#: ../woocommerce/single-product-reviews.php:67
-msgid "Email"
-msgstr ""
-
-#: ../woocommerce/single-product-reviews.php:70
-msgid "Submit"
-msgstr ""
-
-#: ../woocommerce/single-product-reviews.php:76
-#, php-format
-msgid "You must be <a href=\"%s\">logged in</a> to post a review."
-msgstr ""
-
-#: ../woocommerce/single-product-reviews.php:80
-msgid "Your Rating"
-msgstr ""
-
-#: ../woocommerce/single-product-reviews.php:81
-msgid "Rate&hellip;"
-msgstr ""
-
-#: ../woocommerce/single-product-reviews.php:82
-msgid "Perfect"
-msgstr ""
-
-#: ../woocommerce/single-product-reviews.php:83
-msgid "Good"
-msgstr ""
-
-#: ../woocommerce/single-product-reviews.php:84
-msgid "Average"
-msgstr ""
-
-#: ../woocommerce/single-product-reviews.php:85
-msgid "Not that bad"
-msgstr ""
-
-#: ../woocommerce/single-product-reviews.php:86
-msgid "Very Poor"
-msgstr ""
-
-#: ../woocommerce/single-product-reviews.php:90
-msgid "Your Review"
-msgstr ""
-
-#: ../woocommerce/single-product-reviews.php:99
-msgid "Only logged in customers who have purchased this product may leave a review."
-msgstr ""
-
-#: ../woocommerce/content-single-product.php:54
-#, php-format
-msgid ""
-"The <a href=\"%s\">stuffing</a> is sold separately. <a href=\"%s\">click here to "
-"get some.</a>"
-msgstr ""
-
-#: ../woocommerce/content-single-product.php:68
-msgid "description"
-msgstr ""
-
-#: ../woocommerce/content-single-product.php:87
-msgid "this product is currently out of stock and unavailable."
-msgstr ""
-
-#: ../woocommerce/content-single-product.php:123
-msgid "in stock"
-msgstr ""
-
-#: ../woocommerce/content-single-product.php:124
-msgid "restocking"
-msgstr ""
-
-#: ../woocommerce/content-single-product.php:159
-msgid "designer"
-msgstr ""
-
-#: ../woocommerce/content-single-product.php:181
-msgid "assembly instructions"
-msgstr ""
-
-#: ../woocommerce/content-single-product.php:190
-msgid "materials and dimensions"
-msgstr ""
-
-#: ../woocommerce/content-single-product.php:199
-msgid "shipping and return"
-msgstr ""
-
-#: ../woocommerce/content-single-product.php:221
-msgid "why heather loves this model"
-msgstr ""
-
-#: ../woocommerce/product-searchform.php:2
-msgid "Search for:"
-msgstr ""
-
-#: ../woocommerce/product-searchform.php:3
-msgctxt "placeholder"
-msgid "Search Products&hellip;"
-msgstr ""
-
-#: ../woocommerce/product-searchform.php:3
-msgctxt "label"
-msgid "Search for:"
-msgstr ""
-
-#: ../woocommerce/product-searchform.php:4
-msgctxt "submit button"
-msgid "Search"
+#: ../footer.php:19
+msgid "back to top"
 msgstr ""
 
 #: ../woocommerce/single-product/sale-flash.php:19 ../woocommerce/loop/sale-flash.
@@ -483,6 +148,18 @@ msgstr ""
 
 #: ../woocommerce/single-product/review.php:46
 msgid "verified owner"
+msgstr ""
+
+#: ../woocommerce/single-product/tabs/description.php:16
+msgid "Product Description"
+msgstr ""
+
+#: ../woocommerce/single-product/tabs/additional-information.php:16
+msgid "Additional Information"
+msgstr ""
+
+#: ../woocommerce/single-product/add-to-cart/variable.php:23
+msgid "This product is currently out of stock and unavailable."
 msgstr ""
 
 #: ../woocommerce/single-product/meta.php:26
@@ -546,18 +223,6 @@ msgstr[1] ""
 msgid "You may also like&hellip;"
 msgstr ""
 
-#: ../woocommerce/single-product/tabs/description.php:16
-msgid "Product Description"
-msgstr ""
-
-#: ../woocommerce/single-product/tabs/additional-information.php:16
-msgid "Additional Information"
-msgstr ""
-
-#: ../woocommerce/single-product/add-to-cart/variable.php:23
-msgid "This product is currently out of stock and unavailable."
-msgstr ""
-
 #: ../woocommerce/order/form-tracking.php:20
 msgid ""
 "To track your order please enter your Order ID in the box below and press "
@@ -591,6 +256,11 @@ msgstr ""
 
 #: ../woocommerce/order/order-details-customer.php:19
 msgid "note"
+msgstr ""
+
+#: ../woocommerce/order/order-details-customer.php:26 ../header.php:174 ../header.
+#: php:201
+msgid "email"
 msgstr ""
 
 #: ../woocommerce/order/order-details-customer.php:33
@@ -742,6 +412,13 @@ msgstr ""
 msgid "shipping #%s"
 msgstr ""
 
+#: ../woocommerce/cart/cart-shipping.php:122 ../woocommerce/cart/cart-shipping.
+#: php:205 ../woocommerce/checkout/parts-totals.php:35 ..
+#: /woocommerce/checkout/parts-totals.php:40 ../functions.php:196 ../functions.
+#: php:201
+msgid "shipping"
+msgstr ""
+
 #: ../woocommerce/cart/cart-shipping.php:165
 msgid "Please use the shipping calculator to see available shipping methods."
 msgstr ""
@@ -801,6 +478,87 @@ msgstr ""
 
 #: ../woocommerce/cart/shipping-calculator.php:34
 msgid "update totals"
+msgstr ""
+
+#: ../woocommerce/single-product-reviews.php:24
+#, php-format
+msgid "%s review for %s"
+msgid_plural "%s reviews for %s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../woocommerce/single-product-reviews.php:26
+msgid "Reviews"
+msgstr ""
+
+#: ../woocommerce/single-product-reviews.php:47
+msgid "There are no reviews yet."
+msgstr ""
+
+#: ../woocommerce/single-product-reviews.php:60
+msgid "Add a review"
+msgstr ""
+
+#: ../woocommerce/single-product-reviews.php:60
+msgid "Be the first to review"
+msgstr ""
+
+#: ../woocommerce/single-product-reviews.php:61
+#, php-format
+msgid "Leave a Reply to %s"
+msgstr ""
+
+#: ../woocommerce/single-product-reviews.php:65
+msgid "Name"
+msgstr ""
+
+#: ../woocommerce/single-product-reviews.php:67
+msgid "Email"
+msgstr ""
+
+#: ../woocommerce/single-product-reviews.php:70
+msgid "Submit"
+msgstr ""
+
+#: ../woocommerce/single-product-reviews.php:76
+#, php-format
+msgid "You must be <a href=\"%s\">logged in</a> to post a review."
+msgstr ""
+
+#: ../woocommerce/single-product-reviews.php:80
+msgid "Your Rating"
+msgstr ""
+
+#: ../woocommerce/single-product-reviews.php:81
+msgid "Rate&hellip;"
+msgstr ""
+
+#: ../woocommerce/single-product-reviews.php:82
+msgid "Perfect"
+msgstr ""
+
+#: ../woocommerce/single-product-reviews.php:83
+msgid "Good"
+msgstr ""
+
+#: ../woocommerce/single-product-reviews.php:84
+msgid "Average"
+msgstr ""
+
+#: ../woocommerce/single-product-reviews.php:85
+msgid "Not that bad"
+msgstr ""
+
+#: ../woocommerce/single-product-reviews.php:86
+msgid "Very Poor"
+msgstr ""
+
+#: ../woocommerce/single-product-reviews.php:90
+msgid "Your Review"
+msgstr ""
+
+#: ../woocommerce/single-product-reviews.php:99
+msgid "Only logged in customers who have purchased this product may leave a review."
 msgstr ""
 
 #: ../woocommerce/emails/customer-completed-order.php:32 ..
@@ -1003,15 +761,6 @@ msgstr ""
 msgid "For your reference, your order details are shown below."
 msgstr ""
 
-#: ../woocommerce/emails/email-order-items.php:69
-msgid "Product Image"
-msgstr ""
-
-#: ../woocommerce/emails/admin-new-order.php:26
-#, php-format
-msgid "You have received an order from %s. The order is as follows:"
-msgstr ""
-
 #: ../woocommerce/emails/plain/customer-completed-order.php:22 ..
 #: /woocommerce/emails/plain/customer-refunded-order.php:22 ..
 #: /woocommerce/emails/plain/customer-invoice.php:23 ..
@@ -1118,6 +867,15 @@ msgstr ""
 msgid "You have received an order from %s."
 msgstr ""
 
+#: ../woocommerce/emails/email-order-items.php:69
+msgid "Product Image"
+msgstr ""
+
+#: ../woocommerce/emails/admin-new-order.php:26
+#, php-format
+msgid "You have received an order from %s. The order is as follows:"
+msgstr ""
+
 #: ../woocommerce/auth/form-login.php:18 ../woocommerce/auth/form-grant-access.
 #: php:16
 #, php-format
@@ -1171,6 +929,49 @@ msgstr ""
 
 #: ../woocommerce/auth/header.php:20
 msgid "Application Authentication Request"
+msgstr ""
+
+#: ../woocommerce/content-single-product.php:54
+#, php-format
+msgid ""
+"The <a href=\"%s\">stuffing</a> is sold separately. <a href=\"%s\">click here to "
+"get some.</a>"
+msgstr ""
+
+#: ../woocommerce/content-single-product.php:68
+msgid "description"
+msgstr ""
+
+#: ../woocommerce/content-single-product.php:87
+msgid "this product is currently out of stock and unavailable."
+msgstr ""
+
+#: ../woocommerce/content-single-product.php:123
+msgid "in stock"
+msgstr ""
+
+#: ../woocommerce/content-single-product.php:124
+msgid "restocking"
+msgstr ""
+
+#: ../woocommerce/content-single-product.php:159
+msgid "designer"
+msgstr ""
+
+#: ../woocommerce/content-single-product.php:181
+msgid "assembly instructions"
+msgstr ""
+
+#: ../woocommerce/content-single-product.php:190
+msgid "materials and dimensions"
+msgstr ""
+
+#: ../woocommerce/content-single-product.php:199
+msgid "shipping and return"
+msgstr ""
+
+#: ../woocommerce/content-single-product.php:221
+msgid "why heather loves this model"
 msgstr ""
 
 #: ../woocommerce/checkout/payment.php:34 ../woocommerce/checkout/form-summaries.
@@ -1360,6 +1161,10 @@ msgstr ""
 
 #: ../woocommerce/checkout/thankyou.php:24
 msgid "please attempt your purchase again."
+msgstr ""
+
+#: ../woocommerce/checkout/thankyou.php:30 ../functions.php:203
+msgid "my account"
 msgstr ""
 
 #: ../woocommerce/checkout/thankyou.php:36 ../woocommerce/checkout/thankyou.php:74
@@ -1693,6 +1498,25 @@ msgstr ""
 msgid "You currently have a %s credit left."
 msgstr ""
 
+#: ../woocommerce/product-searchform.php:2
+msgid "Search for:"
+msgstr ""
+
+#: ../woocommerce/product-searchform.php:3
+msgctxt "placeholder"
+msgid "Search Products&hellip;"
+msgstr ""
+
+#: ../woocommerce/product-searchform.php:3
+msgctxt "label"
+msgid "Search for:"
+msgstr ""
+
+#: ../woocommerce/product-searchform.php:4
+msgctxt "submit button"
+msgid "Search"
+msgstr ""
+
 #: ../template-parts/content-page.php:72 ../template-parts/content.php:68
 #, php-format
 msgid "Continue reading %s <span class=\"meta-nav\">&rarr;</span>"
@@ -1717,6 +1541,182 @@ msgstr ""
 msgid ""
 "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
 "searching can help."
+msgstr ""
+
+#: ../functions.php:56
+msgid "Primary"
+msgstr ""
+
+#: ../functions.php:116
+msgid "sidebar"
+msgstr ""
+
+#: ../functions.php:125
+msgid "languages"
+msgstr ""
+
+#: ../functions.php:194
+msgid "products"
+msgstr ""
+
+#: ../functions.php:195
+msgid "order samples"
+msgstr ""
+
+#: ../functions.php:197 ../functions.php:204
+msgid "about"
+msgstr ""
+
+#: ../functions.php:198 ../functions.php:200
+msgid "contact us"
+msgstr ""
+
+#: ../functions.php:199 ../functions.php:208
+msgid "lookbook"
+msgstr ""
+
+#: ../functions.php:202
+msgid "return & exchange"
+msgstr ""
+
+#: ../functions.php:205
+msgid "FAQ"
+msgstr ""
+
+#: ../functions.php:206
+msgid "trade & designers"
+msgstr ""
+
+#: ../functions.php:207
+msgid "large orders"
+msgstr ""
+
+#: ../functions.php:209
+msgid "privacy policy"
+msgstr ""
+
+#: ../functions.php:210
+msgid "terms of use"
+msgstr ""
+
+#: ../functions.php:366
+msgid "download PDF"
+msgstr ""
+
+#: ../functions.php:386
+msgid "enter"
+msgstr ""
+
+#: ../functions.php:387
+msgid "entrez"
+msgstr ""
+
+#: ../functions.php:905
+msgid "Shipping Note"
+msgstr ""
+
+#: ../functions.php:907
+msgid "Notes about your order."
+msgstr ""
+
+#: ../404.php:17
+msgid "Oops! That page can&rsquo;t be found."
+msgstr ""
+
+#: ../404.php:21
+msgid "It looks like nothing was found at this location."
+msgstr ""
+
+#: ../header.php:57 ../header.php:156
+msgid "welcome"
+msgstr ""
+
+#: ../header.php:57
+msgid "sign out"
+msgstr ""
+
+#: ../header.php:59
+msgid "sign in"
+msgstr ""
+
+#: ../header.php:62
+msgid "cart"
+msgstr ""
+
+#: ../header.php:102 ../header.php:124 ../header.php:135 ../header.php:136 ..
+#: /header.php:137
+#, php-format
+msgid "View all %s"
+msgstr ""
+
+#: ../header.php:115 ../header.php:120
+#, php-format
+msgid "View all post filed under %s"
+msgstr ""
+
+#: ../header.php:120 ../header.php:147 ../header.php:150
+msgid "all"
+msgstr ""
+
+#: ../header.php:135
+msgid "ottomans"
+msgstr ""
+
+#: ../header.php:136
+msgid "rugs"
+msgstr ""
+
+#: ../header.php:148 ../header.php:151
+msgid "sale"
+msgstr ""
+
+#: ../header.php:159 ../header.php:170
+msgid "returning customers<br />please sign in"
+msgstr ""
+
+#: ../header.php:163
+msgid "new customers<br />sign up for shopping<br />and exclusive offers"
+msgstr ""
+
+#: ../header.php:178 ../header.php:205
+msgid "password"
+msgstr ""
+
+#: ../header.php:184
+msgid "enter edb"
+msgstr ""
+
+#: ../header.php:185
+msgid "login"
+msgstr ""
+
+#: ../header.php:188
+msgid "> click here to recover lost password"
+msgstr ""
+
+#: ../header.php:190 ../header.php:220
+msgid "back"
+msgstr ""
+
+#: ../header.php:196
+msgid "new customers sign up for shopping<br />and exclusive offers"
+msgstr ""
+
+#: ../header.php:209
+msgid "confirm password"
+msgstr ""
+
+#: ../header.php:215
+msgid "sign up to edb"
+msgstr ""
+
+#: ../header.php:216
+msgid "register"
+msgstr ""
+
+#: ../search.php:19
+#, php-format
+msgid "Search Results for: %s"
 msgstr ""
 
 #. Name of the theme

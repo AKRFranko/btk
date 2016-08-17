@@ -1253,6 +1253,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   public function get_available_items( $item, $wants, $have ){
     // write_log("GET_AVAILABLE_ITEMS: wants: $wants have: $have");
     global $Edb;
+    
     $newitem = $item;
     $newitem['quantity'] = $have;
     $newitem['edb_was_backorder'] = false;
@@ -1279,10 +1280,12 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   public function get_backorder_items( $item, $wants, $have ){
     // write_log("GET_BACKORDER_ITEMS: wants: $wants have: $have");
     global $Edb;
+    
     $newitem = $item;
     $qty = $wants - $have;
     $newitem['quantity'] = $qty;
     $newitem['edb_was_backorder'] = true;
+    
     $newitem['line_total'] = ( $item['line_total'] / $wants ) * $qty;
     $newitem['line_tax'] = ( $item['line_tax'] / $wants ) * $qty;
     $newitem['line_subtotal'] = ( $item['line_subtotal'] / $wants ) * $qty;

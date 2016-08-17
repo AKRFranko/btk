@@ -31,6 +31,27 @@ main >  .article.tall{
 .home .site-main{
   margin:0;
 }
+.inspiration{
+  text-align:center;
+}
+.inspiration-header{
+  margin-bottom:4em;
+}
+.gallery{
+  display:block;
+  box-sizing:border-box;
+  width:100%;
+  margin:0;
+  padding:0;
+}
+.gallery-item{
+  box-sizing:border-box;
+  display:block;
+  width:100%;
+  margin:0 0 2em 0;
+  padding:0;
+  max-width:100%!important;
+}
 // .home{
 //   .article:nth-of-type(4){
 //     height:760px;
@@ -467,22 +488,37 @@ main >  .article.tall{
  
  @media all and (min-width:900px){
    .archive, .home{
+     main{
+       padding-top:40px;
+     }
       main > article{
-        width:calc(~"33.3%  - 1em");
-        height:380px;
+        // width:calc(~"33.3%  - 1em");
+        // height:380px;
         // padding: .5em;
+        height:460px;
+        width:calc(~"920px / 2");
         padding:0;
-        margin:.5em;
-        margin-top:.75em;
-      }
-      main > article.tall{
-        height:570px;
+        margin:0;
+        margin-top:0;
         .article-image{
-          height:380px;
+          height:calc(~"564px / 2");;
+        }
+        &:nth-of-type(even){
+          margin-left:40px;
         }
         .article-info{
           height:190px;
         }
+        
+      }
+      main > article.tall{
+        height:calc(~"564px / 2");
+        // .article-image{
+        //   height:380px;
+        // }
+        // .article-info{
+        //   height:190px;
+        // }
       }
       // main > article:nth-of-type(3n){
       //   padding-right:0;

@@ -61,7 +61,7 @@
   });
 
 
-  $(document).on('click', '#cat-nav', function(e) {
+  $(document).on('click tap', '#cat-nav', function(e) {
     var $target = $(e.target);
     if ($target.is('#cat-nav') || $target.is('div')) {
       $('#shop-nav a:first').click();
@@ -153,13 +153,18 @@
     var shippingDelays = data.shippingDelay;
     var selectedQty = $('input[name=quantity]').val();
     var availableQty = 1 * shippingDelays.stock;
-    var $mdesc = $('#material-' + $input.val());
-
+    var availableText = '';
+    var stockLabel = data.stockLabel;
+    var stockMessage = data.stockMessage;
+    // console.log(data);
     if (availableQty < selectedQty) {
-      $('.product-selected-availability .value').text(shippingDelays.max)
+      availableText = shippingDelays.max;
+
     } else {
-      $('.product-selected-availability .value').text(shippingDelays.min)
+      availableText = shippingDelays.min;
+
     }
+    $('.product-selected-availability .value').text(availableText);
     // var availabilites = $input.data('preview');
 
     var $originSlide = $('.edb-slide.active');
@@ -168,32 +173,51 @@
     var $slider = $('.edb-slider');
     $slider.data('autocycle', 0);
     var index = $slider.find('.controls .current').text();
+    
     $('.product-selected-material .label').html(name);
 
     if ($choice.parent().siblings().length) {
+      $originSlide.addClass('info-slide');
+      $originSlide.find('.material-info-material-image').css('background-image', $choice.css('background-image') );
+      $originSlide.find('.material-info-title').text(data.material.name);
+      $originSlide.find('.material-info-composition').text('');
+      $('.zoom-control').hide()
+      if(data.material.composition.length){
+        data.material.composition.forEach(function( line ){
+          $originSlide.find('.material-info-composition').append('<li>'+line+'</li>');
+        })
+      }
+      
+      $originSlide.find('.material-info-stock-label').text(stockLabel);
+      $originSlide.find('.material-info-stock-message').text(stockMessage);
+      $originSlide.find('.material-info-stock-availability').text(availableText);
       if (!preview) {
-        
-        console.log($mdesc.html())
-        $originSlide.find('.backdrop').css({
-          'background-image': $choice.css('background-image'),
-          'background-size': '50%'
-        });
+        $originSlide.find('.material-info-product-image').css('background-image', 'none' );  
+        $originSlide.find('.material-info-material-image').css('height','100%');
+        // $originSlide.find('.backdrop').css({
+        //   'background-image': $choice.css('background-image'),
+        //   'background-size': '50%'
+        // });
       } else {
-        $originSlide.find('.backdrop').css({
-          'background-image': 'url(' + preview + ')',
-          'background-size': 'cover'
-        });
+        $originSlide.find('.material-info-product-image').css('background-image', 'url(' + preview + ')' );  
+        $originSlide.find('.material-info-material-image').css('height','50%');
+        // $originSlide.find('.backdrop').css({
+        //   'background-image': 'url(' + preview + ')',
+        //   'background-size': 'cover'
+        // });
       }
 
 
       $slider.find('.controls .current').html(name).css('width', 'auto');
       $slider.find('.controls .last, .controls .separator').hide();
       $slider.one('cycled', function() {
-
-        $originSlide.find('.backdrop').css({
-          'background-image': 'url(' + originSrc + ')',
-          'background-size': 'cover'
-        });
+        
+        $originSlide.removeClass('info-slide');
+        $('.zoom-control').show()
+        // $originSlide.find('.backdrop').css({
+        //   'background-image': 'url(' + originSrc + ')',
+        //   'background-size': 'cover'
+        // });
 
         $slider.find('.controls .last, .controls .separator').show();
         $slider.find('.controls .current').css('width', '2em')
@@ -245,12 +269,13 @@
 
 
   $(function() {
-    jQuery('.home .site-main').masonry({
-      // options
-      itemSelector: '.article',
-      originLeft: true,
-      originTop: true
-    });
+    // jQuery('.home .site-main').masonry({
+    //   // options
+    //   itemSelector: '.article',
+    //   originLeft: true,
+    //   originTop: true,
+    //   gutter: 30
+    // });
     var mat_choices = $('[name=_edb_material_choice]');
     if (mat_choices && mat_choices.length && mat_choices.length === 1) {
       var value = parseFloat(mat_choices.val());
@@ -370,6 +395,8 @@
         pageSelector.cycle(-1);
         $current.text(pageSelector.active + 1);
       });
+      
+     
 
 
     }
