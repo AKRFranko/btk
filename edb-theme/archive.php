@@ -38,7 +38,7 @@ get_header(); ?>
 				// // }
 				
 				?>
-				<article class="article">
+				<article class="article <?php echo "article-".$post->post_type; ?>">
 				    
             <a class="article-link" href="<?php echo get_permalink();?>">
               <?php if (has_post_thumbnail()): ?>

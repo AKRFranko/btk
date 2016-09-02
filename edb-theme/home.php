@@ -48,6 +48,12 @@ $my_query = new WP_Query(array(
                 if($tag->name =='tall'){
                     $altClass .= 'tall';
                 }
+                if($tag->name =='wide'){
+                    $altClass .= 'wide';
+                }
+                if($tag->name =='square'){
+                    $altClass .= 'square';
+                }
               }
             };
             //https://badb0x.akr.club/wp-content/uploads/2015/12/image-2.jpg

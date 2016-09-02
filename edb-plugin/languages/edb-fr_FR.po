@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: edb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-04 12:09-0500\n"
-"PO-Revision-Date: Wed Apr 27 2016 13:10:09 GMT-0400 (EDT)\n"
+"PO-Revision-Date: Wed Aug 17 2016 12:31:22 GMT-0400 (EDT)\n"
 "Last-Translator: admin <admin@elementdebase.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: French (France)\n"
@@ -21,6 +21,70 @@ msgstr ""
 "esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
 "X-Loco-Target-Locale: fr_FR\n"
 "X-Generator: Loco - https://localise.biz/"
+
+#: ../includes/template-tags.php:133
+#, php-format
+msgid "%s thumbnail image"
+msgstr ""
+
+#: ../includes/template-tags.php:510
+msgid "youtube video"
+msgstr ""
+
+#: ../includes/template-tags.php:522
+#, php-format
+msgid "%s image #%d"
+msgstr ""
+
+#: ../includes/template-tags.php:621
+#, php-format
+msgid "material #%s"
+msgstr ""
+
+#: ../includes/template-tags.php:682 ../includes/template-tags.php:690
+msgid "restocking"
+msgstr ""
+
+#: ../includes/template-tags.php:691
+msgid "order it in this fabric"
+msgstr "commander dans ce tissu"
+
+#: ../includes/template-tags.php:696
+msgid "order now to reserve your item"
+msgstr "commander maintenant pour réserver cet item"
+
+#: ../includes/template-tags.php:987
+msgid "technical detail image"
+msgstr ""
+
+#: ../includes/template-tags.php:1039
+#, fuzzy
+msgid "self pickup"
+msgstr ""
+
+#: ../includes/template-tags.php:1040
+msgid "ship when ready"
+msgstr ""
+
+#: ../includes/template-tags.php:1041
+msgid "ship as bundle 1"
+msgstr ""
+
+#: ../includes/template-tags.php:1042
+msgid "ship as bundle 2"
+msgstr ""
+
+#: ../includes/template-tags.php:1043
+msgid "ship as bundle 3"
+msgstr ""
+
+#: ../includes/class-edb-wc-integration.php:23
+msgid "EDB Integration"
+msgstr ""
+
+#: ../includes/class-edb-wc-integration.php:24
+msgid "An integratino demo to show you how easy it is to extend WooCommerce."
+msgstr ""
 
 #. Name of the plugin
 #, fuzzy
@@ -41,131 +105,114 @@ msgstr ""
 msgid "Franko"
 msgstr ""
 
-#: ../includes/template-tags.php:718
-#, fuzzy
-msgid "self pickup"
+#: ../admin/class-edb-admin.php:196
+msgid "Size Code"
 msgstr ""
 
-#: ../includes/template-tags.php:719
-msgid "ship when ready"
+#: ../admin/class-edb-admin.php:201
+msgid "Meta Code"
 msgstr ""
 
-#: ../includes/template-tags.php:720
-msgid "ship as bundle 1"
+#: ../admin/class-edb-admin.php:208
+msgid "Materials & Dimensions"
 msgstr ""
 
-#: ../includes/template-tags.php:721
-msgid "ship as bundle 2"
-msgstr ""
-
-#: ../includes/template-tags.php:722
-msgid "ship as bundle 3"
-msgstr ""
-
-#: ../includes/class-edb-wc-integration.php:23
-msgid "EDB Integration"
-msgstr ""
-
-#: ../includes/class-edb-wc-integration.php:24
-msgid "An integratino demo to show you how easy it is to extend WooCommerce."
-msgstr ""
-
-#: ../admin/class-edb-admin.php:184 ../admin/class-edb-admin.php:247
+#: ../admin/class-edb-admin.php:216 ../admin/class-edb-admin.php:301
 msgid "Min shipping delay when item is <b>in stock</b>"
 msgstr ""
 
-#: ../admin/class-edb-admin.php:186 ../admin/class-edb-admin.php:249
+#: ../admin/class-edb-admin.php:218 ../admin/class-edb-admin.php:303
 msgid "ex: +7 days"
 msgstr ""
 
-#: ../admin/class-edb-admin.php:194
+#: ../admin/class-edb-admin.php:226
 msgid "Min shipping delay when item is <b>backorder</b>"
 msgstr ""
 
-#: ../admin/class-edb-admin.php:196 ../admin/class-edb-admin.php:262
-msgid "ex: +14 days"
+#: ../admin/class-edb-admin.php:228 ../admin/class-edb-admin.php:316
+msgid "ex: +16 weeks"
 msgstr ""
 
-#: ../admin/class-edb-admin.php:205
-msgid "Image to use as technical detail."
+#: ../admin/class-edb-admin.php:236 ../admin/class-edb-admin.php:325
+msgid "Expected Restock Date"
 msgstr ""
 
-#: ../admin/class-edb-admin.php:213 ../admin/class-edb-admin.php:221
+#: ../admin/class-edb-admin.php:263 ../admin/class-edb-admin.php:271
 msgid "ID of youtube video for product introduction"
 msgstr ""
 
-#: ../admin/class-edb-admin.php:260
+#: ../admin/class-edb-admin.php:314
 msgid "Min shipping delay  when item is <b>backorder</b>"
 msgstr ""
 
-#: ../includes/template-tags.php:49
+#: ../admin/class-edb-admin.php:334
+msgid "Expected Restock Quantity"
+msgstr ""
+
+#: ../includes/template-tags.php:107
 msgid "download pdf"
 msgstr "télécharger le pdf"
 
-#: ../includes/template-tags.php:242
-#, php-format
-msgid "ships: %s"
-msgstr "départ: %s"
-
-#: ../includes/template-tags.php:467
+#: ../includes/template-tags.php:635
 msgid "order samples"
 msgstr "échantillons"
 
-#: ../includes/template-tags.php:484
+#: ../includes/template-tags.php:670
 msgid "select a color"
 msgstr "choisir une couleur"
 
-#: ../includes/template-tags.php:492
+#: ../includes/template-tags.php:679 ../includes/template-tags.php:692
 msgid "in stock"
 msgstr "disponible"
 
-#: ../includes/template-tags.php:496
+#: ../includes/template-tags.php:685
 msgid "backorder"
 msgstr "arriéré de commande"
 
-#: ../includes/template-tags.php:769
+#: ../includes/template-tags.php:1090
 msgid "self pickup discount"
 msgstr "escompte auto-cueillette"
 
-#: ../includes/template-tags.php:786
+#: ../includes/template-tags.php:1107
 msgid "credit card"
 msgstr "carte de crédit"
 
-#: ../includes/template-tags.php:790
+#: ../includes/template-tags.php:1111
 msgid "expiry"
 msgstr "expiration"
 
-#: ../includes/template-tags.php:799
+#: ../includes/template-tags.php:1120
 msgid "no color selected"
 msgstr "aucune couleur sélectionnée"
 
-#: ../includes/template-tags.php:802
+#: ../includes/template-tags.php:1123
 msgid "quantity"
 msgstr "quantitée"
 
-#: ../includes/template-tags.php:812
+#: ../includes/template-tags.php:1133
 msgid "availability"
 msgstr "disponibilité"
 
-#: ../includes/template-tags.php:819
+#: ../includes/template-tags.php:1140
 msgid "ADD TO CART"
 msgstr "AJOUTER AU PANIER"
 
-#: ../includes/class-edb-shipping.php:27
+#: ../includes/class-edb-shipping.php:9 ../includes/class-edb-shipping.php:37 ..
+#: includes/class-edb-shipping.php:39
 #, php-format
 msgid "%s week"
 msgid_plural "%s weeks"
 msgstr[0] "%s semaine"
 msgstr[1] "%s semaines"
 
-#: ../includes/class-edb-shipping.php:425
+#: ../includes/class-edb-shipping.php:558
 msgid "regular items"
 msgstr "items réguliers"
 
-#: ../includes/class-edb-shipping.php:428
+#: ../includes/class-edb-shipping.php:561
 msgid "sale items"
 msgstr "items en vente"
 
-#: ../admin/class-edb-admin.php:357
+#: ../admin/class-edb-admin.php:464
 msgid "Material ID"
 msgstr "ID Materiel"

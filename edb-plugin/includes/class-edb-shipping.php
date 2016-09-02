@@ -213,11 +213,12 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     write_log("!!reduce_restock:");
     // write_log($data);
     foreach ( $order->get_items() as $item ) {
+      write_log($item);
       if ( $item['variation_id'] > 0 ) {
           $restock = get_post_meta( $item['variation_id'], '_edb_variation_expected_restock', true );
           if(!empty($restock)){
             write_log('EXPECTS RESTOCK');
-            $restock_qty = get_post_meta( $item['variation_id'], '_edb_variation_expected_restock_qty', true );
+            $restock_qty = intval(get_post_meta( $item['variation_id'], '_edb_variation_expected_restock_qty', true ));
             $_product = $order->get_product_from_item( $item );
             $stock = $_product->get_stock_quantity();
             if($stock < 0 ){
@@ -593,12 +594,12 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     
     
     
-    //   if(isset($_SESSION['use_credits']) && !empty($_SESSION['use_credits'])){
-    //     WC()->cart->add_fee('user credit', -1 * abs($_SESSION['use_credits']), true );
+    //   if(isset($_SESSION['use_points']) && !empty($_SESSION['use_points'])){
+    //     WC()->cart->add_fee('user credit', -1 * abs($_SESSION['use_points']), true );
         
-    //     write_log('PROCESSING CREDIT USAGE: '.(-1 * $_SESSION['use_credits']));
+    //     write_log('PROCESSING CREDIT USAGE: '.(-1 * $_SESSION['use_points']));
         
-    //     $_SESSION['use_credits'] = 0;
+    //     $_SESSION['use_points'] = 0;
     //   }
     
     return $cart;
@@ -609,30 +610,50 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   //   shout('calculate_personal_credit_discount_fees', $_POST );
     
   // }
-  public function add_credit_discount(){
+  public function add_points_discount(){
       @session_start();
       
-      if(isset($_SESSION['use_credits']) && !empty($_SESSION['use_credits'])){
-        $info = get_credit_info_for_coupon_code($_SESSION['use_credits_code']);
-        $credits =  $_SESSION['use_credits'];  
+      if(isset($_SESSION['use_points']) && !empty($_SESSION['use_points'])){
+        $info = get_points_info_for_coupon_code($_SESSION['use_points_code']);
+        $credits =  $_SESSION['use_points'];  
         $subtotal = WC()->cart->subtotal;
-        if($credits > $info['credits_available']){
-            $credits = $info['credits_available'];
+        if($credits > $info['points_available']){
+            $credits = $info['points_available'];
         }
         if($credits > $subtotal){
             $credits = $subtotal;
         }
-        $_SESSION['use_credits'] = $credits;
+        $_SESSION['use_points'] = $credits;
         
-        WC()->cart->add_fee(trim($_SESSION['use_credits_code']) . ' credit',-1 * $credits, false );
+        WC()->cart->add_fee(trim($_SESSION['use_points_code']) . ' credit',-1 * $credits, false );
+      }
+      
+  }
+  public function add_credits_discount(){
+      @session_start();
+      
+      if(isset($_SESSION['use_credits']) && !empty($_SESSION['use_credits'])){
+        $credits_to_use =$_SESSION['use_credits'];
+        $credits_available =  absint(get_user_meta( wp_get_current_user()->ID, '_edb_manual_credit', true ));
+        
+        $subtotal = WC()->cart->subtotal;
+        if($credits_to_use > $credits_available){
+            $credits_to_use = $credits_available;
+        }
+        if($credits_to_use > $subtotal){
+            $credits_to_use = $subtotal;
+        }
+        $_SESSION['use_credits'] = $credits_to_use;
+        
+        WC()->cart->add_fee('credit',-1 * $credits_to_use, false );
       }
       
   }
   
-  public function remove_credit_discount(){
+  public function remove_credits_discount(){
       @session_start();
       if(isset($_SESSION['remove_credits']) &&  $_SESSION['remove_credits'] == true ){
-        $fee_name = trim($_SESSION['use_credits_code']) . ' credit';
+        $fee_name = 'credit';
         
         
         $fees = WC()->cart->get_fees;
@@ -645,9 +666,32 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
         }
         
         WC()->session->set('fees',$newfees);  
-        $_SESSION['remove_credits']=null;
-        $_SESSION['use_credits'] = null;
-        $_SESSION['use_credits_code'] = null;
+        $_SESSION['use_credits']=null;
+        
+      }
+        
+
+  }
+  
+  public function remove_points_discount(){
+      @session_start();
+      if(isset($_SESSION['remove_points']) &&  $_SESSION['remove_points'] == true ){
+        $fee_name = trim($_SESSION['use_points_code']) . ' credit';
+        
+        
+        $fees = WC()->cart->get_fees;
+        $newfees = array();
+        
+        foreach ($fees as $fee) {
+          if ($fee->name != $fee_name) {
+              $newfees[] = $fee;
+          } 
+        }
+        
+        WC()->session->set('fees',$newfees);  
+        $_SESSION['remove_points']=null;
+        $_SESSION['use_points'] = null;
+        $_SESSION['use_points_code'] = null;
       }
         
 
@@ -658,8 +702,10 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     $this->calculate_user_level_discount_fees( $cart );
     $this->calculate_self_pickup_discount_fees( $cart );
     
-    $this->add_credit_discount();
-    $this->remove_credit_discount();
+    $this->add_points_discount();
+    $this->add_credits_discount();
+    $this->remove_points_discount();
+    $this->remove_credits_discount();
     return $cart;
     
     
@@ -729,10 +775,21 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
   }
   
   public function order_status_processing( $order_id ){
-    // $order = new WC_Order( $order_id );
+    $order = new WC_Order( $order_id );
     // write_log( $order->get_order_item_totals() );
     @session_start();
+    $_SESSION['use_points']=null;
     $_SESSION['use_credits']=null;
+    foreach( $order->get_fees() as $fee){
+      if($fee['name'] == 'credit'){
+        $user_id = wp_get_current_user()->ID;
+        $used_credits = $fee['line_total'];
+        $credits = absint(get_user_meta($user_id, '_edb_manual_credit', true ));
+        $left = $credits + $used_credits;
+        if($left < 0) $left = 0;
+        update_user_meta( $user_id , '_edb_manual_credit', $left );
+      }
+    }
   }
   // public function can_coupon_apply_to_product( $valid, $product, $inst, $values){
   //   // write_log( $inst );
@@ -754,19 +811,19 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
 
   }
   
-  public function process_credit_usage( $credits, $cart ){
-    $user_credits = edb_current_user_personal_coupon_info();
-    if(!$user_credits) return;
-    $current_user = wp_get_current_user();
-    $credits_used = get_user_meta($current_user->ID, '_edb_credits_used', true );
-    if(empty($credits_used)) $credits_used = 0;
-    $credits_used = $credits_used + $credits;
-    update_user_meta($current_user->ID, '_edb_credits_used', $credits_used );
-    // update_user_meta($current_user->ID, '_edb_credits_used', 0);
-    WC()->cart->add_fee('credit '.$user_credits['code'], -1 * $credits, true);
+  // public function process_points_usage( $credits, $cart ){
+  //   $user_credits = edb_current_user_personal_coupon_info();
+  //   if(!$user_credits) return;
+  //   $current_user = wp_get_current_user();
+  //   $credits_used = get_user_meta($current_user->ID, '_edb_credits_used', true );
+  //   if(empty($credits_used)) $credits_used = 0;
+  //   $credits_used = $credits_used + $credits;
+  //   update_user_meta($current_user->ID, '_edb_credits_used', $credits_used );
+  //   // update_user_meta($current_user->ID, '_edb_credits_used', 0);
+  //   WC()->cart->add_fee('credit '.$user_credits['code'], -1 * $credits, true);
     
-    $_SESSION['use_credits']=0;
-  }
+  //   $_SESSION['use_points']=0;
+  // }
   
   public function review_order_before_shipping(  ){
       write_log( 'review before shipping');
@@ -923,8 +980,8 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     $current_user = wp_get_current_user();
     $customer_id = $current_user->ID;
     // $customer = WC()->session->get('customer');
-    // if(isset($_SESSION['use_credits'])){
-    //   $this->process_credit_usage($_SESSION['use_credits']);
+    // if(isset($_SESSION['use_points'])){
+    //   $this->process_credit_usage($_SESSION['use_points']);
     // }
     $wordpress_fields = array(
       'first_name' => 'billing_first_name',

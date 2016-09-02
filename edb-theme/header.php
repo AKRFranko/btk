@@ -36,7 +36,7 @@
 
 </head>
 
-<body <?php body_class( edb_body_classes()); ?>>
+<body <?php body_class( edb_body_classes() ); ?>>
   
 <div id="page" class="site">
   <header id="masthead">

@@ -57,7 +57,7 @@ class Edb_Product_Decorator {
   
   
  
-  public function __construct( $product ) {
+  public function __construct( $product, $current_category = null ) {
     $factory = new WC_Product_Factory();
     
     if(empty($product)) return;
@@ -84,10 +84,17 @@ class Edb_Product_Decorator {
     if(!empty( $this->variation_id )){
       $this->variation_object = $factory->get_product( $this->variation_id );
     }
+    $stock_holder_id = null;
     if(!empty( $this->product_id )){
       $this->product_object = $factory->get_product( $this->product_id );
+      $stock_holder_id = $this->product_object->get_attribute('edb_stock_holder');
     }
-    
+    // $product_attributes = get_post_meta($this->product_id, '_product_attributes', true);
+    // $stock_holder_id = $this->attributes['edb_stock_holder'];
+    // write_log($stock_holder_id);
+    if(!empty($stock_holder_id)){
+      $this->stock_holder = $factory->get_product($stock_holder_id);
+    }
     
     $this->post_id =   $this->product_id;
     $this->post_object = get_post( $this->post_id );
@@ -109,9 +116,38 @@ class Edb_Product_Decorator {
     $this->variations = $this->product_object->get_children( $visible_only = true );
     $this->stocks = array();
     $this->available_variations=array();
+    
+    
+    $edb_alternate_id = $this->product_object->get_attribute('edb_alternate_version_id');
+    $edb_alternate_cat = $this->product_object->get_attribute('edb_alternate_version_category');
+    
+    if(!empty($edb_alternate_cat) && !empty($current_category) && $current_category == $edb_alternate_cat){
+      write_log('//');
+      write_log('//USING ALTERNATE IMAGES');
+      write_log('//');
+      $this->image_post_id = $edb_alternate_id;
+    }else{
+      $this->image_post_id = $this->post_id;
+    }
+    
+    
+    
     foreach( $this->variations as $vid){
-      $this->stocks[$vid] = get_post_meta($vid, '_stock', true);
-      array_push( $this->available_variations,get_post_meta($vid, 'attribute_edb_material', true));
+      $current_material = get_post_meta($vid, 'attribute_edb_material', true);
+      
+      // if(isset($this->stock_holder)){
+      //   foreach($this->stock_holder->get_available_variations() as $sh_var){
+      //     if($sh_var['attributes']['attribute_edb_material'] == $current_material){
+      //       $stock = $factory->get_product($sh_var['variation_id'])->get_stock_quantity();
+      //       $this->stocks[$vid] = $stock;
+      //     }
+          
+      //   } 
+      // }else{
+      //   $this->stocks[$vid] = get_post_meta($vid, '_stock', true);  
+      // }
+      $this->stocks[$vid] = get_post_meta($vid, '_stock', true);  
+      array_push( $this->available_variations,$current_material);
     }
     
     // get all materials and their descriptions
@@ -391,9 +427,9 @@ class Edb_Product_Decorator {
   
   private function init_images(){
     
-    $gallery_images = get_post_meta( $this->post_id, '_product_image_gallery', true);
-    $featured_image_id  = get_post_thumbnail_id( $this->post_id );
-    $technical_image_id = get_post_meta( $this->post_id, '_edb_technical_image', true );
+    $gallery_images = get_post_meta( $this->image_post_id, '_product_image_gallery', true);
+    $featured_image_id  = get_post_thumbnail_id( $this->image_post_id );
+    $technical_image_id = get_post_meta( $this->image_post_id, '_edb_technical_image', true );
     
     $slideshow_images   = array();
     $variation_images   = array();
@@ -411,7 +447,7 @@ class Edb_Product_Decorator {
           )
       );
     }else{
-      $attachment_images  = get_attached_media( 'image', $this->post_id );  
+      $attachment_images  = get_attached_media( 'image', $this->image_post_id );  
     }
     foreach( $attachment_images as $image){
       

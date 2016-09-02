@@ -38,27 +38,41 @@ wc_print_notices();
 <?php do_action( 'woocommerce_before_my_account' ); ?>
 
 <?php 
-  $credit_coupon_code = get_credit_coupon_for_email( $current_user->user_email );
+  $credit_coupon_code = get_points_coupon_for_email( $current_user->user_email );
   if(!empty($credit_coupon_code) ){
-    $info = get_credit_info_for_coupon_code($credit_coupon_code);
+    $info = get_points_info_for_coupon_code($credit_coupon_code);
     ?>
     <div id="personal-coupon-info">
       <div class="info-line">
-        <?php printf( __( 'Your very own personal coupon code is: %s', 'edb'), '<code>'.$info['coupon_code'].'</code>' ); ?>  
+        <p><?php printf( __( 'Your very own personal coupon code is: %s', 'edb'), '<code>'.$info['coupon_code'].'</code>' ); ?></p>
       </div>
-      <?php if($info['credits_available'] > 0){ ?>
+      
+      <?php if($info['points_available'] > 0){ ?>
       <div class="info-line">
-        <?php printf( __( 'You currently have a %s credit left.', 'edb'), '<b>'.wc_price($info['credits_available'] ).'</b>') ; ?>
+        <p><?php printf( __( 'You currently have a balance of %s.', 'edb'), '<b>'.wc_price($info['points_available'] ).'</b>') ; ?></p>
       </div>
       <?php }else{ ?>
       <div class="info-line">
         <?php
-        //__( 'Share this code with your friends and family and you get credited 10% of every sale.', 'edb'); 
+        // __( 'Share this code with your friends and family and you get credited 10% of every sale.', 'edb'); 
         ?>
       </div>
       <?php }; ?>
     </div>
+    
   <?php  
+  }
+  $edb_credits = absint(get_user_meta($current_user->ID, '_edb_manual_credit', true));
+  if(!empty($edb_credits) && $edb_credits > 0){
+    ?>
+    <div id="personal-coupon-info">
+      <hr>
+      <div class="info-line">
+        
+        <p><?php printf( __( 'You currently have a credit balance of %s.', 'edb'), '<b>'.wc_price($edb_credits ).'</b>') ; ?></p>
+      </div>
+      </div>
+    <?php
   }
   
 ?>  

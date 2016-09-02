@@ -28,7 +28,9 @@
              'post_status' => 'publish',
              'numberposts' => -1
             ));
+            
           foreach( $children as $idx => $slide){ 
+            
             $image_id = get_post_thumbnail_id( $slide->ID );
             $image_src = wp_get_attachment_image_src( $image_id, 'full')[0];
             $skus = get_post_meta( $slide->ID, 'product_skus', true );

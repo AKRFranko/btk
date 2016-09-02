@@ -45,21 +45,22 @@ get_header( 'shop' ); ?>
 			  $args = array(
 			      'nopaging'=> true,
             'post_type'      => 'product',
-            'meta_query'     => array(
-                'relation' => 'OR',
-                array( // Simple products type
-                    'key'           => '_sale_price',
-                    'value'         => 0,
-                    'compare'       => '>',
-                    'type'          => 'numeric'
-                ),
-                array( // Variable products type
-                    'key'           => '_min_variation_sale_price',
-                    'value'         => 0,
-                    'compare'       => '>',
-                    'type'          => 'numeric'
-                )
-            )
+            'post__in' => wc_get_product_ids_on_sale()
+            // 'meta_query'     => array(
+            //     'relation' => 'OR',
+            //     array( // Simple products type
+            //         'key'           => '_sale_price',
+            //         'value'         => 0,
+            //         'compare'       => '>',
+            //         'type'          => 'numeric'
+            //     ),
+            //     array( // Variable products type
+            //         'key'           => '_min_variation_sale_price',
+            //         'value'         => 0,
+            //         'compare'       => '>',
+            //         'type'          => 'numeric'
+            //     )
+            // )
         );
         
         query_posts( $args );
@@ -81,32 +82,61 @@ get_header( 'shop' ); ?>
 			<?php woocommerce_product_loop_start(); ?>
         
 				<?php woocommerce_product_subcategories(); ?>
-
+				
 				<?php $count =0;while ( have_posts() ) : the_post(); $count++; ?>
 
 					<?php 
-					
+            
 					# wc_get_template_part( 'content', 'product' ); 
 				  ?>
 					<article class="article article-product">
 					  
               <?php 
                 global $product; 
-                $deco = edb_decorated_product($product);
+                // echo "<pre>";
+                /* NOTE: maybe loop through all and re-duplicate */
+                
+                // $mirrors = array_map('trim',explode('|',$product->get_attribute('edb_mirror'))); 
+                // if(count($mirrors) > 0){
+                    
+                // }
+                // echo "</pre>";
+                // if (is_category( )) {
+                // $cat = get_query_vars('product_cat');
+                // write_log("/////$cat");
+                // $current_cat = get_category($cat);
+                 
+                // }
+                
+                $deco = edb_decorated_product($product,get_query_var('product_cat'));
                 $ga_product = json_encode(array(
                   'id'=>$product->post->ID,
                   'name'=>$deco->full_name,
                   'category'=> $deco->main_category,
                   'position'=>$count));
-                  
+                
+                $query='vc='.get_query_var('product_cat');
+                $permalink = get_permalink();
+                $pound="";
+                $poundPos = -1;
+                if( ( $poundPos = strpos( $permalink , "#" ) ) !== false ){
+                  $pound = substr( $permalink, $poundPos );
+                  $permalink = substr( $permalink, 0, $poundPos );
+                }
+                $separator = (parse_url($permalink, PHP_URL_QUERY ) == NULL) ? '?' : '&';
+                $permalink .= $separator . $query . $pound;
               ?>
-              <a class="article-link" href="<?php echo get_permalink();?>" data-product="<?php echo esc_attr($ga_product); ?>" onclick="edbStats.recordProductClick(this); return !ga.loaded;">
+              <a class="article-link" href="<?php echo $permalink;?>" data-product="<?php echo esc_attr($ga_product); ?>" onclick="edbStats.recordProductClick(this); return !ga.loaded;">
                 <?php if (has_post_thumbnail()): ?>
                   <?php
-                    
-                    $hires = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
-                    $lores = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
-                    
+                    $hires = array( $deco->images['featured']);
+                    $lores = array( $deco->images['featured']);
+                    $first_gallery_image_src = $deco->images['slideshow'][0];
+                    // $hires = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
+                    // $lores = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
+                    // $gallery_ids = $product->get_gallery_attachment_ids();
+                    // $first_gallery_image = wp_get_attachment_image_src( $gallery_ids[0],'full');
+                    // $first_gallery_image_src = $first_gallery_image[0];
                   ?>
                 <?php endif;?>
                 <?php 
@@ -116,7 +146,7 @@ get_header( 'shop' ); ?>
                     $stockclass = ' instock';
                   }
                 ?>
-                <span class="article-image<?php echo $stockclass ?>" style="background-image:url('<?php echo $hires[0]; ?>');">
+                <span data-rollover-image="<?php echo $first_gallery_image_src; ?>" class="article-image<?php echo $stockclass ?>" style="background-image:url('<?php echo $hires[0]; ?>');">
                   <?php echo '<img src="' . $lores[0] . '" alt="item image" data-hires-image="' . $hires[0] . '">'; ?>
                 </span>
                 

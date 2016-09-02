@@ -115,14 +115,30 @@ class Edb_Admin {
 	  $levels = array('vip','vvip','vvvip','vvvvip');
 	  $current_status = absint(get_user_meta($user->ID, '_edb_user_is_designer', true ));
 	  $current_level = get_user_meta($user->ID, '_edb_designer_level', true );
+	  $attributed_credit = absint(get_user_meta($user->ID, '_edb_manual_credit', true ));
 	  $options = array();
 	  if(empty($current_status)){
 	    $current_status = 0;
+	  }
+	  if(empty($attributed_credit)){
+	    $attributed_credit = 0;
 	  }
 	  foreach($levels as $level ){
 	    $options[$level] = $level;
 	  }
 	  ?>
+	  <h3>EDB Credit</h3>
+	  <p style="color:#FFA500">Note: This does not affect nor include the credit related to affiliate coupon sales.</p>
+	  <table class="form-table">
+<tr>
+  <th><label for="credit-amount">Credit Amount</label></th>
+  <td>
+    <input type="number" min="0" max="10000" name="_edb_manual_credit" step="1" value="<?php echo $attributed_credit; ?>" />
+    <br />
+  </td>
+</tr>	    
+	  </table>
+	  
 	  <h3>EDB Designer Information</h3>
     <table class="form-table">
       <tr>
@@ -158,10 +174,12 @@ class Edb_Admin {
 
 	  $is_designer = isset($_POST['_edb_user_is_designer']) && !empty($_POST['_edb_user_is_designer']) ? $_POST['_edb_user_is_designer'] : 0;
 	  $designer_level = isset($_POST['_edb_designer_level']) && !empty($_POST['_edb_designer_level']) ? $_POST['_edb_designer_level'] : null;
+	  $attributed_credit = isset($_POST['_edb_manual_credit']) && !empty($_POST['_edb_manual_credit']) ? $_POST['_edb_manual_credit'] : 0;
     if( $is_designer && is_null($designer_level)){
       $designer_level = 'vip';
     }
 	  update_user_meta( absint($user_id), '_edb_user_is_designer', $is_designer );
+	  update_user_meta( absint($user_id), '_edb_manual_credit', $attributed_credit );
 	  if(!is_null($designer_level)){
 	    update_user_meta( absint($user_id), '_edb_designer_level', $designer_level );
 	  }
@@ -180,6 +198,13 @@ class Edb_Admin {
     $edb_size_code = get_post_meta( $post->ID, '_edb_system_size_code', true );
     $edb_meta_code= get_post_meta( $post->ID, '_edb_system_meta_code', true );
     
+    $edb_mirror_product_parent = get_post_meta( $post->ID, '_edb_mirror_product_parent', true );
+    $edb_mirror_product_child = get_post_meta( $post->ID, '_edb_mirror_product_child', true );
+    
+    // $edb_default_price = get_post_meta( $post->ID, '_edb_default_price', true );
+    // $edb_default_sale_price = get_post_meta( $post->ID, '_edb_default_sale_price', true );
+    
+    
     $deco = edb_decorated_product($post->ID);
     
     
@@ -189,6 +214,43 @@ class Edb_Admin {
     foreach( $attachment_images as $image){
       $image_options[$image->ID] = wp_get_attachment_image_src($image->ID, 'thumb');
     }
+    
+    
+    // $edb_leg_attribute = $deco->product_object->get_attribute('edb_leg_option');
+    // $edb_leg_options = array_map('trim',explode('|',$edb_leg_attribute));
+    // echo "<div class='options_group'>";
+    // if(!empty($edb_leg_attribute) && count($edb_leg_options) > 0){
+    //   echo "<p><b>Leg Options</b></p><ul>";  
+    //   foreach( $edb_leg_options as $option){
+    //     $price_id = "_edb_leg_option_".$option."_price";
+    //     $sale_price_id = "_edb_leg_option_".$option."_sale_price";
+    //     $price_value = floatval(get_post_meta( $post->ID, $price_id, true ));
+    //     $sale_price_value = floatval(get_post_meta( $post->ID, $sale_price_id, true ));
+    //     echo "<li><p><b>$option</b></p>";
+    //     if(empty($price_value)){
+    //       $price_value = $deco->price;
+    //     }
+    //     if(empty($sale_price_value)){
+    //       $sale_price_value = $deco->sale_price;
+    //     }
+        
+    //     woocommerce_wp_text_input(array(
+    //         'id' => $price_id ,
+    //         'label' => __('Price', 'edb'),
+    //         'value' => $price_value
+    //     ));    
+    //     woocommerce_wp_text_input(array(
+    //         'id' => $sale_price_id ,
+    //         'label' => __('Sale Price', 'edb'),
+    //         'value' => $sale_price_value
+    //     ));    
+    //   }
+    //   echo "</ul>";
+    // }
+    // echo "</div>";
+    
+    
+    echo "<div class='options_group'>";
     echo "<p><b>System Name</b></p>";
     echo "<p>".$deco->full_name."</p>";
     woocommerce_wp_text_input(array(
@@ -201,7 +263,20 @@ class Edb_Admin {
       'label' => __('Meta Code', 'edb'),
       'value' => $edb_meta_code
     ));
+    echo "</div>";
     
+    // echo "<p><b>Mirror Relationship</b></p>";
+    // woocommerce_wp_text_input(array(
+    //   'id' => '_edb_mirror_product_parent' ,
+    //   'label' => __('Parent Product ID', 'edb'),
+    //   'value' => $edb_mirror_product_parent
+    // ));
+    // woocommerce_wp_text_input(array(
+    //   'id' => '_edb_mirror_product_child' ,
+    //   'label' => __('Child Product ID', 'edb'),
+    //   'value' => $edb_mirror_product_child
+    // ));
+    echo "<div class='options_group'>";
     echo "<p><b>Materials & Dimensions</b></p>";
     woocommerce_wp_textarea_input(array(
       'id' => '_edb_materials_and_dimensions' ,
@@ -248,7 +323,7 @@ class Edb_Admin {
     //   'value' => isset( $edb_expected_restock_qty ) ? $edb_expected_restock_qty : null
     //   )
     // );
-    echo "<hr><p><b>EDB Related Media</b></p>";
+    echo "</div><div class='options_group'><p><b>EDB Related Media</b></p>";
     // woocommerce_wp_image_select(
     // array(
     //   'id' => '_edb_technical_image' ,
@@ -273,7 +348,7 @@ class Edb_Admin {
        'value' => isset( $edb_instruction_video ) && !empty( $edb_instruction_video ) ? $edb_instruction_video : null
        )
     );
-    echo "<hr>" ;
+    echo "</div>" ;
 	}
 	
 	public function variation_settings_fields($loop, $variation_data, $variation){
@@ -346,8 +421,8 @@ class Edb_Admin {
 	}
 	
 	public function save_product_settings_fields( $post_id ){
-	  write_log('GABAGABA');
-	  write_log($_POST);
+	 // write_log('GABAGABA');
+	 // write_log($_POST);
 	  $edb_available_delay = (isset( $_POST['_edb_available_delay'] ) && !empty($_POST['_edb_available_delay'])) ? $_POST['_edb_available_delay'] : '+2 weeks';
     $edb_backorder_delay = (isset( $_POST['_edb_backorder_delay'] ) && !empty($_POST['_edb_backorder_delay'])) ? $_POST['_edb_backorder_delay'] : '+16 weeks';
     $edb_expected_restock = $_POST['_edb_expected_restock'];
@@ -360,6 +435,14 @@ class Edb_Admin {
     $edb_size_code = (isset($_POST['_edb_system_size_code']) && !empty($_POST['_edb_system_size_code'])) ? $_POST['_edb_system_size_code'] : null;
     $edb_meta_code = (isset($_POST['_edb_system_meta_code']) && !empty($_POST['_edb_system_meta_code'])) ? $_POST['_edb_system_meta_code'] : null;
 
+    
+    
+    
+    // $edb_mirror_product_parent = (isset($_POST['_edb_mirror_product_parent']) && !empty($_POST['_edb_mirror_product_parent'])) ? $_POST['_edb_mirror_product_parent'] : null;
+    // $edb_mirror_product_child = (isset($_POST['_edb_mirror_product_parent']) && !empty($_POST['_edb_mirror_product_parent'])) ? $_POST['_edb_mirror_product_parent'] : null;
+
+    
+    
     
     $technical_image = wp_get_attachment_image_src($edb_technical_image, 'thumb');
     
@@ -397,6 +480,15 @@ class Edb_Admin {
     if(!empty($edb_meta_code)){
       update_post_meta( $post_id, '_edb_system_meta_code',  $edb_meta_code );
     }
+    
+    
+    // if(!empty($edb_mirror_product_parent)){
+    //   update_post_meta( $post_id, '_edb_mirror_product_parent', $edb_mirror_product_parent );
+    // }
+    
+    // if(!empty($edb_mirror_product_child)){
+    //   update_post_meta( $post_id, '_edb_mirror_product_child',  $edb_mirror_product_child );
+    // }
     
 	}
 	
@@ -508,6 +600,120 @@ class Edb_Admin {
   public function add_material_meta_boxes(){
     add_meta_box('edb_material_reference','Material', array( $this, 'material_post_material_selector' ), 'edb_material_desc', 'normal', 'high');
   }
+// 	public function add_mirror_product_type( $types ){
+// 	  $types['mirror'] = __('Mirror');
+// 	  return $types;
+// 	}
+// 	public function register_mirror_product_type(){
+	  
+//       require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-mirror-product.php';
+    
+    
+    
+// 	}
+
+
+  public function add_product_leg_options_tab( $product_data_tabs ){
+    $product_data_tabs['edb-leg-options'] = array(
+      'label' => __('Leg Options', 'edb') ,
+      'target' => 'edb_leg_options_data'
+    );
+    return $product_data_tabs;
+  }
+  
+  function add_product_leg_options_fields() {
+      global $woocommerce, $post;
+      $product = get_product($post->ID);
+      $leg_attribute = $product->get_attribute('edb_leg');
+      if(isset($leg_attribute) && !empty($leg_attribute)){
+        $leg_options = array_map('trim', explode('|',$leg_attribute));
+        
+      ?>
+      
+        <div id="edb_leg_options_data" class="panel woocommerce_options_panel">
+<div class="options_group">
+        <?php
+        $values = maybe_unserialize(get_post_meta($post->ID, 'edb_leg_options_prices', true ));
+        write_log('//OLD VALUES');
+        
+        
+        foreach($leg_options as $option){
+          // echo "<li style='padding:0 1em;border-bottom:1px solid #eee'>";
+          
+          echo "<p><b>$option</b></p><div class='dual-field'>";
+          $option_slug = 'edb_leg_option_'.$option;
+          $price_slug = $option_slug.'_price';
+          $sale_price_slug = $option_slug.'_sale_price';
+          
+          if(!array_key_exists($option,$values)){
+            write_log("//NOT IS SET: '$option'");
+            // write_log(array_keys($values));
+            $values["$option"] = array('name'=>$option,'price'=>$product->price,'sale_price'=>$product->sale_price);
+          }else{
+            write_log('//IS SET: $option');
+          }
+          $price_value = $values["$option"]['price'];
+          $sale_price_value = $values["$option"]['sale_price'];
+          // if(empty($price_value)){
+          //   $price_value = $product->price;
+          // }
+          // if(empty($sale_price_value)){
+          //   $sale_price_value = $product->sale_price;
+          // }
+          // if(empty($values[$option])){
+          //   $values[$option] = array('name'=>$option, 'price'=>$price_value,'sale_price' => $sale_price_value ); 
+          // }
+          
+          woocommerce_wp_text_input(array(
+                                          'id' =>  "edb_leg_option_$option",
+                                          'name' => "edb_leg_option[$option][name]",
+                                          'label' => '',
+                                          'value' => $values["$option"]["name"],
+                                          'type' =>'hidden'
+                                      ));
+          woocommerce_wp_text_input(array(
+              'id' =>  $price_slug,
+              'name' => "edb_leg_option[$option][price]",
+              'label' => __('Price', 'edb'),
+              'value' => $values["$option"][price],
+              'wrapper_class'=>'dual-field-wrapper',
+              'type' => 'number'
+              
+          ));    
+          woocommerce_wp_text_input(array(
+              'id' =>  $sale_price_slug,
+              'name' =>"edb_leg_option[$option][sale_price]",
+              'label' => __('Sale Price', 'edb'),
+              'value' => $values["$option"]['sale_price'],
+              'wrapper_class' => 'dual-field-wrapper',
+              'type' => 'number'
+          ));    
+          echo "</div>";
+        }
+        
+        
+        ?>
+        </div></div>
+      
+      <?php  
+      }
+      
+  }
+  
+  
+  public function save_leg_option_fields(){
+    global $woocommerce, $post;
+    $values = maybe_unserialize(get_post_meta($post->ID, 'edb_leg_options_prices', true ));
+    foreach($_POST['edb_leg_option'] as $option => $option_data ){
+        $values[$option] = $option_data;
+    }
+    
+    
+    update_post_meta($post->ID, 'edb_leg_options_prices', maybe_serialize($values));
+    
+   
+  }
+  
 	
 	public function register_custom_post_types(){
 	  

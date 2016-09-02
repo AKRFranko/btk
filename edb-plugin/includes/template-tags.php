@@ -112,11 +112,12 @@ function edb_product_pdf( $product_id ){
 $edb_deco_cache = array();
 
 
-function edb_decorated_product( $product_id ){
+function edb_decorated_product( $product_id , $category=null){
   // if(!isset($edb_deco_cache[$product_id])){
   //   $edb_deco_cache[$product_id] = new Edb_Product_Decorator( $product_id );
   // }
-  $deco =  new Edb_Product_Decorator( $product_id );
+  // write_log("//CATEGORY: $category");
+  $deco =  new Edb_Product_Decorator( $product_id, $category );
   return $deco;
   // return $edb_deco_cache[$product_id];
 }
@@ -512,8 +513,8 @@ function edb_product_video_link( $product_id, $type ){
 
 }
 
-function edb_product_slideshow( $product_id ){
-  $decorated = edb_decorated_product( $product_id );
+function edb_product_slideshow( $product_id,$current_cat=null){
+  $decorated = edb_decorated_product( $product_id,$current_cat );
   $slide_images = $decorated->images['slideshow'];
   $variation_images = $decorated->images['material_variations'];
   $html = '<div class="edb-slider">';
@@ -752,6 +753,7 @@ function edb_product_material_picker( $product_id ){
 
 
 function tmp_has_tech_image( $deco ){
+  
  $data = array("atrium-solo_sofas-3-seater",
               "piquÉ-small_sectionals-left-facing",
               "piquÉ-small_sectionals-right-facing",
@@ -783,6 +785,7 @@ function tmp_has_tech_image( $deco ){
               "capsule_sofa-beds",
               "maritime-walnut_sofas-3-seater",
               "maritime-walnut_sofas-2-seater",
+              "maritime_sofas-3-seater",
               "panorama_sectionals-right-facing",
               "tamtam_side-tables",
               "tamtam-yellow_side-tables",
@@ -807,13 +810,13 @@ function tmp_has_tech_image( $deco ){
               "taxi_sofas-2-seater",
               "duo_sofas",
               "mixmix_sectionals-left-facing",
-              "pique_sectionals-left-facing",
+              "piquÉ_sectionals-left-facing",
               "teatime_sofa-beds",
               "flex_sectionals-left-facing",
               "mixmix_sectionals-right-facing",
               "mixmix-rec_sectionals-left-facing",
               "mixmix-rec_sectionals-right-facing",
-              "pique_sectionals-right-facing",
+              "piquÉ_sectionals-right-facing",
               "teatime_sofas",
               "flex_sectionals-right-facing",
               "mixmix-single_modular",
@@ -824,8 +827,8 @@ function tmp_has_tech_image( $deco ){
               "majuscule_accessories-pillows",
               "mutation_accessories-pillows",
               "slope_sofas-3-seater",
-              'pique-small_sectionals-right-facing',
-              'pique-small_sectionals-left-facing',
+              'piquÉ-small_sectionals-right-facing',
+              'piquÉ-small_sectionals-left-facing',
               'majuscule-blue_accessories-pillows',
               'majuscule-white_accessories-pillows',
               'nautique-green_accessories-pillows',
@@ -833,11 +836,11 @@ function tmp_has_tech_image( $deco ){
               'panorama-raf_sofas-2-seater',
               'majuscule-orange_accessories-pillows',
               'mixmix_sofas-2-seater',
-              'pique-laf_sofas-2-seater',
+              'piquÉ-laf_sofas-2-seater',
               'majuscule-pink_accessories-pillows',
               'mutation_accessories-pillows',
               "dia24_ottomans",
-              'pique-raf_sofas-2-seater',
+              'piquÉ-raf_sofas-2-seater',
               "vintage_side-tables",
               "polka-green_accessories-pillows", 
               "polka-purple_accessories-pillows",

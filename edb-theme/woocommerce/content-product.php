@@ -53,7 +53,8 @@ $classes[] = 'listing-product';
     
     
 		<?php
-	    $edb_product = edb_decorated_product(get_the_ID());
+		  
+	    $edb_product = edb_decorated_product(get_the_ID(), $_GET['vc']);
 	    
 			/**
 			 * woocommerce_before_shop_loop_item_title hook

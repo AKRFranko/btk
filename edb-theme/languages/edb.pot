@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: edb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Thu Feb 04 2016 12:49:34 GMT-0500 (EST)\n"
-"POT-Revision-Date: Fri Aug 05 2016 15:29:39 GMT-0400 (EDT)\n"
+"POT-Revision-Date: Wed Aug 17 2016 12:26:02 GMT-0400 (EDT)\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: franko <franko@akr.club>\n"
 "Language-Team: \n"
@@ -1611,12 +1611,20 @@ msgstr ""
 msgid "entrez"
 msgstr ""
 
-#: ../functions.php:905
+#: ../functions.php:923
 msgid "Shipping Note"
 msgstr ""
 
-#: ../functions.php:907
+#: ../functions.php:925
 msgid "Notes about your order."
+msgstr ""
+
+#: ../functions.php:1118
+msgid "Inspirations"
+msgstr ""
+
+#: ../functions.php:1119
+msgid "Inspiration"
 msgstr ""
 
 #: ../404.php:17

@@ -18,6 +18,26 @@
   var $ = jQuery;
 
 
+  
+  $(document).on('mouseenter', 'span[data-rollover-image]', function( ){
+    // var oldSrc = $(this).find('img').attr('src');
+    // var altSrc = $(this).data('rollover-image');
+    // console.log(oldSrc,altSrc)
+    $(this).css('background-image', 'url('+$(this).data('rollover-image')+')')
+  })
+  $(document).on('mouseleave', 'span[data-rollover-image]', function( ){
+    // var oldSrc = $(this).find('img').attr('src');
+    // var altSrc = $(this).data('rollover-image');
+    // console.log(oldSrc,altSrc)
+    $(this).css('background-image', 'url('+$(this).find('img').attr('src')+')')
+  })
+
+  $(function(){
+    $('span[data-rollover-image]').each(function(){
+      var img = new Image();
+      img.src= $(this).data('rollover-image');
+    })
+  })
 
   $(document).on('click', '.toggle', function() {
     var $nav = $(this).parents('nav');
@@ -274,7 +294,7 @@
     //   itemSelector: '.article',
     //   originLeft: true,
     //   originTop: true,
-    //   gutter: 30
+    //   gutter: 0
     // });
     var mat_choices = $('[name=_edb_material_choice]');
     if (mat_choices && mat_choices.length && mat_choices.length === 1) {
@@ -511,6 +531,10 @@
     }
   })
 
+
+  // $(function(){
+  //   $('.home .edb-slide:nth(2)').find('.backdrop').css('background-image', 'url("https://elementdebase-prod-elementdebase.netdna-ssl.com/wp-content/uploads/2016/08/a1fca27c-6635-11e6-91fd-57d2744f2120.jpg")' );
+  // })
 
 
 })(jQuery);

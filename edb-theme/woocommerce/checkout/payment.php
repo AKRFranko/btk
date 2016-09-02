@@ -53,23 +53,40 @@ global $WC_Edb;
      </div>
      <?php endif; ?>
      <?php 
-       $credit_coupon_code = get_credit_coupon_for_email( wp_get_current_user()->user_email );
+       $credit_coupon_code = get_points_coupon_for_email( wp_get_current_user()->user_email );
       
        
        
        if( !empty($credit_coupon_code)){
-         $info = get_credit_info_for_coupon_code($credit_coupon_code);
-         $used_credits= $_SESSION['use_credits'];
-         $available_credit = $info['credits_available'] - $used_credits;
+         $info = get_points_info_for_coupon_code($credit_coupon_code);
+         $used_points= $_SESSION['use_points'];
+         $available_points = $info['points_available'] - $used_points;
      ?>
-       <div id="checkout-personal-credit">
-         <h2><?php printf(__('Credits For "%s"','edb'), $info['coupon_code']); ?></h2>
-         <p><?php printf( __('You have a credit balance of %s', 'edb'), wc_price( $available_credit ) ); ?></p>
-         <input type="number" data-credit-code="<?php echo $info['coupon_code']; ?>" name="use_credits" step="1"  max="<?php echo $info['credits_available'];?>" placeholder="<?php esc_attr_e( 'credits to use', 'edb' ); ?>" id="use_credits" />
-         <button type="button" class="button" id="apply_credits"><?php esc_attr_e( 'apply credits', 'edb' ); ?></button>
+       <div id="checkout-personal-points">
+         <h2><?php printf(__('Points For "%s"','edb'), $info['coupon_code']); ?></h2>
+         <p><?php printf( __('You have a promo points balance of %s', 'edb'), wc_price( $available_points ) ); ?></p>
+         <input type="number" data-credit-code="<?php echo $info['coupon_code']; ?>" name="use_points" step="1"  max="<?php echo $info['points_available'];?>" placeholder="<?php esc_attr_e( 'points to use', 'edb' ); ?>" id="use_points" />
+         <button type="button" class="button" id="apply_points"><?php esc_attr_e( 'apply points', 'edb' ); ?></button>
          
        </div>
      <?php };?>
+     <?php 
+       $attributed_credits = absint(get_user_meta( wp_get_current_user()->ID, '_edb_manual_credit', true ));
+      if($attributed_credits > 0){
+      ?>
+      <div id="checkout-personal-credit">
+        <h2><?php printf(__('Credits','edb')); ?></h2>
+        <p><?php printf( __('You have a credit balance of %s', 'edb'), wc_price( $attributed_credits ) ); ?></p>
+        <input type="number" name="use_credits" step="1"  max="<?php echo $attributed_credits;?>" placeholder="<?php esc_attr_e( 'credits to use', 'edb' ); ?>" id="use_credits" />
+        <button type="button" class="button" id="apply_credits"><?php esc_attr_e( 'apply credits', 'edb' ); ?></button>
+        
+      </div>
+      
+      <?php        
+      }
+      
+     ?>
+
      <?php if (WC()->cart->coupons_enabled() ) { ?>
        <div class="checkout-coupon">
          

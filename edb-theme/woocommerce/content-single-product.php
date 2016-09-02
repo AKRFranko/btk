@@ -29,19 +29,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 	 }
 	 global $product;
 	 $product_id = get_the_ID();
-	 $edb_product = edb_decorated_product( $product_id );
+	 $edb_product = edb_decorated_product( $product_id, $_GET['vc'] );
 	 $ga_product = json_encode(array(
    'id'=>$product->post->ID,
    'name'=>$edb_product->full_name,
    'category'=> $edb_product->main_category));
+   $legs = maybe_unserialize(get_post_meta($product_id,'edb_leg_options_prices',true));
+   
+   
+   
 ?>
 
-<div itemscope itemtype="<?php echo woocommerce_get_product_schema(); ?>" id="product-<?php the_ID(); ?>" <?php post_class(); ?> data-product="<?php echo esc_attr($ga_product);?>">
+<div itemscope itemtype="<?php echo woocommerce_get_product_schema(); ?>" id="product-<?php the_ID(); ?>" <?php post_class(); ?> data-product="<?php echo esc_attr($ga_product);?>" data-legs="<?php echo esc_attr(json_encode($legs)) ?>">
 
   <div class="product-sections">
     
     <div class="product-slideshow">
-      <?php edb_product_slideshow( $product_id ); ?>
+      <?php edb_product_slideshow( $product_id, $_GET['vc'] ); ?>
     </div>
     
     <div class="product-info">

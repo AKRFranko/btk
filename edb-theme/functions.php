@@ -133,6 +133,15 @@ function _s_widgets_init() {
 }
 add_action( 'widgets_init', '_s_widgets_init' );
 
+// function edb_variation_set_stock( $variation ){
+  
+//   $product = edb_decorated_product( $variation->ID );
+//   $product_id = $product->product_object->ID;
+//   write_log("Parent:".get_post_meta($product_id,'_edb_mirror_product_parent'));
+//   write_log("Child:".get_post_meta($product_id,'_edb_mirror_product_child'));
+  
+// }
+// add_action('woocommerce_variation_set_stock','edb_variation_set_stock');
 /**
  * Enqueue scripts and styles.
  */
@@ -161,6 +170,9 @@ function _s_scripts() {
      wp_enqueue_script( '_s-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20160708', true );
      wp_localize_script('_s-toast', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
      wp_enqueue_script( '_s_ga_ec', get_template_directory_uri() . '/js/ec.js', array(), '20160708', true );
+     if($_SERVER['SERVER_ADDR'] == '45.56.104.172'){
+       wp_enqueue_script( '_s_test', get_template_directory_uri() . '/js/test.js', array('jquery'), '20160708', true );
+     }
   // }else{
   //   wp_enqueue_script('edb_all',get_template_directory_uri() . '/js/all.min.js', array('jquery','masonry'), '20170706', true);
   //   wp_localize_script('edb_all', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );  
@@ -423,6 +435,10 @@ function edb_body_classes(){
       $deviceclasses[]= str_replace('_', '-' , $t);
     }
   }
+  if(isset($_GET['secret']) && $_GET['secret'] == '1234'){
+    $deviceclasses[] = 'secret-hack'   ;
+  }
+  
   return $deviceclasses;
 }
 add_filter( 'woocommerce_billing_fields', 'woo_filter_state_billing', 10, 1 );
@@ -459,7 +475,7 @@ function edb_translate_menu( $items, $menu ) {
 
 function edb_last_deploy(){
   if($_SERVER['SERVER_ADDR'] == '45.56.104.172'){
-    $mtime = filemtime('/srv/http/wordpress/wp-content/themes/edb/index.php');
+    $mtime = filemtime('/srv/http/wordpress/edb.com/wp-content/themes/edb/index.php');
   }else{
   $mtime = filemtime('/srv/http/wordpress/production/wp-content/themes/edb-theme/index.php');  
   }
@@ -897,7 +913,7 @@ add_filter('woocommerce_coupon_get_discount_amount', 'edb_coupon_discount_amount
 //   $userId = get_user_by( 'email', $email )->ID;
 //   $credits_total=edb_get_coupon_credit_total( $code );
 //   $credits_used=edb_get_credits_used_for_email( $email );
-//   $credits_available=$credits_total-$credits_used;
+//   $points_available=$credits_total-$credits_used;
 //   return array(
 //   'user_id'=> $userId,
 //   'code'=>    $code,
@@ -905,7 +921,7 @@ add_filter('woocommerce_coupon_get_discount_amount', 'edb_coupon_discount_amount
 //   // credits used so far
 //   'credits_used'=> $credits_used,
 //   // credits total minus credits used
-//   'credits_available'=> $credits_available
+//   'points_available'=> $points_available
 // ); 
 // }
 
@@ -984,7 +1000,7 @@ function get_order_ids_using_coupon_code( $code ){
   return $ids;  
 }
 
-function get_credits_spent_for_coupon_code( $code ){
+function get_points_spent_for_coupon_code( $code ){
   global $wpdb;
   $total = 0;
   $query = sprintf( "SELECT meta.meta_value FROM wp_woocommerce_order_itemmeta as meta INNER  JOIN wp_woocommerce_order_items as items  ON meta.order_item_id =items.order_item_id WHERE items.order_item_name='$code credit' AND meta.meta_key='_line_total'",$code);
@@ -1014,7 +1030,7 @@ function get_order_creditable_total( $order_id ){
   return $total;  
 }
 
-function get_credit_coupon_for_email( $email ){
+function get_points_coupon_for_email( $email ){
   global $wpdb;
   if(!empty($email)){
   $query = sprintf("SELECT post_title FROM wp_posts WHERE post_type='shop_coupon' AND post_excerpt='%s';", $email);
@@ -1037,7 +1053,7 @@ function get_user_for_coupon_code( $code ){
 
 
 
-function get_credit_info_for_coupon_code( $code ){
+function get_points_info_for_coupon_code( $code ){
   $ids = get_order_ids_using_coupon_code( $code );
   $info = array();
   $user = get_user_for_coupon_code( $code );
@@ -1045,15 +1061,16 @@ function get_credit_info_for_coupon_code( $code ){
   if(count($ids) > 0){
     $creditable_total = get_order_creditable_total( $ids );
   }
-  $credits_accumulated = 0.1*$creditable_total;
-  $credits_spent = get_credits_spent_for_coupon_code($code);//get_user_meta( $user->ID, '_edb_credits_spent', true );
+  $points_accumulated = 0.1*$creditable_total;
+  $points_spent = get_points_spent_for_coupon_code($code);//get_user_meta( $user->ID, '_edb_points_spent', true );
+  // $credits_given = get_user_meta( $user->ID, '_edb_manual_credit', true );
   $info['coupon_code'] = $code;
   $info['creditable_user_id'] = $user->ID;
   $info['creditable_user_email'] = $user->user_email;
   $info['creditable_total'] = $creditable_total;
-  $info['credits_accumulated'] = $credits_accumulated;
-  $info['credits_spent'] = empty($credits_spent) ? 0 : $credits_spent;
-  $info['credits_available'] = $credits_accumulated - $credits_spent;
+  $info['points_accumulated'] = $points_accumulated;
+  $info['points_spent'] = empty($points_spent) ? 0 : $points_spent;
+  $info['points_available'] = ($points_accumulated - $points_spent);
   return $info;
 }
 
@@ -1102,7 +1119,7 @@ function get_credit_info_for_coupon_code( $code ){
 //     $code = $info['code'];
 //       $gain = $info['credits_total'];
 //       $used = $info['credits_used'];
-//       $avail = $info['credits_available'];
+//       $avail = $info['points_available'];
 //     return "code: <b>$code:</b>\n gain: <b>$$gain</b>\n used: <b>$$used</b>\n left: <b>$$avail</b>";
     
      
@@ -1145,6 +1162,10 @@ add_action( 'init', 'set_php_auth_header'  );
 /**
  * */
  require get_template_directory() . '/seo.php';
+ 
+ /**
+ * */
+ require get_template_directory() . '/cron.php';
 /**
  * Implement the Custom Header feature.
  */
@@ -1170,6 +1191,78 @@ require get_template_directory() . '/inc/customizer.php';
  */
 require get_template_directory() . '/inc/jetpack.php';
 
+
+add_filter('post_gallery', 'my_post_gallery', 10, 2);
+function my_post_gallery($output, $attr) {
+    global $post;
+
+    if (isset($attr['orderby'])) {
+        $attr['orderby'] = sanitize_sql_orderby($attr['orderby']);
+        if (!$attr['orderby'])
+            unset($attr['orderby']);
+    }
+
+    extract(shortcode_atts(array(
+        'order' => 'ASC',
+        'orderby' => 'menu_order ID',
+        'id' => $post->ID,
+        'itemtag' => 'dl',
+        'icontag' => 'dt',
+        'captiontag' => 'dd',
+        'columns' => 3,
+        'size' => 'thumbnail',
+        'include' => '',
+        'exclude' => ''
+    ), $attr));
+
+    $id = intval($id);
+    if ('RAND' == $order) $orderby = 'none';
+
+    if (!empty($include)) {
+        $include = preg_replace('/[^0-9,]+/', '', $include);
+        $_attachments = get_posts(array('include' => $include, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby));
+
+        $attachments = array();
+        foreach ($_attachments as $key => $val) {
+            $attachments[$val->ID] = $_attachments[$key];
+        }
+    }
+
+    if (empty($attachments)) return '';
+
+    // Here's your actual output, you may customize it to your need
+    $output = "<div class=\"gallery\">\n";
+    
+    
+
+    // Now you loop through each attachment
+    foreach ($attachments as $id => $attachment) {
+        // Fetch the thumbnail (or full image, it's up to you)
+//      $img = wp_get_attachment_image_src($id, 'medium');
+//      $img = wp_get_attachment_image_src($id, 'my-custom-image-size');
+        $img = wp_get_attachment_image_src($id, 'full');
+        $caption = mysql2date('m - j - Y', $post->post_date);
+        $output .= "<div class='gallery-item bleh'>\n";
+        $output .= "<img src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"$caption\" />\n";
+        $output  .= "<p class='gallery-item-caption'>$caption</p>";
+        $output .= "</div>\n";
+    }
+
+
+    $output .= "</div>\n";
+
+    return $output;
+}
+
+// function test_fee_edb(){
+//   $order = new WC_Order( 37174 );
+//   foreach( $order->get_fees() as $fee){
+//     if($fee['name'] == 'credit'){
+      
+//     }
+//   }
+// }
+// add_action('init','test_fee_edb');
 
 //SELECT SQL_CALC_FOUND_ROWS `order_item_id`, `order_item_name`, `order_item_type`, `order_id` FROM wp_woocommerce_order_items WHERE order_item_type='coupon' AND order_item_name='franko15';
 //2200  37045

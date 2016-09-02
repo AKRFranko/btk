@@ -43,10 +43,9 @@ $do_not_ship = WC()->session->get('do_not_ship');
           $field['label'] = __('Phone','edb');
           $field['placeholder'] = __('Phone','edb');
 
-        }
-        if( $key == 'shipping_note'){
+        } if( $key == 'shipping_note'){
            $field['value'] = '';
-           
+
  
          } ?>			  
         <?php if($ship_to_same_address && $key !== 'shipping_note'){ $field['custom_attributes'] = array('readonly'=>'readonly'); } ?>
@@ -80,10 +79,16 @@ $do_not_ship = WC()->session->get('do_not_ship');
               $value = '';//$checkout->get_value( $key );
             }
             echo "<input type=\"hidden\" name=\"calc_shipping_postcode\" value=\"$value\">";
-            // woocommerce_form_field( $key, $field, $value );
+             woocommerce_form_field( $key, $field, $value );
             // echo $fallback;
-        }
-            woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); 
+        }else if( $key == 'shipping_country' && empty($value)){
+           woocommerce_form_field( $key, $field, 'CA' ); 
+         }else if( $key == 'shipping_state' && empty($value)){
+            woocommerce_form_field( $key, $field, 'QC' ); 
+          }else{
+           woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); 
+         }
+           
         // };
         
         ?>

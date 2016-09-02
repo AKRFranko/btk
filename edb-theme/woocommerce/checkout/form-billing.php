@@ -70,6 +70,10 @@ if ( ! defined( 'ABSPATH' ) ) {
         $value = $customerValue;
       }
       woocommerce_form_field( $key, $field, $value ); 
+	  }else if( $key == 'billing_country' && empty($value)){
+	    woocommerce_form_field( $key, $field, 'CA' ); 
+	  }else if( $key == 'billing_state' && empty($value)){
+      woocommerce_form_field( $key, $field, 'QC' ); 
 	  }else{ 
 		    woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); 
 		};

@@ -262,6 +262,7 @@ class Edb {
     // add_filter('woocommerce_get_regular_price', array( $this, 'get_regular_price'), 10, 2 );
     // add_filter('woocommerce_get_sale_price', array( $this, 'get_sale_price'), 10, 2 );
     
+    add_action( 'wc_ajax_apply_points', array( $this,'edb_checkout_apply_points'), 10, 2 );
     add_action( 'wc_ajax_apply_credits', array( $this,'edb_checkout_apply_credits'), 10, 2 );
     // add_action( 'woocommerce_cart_calculate_fees', array( $this, 'edb_cart_add_credit_discount'), 10, 2 );
 
@@ -287,32 +288,52 @@ class Edb {
 	}
 	
 // 	public function edb_cart_add_credit_discount(){
-// 	  if(!empty($_SESSION['use_credits']) && !is_null($_SESSION['use_credits'])){
-// 	    $use_credits = absint($_SESSION['use_credits']);
-// 	    WC()->cart->add_fee('credit discount', -1 * $use_credits, true , '');
-// 	    $_SESSION['use_credits'] = null;
+// 	  if(!empty($_SESSION['use_points']) && !is_null($_SESSION['use_points'])){
+// 	    $use_points = absint($_SESSION['use_points']);
+// 	    WC()->cart->add_fee('credit discount', -1 * $use_points, true , '');
+// 	    $_SESSION['use_points'] = null;
 // 	  }
 // 	}
-	public function edb_checkout_apply_credits(){
+	public function edb_checkout_apply_points(){
   	if ( !defined( 'DOING_AJAX' ) || empty($_POST) )  return;
-	  $use_credits = $_POST['use_credits'];
-	  $use_credits_code = $_POST['use_credits_code'];
+	  $use_points = $_POST['use_points'];
+	  $use_points_code = $_POST['use_points_code'];
 	  @session_start();
-	  if(!empty($use_credits)){
-	    write_log("CREDITS TO USE: $use_credits");
+	  if(!empty($use_points)){
+	    write_log("CREDITS TO USE: $use_points");
 	    
-	   // WC()->cart->add_fee('credit discount', -1 * $use_credits, false );
-	    $_SESSION['use_credits']=$use_credits;
-	    $_SESSION['use_credits_code']=$use_credits_code;
+	   // WC()->cart->add_fee('credit discount', -1 * $use_points, false );
+	    $_SESSION['use_points']=$use_points;
+	    $_SESSION['use_points_code']=$use_points_code;
 	   // write_log(WC()->cart);
 	  }else{
-          // WC()->cart->add_fee('credit discount', -1 * $use_credits, false );
-           $_SESSION['remove_credits']=true;
+          // WC()->cart->add_fee('credit discount', -1 * $use_points, false );
+           $_SESSION['remove_points']=true;
 	  }
 	  wc_print_notices();
 	  die();
 	  
 	}
+	
+	public function edb_checkout_apply_credits(){
+    if ( !defined( 'DOING_AJAX' ) || empty($_POST) )  return;
+    $use_credits = $_POST['use_credits'];
+    @session_start();
+    if(!empty($use_credits)){
+      write_log("CREDITS TO USE: $use_credits");
+      
+     // WC()->cart->add_fee('credit discount', -1 * $use_points, false );
+      $_SESSION['use_credits']=$use_credits;
+      
+     // write_log(WC()->cart);
+    }else{
+          // WC()->cart->add_fee('credit discount', -1 * $use_points, false );
+      $_SESSION['remove_credits']=true;
+    }
+    wc_print_notices();
+    die();
+    
+  }
 	
 	 // 
 // 	add_action( 'woocommerce_cart_calculate_fees', , 10, 2 );
@@ -378,6 +399,11 @@ class Edb {
     
     
     $this->loader->add_action( 'init', $plugin_admin, 'register_custom_post_types');
+    
+    
+    // $this->loader->add_action( 'init', $plugin_admin, 'register_mirror_product_type');
+    // $this->loader->add_filter( 'product_type_selector', $plugin_admin, 'add_mirror_product_type');
+    
     $this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'add_material_meta_boxes');
     $this->loader->add_action( 'save_post', $plugin_admin, 'save_material_meta_boxes', 10, 2);
     $this->loader->add_action( 'wp_insert_post', $plugin_admin, 'ignore_duplicate_material_description', 10, 3);
@@ -396,8 +422,11 @@ class Edb {
     $this->loader->add_action( 'wp_ajax_edb_guess_shipping_zone', $plugin_admin,'edb_ajax_guess_shipping_zone' );
     $this->loader->add_action( 'wp_ajax_nopriv_edb_guess_shipping_zone', $plugin_admin,'edb_ajax_guess_shipping_zone' );
     
+    $this->loader->add_filter('woocommerce_product_data_tabs', $plugin_admin, 'add_product_leg_options_tab');
+    $this->loader->add_filter('woocommerce_product_data_panels', $plugin_admin, 'add_product_leg_options_fields');
+    $this->loader->add_action('woocommerce_process_product_meta', $plugin_admin, 'save_leg_option_fields');
     
-    
+
     # $this->loader->add_action( 'woocommerce_reduce_order_stock', $this, 'mirror_reduce_order_stock' );
 	}
 
