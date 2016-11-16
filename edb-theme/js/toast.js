@@ -11,6 +11,9 @@
       
   }
   
+  if(null !== sessionStorage.getItem('has_dismissed_newsletter')){
+    localStorage.setItem('has_dismissed_newsletter',sessionStorage.getItem('has_dismissed_newsletter'));
+  }
   var contestEntered = localStorage.getItem('has_signed_up_for_newsletter');
   var contestDismissed =localStorage.getItem('has_dismissed_newsletter')||0;
   contestDismissed = parseFloat( contestDismissed );
@@ -71,7 +74,7 @@
     var $close = $(this);
     var $toast = $close.closest('.toast');
     // $toast.removeClass('active');
-    $toast.remove();
+    $toast.hide();
     localStorage.setItem('has_dismissed_newsletter', contestDismissed+1 );
   });
   
@@ -89,6 +92,7 @@
   
   $(document).on('submit', 'form#newsletter', function( e ){
     e.preventDefault();
+    console.log('subscribing to newsletter')
     $.ajax({
       url: ajax_object.ajax_url,
       data: {
@@ -100,10 +104,27 @@
         if(!json.error){
           localStorage.setItem('has_signed_up_for_newsletter', true );  
         }
-        $('#contest .body').html('<p>'+json.message+'</p>');
+        if($('#contest .body').length){
+          $('#contest .body').html('<p class="success-message">'+json.message+'</p>');  
+        }else{
+          var $form= $('.entry-content');
+          $form.fadeOut(function(){
+            var $p = '<p class="success-message">'+json.message+'</p>';
+            $form.html($p).fadeIn();    
+          });
+          
+          
+        }
+        
+        
       },
       error: function( error ){
-        $('#contest .body').html( '<p>Oops. Sorry, something went wrong. Please try again latter.</p>' );
+        if($('#contest .body').length){
+          $('#contest .body').html( '<p>Oops. Sorry, something went wrong. Please try again latter.</p>' );  
+        }else{
+          $('.entry-content').hide().html('<p>Oops. Sorry, something went wrong. Please try again latter.</p>').show();  
+        }
+        
       }
     });
     

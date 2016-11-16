@@ -696,6 +696,33 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
         
 
   }
+  
+  
+  
+  public function has_free_shipping_coupon(){
+    $coupons =    WC()->cart->get_applied_coupons();
+    $freeship = false;
+    foreach( $coupons as $code ){
+      $coupon = new WC_Coupon( $code );
+      if($coupon->free_shipping == 'yes'){
+        $freeship = true;
+      }
+      
+    }
+    return $freeship;
+  }
+  // public function check_for_free_shipping(){
+    
+  //   if(in_array('freeship', $coupons )){
+      
+  //   }
+  //   // $fees = WC()->cart->get_fees();
+  //   // write_log("///COUPONS");
+  //   // write_log($fees);
+  // }
+  
+  
+  
   public function calculate_fees( $cart ){
     // @session_start();
     // if($this->shipping_debug) write_log('**********************CALC FEES**********');
@@ -706,6 +733,7 @@ class Edb_Shipping_Method extends WC_Shipping_Method{
     $this->add_credits_discount();
     $this->remove_points_discount();
     $this->remove_credits_discount();
+    
     return $cart;
     
     
@@ -1661,7 +1689,7 @@ class Edb_Shipping_Method_Ship_Ready extends Edb_Shipping_Method{
   }
  
   public function calculate_shipping_for_bundle( $bundle ){
-      write_log( $bundle );
+      // write_log( $bundle );
       $split = array();
       foreach( $bundle['contents'] as $item ){
         $pk = $item['package_key'];
@@ -1678,11 +1706,11 @@ class Edb_Shipping_Method_Ship_Ready extends Edb_Shipping_Method{
         $sub = $this->get_shipping_class_items_cost( $shipping_class, $items );  
         $total += $sub;
       }
-      
+      $rate_cost = $this->has_free_shipping_coupon() ? 0 : $total/count(array_keys( $split ));
       $rate = array(
         'id' => $this->id,
         'label' => 'ship when ready',
-        'cost' =>$total/count(array_keys( $split ))
+        'cost' =>$rate_cost
       );
       
       return $rate;
@@ -1717,10 +1745,12 @@ class Edb_Shipping_Method_Ship_Bundle_1 extends Edb_Shipping_Method{
       $shipping_class = $this->get_shipping_class_from_items( $bundle['contents'] );
       $total = $this->get_shipping_class_items_cost( $shipping_class, $bundle['contents'] );
       
+      $rate_cost = $this->has_free_shipping_coupon() ? 0 : $total/count($bundle['contents']);
+      
       $rate = array(
         'id' => $this->id,
         'label' => $this->id,
-        'cost' => $total/count($bundle['contents'])
+        'cost' => $rate_cost
       );
       
       return $rate;
@@ -1750,6 +1780,8 @@ class Edb_Shipping_Method_Ship_Bundle_2 extends Edb_Shipping_Method_Ship_Bundle_
       
       $shipping_class = $this->get_shipping_class_from_items( $bundle['contents'] );
       $total = $this->get_shipping_class_items_cost( $shipping_class, $bundle['contents'] );
+      
+      $rate_cost = $this->has_free_shipping_coupon() ? 0 : $total/count($bundle['contents']);
       
       $rate = array(
         'id' => $this->id,
@@ -1785,6 +1817,8 @@ class Edb_Shipping_Method_Ship_Bundle_3 extends Edb_Shipping_Method_Ship_Bundle_
       
       $shipping_class = $this->get_shipping_class_from_items( $bundle['contents'] );
       $total = $this->get_shipping_class_items_cost( $shipping_class, $bundle['contents'] );
+      
+      $rate_cost = $this->has_free_shipping_coupon() ? 0 : $total/count($bundle['contents']);
       
       $rate = array(
         'id' => $this->id,

@@ -30,18 +30,29 @@
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
+<link rel="apple-touch-icon" href="<?php echo get_template_directory_uri();?>/img/device-icons/icon-48x48.png">
+<link rel="apple-touch-icon" sizes="72x72" href="<?php echo get_template_directory_uri();?>/img/device-icons/icon-72x72.png">
+<link rel="apple-touch-icon" sizes="96x96" href="<?php echo get_template_directory_uri();?>/img/device-icons/icon-96x96.png">
+<link rel="apple-touch-icon" sizes="144x144" href="<?php echo get_template_directory_uri();?>/img/device-icons/icon-144x144.png">
+<link rel="apple-touch-icon" sizes="192x192" href="<?php echo get_template_directory_uri();?>/img/device-icons/icon-192x192.png">
+
+<!-- Tile icon for Windows 8 (144x144 + tile color) -->
+<meta name="msapplication-TileImage" content="<?php echo get_template_directory_uri();?>/img/device-icons/icon-144x144.png">
+
 
 <?php wp_head(); ?>
 <script defer type="text/javascript" src="//cdn.callrail.com/companies/288406270/215e63ac1c14dcead16d/12/swap.js"></script>
+
+
 
 </head>
 
 <body <?php body_class( edb_body_classes() ); ?>>
   
 <div id="page" class="site">
-  <header id="masthead">
+  <header id="masthead" itemscope itemtype="http://schema.org/LocalBusiness">
       <div class="inner">
-        <h1 class="seo-title" style="font-size:0px;"><?php edb_seo_heading('Élément de base'); ?></h1>
+        <h1 class="seo-title" itemprop="name" style="font-size:0px;"><?php edb_seo_heading('Élément de base'); ?></h1>
       <a id="logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
       <p id="description">
         <?php
@@ -51,7 +62,17 @@
         <?php
         endif; ?>
       </p>
+      <?php if(isset($_GET['promo']) && $_GET['promo'] = '2'){ ?> 
+      <div id="back-to-school-1" class="hidden">
+        <h3 class="promo-title"><?php _e('BACK TO SCHOOL'); ?></h3>
+        
+        <p class="promo-text"><?php _e('Use coupon code <code>back15</code>, and save %15 on regular priced items.','edb'); ?></p>
+        <div class="promo-timer"><?php edb_promo_ends_in_days(1475254056228); ?></div>
+        
+      </div>
+      <?php }; ?>
       <nav id="site-nav">
+        <a class="phone-number" href="tel:+18447386484" itemprop="telephone">1-844-738-6484</a>
         <?php if ( is_user_logged_in() ) : ?>
         <?php $current_user = wp_get_current_user(); ?>
         <?php _e('welcome', 'edb'); ?><a class="my-account" href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>"><b><?php echo $current_user->user_nicename; ?></b></a><a class="logout" href="<?php echo wp_logout_url( home_url('/') ); ?>"><?php _e('sign out', 'edb'); ?></a>
@@ -62,6 +83,8 @@
           <?php _e('cart', 'edb'); ?>
           <?php if ( WC()->cart->get_cart_contents_count() > 0 ) { echo '<span id="cart-item-counter" class="semi-bold">(' . WC()->cart->get_cart_contents_count() . ')</span>'; } ?>
         </a>
+        
+        <!--<select id="country-select"></select>-->
         <?php dynamic_sidebar( 'languages' ); ?>
         
         <a class="burger" href="#">#</a>
@@ -81,6 +104,11 @@
       </nav>
       <nav id="cat-nav">
         <ul>
+          
+          
+          
+          
+          
       <?php
         $maincats = get_terms( 'product_cat', array('get'=>'all', 'parent' => 0, 'hide_empty' => false) );
         $flatten = array('slipcovers');
@@ -132,9 +160,11 @@
             }else{
               
               if(strtolower($main->slug) === 'accessories'){
-                echo '<li><a href="/product-category/ottomans/" title="' . sprintf( __( 'View all %s', 'edb' ), 'ottomans' ) . '">' . __( 'ottomans', 'edb') . '</a></li>';
-                echo '<li><a href="/product-category/accessories-rugs/" title="' . sprintf( __( 'View all %s', 'edb' ), 'rugs' ) . '">' . __( 'rugs', 'edb') . '</a></li>';
-                echo '<li><a href="/product-category/accessories-pillows/" title="' . sprintf( __( 'View all %s', 'edb' ), 'pillows' ) . '">' . __( 'accessories', 'edb') . '</a></li>';
+                echo '<li><a href="/product-category/ottomans/" title="' . sprintf( __( 'View all %s', 'edb' ), __('ottomans', 'edb') ) . '">' . __( 'ottomans', 'edb') . '</a></li>';
+                echo '<li><a href="/product-category/accessories-rugs/" title="' . sprintf( __( 'View all %s', 'edb' ), __('rugs','edb') ) . '">' . __( 'rugs', 'edb') . '</a></li>';
+                echo '<li><a href="/product-category/accessories-pillows/" title="' . sprintf( __( 'View all %s', 'edb' ), __('cushions','edb') ) . '">' . __( 'cushions', 'edb') . '</a></li>';
+                echo '<li><a href="/product-category/accessories-other/" title="' . sprintf( __( 'View all %s', 'edb' ), __('accessories','edb') ) . '">' . __( 'accessories', 'edb') . '</a></li>';
+                
               }  
             }
             
@@ -146,10 +176,14 @@
       <?php if(WPGlobus::Config()->language == 'en'){ ?>
       <li><a href="/shop" title="Shop Around"><?php _e('all','edb'); ?></a></li>
       <li><a style="color:#ff9999!important;" href="/shop?on_sale=1" title="On Sale"><?php _e('sale','edb'); ?></a></li>  
+      <li><a style="color:#00ff33!important;" href="/shop?new=1" title="New Products"><?php _e('new','edb'); ?></a></li>  
       <?php }else{ ?>
       <li><a href="/fr/shop" title="Shop Around"><?php _e('all','edb'); ?></a></li>
-      <li><a style="color:#ff9999!important;" href="/fr/shop?on_sale=1" title="On Sale"><?php _e('sale','edb'); ?></a></li>
+      <li><a style="color:#ff9999!important;" href="/fr/shop?on_sale=1" title="On Sale"><?php _e('sale','edb'); ?></a></li
+      <li><a style="color:#00ff33!important;" href="/fr/shop?new=1" title="New Products"><?php _e('new','edb'); ?></a></li>  >
       <?php }; ?>
+      
+      
       
     </ul></nav>
     <div id="sign-in-menu">
@@ -231,3 +265,12 @@
   </header>
 
 	<div id="content" class="site-content">
+	  <?php if(isset($_GET['promo']) && $_GET['promo'] = '1'){ ?> 
+	  <div id="back-to-school" >
+      <h3 class="promo-title"><?php _e('BACK TO SCHOOL PROMO'); ?></h3>
+      <div class="promo-timer"><?php edb_promo_ends_in_days(1475254056228); ?></div>
+      <p class="promo-text"><?php _e('Use coupon code <code>back15</code>, and save %15 on regular priced items.','edb'); ?></p>
+      <a href="#" class="promo-close"><?php _e('Ok, got it!'); ?></a>
+    </div>
+    <?php }; ?>
+    

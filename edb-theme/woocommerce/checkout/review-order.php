@@ -78,7 +78,7 @@ global $WC_Edb;
       
       <div class="shipping-review-notice">
         <p><?php _e('For the items ordered, please choose your delivery options : self pick up (at our Montréal warehouse) or delivery to the adresse submitted. Based on your selection, the final delivery fees will adjust automatically. for more information on how delivery fees are calculated', 'edb');?><a target="_blank" href="<?php echo home_url('/about-shipping'); ?>"> <?php _e('click here', 'edb'); ?></a>.</p>
-        <p><?php _e('We offer the self pick-up option. Come pick up your order at tour warehosue and save an additional 5% on the last ticketed price', "edb"); ?></p>
+        <p><?php _e('We offer the self pick-up option. Come pick up your order at our warehouse and save an additional 5% on the last ticketed price', "edb"); ?></p>
       </div>
       
     </div><!-- shipping-review -->

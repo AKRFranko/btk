@@ -201,6 +201,7 @@ foreach($order->get_address('billing') as $k => $v ){
     ?>
   </div>  
   <div class="pay-order-submit">
+    
           <?php wp_nonce_field( 'woocommerce-pay' ); ?>
           <?php
                   $pay_order_button_text = apply_filters( 'woocommerce_pay_order_button_text', __( 'Pay for order', 'woocommerce' ) );

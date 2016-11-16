@@ -1,0 +1,47 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-styles/typography.html">
+<link rel="import" href="../bower_components/paper-styles/color.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+
+<!-- shared styles for all elements and index.html -->
+<dom-module id="shared-styles">
+  <template>
+    <style>
+      .page-title {
+        @apply(--paper-font-display2);
+      }
+
+      .app-menu {
+        --paper-menu-selected-item: {
+          color: #fff;
+          background: var(--light-primary-color);
+        }
+      }
+
+      paper-menu a > *, paper-menu paper-item > *, paper-menu paper-icon-item > * {
+        pointer-events: none;
+      }
+      
+      #content{
+        width:100%;
+        height:100%;
+        @apply(--layout-horizontal);
+        min-width:960px;
+      }
+      #ordersList{
+        width:30%;
+        min-width:260px;
+      }
+      #organizer{
+        width:70%;
+        min-width:700px;
+      }
+
+      @media (max-width: 600px) {
+        .page-title {
+          font-size: 24px!important;
+        }
+      }
+    </style>
+  </template>
+</dom-module>

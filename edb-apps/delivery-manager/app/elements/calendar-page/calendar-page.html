@@ -1,0 +1,472 @@
+<!-- @license Copyright (c) 2015 The Polymer Project Authors. All rights reserved. This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt Code distributed by Google as part of the polymer project is also subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt -->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-styles/typography.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+
+
+<dom-module id="calendar-page">
+  <template>
+    <style>
+      :host {
+        display: block;
+        min-width:350px;
+        min-height:450px;
+        width:100%;
+        height:100%;
+      }
+      #container{
+        @apply(--layout-vertical);
+        @apply(--layout-flex);
+        @apply(--paper-font-body1);
+        position:relative;
+        display:block;
+        width:100%;
+        height:100%;
+        
+        
+      }
+      #header{
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+        height:50px;
+        
+        background:var(--paper-grey-900);
+        color:#fff;
+      }
+      #controls{
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+        height:50px;
+        background:var(--paper-grey-200);
+        color:var(--paper-grey-600);
+        
+        width:100%;
+        
+      }
+      #calendar{
+        @apply(--layout-vertical);
+        height:calc(100% - 100px);
+        min-height:350px;
+        width:100%;
+      }
+      .month,.week,.day{
+        box-sizing:border-box;
+        
+      }
+      .month{
+        @apply(--layout-vertical);
+        @apply(--layout-flex);
+        height:100%;
+        width:100%;
+        border:1px solid #999;
+      }
+      .week{
+        @apply(--layout-horizontal);
+        @apply(--layout-flex);
+        height:calc(100% / 6);
+        min-height:calc(350px / 6);
+        width:100%;
+        white-space:nowrap;
+        
+      }
+      .day{
+        @apply(--layout-vertical);
+        height:100%;
+        width:calc(100% / 7 );
+        white-space:normal;
+        border:1px solid var(--paper-grey-400);
+        padding:6px;
+        position:relative;
+        box-shadow:inset 1px 1px 2px rgba(0,0,0,0.05);
+      }
+      .day:hover{
+        border-color:var(--paper-blue-400);
+      }
+      .day .info{
+        
+        position:absolute;
+        bottom:0;
+        right:0;
+        
+        line-height:22px;
+        width:100%;
+        -webkit-user-select: none;  /* Chrome all / Safari all */
+        -moz-user-select: none;     /* Firefox all */
+        -ms-user-select: none;      /* IE 10+ */
+        user-select: none;
+      }
+      .day .info .name{
+        font-size:11px;
+        margin-left:6px;
+        color:var(--paper-grey-400);
+        -webkit-user-select: none;  /* Chrome all / Safari all */
+        -moz-user-select: none;     /* Firefox all */
+        -ms-user-select: none;      /* IE 10+ */
+        user-select: none;
+      }
+      .day .info .number{
+        font-size:22px;
+        position:absolute;
+        bottom:0;
+        right:6px;
+        color:var(--paper-grey-600);
+        -webkit-user-select: none;  /* Chrome all / Safari all */
+        -moz-user-select: none;     /* Firefox all */
+        -ms-user-select: none;      /* IE 10+ */
+        user-select: none;
+      }
+      .day[blank]{
+        background:var(--paper-grey-200);
+      }
+      .headings{
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+        @apply(--paper-font-caption);
+      }
+      .headings div{
+        @apply(--layout-flex);
+        text-align:center;
+        text-transform:uppercase;
+        font-size:10px;
+        color:var(--paper-grey-500);
+        background:var(--paper-grey-300);
+      }
+      .title{
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+        @apply(--paper-font-headline);
+        width:100%;
+        height:100%;
+      }
+      .title .month-name{
+       padding-left:1em;
+      }
+      .title .year{
+        /*float:right;*/
+        padding-right:1em;
+      }
+      .flex{
+        
+        @apply(--layout-flex);
+        
+      }
+      .dropzones{
+        position:absolute;
+        top:0;left:0;right:0;bottom:0;
+        width:100%;
+        height:100%;
+        
+      }
+      .dropzone{
+        width:100%;
+        height:50%;
+        @apply(--layout-horizontal);
+        /*border:1px dotted #000;*/
+        position:relative;
+        z-index:1;
+      }
+      .dropzone:before{
+        content:'';
+        display:block;
+        position:absolute;
+        top:0;left:0;
+        width:100%;
+        height:100%
+      }
+      .dropzone:hover:before,
+      .dropzone.drag:before{
+        ;
+        background:var(--paper-blue-100);
+        opacity:0.5;
+      }
+      
+      .dropzone.alpha{
+        border-bottom:1px dotted var(--paper-grey-400);
+      }
+      .dropzone.alpha:after{
+        content:'AM';
+        position:absolute;
+        top:5px;
+        left:5px;
+        color:var(--paper-grey-300);
+        z-index:1;
+      }
+      .dropzone.beta:after{
+        content:'PM';
+        position:absolute;
+        top:5px;
+        left:5px;
+        color:var(--paper-grey-300);
+        z-index:1;
+      }
+      .dropzone:hover:after,
+      .dropzone.drag:after{
+        color:var(--paper-blue-200);
+      }
+      /*.month-prev{*/
+      /*  padding-left:1em;*/
+      /*}*/
+      /*.month-next{*/
+      /*  padding-right:1em;*/
+      /*}*/
+      .controls{
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+      }
+      .control-label{
+        font-size:13px;
+      }
+      .dropped-item{
+        @apply(--layout-flex);
+        position: relative;
+        display: inline-block;
+        background: #81c784;
+        z-index: 10;
+        width: calc(96% / 3);
+        
+        overflow: hidden;
+        padding: 0;
+        margin: 1%;
+        min-width: auto;
+        
+      }
+      .dropped-item .label{
+        position:absolute;
+        top:50%;
+        text-align:center;
+        width:100%;
+        font-weight:bold;
+        margin-top:-8px;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        direction:rtl;
+        
+        @apply(--paper-font-caption);
+        /*transform:rotate(-45deg);*/
+        color:#fff;
+      }
+      
+    </style>
+    
+    <div id="container">
+      <div id="header">
+        <div class="title">
+          <div class="month-name">{{computeMonthName(month)}}</div>
+          <div class="flex"></div>
+          <div class="year">{{year}}</div>
+        </div>
+      </div>
+      <div id="controls">
+        <div class="month-prev control">
+          <paper-button on-click="handlePrevMonthClick"><iron-icon icon="chevron-left"></iron-icon><span class="control-label">{{computePreviousMonthName(month)}}</span></paper-button> 
+
+        </div>
+        <div class="flex"></div>
+        <paper-button on-click="handleNextMonthClick"><span class="control-label">{{computeNextMonthName(month)}}</span><iron-icon icon="chevron-right"></iron-icon></paper-button> 
+      </div>
+      <div id="calendar">
+        <div class="headings">
+          <div>Sunday</div>
+          <div>Monday</div>
+          <div>Tuesday</div>
+          <div>Wednesday</div>
+          <div>Thursday</div>
+          <div>Friday</div>
+          <div>Saturday</div>
+          
+        </div>
+        <div class="month">
+          
+          <template is="dom-repeat" items="{{computeCells(year,month)}}" as="weekCells">
+            <div class="week">
+              <template is="dom-repeat" items="{{weekCells}}" as="dayCell">
+                <div class="day" blank$="{{computeBlankCell(dayCell.number)}}"> 
+                  <paper-tooltip position="top">{{computeTooltipText(dayCell)}}</paper-tooltip>
+                  <div class="info">
+                    <span class="name">{{dayCell.name}}</span>
+                    <span class="number">{{dayCell.number}}</span>
+                  </div>
+                  <template is="dom-if" if="{{dayCell.number}}">
+                    <div class="dropzones">
+                      <div class="dropzone alpha" ondragover="return false" on-drop="handleDrop" ondragenter="this.classList.add('drag')" ondragleave="this.classList.remove('drag')">
+                        <!--<paper-button raised class="dropped-item"><span class="label">123456</span></paper-button>-->
+                        <!--<paper-button raised class="dropped-item"><span class="label">123456</span></paper-button>-->
+                        <!--<paper-button raised class="dropped-item"><span class="label">123456</span></paper-button>-->
+                      </div>
+                      <div class="dropzone beta" ondragover="return false" on-drop="handleDrop" ondragenter="this.classList.add('drag')" ondragleave="this.classList.remove('drag')">
+                      
+                      </div>  
+                    </div>
+                  </template>
+                </div>
+              </template>
+            </div>
+          </template>
+        </div>
+      </div>
+    </div>
+  </template>
+  <script>
+    (function() {
+      'use strict';
+     
+      
+      Polymer({
+        is: 'calendar-page',
+        properties: {
+          weekdays: {
+            type: Array,
+            value: ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'],
+            readOnly: true
+          },
+          months: {
+            type: Array,
+            value: ['january','february','march','april','may','june','july','august','september','october','november','december'],
+            readOnly: true
+          },
+          
+           year:{
+             type:Number,
+             value: 2016
+           },
+           month:{
+             type:Number,
+             value: 08
+           },
+           day:{
+             type:Number,
+             value: 15
+           }
+           
+        },
+        getDaySchedule: function(){ return {am:[],pm:[]}; },
+        // assignColor: function( el, id ){
+        //   var h = Math.floor(Math.cos(parseInt(id))*360);
+        //   var s = '40%';
+        //   var l = '40%';
+        //   var color ='hsl('+[h,s,l].join(',')+')';
+        //   console.log(color);
+        //   el.style.backgroundColor = color;
+        // },
+        removeDragClass: function(event){
+          console.log('removeDragClass');
+          event.target.classList.remove('drag');
+        },
+        addDragClass: function(event){
+          console.log('addDragClass');
+          event.target.classList.add('drag');
+        },
+        handleDrop: function(event){
+              var dropzone = event.target;
+              while(!dropzone.classList.contains('dropzone')){
+                dropzone = dropzone.parentNode;
+              }
+              event.preventDefault();
+              var data = JSON.parse(event.dataTransfer.getData("application/json"));
+              dropzone.classList.remove('drag');
+              var button = document.createElement('paper-button');
+              var label = document.createElement('span');
+              console.log(data)
+              button.raised=true;
+              button.setAttribute('class','dropped-item');
+              label.setAttribute('class','label');
+              button.style.backgroundColor = data.color;
+              
+              Polymer.dom(label).appendChild(document.createTextNode(data.label));
+              Polymer.dom(button).appendChild(label);
+              Polymer.dom(dropzone).appendChild(button);
+              
+              
+        },
+        handlePrevMonthClick: function( ){
+          var target = this.month - 1;
+          if(target < 0){
+            this.year = this.year-1;
+            this.month=11;
+          }else{
+            this.month=target;
+          }
+          
+        },
+        handleNextMonthClick: function(){
+          var target = this.month + 1;
+          if(target > 11){
+            this.year = this.year + 1;
+            this.month=0;
+          }else{
+            this.month=target;
+          }
+        },
+        computeBlankCell: function( n ){
+          return !n && n !==0;
+        },
+        computePreviousMonthName: function( month ){
+          var prev = month - 1;
+          if(prev < 0) prev=11;
+          return this.months[prev];
+        },
+        computeNextMonthName: function( month ){
+          var next = month + 1;
+          if(next > 11) next=0;
+          
+          return this.months[next];
+        },
+        computeMonthName: function(  month){
+          return this.months[month] ;
+        },
+        computeTooltipText: function( n ){
+          return [n.name, n.number].join(' ')
+        },
+        splitWeeks: function ( a ){
+                      var i=0;
+                      var l = a.length/7;
+                      var mo = [];
+                      while( i < l ){
+                        var wk = [];
+                        for(var j =0; j<7;j++){
+                          wk.push(a.shift());
+                        }
+                        
+                        i++;
+                        mo.push(wk)
+                      }
+                      console.log(mo)
+                      return mo;
+                    },
+        computeCells: function( year, month ){
+           var days,
+           firstDate=new Date(year, month, 1),
+           lastDate=new Date(year, month+1, 0), 
+           numDays= lastDate.getDate(),
+           numWeeks = Math.ceil( numDays / 7 ),
+           startDay = firstDate.getDay();
+           days = new Array(startDay);
+           for(var i=0;i<days.length;i++){
+           days[i] = {name: this.weekdays[i], number: ''}
+           }
+           var start=1;
+           while(start<=numDays){
+           var date = new Date();
+           date.setFullYear(year);
+           date.setMonth(month);
+           date.setDate(start);
+           days.push({ name: this.weekdays[date.getDay()], number: start, shedule: this.getDaySchedule( date ) })
+           start++;
+           }
+           var cells = this.splitWeeks(days);
+           return cells;
+        },
+        ready: function(){
+          var d = new Date();
+          this.year=d.getFullYear();
+          this.month=d.getMonth();
+          this.date=d.getDate();
+         
+          
+        }
+      });
+    })();
+  </script>
+</dom-module>

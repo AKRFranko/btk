@@ -47,10 +47,10 @@ $do_not_ship = WC()->session->get('do_not_ship');
            $field['value'] = '';
 
  
-         } ?>			  
+         };?>			  
         <?php if($ship_to_same_address && $key !== 'shipping_note'){ $field['custom_attributes'] = array('readonly'=>'readonly'); } ?>
         <?php 
-        
+        $value = $checkout->get_value($key);
         if($key == 'shipping_postcode' ){
             // $billingValue = $checkout->get_value('billing_postcode' );
             $shippingValue = $checkout->get_value('shipping_postcode' );

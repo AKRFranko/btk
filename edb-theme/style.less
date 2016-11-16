@@ -32,6 +32,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 @import "_splash";
 @import "_toast";
 @import "_order";
+@import "_faq";
 
 
 .promo h2{
@@ -49,6 +50,197 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
     padding: 0 1em;
     margin: 0 1em;
 }
+
+
+  #back-to-school-1{
+    z-index:0;
+    position:relative;
+    display:inline-block;
+    // background:Red;
+    width:200px;
+    height:100px;
+    margin-top:10px;
+    left:100px;
+    border:1px solid #ddd;
+    padding:5px;
+    .promo-title{
+      color:rgba(0,140,130,1);
+      font-family:@sans-font;
+      text-transform:uppercase;
+      font-size:17px;
+      margin: 0 0 5px 0;
+      line-height:17px;
+    }
+    .promo-text{
+      text-transform: uppercase;
+      font-size: 13px;
+      margin: 0;
+    }
+    .promo-text code{
+      // color:rgba(0,140,130,1);
+      color:#fd4e17;
+      font-weight:bold;
+      font-size:inherit;
+    }
+    a.promo-close {
+    display:none;
+    }
+    
+    .promo-timer{
+        background:rgba(0,140,130,1);
+          color: #fff;
+          width: auto;
+          display: inline-block;
+          padding: .25em .5em;
+          position:absolute;
+          bottom:0;
+          right:0;
+          
+          font-size: 13px;
+          margin-top: 0px;
+      
+      
+      
+      
+      
+    }
+  }
+  
+  .promo1 #back-to-school-1{
+    display:none;
+  }
+  
+  @media all and (max-width:400px){
+    .inspiration-listing-item{
+    width:calc(~"100% - 20px");
+    margin:0!important;
+      
+    }
+    #back-to-school-1{
+      width:120px;
+      // background:Red;
+      margin-left:-10px;
+      
+      .promo-title{
+        font-size:15px;
+        line-height:15px;
+      }
+      .promo-texT{
+        font-size:12px;
+        line-height:12px;
+      }
+      .promo-timer{
+        display:none;
+      }
+    }
+  }
+
+
+  .promo1{
+    #back-to-school{
+      position:relative;
+      
+      display:block;
+      width:100%;
+      min-height:3em;
+      height:auto;
+      // background:rgba(0,140,130,.5);
+      // border-top:2px solid rgba(0,140,130,1);
+      transition:all .2s cubic-bezier(.03,.01,.95,.13);
+      overflow:visible;
+      text-align:center;
+      .promo-title{
+        color:rgba(0,140,130,1);
+        font-family:@sans-font;
+        text-transform:uppercase;
+        margin: 0 0 15px 0;
+      }
+      .promo-text{
+        text-transform: uppercase;
+        font-size: 17px;
+        margin: 15px 0 30px 0;
+      }
+      .promo-text code{
+        // color:rgba(0,140,130,1);
+        color:#fd4e17;
+        font-weight:bold;
+      }
+      a.promo-close {
+      color: #ccc;
+      text-decoration: none;
+      padding: .25em;
+      display: inline-block;
+      position: absolute;
+      bottom: -20px;
+      right: 0;
+      }
+      a.promo-close:hover{
+        text-decoration:underline;
+        color:#333;
+      }
+      .promo-timer{
+            background: rgba(0,140,130,1);
+            color: #fff;
+            width: auto;
+            display: inline-block;
+            padding: .25em .5em;
+            position: absolute;
+            top: 1.5em;
+            left: 1.5em;
+            transform: rotate(-15deg);
+        
+        
+        
+        
+        
+      }
+      
+    }
+    #back-to-school.hidden{
+      overflow:hidden;
+      height:0;
+      min-height:0;
+      border:0;
+      font-size:0;
+      
+      
+    }  
+  }
+  .promo2 #back-to-school{
+    display:none;
+  }
+  
+  .product-free-shipping {
+      width: 100%;
+      text-align: right;
+      color: #cc0011;
+      position: absolute;
+      bottom: 10px;
+      right: 0;
+      display:block;
+      top:80px;
+      text-decoration:none;
+      font-size: 12px;
+      padding-right: .5em;
+  }
+  .product-free-shipping:hover{
+    text-decoration:underline;
+  }
+  
+  
+  @media all and (max-width:400px){
+    .product-free-shipping{
+      display:none;
+    }
+  }
+  @media all and (min-width:400px) and (max-width:600px){
+    .product-free-shipping{
+      top:50px;
+    }
+  }
+  
+  
+
 
 .image-group{
   clear:both;
@@ -165,8 +357,17 @@ strong{
   }
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
 
+
+
+
+
+@media (min-width: 768px) and (max-width: 991px) {
+  
+  
+section#inspiration-listing {
+    padding: 0 10px;
+}
 #page{
   max-width:768px;
   min-width:768px;
@@ -204,6 +405,13 @@ strong{
 }
 
 @media (min-width: 992px){
+  #instagram-feed .instagram-feed-item{
+    width:calc(~"100% / 5");
+  }
+  #instagram-feed .instagram-feed-item:nth-of-type(4) ~ .instagram-feed-item{
+    display:inline-block;
+  }
+
   #site-nav a:last-of-type, .burger{
     display:none;
   }
@@ -747,7 +955,7 @@ strong{
     width:1340px;
     height:840px;
     .article-image{
-      height:650px;
+      height:566px;
     }
   }
   .home main > article.square{

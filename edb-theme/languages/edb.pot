@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: edb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Thu Feb 04 2016 12:49:34 GMT-0500 (EST)\n"
-"POT-Revision-Date: Wed Aug 17 2016 12:26:02 GMT-0400 (EDT)\n"
+"POT-Revision-Date: Fri Nov 04 2016 18:04:26 GMT-0400 (EDT)\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: franko <franko@akr.club>\n"
 "Language-Team: \n"
@@ -84,7 +84,7 @@ msgstr ""
 msgid "armchairs"
 msgstr ""
 
-#: ../seo.php:6 ../header.php:137
+#: ../seo.php:6 ../header.php:166 ../header.php:166
 msgid "accessories"
 msgstr ""
 
@@ -94,6 +94,123 @@ msgstr ""
 
 #: ../seo.php:8
 msgid "modular"
+msgstr ""
+
+#: ../edb-faq.php:8
+msgctxt "Post Type General Name"
+msgid "FAQs"
+msgstr ""
+
+#: ../edb-faq.php:9
+msgctxt "Post Type Singular Name"
+msgid "FAQ"
+msgstr ""
+
+#: ../edb-faq.php:10 ../edb-faq.php:11 ../edb-faq.php:35 ../functions.php:316
+msgid "FAQ"
+msgstr ""
+
+#: ../edb-faq.php:12
+msgid "FAQ Archives"
+msgstr ""
+
+#: ../edb-faq.php:13 ../edb-reviews.php:12 ../edb-designers.php:12 ../edb-press-
+#: reviews.php:11
+msgid "Parent Item:"
+msgstr ""
+
+#: ../edb-faq.php:14
+msgid "All Questions"
+msgstr ""
+
+#: ../edb-faq.php:15 ../edb-faq.php:16
+msgid "Add New Question"
+msgstr ""
+
+#: ../edb-faq.php:17
+msgid "New Question"
+msgstr ""
+
+#: ../edb-faq.php:18
+msgid "Edit Question"
+msgstr ""
+
+#: ../edb-faq.php:19
+msgid "Update Question"
+msgstr ""
+
+#: ../edb-faq.php:20
+msgid "View Question"
+msgstr ""
+
+#: ../edb-faq.php:21
+msgid "Search Question"
+msgstr ""
+
+#: ../edb-faq.php:22 ../edb-reviews.php:21 ../edb-designers.php:21 ..
+#: /edb_slideshow.php:174 ../edb-blog.php:20 ../edb-press-reviews.php:20
+msgid "Not found"
+msgstr ""
+
+#: ../edb-faq.php:23 ../edb-reviews.php:22 ../edb-designers.php:22 ..
+#: /edb_slideshow.php:175 ../edb-blog.php:21 ../edb-press-reviews.php:21
+msgid "Not found in Trash"
+msgstr ""
+
+#: ../edb-faq.php:24
+msgid "Image"
+msgstr ""
+
+#: ../edb-faq.php:25
+msgid "Set image"
+msgstr ""
+
+#: ../edb-faq.php:26
+msgid "Remove image"
+msgstr ""
+
+#: ../edb-faq.php:27
+msgid "Use as image"
+msgstr ""
+
+#: ../edb-faq.php:28
+msgid "Insert into question"
+msgstr ""
+
+#: ../edb-faq.php:29
+msgid "Uploaded to this question"
+msgstr ""
+
+#: ../edb-faq.php:30
+msgid "Questions list"
+msgstr ""
+
+#: ../edb-faq.php:31
+msgid "Question list navigation"
+msgstr ""
+
+#: ../edb-faq.php:32
+msgid "Filter questions list"
+msgstr ""
+
+#: ../edb-faq.php:36
+msgid "FAQ Q&A's"
+msgstr ""
+
+#: ../edb-faq.php:62
+msgid "Style"
+msgstr ""
+
+#: ../edb-faq.php:68
+msgid "Background Color"
+msgstr ""
+
+#: ../edb-faq.php:74
+msgid "Background Image"
+msgstr ""
+
+#: ../edb-faq.php:79
+msgid "Text Color"
 msgstr ""
 
 #: ../comments.php:31
@@ -258,8 +375,8 @@ msgstr ""
 msgid "note"
 msgstr ""
 
-#: ../woocommerce/order/order-details-customer.php:26 ../header.php:174 ../header.
-#: php:201
+#: ../woocommerce/order/order-details-customer.php:26 ../page-i-am-designer.php:
+#: 144 ../header.php:208 ../header.php:235
 msgid "email"
 msgstr ""
 
@@ -317,7 +434,7 @@ msgid "ship bundle 3"
 msgstr ""
 
 #: ../woocommerce/order/order-details.php:80 ../woocommerce/cart/cart-totals.php:
-#: 30 ../woocommerce/checkout/payment.php:159 ../woocommerce/checkout/form-
+#: 30 ../woocommerce/checkout/payment.php:177 ../woocommerce/checkout/form-
 #: summaries.php:63 ../woocommerce/checkout/thankyou.php:55
 msgid "total"
 msgstr ""
@@ -380,7 +497,7 @@ msgstr ""
 msgid "Coupon code"
 msgstr ""
 
-#: ../woocommerce/cart/cart.php:127 ../woocommerce/checkout/payment.php:78 ..
+#: ../woocommerce/cart/cart.php:127 ../woocommerce/checkout/payment.php:96 ..
 #: /woocommerce/checkout/form-coupon.php:30
 msgid "apply coupon"
 msgstr ""
@@ -389,11 +506,10 @@ msgstr ""
 msgid "update cart"
 msgstr ""
 
-#: ../woocommerce/cart/proceed-to-checkout-button.php:18 ..
-#: /woocommerce/checkout/review-order.php:81
+#: ../woocommerce/cart/proceed-to-checkout-button.php:18
 #, php-format
 msgid ""
-"We offer the self pick-up option. Come pick up your order at tour warehosue "
+"We offer the self pick-up option. Come pick up your order at tour warehouse "
 "and save an additional 5% on the last ticketed price"
 msgstr ""
 
@@ -402,7 +518,7 @@ msgid "proceed to checkout"
 msgstr ""
 
 #: ../woocommerce/cart/cart-shipping.php:102 ../woocommerce/checkout/payment.php:
-#: 124 ../woocommerce/checkout/payment.php:138 ../woocommerce/checkout/parts-
+#: 142 ../woocommerce/checkout/payment.php:156 ../woocommerce/checkout/parts-
 #: packages.php:78 ../woocommerce/myaccount/my-address.php:45
 msgid "edit"
 msgstr ""
@@ -414,8 +530,8 @@ msgstr ""
 
 #: ../woocommerce/cart/cart-shipping.php:122 ../woocommerce/cart/cart-shipping.
 #: php:205 ../woocommerce/checkout/parts-totals.php:35 ..
-#: /woocommerce/checkout/parts-totals.php:40 ../functions.php:196 ../functions.
-#: php:201
+#: /woocommerce/checkout/parts-totals.php:40 ../functions.php:307 ../functions.
+#: php:312
 msgid "shipping"
 msgstr ""
 
@@ -508,11 +624,12 @@ msgstr ""
 msgid "Leave a Reply to %s"
 msgstr ""
 
-#: ../woocommerce/single-product-reviews.php:65
+#: ../woocommerce/single-product-reviews.php:65 ../page-i-am-designer.php:137 ..
+#: /page-i-am-designer.php:140
 msgid "Name"
 msgstr ""
 
-#: ../woocommerce/single-product-reviews.php:67
+#: ../woocommerce/single-product-reviews.php:67 ../page-i-am-designer.php:145
 msgid "Email"
 msgstr ""
 
@@ -895,7 +1012,7 @@ msgstr ""
 
 #: ../woocommerce/auth/form-login.php:30 ../woocommerce/global/form-login.php:30 .
 #: ./woocommerce/myaccount/form-login.php:43 ../woocommerce/myaccount/form-login.
-#: php:93
+#: php:93 ../page-i-am-designer.php:149 ../page-i-am-designer.php:150
 msgid "Password"
 msgstr ""
 
@@ -931,47 +1048,48 @@ msgstr ""
 msgid "Application Authentication Request"
 msgstr ""
 
-#: ../woocommerce/content-single-product.php:54
+#: ../woocommerce/content-single-product.php:58
 #, php-format
 msgid ""
 "The <a href=\"%s\">stuffing</a> is sold separately. <a href=\"%s\">click here to "
 "get some.</a>"
 msgstr ""
 
-#: ../woocommerce/content-single-product.php:68
+#: ../woocommerce/content-single-product.php:75
 msgid "description"
 msgstr ""
 
-#: ../woocommerce/content-single-product.php:87
+#: ../woocommerce/content-single-product.php:94
 msgid "this product is currently out of stock and unavailable."
 msgstr ""
 
-#: ../woocommerce/content-single-product.php:123
+#: ../woocommerce/content-single-product.php:130
 msgid "in stock"
 msgstr ""
 
-#: ../woocommerce/content-single-product.php:124
+#: ../woocommerce/content-single-product.php:131
 msgid "restocking"
 msgstr ""
 
-#: ../woocommerce/content-single-product.php:159
-msgid "designer"
+#: ../woocommerce/content-single-product.php:174
+#, php-format
+msgid "designer: %s"
 msgstr ""
 
-#: ../woocommerce/content-single-product.php:181
+#: ../woocommerce/content-single-product.php:196
 msgid "assembly instructions"
 msgstr ""
 
-#: ../woocommerce/content-single-product.php:190
+#: ../woocommerce/content-single-product.php:205
 msgid "materials and dimensions"
 msgstr ""
 
-#: ../woocommerce/content-single-product.php:199
+#: ../woocommerce/content-single-product.php:214
 msgid "shipping and return"
 msgstr ""
 
-#: ../woocommerce/content-single-product.php:221
-msgid "why heather loves this model"
+#: ../woocommerce/content-single-product.php:263
+msgid "See more"
 msgstr ""
 
 #: ../woocommerce/checkout/payment.php:34 ../woocommerce/checkout/form-summaries.
@@ -992,95 +1110,116 @@ msgstr ""
 
 #: ../woocommerce/checkout/payment.php:66
 #, php-format
-msgid "Credits For \"%s\""
+msgid "Points For \"%s\""
 msgstr ""
 
 #: ../woocommerce/checkout/payment.php:67
 #, php-format
-msgid "You have a credit balance of %s"
+msgid "You have a promo points balance of %s"
 msgstr ""
 
 #: ../woocommerce/checkout/payment.php:68
-msgid "credits to use"
+msgid "points to use"
 msgstr ""
 
 #: ../woocommerce/checkout/payment.php:69
+msgid "apply points"
+msgstr ""
+
+#: ../woocommerce/checkout/payment.php:78
+msgid "Credits"
+msgstr ""
+
+#: ../woocommerce/checkout/payment.php:79
+#, php-format
+msgid "You have a credit balance of %s"
+msgstr ""
+
+#: ../woocommerce/checkout/payment.php:80
+msgid "credits to use"
+msgstr ""
+
+#: ../woocommerce/checkout/payment.php:81
 msgid "apply credits"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:76
+#: ../woocommerce/checkout/payment.php:93
 msgid "do you have a promo code?"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:77
+#: ../woocommerce/checkout/payment.php:94
+msgid "NB: All promo codes only apply on regular priced items."
+msgstr ""
+
+#: ../woocommerce/checkout/payment.php:95
 msgid "promo code"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:89
+#: ../woocommerce/checkout/payment.php:107
 msgid "order summary"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:96 ../woocommerce/checkout/payment.php:163 
-#: ../woocommerce/checkout/form-pay.php:116
+#: ../woocommerce/checkout/payment.php:114 ../woocommerce/checkout/payment.php:
+#: 181 ../woocommerce/checkout/form-pay.php:116
 msgid "items"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:102 ../woocommerce/checkout/form-checkout.
+#: ../woocommerce/checkout/payment.php:120 ../woocommerce/checkout/form-checkout.
 #: php:53 ../woocommerce/checkout/review-order.php:85
 msgid "save & continue"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:112
+#: ../woocommerce/checkout/payment.php:130
 msgid "delivered to"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:126 ../woocommerce/checkout/parts-totals.
+#: ../woocommerce/checkout/payment.php:144 ../woocommerce/checkout/parts-totals.
 #: php:42 ../woocommerce/checkout/review-order.php:54
 msgid "please click here to fill in your address information."
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:134 ../woocommerce/checkout/form-pay.php:183
+#: ../woocommerce/checkout/payment.php:152 ../woocommerce/checkout/form-pay.php:183
 msgid "payment"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:140
+#: ../woocommerce/checkout/payment.php:158
 msgid "please click here to fill in your payment information."
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:149
+#: ../woocommerce/checkout/payment.php:167
 msgid "Final Checklist"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:150
+#: ../woocommerce/checkout/payment.php:168
 msgid "i made sure the item fits."
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:151
+#: ../woocommerce/checkout/payment.php:169
 msgid "The delivery does not include..."
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:152
+#: ../woocommerce/checkout/payment.php:170
 msgid ""
 "i am aware that there can be slight variation in the colors of the swatches "
 "and the final product due to dye lot difference."
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:173
+#: ../woocommerce/checkout/payment.php:191
 msgid ""
 "Since your browser does not support JavaScript, or it is disabled, please "
 "ensure you click the <em>Update Totals</em> button before placing your order."
 " You may be charged more than the amount stated above if you fail to do so."
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:173
+#: ../woocommerce/checkout/payment.php:191
 msgid "Update totals"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:179 ../woocommerce/checkout/payment.php:179
+#: ../woocommerce/checkout/payment.php:197 ../woocommerce/checkout/payment.php:197
 msgid "place order"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:183
+#: ../woocommerce/checkout/payment.php:201
 #, php-format
 msgid ""
 "I&rsquo;ve read and accept the <a href=\"%s\" target=\"_blank\">terms &amp; "
@@ -1111,12 +1250,12 @@ msgstr ""
 msgid "you must be logged in to checkout."
 msgstr ""
 
-#: ../woocommerce/checkout/form-billing.php:92
+#: ../woocommerce/checkout/form-billing.php:98
 #, php-format
 msgid "self pickup, save 5% extra"
 msgstr ""
 
-#: ../woocommerce/checkout/form-billing.php:102
+#: ../woocommerce/checkout/form-billing.php:108
 msgid "ship to same address"
 msgstr ""
 
@@ -1163,7 +1302,7 @@ msgstr ""
 msgid "please attempt your purchase again."
 msgstr ""
 
-#: ../woocommerce/checkout/thankyou.php:30 ../functions.php:203
+#: ../woocommerce/checkout/thankyou.php:30 ../functions.php:314
 msgid "my account"
 msgstr ""
 
@@ -1217,12 +1356,19 @@ msgstr ""
 msgid "click here"
 msgstr ""
 
+#: ../woocommerce/checkout/review-order.php:81
+#, php-format
+msgid ""
+"We offer the self pick-up option. Come pick up your order at our warehouse "
+"and save an additional 5% on the last ticketed price"
+msgstr ""
+
 #: ../woocommerce/checkout/form-shipping.php:43 ../woocommerce/checkout/form-
 #: shipping.php:44
 msgid "Phone"
 msgstr ""
 
-#: ../woocommerce/checkout/form-shipping.php:106
+#: ../woocommerce/checkout/form-shipping.php:111
 msgid "additional information"
 msgstr ""
 
@@ -1493,9 +1639,14 @@ msgstr ""
 msgid "Your very own personal coupon code is: %s"
 msgstr ""
 
-#: ../woocommerce/myaccount/my-account.php:51
+#: ../woocommerce/myaccount/my-account.php:52
 #, php-format
-msgid "You currently have a %s credit left."
+msgid "You currently have a balance of %s."
+msgstr ""
+
+#: ../woocommerce/myaccount/my-account.php:72
+#, php-format
+msgid "You currently have a credit balance of %s."
 msgstr ""
 
 #: ../woocommerce/product-searchform.php:2
@@ -1543,88 +1694,251 @@ msgid ""
 "searching can help."
 msgstr ""
 
-#: ../functions.php:56
+#: ../edb-reviews.php:7
+msgctxt "Post Type General Name"
+msgid "Reviews"
+msgstr ""
+
+#: ../edb-reviews.php:8
+msgctxt "Post Type Singular Name"
+msgid "Review"
+msgstr ""
+
+#: ../edb-reviews.php:9
+msgid "Product Reviews"
+msgstr ""
+
+#: ../edb-reviews.php:10 ../edb-reviews.php:40
+msgid "Product Review"
+msgstr ""
+
+#: ../edb-reviews.php:11
+msgid "Review Archives"
+msgstr ""
+
+#: ../edb-reviews.php:13
+msgid "All Reviews"
+msgstr ""
+
+#: ../edb-reviews.php:14
+msgid "Add New Review"
+msgstr ""
+
+#: ../edb-reviews.php:15 ../edb-designers.php:15 ../edb_slideshow.php:168 ../edb-
+#: blog.php:14 ../edb-press-reviews.php:14
+msgid "Add New"
+msgstr ""
+
+#: ../edb-reviews.php:16
+msgid "New Review"
+msgstr ""
+
+#: ../edb-reviews.php:17
+msgid "Edit Review"
+msgstr ""
+
+#: ../edb-reviews.php:18
+msgid "Update Review"
+msgstr ""
+
+#: ../edb-reviews.php:19
+msgid "View Review"
+msgstr ""
+
+#: ../edb-reviews.php:20
+msgid "Search Review"
+msgstr ""
+
+#: ../edb-reviews.php:23 ../edb-designers.php:23 ../edb_slideshow.php:176 ../edb-
+#: blog.php:22 ../edb-press-reviews.php:22
+msgid "Featured Image"
+msgstr ""
+
+#: ../edb-reviews.php:24 ../edb-designers.php:24 ../edb_slideshow.php:177 ../edb-
+#: blog.php:23 ../edb-press-reviews.php:23
+msgid "Set featured image"
+msgstr ""
+
+#: ../edb-reviews.php:25 ../edb-designers.php:25 ../edb_slideshow.php:178 ../edb-
+#: blog.php:24 ../edb-press-reviews.php:24
+msgid "Remove featured image"
+msgstr ""
+
+#: ../edb-reviews.php:26 ../edb-designers.php:26 ../edb_slideshow.php:179 ../edb-
+#: blog.php:25 ../edb-press-reviews.php:25
+msgid "Use as featured image"
+msgstr ""
+
+#: ../edb-reviews.php:27
+msgid "Insert into review"
+msgstr ""
+
+#: ../edb-reviews.php:28
+msgid "Uploaded to this review"
+msgstr ""
+
+#: ../edb-reviews.php:29
+msgid "Reviews list"
+msgstr ""
+
+#: ../edb-reviews.php:30
+msgid "Reviews list navigation"
+msgstr ""
+
+#: ../edb-reviews.php:31
+msgid "Filter reviews list"
+msgstr ""
+
+#: ../edb-reviews.php:41
+msgid "Review Infos"
+msgstr ""
+
+#: ../functions.php:75
+#, php-format
+msgid "This product ships free %s (read)"
+msgstr ""
+
+#: ../functions.php:103
+#, php-format
+msgid "offer ends in %s days"
+msgstr ""
+
+#: ../functions.php:105
+msgid "offer ends today"
+msgstr ""
+
+#: ../functions.php:140
 msgid "Primary"
 msgstr ""
 
-#: ../functions.php:116
+#: ../functions.php:200
 msgid "sidebar"
 msgstr ""
 
-#: ../functions.php:125
+#: ../functions.php:209
 msgid "languages"
 msgstr ""
 
-#: ../functions.php:194
+#: ../functions.php:305
 msgid "products"
 msgstr ""
 
-#: ../functions.php:195
+#: ../functions.php:306
 msgid "order samples"
 msgstr ""
 
-#: ../functions.php:197 ../functions.php:204
+#: ../functions.php:308 ../functions.php:315
 msgid "about"
 msgstr ""
 
-#: ../functions.php:198 ../functions.php:200
+#: ../functions.php:309 ../functions.php:311
 msgid "contact us"
 msgstr ""
 
-#: ../functions.php:199 ../functions.php:208
+#: ../functions.php:310 ../functions.php:319
 msgid "lookbook"
 msgstr ""
 
-#: ../functions.php:202
+#: ../functions.php:313
 msgid "return & exchange"
 msgstr ""
 
-#: ../functions.php:205
-msgid "FAQ"
-msgstr ""
-
-#: ../functions.php:206
+#: ../functions.php:317
 msgid "trade & designers"
 msgstr ""
 
-#: ../functions.php:207
+#: ../functions.php:318
 msgid "large orders"
 msgstr ""
 
-#: ../functions.php:209
+#: ../functions.php:320
 msgid "privacy policy"
 msgstr ""
 
-#: ../functions.php:210
+#: ../functions.php:321
 msgid "terms of use"
 msgstr ""
 
-#: ../functions.php:366
+#: ../functions.php:477
 msgid "download PDF"
 msgstr ""
 
-#: ../functions.php:386
+#: ../functions.php:497
 msgid "enter"
 msgstr ""
 
-#: ../functions.php:387
+#: ../functions.php:498
 msgid "entrez"
 msgstr ""
 
-#: ../functions.php:923
+#: ../functions.php:1074
 msgid "Shipping Note"
 msgstr ""
 
-#: ../functions.php:925
+#: ../functions.php:1076
 msgid "Notes about your order."
 msgstr ""
 
-#: ../functions.php:1118
+#: ../functions.php:1322
 msgid "Inspirations"
 msgstr ""
 
-#: ../functions.php:1119
+#: ../functions.php:1323
 msgid "Inspiration"
+msgstr ""
+
+#: ../page-i-am-designer.php:29
+msgid "Sorry, an unknown error occured."
+msgstr ""
+
+#: ../page-i-am-designer.php:32
+msgid "You must fill out the \"name\" field."
+msgstr ""
+
+#: ../page-i-am-designer.php:35
+msgid "You must fill out the \"email\" field."
+msgstr ""
+
+#: ../page-i-am-designer.php:38
+msgid "You must fill out the \"password\" field."
+msgstr ""
+
+#: ../page-i-am-designer.php:41
+msgid "You must fill out the \"password confirmation\" field."
+msgstr ""
+
+#: ../page-i-am-designer.php:44
+msgid "Passwords do not match."
+msgstr ""
+
+#: ../page-i-am-designer.php:48
+msgid "You must fill out the \"company name\" field."
+msgstr ""
+
+#: ../page-i-am-designer.php:124
+#, php-format
+msgid "Thank you! %s is registered as a designer!"
+msgstr ""
+
+#: ../page-i-am-designer.php:128
+#, php-format
+msgid "You are already logged in as %s"
+msgstr ""
+
+#: ../page-i-am-designer.php:154 ../page-i-am-designer.php:155
+msgid "Password Confirmation"
+msgstr ""
+
+#: ../page-i-am-designer.php:178 ../page-i-am-designer.php:179
+msgid "Company Name"
+msgstr ""
+
+#: ../page-i-am-designer.php:184 ../page-i-am-designer.php:185
+msgid "Website"
+msgstr ""
+
+#: ../page-i-am-designer.php:197 ../page-i-am-designer.php:199
+msgid "register as designer"
 msgstr ""
 
 #: ../404.php:17
@@ -1635,96 +1949,469 @@ msgstr ""
 msgid "It looks like nothing was found at this location."
 msgstr ""
 
-#: ../header.php:57 ../header.php:156
+#: ../edb-designers.php:7
+msgctxt "Post Type General Name"
+msgid "Designers"
+msgstr ""
+
+#: ../edb-designers.php:8
+msgctxt "Post Type Singular Name"
+msgid "Designer"
+msgstr ""
+
+#: ../edb-designers.php:9
+msgid "Designers"
+msgstr ""
+
+#: ../edb-designers.php:10 ../edb-designers.php:40
+msgid "Designer"
+msgstr ""
+
+#: ../edb-designers.php:11
+msgid "Designer Archives"
+msgstr ""
+
+#: ../edb-designers.php:13
+msgid "All Designers"
+msgstr ""
+
+#: ../edb-designers.php:14
+msgid "Add New Designer"
+msgstr ""
+
+#: ../edb-designers.php:16
+msgid "New Designer"
+msgstr ""
+
+#: ../edb-designers.php:17
+msgid "Edit Designer"
+msgstr ""
+
+#: ../edb-designers.php:18
+msgid "Update Designer"
+msgstr ""
+
+#: ../edb-designers.php:19
+msgid "View Designer"
+msgstr ""
+
+#: ../edb-designers.php:20
+msgid "Search Designer"
+msgstr ""
+
+#: ../edb-designers.php:27
+msgid "Insert into designer"
+msgstr ""
+
+#: ../edb-designers.php:28
+msgid "Uploaded to this designer"
+msgstr ""
+
+#: ../edb-designers.php:29
+msgid "Designers list"
+msgstr ""
+
+#: ../edb-designers.php:30
+msgid "Designers list navigation"
+msgstr ""
+
+#: ../edb-designers.php:31
+msgid "Filter designers list"
+msgstr ""
+
+#: ../edb-designers.php:41
+msgid "Designer Infos"
+msgstr ""
+
+#: ../edb_slideshow.php:15
+msgid "Slide Info"
+msgstr ""
+
+#: ../edb_slideshow.php:30
+msgid "Outside Title (en)"
+msgstr ""
+
+#: ../edb_slideshow.php:37
+msgid "Outside Title (fr)"
+msgstr ""
+
+#: ../edb_slideshow.php:160
+msgctxt "Post Type General Name"
+msgid "Slides"
+msgstr ""
+
+#: ../edb_slideshow.php:161
+msgctxt "Post Type Singular Name"
+msgid "Slide"
+msgstr ""
+
+#: ../edb_slideshow.php:162 ../edb_slideshow.php:163
+msgid "Slideshow"
+msgstr ""
+
+#: ../edb_slideshow.php:164
+msgid "Slideshow Archives"
+msgstr ""
+
+#: ../edb_slideshow.php:165
+msgid "Parent slideshow"
+msgstr ""
+
+#: ../edb_slideshow.php:166
+msgid "All slides"
+msgstr ""
+
+#: ../edb_slideshow.php:167
+msgid "Add new slide"
+msgstr ""
+
+#: ../edb_slideshow.php:169
+msgid "New Slide"
+msgstr ""
+
+#: ../edb_slideshow.php:170
+msgid "Edit Slide"
+msgstr ""
+
+#: ../edb_slideshow.php:171
+msgid "Update Slide"
+msgstr ""
+
+#: ../edb_slideshow.php:172
+msgid "View Slide"
+msgstr ""
+
+#: ../edb_slideshow.php:173
+msgid "Search Slide"
+msgstr ""
+
+#: ../edb_slideshow.php:180
+msgid "Insert into slide"
+msgstr ""
+
+#: ../edb_slideshow.php:181
+msgid "Uploaded to this slide"
+msgstr ""
+
+#: ../edb_slideshow.php:182
+msgid "Slides list"
+msgstr ""
+
+#: ../edb_slideshow.php:183
+msgid "Slides list navigation"
+msgstr ""
+
+#: ../edb_slideshow.php:184
+msgid "Filter slides list"
+msgstr ""
+
+#: ../edb_slideshow.php:187
+msgid "Slide"
+msgstr ""
+
+#: ../edb_slideshow.php:188
+msgid "Home Page Slide Show"
+msgstr ""
+
+#: ../header.php:67
+msgid "BACK TO SCHOOL"
+msgstr ""
+
+#: ../header.php:69 ../header.php:272
+msgid "Use coupon code <code>back15</code>, and save %15 on regular priced items."
+msgstr ""
+
+#: ../header.php:78 ../header.php:190
 msgid "welcome"
 msgstr ""
 
-#: ../header.php:57
+#: ../header.php:78
 msgid "sign out"
 msgstr ""
 
-#: ../header.php:59
+#: ../header.php:80
 msgid "sign in"
 msgstr ""
 
-#: ../header.php:62
+#: ../header.php:83
 msgid "cart"
 msgstr ""
 
-#: ../header.php:102 ../header.php:124 ../header.php:135 ../header.php:136 ..
-#: /header.php:137
+#: ../header.php:130 ../header.php:152 ../header.php:163 ../header.php:164 ..
+#: /header.php:165 ../header.php:166
 #, php-format
 msgid "View all %s"
 msgstr ""
 
-#: ../header.php:115 ../header.php:120
+#: ../header.php:143 ../header.php:148
 #, php-format
 msgid "View all post filed under %s"
 msgstr ""
 
-#: ../header.php:120 ../header.php:147 ../header.php:150
+#: ../header.php:148 ../header.php:177 ../header.php:181
 msgid "all"
 msgstr ""
 
-#: ../header.php:135
+#: ../header.php:163 ../header.php:163
 msgid "ottomans"
 msgstr ""
 
-#: ../header.php:136
+#: ../header.php:164 ../header.php:164
 msgid "rugs"
 msgstr ""
 
-#: ../header.php:148 ../header.php:151
+#: ../header.php:165 ../header.php:165
+msgid "cushions"
+msgstr ""
+
+#: ../header.php:178 ../header.php:182
 msgid "sale"
 msgstr ""
 
-#: ../header.php:159 ../header.php:170
+#: ../header.php:179 ../header.php:183
+msgid "new"
+msgstr ""
+
+#: ../header.php:193 ../header.php:204
 msgid "returning customers<br />please sign in"
 msgstr ""
 
-#: ../header.php:163
+#: ../header.php:197
 msgid "new customers<br />sign up for shopping<br />and exclusive offers"
 msgstr ""
 
-#: ../header.php:178 ../header.php:205
+#: ../header.php:212 ../header.php:239
 msgid "password"
 msgstr ""
 
-#: ../header.php:184
+#: ../header.php:218
 msgid "enter edb"
 msgstr ""
 
-#: ../header.php:185
+#: ../header.php:219
 msgid "login"
 msgstr ""
 
-#: ../header.php:188
+#: ../header.php:222
 msgid "> click here to recover lost password"
 msgstr ""
 
-#: ../header.php:190 ../header.php:220
+#: ../header.php:224 ../header.php:254
 msgid "back"
 msgstr ""
 
-#: ../header.php:196
+#: ../header.php:230
 msgid "new customers sign up for shopping<br />and exclusive offers"
 msgstr ""
 
-#: ../header.php:209
+#: ../header.php:243
 msgid "confirm password"
 msgstr ""
 
-#: ../header.php:215
+#: ../header.php:249
 msgid "sign up to edb"
 msgstr ""
 
-#: ../header.php:216
+#: ../header.php:250
 msgid "register"
+msgstr ""
+
+#: ../header.php:270
+msgid "BACK TO SCHOOL PROMO"
+msgstr ""
+
+#: ../header.php:273
+msgid "Ok, got it!"
+msgstr ""
+
+#: ../edb-blog.php:6
+msgctxt "Post Type General Name"
+msgid "Blog Posts"
+msgstr ""
+
+#: ../edb-blog.php:7
+msgctxt "Post Type Singular Name"
+msgid "Blog Post"
+msgstr ""
+
+#: ../edb-blog.php:8
+msgid "Blog Posts"
+msgstr ""
+
+#: ../edb-blog.php:9 ../edb-blog.php:39
+msgid "Blog Post"
+msgstr ""
+
+#: ../edb-blog.php:10
+msgid "Blog Post Archives"
+msgstr ""
+
+#: ../edb-blog.php:11
+msgid "Parent Post:"
+msgstr ""
+
+#: ../edb-blog.php:12
+msgid "All Posts"
+msgstr ""
+
+#: ../edb-blog.php:13
+msgid "Add New Post"
+msgstr ""
+
+#: ../edb-blog.php:15
+msgid "New Post"
+msgstr ""
+
+#: ../edb-blog.php:16
+msgid "Edit Post"
+msgstr ""
+
+#: ../edb-blog.php:17
+msgid "Update Post"
+msgstr ""
+
+#: ../edb-blog.php:18
+msgid "View Post"
+msgstr ""
+
+#: ../edb-blog.php:19
+msgid "Search Post"
+msgstr ""
+
+#: ../edb-blog.php:26
+msgid "Insert into post"
+msgstr ""
+
+#: ../edb-blog.php:27
+msgid "Uploaded to this post"
+msgstr ""
+
+#: ../edb-blog.php:28
+msgid "Posts list"
+msgstr ""
+
+#: ../edb-blog.php:29
+msgid "Posts list navigation"
+msgstr ""
+
+#: ../edb-blog.php:30
+msgid "Filter posts list"
+msgstr ""
+
+#: ../edb-blog.php:40
+msgid "Posts For The Blog"
 msgstr ""
 
 #: ../search.php:19
 #, php-format
 msgid "Search Results for: %s"
+msgstr ""
+
+#: ../archive-blog_post.php:21 ../archive-blog_post.php:30
+msgid "Blog"
+msgstr ""
+
+#: ../edb-press-reviews.php:6
+msgctxt "Post Type General Name"
+msgid "Press Reviews"
+msgstr ""
+
+#: ../edb-press-reviews.php:7
+msgctxt "Post Type Singular Name"
+msgid "Press Review"
+msgstr ""
+
+#: ../edb-press-reviews.php:8 ../edb-press-reviews.php:9 ../edb-press-reviews.php:
+#: 34
+msgid "Press Reviews"
+msgstr ""
+
+#: ../edb-press-reviews.php:10
+msgid "Press Review Archives"
+msgstr ""
+
+#: ../edb-press-reviews.php:12
+msgid "All Items"
+msgstr ""
+
+#: ../edb-press-reviews.php:13
+msgid "Add New Item"
+msgstr ""
+
+#: ../edb-press-reviews.php:15
+msgid "New Item"
+msgstr ""
+
+#: ../edb-press-reviews.php:16
+msgid "Edit Item"
+msgstr ""
+
+#: ../edb-press-reviews.php:17
+msgid "Update Item"
+msgstr ""
+
+#: ../edb-press-reviews.php:18
+msgid "View Item"
+msgstr ""
+
+#: ../edb-press-reviews.php:19
+msgid "Search Item"
+msgstr ""
+
+#: ../edb-press-reviews.php:26
+msgid "Insert into item"
+msgstr ""
+
+#: ../edb-press-reviews.php:27
+msgid "Uploaded to this item"
+msgstr ""
+
+#: ../edb-press-reviews.php:28
+msgid "Items list"
+msgstr ""
+
+#: ../edb-press-reviews.php:29
+msgid "Items list navigation"
+msgstr ""
+
+#: ../edb-press-reviews.php:30
+msgid "Filter items list"
+msgstr ""
+
+#: ../edb-press-reviews.php:33
+msgid "Press Review"
+msgstr ""
+
+#: ../edb-press-reviews.php:59
+msgid "Review Info"
+msgstr ""
+
+#: ../edb-press-reviews.php:65
+msgid "Press Review URL"
+msgstr ""
+
+#: ../edb-press-reviews.php:70
+msgid "Press Review Excerpt"
+msgstr ""
+
+#: ../edb-product-ext.php:62
+msgid "See More"
+msgstr ""
+
+#: ../edb-product-ext.php:69
+msgid "See More Images Upload"
+msgstr ""
+
+#: ../edb-product-ext.php:79
+msgid "Anatomy Picture"
+msgstr ""
+
+#: ../edb-product-ext.php:85
+msgid "Anatomy Image Title"
+msgstr ""
+
+#: ../edb-product-ext.php:90
+msgid "Anatomy Image Upload"
 msgstr ""
 
 #. Name of the theme

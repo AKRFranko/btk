@@ -69,7 +69,7 @@
                       </a><a class="title <?php echo empty($decorated->subtitle) ? 'large' : '';?>" href="<?php echo $decorated->url; ?>">
                         <?php echo $decorated->system_name; ?>
                       </a><a class="price" href="<?php echo $decorated->url; ?>">
-                        <?php echo wc_price($decorated->price); ?>
+                        <?php echo $decorated->price_html; ?>
                       </a>
                     </li>
                   <?php } } ?> 
@@ -93,3 +93,5 @@
 
   
 </article><!-- #post-## -->
+
+

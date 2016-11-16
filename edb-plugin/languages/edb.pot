@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: edb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-04 12:09-0500\n"
-"POT-Revision-Date: Wed Aug 17 2016 12:26:56 GMT-0400 (EDT)\n"
+"POT-Revision-Date: Fri Nov 04 2016 18:05:13 GMT-0400 (EDT)\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,106 +24,110 @@ msgstr ""
 "esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
 "X-Generator: Loco - https://localise.biz/"
 
+#: ../includes/class-edb-product-decorator.php:197
+msgid "Starting at"
+msgstr ""
+
 #: ../includes/template-tags.php:107
 msgid "download pdf"
 msgstr ""
 
-#: ../includes/template-tags.php:133
+#: ../includes/template-tags.php:134
 #, php-format
 msgid "%s thumbnail image"
 msgstr ""
 
-#: ../includes/template-tags.php:510
+#: ../includes/template-tags.php:511
 msgid "youtube video"
 msgstr ""
 
-#: ../includes/template-tags.php:522
+#: ../includes/template-tags.php:523
 #, php-format
 msgid "%s image #%d"
 msgstr ""
 
-#: ../includes/template-tags.php:621
+#: ../includes/template-tags.php:622
 #, php-format
 msgid "material #%s"
 msgstr ""
 
-#: ../includes/template-tags.php:635
+#: ../includes/template-tags.php:636
 msgid "order samples"
 msgstr ""
 
-#: ../includes/template-tags.php:670
+#: ../includes/template-tags.php:671
 msgid "select a color"
 msgstr ""
 
-#: ../includes/template-tags.php:679 ../includes/template-tags.php:692
+#: ../includes/template-tags.php:680 ../includes/template-tags.php:693
 msgid "in stock"
 msgstr ""
 
-#: ../includes/template-tags.php:682 ../includes/template-tags.php:690
+#: ../includes/template-tags.php:683 ../includes/template-tags.php:691
 msgid "restocking"
 msgstr ""
 
-#: ../includes/template-tags.php:685
+#: ../includes/template-tags.php:686
 msgid "backorder"
 msgstr ""
 
-#: ../includes/template-tags.php:691
-msgid "order it in this fabric"
+#: ../includes/template-tags.php:692
+msgid "order it in this variation"
 msgstr ""
 
-#: ../includes/template-tags.php:696
+#: ../includes/template-tags.php:697
 msgid "order now to reserve your item"
 msgstr ""
 
-#: ../includes/template-tags.php:987
+#: ../includes/template-tags.php:997
 msgid "technical detail image"
 msgstr ""
 
-#: ../includes/template-tags.php:1039
+#: ../includes/template-tags.php:1049
 msgid "self pickup"
 msgstr ""
 
-#: ../includes/template-tags.php:1040
+#: ../includes/template-tags.php:1050
 msgid "ship when ready"
 msgstr ""
 
-#: ../includes/template-tags.php:1041
+#: ../includes/template-tags.php:1051
 msgid "ship as bundle 1"
 msgstr ""
 
-#: ../includes/template-tags.php:1042
+#: ../includes/template-tags.php:1052
 msgid "ship as bundle 2"
 msgstr ""
 
-#: ../includes/template-tags.php:1043
+#: ../includes/template-tags.php:1053
 msgid "ship as bundle 3"
 msgstr ""
 
-#: ../includes/template-tags.php:1090
+#: ../includes/template-tags.php:1100
 msgid "self pickup discount"
 msgstr ""
 
-#: ../includes/template-tags.php:1107
+#: ../includes/template-tags.php:1117
 msgid "credit card"
 msgstr ""
 
-#: ../includes/template-tags.php:1111
+#: ../includes/template-tags.php:1121
 msgid "expiry"
 msgstr ""
 
-#: ../includes/template-tags.php:1120
+#: ../includes/template-tags.php:1130
 msgid "no color selected"
 msgstr ""
 
-#: ../includes/template-tags.php:1123
+#: ../includes/template-tags.php:1133
 msgid "quantity"
 msgstr ""
 
-#: ../includes/template-tags.php:1133
+#: ../includes/template-tags.php:1143
 msgid "availability"
 msgstr ""
 
-#: ../includes/template-tags.php:1140
+#: ../includes/template-tags.php:1150
 msgid "ADD TO CART"
 msgstr ""
 
@@ -143,11 +147,11 @@ msgid_plural "%s weeks"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../includes/class-edb-shipping.php:558
+#: ../includes/class-edb-shipping.php:559
 msgid "regular items"
 msgstr ""
 
-#: ../includes/class-edb-shipping.php:561
+#: ../includes/class-edb-shipping.php:562
 msgid "sale items"
 msgstr ""
 
@@ -169,50 +173,58 @@ msgstr ""
 msgid "Franko"
 msgstr ""
 
-#: ../admin/class-edb-admin.php:196
+#: ../admin/class-edb-admin.php:266
 msgid "Size Code"
 msgstr ""
 
-#: ../admin/class-edb-admin.php:201
+#: ../admin/class-edb-admin.php:271
 msgid "Meta Code"
 msgstr ""
 
-#: ../admin/class-edb-admin.php:208
+#: ../admin/class-edb-admin.php:280
+msgid "Designer ID"
+msgstr ""
+
+#: ../admin/class-edb-admin.php:290
+msgid "Review ID"
+msgstr ""
+
+#: ../admin/class-edb-admin.php:311
 msgid "Materials & Dimensions"
 msgstr ""
 
-#: ../admin/class-edb-admin.php:216 ../admin/class-edb-admin.php:301
+#: ../admin/class-edb-admin.php:319 ../admin/class-edb-admin.php:404
 msgid "Min shipping delay when item is <b>in stock</b>"
 msgstr ""
 
-#: ../admin/class-edb-admin.php:218 ../admin/class-edb-admin.php:303
+#: ../admin/class-edb-admin.php:321 ../admin/class-edb-admin.php:406
 msgid "ex: +7 days"
 msgstr ""
 
-#: ../admin/class-edb-admin.php:226
+#: ../admin/class-edb-admin.php:329
 msgid "Min shipping delay when item is <b>backorder</b>"
 msgstr ""
 
-#: ../admin/class-edb-admin.php:228 ../admin/class-edb-admin.php:316
+#: ../admin/class-edb-admin.php:331 ../admin/class-edb-admin.php:419
 msgid "ex: +16 weeks"
 msgstr ""
 
-#: ../admin/class-edb-admin.php:236 ../admin/class-edb-admin.php:325
+#: ../admin/class-edb-admin.php:339 ../admin/class-edb-admin.php:428
 msgid "Expected Restock Date"
 msgstr ""
 
-#: ../admin/class-edb-admin.php:263 ../admin/class-edb-admin.php:271
+#: ../admin/class-edb-admin.php:366 ../admin/class-edb-admin.php:374
 msgid "ID of youtube video for product introduction"
 msgstr ""
 
-#: ../admin/class-edb-admin.php:314
+#: ../admin/class-edb-admin.php:417
 msgid "Min shipping delay  when item is <b>backorder</b>"
 msgstr ""
 
-#: ../admin/class-edb-admin.php:334
+#: ../admin/class-edb-admin.php:437
 msgid "Expected Restock Quantity"
 msgstr ""
 
-#: ../admin/class-edb-admin.php:464
+#: ../admin/class-edb-admin.php:601
 msgid "Material ID"
 msgstr ""

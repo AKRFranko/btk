@@ -1,0 +1,69 @@
+/*
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+*/
+
+body {
+  background: #fafafa;
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #333;
+}
+
+.page-title {
+  outline: none;
+}
+
+
+#draggie{
+  width:100px;
+  height:100px;
+  background:red
+}
+/*.calendar,.month,.week,.day{*/
+/*  box-sizing:border-box;*/
+  
+/*  display:block;*/
+/*  float:left;*/
+  
+  
+  
+/*}*/
+
+/*.calendar{*/
+/*  width:702px;*/
+/*  min-width:702px;*/
+/*  min-height:502px;*/
+/*  height:502px;*/
+/*}*/
+/*.calendar .controls{*/
+/*  width:702px;*/
+/*  height:100px;*/
+  
+/*}*/
+
+/*.month{*/
+/*  width:702px;*/
+/*  height:402px;*/
+/*  border:1px solid #ccc;*/
+/*}*/
+/*.week{*/
+/*  width:700px;*/
+/*  height:calc(400px / 4);*/
+  
+/*}*/
+/*.day{*/
+  /*padding:10px;*/
+  /*margin:5px;*/
+/*  width:calc(700px / 7);*/
+/*  height:calc(400px / 4);*/
+  
+/*  border:1px solid #ccc;*/
+/*}*/
+
+/*.sunday,.saturday{*/
+/*  background:#f0f0f0;*/
+/*}*/

@@ -1,0 +1,1 @@
+<?php require get_template_directory() . '/page-i-am-designer.php'; ?>

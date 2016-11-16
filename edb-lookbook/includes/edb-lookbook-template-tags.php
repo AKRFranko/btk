@@ -20,7 +20,11 @@ function edb_get_products_with_skus( $skus  ){
   
   $products = array();
   foreach($skus as $sku){
-    $products[] = edb_decorated_product( $sku );
+    $product = edb_decorated_product( $sku );
+    if(!empty($product)){
+      $products[] = edb_decorated_product( $sku );
+    }
+    
   }
   
   return $products;

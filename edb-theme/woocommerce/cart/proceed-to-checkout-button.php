@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <div class="shipping-review-notice">
   
-  <p><?php _e('We offer the self pick-up option. Come pick up your order at tour warehosue and save an additional 5% on the last ticketed price', "edb"); ?></p>
+  <p><?php _e('We offer the self pick-up option. Come pick up your order at tour warehouse and save an additional 5% on the last ticketed price', "edb"); ?></p>
 </div>
 <form method="post" action="<?php echo WC()->cart->get_checkout_url(); ?>">
   

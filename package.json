@@ -6,7 +6,8 @@
   "dependencies": {
     "datauri": "^1.0.4",
     "forms": "^1.1.4",
-    "glob-fs": "^0.1.6"
+    "glob-fs": "^0.1.6",
+    "inquirer": "^1.2.1"
   },
   "devDependencies": {
     "woocommerce-api": "^1.2.0"

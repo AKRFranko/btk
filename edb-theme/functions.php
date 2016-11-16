@@ -22,7 +22,91 @@ if ( ! function_exists( '_s_setup' ) ) :
  * as indicating support for post thumbnails.
  */
  
-
+ $edb_shipping_rates_table = array(
+   'furniture' => array( 
+     'min' => 500,
+     'below'=> array(
+       'zone-1'=> 65,
+       'zone-2'=> 150,
+       'zone-3'=> 250
+       ),
+     'above'=> array(
+       'zone-1'=> 0,
+       'zone-2'=> 85,
+       'zone-3'=> 150
+       )
+   ),
+   'small-furniture' => array( 
+     'min' => 500,
+     'below'=> array(
+       'zone-1'=> 18,
+       'zone-2'=> 25,
+       'zone-3'=> 28
+       ),
+     'above'=> array(
+       'zone-1'=> 0,
+       'zone-2'=> 10,
+       'zone-3'=> 15
+       )
+   ),
+   'accessories'=> array(
+     'min' => 50,
+     'below'=> array(
+       'zone-1'=>15,
+       'zone-2'=>15,
+       'zone-3'=>15
+       ),
+     'above'=> array(
+       'zone-1'=>0,
+       'zone-2'=>0,
+       'zone-3'=>0
+     )
+   )
+ );
+ function edb_product_free_shipping( $product_id ){
+   global $edb_shipping_rates_table;
+   $product = get_product($product_id);
+   $shipping_class = $product->get_shipping_class();
+   $price = $product->price;
+   $rates = $edb_shipping_rates_table[$shipping_class];
+   $min = $rates['min'];
+   
+   if($price >= $min && !empty($shipping_class)){
+      $text = sprintf(__("This product ships free %s (read)",'edb'),'<br/>');
+      echo "<a class=\"product-free-shipping\" href=\"/about-shipping\">$text</a>";
+     
+   }
+   
+   
+ }
+ function edb_product_free_shipping_note( $product_id ){
+   global $edb_shipping_rates_table;
+   $product = get_product($product_id);
+   $shipping_class = $product->get_shipping_class();
+   $price = $product->price;
+   $rates = $edb_shipping_rates_table[$shipping_class];
+   $min = $rates['min'];
+   
+  // if($price >= $min){
+  //     $text = __("This product ships free *",'edb');
+  //     echo "<div class=\"product-free-shipping-note\">$text</div>";
+     
+  // }
+   
+   
+ }
+function edb_promo_ends_in_days( $timestamp ){
+  $now = time(); // or your date as well
+  $datediff = $now - ($timestamp / 1000);
+  $days = abs(floor($datediff/(60*60*24)));
+  if($days > 1){
+    printf( __('offer ends in %s days','edb'), $days);
+  }else{
+    printf( __('offer ends today','edb'), $days);
+  }
+  // $now = time();
+  // echo ($timestamp - $now) / 60 / 60 / 24;
+}
 function _s_setup() {
 	/*
 	 * Make theme available for translation.
@@ -148,8 +232,10 @@ add_action( 'widgets_init', '_s_widgets_init' );
 function _s_scripts() {
   $buster = edb_last_deploy();
 	wp_enqueue_style( '_s-style', get_stylesheet_uri(), array(), edb_last_deploy() );
+	wp_enqueue_style( 'swiper-style', "https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css", array(), edb_last_deploy() );
 
 	
+
 	
 // 	wp_enqueue_script( '_s_jquery_event_move', get_template_directory_uri() . '/js/jquery.event.move.js', array('jquery'), '20120207', true );
 	
@@ -163,16 +249,21 @@ function _s_scripts() {
   
   // if($_SERVER['SERVER_ADDR'] == '45.56.104.172'){
      
-     wp_enqueue_script( '_s_hammer', get_template_directory_uri() . '/js/hammer.min.js', array(), '20160708', true );
-     wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array('jquery','_s_hammer','masonry'), '20160708', true );
-     wp_enqueue_script( '_s-splash', get_template_directory_uri() . '/js/splash.js', array('jquery','_s_hammer'), '20160708', true );
-     wp_enqueue_script( '_s-toast', get_template_directory_uri() . '/js/toast.js', array('jquery','_s_hammer'), '20160708', true );
-     wp_enqueue_script( '_s-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20160708', true );
-     wp_localize_script('_s-toast', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
-     wp_enqueue_script( '_s_ga_ec', get_template_directory_uri() . '/js/ec.js', array(), '20160708', true );
+     wp_enqueue_script( '_s_hammer', get_template_directory_uri() . '/js/hammer.min.js', array(), '20160709', true );
+     wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array('jquery','_s_hammer','masonry'), '20160711', true );
+     wp_enqueue_script( '_s-swiper', get_template_directory_uri() . '/js/swiper-init.js', array('jquery','swiperjs'), '20160711', true );
+     wp_enqueue_script( '_s-splash', get_template_directory_uri() . '/js/splash.js', array('jquery','_s_hammer'), '20160709', true );
+     wp_enqueue_script( '_s-toast', get_template_directory_uri() . '/js/toast.js', array('jquery','_s_hammer'), '20160709', true );
+     wp_enqueue_script( '_s-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20160709', true );
+     
+
+     wp_enqueue_script('swiperjs','https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js',array(), '20160709', true );
+     wp_localize_script('_s-toast', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'theme_url' => get_template_directory_uri(), 'current_lang'=>WPGlobus::Config()->language ) );
+     wp_enqueue_script( '_s_ga_ec', get_template_directory_uri() . '/js/ec.js', array(), '20160709', true );
      if($_SERVER['SERVER_ADDR'] == '45.56.104.172'){
-       wp_enqueue_script( '_s_test', get_template_directory_uri() . '/js/test.js', array('jquery'), '20160708', true );
+       wp_enqueue_script( '_s_test', get_template_directory_uri() . '/js/test.js', array('jquery'), '20160709', true );
      }
+    
   // }else{
   //   wp_enqueue_script('edb_all',get_template_directory_uri() . '/js/all.min.js', array('jquery','masonry'), '20170706', true);
   //   wp_localize_script('edb_all', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );  
@@ -199,6 +290,14 @@ add_action( 'wp_enqueue_scripts', '_s_scripts' );
    
     
 // }, 10, 2 );
+function edb_unique_user_name( $name ){
+  $count = 0;
+  while($user_id = username_exists( $name  )){
+    $name = $name . "$count";
+  }
+  return $name;
+   
+}
 
 add_action( 'init', 'edb_theme_remove_wc_breadcrumbs' );
 add_action('init', 'edb_menu_strings_init');
@@ -438,6 +537,14 @@ function edb_body_classes(){
   if(isset($_GET['secret']) && $_GET['secret'] == '1234'){
     $deviceclasses[] = 'secret-hack'   ;
   }
+  if(isset($_GET['promo'])){
+    if($_GET['promo'] == '1'){
+    $deviceclasses[] = 'promo1'   ;  
+    }else{
+      $deviceclasses[] = 'promo2'   ;
+    }
+    
+  }
   
   return $deviceclasses;
 }
@@ -500,8 +607,16 @@ function set_php_auth_header(){
   //   write_log($_SERVER);
   
      if(current_user_can('publish_posts')){
-       $_SERVER['PHP_AUTH_USER'] = 'ck_dbc3f91b5f982189037625df93c50393ad99592b';
-       $_SERVER['PHP_AUTH_PW'] = 'cs_9c2a41175bc6d02ef71de28ac1df33d538d8dac1';
+       if($_SERVER['SERVER_ADDR'] == '45.56.104.172'){
+          $_SERVER['PHP_AUTH_USER'] = 'ck_94fac53c2e52855c8967c6a34991bb462f0e553a';
+          $_SERVER['PHP_AUTH_PW']   = 'cs_e252818ee207a1a6baa461401c64dcf772f2c0d1';  
+       }else{
+          $_SERVER['PHP_AUTH_USER'] = 'ck_dbc3f91b5f982189037625df93c50393ad99592b';
+          $_SERVER['PHP_AUTH_PW']   = 'cs_9c2a41175bc6d02ef71de28ac1df33d538d8dac1';  
+       }
+       
+       
+       
      }
     
   // }
@@ -618,7 +733,7 @@ function fix_language_page_links( $url, $post, $leavename ) {
   $not_translated = array('/about-privacy','/about-terms', '/in-the-press');
   
   $lang =WPGlobus::Config()->language;
-  if(in_array($parts['path'], $not_translated)){
+  if(isset($parts['path']) && in_array($parts['path'], $not_translated)){
     return $url;
   }
   if ( $post->post_type == 'post' || $post->post_type == 'page' ) {
@@ -722,12 +837,18 @@ function subscribe_to_newsletter() {
           $responseBody = json_decode($response['body'], true);
           
           if(isset($response['response']) && isset($response['response']['code']) && $response['response']['code']  == 200){
-            echo json_encode( array('message' => WPGlobus_Core::text_filter( "{:en}Thank you! $email has been subscribed! {:}{:fr}Merci! $email est mainteant abboné{:}", WPGlobus::Config()->language ) ) );  
+            $message_fr = "Merci pour votre inscription. $email est maintenant abonné.<br/><br/>Utilisez le code promo: <code>edb10</code> pour obtenir 10% de rabais* sur votre prochain achat.<br/><br/><small>*valide sur les articles à prix regulier. Les articles déjà soldés ne sont pas admisibles à une escompte additionnelle.</small>";
+            $message_en = "Thank you! $email has been subscribed. <br /><br/>Use promo code: <code>edb10</code> to obtain a 10% rebate* on your next purchase.<br/><br/>*valid on regular items, sale items do not benefit from an additional discount.";
+            echo json_encode( array('message' => WPGlobus_Core::text_filter( "{:en}$mesage_en{:}{:fr}$message_fr{:}", WPGlobus::Config()->language ) ) );  
           }else{
             if(isset($responseBody['title']) && $responseBody['title'] == 'Member Exists'){
-              echo json_encode( array('message' => WPGlobus_Core::text_filter( "{:en}Thank you! But $email was already subscribed! {:}{:fr}Merci! Mais $email étais déja abboné{:}", WPGlobus::Config()->language ) ) );    
+              $message_fr = "$email est déja abonné.<br/><br/> Utilisez le code promo : <code>edb10</code> pour obtenir 10% de rabais* sur votre prochain achat.<br/><br/>*valide sur les articles à prix regulier. Les articles déjà soldés ne sont pas admisibles à une escompte additionnelle.";
+              $message_en = "Thank you! $email was already subscribed.<br/><br/> Use promo code: <code>edb10</code> to obtain a 10% rebate* on your next purchase.<br/><br/>*valid on regular items, sale items do not benefit from an additional discount.";
+              echo json_encode( array('message' => WPGlobus_Core::text_filter( "{:en}$message_en{:}{:fr}$message_fr{:}", WPGlobus::Config()->language ) ) );    
+            }else{
+              echo json_encode( array('error' => true, 'message' => WPGlobus_Core::text_filter( "{:en}Oops! something went wrong, please try again later. {:}{:fr}Oops! Quelquechose n'a pas fonctionné. Réessayez plus tard.{:}", WPGlobus::Config()->language ) ) );  
             }
-            echo json_encode( array('error' => true, 'message' => WPGlobus_Core::text_filter( "{:en}Oops! something went wrong, please try again later. {:}{:fr}Oops! Quelquechose n'a pas fonctionné. Réessayez plus tard.{:}", WPGlobus::Config()->language ) ) );
+            
           }
           
           
@@ -866,8 +987,22 @@ function edb_coupon_discount_amount($discount, $discounting_amount, $cart_item, 
   $email = $coupon_post->post_excerpt;
   if(empty($email)) return $discount;
   if(!filter_var($email,FILTER_VALIDATE_EMAIL) ) return $discount;
+  
+  
+  
+  // write_log("//////$coupon_code/////");
+  
   if($deco->is_on_sale){
-    return 0;
+    // apply regular price discount on sale item 
+    
+    // if($coupon_code == 'edb20'){
+    //   write_log('///GABA');
+    //   write_log($deco->regular_price);
+    //   $discount = $deco->regular_price * 0.2;
+    // }else{
+      return 0;  
+    // }
+    
   }
   return $discount;
 }
@@ -1075,6 +1210,58 @@ function get_points_info_for_coupon_code( $code ){
 }
 
 
+function export_material_data(){
+  if($_SERVER['REQUEST_URI'] !== '/'){
+    return;
+  }
+  global $wpdb;
+  $material_posts = 'SELECT pm.post_id,pm.meta_key,pm.meta_value FROM wp_postmeta AS pm WHERE pm.meta_key LIKE "%edb_material"';
+  $results = $wpdb->get_results( $material_posts , ARRAY_A );
+  $materialized = array();
+  foreach($results as $result ){
+    $material_no = $result['meta_value'];
+    
+    $type = ( $result['meta_key'] == 'attribute_edb_material' ? 'product' : 'description' );
+    
+    if(!isset($materialized[$material_no])){
+      $materialized[$material_no] = array();
+    }
+    $materialized[$material_no]['material_no'] = $material_no;
+    if(!isset($materialized[$material_no]['products'])){
+      $materialized[$material_no]['products'] = array();  
+    }
+    if($type == 'product'){
+      $materialized[$material_no]['products'][] = $result['post_id'];
+      
+    }else{
+      $description = array();
+      $thumb_id = get_post_thumbnail_id($result['post_id']);
+      $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'full', true);
+      $thumb_url = $thumb_url_array[0];
+      $post = get_post($result['post_id']);
+      
+      if(!empty($post)){
+        $description['title'] = $post->post_title;
+        $description['subtitle'] = get_post_meta($result['post_id'], '_subtitle', true );
+      
+        $description['body'] = $post->post_excerpt;
+        $description['image'] = $thumb_url;
+        $description['material_no'] = $material_no;
+        
+      }
+      $materialized[$material_no]['description'] = $description;  
+      
+    }
+    
+  }
+  $JSON = json_encode($materialized);
+  file_put_contents(get_stylesheet_directory().'/material_data.raw.json', $JSON);
+  
+  // echo get_stylesheet_directory().'/material_data.raw.json';
+  // die();
+  
+}
+// export_material_data();
 // function test_edb_json(){
 //   edb_to_essential_json(36110);  
 // }
@@ -1156,12 +1343,17 @@ function edb_check_cart_updated(){
 add_action('woocommerce_cart_updated', 'edb_check_cart_updated');
 
 add_action( 'init', 'set_php_auth_header'  );
+add_action( 'admin_init', 'set_php_auth_header'  );
 
 // add_action('init', 'nocache_headers');
-
+// require get_template_directory() . '/edb_slideshow.php';
 /**
  * */
  require get_template_directory() . '/seo.php';
+ 
+ /**
+ * */
+ require get_template_directory() . '/trkpxl.php';
  
  /**
  * */
@@ -1180,6 +1372,8 @@ require get_template_directory() . '/inc/template-tags.php';
  * Custom functions that act independently of the theme templates.
  */
 require get_template_directory() . '/inc/extras.php';
+
+
 
 /**
  * Customizer additions.
@@ -1242,7 +1436,7 @@ function my_post_gallery($output, $attr) {
 //      $img = wp_get_attachment_image_src($id, 'my-custom-image-size');
         $img = wp_get_attachment_image_src($id, 'full');
         $caption = mysql2date('m - j - Y', $post->post_date);
-        $output .= "<div class='gallery-item bleh'>\n";
+        $output .= "<div class='gallery-item bleh' style='background-image:url(\"".$img[0]."\"');''>\n";
         $output .= "<img src=\"{$img[0]}\" width=\"{$img[1]}\" height=\"{$img[2]}\" alt=\"$caption\" />\n";
         $output  .= "<p class='gallery-item-caption'>$caption</p>";
         $output .= "</div>\n";
@@ -1253,6 +1447,113 @@ function my_post_gallery($output, $attr) {
 
     return $output;
 }
+
+add_action( 'admin_menu', 'edb_delivery_manager_register' );
+
+function edb_delivery_manager_register()
+{
+    add_menu_page(
+        'Delivery Manager',     // page title
+        'Delivery Manager',     // menu title
+        'manage_options',   // capability
+        'delivery-manager',     // menu slug
+        'edb_delivery_manager_render', // callback function
+        null,
+        59
+    );
+}
+
+
+function edb_delivery_manager_render()
+{
+    // global $title;
+
+    // print '<div class="wrap">';
+    // print "<h1>$title</h1>";
+
+    $file = plugin_dir_path( __FILE__ ) . "delivery-admin.php";
+
+    if ( file_exists( $file ) ){
+      require $file;
+    }else{
+      echo $file;
+    }
+    
+    // print "<p class='description'>Included from <code>$file</code></p>";
+    // print '</div>';
+    
+}
+
+
+// function edb_handle_partial_payment_form() {
+//     /**
+//     * At this point, $_GET/$_POST variable are available
+//     *
+//     * We can do our normal processing here
+//     */
+//     $return_to = $_SERVER['HTTP_REFERER'];
+     
+//     $email = isset( $_POST['email'] ) && !empty($_POST['email']) ? $_POST['email'] : null;
+//     $phone = isset( $_POST['phone'] ) && !empty($_POST['phone']) ? $_POST['phone'] : null;
+//     $order_id = isset( $_POST['order_id'] ) ? $_POST['order_id'] : null;
+//     if( !empty($email) && !empty($phone) && !empty($order_id)){
+//       $order = new WC_Order($order_id);
+//       $order->update_status('pending', 'partial payment requested on '.date('l jS \of F Y h:i:s A'));
+//       wp_safe_redirect( $return_to."&complete=1" );
+//     }else{
+//       wp_safe_redirect( $return_to ) ;
+//     }
+//     // die();
+
+//     // Sanitize the POST field
+//     // Generate email content
+//     // Send to appropriate email
+// }
+
+// add_action( 'admin_post_nopriv_partial_payment', 'edb_handle_partial_payment_form' );
+// add_action( 'admin_post_partial_payment', 'edb_handle_partial_payment_form' );
+
+
+
+function edb_delivery_manager_scripts( $hook ){
+  
+  if($hook = 'toplevel_page_delivery-manager'){
+    wp_register_style( 'edb_delivery_manager_css', get_template_directory_uri() . '/edb-delivery-manager.css', false, '1.0.0' );
+    wp_enqueue_style('edb_delivery_manager_css');
+    wp_enqueue_script( 'edb_delivery_manager', get_template_directory_uri() . '/js/edb-delivery-manager.js', array('jquery') );
+  }
+  
+}
+
+function cc_mime_types($mimes) {
+  $mimes['svg'] = 'image/svg+xml';
+  return $mimes;
+}
+
+add_filter('upload_mimes', 'cc_mime_types');
+
+function fix_svg() {
+   echo '<style type="text/css">
+         .attachment-266x266, .thumbnail img { 
+              width: 100% !important; 
+              height: auto !important; 
+         }
+         </style>';
+}
+
+add_action('admin_head', 'fix_svg');
+
+add_action('admin_enqueue_scripts', 'edb_delivery_manager_scripts');
+
+require get_template_directory() . '/edb-product-ext.php';
+require get_template_directory() . '/edb-designers.php';
+require get_template_directory() . '/edb-reviews.php';
+require get_template_directory() . '/edb-press-reviews.php';
+require get_template_directory() . '/edb-blog.php';
+require get_template_directory() . '/edb-faq.php';
+
+
+// require get_template_directory() . '/material-manager.php';
 
 // function test_fee_edb(){
 //   $order = new WC_Order( 37174 );

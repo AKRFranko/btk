@@ -13,10 +13,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
+
+
 get_header( 'shop' ); ?>
 
-
+<?php
+  if( isset($_GET['via']) && $_GET['via'] == 'u1000'){
+    // query for the about page
+    $posts = new WP_Query( 'pagename=sofas-a-moins-de-1000' );
+    // "loop" through query (even though it's just one page) 
+    while ( $posts->have_posts() ) : $posts->the_post();
+      get_template_part( 'template-parts/content' ,'page');
+    endwhile;
+    // reset post data (important!)
+    wp_reset_postdata();
+  }
+?>
 	<?php
+
+//     $post = get_post(37228);
+    
+    
+    
+//   }
 		/**
 		 * woocommerce_before_main_content hook
 		 *
@@ -24,6 +43,7 @@ get_header( 'shop' ); ?>
 		 * @hooked woocommerce_breadcrumb - 20
 		 */
 		do_action( 'woocommerce_before_main_content' );
+	
 		
 	?>
 
@@ -46,6 +66,7 @@ get_header( 'shop' ); ?>
 			      'nopaging'=> true,
             'post_type'      => 'product',
             'post__in' => wc_get_product_ids_on_sale()
+            
             // 'meta_query'     => array(
             //     'relation' => 'OR',
             //     array( // Simple products type
@@ -62,9 +83,32 @@ get_header( 'shop' ); ?>
             //     )
             // )
         );
-        
+      
         query_posts( $args );
 			}
+			
+			
+			if( isset($_GET['new']) && $_GET['new'] == 1 ){
+       $today = getdate();
+      $year = $today['year'];
+      $month = $today['mon'];
+      $tmonth = $month - 2;
+      // $lastpost = strtotime(get_lastpostdate());
+
+      // $lastmonth = date('m', $lastpost);
+      // $lastyear = date('Y', $lastpost);
+      if($tmonth < 0){
+        $tmonth = 12 + $tmonth;
+        $year -=1;
+      }
+        $date_query = array( 'after'=>array( 'year'=>$year, 'month'=>$tmonth ) );
+        $args = array( 'nopaging' => true, 'post_type' => 'product', 'date_query' =>  $date_query );
+        // $args = array('nopaging' => true, 'post_type' => 'product', 'year'=>$lastyear,'monthnum'=>$lastmonth,'order'=>'DESC');
+        write_log($args);
+        query_posts( $args );
+      }  
+       
+			
 		?>
 
 		<?php if ( have_posts() ) : ?>
@@ -150,6 +194,8 @@ get_header( 'shop' ); ?>
                   <?php echo '<img src="' . $lores[0] . '" alt="item image" data-hires-image="' . $hires[0] . '">'; ?>
                 </span>
                 
+                
+                
                 <span class="article-info">
                 <h2 class="article-title">
                   <?php echo $deco->system_name_html; ?>
@@ -159,7 +205,7 @@ get_header( 'shop' ); ?>
                     <?php 
                       
                       if(!$product->is_on_sale()){
-                        echo wc_price($product->price);  
+                        echo $deco->price_html;
                       }else{
                         $regular_price =end($product->get_variation_prices()['regular_price']);
                         echo "<s class=\"onsale\">".wc_price($regular_price)."</s> <span class=\"saleprice\">".wc_price($product->get_price())."</span>";
@@ -216,3 +262,4 @@ get_header( 'shop' ); ?>
 	?>
 
 <?php get_footer( 'shop' ); ?>
+

@@ -26,6 +26,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	foreach ( $checkout->checkout_fields['billing'] as $key => $field ) : ?>
 	  
 	  <?php 
+	  $value = $checkout->get_value($key);
+	  
 	  if( $key == 'billing_email' || $key == 'billing_phone'){
 	   $field['class'] = array( 'form-row-wide');
 	   

@@ -1,0 +1,131 @@
+<?php
+/**
+ * The template for displaying all pages.
+ *
+ * This is the template that displays all pages by default.
+ * Please note that this is the WordPress construct of pages
+ * and that other 'pages' on your WordPress site may use a
+ * different template.
+ *
+ * @link https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package edb
+ */
+
+get_header(); ?>
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+      
+      <?php
+      while ( have_posts() ) : the_post();
+
+        get_template_part( 'template-parts/content', 'page' );
+
+        // If comments are open or we have at least one comment, load up the comment template.
+        if ( comments_open() || get_comments_number() ) :
+          comments_template();
+        endif;
+
+      endwhile; // End of the loop.
+      ?>
+      <?php 
+       var_dump($_REQUEST);
+       ?>
+      <form id="register-designer">
+        <div class="field-section">
+          <h3>Designer</h3>
+          <div class="field-group">
+            
+              <div class="field">
+                <div class="label"><?php _e('Nickname', 'edb'); ?></div>
+                <div class="control"><input name="designer[artist_name]" type="text"></div>
+              </div>  
+              
+              <div class="field">
+                <div class="label"><?php _e('First Name', 'edb'); ?></div>
+                <div class="control"><input name="designer[first_name]" type="text"></div>
+              </div>  
+              
+              <div class="field">
+                <div class="label"><?php _e('Last Name', 'edb'); ?></div>
+                <div class="control"><input name="designer[last_name]" type="text"></div>
+              </div>  
+              
+              <div class="field">
+                <div class="label"><?php _e('Role', 'edb'); ?></div>
+                <div class="control"><input name="designer[role]" type="text"></div>
+              </div>  
+              
+              <div class="field">
+                <div class="label"><?php _e('Email', 'edb'); ?></div>
+                <div class="control"><input name="designer[email]" type="text"></div>
+              </div>  
+              
+          </div>
+        </div>
+        
+        <div class="field-section">
+          <h3>Company</h3>
+          <div class="field-group">
+            
+              <div class="field">
+                <div class="label"><?php _e('Name', 'edb'); ?></div>
+                <div class="control"><input name="company[name]" type="text"></div>
+              </div>  
+              
+              <div class="field">
+                <div class="label"><?php _e('Specialty', 'edb'); ?></div>
+                <div class="control"><input name="company[specialty]" type="text"></div>
+              </div>  
+              
+              <div class="field">
+                <div class="label"><?php _e('Phone', 'edb'); ?></div>
+                <div class="control phone-control">
+                  <input name="designer[address_1]" type="text">
+                </div>
+              </div>  
+              
+              <div class="field">
+                <div class="label"><?php _e('Address', 'edb'); ?></div>
+                <div class="control"><input name="company[address_1]" type="text"></div>
+              </div>  
+              
+              <div class="field">
+                <div class="label"><?php _e('Address 2', 'edb'); ?></div>
+                <div class="control"><input name="company[address_2]" type="text"></div>
+              </div>  
+              
+              <div class="field">
+                <div class="label"><?php _e('City', 'edb'); ?></div>
+                <div class="control"><input name="company[city]" type="text"></div>
+              </div>  
+              
+              <div class="field">
+                <div class="label"><?php _e('State / Province', 'edb'); ?></div>
+                <div class="control"><input name="company[state]" type="text"></div>
+              </div>  
+              
+              <div class="field">
+                <div class="label"><?php _e('Country', 'edb'); ?></div>
+                <div class="control"><input name="company[country]" type="text"></div>
+              </div>  
+              
+              <div class="field">
+                <div class="label"><?php _e('Postal Code', 'edb'); ?></div>
+                <div class="control"><input name="company[postcode]" type="text"></div>
+              </div>  
+              
+          </div>
+        </div>
+        
+        
+        
+      </form>
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+<?php
+get_sidebar();
+get_footer();

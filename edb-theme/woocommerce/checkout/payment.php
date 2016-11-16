@@ -59,7 +59,7 @@ global $WC_Edb;
        
        if( !empty($credit_coupon_code)){
          $info = get_points_info_for_coupon_code($credit_coupon_code);
-         $used_points= $_SESSION['use_points'];
+         $used_points= isset($_SESSION['use_points']) ? $_SESSION['use_points'] : 0;
          $available_points = $info['points_available'] - $used_points;
      ?>
        <div id="checkout-personal-points">
@@ -91,6 +91,7 @@ global $WC_Edb;
        <div class="checkout-coupon">
          
          <h2><?php _e('do you have a promo code?', 'edb'); ?></h2>
+         <p><?php _e("NB: All promo codes only apply on regular priced items.", 'edb'); ?></p>
          <input type="text" name="coupon_code" placeholder="<?php esc_attr_e( 'promo code', 'edb' ); ?>" id="coupon_code" value="" />
          <button type="button" class="button" id="apply_coupon"><?php esc_attr_e( 'apply coupon', 'edb' ); ?></button>
        </div>

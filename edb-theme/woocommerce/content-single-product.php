@@ -57,8 +57,8 @@ if ( ! defined( 'ABSPATH' ) ) {
           $stuff_link=get_permalink(1533);
       ?><p class="product-warning"><?php echo sprintf(__( 'The <a href="%s">stuffing</a> is sold separately. <a href="%s">click here to get some.</a>' ,'edb'), $stuff_link, $stuff_link ); ?></p>
       <?php } ?>
-      <div class="product-price">$<?php echo $edb_product->price_html; ?></div>
-      
+      <div class="product-price"><?php echo $edb_product->price_html; ?></div>
+      <?php edb_product_free_shipping( $product->post->ID ); ?>
       <div class="product-share">
         <ul class="social-share-options">
           <li class="social-share-option"><a href="#" class="social-link">F</a></li>
@@ -68,7 +68,10 @@ if ( ! defined( 'ABSPATH' ) ) {
       </div>
       
     </div>
+
+
     <div class="product-description">
+      
       <h2 class="section-title"><?php _e('description', 'edb'); ?></h2>
       <p><?php echo $edb_product->description; ?></p>
       <?php edb_product_pdf( $product_id ); ?>
@@ -157,17 +160,25 @@ if ( ! defined( 'ABSPATH' ) ) {
         <?php };?>
     </div>  
     <?php } ?>
-    <?php if(edb_has_designer( $product->id )){ ?>
+    <?php if(edb_has_designer( $product->id )){ 
+      $designer_post = edb_get_designer( get_post_meta( $product->id, '_edb_designer_id', true ) );
+      
+      $designer_title = WPGlobus_Core::text_filter($designer_post->post_title);
+      $designer_content = WPGlobus_Core::text_filter($designer_post->post_content);
+      $thumb_id = get_post_thumbnail_id( $designer_post->ID );
+      $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'full', true);
+      $designer_image = $thumb_url_array[0];
+      ?>
       <div class="product-sub-section">
         <div class="product-designer-text">
-          <h2 class="section-title"><?php _e('designer'); ?></h2>
+          <h2 class="section-title"><?php printf(__('designer: %s', 'edb'),$designer_title); ?></h2>
         
           <p>
-            a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat.
+            <?php echo strip_tags( $designer_content, '<a>'); ?>
           </p>
         </div>
         <div class="product-designer-image">
-          <span class="round-image-wrapper"><img src="https://development.elementdebase.com/wp-content/themes/btk/img/kalle-lasn.jpg"></span>
+          <img src="<?php echo $designer_image; ?>">
         </div>
       </div>
     <?php }; ?>
@@ -207,29 +218,80 @@ if ( ! defined( 'ABSPATH' ) ) {
         <span class="round-image-wrapper"></span>
       </div>
     </div>
-    <?php if( edb_has_sidekick( $product->id)){ ?>
+    <?php 
+    $anatomy_image = rwmb_meta( 'edb_anatomy_image', 'size=full' ); 
+    $anatomy_title = WPGlobus_Core::text_filter( rwmb_meta( 'edb_anatomy_image_title'), WPGlobus::Config()->language ); 
+    ?>
+    <?php if( !empty( $anatomy_image ) ){ $aimg = array_shift(array_values($anatomy_image)); ?>
+    <div class="product-anatomy">
+      <h3 class="product-anatomy-title"><?php echo $anatomy_title; ?></h3>
+      <img src="<?php echo $aimg['url'];?>" height="<?php echo $aimg['height']; ?>">
+    </div>
+    
+    <?php }; ?>
+    
+    <?php $review_id = get_post_meta($product->id , '_edb_review_id', true); ?>
+    
+    <?php if( !empty($review_id)){ ?>
+    <?php $review_post = edb_get_designer( $review_id);
+          
+          $review_title = WPGlobus_Core::text_filter($review_post->post_title);
+          $review_content = WPGlobus_Core::text_filter($review_post->post_content);
+    ?>
     <div class="product-sub-section">
-      <div class="product-sidekick" style="background-image:url(/wp-content/themes/btk/img/diagram.jpg);">
-        <div>
-          <h2>Special content</h2>
-          <p>wooooo</p>
-        </div>
+      <div class="product-review-text">
+        <h2 class="section-title"><?php echo $review_title; ?></h2>
+        <?php echo $review_content; ?>
       </div>
-      
+      <div class="product-review-image">
+        <span class="round-image-wrapper black">
+        <img src="<?php bloginfo('template_directory'); ?>/img/white-heart.svg" />
+        </span>
+
+       
+        
+      </div>
     </div>
     <?php }; ?>
     
-    <?php if( edb_has_review( $product->id)){ ?>
-    <div class="product-sub-section">
-      <div class="product-review-text">
-        <h2 class="section-title"><?php _e('why heather loves this model', 'edb'); ?></h2>
-        <p>a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat. ﻿a light structure supports this neatly outlined sofa, where thin back and armrests are combined with a comfortable generous seat.</p>
+    
+    <?php 
+    $more_images = rwmb_meta( 'edb_more_images', 'size=full' );
+    if(!empty($more_images)){
+      
+      echo '<div id="more-product-images" class="product-sub-section">';
+      echo '<h3 class="more-images-title">'.__('See more', 'edb').'</h3>';
+      foreach ( $more_images as $image ) {
+        echo "<a href='#' class='more-product-image' style='background-image:url(\"".$image['url']."\")'><img src='{$image['url']}' width='{$image['width']}' height='{$image['height']}' alt='{$image['alt']}' /></a>";
+      }
+      echo '</div>';
+    }
+    if( false && !empty($more_images)){
+      
+      ?>
+      
+      <div id="modal-swiper" class="swiper-container">
+        <div class="swiper-wrapper">
+          <?php
+          foreach ( $more_images as $image ) {
+                $slide = "<img src='{$image['url']}' width='{$image['width']}' height='{$image['height']}' alt='{$image['alt']}' />";
+                echo '<div class="swiper-slide">'.$slide.'</div>';
+                
+                  
+              
+          }
+          ?>
+        </div>
+        <div class="swiper-pagination"></div>
+
       </div>
-      <div class="product-review-image">
-        <span class="round-image-wrapper"></span>
-      </div>
-    </div>
-    <?php }; ?>
+      <?php
+    }
+    ?>
+   
+    
+    
+    
   </div>
   
 

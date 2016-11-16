@@ -422,9 +422,9 @@ class Edb {
     $this->loader->add_action( 'wp_ajax_edb_guess_shipping_zone', $plugin_admin,'edb_ajax_guess_shipping_zone' );
     $this->loader->add_action( 'wp_ajax_nopriv_edb_guess_shipping_zone', $plugin_admin,'edb_ajax_guess_shipping_zone' );
     
-    $this->loader->add_filter('woocommerce_product_data_tabs', $plugin_admin, 'add_product_leg_options_tab');
-    $this->loader->add_filter('woocommerce_product_data_panels', $plugin_admin, 'add_product_leg_options_fields');
-    $this->loader->add_action('woocommerce_process_product_meta', $plugin_admin, 'save_leg_option_fields');
+    // $this->loader->add_filter('woocommerce_product_data_tabs', $plugin_admin, 'add_product_leg_options_tab');
+    // $this->loader->add_filter('woocommerce_product_data_panels', $plugin_admin, 'add_product_leg_options_fields');
+    // $this->loader->add_action('woocommerce_process_product_meta', $plugin_admin, 'save_leg_option_fields');
     
 
     # $this->loader->add_action( 'woocommerce_reduce_order_stock', $this, 'mirror_reduce_order_stock' );

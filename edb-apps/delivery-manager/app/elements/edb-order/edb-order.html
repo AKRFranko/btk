@@ -1,0 +1,161 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-styles/typography.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+
+
+<dom-module id="edb-order">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .address p{
+        @apply(--paper-font-body1);
+        margin:0;
+        padding:0;
+      }
+      google-map{
+        height:300px;
+        width:300px;
+      }
+    </style>
+    <div id="header">
+      <div class="title">#{{order.id}}</div>
+    </div>
+    
+    <div id="shippingAddress" class="address">
+      <h3>Shipping Address</h3>
+      <p>{{computeAddressLine(order.shipping)}}</p>
+      <p>{{computeAddressLine2(order.shipping)}}</p>
+      <p>{{order.shipping.postcode}}</p>
+    </div>
+    <div id="billingAddress" class="address">
+      <h3>Billing Address</h3>
+      <p>{{computeAddressLine(order.billing)}}</p>
+      <p>{{computeAddressLine2(order.billing)}}</p>
+      <p>{{order.billing.postcode}}</p>
+    </div>
+    <google-maps-api  api-key="AIzaSyDrzsYB4-0y_4QKYlLWtqRF2kEQQhZi2rE" version="3.exp"></google-maps-api>
+    <google-map map="{{map}}" disable-default-ui latitude="{{latitude}}" longitude="{{longitude}}" fit-to-markers api-key="AIzaSyDrzsYB4-0y_4QKYlLWtqRF2kEQQhZi2rE">
+      <google-map-marker map="{{map}}" latitude="{{latitude}}" longitude="{{longitude}}" title="here" ></google-map-marker>
+    </google-map>
+      
+      <!--<template is="dom-repeat" items="{{mapResults}}" as="marker">-->
+      <!--  <google-map-marker latitude="{{marker.latitude}}"-->
+      <!--                     longitude="{{marker.longitude}}">-->
+      <!--    <h2>{{marker.name}}</h2>-->
+      <!--    <span>{{marker.formatted_address}}</span>-->
+      <!--  </google-map-marker>-->
+      <!--</template>-->
+      <!--<google-map-marker latitude="{{marker.latitude}}"-->
+      <!--                   longitude="{{marker.longitude}}">-->
+      <!--  <h2>{{marker.name}}</h2>-->
+      <!--  <span>{{marker.formatted_address}}</span>-->
+      <!--</google-map-marker>-->
+    </google-map>
+    <div> <span>{{order.id}}</span></div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'edb-order',
+
+      properties: {
+        latitude: {
+          type: Number,
+          value: 0,
+          notify:true
+        },
+        longitude: {
+          type: Number,
+          value: 0,
+          notify:true
+        },
+        order: {
+          type: Object,
+          value: null,
+          notify: true
+        }
+      },
+      observers: ['orderChanged(order)'],
+      expose: function( data ){
+        console.log(data)
+        return JSON.stringify(data);
+      },
+      computeMapQuery: function(address){
+        if(address){
+        return [address.address_1,address.city,address.state,address.country,address.postcode].join(',');  
+        }else{
+          return null;
+        }
+        
+      },
+      computeAddressLine: function( address ){
+        if(address){
+          var a1 = address.address_1;
+          var a2 = address.address_2;
+          if(a2 && !isNaN(a2)){
+            a2 = '#'+a2;
+          }
+          return [a1, a2].filter(function(i){return !!i}).join(', ');  
+        }else{
+          return ''
+        }
+        
+      },
+      computeAddressLine2: function(address){
+        if(address){
+        return [address.city,address.state,address.country].join(', ');  
+        }else{
+          return '';
+        }
+        
+      },
+      
+      orderChanged: function( order ){
+        if(!order) return;
+        var it = this;
+        var mapsAPI = this.querySelector('google-maps-api');
+        mapsAPI.addEventListener('api-load', function(e) {
+          
+             var geocoder = new mapsAPI.api.Geocoder();
+             
+              geocoder.geocode( {address: it.computeMapQuery(order.shipping)}, function( results,status){
+                if(status == 'OK'){
+                  
+                  it.set('latitude',results[0].geometry.location.lat());
+                  it.set('longitude',results[0].geometry.location.lng());
+                  // it.set('mapMarkers', 'color:blue|label:1|'+[it.get('latitude'),it.get('longitude')].join(','))
+                }else{
+                  console.log('FAILED')
+                }
+              } )
+             
+          
+          
+        });  
+        
+        
+        // var it = this;
+        // setTimeout(function(){
+        //   console.log('order',it.order)
+        // },1000)  
+        // console.log(google)
+      }
+    });
+  })();
+  </script>
+</dom-module>

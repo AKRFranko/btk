@@ -689,7 +689,7 @@ function edb_product_material_picker( $product_id ){
     }
     $stock_labels = array(
       're-stock' => __('restocking','edb') ,
-      'backorder' => __('order it in this fabric','edb'),
+      'backorder' => __('order it in this variation','edb'),
       'in-stock' => __('in stock','edb') );
     $stock_label = $stock_labels[$stock_class];
     $stock_message = '';
@@ -733,11 +733,13 @@ function edb_product_material_picker( $product_id ){
     
     $availability_date  = esc_attr(json_encode( array( 'stock' => $stock_qty, 'min' => $min, 'max' => $max ) ));
     $preview = $decorated->images['material_variations'][$edb_material];
+    $variation_price = get_post_meta($decorated->materials[$edb_material]['variation_id'],'_price',true);
+    
     echo "<label for=\"edb-material-choice-$edb_material\">";
     
     echo "<div class=\"edb-material-choice-square $stock_class\" style=\"background-image:url('".$data['image']."');\">";
     
-    echo "<input type='radio' id=\"edb-material-choice-$edb_material\" name=\"_edb_material_choice\" data-material=\"".esc_attr(edb_material_info_json($edb_material))."\" data-stock-label=\"$stock_label\" data-stock-message=\"$stock_message\" data-shipping-delay=\"$availability_date\" data-variation-id=\"".$data['variation_id']."\" data-name=\"".$name."\" data-preview=\"$preview\" value=\"$edb_material\">";
+    echo "<input type='radio' id=\"edb-material-choice-$edb_material\" name=\"_edb_material_choice\" data-variation-price=\"".esc_attr($variation_price)."\" data-material=\"".esc_attr(edb_material_info_json($edb_material))."\" data-stock-label=\"$stock_label\" data-stock-message=\"$stock_message\" data-shipping-delay=\"$availability_date\" data-variation-id=\"".$data['variation_id']."\" data-name=\"".$name."\" data-preview=\"$preview\" value=\"$edb_material\">";
     // if($stock_qty > 0 && $stock_qty <= 5){
     //   echo "<span class=\"stock-left\">".absint($stock_qty)."</span>";
     // }
@@ -767,6 +769,7 @@ function tmp_has_tech_image( $deco ){
               "nautique_accessories-pillows",
               "nautique-gold_accessories-pillows",
               "nautique-green_accessories-pillows",
+              "cube_ottomans",
               "cube-epingle_ottomans",
               "cube-flannel_ottomans", 
               "cube-tweed_ottomans",  
@@ -976,7 +979,11 @@ function edb_has_sidekick($product_id ){
 }
 function edb_has_designer( $product_id ){
   // TODO
-  return false;
+  $edb_designer_id = get_post_meta($product_id, '_edb_designer_id', true );
+  return isset($edb_designer_id) && !empty($edb_designer_id);
+}
+function edb_get_designer( $designer_id ){
+  return get_post( $designer_id );
 }
 function edb_has_review( $product_id ){
   // TODO
