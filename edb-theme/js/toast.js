@@ -22,7 +22,7 @@
   
   $(function(){
     // $('#contest').remove();
-    if($(document.body).hasClass('splash')){
+    if($(document.body).hasClass('splash') || $('#edb-faq').length ){
       $('#contest').remove();
     }else{
       if(contestEntered){

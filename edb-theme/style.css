@@ -904,6 +904,9 @@ body {
   color: #000;
   text-transform: lowercase;
 }
+body.fixed {
+  position: fixed;
+}
 h1,
 h2,
 h3,
@@ -923,6 +926,9 @@ p {
 code {
   text-transform: uppercase;
   padding: .5em;
+}
+.form-input .error input {
+  border-color: red;
 }
 h1,
 h2,
@@ -1839,6 +1845,27 @@ footer#colophon {
   padding: 1em;
   transition: all 0.3s ease-in;
 }
+#partial-payment-form {
+  display: block;
+  border: 1px solid #ddd;
+  width: 300px;
+  padding: 20px;
+  clear: both;
+  float: left;
+  margin-top: -40px;
+  margin-left: 20px;
+}
+#partial-payment-form .form-input {
+  margin-bottom: 10px;
+}
+#partial-payment-form .form-input input {
+  width: 100%;
+}
+#partial-payment-form button {
+  left: 100%;
+  width: 80px;
+  margin-left: -80px;
+}
 #account-boxes a {
   color: #000;
 }
@@ -2726,6 +2753,7 @@ a#show-material-toast {
   float: left;
   width: 100%;
   border-top: 1px solid #000;
+  padding-bottom: 70px;
 }
 .product-anatomy-title {
   font-size: 18px;
@@ -5107,16 +5135,27 @@ ul.order_details li {
   float: left;
   width: 20%;
   position: relative;
-  backgruond: red;
+  background: #eee;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  border: 10px solid #fff;
+  border: 4px solid #fff;
 }
 .faq-image:before {
   content: '';
   display: block;
   padding-top: 100%;
+}
+#edb-faq {
+  display: block;
+  width: 100%;
+}
+#edb-faq,
+#edb-faq * {
+  box-sizing: border-box;
+}
+.grid-sizer {
+  width: 20%;
 }
 .faq-item {
   cursor: pointer;
@@ -5135,11 +5174,12 @@ ul.order_details li {
 .faq-item.clone {
   opacity: 0.5;
   box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-  transition: all 0.2s ease-in;
+  transform-origin: center;
+  transition: all 0.1s ease-in;
 }
 .faq-item.clone .faq-answer {
-  max-height: 0;
-  transition: all 0.25s ease-in;
+  width: 0
+      height:0;
 }
 .faq-item.full {
   opacity: 1;
@@ -5152,11 +5192,13 @@ ul.order_details li {
 .faq-item .faq-item-content {
   position: absolute;
   box-sizing: border-box;
-  border: 10px solid #fff;
+  border: 4px solid #fff;
   top: 0px;
   left: 0px;
   bottom: 0px;
   right: 0px;
+  width: 100%;
+  height: 100%;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -5164,46 +5206,63 @@ ul.order_details li {
 }
 .faq-question,
 .faq-answer {
-  font-family: "pragmatica-web-condensed", 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 28px;
-  line-height: 1.1;
-  text-transform: none;
   text-align: left;
   margin: auto;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.faq-answer {
+  height: 0;
+  width: 0;
+  max-height: 0;
+  opacity: 0;
+}
+.faq-question {
+  font-size: 20.25px;
+  font-weight: normal;
+  text-transform: uppercase;
+}
 .faq-item.full {
   position: fixed;
-  top: 50%!important;
-  left: 50%!important;
-  margin-left: -30vw;
-  margin-top: -30vh;
-  width: 60vw!important;
-  height: 60vh!important;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  top: 117px !important;
+  left: 0 !important;
+  margin: 0 !important;
+  width: 100vw !important;
+  height: calc(100vh - 117px) !important;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.15);
 }
 .faq-item.full .faq-item-content {
-  border: 20px solid #fff;
+  text-align: center;
+  border: 0px solid #fff;
 }
 .faq-item.full .faq-item-content .faq-question {
-  width: calc(100% - 80px);
-  margin: 40px;
-  padding: 40px;
   top: 10%;
-  text-align: left;
+  left: auto;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  max-width: 960px;
+  transform: none;
 }
 .faq-item.full .faq-item-content .faq-answer {
+  height: auto;
+  max-height: 100%;
   width: calc(100% - 80px);
-  display: block;
+  max-width: 960px;
+  display: inline-block;
   opacity: 1;
-  margin: 40px;
-  bottom: 0;
+  margin: 40px auto;
+  top: 20%;
   background: #fff;
   color: #111;
   padding: 20px;
-  height: auto;
-  max-height: 100%;
+  overflow-y: auto;
+  font-family: "pragmatica-web-condensed", 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-size: 15px;
+}
+.faq-item.full .faq-close {
+  display: block;
 }
 .faq-answer {
   width: 0;
@@ -5212,11 +5271,21 @@ ul.order_details li {
   margin: 0;
   bottom: 0;
   overflow: hidden;
-  position: absolute;
+  min-height: 200px;
+  display: inline-block;
+  text-align: left;
 }
 .faq-answer,
 .faq-close {
   display: none;
+}
+.faq-close {
+  text-decoration: none;
+  color: #fff;
+  font-size: 36px;
+  position: absolute;
+  top: 20px;
+  right: 40px;
 }
 .faq-question {
   position: absolute;
@@ -5224,27 +5293,62 @@ ul.order_details li {
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
 }
-@media all and (max-width: 400px) {
+@media all and (max-width: 420px) {
+  .faq-item {
+    width: 50%;
+  }
+  .faq-image {
+    width: 25%;
+  }
+  .grid-sizer {
+    width: 25%;
+  }
   .faq-question,
   .faq-answer {
-    font-size: 1rem;
+    font-size: inherit;
+  }
+  .faq-question {
+    font-size: 13px;
+  }
+  .faq-answer {
+    font-size: 15px;
   }
   .faq-item.full {
     position: fixed;
-    top: 120px!important;
+    top: 117px!important;
     left: 0!important;
-    margin: 0!important;
-    width: 100vw!important;
-    height: calc(100vh - 120px) !important;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    margin: 0 !important;
+    width: 100vw !important;
+    height: calc(100vh - 117px) !important;
   }
   .faq-item.full .faq-item-content .faq-question {
     width: 100%;
     margin: 0;
-    font-size: 1.5rem;
+    left: 0;
+    font-size: 15px;
   }
   .faq-item.full .faq-item-content .faq-answer {
-    font-size: 1.2rem;
+    font-size: 15px;
+    height: auto;
+    max-height: 100%;
+    width: 100%;
+  }
+  .faq-item.full .faq-close {
+    top: 0;
+    right: 5px;
+  }
+}
+@media all and (min-width: 900px) {
+  .faq-item.full {
+    max-width: 960px;
+    margin: 0 0 0 calc(50% - 480px) !important;
+  }
+}
+@media all and (min-width: 1024px) {
+  .faq-item.full {
+    margin: 0 0 0 calc(50% - 670px) !important;
+    width: 100vw !important;
+    max-width: 1340px;
   }
 }
 .promo p {
@@ -5445,7 +5549,6 @@ strong {
 }
 @media (min-width: 100px) and (max-width: 320px) {
   #page {
-    outline: 1px solid red;
     max-width: 320px;
     min-width: 320px;
     margin: 0 auto;
@@ -5553,6 +5656,14 @@ strong {
   }
 }
 @media (min-width: 992px) {
+  .product-review-image {
+    margin-top: 80px;
+  }
+  span.round-image-wrapper.black {
+    width: 160px!important;
+    height: 160px!important;
+    padding: 0;
+  }
   #instagram-feed .instagram-feed-item {
     width: calc(100% / 5);
   }

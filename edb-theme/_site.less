@@ -10,6 +10,9 @@ body{
   color:#000;
   text-transform:lowercase;
 }
+body.fixed{
+  position:fixed;
+}
 h1,h2,h3,h4,h5,h6{
   font-family:@serif-font;
   font-weight:normal;
@@ -25,6 +28,9 @@ p{
 code {
     text-transform: uppercase;
     padding: .5em;
+}
+.form-input .error input{
+  border-color:red;
 }
 h1,h2,h3,h4,h5,h6,p,a{
   /*-webkit-font-smoothing: antialiased;*/
@@ -868,6 +874,29 @@ footer#colophon {
   transition:all .3s ease-in;
   
 }
+
+
+#partial-payment-form{
+  display:block;
+  border:1px solid #ddd;
+  width:300px;
+  padding:20px;
+  clear:both;
+  float:left;
+  margin-top:-40px;
+  margin-left:20px;
+  .form-input{
+    margin-bottom:10px;
+    input{
+      width:100%;
+    }
+  }
+  button{
+    left:100%;
+    width:80px;
+    margin-left:-80px;
+  }
+}
 #account-boxes a{
   color:#000;
 }
@@ -1240,6 +1269,7 @@ p.form-message{
   // }  
  } 
 }
+
 @media all and (max-width:500px){
   a.phone-number {
       position: absolute;
@@ -1247,7 +1277,10 @@ p.form-message{
       width: 120px;
       top: 60px;
   }
+  
 }
+
+
 
 @media all and (min-width:320px) and (max-width:500px){
   

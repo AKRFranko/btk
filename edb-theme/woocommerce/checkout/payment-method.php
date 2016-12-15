@@ -31,13 +31,16 @@ if ( ! defined( 'ABSPATH' ) ) {
   
   <div class="partial-payment-notice">
     <?php 
-      global $post;
-      $order = new WC_Order($post->ID);
-      $order_id = $order->id;
+      // global $post;
+      // $order_id = WC()->order->id;
+      // write_log(WC());
+      // $order_id = $order;
+      
       ?>
         
-    <p><?php _e("More than 8 weeks of waiting time? You can reserve your items by paying a deposit."); ?></p>
-    <p><a href="/partial-payment?order_id=<?php echo $order_id; ?>"><?php _e("Click here to choose this option."); ?></a></p>
+    <p><?php printf(__("8 weeks and more of waiting time? Choose the option to pay a deposit %s"), '<a href="/partial-payment">'. __("Click here.") .'</a>'); ?></p>
+    
   </div>
+  
   
 </div>

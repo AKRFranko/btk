@@ -75,6 +75,7 @@ function edb_product_extended_meta_boxes( $meta_boxes ) {
         ),
     );
     
+    
     $meta_boxes[] = array(
         'title'      => __( 'Anatomy Picture', 'textdomain' ),
         'post_types' => 'product',
@@ -89,6 +90,27 @@ function edb_product_extended_meta_boxes( $meta_boxes ) {
             array(
               'name'             => esc_html__( 'Anatomy Image Upload', 'edb' ),
               'id'               => "edb_anatomy_image",
+              'type'             => 'image_advanced',
+              'max_file_uploads' => 1,
+            ),
+           
+        ),
+    );
+    
+    $meta_boxes[] = array(
+        'title'      => __( 'Anatomy Picture (english)', 'textdomain' ),
+        'post_types' => 'product',
+        'context' => 'side',
+        'priority' => 'low',
+        'fields'     => array(
+           array(
+             'name'             => esc_html__( 'Anatomy Image Title (english)', 'edb' ),
+             'id'               => "edb_anatomy_image_title_en",
+             'type'             => 'text'
+           ),
+            array(
+              'name'             => esc_html__( 'Anatomy Image Upload (english)', 'edb' ),
+              'id'               => "edb_anatomy_image_en",
               'type'             => 'image_advanced',
               'max_file_uploads' => 1,
             ),

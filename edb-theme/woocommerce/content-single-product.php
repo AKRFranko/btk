@@ -219,8 +219,15 @@ if ( ! defined( 'ABSPATH' ) ) {
       </div>
     </div>
     <?php 
-    $anatomy_image = rwmb_meta( 'edb_anatomy_image', 'size=full' ); 
-    $anatomy_title = WPGlobus_Core::text_filter( rwmb_meta( 'edb_anatomy_image_title'), WPGlobus::Config()->language ); 
+    if(WPGlobus::Config()->language =='en'){
+      $anatomy_image = rwmb_meta( 'edb_anatomy_image_en', 'size=full' );   
+      $anatomy_title = WPGlobus_Core::text_filter( rwmb_meta( 'edb_anatomy_image_title_en'), WPGlobus::Config()->language ); 
+    }else{
+      $anatomy_image = rwmb_meta( 'edb_anatomy_image', 'size=full' );
+      $anatomy_title = WPGlobus_Core::text_filter( rwmb_meta( 'edb_anatomy_image_title'), WPGlobus::Config()->language ); 
+    }
+    
+    
     ?>
     <?php if( !empty( $anatomy_image ) ){ $aimg = array_shift(array_values($anatomy_image)); ?>
     <div class="product-anatomy">

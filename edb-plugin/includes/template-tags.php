@@ -835,6 +835,8 @@ function tmp_has_tech_image( $deco ){
               'majuscule-blue_accessories-pillows',
               'majuscule-white_accessories-pillows',
               'nautique-green_accessories-pillows',
+              'maritime_sectionals-left-facing',
+              'maritime_sectionals-right-facing',
               'panorama-laf_sofas-2-seater',
               'panorama-raf_sofas-2-seater',
               'majuscule-orange_accessories-pillows',

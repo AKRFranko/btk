@@ -6,42 +6,60 @@ jQuery(function( $ ){
   
   
   
- 
- var msnry = new Masonry( document.querySelector('#edb-faq'), {
-   // options
-   itemSelector: '.faq-item,.faq-image'
- });
-  
-  var $faqItems = $('.faq-item');
-  $faqItems.each( function(){
-    var $item = $(this);
-    $item.on('click tap', function( event ){
-      
-      $('.faq-item.full').click();
-      // console.log('clicked');
-      
-      var $clone = $item.clone(false,false).addClass('clone');
-      $item.addClass('opened');
-      var pos = $item.get(0).getBoundingClientRect();
-      $clone.css({
-        position: 'fixed',
-        top: pos.top + 'px',
-        left: pos.left + 'px',
-        width: pos.width + 'px',
-        height:pos.height + 'px',
-      });
-      $(document.body).append($clone);
-      $clone.on('click tap', function(){
-        
-          $(this).remove();
-        $item.removeClass('opened');
-      });
-      setTimeout( function(){
-        $clone.addClass('full')
-      },100)
-    })
-  })
-  
+ if(document.querySelector('#edb-faq')){
+  var ison = new Isotope( document.querySelector('#edb-faq'), {
+    // options
+    itemSelector: '.faq-item,.faq-image',
+    masonry: {
+      // use element for option
+      columnWidth: '.grid-sizer'
+    },
+    // percentPosition: true
+    layoutMode: 'masonry'
+  });
+   
+   
+   $(document).on('click tap', '.faq-item.full', function(){
+     var it = $(this);
+     $('.faq-item.opened').removeClass('opened');
+     it.removeClass('full');
+     $(document.body).removeClass('fixed');
+     setTimeout( function(){
+       it.remove();
+     },200)
+     $(this).remove();
+   });
+   
+   $(document).on('click tap', '.faq-item:not(.full)', function( event ){
+                                              var $item =  $(this);
+                                              $('.faq-item.full').click();
+                                              // console.log('clicked');
+                                              
+                                              var $clone = $item.clone(false,false).addClass('clone');
+                                              $item.addClass('opened');
+                                              var pos = $item.get(0).getBoundingClientRect();
+                                              $clone.css({
+                                                position: 'fixed',
+                                                top: ((window.screen.height / 2) - (pos.height / 2) ) + 'px',
+                                                left: ((window.screen.width / 2) - (pos.width / 2) ) + 'px',
+
+                                                width: pos.width + 'px',
+                                                height:pos.height + 'px',
+                                              });
+                                              $(document.body).append($clone);
+                                              setTimeout( function(){
+                                                $clone.addClass('full');
+                                                $(document.body).addClass('fixed');
+                                              },100)
+                                            })
+  // var $faqItems = $('.faq-item');
+  // $faqItems.each( function(){
+  //   var $item = $(this);
+  //   $item.on('click tap', )
+  // })
+   
+    
+ }
   
   // var $faqItems = $('.faq-item');
   

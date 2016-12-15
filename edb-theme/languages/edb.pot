@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: edb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Thu Feb 04 2016 12:49:34 GMT-0500 (EST)\n"
-"POT-Revision-Date: Fri Nov 04 2016 18:04:26 GMT-0400 (EDT)\n"
+"POT-Revision-Date: Fri Nov 25 2016 13:11:04 GMT-0500 (EST)\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: franko <franko@akr.club>\n"
 "Language-Team: \n"
@@ -37,41 +37,6 @@ msgctxt "post author"
 msgid "by %s"
 msgstr ""
 
-#. translators: used between list items, there is a space after the comma
-#. translators: used between list items, there is a space after the comma
-#: ../inc/template-tags.php:50 ../inc/template-tags.php:56
-msgid ", "
-msgstr ""
-
-#: ../inc/template-tags.php:52
-#, php-format
-msgid "posted in %1$s"
-msgstr ""
-
-#: ../inc/template-tags.php:58
-#, php-format
-msgid "tagged %1$s"
-msgstr ""
-
-#: ../inc/template-tags.php:64
-msgid "leave a comment"
-msgstr ""
-
-#: ../inc/template-tags.php:64
-msgid "1 comment"
-msgstr ""
-
-#: ../inc/template-tags.php:64
-#, php-format
-msgid "% comments"
-msgstr ""
-
-#. translators: %s: Name of current post
-#: ../inc/template-tags.php:71
-#, php-format
-msgid "edit %s"
-msgstr ""
-
 #: ../seo.php:3
 msgid "sofa-beds"
 msgstr ""
@@ -84,7 +49,7 @@ msgstr ""
 msgid "armchairs"
 msgstr ""
 
-#: ../seo.php:6 ../header.php:166 ../header.php:166
+#: ../seo.php:6 ../header.php:167 ../header.php:167
 msgid "accessories"
 msgstr ""
 
@@ -376,7 +341,7 @@ msgid "note"
 msgstr ""
 
 #: ../woocommerce/order/order-details-customer.php:26 ../page-i-am-designer.php:
-#: 144 ../header.php:208 ../header.php:235
+#: 144 ../header.php:209 ../header.php:236 ../page-partial-payment.php:76
 msgid "email"
 msgstr ""
 
@@ -434,7 +399,7 @@ msgid "ship bundle 3"
 msgstr ""
 
 #: ../woocommerce/order/order-details.php:80 ../woocommerce/cart/cart-totals.php:
-#: 30 ../woocommerce/checkout/payment.php:177 ../woocommerce/checkout/form-
+#: 30 ../woocommerce/checkout/payment.php:178 ../woocommerce/checkout/form-
 #: summaries.php:63 ../woocommerce/checkout/thankyou.php:55
 msgid "total"
 msgstr ""
@@ -497,7 +462,7 @@ msgstr ""
 msgid "Coupon code"
 msgstr ""
 
-#: ../woocommerce/cart/cart.php:127 ../woocommerce/checkout/payment.php:96 ..
+#: ../woocommerce/cart/cart.php:127 ../woocommerce/checkout/payment.php:97 ..
 #: /woocommerce/checkout/form-coupon.php:30
 msgid "apply coupon"
 msgstr ""
@@ -518,7 +483,7 @@ msgid "proceed to checkout"
 msgstr ""
 
 #: ../woocommerce/cart/cart-shipping.php:102 ../woocommerce/checkout/payment.php:
-#: 142 ../woocommerce/checkout/payment.php:156 ../woocommerce/checkout/parts-
+#: 143 ../woocommerce/checkout/payment.php:157 ../woocommerce/checkout/parts-
 #: packages.php:78 ../woocommerce/myaccount/my-address.php:45
 msgid "edit"
 msgstr ""
@@ -1108,118 +1073,118 @@ msgid ""
 "arrangements."
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:66
+#: ../woocommerce/checkout/payment.php:67
 #, php-format
 msgid "Points For \"%s\""
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:67
+#: ../woocommerce/checkout/payment.php:68
 #, php-format
 msgid "You have a promo points balance of %s"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:68
+#: ../woocommerce/checkout/payment.php:69
 msgid "points to use"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:69
+#: ../woocommerce/checkout/payment.php:70
 msgid "apply points"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:78
+#: ../woocommerce/checkout/payment.php:79
 msgid "Credits"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:79
+#: ../woocommerce/checkout/payment.php:80
 #, php-format
 msgid "You have a credit balance of %s"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:80
+#: ../woocommerce/checkout/payment.php:81
 msgid "credits to use"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:81
+#: ../woocommerce/checkout/payment.php:82
 msgid "apply credits"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:93
+#: ../woocommerce/checkout/payment.php:94
 msgid "do you have a promo code?"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:94
-msgid "NB: All promo codes only apply on regular priced items."
+#: ../woocommerce/checkout/payment.php:95
+msgid "NB: Some promo codes only apply on regular priced items."
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:95
+#: ../woocommerce/checkout/payment.php:96
 msgid "promo code"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:107
+#: ../woocommerce/checkout/payment.php:108
 msgid "order summary"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:114 ../woocommerce/checkout/payment.php:
-#: 181 ../woocommerce/checkout/form-pay.php:116
+#: ../woocommerce/checkout/payment.php:115 ../woocommerce/checkout/payment.php:
+#: 182 ../woocommerce/checkout/form-pay.php:116
 msgid "items"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:120 ../woocommerce/checkout/form-checkout.
+#: ../woocommerce/checkout/payment.php:121 ../woocommerce/checkout/form-checkout.
 #: php:53 ../woocommerce/checkout/review-order.php:85
 msgid "save & continue"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:130
+#: ../woocommerce/checkout/payment.php:131
 msgid "delivered to"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:144 ../woocommerce/checkout/parts-totals.
+#: ../woocommerce/checkout/payment.php:145 ../woocommerce/checkout/parts-totals.
 #: php:42 ../woocommerce/checkout/review-order.php:54
 msgid "please click here to fill in your address information."
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:152 ../woocommerce/checkout/form-pay.php:183
+#: ../woocommerce/checkout/payment.php:153 ../woocommerce/checkout/form-pay.php:183
 msgid "payment"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:158
+#: ../woocommerce/checkout/payment.php:159
 msgid "please click here to fill in your payment information."
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:167
+#: ../woocommerce/checkout/payment.php:168
 msgid "Final Checklist"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:168
+#: ../woocommerce/checkout/payment.php:169
 msgid "i made sure the item fits."
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:169
+#: ../woocommerce/checkout/payment.php:170
 msgid "The delivery does not include..."
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:170
+#: ../woocommerce/checkout/payment.php:171
 msgid ""
 "i am aware that there can be slight variation in the colors of the swatches "
 "and the final product due to dye lot difference."
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:191
+#: ../woocommerce/checkout/payment.php:192
 msgid ""
 "Since your browser does not support JavaScript, or it is disabled, please "
 "ensure you click the <em>Update Totals</em> button before placing your order."
 " You may be charged more than the amount stated above if you fail to do so."
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:191
+#: ../woocommerce/checkout/payment.php:192
 msgid "Update totals"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:197 ../woocommerce/checkout/payment.php:197
+#: ../woocommerce/checkout/payment.php:198 ../woocommerce/checkout/payment.php:198
 msgid "place order"
 msgstr ""
 
-#: ../woocommerce/checkout/payment.php:201
+#: ../woocommerce/checkout/payment.php:202
 #, php-format
 msgid ""
 "I&rsquo;ve read and accept the <a href=\"%s\" target=\"_blank\">terms &amp; "
@@ -1242,8 +1207,17 @@ msgstr ""
 msgid "self pickup discount"
 msgstr ""
 
-#: ../woocommerce/checkout/payment-method.php:27
+#: ../woocommerce/checkout/payment-method.php:28
 msgid "We only accept payments through Visa or MasterCard."
+msgstr ""
+
+#: ../woocommerce/checkout/payment-method.php:41
+#, php-format
+msgid "8 weeks and more of waiting time? Choose the option to pay a deposit %s"
+msgstr ""
+
+#: ../woocommerce/checkout/payment-method.php:41
+msgid "Click here."
 msgstr ""
 
 #: ../woocommerce/checkout/form-checkout.php:20
@@ -1284,7 +1258,7 @@ msgstr ""
 msgid "totals"
 msgstr ""
 
-#: ../woocommerce/checkout/form-pay.php:206
+#: ../woocommerce/checkout/form-pay.php:207
 msgid "Pay for order"
 msgstr ""
 
@@ -2113,114 +2087,114 @@ msgstr ""
 msgid "Home Page Slide Show"
 msgstr ""
 
-#: ../header.php:67
+#: ../header.php:68
 msgid "BACK TO SCHOOL"
 msgstr ""
 
-#: ../header.php:69 ../header.php:272
+#: ../header.php:70 ../header.php:273
 msgid "Use coupon code <code>back15</code>, and save %15 on regular priced items."
 msgstr ""
 
-#: ../header.php:78 ../header.php:190
+#: ../header.php:79 ../header.php:191
 msgid "welcome"
 msgstr ""
 
-#: ../header.php:78
+#: ../header.php:79
 msgid "sign out"
 msgstr ""
 
-#: ../header.php:80
+#: ../header.php:81
 msgid "sign in"
 msgstr ""
 
-#: ../header.php:83
+#: ../header.php:84
 msgid "cart"
 msgstr ""
 
-#: ../header.php:130 ../header.php:152 ../header.php:163 ../header.php:164 ..
-#: /header.php:165 ../header.php:166
+#: ../header.php:131 ../header.php:153 ../header.php:164 ../header.php:165 ..
+#: /header.php:166 ../header.php:167
 #, php-format
 msgid "View all %s"
 msgstr ""
 
-#: ../header.php:143 ../header.php:148
+#: ../header.php:144 ../header.php:149
 #, php-format
 msgid "View all post filed under %s"
 msgstr ""
 
-#: ../header.php:148 ../header.php:177 ../header.php:181
+#: ../header.php:149 ../header.php:178 ../header.php:182
 msgid "all"
 msgstr ""
 
-#: ../header.php:163 ../header.php:163
+#: ../header.php:164 ../header.php:164
 msgid "ottomans"
 msgstr ""
 
-#: ../header.php:164 ../header.php:164
+#: ../header.php:165 ../header.php:165
 msgid "rugs"
 msgstr ""
 
-#: ../header.php:165 ../header.php:165
+#: ../header.php:166 ../header.php:166
 msgid "cushions"
 msgstr ""
 
-#: ../header.php:178 ../header.php:182
+#: ../header.php:179 ../header.php:183
 msgid "sale"
 msgstr ""
 
-#: ../header.php:179 ../header.php:183
+#: ../header.php:180 ../header.php:184
 msgid "new"
 msgstr ""
 
-#: ../header.php:193 ../header.php:204
+#: ../header.php:194 ../header.php:205
 msgid "returning customers<br />please sign in"
 msgstr ""
 
-#: ../header.php:197
+#: ../header.php:198
 msgid "new customers<br />sign up for shopping<br />and exclusive offers"
 msgstr ""
 
-#: ../header.php:212 ../header.php:239
+#: ../header.php:213 ../header.php:240
 msgid "password"
 msgstr ""
 
-#: ../header.php:218
+#: ../header.php:219
 msgid "enter edb"
 msgstr ""
 
-#: ../header.php:219
+#: ../header.php:220
 msgid "login"
 msgstr ""
 
-#: ../header.php:222
+#: ../header.php:223
 msgid "> click here to recover lost password"
 msgstr ""
 
-#: ../header.php:224 ../header.php:254
+#: ../header.php:225 ../header.php:255
 msgid "back"
 msgstr ""
 
-#: ../header.php:230
+#: ../header.php:231
 msgid "new customers sign up for shopping<br />and exclusive offers"
 msgstr ""
 
-#: ../header.php:243
+#: ../header.php:244
 msgid "confirm password"
 msgstr ""
 
-#: ../header.php:249
+#: ../header.php:250
 msgid "sign up to edb"
 msgstr ""
 
-#: ../header.php:250
+#: ../header.php:251
 msgid "register"
 msgstr ""
 
-#: ../header.php:270
+#: ../header.php:271
 msgid "BACK TO SCHOOL PROMO"
 msgstr ""
 
-#: ../header.php:273
+#: ../header.php:274
 msgid "Ok, got it!"
 msgstr ""
 
@@ -2412,6 +2386,25 @@ msgstr ""
 
 #: ../edb-product-ext.php:90
 msgid "Anatomy Image Upload"
+msgstr ""
+
+#: ../page-partial-payment.php:72
+msgid "your name"
+msgstr ""
+
+#: ../page-partial-payment.php:79
+msgid "phone"
+msgstr ""
+
+#: ../page-partial-payment.php:81
+msgid "submit"
+msgstr ""
+
+#: ../page-partial-payment.php:89
+msgid ""
+"Thank you for shopping at edb.You will receive an order confirmation with "
+"the deposit amount (50%)<br /> that you can settle directly online with a "
+"credit card."
 msgstr ""
 
 #. Name of the theme

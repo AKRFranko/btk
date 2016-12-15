@@ -12,7 +12,13 @@
  * @package edb
  */
 
-get_header(); ?>
+get_header(); 
+if(!current_user_can('edit_post')){ 
+  include( get_query_template( '404' ) );
+  exit; # so that the normal page isn't loaded after the 404 page
+}
+
+?>
 <?php
   $gallery_images = get_post_gallery_images($post);
   shuffle($gallery_images);
@@ -29,27 +35,35 @@ get_header(); ?>
     <main id="main" class="site-main" role="main">
 
     <section id="edb-faq">
+      <div class="grid-sizer"></div>
       <?php 
           query_posts(array( 
               'post_type' => 'edb_faq',
               'showposts' => -1
           ) );  
+          $ii=0;
       ?>
       <?php while (have_posts()) : the_post(); ?>
+          
         <?php 
+          $ii = $ii + 1;
           $bgColor  = rwmb_meta( 'background_color', 'multiple=false', $post->ID );
           $bgImage  = rwmb_meta( 'background_image', 'size=full', $post->ID );
           $txtColor = rwmb_meta( 'text_color', 'multiple=false', $post->ID );
           
-          if(rand(0,1)){
-            echo '<div class="faq-image" style="background-image:url('.edb_get_next_faq_image().')"></div>';
-            echo '<div class="faq-image" style="background-image:url('.edb_get_next_faq_image().')"></div>';
-            echo '<div class="faq-image" style="background-image:url('.edb_get_next_faq_image().')"></div>';
-            echo '<div class="faq-image" style="background-image:url('.edb_get_next_faq_image().')"></div>';
-          }else{
+          if($ii % 2){
+            
             echo '<div class="faq-image" style="background-image:url('.edb_get_next_faq_image().')"></div>';
             echo '<div class="faq-image" style="background-image:url('.edb_get_next_faq_image().')"></div>';
           }
+            // echo '<div class="faq-image" style="background-image:url('.edb_get_next_faq_image().')"></div>';
+            // echo '<div class="faq-image" style="background-image:url('.edb_get_next_faq_image().')"></div>';
+            
+          // }
+          // else{
+          //   echo '<div class="faq-image" style="background-image:url('.edb_get_next_faq_image().')"></div>';
+          //   echo '<div class="faq-image" style="background-image:url('.edb_get_next_faq_image().')"></div>';
+          // }
           
         ?>
         
@@ -61,6 +75,13 @@ get_header(); ?>
           </div>
           
         </div>
+        <?php 
+        if(rand(0,1)){
+          echo '<div class="faq-image" style="background-image:url('.edb_get_next_faq_image().')"></div>';
+          echo '<div class="faq-image" style="background-image:url('.edb_get_next_faq_image().')"></div>';
+        }
+        ?>
+        
       <?php endwhile;?>
       <?php wp_reset_postdata(); ?>
     </section>

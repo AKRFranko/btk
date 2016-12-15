@@ -1484,51 +1484,31 @@ function edb_delivery_manager_render()
     
 }
 
-// function edb_create_current_order(){
-//   global $woocommerce;
-//   $user = get_current_user_id();
-//   write_log($woocommerce);
+
+// function edb_handle_partial_payment_form() {
+//     /**
+//     * At this point, $_GET/$_POST variable are available
+//     *
+//     * We can do our normal processing here
+//     */
+//     $return_to = $_SERVER['HTTP_REFERER'];
+     
+//     $email = isset( $_POST['email'] ) && !empty($_POST['email']) ? $_POST['email'] : null;
+//     $phone = isset( $_POST['phone'] ) && !empty($_POST['phone']) ? $_POST['phone'] : null;
+//     $order_id = isset( $_POST['order_id'] ) ? $_POST['order_id'] : null;
+//     if( !empty($email) && !empty($phone) && !empty($order_id)){
+//       $order = new WC_Order($order_id);
+//       $order->update_status('pending', 'partial payment requested on '.date('l jS \of F Y h:i:s A'));
+//       wp_safe_redirect( $return_to."&complete=1" );
+//     }else{
+//       wp_safe_redirect( $return_to ) ;
+//     }
+//     // die();
+
+//     // Sanitize the POST field
+//     // Generate email content
+//     // Send to appropriate email
 // }
-
-// add_action('woocommerce_checkout_process', 'edb_handle_partial_payment_form');
-
-function edb_handle_partial_payment_form($checkout) {
-    /**
-    * At this point, $_GET/$_POST variable are available
-    *
-    * We can do our normal processing here
-    */
-    
-    
-    
-    // do_action('woocommerce_init');
-    // $return_to = $_SERVER['HTTP_REFERER'];
-    // $email = isset( $_POST['email'] ) && !empty($_POST['email']) ? $_POST['email'] : null;
-    // $phone = isset( $_POST['phone'] ) && !empty($_POST['phone']) ? $_POST['phone'] : null;
-    
-
-    // var_dump(WC()->cart);
-    // exit;
-    // // edb_create_current_order();
-    // // echo "<pre>";
-    // // var_dump(WC()->order_factory->get_order());
-    // // echo "</pre>";
-    // // $order_id = isset( $_POST['order_id'] ) ? $_POST['order_id'] : null;
-    // if( !empty($email) && !empty($phone) && !empty($order_id)){
-    //   // $order = new WC_Order($order_id);
-    //   // $order->update_status('pending', 'partial payment requested on '.date('l jS \of F Y h:i:s A'));
-    //   // wp_safe_redirect( $return_to."&complete=1" );
-      
-    // }else{
-    //   wp_safe_redirect( $return_to ) ;
-    // }
-    
-    // die();
-
-    // Sanitize the POST field
-    // Generate email content
-    // Send to appropriate email
-}
 
 // add_action( 'admin_post_nopriv_partial_payment', 'edb_handle_partial_payment_form' );
 // add_action( 'admin_post_partial_payment', 'edb_handle_partial_payment_form' );
@@ -1560,9 +1540,6 @@ function fix_svg() {
          }
          </style>';
 }
-
-
-
 
 add_action('admin_head', 'fix_svg');
 
