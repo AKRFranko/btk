@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: edb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-04 12:09-0500\n"
-"PO-Revision-Date: Fri Nov 04 2016 18:05:43 GMT-0400 (EDT)\n"
+"PO-Revision-Date: Fri Jun 02 2017 14:35:02 GMT-0400 (EDT)\n"
 "Last-Translator: admin <admin@elementdebase.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: French (France)\n"
@@ -22,59 +22,52 @@ msgstr ""
 "X-Loco-Target-Locale: fr_FR\n"
 "X-Generator: Loco - https://localise.biz/"
 
-#: ../includes/class-edb-product-decorator.php:197
-msgid "Starting at"
-msgstr "À partir de"
-
 #: ../includes/template-tags.php:134
 #, php-format
 msgid "%s thumbnail image"
 msgstr ""
 
-#: ../includes/template-tags.php:511
+#: ../includes/template-tags.php:529
 msgid "youtube video"
 msgstr ""
 
-#: ../includes/template-tags.php:523
+#: ../includes/template-tags.php:542
 #, php-format
 msgid "%s image #%d"
 msgstr ""
 
-#: ../includes/template-tags.php:622
+#: ../includes/template-tags.php:636
 #, php-format
 msgid "material #%s"
 msgstr ""
 
-#: ../includes/template-tags.php:683 ../includes/template-tags.php:691
+#: ../includes/template-tags.php:697 ../includes/template-tags.php:705 ..
+#: includes/template-tags.php:709
 msgid "restocking"
 msgstr ""
 
-#: ../includes/template-tags.php:692
-msgid "order it in this variation"
-msgstr ""
-
-#: ../includes/template-tags.php:997
+#: ../includes/template-tags.php:1023
 msgid "technical detail image"
 msgstr ""
 
-#: ../includes/template-tags.php:1049
+#: ../includes/template-tags.php:1075
 #, fuzzy
 msgid "self pickup"
 msgstr ""
 
-#: ../includes/template-tags.php:1050
+#: ../includes/template-tags.php:1076
 msgid "ship when ready"
 msgstr ""
 
-#: ../includes/template-tags.php:1051
+#: ../includes/template-tags.php:1077
 msgid "ship as bundle 1"
 msgstr ""
 
-#: ../includes/template-tags.php:1052
+#: ../includes/template-tags.php:1078
 msgid "ship as bundle 2"
 msgstr ""
 
-#: ../includes/template-tags.php:1053
+#: ../includes/template-tags.php:1079
 msgid "ship as bundle 3"
 msgstr ""
 
@@ -157,55 +150,77 @@ msgstr ""
 msgid "Expected Restock Quantity"
 msgstr ""
 
+#: ../includes/template-tags.php:538
+#, php-format
+msgid ""
+"For all custom orders, the delivery time varies between 8-16 weeks. This "
+"leadtime includes the time required for ordering materials, production and "
+"shipping. For more information about a specific production leadtime, please "
+"contact us at %s."
+msgstr ""
+"Pour toutes les commandes spéciales, le temps de livraison varie entre 8-16 "
+"semaines. Ce délai est dû au temps de commande des matériaux, de la "
+"production et du transport. Pour plus d’informations sur un délai spécifique,"
+" veuillez nous contacter directement à  %s."
+
+#: ../includes/template-tags.php:706 ../includes/template-tags.php:710
+msgid "order it in this variation"
+msgstr "commandez ce fini"
+
+#: ../includes/class-edb-product-decorator.php:197
+msgid "Starting at"
+msgstr "À partir de"
+
 #: ../includes/template-tags.php:107
 msgid "download pdf"
 msgstr "télécharger le pdf"
 
-#: ../includes/template-tags.php:636
+#: ../includes/template-tags.php:650
 msgid "order samples"
 msgstr "échantillons"
 
-#: ../includes/template-tags.php:671
+#: ../includes/template-tags.php:685
 msgid "select a color"
 msgstr "choisir une couleur"
 
-#: ../includes/template-tags.php:680 ../includes/template-tags.php:693
+#: ../includes/template-tags.php:694 ../includes/template-tags.php:707 ..
+#: includes/template-tags.php:711
 msgid "in stock"
 msgstr "disponible"
 
-#: ../includes/template-tags.php:686
+#: ../includes/template-tags.php:700
 msgid "backorder"
 msgstr "arriéré de commande"
 
-#: ../includes/template-tags.php:697
+#: ../includes/template-tags.php:715
 msgid "order now to reserve your item"
 msgstr "commander maintenant pour réserver cet item"
 
-#: ../includes/template-tags.php:1100
+#: ../includes/template-tags.php:1126
 msgid "self pickup discount"
 msgstr "escompte auto-cueillette"
 
-#: ../includes/template-tags.php:1117
+#: ../includes/template-tags.php:1143
 msgid "credit card"
 msgstr "carte de crédit"
 
-#: ../includes/template-tags.php:1121
+#: ../includes/template-tags.php:1147
 msgid "expiry"
 msgstr "expiration"
 
-#: ../includes/template-tags.php:1130
+#: ../includes/template-tags.php:1156
 msgid "no color selected"
 msgstr "aucune couleur sélectionnée"
 
-#: ../includes/template-tags.php:1133
+#: ../includes/template-tags.php:1159
 msgid "quantity"
 msgstr "quantitée"
 
-#: ../includes/template-tags.php:1143
+#: ../includes/template-tags.php:1169
 msgid "availability"
 msgstr "disponibilité"
 
-#: ../includes/template-tags.php:1150
+#: ../includes/template-tags.php:1176
 msgid "ADD TO CART"
 msgstr "AJOUTER AU PANIER"
 

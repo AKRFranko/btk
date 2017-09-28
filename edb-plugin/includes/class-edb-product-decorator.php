@@ -159,20 +159,20 @@ class Edb_Product_Decorator {
     // get all shipping dates
     $this->init_shipping();
     
-    $args = array( 'post_mime_type' => 'application/pdf', 'post_type' => 'attachment', 'numberposts' => -1, 'post_status' => null, 'post_parent' => $this->post_id );
-    $attachments = get_posts($args);
-    if(!empty($attachments)){
-      $pdf = $attachments[0]->guid;
-      $this->pdf_url = $pdf;
-    }else{
-      $this->pdf_url = null;
-    }
-    if ($attachments) {
-      foreach ( $attachments as $attachment ) {
-        echo apply_filters( 'the_title' , $attachment->post_title );
-        the_attachment_link( $attachment->ID , false );
-      }
-    }
+    // $args = array( 'post_mime_type' => 'application/pdf', 'post_type' => 'attachment', 'numberposts' => -1, 'post_status' => null, 'post_parent' => $this->post_id );
+    // $attachments = get_posts($args);
+    // if(!empty($attachments)){
+    //   $pdf = $attachments[0]->guid;
+    //   $this->pdf_url = $pdf;
+    // }else{
+    //   $this->pdf_url = null;
+    // }
+    // if ($attachments) {
+    //   foreach ( $attachments as $attachment ) {
+    //     apply_filters( 'the_title' , $attachment->post_title );
+    //     the_attachment_link( $attachment->ID , false );
+    //   }
+    // }
 
     if( isset($this->variation_id) && !empty($this->variation_id) ){
       $material = get_post_meta($this->variation_id, 'attribute_edb_material', true );

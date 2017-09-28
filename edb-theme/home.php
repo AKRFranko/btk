@@ -16,7 +16,7 @@ get_header();?>
     
     <!-- main slider -->
     <div class="home-slider">
-      <?php btk_edb_slider('category_name=carousel&posts_per_page=6');?>
+      <?php btk_edb_slider('category_name=carousel&posts_per_page=7');?>
       
     </div>
     <main id="main" class="site-main lower" role="main">
@@ -31,7 +31,7 @@ $paged = (get_query_var('page')) ? get_query_var('page') : 1;
 $my_query = new WP_Query(array(
   "paged" => $paged,
   "category_name" => "news",
-  "posts_per_page" => 12,
+  "posts_per_page" => 14,
 ));
 
 // $alts = array('tall','small','small','tall','tall','small','small','tall','small','tall','small','small','tall','tall','small','small','tall','tall');

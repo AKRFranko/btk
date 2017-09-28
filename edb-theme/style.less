@@ -34,6 +34,9 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 @import "_order";
 @import "_faq";
 
+// .slide-post-12719 .backdrop:after {
+//     display: none;
+// }
 
 .promo h2{
   // font-size:3em;
@@ -589,7 +592,56 @@ section#inspiration-listing {
 }
 
 
-@media (min-width:320px) and (max-width:500px){
+
+
+@media all and (min-width:320px) and (max-width:500px){
+  .material-info-title{
+    font-size:15px!important;
+    
+  }
+  .material-info-close-detail{
+    display: block;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-decoration: none;
+    color: #fff;
+    background: #000;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index:9999;
+  }
+  
+  .material-info-stock-label{
+    font-size:11px;
+    letter-spacing:0.02em;
+  }
+  .material-info-stock-availability{
+    font-size:11px;
+  }
+  .material-info-stock-message{
+    font-size:11px;
+  }
+  .material-info-delay-explained{
+    position: absolute;
+    top: 130px;
+    left: 0;
+    background: #fff;
+    bottom: 0;
+    padding: 50px;
+  }
+  
+  a.material-info-learn-more {
+    display:block;
+      position: absolute;
+      top: calc(~"60% + 48px");
+      left: 50%;
+      width: 50%;
+      text-align: center;
+  }
+  
   .edb-slideshow{
     min-height:calc(~"100vh - @{mast-height}");
   }
@@ -613,13 +665,18 @@ section#inspiration-listing {
     width:100%;
   }
   .product-share{
-    margin-bottom:2em;
+    display:none;
+    // margin-bottom:2em;
   }
   .product-menu{
     top:0;
     border-top:1px solid #000;
-    margin-top:1em;
+    margin-top:0em;
     padding-top:1em;
+  }
+  
+  .product-info .product-price{
+    margin-bottom:1em!important;
   }
   .product-menu form > div{
     padding-left:1em!important;
@@ -700,6 +757,21 @@ section#inspiration-listing {
   }
     
 }
+
+
+.material-info-close-detail,.material-info-learn-more{
+  cursor:pointer;
+}
+
+@media all and (min-width:500px){
+  .material-info-learn-more{
+    display:none;
+  }
+  .material-info-close-detail{
+    display:none;
+  }
+}
+
 
 @media all and (orientation:portrait) and (min-width:768px){
   .material-description{

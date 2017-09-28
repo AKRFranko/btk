@@ -32,10 +32,14 @@ main >  .article.tall{
   margin:0;
 }
 .inspiration{
-  text-align:center;
+  text-align:left;
+}
+.inspiration-listing-item h3 {
+    text-align: center;
 }
 .inspiration-header{
   margin-bottom:4em;
+  text-align: center;
 }
 .gallery{
   display:block;
@@ -43,6 +47,7 @@ main >  .article.tall{
   width:100%;
   margin:0;
   padding:0;
+  overflow:hidden;
 }
 .gallery-item{
   box-sizing:border-box;
@@ -50,7 +55,18 @@ main >  .article.tall{
   width:100%;
   margin:0 0 2em 0;
   padding:0;
+
+  position:relative; 
   max-width:100%!important;
+}
+.gallery-item:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.02);
 }
 .gallery-item-caption{
   display:none;

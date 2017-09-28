@@ -48,7 +48,7 @@ get_header(); ?>
 
             ?>
             </a>
-            <!--<?php the_content(); ?>-->
+            <!--<?php the_excerpt(); ?>-->
           </article>
             
         <?php endwhile;?>

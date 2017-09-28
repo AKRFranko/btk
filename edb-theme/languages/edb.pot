@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: edb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Thu Feb 04 2016 12:49:34 GMT-0500 (EST)\n"
-"POT-Revision-Date: Fri Nov 25 2016 13:11:04 GMT-0500 (EST)\n"
+"POT-Revision-Date: Fri Jun 02 2017 17:27:03 GMT-0400 (EDT)\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: franko <franko@akr.club>\n"
 "Language-Team: \n"
@@ -71,7 +71,7 @@ msgctxt "Post Type Singular Name"
 msgid "FAQ"
 msgstr ""
 
-#: ../edb-faq.php:10 ../edb-faq.php:11 ../edb-faq.php:35 ../functions.php:316
+#: ../edb-faq.php:10 ../edb-faq.php:11 ../edb-faq.php:35 ../functions.php:321
 msgid "FAQ"
 msgstr ""
 
@@ -341,7 +341,7 @@ msgid "note"
 msgstr ""
 
 #: ../woocommerce/order/order-details-customer.php:26 ../page-i-am-designer.php:
-#: 144 ../header.php:209 ../header.php:236 ../page-partial-payment.php:76
+#: 144 ../header.php:209 ../header.php:236 ../page-partial-payment.php:79
 msgid "email"
 msgstr ""
 
@@ -495,8 +495,8 @@ msgstr ""
 
 #: ../woocommerce/cart/cart-shipping.php:122 ../woocommerce/cart/cart-shipping.
 #: php:205 ../woocommerce/checkout/parts-totals.php:35 ..
-#: /woocommerce/checkout/parts-totals.php:40 ../functions.php:307 ../functions.
-#: php:312
+#: /woocommerce/checkout/parts-totals.php:40 ../functions.php:312 ../functions.
+#: php:317
 msgid "shipping"
 msgstr ""
 
@@ -1053,7 +1053,7 @@ msgstr ""
 msgid "shipping and return"
 msgstr ""
 
-#: ../woocommerce/content-single-product.php:263
+#: ../woocommerce/content-single-product.php:313
 msgid "See more"
 msgstr ""
 
@@ -1276,7 +1276,7 @@ msgstr ""
 msgid "please attempt your purchase again."
 msgstr ""
 
-#: ../woocommerce/checkout/thankyou.php:30 ../functions.php:314
+#: ../woocommerce/checkout/thankyou.php:30 ../functions.php:319
 msgid "my account"
 msgstr ""
 
@@ -1767,97 +1767,97 @@ msgstr ""
 msgid "Review Infos"
 msgstr ""
 
-#: ../functions.php:75
+#: ../functions.php:80
 #, php-format
 msgid "This product ships free %s (read)"
 msgstr ""
 
-#: ../functions.php:103
+#: ../functions.php:108
 #, php-format
 msgid "offer ends in %s days"
 msgstr ""
 
-#: ../functions.php:105
+#: ../functions.php:110
 msgid "offer ends today"
 msgstr ""
 
-#: ../functions.php:140
+#: ../functions.php:145
 msgid "Primary"
 msgstr ""
 
-#: ../functions.php:200
+#: ../functions.php:205
 msgid "sidebar"
 msgstr ""
 
-#: ../functions.php:209
+#: ../functions.php:214
 msgid "languages"
 msgstr ""
 
-#: ../functions.php:305
+#: ../functions.php:310
 msgid "products"
 msgstr ""
 
-#: ../functions.php:306
+#: ../functions.php:311
 msgid "order samples"
 msgstr ""
 
-#: ../functions.php:308 ../functions.php:315
+#: ../functions.php:313 ../functions.php:320
 msgid "about"
 msgstr ""
 
-#: ../functions.php:309 ../functions.php:311
+#: ../functions.php:314 ../functions.php:316
 msgid "contact us"
 msgstr ""
 
-#: ../functions.php:310 ../functions.php:319
+#: ../functions.php:315 ../functions.php:324
 msgid "lookbook"
 msgstr ""
 
-#: ../functions.php:313
+#: ../functions.php:318
 msgid "return & exchange"
 msgstr ""
 
-#: ../functions.php:317
+#: ../functions.php:322
 msgid "trade & designers"
 msgstr ""
 
-#: ../functions.php:318
+#: ../functions.php:323
 msgid "large orders"
 msgstr ""
 
-#: ../functions.php:320
+#: ../functions.php:325
 msgid "privacy policy"
 msgstr ""
 
-#: ../functions.php:321
+#: ../functions.php:326
 msgid "terms of use"
 msgstr ""
 
-#: ../functions.php:477
+#: ../functions.php:482
 msgid "download PDF"
 msgstr ""
 
-#: ../functions.php:497
+#: ../functions.php:502
 msgid "enter"
 msgstr ""
 
-#: ../functions.php:498
+#: ../functions.php:503
 msgid "entrez"
 msgstr ""
 
-#: ../functions.php:1074
+#: ../functions.php:1079
 msgid "Shipping Note"
 msgstr ""
 
-#: ../functions.php:1076
+#: ../functions.php:1081
 msgid "Notes about your order."
 msgstr ""
 
-#: ../functions.php:1322
+#: ../functions.php:1327
 msgid "Inspirations"
 msgstr ""
 
-#: ../functions.php:1323
+#: ../functions.php:1328
 msgid "Inspiration"
 msgstr ""
 
@@ -2127,7 +2127,7 @@ msgid "all"
 msgstr ""
 
 #: ../header.php:164 ../header.php:164
-msgid "ottomans"
+msgid "benches & ottomans"
 msgstr ""
 
 #: ../header.php:165 ../header.php:165
@@ -2376,31 +2376,71 @@ msgstr ""
 msgid "See More Images Upload"
 msgstr ""
 
-#: ../edb-product-ext.php:79
+#: ../edb-product-ext.php:80
 msgid "Anatomy Picture"
 msgstr ""
 
-#: ../edb-product-ext.php:85
+#: ../edb-product-ext.php:86
 msgid "Anatomy Image Title"
 msgstr ""
 
-#: ../edb-product-ext.php:90
+#: ../edb-product-ext.php:91
 msgid "Anatomy Image Upload"
 msgstr ""
 
-#: ../page-partial-payment.php:72
+#: ../edb-product-ext.php:101
+msgid "Anatomy Picture (english)"
+msgstr ""
+
+#: ../edb-product-ext.php:107
+msgid "Anatomy Image Title (english)"
+msgstr ""
+
+#: ../edb-product-ext.php:112
+msgid "Anatomy Image Upload (english)"
+msgstr ""
+
+#: ../edb-product-ext.php:122
+msgid "PDF Download"
+msgstr ""
+
+#: ../edb-product-ext.php:128
+msgid "Title for PDFs (en)"
+msgstr ""
+
+#: ../edb-product-ext.php:133
+msgid "Title for PDFs (fr)"
+msgstr ""
+
+#: ../edb-product-ext.php:138
+msgid "Text for PDFs (en)"
+msgstr ""
+
+#: ../edb-product-ext.php:143
+msgid "Text for PDFs (fr)"
+msgstr ""
+
+#: ../edb-product-ext.php:148
+msgid "Image for PDFs"
+msgstr ""
+
+#: ../edb-product-ext.php:154
+msgid "PDFs"
+msgstr ""
+
+#: ../page-partial-payment.php:75
 msgid "your name"
 msgstr ""
 
-#: ../page-partial-payment.php:79
+#: ../page-partial-payment.php:82
 msgid "phone"
 msgstr ""
 
-#: ../page-partial-payment.php:81
+#: ../page-partial-payment.php:84
 msgid "submit"
 msgstr ""
 
-#: ../page-partial-payment.php:89
+#: ../page-partial-payment.php:95
 msgid ""
 "Thank you for shopping at edb.You will receive an order confirmation with "
 "the deposit amount (50%)<br /> that you can settle directly online with a "

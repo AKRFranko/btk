@@ -52,7 +52,8 @@ if ( ! defined( 'ABSPATH' ) ) {
       
       <div class="product-name"><?php echo $edb_product->system_name_html; ?></div>
       
-      <div class="product-subname"><?php echo $edb_product->subtitle; ?></div>
+      <!--<div class="product-subname"><?php echo $edb_product->subtitle; ?></div>-->
+      
       <?php if( $edb_product->category_slug == 'accessories-pillows' && $edb_product->product_id !== 1533 ){ 
           $stuff_link=get_permalink(1533);
       ?><p class="product-warning"><?php echo sprintf(__( 'The <a href="%s">stuffing</a> is sold separately. <a href="%s">click here to get some.</a>' ,'edb'), $stuff_link, $stuff_link ); ?></p>
@@ -74,7 +75,7 @@ if ( ! defined( 'ABSPATH' ) ) {
       
       <h2 class="section-title"><?php _e('description', 'edb'); ?></h2>
       <p><?php echo $edb_product->description; ?></p>
-      <?php edb_product_pdf( $product_id ); ?>
+      
       <!--<button id="product-pdf-download" class="">downlaod pdf</button>-->
       
     </div>
@@ -237,13 +238,56 @@ if ( ! defined( 'ABSPATH' ) ) {
     
     <?php }; ?>
     
+    <?php 
+      $pdfs = rwmb_meta( 'edb_product_pdfs' ); 
+      if(WPGlobus::Config()->language =='en'){
+        $pdftext = rwmb_meta( 'edb_product_pdfs_text' ); 
+        $pdftitle =   rwmb_meta( 'edb_product_pdfs_title' ); 
+        $pdfbutton = "Download PDF";
+      }else{
+        $pdftext = rwmb_meta( 'edb_product_pdfs_text_fr' ); 
+        $pdftitle =   rwmb_meta( 'edb_product_pdfs_title_fr' ); 
+        $pdfbutton = "T&eacute;l&eacute;charger PDF";
+        
+      }
+      
+      if(!empty($pdfs)){
+        $pdfs_image = rwmb_meta( 'edb_product_pdfs_image', 'size=full' );
+        if( !empty( $pdfs_image ) ){ 
+          $pimg = array_shift(array_values($pdfs_image)); 
+        }
+        
+        ?>
+        <div class="product-pdfs">
+          <div class="product-pdf-title"><?php echo $pdftitle; ?></div>
+          <div class="product-pdf-text"><?php echo $pdftext; ?></div>
+          <img style="max-width:50%" src="<?php echo $pimg['url'];?>" height="<?php echo $pimg['height']; ?>">
+          <div class="pdf-downloads">
+            <h3 class="download-title"><?php echo $pdfbutton; ?></h3>
+            <?php
+            foreach($pdfs as $id => $pdf ){
+              $name = $pdf['name'];
+              $url = $pdf['url'];
+              $title = $pdf['title'];
+              echo "<a href=\"$url\" target=\"_blank\" download=\"$name\">$title</a>";
+            }
+            ?>
+          </div>
+        </div><?php
+      }
+      
+      ?>
+      
+      
+    
+    
     <?php $review_id = get_post_meta($product->id , '_edb_review_id', true); ?>
     
     <?php if( !empty($review_id)){ ?>
-    <?php $review_post = edb_get_designer( $review_id);
+    <?php $review_post = get_post( $review_id);
           
-          $review_title = WPGlobus_Core::text_filter($review_post->post_title);
-          $review_content = WPGlobus_Core::text_filter($review_post->post_content);
+          $review_title = WPGlobus_Core::text_filter($review_post->post_title,WPGLobus::Config()->language);
+          $review_content = WPGlobus_Core::text_filter($review_post->post_content,WPGLobus::Config()->language);
     ?>
     <div class="product-sub-section">
       <div class="product-review-text">
@@ -301,7 +345,56 @@ if ( ! defined( 'ABSPATH' ) ) {
     
   </div>
   
+  
+   <?php 
+     $famname = rwmb_meta('edb_product_family_name', array(), $product->id);
+     if($famname){
+       
+       $args = array(
+         'meta_key' => 'edb_product_family_name',
+         'meta_value' => $famname,
+         'post_type'  => 'product'
+       );
+       $query = new WP_Query( $args );
+       
+     }
+   
+   ?>
+   <?php if ($query->have_posts()) : ?>
+   <div class="product-family">
+   <h2 class="section-title"><?php _e('Related Products','edb'); ?></h2>
+   <div class="related-products">
+   <?php while ($query->have_posts()) :
+                   $query->the_post(); ?>
+      
+     
+       
+         <?php 
+           global $product; 
+          
+           
+           $deco = edb_decorated_product($product,get_query_var('product_cat'));
+         
+           $permalink = get_permalink();
+           
+         ?>
+         
+         <a class="related-link" href="<?php echo $permalink;?>">
+          <img src="<?php echo $deco->images['featured']; ?>" />
+          <h2 class="related-title">
+            <?php echo $deco->system_name_html; ?>
+          </h2>
+         </a>
+       
 
+   
+   <?php endwhile; ?>
+   <?php wp_reset_postdata(); ?>
+   </div>
+   
+   </div>
+   <?php endif; ?>   
+  
   
 
 

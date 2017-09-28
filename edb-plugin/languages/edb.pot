@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: edb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-04 12:09-0500\n"
-"POT-Revision-Date: Fri Nov 04 2016 18:05:13 GMT-0400 (EDT)\n"
+"POT-Revision-Date: Fri Jun 02 2017 14:27:44 GMT-0400 (EDT)\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,97 +37,108 @@ msgstr ""
 msgid "%s thumbnail image"
 msgstr ""
 
-#: ../includes/template-tags.php:511
+#: ../includes/template-tags.php:529
 msgid "youtube video"
 msgstr ""
 
-#: ../includes/template-tags.php:523
+#: ../includes/template-tags.php:538
+#, php-format
+msgid ""
+"For all custom orders, the delivery time varies between 8-16 weeks. This "
+"leadtime includes the time required for ordering materials, production and "
+"shipping. For more information about a specific production leadtime, please "
+"contact us at %s."
+msgstr ""
+
+#: ../includes/template-tags.php:542
 #, php-format
 msgid "%s image #%d"
 msgstr ""
 
-#: ../includes/template-tags.php:622
+#: ../includes/template-tags.php:636
 #, php-format
 msgid "material #%s"
 msgstr ""
 
-#: ../includes/template-tags.php:636
+#: ../includes/template-tags.php:650
 msgid "order samples"
 msgstr ""
 
-#: ../includes/template-tags.php:671
+#: ../includes/template-tags.php:685
 msgid "select a color"
 msgstr ""
 
-#: ../includes/template-tags.php:680 ../includes/template-tags.php:693
+#: ../includes/template-tags.php:694 ../includes/template-tags.php:707 ..
+#: /includes/template-tags.php:711
 msgid "in stock"
 msgstr ""
 
-#: ../includes/template-tags.php:683 ../includes/template-tags.php:691
+#: ../includes/template-tags.php:697 ../includes/template-tags.php:705 ..
+#: /includes/template-tags.php:709
 msgid "restocking"
 msgstr ""
 
-#: ../includes/template-tags.php:686
+#: ../includes/template-tags.php:700
 msgid "backorder"
 msgstr ""
 
-#: ../includes/template-tags.php:692
+#: ../includes/template-tags.php:706 ../includes/template-tags.php:710
 msgid "order it in this variation"
 msgstr ""
 
-#: ../includes/template-tags.php:697
+#: ../includes/template-tags.php:715
 msgid "order now to reserve your item"
 msgstr ""
 
-#: ../includes/template-tags.php:997
+#: ../includes/template-tags.php:1023
 msgid "technical detail image"
 msgstr ""
 
-#: ../includes/template-tags.php:1049
+#: ../includes/template-tags.php:1075
 msgid "self pickup"
 msgstr ""
 
-#: ../includes/template-tags.php:1050
+#: ../includes/template-tags.php:1076
 msgid "ship when ready"
 msgstr ""
 
-#: ../includes/template-tags.php:1051
+#: ../includes/template-tags.php:1077
 msgid "ship as bundle 1"
 msgstr ""
 
-#: ../includes/template-tags.php:1052
+#: ../includes/template-tags.php:1078
 msgid "ship as bundle 2"
 msgstr ""
 
-#: ../includes/template-tags.php:1053
+#: ../includes/template-tags.php:1079
 msgid "ship as bundle 3"
 msgstr ""
 
-#: ../includes/template-tags.php:1100
+#: ../includes/template-tags.php:1126
 msgid "self pickup discount"
 msgstr ""
 
-#: ../includes/template-tags.php:1117
+#: ../includes/template-tags.php:1143
 msgid "credit card"
 msgstr ""
 
-#: ../includes/template-tags.php:1121
+#: ../includes/template-tags.php:1147
 msgid "expiry"
 msgstr ""
 
-#: ../includes/template-tags.php:1130
+#: ../includes/template-tags.php:1156
 msgid "no color selected"
 msgstr ""
 
-#: ../includes/template-tags.php:1133
+#: ../includes/template-tags.php:1159
 msgid "quantity"
 msgstr ""
 
-#: ../includes/template-tags.php:1143
+#: ../includes/template-tags.php:1169
 msgid "availability"
 msgstr ""
 
-#: ../includes/template-tags.php:1150
+#: ../includes/template-tags.php:1176
 msgid "ADD TO CART"
 msgstr ""
 

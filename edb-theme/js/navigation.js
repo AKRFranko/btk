@@ -80,6 +80,15 @@ $(document).on('click', '.wpglobus-selector-link', function(){
       return true;
     })
   });
+  
+  $('.pdf-dowloads a').each(function(i) {
+    $(this).on('click', function() {
+      ga('send', 'event', 'Product PDF', 'Download', $(this).attr('download'), 1);
+      return true;
+    })
+  });
+  
+  
 
   $('.cart-item-remove a').each(function(i) {
     $(this).on('click', function() {
@@ -191,23 +200,33 @@ $(document).on('click', '.wpglobus-selector-link', function(){
     var data = $input.data();
     var price = data.variationPrice;
     var name = data.name;
-    var preview = data.preview;
+    var preview = data.material.closeup || data.preview;
+    
     var shippingDelays = data.shippingDelay;
     var selectedQty = $('input[name=quantity]').val();
     var availableQty = 1 * shippingDelays.stock;
     var availableText = '';
     var stockLabel = data.stockLabel;
     var stockMessage = data.stockMessage;
+    
     // console.log(data);
     if (availableQty < selectedQty) {
       availableText = shippingDelays.max;
-
+      
     } else {
       availableText = shippingDelays.min;
-
+      
     }
+    if(availableText == '16 weeks' || availableText == '16 semaines'){
+      availableText = '8 to 16 weeks';
+      if(window.WPGlobus && window.WPGlobus.language && window.WPGlobus.language == 'fr' ){
+        availableText = '8 á 16 semaines' ;
+      }
+    }
+    
+    
     $('.product-selected-availability .value').text(availableText);
-    $('.product-price').html('$'+price);
+    $('.product-price').html(price);
     // var availabilites = $input.data('preview');
 
     var $originSlide = $('.edb-slide.active');
@@ -563,63 +582,66 @@ $(document).on('click', '.wpglobus-selector-link', function(){
     sessionStorage.setItem('back-to-school-promo-off', true );
     $('#back-to-school').remove();
   })
-  $(function(){
+  
     // var shutUpPromo = sessionStorage.getItem('back-to-school-promo-off');
     // if(!shutUpPromo){
     //   setTimeout(function(){
-    if(!$('body').hasClass('promo1') && !$('body').hasClass('promo2')){
-      $('#back-to-school').remove();
-      $('#back-to-school-1').remove();
-    }
-        
-    //   },3000);  
-    // }
-    
-    
-    
-    
-  });
-
- 
-  $(function(){
-    return;
-    var cl = jQuery('.archive.woocommerce .article-product:first').clone();
-    
-    if(!!cl.length){
-      var lang = $('.wpglobus-current-language .code').text();      
-      var title,subtitle,body,promocode;
-      var dismissed = localStorage.getItem('has_dismissed_newsletter');
+    // if(!$('body').hasClass('promo1') && !$('body').hasClass('promo2')){
+      // $('#back-to-school').remove();
+  //  
+  //  }
+    // });
+//// //  $('#back-to-school-1').remove();
+//// // 
+  //    
+//// // /   },3000);  
+//// // / }
+//// // 
+//// // 
+//// //
+//// //
+//// //;
+///////
+////// 
+//// //function(){
+//// //return;
+//// //var cl = jQuery('.archive.woocommerce .article-product:first').clone();
+//// //
+//// // f(!!cl.length){
+//// //  var lang = $('.wpglobus-current-language .code').text();      
+//// //  var title,subtitle,body,promocode;
+//// //  var dismissed = localStorage.getItem('has_dismissed_newsletter');
+//// //  
+//// //  if(lang == 'FR'){
+//// //    promocode = '- 10%';
+//// //    title ="Infolettre";
+//// //    subtitle="inscrivez-vous";
+//// //    body = "JOIGNEZ VOUS À L’UNIVERS DE EDB. RECEVEZ 10% D’ESCOMPTE SUR VOTRE PROCHAIN ACHAT. inscrivez-vous à notre infolettre et vous serez toujours informés de nos dernières nouvelles, de nos offres exclusives et de nos nouveaux produits.";
+//   //  }else{
+//   //    
+//   //    promocode = '- 10%';
+//         title = "Newsletter";
+//         subtitle="subscribe";
+//         body = "Join the world of edb. Get 10% off on your next order. Sign up for our newsletter and you will always be up to date on our latest news, exclusive offers, promotions and products.";
+//       }
+  //     cl.addClass('article-promo');
+  //     cl.find('.article-link').attr('href','#').removeAttr('onclick').removeAttr('data-product');
+  //     cl.find('span[data-rollover-image]').removeAttr('data-rollover-image');
+  //     cl.find('.article-image').css('background','rgba(204,204,153,1)').attr('class','article-image');
+  //     cl.find('.article-image').append('<h3 class="promo-code">'+promocode+'</h3>');
+  //     cl.find('.article-image img').remove();
+  //     cl.find('.article-title').text(title)
+  //     cl.find('.article-subtitle').text(subtitle)
+  //     cl.find('.article-body').html(body)
+  //     jQuery('.archive.woocommerce .article-product:first').after(cl)
       
-      if(lang == 'FR'){
-        promocode = '- 10%';
-        title ="Infolettre";
-        subtitle="inscrivez-vous";
-        body = "JOIGNEZ VOUS À L’UNIVERS DE EDB. RECEVEZ 10% D’ESCOMPTE SUR VOTRE PROCHAIN ACHAT. inscrivez-vous à notre infolettre et vous serez toujours informés de nos dernières nouvelles, de nos offres exclusives et de nos nouveaux produits.";
-      }else{
-        
-        promocode = '- 10%';
-        title = "Newsletter";
-        subtitle="subscribe";
-        body = "Join the world of edb. Get 10% off on your next order. Sign up for our newsletter and you will always be up to date on our latest news, exclusive offers, promotions and products.";
-      }
-      cl.addClass('article-promo');
-      cl.find('.article-link').attr('href','#').removeAttr('onclick').removeAttr('data-product');
-      cl.find('span[data-rollover-image]').removeAttr('data-rollover-image');
-      cl.find('.article-image').css('background','rgba(204,204,153,1)').attr('class','article-image');
-      cl.find('.article-image').append('<h3 class="promo-code">'+promocode+'</h3>');
-      cl.find('.article-image img').remove();
-      cl.find('.article-title').text(title)
-      cl.find('.article-subtitle').text(subtitle)
-      cl.find('.article-body').html(body)
-      jQuery('.archive.woocommerce .article-product:first').after(cl)
-      
 
-      cl.on('click tap', function( e ){
-        e.preventDefault();
-        $('#contest').show();
-      })
-    }
-  })
+  //     cl.on('click tap', function( e ){
+  //       e.preventDefault();
+  //       $('#contest').show();
+  //     })
+  //   }
+  // })
   
   
   $(function(){
@@ -654,21 +676,109 @@ $(document).on('click', '.wpglobus-selector-link', function(){
   
   $(function(){
   
-      if($('.inspiration-listing-item').each(function(){
+      $('.inspiration-listing-item').each(function(){
         var $li = $(this);
         var $img = $(this).find('img');
         $li.find('.gallery, .gallery-item:first').height($li.width()).attr('style');
         $li.find('.gallery').css('background-image', 'url("'+$img.attr('src')+'")');
-        
-      }).length){
+      });
+      
+
+  })
+  
+  var learnmoreString = 'learn more';
+  if(window.WPGlobus && window.WPGlobus.language && window.WPGlobus.language == 'fr' ){
+   learnmoreString = 'en savoir plus';
+  }
+  
+  function toggleInfoDelayExplain( e ){
+    var $target = $('.material-info-delay-explained').each( function(){
+      $(this).toggle();
+    });
+    
+    if(e && e.preventDefault){
+      e.stopPropagation();
+      e.preventDefault();
+    }
+  }
+  function fixMobileProduct(e ){
+    
+    $('.product-description').insertAfter( $('.product-menu') );
+    $('.material-info-delay-explained').hide().on('click tap', toggleInfoDelayExplain);
+    $('.material-info-close-detail').show();
+    
+  }
+  function unfixMobileProduct(){
+    $('.product-description').insertBefore( $('.product-menu') );
+    $('.material-info-delay-explained').show();//.off('click tap',toggleInfoDelayExplain);
+    $('.material-info-close-detail').hide();
+  }
+  function initMobileProduct(){
+    
+      if( window.innerWidth <= 500 ){
+        fixMobileProduct()
+      }else{
+        unfixMobileProduct()
         
       }
-  
-  })
+      $('a.material-info-learn-more').on('click tap', function(){
+        $('.material-info-delay-explained').show();
+      });
+      $('.edb-slider').on('cycled', function(){
+        $('.material-info-delay-explained').hide();
+      })
+    
+  }
+  $(window).resize( initMobileProduct );
+  $(initMobileProduct);
   
   // $(function(){
   //   $('.home .edb-slide:nth(2)').find('.backdrop').css('background-image', 'url("https://elementdebase-prod-elementdebase.netdna-ssl.com/wp-content/uploads/2016/08/a1fca27c-6635-11e6-91fd-57d2744f2120.jpg")' );
-  // })
+  // })t
+
+  $( window).on( 'load', function(){
+    
+    function createRotatedImage(img, angle) {
+         
+         var newCanvas = document.createElement('canvas');
+         newCanvas.width  = img.naturalWidth  ;
+         newCanvas.height = img.naturalHeight ;
+         var newCtx = newCanvas.getContext('2d') ;
+         newCtx.save() ;
+         newCtx.translate( img.width / 2, img.height / 2) ;
+         newCtx.rotate(90 * Math.PI / 180);
+         newCtx.drawImage ( img, - img.width / 2, - img.height / 2) ; 
+         newCtx.restore() ;
+         return newCanvas.toDataURL( 'image/png');
+    }
+    
+    function getDataUri(image, callback) {
+            var canvas = document.createElement('canvas');
+            canvas.width = image.naturalWidth; // or 'width' if you want a special/scaled size
+            canvas.height = image.naturalHeight; // or 'height' if you want a special/scaled size
+            canvas.getContext('2d').drawImage(image, 0, 0);
+            return canvas.toDataURL('image/png');
+    }
+    
+    window.gdu = getDataUri;
+    
+    
+    window.getPDF = function(){
+      var isCorrectPage = $('.single-product').length > 0;
+      if(isCorrectPage){
+        
+        var pdf = new jsPDF();
+        var images = $('.product-slideshow img');
+        // pdf.text($('.product-name').text().toUpperCase(), 20, 20);
+        // pdf.text($('.product-price').text().toUpperCase(), 20, 30);
+        // var image1 = images.get(0);
+
+        // pdf.addImage(createRotatedImage(images[0]), 'PNG', 0, 0, 210, 297);
+        
+      }
+      pdf.save();
+    }
+  });
 
 
 })(jQuery);

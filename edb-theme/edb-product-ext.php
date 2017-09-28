@@ -54,10 +54,55 @@
 // }
 // add_action( 'init', 'edb_setup_extended_product', 0 );
 
+add_filter( 'rwmb_meta_boxes', 'edb_material_extended_meta_boxes' );
+
+function edb_material_extended_meta_boxes( $meta_boxes ) {
+   
+    
+    $meta_boxes[] = array(
+        'title'      => __( 'Closeup Picture', 'textdomain' ),
+        'post_types' => 'edb_material_desc',
+        'context' => 'side',
+        'priority' => 'low',
+        'fields'     => array(
+            array(
+              'name'             => esc_html__( 'Closeup Image Upload', 'edb' ),
+              'id'               => "edb_closeup_image",
+              'type'             => 'image_advanced',
+              'max_file_uploads' => 1,
+            ),
+           
+        ),
+    );
+    
+  
+    
+    
+    
+    return $meta_boxes;
+}
+
 
 add_filter( 'rwmb_meta_boxes', 'edb_product_extended_meta_boxes' );
 
 function edb_product_extended_meta_boxes( $meta_boxes ) {
+  
+  $meta_boxes[] = array(
+      'title'      => __( 'Product Family Name', 'textdomain' ),
+      'post_types' => 'product',
+      'context' => 'side',
+      'priority' => 'low',
+      'fields'     => array(
+         
+          array(
+            'name'             => esc_html__( 'Name', 'edb' ),
+            'id'               => "edb_product_family_name",
+            'type'             => 'text'
+          ),
+         
+      ),
+  );
+  
     $meta_boxes[] = array(
         'title'      => __( 'See More', 'textdomain' ),
         'post_types' => 'product',
@@ -117,6 +162,51 @@ function edb_product_extended_meta_boxes( $meta_boxes ) {
            
         ),
     );
+    
+    $meta_boxes[] = array(
+        'title'      => __( 'PDF Download', 'textdomain' ),
+        'post_types' => 'product',
+        'context' => 'side',
+        'priority' => 'low',
+        'fields'     => array(
+          array(
+            'name'             => esc_html__( 'Title for PDFs (en)', 'edb' ),
+            'id'               => "edb_product_pdfs_title",
+            'type'             => 'text'
+          ),
+          array(
+            'name'             => esc_html__( 'Title for PDFs (fr)', 'edb' ),
+            'id'               => "edb_product_pdfs_title_fr",
+            'type'             => 'text'
+          ),
+           array(
+             'name'             => esc_html__( 'Text for PDFs (en)', 'edb' ),
+             'id'               => "edb_product_pdfs_text",
+             'type'             => 'text'
+           ),
+           array(
+             'name'             => esc_html__( 'Text for PDFs (fr)', 'edb' ),
+             'id'               => "edb_product_pdfs_text_fr",
+             'type'             => 'text'
+           ),
+           array(
+             'name'             => esc_html__( 'Image for PDFs', 'edb' ),
+             'id'               => "edb_product_pdfs_image",
+             'type'             => 'image_advanced',
+             'multiple' => true
+           ),
+           array(
+             'name'             => esc_html__( 'PDFs', 'edb' ),
+             'id'               => "edb_product_pdfs",
+             'type'             => 'file_advanced',
+             'multiple' => true
+           )
+        ),
+    );
+    
+    
+    
+    
     
     return $meta_boxes;
 }

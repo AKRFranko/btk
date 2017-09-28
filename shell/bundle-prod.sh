@@ -9,18 +9,18 @@ wget -O /home/franko/Code/edb.com/btk/edb-plugin/languages/edb.pot  https://elem
 wget -O /home/franko/Code/edb.com/btk/edb-plugin/languages/edb-fr_FR.po  https://elementdebase.com/wp-content/plugins/edb-plugin/languages/edb-fr_FR.po
 wget -O /home/franko/Code/edb.com/btk/edb-plugin/languages/edb-fr_FR.mo  https://elementdebase.com/wp-content/plugins/edb-plugin/languages/edb-fr_FR.mo
 
-wget -O /home/franko/Code/edb.com/btk/edb-lookbook/languages/edb.pot  https://elementdebase.com/wp-content/plugins/edb-lookbook/languages/edb.pot
-wget -O /home/franko/Code/edb.com/btk/edb-lookbook/languages/fr_FR.po  https://elementdebase.com/wp-content/plugins/edb-lookbook/languages/fr_FR.po
-wget -O /home/franko/Code/edb.com/btk/edb-lookbook/languages/fr_FR.mo  https://elementdebase.com/wp-content/plugins/edb-lookbook/languages/fr_FR.mo
+#wget -O /home/franko/Code/edb.com/btk/edb-lookbook/languages/edb.pot  https://elementdebase.com/wp-content/plugins/edb-lookbook/languages/edb.pot
+#wget -O /home/franko/Code/edb.com/btk/edb-lookbook/languages/fr_FR.po  https://elementdebase.com/wp-content/plugins/edb-lookbook/languages/fr_FR.po
+#wget -O /home/franko/Code/edb.com/btk/edb-lookbook/languages/fr_FR.mo  https://elementdebase.com/wp-content/plugins/edb-lookbook/languages/fr_FR.mo
 
 touch /home/franko/Code/edb.com/btk/edb-theme/index.php
 
 
-echo "Building order Tool"
-cd /home/franko/Code/edb.com/btk/edb-apps/order-tool/ && /home/franko/Code/edb.com/btk/edb-apps/order-tool/node_modules/gulp/bin/gulp.js && mkdir -p /home/franko/Code/edb.com/btk/edb-theme/apps/order-tool/ && rm -rf /home/franko/Code/edb.com/btk/edb-theme/apps/order-tool/* && cp -R /home/franko/Code/edb.com/btk/edb-apps/order-tool/dist/ /home/franko/Code/edb.com/btk/edb-theme/apps/order-tool/app
+#echo "Building order Tool"
+#cd /home/franko/Code/edb.com/btk/edb-apps/order-tool/ && /home/franko/Code/edb.com/btk/edb-apps/order-tool/node_modules/gulp/bin/gulp.js && mkdir -p /home/franko/Code/edb.com/btk/edb-theme/apps/order-tool/ && rm -rf /home/franko/Code/edb.com/btk/edb-theme/apps/order-tool/* && cp -R /home/franko/Code/edb.com/btk/edb-apps/order-tool/dist/ /home/franko/Code/edb.com/btk/edb-theme/apps/order-tool/app
 
-echo "Building delivery manager Tool"
-cd /home/franko/Code/edb.com/btk/edb-apps/delivery-manager/ && /home/franko/Code/edb.com/btk/edb-apps/delivery-manager/node_modules/gulp/bin/gulp.js && mkdir -p /home/franko/Code/edb.com/btk/edb-theme/apps/delivery-manager/ && rm -rf /home/franko/Code/edb.com/btk/edb-theme/apps/delivery-manager/* && cp -R /home/franko/Code/edb.com/btk/edb-apps/delivery-manager/dist/ /home/franko/Code/edb.com/btk/edb-theme/apps/delivery-manager/app
+#echo "Building delivery manager Tool"
+#cd /home/franko/Code/edb.com/btk/edb-apps/delivery-manager/ && /home/franko/Code/edb.com/btk/edb-apps/delivery-manager/node_modules/gulp/bin/gulp.js && mkdir -p /home/franko/Code/edb.com/btk/edb-theme/apps/delivery-manager/ && rm -rf /home/franko/Code/edb.com/btk/edb-theme/apps/delivery-manager/* && cp -R /home/franko/Code/edb.com/btk/edb-apps/delivery-manager/dist/ /home/franko/Code/edb.com/btk/edb-theme/apps/delivery-manager/app
 
 
 echo "Bundling themes and plugins"

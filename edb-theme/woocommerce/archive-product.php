@@ -66,7 +66,6 @@ get_header( 'shop' ); ?>
 			      'nopaging'=> true,
             'post_type'      => 'product',
             'post__in' => wc_get_product_ids_on_sale()
-            
             // 'meta_query'     => array(
             //     'relation' => 'OR',
             //     array( // Simple products type
@@ -104,7 +103,7 @@ get_header( 'shop' ); ?>
         $date_query = array( 'after'=>array( 'year'=>$year, 'month'=>$tmonth ) );
         $args = array( 'nopaging' => true, 'post_type' => 'product', 'date_query' =>  $date_query );
         // $args = array('nopaging' => true, 'post_type' => 'product', 'year'=>$lastyear,'monthnum'=>$lastmonth,'order'=>'DESC');
-        write_log($args);
+        //write_log($args);
         query_posts( $args );
       }  
        
@@ -169,8 +168,11 @@ get_header( 'shop' ); ?>
                 }
                 $separator = (parse_url($permalink, PHP_URL_QUERY ) == NULL) ? '?' : '&';
                 $permalink .= $separator . $query . $pound;
+                $stock_status = get_post_meta($deco->product_id, '_stock_status', true);
+                $is_in_stock = $stock_status !== 'outofstock';
               ?>
-              <a class="article-link" href="<?php echo $permalink;?>" data-product="<?php echo esc_attr($ga_product); ?>" onclick="edbStats.recordProductClick(this); return !ga.loaded;">
+              
+              <a class="article-link <?php echo $stock_status; ?>" href="<?php echo $permalink;?>" data-product="<?php echo esc_attr($ga_product); ?>" onclick="edbStats.recordProductClick(this); return !ga.loaded;">
                 <?php if (has_post_thumbnail()): ?>
                   <?php
                     $hires = array( $deco->images['featured']);
@@ -219,6 +221,18 @@ get_header( 'shop' ); ?>
                   
                   <?php the_excerpt(); ?>
                 </span>
+               </span>
+                
+               <?php if(!$is_in_stock){ ?> 
+               
+                 <span id="out-of-stock-stamp">
+                   <span class="out-of-stock-title"><?php _e('out of stock','edb'); ?></span> 
+                   <?php if( product_has_or_expects_stock( $product->id ) ){ ?> 
+                     <span class="out-of-stock-time"><?php printf(__('restocking in %s','edb'),edb_product_restock_date($product->id)); ?></span>   
+                   <?php } ?>
+                   
+                 </span>
+               <?php }; ?>
                 
               </a>
             

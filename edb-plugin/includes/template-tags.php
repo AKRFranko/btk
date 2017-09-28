@@ -144,6 +144,24 @@ function edb_package_item_name( $package_item_key, $package_item ){
   echo $decorated->system_name_html;
   
 }
+
+// function edb_package_item_price_display( $package_item_key, $package_item ){
+//   $variation_id = $package_item['variation_id'];
+//   $decorated = edb_decorated_product( $variation_id );
+  
+//   if($decorated->product_object->is_on_sale()){
+//     $regular_price =$decorated->variation_object->regular_price;
+//     $sale_price    =$decorated->variation_object->sale_price;
+//     $regular_price*=$package_item['qty'];
+//     $sale_price*=$package_item['qty'];
+//     if($sale_price <  $regular_price ){
+//     echo "<s class='onsale'>".$regular_price."</s> <span class=\"saleprice\">$".$sale_price."</span>";  
+//     }else{
+//       echo $regular_price;
+//     }
+    
+//   }
+// }
 function edb_package_item_material( $package_item_key, $package_item ){
   $variation_id = $package_item['variation_id'];
   $decorated = edb_decorated_product( $variation_id );
@@ -517,13 +535,14 @@ function edb_product_slideshow( $product_id,$current_cat=null){
   $decorated = edb_decorated_product( $product_id,$current_cat );
   $slide_images = $decorated->images['slideshow'];
   $variation_images = $decorated->images['material_variations'];
+  $explain = sprintf(__('For all custom orders, the delivery time varies between 8-16 weeks. This leadtime includes the time required for ordering materials, production and shipping. For more information about a specific production leadtime, please contact us at %s.', 'edb'),'<a href="mailto:info@elementdebase.com">info@elementdebase.com</a>');
   $html = '<div class="edb-slider">';
   $html .= '<div class="edb-slides">';
   foreach($slide_images as $index => $src){
     $alt = sprintf( __("%s image #%d",'edb'), esc_attr($decorated->full_name), $index);
     $active = $index == 0 ? ' active' : '';
     $style = "background-image:url('".esc_attr($src)."');";
-    $img = "<img src='$src' alt='$alt'>";
+    $img = "<img src='$src' alt='$alt' crossOrigin='anonymous'>";
     $html .= '<div class="edb-slide'.$active.'">';
     $html .= '<div class="backdrop" style="'.$style.'">'.$img.'</div>';
     $html .= '<div class="material-info">';
@@ -534,9 +553,13 @@ function edb_product_slideshow( $product_id,$current_cat=null){
     $html .= '<div class="material-info-stock-label"></div>';
     $html .= '<div class="material-info-stock-availability"></div>';
     $html .= '<div class="material-info-stock-message"></div>';
+    $html .= '<a href="#" class="material-info-learn-more">'.__('learn more','edb').'</a>';
+    $html .= '<div class="material-info-delay-explained">'.$explain.'<a class="material-info-close-detail" href="#">&times;</a></div>';
+    
     $html .= '</div>';
     $html .= '</div>';
   }
+  
   $html .= '</div>';
   $html .='<div class="controls">';
   $html .= '<a href="#" class="prev">&lt;</a>';
@@ -564,13 +587,7 @@ function edb_product_slideshow( $product_id,$current_cat=null){
 }
 
 function edb_material_info_json( $material_no){
-  $get_material_desc_args = array(
-    'meta_key' => '_edb_material',
-    'meta_value' => $material_no,
-    'post_type' => 'edb_material_desc',
-    'post_status'=> 'any',
-    'posts_per_page'=> 1
-  );
+  $get_material_desc_args = array('meta_key' => '_edb_material','meta_value' => $material_no,'post_type' => 'edb_material_desc','post_status'=> 'any','posts_per_page'=> 1);
   $dpost = get_posts($get_material_desc_args);
   if(count($dpost) > 0 ){
     $name = apply_filters('the_title', $dpost[0]->post_title);
@@ -579,12 +596,13 @@ function edb_material_info_json( $material_no){
     $composition = explode("|",$excerpt);
     
     $image_id = get_post_thumbnail_id( $dpost[0]->ID ,'thumbnail');
-    
+    $closeup_id = get_post_meta($dpost[0]->ID, 'edb_closeup_image', true);
     if(!empty($subtitle)){
       $name = "$name $subtitle $material_no";
     }
     $thumb = wp_get_attachment_image_src($image_id, 'full')[0];
-    return json_encode( array( 'name' => $name, 'composition' => $composition, 'image'=>$thumb ) );
+    $closeup = wp_get_attachment_image_src($closeup_id, array('350','215'))[0];
+    return json_encode( array( 'name' => $name, 'composition' => $composition, 'image'=>$thumb, 'closeup' => $closeup ) );
   }
   
 }
@@ -663,6 +681,27 @@ function product_has_or_expects_stock( $product_id ){
   
 }
 
+function edb_product_restock_date( $product_id ){
+  $decorated = edb_decorated_product( $product_id );
+  $materials = $decorated->materials;
+  foreach($materials as $edb_material => $data ){
+    $stock_qty = $decorated->stocks[$data['variation_id']];
+    $restocking = $decorated->shipping_delays[$data['variation_id']]['expected'];
+  
+  
+    $delays = $decorated->shipping_delays[ ''.$data['variation_id'] ];
+  
+    $now = strtotime(date(DATE_ATOM));
+ 
+ 
+    if(!empty($delays['expected'])){
+      return time_elapsed(strtotime($delays['expected']));
+    }
+  
+  }
+  return null;
+}
+
 function edb_product_material_picker( $product_id ){
   $decorated = edb_decorated_product( $product_id );
   $materials = $decorated->materials;
@@ -691,6 +730,10 @@ function edb_product_material_picker( $product_id ){
       're-stock' => __('restocking','edb') ,
       'backorder' => __('order it in this variation','edb'),
       'in-stock' => __('in stock','edb') );
+    $stock_paragraphs = array(
+    're-stock' => __('restocking','edb') ,
+    'backorder' => __('order it in this variation','edb'),
+    'in-stock' => __('in stock','edb') );
     $stock_label = $stock_labels[$stock_class];
     $stock_message = '';
     if($stock_class == 're-stock'){
@@ -733,7 +776,8 @@ function edb_product_material_picker( $product_id ){
     
     $availability_date  = esc_attr(json_encode( array( 'stock' => $stock_qty, 'min' => $min, 'max' => $max ) ));
     $preview = $decorated->images['material_variations'][$edb_material];
-    $variation_price = get_post_meta($decorated->materials[$edb_material]['variation_id'],'_price',true);
+    $variation_price = wc_price(get_post_meta($decorated->materials[$edb_material]['variation_id'],'_price',true));
+    //$decorated->price_html ;//
     
     echo "<label for=\"edb-material-choice-$edb_material\">";
     
@@ -755,12 +799,18 @@ function edb_product_material_picker( $product_id ){
 
 
 function tmp_has_tech_image( $deco ){
+  if($deco->product_id == 12595) return false;
   
  $data = array("atrium-solo_sofas-3-seater",
               "piquÉ-small_sectionals-left-facing",
               "piquÉ-small_sectionals-right-facing",
               "atrium_armchairs",
+              "capsule_armchairs",
+              "dive 3p_sofas-3-seater",
               "maritime_armchairs",
+"midland_sofa-beds",
+              "pivot_side-tables",
+               "peewee_sofas-2-seater",
               "atrium_sectionals-right-facing",
               "atrium_sectionals-left-facing",
               "dive_sectionals-left-facing",
@@ -943,6 +993,9 @@ function tmp_get_tech_image( $deco ){
 // }
 // $k = "$name"."_"."$cat";
  $wfname = $deco->wireframe_name;
+ if($deco->product_id == 12595){
+   return null;
+ }
  write_log('https://elementdebase.com/wp-content/edb-svg/'.$wfname.'.svg');
  return 'https://elementdebase.com/wp-content/edb-svg/'.$wfname.'.svg';
 }

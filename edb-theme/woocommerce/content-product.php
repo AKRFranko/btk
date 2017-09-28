@@ -80,9 +80,11 @@ $classes[] = 'listing-product';
 			//do_action( 'woocommerce_after_shop_loop_item_title' );
 		?>
 		
+		
     <span class="article-image" style="background-image:url('<?php echo $edb_product->images['featured']; ?>');">
       <?php echo '<img src="' . $edb_product->images['featured'] . '">'; ?>
     </span>
+    
     <span class="article-info">
       <h2 class="article-title"><?php echo $edb_product->title;?></h2>
       <p class="article-subtitle"><?php echo wc_price($edb_product->price);?></p>

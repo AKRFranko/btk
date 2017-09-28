@@ -27,6 +27,9 @@
 <!--<meta http-equiv="expires" content="0" />-->
 <!--<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />-->
 <!--<meta http-equiv="pragma" content="no-cache" />-->
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
@@ -161,7 +164,7 @@
             }else{
               
               if(strtolower($main->slug) === 'accessories'){
-                echo '<li><a href="/product-category/ottomans/" title="' . sprintf( __( 'View all %s', 'edb' ), __('ottomans', 'edb') ) . '">' . __( 'ottomans', 'edb') . '</a></li>';
+                echo '<li><a href="/product-category/ottomans/" title="' . sprintf( __( 'View all %s', 'edb' ), __('benches & ottomans', 'edb') ) . '">' . __( 'benches & ottomans', 'edb') . '</a></li>';
                 echo '<li><a href="/product-category/accessories-rugs/" title="' . sprintf( __( 'View all %s', 'edb' ), __('rugs','edb') ) . '">' . __( 'rugs', 'edb') . '</a></li>';
                 echo '<li><a href="/product-category/accessories-pillows/" title="' . sprintf( __( 'View all %s', 'edb' ), __('cushions','edb') ) . '">' . __( 'cushions', 'edb') . '</a></li>';
                 echo '<li><a href="/product-category/accessories-other/" title="' . sprintf( __( 'View all %s', 'edb' ), __('accessories','edb') ) . '">' . __( 'accessories', 'edb') . '</a></li>';

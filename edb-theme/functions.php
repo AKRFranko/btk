@@ -13,7 +13,10 @@ if(file_exists($preview)) {
      require $preview;
 }
 
+
 if ( ! function_exists( '_s_setup' ) ) :
+  
+  
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -21,6 +24,8 @@ if ( ! function_exists( '_s_setup' ) ) :
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
+ 
+ 
  
  $edb_shipping_rates_table = array(
    'furniture' => array( 
@@ -246,22 +251,25 @@ function _s_scripts() {
 
 	
      wp_enqueue_script('masonry', "https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js", array('jquery'), '4.0', true );
-  
+     wp_enqueue_script( 'jspdf','https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js', array('jquery'), '20170922', true );
+     
   // if($_SERVER['SERVER_ADDR'] == '45.56.104.172'){
      
-     wp_enqueue_script( '_s_hammer', get_template_directory_uri() . '/js/hammer.min.js', array(), '20160709', true );
-     wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array('jquery','_s_hammer','masonry'), '20160711', true );
-     wp_enqueue_script( '_s-swiper', get_template_directory_uri() . '/js/swiper-init.js', array('jquery','swiperjs'), '20160711', true );
-     wp_enqueue_script( '_s-splash', get_template_directory_uri() . '/js/splash.js', array('jquery','_s_hammer'), '20160709', true );
-     wp_enqueue_script( '_s-toast', get_template_directory_uri() . '/js/toast.js', array('jquery','_s_hammer'), '20160709', true );
-     wp_enqueue_script( '_s-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20160709', true );
-     
+     wp_enqueue_script( '_s_hammer', get_template_directory_uri() . '/js/hammer.min.js', array(), '20170607', true );
+     wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array('jquery','_s_hammer','masonry','jspdf'), '20170922', true );
+     wp_enqueue_script( '_s-swiper', get_template_directory_uri() . '/js/swiper-init.js', array('jquery','swiperjs'), '20170922', true );
+     wp_enqueue_script( '_s-splash', get_template_directory_uri() . '/js/splash.js', array('jquery','_s_hammer'), '20170922', true );
+     wp_enqueue_script( '_s-toast', get_template_directory_uri() . '/js/toast.js', array('jquery','_s_hammer'), '20170922', true );
+     wp_enqueue_script( '_s-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20170922', true );
+      
 
-     wp_enqueue_script('swiperjs','https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js',array(), '20160709', true );
+
+
+     wp_enqueue_script('swiperjs','https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js',array(), '20170922', true );
      wp_localize_script('_s-toast', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'theme_url' => get_template_directory_uri(), 'current_lang'=>WPGlobus::Config()->language ) );
-     wp_enqueue_script( '_s_ga_ec', get_template_directory_uri() . '/js/ec.js', array(), '20160709', true );
+     wp_enqueue_script( '_s_ga_ec', get_template_directory_uri() . '/js/ec.js', array(), '20170922', true );
      if($_SERVER['SERVER_ADDR'] == '45.56.104.172'){
-       wp_enqueue_script( '_s_test', get_template_directory_uri() . '/js/test.js', array('jquery'), '20160709', true );
+       wp_enqueue_script( '_s_test', get_template_directory_uri() . '/js/test.js', array('jquery'), '20170922', true );
      }
     
   // }else{
@@ -423,10 +431,11 @@ function btk_edb_slider($query, $attach = null, $blankTargets = false) {
     
     if (has_post_thumbnail()) {
       $src = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full')[0];
-      ?><div class="edb-slide<?php echo $active; ?> <?php echo $altClass; ?> <?php echo get_post_format($slider_query->post->ID); ?>">
+      $spid = $slider_query->post->ID;
+      ?><div class="edb-slide <?php echo "slide-post-$spid"; ?> <?php echo $active; ?> <?php echo $altClass; ?> <?php echo get_post_format($slider_query->post->ID); ?>">
         
           <div class="backdrop" style="background-image:url('<?php echo esc_attr($src); ?>?noc=<?php echo time(); ?>')">
-            <img alt="<?php echo esc_attr(get_the_title()); ?>, slide <?php echo $i; ?>" src="<?php echo esc_attr($src); ?>?noc=<?php echo time(); ?>">
+            <img crossOrigin="anonymous" alt="<?php echo esc_attr(get_the_title()); ?>, slide <?php echo $i; ?>" src="<?php echo esc_attr($src); ?>?noc=<?php echo time(); ?>">
           </div>
           
           <div class="titles">
@@ -627,6 +636,8 @@ function set_php_auth_header(){
 }
 
 
+
+
 // // Load our function when hook is set
 // add_action( 'pre_get_posts', 'edb_translate_query' );
 // // Create a function to excplude some categories from the main query
@@ -814,7 +825,7 @@ function subscribe_to_newsletter() {
         $lang = WPGlobus::Config()->language;
         if(!empty($email)){
           $mailchimp_base = "https://us13.api.mailchimp.com/3.0";
-          $newsletter_list_id = '23bc3101c2';
+          $newsletter_list_id = '3a4f281572';
           $apiKey='95a6322f4c1d11a7c2f455f84f4b7135-us13';
           $mailchimp_list = "$mailchimp_base/lists/$newsletter_list_id/members/";
           $data = array( 
@@ -837,13 +848,13 @@ function subscribe_to_newsletter() {
           $responseBody = json_decode($response['body'], true);
           
           if(isset($response['response']) && isset($response['response']['code']) && $response['response']['code']  == 200){
-            $message_fr = "Merci pour votre inscription. $email est maintenant abonné.<br/><br/>Utilisez le code promo: <code>edb10</code> pour obtenir 10% de rabais* sur votre prochain achat.<br/><br/><small>*valide sur les articles à prix regulier. Les articles déjà soldés ne sont pas admisibles à une escompte additionnelle.</small>";
-            $message_en = "Thank you! $email has been subscribed. <br /><br/>Use promo code: <code>edb10</code> to obtain a 10% rebate* on your next purchase.<br/><br/>*valid on regular items, sale items do not benefit from an additional discount.";
-            echo json_encode( array('message' => WPGlobus_Core::text_filter( "{:en}$mesage_en{:}{:fr}$message_fr{:}", WPGlobus::Config()->language ) ) );  
+            $message_fr = "Merci pour votre inscription. $email est maintenant abonné.<br/><br/>Utilisez le code promo: <code>infolettre10</code> pour obtenir 10% de rabais* sur votre prochain achat.<br/><br/><small>*valide sur les articles à prix regulier. Les articles déjà soldés ne sont pas admisibles à une escompte additionnelle.</small>";
+            $message_en = "Thank you! $email has been subscribed. <br /><br/>Use promo code: <code>newsletter10</code> to obtain a 10% rebate* on your next purchase.<br/><br/>*valid on regular items, sale items do not benefit from an additional discount.";
+            echo json_encode( array('message' => WPGlobus_Core::text_filter( "{:en}$message_en{:}{:fr}$message_fr{:}", WPGlobus::Config()->language ) ) );  
           }else{
             if(isset($responseBody['title']) && $responseBody['title'] == 'Member Exists'){
-              $message_fr = "$email est déja abonné.<br/><br/> Utilisez le code promo : <code>edb10</code> pour obtenir 10% de rabais* sur votre prochain achat.<br/><br/>*valide sur les articles à prix regulier. Les articles déjà soldés ne sont pas admisibles à une escompte additionnelle.";
-              $message_en = "Thank you! $email was already subscribed.<br/><br/> Use promo code: <code>edb10</code> to obtain a 10% rebate* on your next purchase.<br/><br/>*valid on regular items, sale items do not benefit from an additional discount.";
+              $message_fr = "$email est déja abonné.<br/><br/> Utilisez le code promo : <code>infolettre10</code> pour obtenir 10% de rabais* sur votre prochain achat.<br/><br/>*valide sur les articles à prix regulier. Les articles déjà soldés ne sont pas admisibles à une escompte additionnelle.";
+              $message_en = "Thank you! $email was already subscribed.<br/><br/> Use promo code: <code>newsletter10</code> to obtain a 10% rebate* on your next purchase.<br/><br/>*valid on regular items, sale items do not benefit from an additional discount.";
               echo json_encode( array('message' => WPGlobus_Core::text_filter( "{:en}$message_en{:}{:fr}$message_fr{:}", WPGlobus::Config()->language ) ) );    
             }else{
               echo json_encode( array('error' => true, 'message' => WPGlobus_Core::text_filter( "{:en}Oops! something went wrong, please try again later. {:}{:fr}Oops! Quelquechose n'a pas fonctionné. Réessayez plus tard.{:}", WPGlobus::Config()->language ) ) );  
@@ -1211,9 +1222,9 @@ function get_points_info_for_coupon_code( $code ){
 
 
 function export_material_data(){
-  if($_SERVER['REQUEST_URI'] !== '/'){
-    return;
-  }
+  // if($_SERVER['REQUEST_URI'] !== '/'){
+  //   return;
+  // }
   global $wpdb;
   $material_posts = 'SELECT pm.post_id,pm.meta_key,pm.meta_value FROM wp_postmeta AS pm WHERE pm.meta_key LIKE "%edb_material"';
   $results = $wpdb->get_results( $material_posts , ARRAY_A );
@@ -1464,6 +1475,7 @@ function edb_delivery_manager_register()
 }
 
 
+
 function edb_delivery_manager_render()
 {
     // global $title;
@@ -1564,9 +1576,47 @@ function fix_svg() {
 
 
 
+
+
 add_action('admin_head', 'fix_svg');
 
 add_action('admin_enqueue_scripts', 'edb_delivery_manager_scripts');
+
+
+function edb_remove_covers_from_search( $query ) {
+
+   if (!is_admin() && $query->is_main_query() && $query->is_search()) {
+
+       $query->set( 'post_type', array( 'product' ) );
+
+
+       $tax_query = array(
+
+           array(
+
+               // likely what you are after
+
+               'taxonomy' => 'product_cat',
+
+               'field'   => 'slug',
+
+               'terms'   => array('slipcovers','slipcovers-2-seater','slipcovers-3-seater','slipcovers-sofa-beds','slipcovers-left-facing'),
+
+               'operator' => 'NOT IN',
+
+           ),
+
+       );
+
+       $query->set( 'tax_query', $tax_query );
+
+  }
+
+}
+
+add_action( 'pre_get_posts', 'edb_remove_covers_from_search' );
+
+
 
 require get_template_directory() . '/edb-product-ext.php';
 require get_template_directory() . '/edb-designers.php';
